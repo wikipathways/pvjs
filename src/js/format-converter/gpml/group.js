@@ -3,6 +3,7 @@
 var Utils = require('./../../utilities.js')
   , Element = require('./element.js')
   , Graphics = require('./graphics.js')
+  , Async = require('async')
   ;
 
 var Group = {
@@ -22,7 +23,7 @@ var Group = {
     groupContents = Utils.convertToArray(groupContents);
 
     dimensions.zIndex = Infinity;
-    async.each(groupContents, function(groupContent, callbackInside) {
+    Async.each(groupContents, function(groupContent, callbackInside) {
       if (!groupContent.hasOwnProperty('points')) {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
         dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);

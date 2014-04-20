@@ -1,5 +1,6 @@
 var Img = require('./img.js')
-  , fs = require('fs')
+  , Fs = require('fs')
+  , Async = require('async')
   , Strcase = require('./../../../lib/strcase/index.js')
   , InfoBox = require('./info-box.js')
   , PublicationXref = require('./publication-xref.js')
@@ -113,7 +114,7 @@ module.exports = function(){
       // ***************
       // Start getting diagram data in pvjson format
       // ***************
-      async.waterfall([
+      Async.waterfall([
         function(vectorRendererCallback) { // TODO some of this could be done in parallel
           // ***************
           // Start crossPlatformShapes
@@ -151,7 +152,7 @@ module.exports = function(){
               });
 
               var shapeName;
-              async.each(pvjson.elements, function(dataElement, callbackEach) {
+              Async.each(pvjson.elements, function(dataElement, callbackEach) {
                 var renderingData = dataElement;
                 renderingData.containerSelector = '#viewport';
                 shapeName = Strcase.camelCase(dataElement.shape);
@@ -237,7 +238,7 @@ module.exports = function(){
           }
           else {
             // cssData = pathvisioNS['src/css/pathway-diagram.css'];
-            cssData = fs.readFileSync(__dirname + '/../../css/pathway-diagram.css').toString()
+            cssData = Fs.readFileSync(__dirname + '/../../css/pathway-diagram.css').toString()
             style = defs.append('style').attr('type', "text/css");
             style.text(cssData);
           }

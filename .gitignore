@@ -1,5 +1,4 @@
 node_modules/
-lib/
 dist/*
 !dist/plugins/
 demos/lib/
