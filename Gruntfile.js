@@ -1,45 +1,8 @@
-var pvjsSources = [
-  'src/js/pathvisiojs.js',
-  'src/js/utilities.js',
-  'config/default.js',
-  'src/js/format-converter/format-converter.js',
-  'src/js/format-converter/bridgedb/bridgedb.js',
-  'src/js/format-converter/biopax/biopax.js',
-  'src/js/format-converter/pvjson/pvjson.js',
-  'src/js/format-converter/gpml/gpml.js',
-  'src/js/format-converter/gpml/graphics.js',
-  'src/js/format-converter/gpml/element.js',
-  'src/js/format-converter/gpml/text.js',
-  'src/js/format-converter/gpml/namespaces.js',
-  'src/js/format-converter/gpml/biopax-ref.js',
-  'src/js/format-converter/gpml/group.js',
-  'src/js/format-converter/gpml/data-node.js',
-  'src/js/format-converter/gpml/label.js',
-  'src/js/format-converter/gpml/shape.js',
-  'src/js/format-converter/gpml/state.js',
-  'src/js/format-converter/gpml/anchor.js',
-  'src/js/format-converter/gpml/interaction.js',
-  'src/js/format-converter/gpml/graphical-line.js',
-  'src/js/format-converter/gpml/point.js',
-  'src/js/renderer/renderer.js',
-  'src/js/renderer/info-box.js',
-  'src/js/renderer/publication-xref.js',
-  'src/js/renderer/img.js',
-  'src/js/renderer/annotation/annotation.js',
-  'src/js/renderer/annotation/citation.js',
-  'src/js/renderer/annotation/x-ref.js',
-  'src/js/renderer/highlighter.js',
-];
-
 // rarely used libraries (will concatenate with pvjs, because it's unlikely anyone will have them already cached)
 var rarelyUsedJsLibraries = [
   './lib/es5-shim/es5-sham.min.js',
-  //'./lib/he/he.js',
-  './lib/rgb-color/rgb-color.js',
   './lib/node-uuid/uuid.js',
   './lib/strcase/dist/strcase.min.js',
-  './lib/cross-platform-text/js/cross-platform-text.min.js',
-  './lib/cross-platform-shapes/js/cross-platform-shapes.min.js',
   './lib/svg-pan-zoom/dist/svg-pan-zoom.min.js',
   './lib/svg-pan-zoom/control-icons.js',
   './lib/blueimp-load-image/js/load-image.min.js',
@@ -58,100 +21,64 @@ var specFileName;
 
 module.exports = function(grunt) {
 
+// Load all plugins that provide tasks
+require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+var testPathwaysElementCounts = grunt.file.readJSON("test/data/protocol/counts.json"),
+    srcDir = './src/js/',
+    libDir = './lib/',
+    distDir = './dist/',
+    tmpDir = './tmp/',
+    distLibDir = distDir + 'lib/';
 
-// ----------
-var packageJson = grunt.file.readJSON("package.json"),
-    testPathwaysElementCounts = grunt.file.readJSON("test/data/protocol/counts.json"),
-    tmpDir = "./tmp/",
-    distDir = "./dist/",
-    distLibDir = distDir + "lib/";
-
-// ----------
 // Project configuration.
 grunt.initConfig({
-    pkg: packageJson,
+    pkg: grunt.file.readJSON("package.json"),
     clean: {
-      build: [distDir],
-      temp: [tmpDir],
-      demoLibs: ['./demos/lib/']
+      build: distLibDir,
+      temp: tmpDir
     },
     concat: {
-        options: {
-          separator: '\n\n',
-          banner: "/* <%= pkg.name %> <%= pkg.version %>\n" +
-              "Built on <%= grunt.template.today('yyyy-mm-dd') %>\n" +
-              //"//! Git commit: <%= gitInfo %>\n" +
-              "https://github.com/wikipathways/pathvisiojs\n" +
-              "License: http://www.apache.org/licenses/LICENSE-2.0/ */\n\n",
-          process: true
-        },
-        pathvisiojsJs: {
-            src:  rarelyUsedJsLibraries.concat(['tmp/pathvisiojs-temp.js']).concat(pvjsSources),
-            //src:  [ '<banner>' ].concat(pvjsSources),
-            dest: tmpDir + 'pathvisiojs/js/pathvisiojs.js'
-        },
-        pathvisiojsDistCss: {
-            src:  pvjsCssSources,
-            dest: distLibDir + 'pathvisiojs/css/pathvisiojs.css'
-        },
-        he: { // can't minify this without producing errors
-            src:  [ './lib/he/he.js' ],
-            dest: distLibDir + 'he/js/he.js'
-        },
-        d3WithAight: {
-            src:  [ './lib/aight/aight.min.js', './lib/d3/d3.min.js', './lib/aight/aight.d3.min.js' ],
-            dest: distLibDir + 'd3/js/d3-with-aight.js'
-        },
-        jsonld: {
-            src:  [ './lib/jsonld.js/js/jsonld.js', './lib/jsonld.js/js/Promise.js' ],
-            dest: tmpDir + 'jsonld/js/jsonld.js'
-        }
+      options: {
+        separator: '\n\n',
+        banner: "/* <%= pkg.name %> <%= pkg.version %>\n" +
+                "Built on <%= grunt.template.today('yyyy-mm-dd') %>\n" +
+                //"//! Git commit: <%= gitInfo %>\n" +
+                "https://github.com/wikipathways/pathvisiojs\n" +
+                "License: http://www.apache.org/licenses/LICENSE-2.0/ */\n\n",
+        process: true
+      },
+      css: {
+        src:  pvjsCssSources,
+        dest: distLibDir + 'pathvisiojs/css/pathvisiojs.css'
+      },
+      d3WithAight: {
+        src:  ['./lib/aight/aight.min.js', './lib/d3/d3.min.js', './lib/aight/aight.d3.min.js'],
+        dest: distLibDir + 'd3/js/d3-with-aight.js'
+      },
+      jsonld: {
+        src: ['./lib/jsonld.js/js/jsonld.js', './lib/jsonld.js/js/Promise.js'],
+        dest: tmpDir + 'jsonld/js/jsonld.js'
+      }
     },
     uglify: {
       options: {
         mangle: true
       },
       pathvisiojs: {
-        src: [ tmpDir + 'pathvisiojs/js/pathvisiojs.js' ],
+        src: distLibDir + 'pathvisiojs/js/pathvisiojs.js',
         dest: distLibDir + 'pathvisiojs/js/pathvisiojs.min.js'
-      },
-      async: {
-        src: [ './lib/async/lib/async.js' ],
-        dest: distLibDir + 'async/js/async.min.js'
-      },
-      jquery: {
-        src: [ './lib/jquery/jquery.min.js' ],
-        dest: distLibDir + 'jquery/js/jquery.min.js'
-      },
-      typeahead: {
-        src: [ './lib/typeahead.js/dist/typeahead.min.js' ],
-        dest: distLibDir + 'typeahead/js/typeahead.min.js'
       },
       jsonld: {
         src: [ tmpDir + 'jsonld/js/jsonld.js' ],
         dest: distLibDir + 'jsonld/js/jsonld.min.js'
       },
       modernizr: {
-        src: [ './lib/modernizr/modernizr.js' ],
+        src: libDir + 'modernizr/modernizr.js',
         dest: distLibDir + 'modernizr/js/modernizr.min.js'
       }
     },
     watch: {
-      scripts: {
-        files: [ "Gruntfile.js", "./src/**/*.js" ],
-        tasks: ['test-min', 'quick-build'],
-        //tasks: ['net', 'build'],
-        options: {
-          interrupt: true,
-        },
-      },
-      /*
-      build: {
-        files: [ "Gruntfile.js", "public/js/*.js" ],
-        tasks: ['build']
-      }
-      //*/
       browserify: {
         files: ['./src/**/*.js'],
         tasks: ['browserify:dev'],
@@ -164,17 +91,16 @@ grunt.initConfig({
       options: {
         jshintrc: '.jshintrc'
       },
-      beforeconcat: pvjsSources,
-      afterconcat: [ tmpDir + 'pathvisiojs/js/pathvisiojs.js' ]
-    },
-    str2js: {
-      pathvisioNS: { 'tmp/pathvisiojs-temp.js': ['src/pathvisiojs.html', 'src/css/pathway-diagram.css']}
+      beforeconcat: [srcDir + '**/*.js'],
+      afterconcat: [distLibDir + 'pathvisiojs/js/pathvisiojs.js']
     },
     browserify: {
       dev: {
         files: {
-          'dist/lib/pathvisiojs/js/pathvisiojs.js': ['src/js/pathvisiojs.js'],
+          './dist/lib/pathvisiojs/js/pathvisiojs.js': './src/js/pathvisiojs.js'
         },
+        // src: [srcDir + 'js/pathvisiojs.js'],
+        // dest: distLibDir + 'pathvisiojs/js/pathvisiojs.js',
         options: {
           bundleOptions: {debug: true}
         , transform: ['deglobalify', 'brfs']
@@ -182,11 +108,13 @@ grunt.initConfig({
       },
       build: {
         files: {
-          'dist/lib/pathvisiojs/js/pathvisiojs.js': ['src/js/pathvisiojs.js'],
+          './dist/lib/pathvisiojs/js/pathvisiojs.js': './src/js/pathvisiojs.js'
         },
+        // src: [srcDir + 'js/pathvisiojs.js'],
+        // dest: distLibDir + 'pathvisiojs/js/pathvisiojs.js',
         options: {
           bundleOptions: {}
-        , transform: ['deglobalify']
+        , transform: ['deglobalify', 'brfs']
         }
       }
     },
@@ -257,35 +185,18 @@ grunt.initConfig({
       },
     },
     copy: {
-      demos: {
-        expand: true,
-        cwd: './dist/lib/',
-        src: ['**'],
-        dest: './demos/lib/',
+      jquery: {
+        src: libDir + 'jquery/jquery.min.js',
+        dest: distLibDir + 'jquery/js/jquery.min.js'
       },
-      pathvisiojs: {
-        src: tmpDir + 'pathvisiojs/js/pathvisiojs.js',
-        dest: './dist/lib/pathvisiojs/js/pathvisiojs.js'
-      }
+      typeahead: {
+        src: libDir + 'typeahead.js/dist/typeahead.min.js',
+        dest: distLibDir + 'typeahead/js/typeahead.min.js'
+      },
     }
   });
 
-  // Load the plugin that provides the tasks.
-  grunt.loadNpmTasks("grunt-string-to-js");
-  grunt.loadNpmTasks("grunt-contrib-clean");
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks("grunt-git-describe");
-  grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-sync-pkg');
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-protractor-runner');
-  grunt.loadNpmTasks('grunt-build-control');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  //grunt.loadNpmTasks("grunt-net");
-
+/*
   grunt.registerTask('protractor-chrome', 'Run local tests for development', function() {
     grunt.config.set('protractor.chrome.options.args.specs', ['test/e2e/' + grunt.option('spec') + '.js']);
     grunt.task.run('protractor:chrome');
@@ -299,35 +210,21 @@ grunt.initConfig({
     grunt.task.run('protractor:firefox');
   });
   grunt.registerTask('protractor-e2e', ['concurrent:protractor_test']);
+*/
 
-
-  grunt.registerTask('set_global', 'Set a global var.', function(name, val) {
-    global[name] = val;
-  });
-
-  grunt.registerTask('set_array_config', 'Set a config property that is an array.', function(name, val) {
-    var valArray = val.split(',');
-    grunt.config.set(name, valArray);
-  });
-
-  grunt.registerTask('set_config', 'Set a config property.', function(name, val) {
-    grunt.config.set(name, val);
-  });
 
   // build
-  grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'uglify', 'clean:demoLibs', 'copy']);
-  //grunt.registerTask('build', ['sync', 'str2js', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'clean:demoLibs', 'copy']);
+  grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy']);
+  //grunt.registerTask('build', ['sync', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'copy']);
 
   // build and publish gh-pages
-  grunt.registerTask('build-and-push-demo', ['build', 'buildcontrol:pages'])
+  grunt.registerTask('build-pages', ['build', 'buildcontrol:pages'])
 
-  // update just the pathvisiojs build, not the libraries
-  //grunt.registerTask('build-pv', ['sync', 'str2js', 'git-describe', 'jshint:beforeconcat', 'concat:pathvisiojsJs', 'concat:pathvisiojsDistCss', 'uglify:pathvisiojs', 'copy', 'buildcontrol:pages']);
-  grunt.registerTask('build-pv', ['sync', 'str2js', 'git-describe', 'jshint:beforeconcat', 'concat:pathvisiojsJs', 'concat:pathvisiojsDistCss', 'uglify:pathvisiojs', 'copy']);
+  // Live development
+  grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'watch:browserify'])
 
-  // quick-build
-  grunt.registerTask('quick-build', ['sync', 'str2js', 'git-describe', 'concat', 'uglify', 'copy']);
 
+/*
   // test
   grunt.registerTask('test-min', 'Run local tests for development', function(val) {
     grunt.option('spec', 'minimal');
@@ -338,9 +235,8 @@ grunt.initConfig({
     grunt.option('spec', val);
     grunt.task.run('protractor-e2e');
   });
+*/
 
-  grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'watch:browserify'])
-
-  // Default task(s).
+  // Default task
   grunt.registerTask('default', ['build']);
 };
