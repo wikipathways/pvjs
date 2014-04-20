@@ -97,8 +97,6 @@ module.exports = function(){
    * @param  {Object} sourceData sourceData Instance Object
    */
   function render(pvjs, sourceData) {
-    console.log('rendered', getRendererEngineName(sourceData))
-
     var diagramContainer = pvjs.$element
       , containerBoundingClientRect = pvjs.$element[0][0].getBoundingClientRect()
       , containerWidth = containerBoundingClientRect.width - 3 //account for space for pan/zoom controls,
@@ -123,7 +121,7 @@ module.exports = function(){
           var crossPlatformShapesInstance1 = Object.create(crossPlatformShapes);
           crossPlatformShapesInstance1.init(
             {
-              targetSelector: '#' + pvjs.$element.attr('id'), // TODO @bumbu may not work if container has no id
+              targetSelector: '#' + pvjs.$element.attr('id') + ' .diagram-container',
               id: diagramId,
               format: renderEngine,
               width:containerWidth,
@@ -189,7 +187,7 @@ module.exports = function(){
                           var dfId = dataElement.datasourceReference.id;
                           var dfDatabase = dataElement.datasourceReference.database;
                           var dfOrganism = dataElement.datasourceReference.organism;
-                          XRef.render(dfOrganism, dfId, dfDatabase, dataElement.textContent, dataElement.dataNodeType);
+                          XRef.render(pvjs, dfOrganism, dfId, dfDatabase, dataElement.textContent, dataElement.dataNodeType);
                         }
                       });
                     }
@@ -277,7 +275,7 @@ module.exports = function(){
             }
           });
 
-          Highlighter.load(svgSelection, pvjson);
+          Highlighter.load(pvjs, svgSelection, pvjson);
 
           // callback(null, svgSelection);
           vectorRendererCallback(null);

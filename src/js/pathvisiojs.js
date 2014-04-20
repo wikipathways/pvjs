@@ -64,6 +64,9 @@ var _ = require('lodash')
     // Add default container elements
     this.$element.html(containerContents)
 
+    // Set ID to $element if it has no ID
+    this.$element.attr('id', this.$element.attr('id') || 'pathvisio-' + this.instanceId)
+
     // Set container class
     Utils.addClassForD3(this.$element, 'pathvisiojs-container')
 
