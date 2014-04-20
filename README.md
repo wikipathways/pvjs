@@ -18,9 +18,43 @@ It's as simple as referencing the pathvisiojs CSS and JavaScript files and [the 
 <script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/js/pathvisiojs.min.js"></script>
 ```
 
-To add the dependencies, you can copy [this example](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html). 
+To add the dependencies, you can copy [this example](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html).
 
-The [pathvisiojs.load() method](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html#L60) requires a value for the container and for the sourceData parameters. All the other parameters are optional. In production, avoid using window.onload as shown in the example, because you could overwrite an earlier window.onload call.
+If you have jQuery than you may do
+
+```js
+$('#pathvisiojs-container').pathvisiojs({
+  sourceData: [
+    // at least one item required
+    {
+      uri:'http://localhost/pathvisiojs/dist_new/data/wp1.xml',
+      fileType:'gpml' // generally will correspond to filename extension
+    }
+  , {
+      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+      fileType:'png'
+    }
+  ]
+})
+```
+
+If you have no jQuery and do not want to add it then you may call `pathvisiojs` directly and pass two argumets: container selector and options object.
+
+```js
+pathvisiojs('#pathvisiojs-container', {
+  sourceData: [
+    // at least one item required
+    {
+      uri:'http://localhost/pathvisiojs/dist_new/data/wp1.xml',
+      fileType:'gpml' // generally will correspond to filename extension
+    }
+  , {
+      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+      fileType:'png'
+    }
+  ]
+})
+```
 
 How To Get Involved
 ===================
@@ -38,7 +72,7 @@ $ cd pathvisiojs
 B. Add the wikipathways pathvisiojs repo as a remote named "wikipathways," if you have not already done so:
 
 ```
-$ cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer  
+$ cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer
 $ git remote add wikipathways https://github.com/wikipathways/pathvisiojs.git
 ```
 
@@ -71,7 +105,7 @@ D. Send Us a Pull Request
 * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests
 * Commit your changes and push them to your github fork of pathvisiojs
-* Create a pull request to the wikipathways fork of pathvisiojs: 
+* Create a pull request to the wikipathways fork of pathvisiojs:
 ```
 wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
 ```
@@ -90,10 +124,10 @@ License
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   
-   
+
+
 Funding
 =======
 * The National Institute for General Medical Sciences [R01-GM100039](http://www.nigms.nih.gov/)
 * The BioRange program of the Netherlands [Bioinformatics Centre](http://www.nbic.nl/)
-* [University Maastricht](http://www.unimaas.nl/default.asp?taal=en): Broad Research Strategy Program Part 2 (BOS2) 
+* [University Maastricht](http://www.unimaas.nl/default.asp?taal=en): Broad Research Strategy Program Part 2 (BOS2)
