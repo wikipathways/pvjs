@@ -101,7 +101,7 @@ var _ = require('lodash')
     this.checkAndRenderNextSource()
 
     // Listen for renderer errors
-    this.on('renderer.error', function(){
+    this.on('error.renderer', function(){
       Renderer.destroyRender(pvjs, pvjs.sourceData)
       pvjs.checkAndRenderNextSource()
     })
@@ -170,11 +170,23 @@ var _ = require('lodash')
    * @param  {Function} callback
    */
   Pathvisiojs.prototype.on = function(topic, callback) {
-    if (!this.events.hasOwnProperty(topic)) {
-      this.events[topic] = []
+    var namespace = null
+      , eventName = topic
+
+    if (topic.indexOf('.') !== -1) {
+      var pieces = topic.split('.')
+      eventName = pieces[0]
+      namespace = pieces[1]
     }
 
-    this.events[topic].push(callback)
+    if (!this.events.hasOwnProperty(eventName)) {
+      this.events[eventName] = []
+    }
+
+    this.events[eventName].push({
+      callback: callback
+    , namespace: namespace
+    })
   }
 
   /**
@@ -186,12 +198,30 @@ var _ = require('lodash')
    * @return {bool}
    */
   Pathvisiojs.prototype.off = function(topic, callback) {
-    if (!this.events.hasOwnProperty(topic)) return false;
+    var namespace = null
+      , eventName = topic
+      , callback = callback || null
+      , flagRemove = true
+
+    if (topic.indexOf('.') !== -1) {
+      var pieces = topic.split('.')
+      eventName = pieces[0]
+      namespace = pieces[1]
+    }
+
+    // Check if such an event is registered
+    if (!this.events.hasOwnProperty(eventName)) return false;
     var queue = this.events[topic]
 
-    if (queue.indexOf(callback) === -1) return false;
+    for (var i = queue.length - 1; i >= 0; i--) {
+      flagRemove = true
 
-    queue.splice(queue.indexOf(callback), 1)
+      if (namespace && queue[i].namespace !== namespace) flagRemove = false
+      if (callback && queue[i].callback !== callback) flagRemove = false
+
+      if (flagRemove) queue.splice(i, 1)
+    };
+
     return true
   }
 
@@ -205,9 +235,18 @@ var _ = require('lodash')
    * @return {bool}
    */
   Pathvisiojs.prototype.trigger = function(topic, message, async) {
-    if (!this.events.hasOwnProperty(topic)) return false;
+    var namespace = null
+      , eventName = topic
 
-    var queue = this.events[topic]
+    if (topic.indexOf('.') !== -1) {
+      var pieces = topic.split('.')
+      eventName = pieces[0]
+      namespace = pieces[1]
+    }
+
+    if (!this.events.hasOwnProperty(eventName)) return false;
+
+    var queue = this.events[eventName]
     if (queue.length === 0) return false;
 
     if (async === undefined) {
@@ -215,14 +254,16 @@ var _ = require('lodash')
     }
 
     for (var i = 0; i < queue.length; i++) {
+      if (namespace && namespace !== queue[i].namespace) continue;
+
       if (async) {
         (function(i, message){
           setTimeout(function(){
-            queue[i](message)
+            queue[i].callback(message)
           }, 0)
         })(i, message)
       } else {
-        queue[i](message)
+        queue[i].callback(message)
       }
     }
     return true;
