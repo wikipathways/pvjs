@@ -110,6 +110,15 @@ D. Send Us a Pull Request
 wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
 ```
 
+Available event messages
+------------------------
+
+Event messages are namespaced and may be called with namespace or without. Namespace is defined by a dot: `click.renderer`. List of available events:
+* rendered
+* error
+* error.renderer
+* warning
+
 License
 =======
 
