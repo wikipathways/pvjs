@@ -1,6 +1,8 @@
 'use strict';
 
-var BiopaxRef = require('./biopax-ref.js');
+var BiopaxRef = require('./biopax-ref.js')
+  , He = require('./../../../../lib/he/he.js')
+  ;
 
 // ...element includes all GPML elements and is the parent of both ...node and ...edge.
 module.exports = {
@@ -164,12 +166,12 @@ module.exports = {
         return gpmlStyleValue;
       },
       Href: function(gpmlHrefValue){
-        pvjsonHref = encodeURI(he.decode(gpmlHrefValue));
+        pvjsonHref = encodeURI(He.decode(gpmlHrefValue));
         pvjsonElement.href = pvjsonHref;
         return pvjsonHref;
       },
       TextLabel: function(gpmlTextLabelValue){
-        pvjsonTextContent = he.decode(gpmlTextLabelValue);
+        pvjsonTextContent = He.decode(gpmlTextLabelValue);
         pvjsonElement.textContent = pvjsonTextContent;
         return pvjsonTextContent;
       },
