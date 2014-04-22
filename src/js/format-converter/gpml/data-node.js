@@ -5,7 +5,7 @@ var GpmlElement = require('./element.js')
   ;
 
 module.exports = {
-  toPvjson: function(pathway, gpmlSelection, dataNodeSelection, callbackInside) {
+  toPvjson: function(pvjs, pathway, gpmlSelection, dataNodeSelection, callbackInside) {
     var pvjsonPath = {};
     var dataNodeType = dataNodeSelection.attr('Type');
     if (!dataNodeType) {
@@ -20,8 +20,8 @@ module.exports = {
 
 
 
-    GpmlElement.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
-      Graphics.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
+    GpmlElement.toPvjson(pvjs, gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
+      Graphics.toPvjson(pvjs, gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
         var database, id, datasourceReference,
           datasourceReferenceSelection = dataNodeSelection.select('Xref');
         if (!!datasourceReferenceSelection) {

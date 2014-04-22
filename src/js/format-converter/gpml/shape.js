@@ -5,13 +5,13 @@ var GpmlElement = require('./element.js')
 module.exports = function(){
   'use strict';
 
-  function toPvjson(gpmlSelection, shapeSelection, callback) {
+  function toPvjson(pvjs, gpmlSelection, shapeSelection, callback) {
     var pvjsonPath = {};
     pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = "Shape";
 
-    GpmlElement.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
-      Graphics.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
+    GpmlElement.toPvjson(pvjs, gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
+      Graphics.toPvjson(pvjs, gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
         var pvjsonElements = [pvjsonPath];
         callback(pvjsonElements);
       });

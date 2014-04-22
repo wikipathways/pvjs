@@ -49,12 +49,12 @@ var Group = {
     });
   },
 
-  toPvjson: function(elementsPossiblyInGroup, gpmlSelection, groupSelection, callback) {
+  toPvjson: function(pvjs, elementsPossiblyInGroup, gpmlSelection, groupSelection, callback) {
     var pvjsonPath = {},
       pvjsonElements = [],
       groupId,
       groupType,
-      model = this.model;
+      model = pvjs.sourceData.pvjson;
 
     pvjsonPath.renderableType = 'GroupNode';
     pvjsonPath.networkType = 'node';
@@ -63,8 +63,8 @@ var Group = {
     groupType = groupSelection.attr('Style') || 'None';
     pvjsonPath.groupType = groupType;
 
-    GpmlElement.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
-      Graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
+    GpmlElement.toPvjson(pvjs, gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
+      Graphics.toPvjson(pvjs, gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
           var contents = elementsPossiblyInGroup.filter(function(element){
             return element.isContainedBy === pvjsonPath.id;
           });

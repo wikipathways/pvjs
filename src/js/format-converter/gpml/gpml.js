@@ -290,7 +290,7 @@ module.exports = {
           Biopax: function(callback){
             var xmlBiopax = gpmlSelection.selectAll('Biopax');
             if (xmlBiopax[0].length > 0) {
-              Biopax.toPvjson(xmlBiopax, function(jsonBiopax) {
+              Biopax.toPvjson(pvjs, xmlBiopax, function(jsonBiopax) {
                 pvjson.Biopax = jsonBiopax;
               });
               callback(null, 'Biopax all converted.');
@@ -304,7 +304,7 @@ module.exports = {
             if (dataNodesSelection[0].length > 0) {
               dataNodesSelection.each(function() {
                 dataNodeSelection = d3.select(this);
-                DataNode.toPvjson(pvjson, gpmlSelection, dataNodeSelection, function(pvjsonElements) {
+                DataNode.toPvjson(pvjs, pvjson, gpmlSelection, dataNodeSelection, function(pvjsonElements) {
                   pvjson.elements = pvjson.elements.concat(pvjsonElements);
                 });
               });
@@ -319,7 +319,7 @@ module.exports = {
             if (labelsSelection[0].length > 0) {
               gpmlSelection.selectAll('Label').each(function() {
                 labelSelection = d3.select(this);
-                Label.toPvjson(gpmlSelection, labelSelection, function(pvjsonElements) {
+                Label.toPvjson(pvjs, gpmlSelection, labelSelection, function(pvjsonElements) {
                   pvjson.elements = pvjson.elements.concat(pvjsonElements);
                 });
               });
@@ -334,7 +334,7 @@ module.exports = {
             if (shapesSelection[0].length > 0) {
               gpmlSelection.selectAll('Shape').each(function() {
                 shapeSelection = d3.select(this);
-                Shape.toPvjson(gpmlSelection, shapeSelection, function(pvjsonElements) {
+                Shape.toPvjson(pvjs, gpmlSelection, shapeSelection, function(pvjsonElements) {
                   pvjson.elements = pvjson.elements.concat(pvjsonElements);
                 });
               });
@@ -368,7 +368,7 @@ module.exports = {
             if (statesSelection[0].length > 0) {
               statesSelection.each(function() {
                 stateSelection = d3.select(this);
-                State.toPvjson(gpmlSelection, stateSelection, function(pvjsonElements) {
+                State.toPvjson(pvjs, gpmlSelection, stateSelection, function(pvjsonElements) {
                   pvjson.elements = pvjson.elements.concat(pvjsonElements);
                 });
               });
@@ -383,7 +383,7 @@ module.exports = {
             if (graphicalLinesSelection[0].length > 0) {
               gpmlSelection.selectAll('GraphicalLine').each(function() {
                 graphicalLineSelection = d3.select(this);
-                GraphicalLine.toPvjson(xml, graphicalLineSelection, function(pvjsonElements) {
+                GraphicalLine.toPvjson(pvjs, xml, graphicalLineSelection, function(pvjsonElements) {
                   pvjson.elements = pvjson.elements.concat(pvjsonElements);
                 });
               });
@@ -398,7 +398,7 @@ module.exports = {
             if (interactionsSelection[0].length > 0) {
               gpmlSelection.selectAll('Interaction').each(function() {
                 interactionSelection = d3.select(this);
-                Interaction.toPvjson(xml, interactionSelection, function(pvjsonElements) {
+                Interaction.toPvjson(pvjs, xml, interactionSelection, function(pvjsonElements) {
                   pvjson.elements = pvjson.elements.concat(pvjsonElements);
                 });
               });
@@ -426,7 +426,7 @@ module.exports = {
             var groups = [];
             gpmlSelection.selectAll('Group').each(function() {
               groupSelection = d3.select(this);
-              Group.toPvjson(pvjson.elements, gpmlSelection, groupSelection, function(pvjsonElements) {
+              Group.toPvjson(pvjs, pvjson.elements, gpmlSelection, groupSelection, function(pvjsonElements) {
                 pvjson.elements = pvjson.elements.concat(pvjsonElements);
               });
             });

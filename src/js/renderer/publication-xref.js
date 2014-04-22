@@ -1,8 +1,8 @@
-module.exports = {
+var Utils = require('./../utilities.js');
 
-  getReferenceNumberForDisplay: function(rdfId) {
-    var publicationXrefInstance = this;
-    var model = publicationXrefInstance.model;
+module.exports = {
+  getReferenceNumberForDisplay: function(pvjs, rdfId) {
+    var model = pvjs.sourceData.pvjson;
     var displayNumberForDisplay = null;
     var i = -1;
     var currentPublicationXref;
@@ -72,30 +72,29 @@ module.exports = {
     return publicationXrefString;
   },
 
-  getPublicationXrefString: function(rdfIds, callback) {
-    var publicationXrefInstance = this;
-    var model = publicationXrefInstance.model;
+  getPublicationXrefString: function(pvjs, rdfIds, callback) {
+    var that = this;
+    var model = pvjs.sourceData.pvjson;
     var displayNumbers = [];
     var publicationXrefString = '';
     // make sure it's an array
-    rdfIds = pathvisiojs.utilities.convertToArray(rdfIds);
+    rdfIds = Utils.convertToArray(rdfIds);
     rdfIds.forEach(function(rdfId) {
-      var num = publicationXrefInstance.getReferenceNumberForDisplay(rdfId);
+      var num = that.getReferenceNumberForDisplay(pvjs, rdfId);
       if(!!num) {
         displayNumbers.push(num);
       }
     });
     if (displayNumbers.length > 0){
-      publicationXrefString = publicationXrefInstance.createPublicationXrefString(displayNumbers);
+      publicationXrefString = this.createPublicationXrefString(displayNumbers);
     }
     callback(publicationXrefString);
   },
 
   //function render(target, targetType, pathway, rdfIds) {
-  render: function(containerSelection, targetData) {
-    var publicationXrefInstance = this,
-      translateX,
-      translateY;
+  render: function(pvjs, containerSelection, targetData) {
+    var translateX,
+        translateY;
     /* targetType can be any of the following:
      * node
      * edge
@@ -103,7 +102,7 @@ module.exports = {
     //*/
 
     var text;
-    publicationXrefInstance.getPublicationXrefString(targetData.publicationXrefs, function(publicationXrefString) {
+    this.getPublicationXrefString(pvjs, targetData.publicationXrefs, function(publicationXrefString) {
       var textLength = publicationXrefString.toString().length;
       if (targetData.networkType === 'node') {
         var nodeWidth = targetData.width;

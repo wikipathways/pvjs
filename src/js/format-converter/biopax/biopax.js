@@ -3,7 +3,7 @@
 module.exports = {
   // TODO get ontology terms and other data
 
-  toPvjson: function(xmlBiopax, callback) {
+  toPvjson: function(pvjs, xmlBiopax, callback) {
     try {
       d3.ns.prefix.bp = 'http://www.biopax.org/owldoc/Level3/';
       d3.ns.prefix.rdf = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';

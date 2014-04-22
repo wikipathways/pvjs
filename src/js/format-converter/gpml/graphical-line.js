@@ -13,7 +13,7 @@ module.exports = {
     'Arrow':'arrow'
   },
 
-  toPvjson: function(gpmlSelection, graphicalLineSelection, callback) {
+  toPvjson: function(pvjs, gpmlSelection, graphicalLineSelection, callback) {
     var jsonAnchorGraphicalLine,
       anchor,
       jsonAnchor,
@@ -29,10 +29,10 @@ module.exports = {
       pvjsonPath = {};
 
     pvjsonPath.networkType = 'edge';
-    GpmlElement.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
-      Graphics.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
-        Point.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
-          Anchor.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonAnchor) {
+    GpmlElement.toPvjson(pvjs, gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
+      Graphics.toPvjson(pvjs, gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
+        Point.toPvjson(pvjs, gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
+          Anchor.toPvjson(pvjs, gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonAnchor) {
             pvjsonElements = [pvjsonPath].concat(pvjsonAnchor);
             callback(pvjsonElements);
           });

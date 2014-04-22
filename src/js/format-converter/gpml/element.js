@@ -127,7 +127,7 @@ module.exports = {
   },
 
   //*
-  toPvjson: function(gpmlSelection, elementSelection, pvjsonElement, callback) {
+  toPvjson: function(pvjs, gpmlSelection, elementSelection, pvjsonElement, callback) {
     var attribute,
       i,
       pvjsonHeight,

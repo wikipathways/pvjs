@@ -57,9 +57,8 @@ module.exports = {
     return semanticName;
   },
 
-  toPvjson: function(gpmlSelection, interactionSelection, callback) {
-    var model = this.model;
-    var interactionInstance = this;
+  toPvjson: function(pvjs, gpmlSelection, interactionSelection, callback) {
+    var model = pvjs.sourceData.pvjson;
 
     var jsonAnchorInteraction, anchor, jsonAnchor, points, jsonPoints, interactionType, target, targetId, groupRef, source, sourceId, pvjsonElements;
     //pathvisiojs.formatConverter.gpml.edge.toPvjson(interactionSelection, function(jsonInteraction) {
@@ -199,10 +198,10 @@ module.exports = {
       var pvjsonPath = {};
       pvjsonPath.networkType = 'edge';
       pvjsonPath.gpmlType = 'Interaction';
-      GpmlElement.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
-        Graphics.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
-          Point.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
-            Anchor.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonAnchor) {
+      GpmlElement.toPvjson(pvjs, gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
+        Graphics.toPvjson(pvjs, gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
+          Point.toPvjson(pvjs, gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
+            Anchor.toPvjson(pvjs, gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonAnchor) {
               pvjsonElements = [pvjsonPath].concat(pvjsonAnchor);
               callback(pvjsonElements);
             });

@@ -13,7 +13,7 @@ module.exports = {
     }
   },
 
-  toPvjson: function(gpmlSelection, elementSelection, pvjsonElement, callback) {
+  toPvjson: function(pvjs, gpmlSelection, elementSelection, pvjsonElement, callback) {
       var parentElement,
       attribute,
       i,
@@ -30,7 +30,7 @@ module.exports = {
       pvjsonRelY,
       pvjsonX,
       pvjsonY,
-      model = this.model;
+      model = pvjs.sourceData.pvjson;
 
     var attributeDependencyOrder = [
       'LineStyle',

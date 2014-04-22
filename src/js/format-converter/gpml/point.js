@@ -41,7 +41,7 @@ module.exports = function(){
     return result;
   };
 
-  function toPvjson(gpmlSelection, gpmlEdgeSelection, pvjsonEdge, callback) {
+  function toPvjson(pvjs, gpmlSelection, gpmlEdgeSelection, pvjsonEdge, callback) {
     var point, gpmlPointSelection, gpmlPoint, pvjsonPoint, pvjsonPoints, gpmlPoints = [], pvjsonX, pvjsonY, parentElement, pvjsonMarker, pvjsonIsAttachedTo;
 
     gpmlEdgeSelection.selectAll('Point').each(function(d, i) {
