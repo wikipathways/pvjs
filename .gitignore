@@ -5,3 +5,5 @@ demos/lib/
 demos/plugins/
 tmp/
 .idea/
+gh-pages
+gh-pages/*
