@@ -1,9 +1,9 @@
-var Element = require('./element.js')
+var GpmlElement = require('./element.js')
   , Graphics = require('./graphics.js')
   ;
 
 module.exports = function() {
-  'use strict';
+  "use strict";
 
   // anchors
   // see jsPlumb anchor model: http://jsplumbtoolkit.com/doc/anchors
@@ -36,7 +36,7 @@ module.exports = function() {
       pvjsonAnchor.zIndex = pvjsonEdge.zIndex + 0.1;
       pvjsonAnchor.networkType = 'node';
 
-      Element.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
+      GpmlElement.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
         Graphics.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
           attachedPoint = d3.select(gpmlSelection).select('Point[GraphRef=' + pvjsonAnchor.id + ']');
           pvjsonAnchorWidth = pvjsonAnchor.width;

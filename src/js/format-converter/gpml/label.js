@@ -1,4 +1,4 @@
-var Element = require('./element.js')
+var GpmlElement = require('./element.js')
   , Graphics = require('./graphics.js')
   ;
 
@@ -11,7 +11,7 @@ module.exports = function(){
     pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = 'Label';
 
-    Element.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
+    GpmlElement.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
       Graphics.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
         var pvjsonElements = [pvjsonPath];
         callback(pvjsonElements);

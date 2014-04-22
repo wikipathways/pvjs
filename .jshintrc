@@ -9,9 +9,11 @@
   "unused": false,
   "laxcomma": true,
   "asi": true,
+  "-W097": false,
 
   "globals": {
     "$": true,
+    "jQuery": true,
     "alert": true,
     "async": true,
     "console": true,
@@ -33,6 +35,7 @@
     "svgPanZoom": true,
     "typeahead": true,
     "uuid": true,
-    "require": true
+    "require": true,
+    "__dirname": true
   }
 }

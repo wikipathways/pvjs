@@ -109,6 +109,7 @@ module.exports = function(){
     } else if (renderEngine === 'svg') {
       var diagramId = generateDiagramId(pvjs)
         , pvjson = sourceData.pvjson
+        , viewport
         ;
 
       // ***************
@@ -229,9 +230,8 @@ module.exports = function(){
           var cssData,
             style,
             defs = svgSelection.select('defs');
-          // if (!!cssUri) {
-          if (false) {
-            d3.text(cssUri, 'text/css', function(cssData) {
+          if (pvjs.options.cssUri) {
+            d3.text(pvjs.options.cssUri, 'text/css', function(cssData) {
               style = defs.append('style').attr('type', "text/css");
               style.text(cssData);
             });

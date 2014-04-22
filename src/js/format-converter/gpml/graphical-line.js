@@ -1,6 +1,6 @@
 'use strict';
 
-var Element = require('./element.js')
+var GpmlElement = require('./element.js')
   , Graphics = require('./graphics.js')
   , Point = require('./point.js')
   , Anchor = require('./anchor.js')
@@ -29,7 +29,7 @@ module.exports = {
       pvjsonPath = {};
 
     pvjsonPath.networkType = 'edge';
-    Element.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
+    GpmlElement.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
       Graphics.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
         Point.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
           Anchor.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonAnchor) {
