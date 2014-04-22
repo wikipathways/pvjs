@@ -7,7 +7,7 @@
     <title>Pathvisiojs Simple Built Production Example</title>
 
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
-    <link rel="stylesheet" href="../demos/lib/pathvisiojs/css/pathvisiojs.css">
+    <link rel="stylesheet" href="../demo/lib/pathvisiojs/css/pathvisiojs.css">
 
     <!--[if lt IE 9]>
     <script>
@@ -47,20 +47,22 @@
   <body style="margin: 0; width: 100%; height: 100%; ">
     <div id="production-container" style="width:inherit; height:inherit; margin:0; overflow:hidden;">
     </div>
-    <script src="../demos/lib/async/js/async.min.js"></script>
-    <script src="../demos/lib/d3/js/d3-with-aight.min.js"></script>
-    <script src="../demos/lib/jquery/js/jquery.min.js"></script>
-    <script src="../demos/lib/typeahead/js/typeahead.min.js"></script>
-    <script src="../demos/lib/modernizr/js/modernizr.min.js"></script>
-    <script src="../demos/lib/he/js/he.js"></script>
-    <script src="../demos/lib/pathvisiojs/js/pathvisiojs.min.js"></script>
+    <script src="../dist/lib/async/js/async.min.js"></script>
+    <script src="../dist/lib/d3/js/d3-with-aight.min.js"></script>
+    <script src="../dist/lib/jquery/js/jquery.min.js"></script>
+    <script src="../dist/lib/typeahead/js/typeahead.min.js"></script>
+    <script src="../dist/lib/modernizr/js/modernizr.min.js"></script>
+    <script src="../dist/lib/he/js/he.js"></script>
+    <script src="../demo/lib/cross-platform-shapes/js/cross-platform-shapes.js"></script>
+    <script src="../demo/lib/cross-platform-text/js/cross-platform-text.js"></script>
+    <script src="../dist/lib/pathvisiojs/js/pathvisiojs.js"></script>
+    <script src="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.js"></script>
     <script src="./compare.js"></script>
 
     <script>
     window.addEventListener('load',
       function() {
         var Modernizr = Modernizr || {};
-        var pathvisiojsInstance1;
         async.waterfall([
           function(callback) {
             developmentLoader.parseUriParams(function(parsedInputData) {
@@ -71,27 +73,53 @@
             /* *******************
             /* Load pathvisiojs
             /* *******************/
-
-            pathvisiojsInstance1 = Object.create(pathvisiojs);
-            pathvisiojsInstance1.load({
-              container: '#production-container', //as of now, this can only be a CSS selector: http://www.w3.org/TR/CSS2/selector.html
-              fitToContainer:true, //A fitToContainer value of false means that the diagram should be the size specified by the diagram creator, without any scaling (full size as per GPML width and height). A value of true means that diagram should be scaled down, if required, to fit entirely within the element specified by the container selector, while preserving aspect ratio. 
-              sourceData:parsedInputData.sourceData, //at least one element required
-              //cssUri: srcDirectoryUri + 'css/pathway-diagram.css',
-              //customMarkers: customMarkers,
-              //customSymbols: customSymbols,
-              bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/', // optional
-              bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php', // optional
-              diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif', // optional
-              diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
-              imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:', // optional
-              pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
-              highlights: parsedInputData.highlights, //optional
-              hiddenElements: [
+            $(function(){
+              $('#production-container').pathvisiojs({
+                fitToContainer: true
+              , manualRender: true
+              , sourceData:parsedInputData.sourceData
+              //, cssUri: srcDirectoryUri + 'css/pathway-diagram.css'
+              //, customMarkers: customMarkers
+              //, customSymbols: customSymbols
+              , bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/' // optional
+              , bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php' // optional
+              , diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif' // optional
+              , diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg' // optional
+              , imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' // optional
+              , pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=' // optional
+              , highlights: parsedInputData.highlights //optional
+              , hiddenElements: [
                 'find',
                 'wikipathways-link'
               ]
-            });
+              })
+
+              // Get first element from array of instances
+              var pathInstance = $('#production-container').pathvisiojs('get').pop()
+
+              // Load plugins
+              pathvisiojs_notifications(pathInstance, {displayErrors: true, displayWarnings: true})
+
+              // Call renderer
+              pathInstance.render()
+
+              // pathInstance.highlight([
+              //   {
+              //     "label": "APC"
+              //   , "style": {
+              //       "fill": "green"
+              //     , "stroke": "green"
+              //     }
+              //   }
+              // , {
+              //     "xref": "HMDB00193,HMDB"
+              //   , "style": {
+              //       "fill": "blue"
+              //     , "stroke": "blue"
+              //     }
+              //   }
+              // ])
+            })
             callback(null);
           }    
         ]);
