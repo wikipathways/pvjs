@@ -29,7 +29,8 @@ var testPathwaysElementCounts = grunt.file.readJSON("test/data/protocol/counts.j
     libDir = './lib/',
     distDir = './dist/',
     tmpDir = './tmp/',
-    demoDir = './demos/'
+    demoDir = './demo/',
+    pagesDir = './gh-pages/',
     distLibDir = distDir + 'lib/';
 
 // Project configuration.
@@ -37,7 +38,8 @@ grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
     clean: {
       build: distLibDir,
-      temp: tmpDir
+      temp: tmpDir,
+      pages: pagesDir
     },
     concat: {
       options: {
@@ -167,22 +169,16 @@ grunt.initConfig({
     },
     buildcontrol: {
       options: {
-        dir: 'demos',
+        dir: 'gh-pages',
         commit: true,
         push: true,
+        connectCommits: false,
         message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
       },
       pages: {
         options: {
-          remote: 'git@github.com:bumbu/pathvisiojs.git',
-          // remote: 'git@github.com:wikipathways/pathvisiojs.git',
+          remote: 'git@github.com:wikipathways/pathvisiojs.git',
           branch: 'gh-pages'
-        }
-      },
-      local: {
-        options: {
-          remote: '../',
-          branch: 'build'
         }
       },
     },
@@ -206,6 +202,12 @@ grunt.initConfig({
         cwd: distDir,
         src: '**',
         dest: demoDir
+      },
+      pages: {
+        expand: true,
+        cwd: demoDir,
+        src: '**',
+        dest: pagesDir
       }
     }
   });
@@ -237,12 +239,11 @@ grunt.initConfig({
   });
 */
 
-  // build
+  // Build
   grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy']);
-  //grunt.registerTask('build', ['sync', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'copy']);
 
-  // build and publish gh-pages
-  grunt.registerTask('build-pages', ['build', 'buildcontrol:pages'])
+  // Build, create and publish gh-pages
+  grunt.registerTask('build-pages', ['build', 'buildcontrol:pages', 'clean:pages'])
 
   // Live development
   grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'watch:browserify'])
