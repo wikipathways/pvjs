@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html style="margin: 0; width: 100%; height: 100%; ">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>Pathvisiojs Simple Built Production Example</title>
+
+    <style type="text/css">
+      html, body{width: 100%;height: 100%;margin: 0;}
+    </style>
+    <link rel="stylesheet" href="./lib/pathvisiojs/css/pathvisiojs.css">
+    <link rel="stylesheet" href="./plugins/pathvisiojs-notifications/pathvisiojs-notifications.css">
+
+    <script src="./lib/d3/js/d3-with-aight.js"></script>
+    <script src="./lib/jquery/js/jquery.min.js"></script>
+    <script src="./lib/typeahead/js/typeahead.min.js"></script>
+    <script src="./lib/modernizr/js/modernizr.min.js"></script>
+    <script src="./lib/cross-platform-shapes/js/cross-platform-shapes.js"></script>
+    <script src="./lib/cross-platform-text/js/cross-platform-text.js"></script>
+    <script src="./lib/pathvisiojs/js/pathvisiojs.js"></script>
+
+    <script src="./plugins/pathvisiojs-notifications/pathvisiojs-notifications.js"></script>
+
+  </head>
+  <body>
+    <div id="pathvisiojs-container" style="width: 700px; height: 570px; border: 1px solid #ccc;">
+    text<b>test2</b>test3</div>
+    <div id="pathvisiojs-container2" style="width: 700px; height: 200px; border: 1px solid #ccc;">2text<b>2test2</b>2test3</div>
+
+
+  <script>
+  /* *******************
+  /* Load pathvisiojs
+  /* *******************/
+  $(function(){
+    $('#pathvisiojs-container').pathvisiojs({
+      fitToContainer: true
+    , manualRender: true
+    , sourceData: [
+        // at least one item required
+        {
+          uri:'data/wp1.xml',
+          // uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+          fileType:'gpml' // generally will correspond to filename extension
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'biopax'
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'png'
+        }
+      ]
+    })
+
+    // Get first element from array of instances
+    var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+
+    // Load plugins
+    pathvisiojs_notifications(pathInstance, {displayErrors: true, displayWarnings: true})
+
+    // Call renderer
+    pathInstance.render()
+
+    // pathInstance.highlight([
+    //   {
+    //     "label": "APC"
+    //   , "style": {
+    //       "fill": "green"
+    //     , "stroke": "green"
+    //     }
+    //   }
+    // , {
+    //     "xref": "HMDB00193,HMDB"
+    //   , "style": {
+    //       "fill": "blue"
+    //     , "stroke": "blue"
+    //     }
+    //   }
+    // ])
+
+    $('#pathvisiojs-container2').pathvisiojs({
+      fitToContainer: false
+    , manualRender: true
+    , sourceData: [
+        // at least one item required
+        {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'biopax'
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'png'
+        }
+      , {
+          uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+          fileType:'gpml' // generally will correspond to filename extension
+        }
+      ]
+    })
+
+    // Get first element from array of instances
+    var pathInstance = $('#pathvisiojs-container2').pathvisiojs('get').pop()
+
+    // Load plugins
+    pathvisiojs_notifications(pathInstance, {displayErrors: true, displayWarnings: true})
+
+    // Call renderer
+    pathInstance.render()
+
+  })
+  </script>
+
+  <div class="test"></div>
+  <div class="test"></div>
+  <div class="test test2"></div>
+
+</body>
+</html>

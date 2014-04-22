@@ -1,15 +1,19 @@
-pathvisiojs.formatConverter.gpml.graphicalLine = function(){
-  'use strict';
+'use strict';
 
-  //*
-  //var pvjsonPathway = {};
+var GpmlElement = require('./element.js')
+  , Graphics = require('./graphics.js')
+  , Point = require('./point.js')
+  , Anchor = require('./anchor.js')
+  ;
+
+module.exports = {
+
   // TODO this isn't getting the linetype info for determining whether activity is direct or indirect yet
-  var gpmlArrowHeadToSemanticMappings = {
+  gpmlArrowHeadToSemanticMappings: {
     'Arrow':'arrow'
-  };
-  //*/
+  },
 
-  function toPvjson(gpmlSelection, graphicalLineSelection, callback) {
+  toPvjson: function(pvjs, gpmlSelection, graphicalLineSelection, callback) {
     var jsonAnchorGraphicalLine,
       anchor,
       jsonAnchor,
@@ -25,10 +29,10 @@ pathvisiojs.formatConverter.gpml.graphicalLine = function(){
       pvjsonPath = {};
 
     pvjsonPath.networkType = 'edge';
-    pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
-      pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
-        pathvisiojs.formatConverter.gpml.point.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
-          pathvisiojs.formatConverter.gpml.anchor.toPvjson(gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonAnchor) {
+    GpmlElement.toPvjson(pvjs, gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
+      Graphics.toPvjson(pvjs, gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
+        Point.toPvjson(pvjs, gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonPath) {
+          Anchor.toPvjson(pvjs, gpmlSelection, graphicalLineSelection, pvjsonPath, function(pvjsonAnchor) {
             pvjsonElements = [pvjsonPath].concat(pvjsonAnchor);
             callback(pvjsonElements);
           });
@@ -36,8 +40,4 @@ pathvisiojs.formatConverter.gpml.graphicalLine = function(){
       });
     });
   }
-
-  return {
-    toPvjson:toPvjson
-  };
-}();
+}
