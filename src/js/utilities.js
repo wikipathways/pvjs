@@ -188,14 +188,16 @@ module.exports = (function(){
     // modified version of https://github.com/juliangruber/intersect/blob/master/index.js
     var res = [];
     for (var i = 0; i < a.length; i++) {
-      if (b.indexOf(a[i]) > -1) res.push(a[i]);
+      if (b.indexOf(a[i]) > -1) {
+        res.push(a[i]);
+      }
     }
     return res;
   }
 
   function isIE() {
     var myNav = navigator.userAgent.toLowerCase();
-    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1], 10) : false;
   }
 
   function isUri(str) {
@@ -229,17 +231,22 @@ module.exports = (function(){
       script.src = src;
       script.onload = script.onreadystatechange = function(){
         script.onreadystatechange = script.onload = null;
-        if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent))window.setTimeout(function(){handler();},8,this);
-        else handler();
+        if (/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent)) {
+          window.setTimeout(function(){handler();},8,this);
+        } else {
+          handler();
+        }
       }
       var head = document.getElementsByTagName('head')[0];
       (head || document.body).appendChild( script );
     };
-    (function(){
-      if(array.length!=0){
-        loader(array.shift(),arguments.callee);
+    (function _handler(){
+      if(array.length !== 0){
+        loader(array.shift(), _handler);
       }else{
-        callback && callback();
+        if (callback) {
+          callback();
+        }
       }
     })();
   }

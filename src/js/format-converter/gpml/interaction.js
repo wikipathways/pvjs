@@ -1,4 +1,4 @@
-var Element = require('./element.js')
+var GpmlElement = require('./element.js')
   , Graphics = require('./graphics.js')
   , Point = require('./point.js')
   , Anchor = require('./anchor.js')
@@ -199,7 +199,7 @@ module.exports = {
       var pvjsonPath = {};
       pvjsonPath.networkType = 'edge';
       pvjsonPath.gpmlType = 'Interaction';
-      Element.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
+      GpmlElement.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
         Graphics.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
           Point.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonPath) {
             Anchor.toPvjson(gpmlSelection, interactionSelection, pvjsonPath, function(pvjsonAnchor) {

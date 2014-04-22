@@ -1,6 +1,6 @@
 'use strict';
 
-var Element = require('./element.js')
+var GpmlElement = require('./element.js')
   , Graphics = require('./graphics.js')
   ;
 
@@ -20,7 +20,7 @@ module.exports = {
 
 
 
-    Element.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
+    GpmlElement.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
       Graphics.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
         var database, id, datasourceReference,
           datasourceReferenceSelection = dataNodeSelection.select('Xref');

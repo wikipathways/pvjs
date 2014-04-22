@@ -383,7 +383,7 @@ module.exports = {
             if (graphicalLinesSelection[0].length > 0) {
               gpmlSelection.selectAll('GraphicalLine').each(function() {
                 graphicalLineSelection = d3.select(this);
-                GraphicalLine.toPvjson(gpml, graphicalLineSelection, function(pvjsonElements) {
+                GraphicalLine.toPvjson(xml, graphicalLineSelection, function(pvjsonElements) {
                   pvjson.elements = pvjson.elements.concat(pvjsonElements);
                 });
               });

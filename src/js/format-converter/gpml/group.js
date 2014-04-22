@@ -1,7 +1,7 @@
 'use strict';
 
 var Utils = require('./../../utilities.js')
-  , Element = require('./element.js')
+  , GpmlElement = require('./element.js')
   , Graphics = require('./graphics.js')
   , Async = require('async')
   ;
@@ -63,7 +63,7 @@ var Group = {
     groupType = groupSelection.attr('Style') || 'None';
     pvjsonPath.groupType = groupType;
 
-    Element.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
+    GpmlElement.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
       Graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
           var contents = elementsPossiblyInGroup.filter(function(element){
             return element.isContainedBy === pvjsonPath.id;

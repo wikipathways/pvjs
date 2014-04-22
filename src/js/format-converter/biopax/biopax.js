@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 module.exports = {
   // TODO get ontology terms and other data
@@ -24,4 +24,3 @@ module.exports = {
     }
   }
 }
-

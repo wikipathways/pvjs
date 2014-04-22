@@ -30,7 +30,7 @@ module.exports = {
   setColorAsJson: function(jsonElement, currentGpmlColorValue, defaultGpmlColorValue) {
     var jsonColor;
     if (currentGpmlColorValue !== defaultGpmlColorValue) {
-      jsonColor = gpmlColorToCssColor(currentGpmlColorValue, defaultGpmlColorValue);
+      jsonColor = this.gpmlColorToCssColor(currentGpmlColorValue, defaultGpmlColorValue);
       jsonElement.color = jsonColor;
       jsonElement.borderColor = jsonColor;
       if (jsonElement.hasOwnProperty('text')) {
@@ -120,7 +120,7 @@ module.exports = {
     // default here.
 
     if (currentGpmlLineStyleValue !== defaultGpmlLineStyleValue) {
-      borderStyle = getBorderStyle(currentGpmlLineStyleValue, defaultGpmlLineStyleValue);
+      borderStyle = this.getBorderStyle(currentGpmlLineStyleValue, defaultGpmlLineStyleValue);
       jsonElement.borderStyle = borderStyle;
     }
     return jsonElement;

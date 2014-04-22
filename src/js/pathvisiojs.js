@@ -200,8 +200,8 @@ var _ = require('lodash')
   Pathvisiojs.prototype.off = function(topic, callback) {
     var namespace = null
       , eventName = topic
-      , callback = callback || null
       , flagRemove = true
+    callback = callback || null
 
     if (topic.indexOf('.') !== -1) {
       var pieces = topic.split('.')
@@ -210,17 +210,17 @@ var _ = require('lodash')
     }
 
     // Check if such an event is registered
-    if (!this.events.hasOwnProperty(eventName)) return false;
+    if (!this.events.hasOwnProperty(eventName)) {return false;}
     var queue = this.events[topic]
 
     for (var i = queue.length - 1; i >= 0; i--) {
       flagRemove = true
 
-      if (namespace && queue[i].namespace !== namespace) flagRemove = false
-      if (callback && queue[i].callback !== callback) flagRemove = false
+      if (namespace && queue[i].namespace !== namespace) {flagRemove = false}
+      if (callback && queue[i].callback !== callback) {flagRemove = false}
 
-      if (flagRemove) queue.splice(i, 1)
-    };
+      if (flagRemove) {queue.splice(i, 1)}
+    }
 
     return true
   }
@@ -244,24 +244,28 @@ var _ = require('lodash')
       namespace = pieces[1]
     }
 
-    if (!this.events.hasOwnProperty(eventName)) return false;
+    if (!this.events.hasOwnProperty(eventName)) {return false;}
 
     var queue = this.events[eventName]
-    if (queue.length === 0) return false;
+    if (queue.length === 0) {return false;}
 
     if (async === undefined) {
-      var async = true
+      async = true
+    }
+
+    // Use a function as i may change meanwhile
+    var callAsync = function(i) {
+      setTimeout(function(){
+        queue[i].callback(message)
+      }, 0)
     }
 
     for (var i = 0; i < queue.length; i++) {
-      if (namespace && namespace !== queue[i].namespace) continue;
+      if (namespace && namespace !== queue[i].namespace) {continue}
 
       if (async) {
-        (function(i, message){
-          setTimeout(function(){
-            queue[i].callback(message)
-          }, 0)
-        })(i, message)
+        // freeze i
+        callAsync(i)
       } else {
         queue[i].callback(message)
       }
@@ -317,7 +321,7 @@ var _ = require('lodash')
     var $elements = d3.selectAll(selector)
 
     return _.map($elements[0], function(element){
-      if (element.data === undefined) element.data = {};
+      if (element.data === undefined) {element.data = {}}
 
       var data
         , options = typeof option == 'object' ? option : {}
