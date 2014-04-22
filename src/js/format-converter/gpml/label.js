@@ -1,14 +1,18 @@
-pathvisiojs.formatConverter.gpml.label = function(){
+var GpmlElement = require('./element.js')
+  , Graphics = require('./graphics.js')
+  ;
+
+module.exports = function(){
   'use strict';
 
-  var toPvjson = function(gpmlSelection, labelSelection, callback) {
+  var toPvjson = function(pvjs, gpmlSelection, labelSelection, callback) {
     var pvjsonPath = {};
 
     pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = 'Label';
 
-    pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
-      pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
+    GpmlElement.toPvjson(pvjs, gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
+      Graphics.toPvjson(pvjs, gpmlSelection, labelSelection, pvjsonPath, function(pvjsonPath) {
         var pvjsonElements = [pvjsonPath];
         callback(pvjsonElements);
       });

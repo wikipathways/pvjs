@@ -1,5 +1,9 @@
-pathvisiojs.formatConverter.gpml.anchor = function() {
-  'use strict';
+var GpmlElement = require('./element.js')
+  , Graphics = require('./graphics.js')
+  ;
+
+module.exports = function() {
+  "use strict";
 
   // anchors
   // see jsPlumb anchor model: http://jsplumbtoolkit.com/doc/anchors
@@ -16,7 +20,7 @@ pathvisiojs.formatConverter.gpml.anchor = function() {
   // }
 
 
-  function toPvjson(gpmlSelection, gpmlEdgeSelection, pvjsonEdge, callback) {
+  function toPvjson(pvjs, gpmlSelection, gpmlEdgeSelection, pvjsonEdge, callback) {
     var anchor, anchorSelection, pvjsonAnchor, pvjsonAnchors = [], pvjsonX, pvjsonY, parentElement, pvjsonMarker, attachedPoint, pvjsonAnchorPosition, pvjsonAnchorWidth, pvjsonAnchorHeight;
     var points = pvjsonEdge.points;
     var pointCount = points.length;
@@ -32,8 +36,8 @@ pathvisiojs.formatConverter.gpml.anchor = function() {
       pvjsonAnchor.zIndex = pvjsonEdge.zIndex + 0.1;
       pvjsonAnchor.networkType = 'node';
 
-      pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
-        pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
+      GpmlElement.toPvjson(pvjs, gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
+        Graphics.toPvjson(pvjs, gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
           attachedPoint = d3.select(gpmlSelection).select('Point[GraphRef=' + pvjsonAnchor.id + ']');
           pvjsonAnchorWidth = pvjsonAnchor.width;
           pvjsonAnchorHeight = pvjsonAnchor.height;
@@ -61,10 +65,10 @@ pathvisiojs.formatConverter.gpml.anchor = function() {
     var parentId, renderableType, id, position, x, y, sideOffsetX, sideOffsetY, positionOffsetX, positionOffsetY;
     /*
     var elementSides = [
-      {'side': 'top', 'initialEdgeDirection': 90}, 
-      {'side': 'right', 'initialEdgeDirection': 0}, 
-      {'side': 'bottom', 'initialEdgeDirection': 270}, 
-      {'side': 'left', 'initialEdgeDirection': 180} 
+      {'side': 'top', 'initialEdgeDirection': 90},
+      {'side': 'right', 'initialEdgeDirection': 0},
+      {'side': 'bottom', 'initialEdgeDirection': 270},
+      {'side': 'left', 'initialEdgeDirection': 180}
     ];
     //*/
     var elementSides = [

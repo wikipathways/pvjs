@@ -1,12 +1,12 @@
-pathvisiojs.renderer.annotation = function(){
+module.exports = function(){
   'use strict';
 
   var pathwaySearchUriStub = '/index.php?title=Special:SearchPathways&doSearch=1&query=';
 
-  function render(annotationData) {
-    var annotation = d3.select("#annotation")
+  function render(pvjs, annotationData) {
+    var annotation = pvjs.$element.select(".annotation")
     .data([annotationData]);
- 
+
     //Special drag code to update absolute position of annotation panel
     var dragAbs = d3.behavior.drag()
     .on("drag", function(d,i){
@@ -19,14 +19,14 @@ pathvisiojs.renderer.annotation = function(){
     });
 
 
-    var annotationHeaderText = annotation.select('#annotation-header-text')
+    var annotationHeaderText = annotation.select('.annotation-header-text')
     /*
     .style('font-size', function(d) {
       return '10px';
     })
     //*/
     .text(function(d) { return d.header; });
-    
+
     var annotationHeaderTextWidth = annotationHeaderText[0][0].getBoundingClientRect().width;
     var annotationHeaderTextSize = 22; // TODO this is bad if it gets changed in the CSS and not here.
     if (annotationHeaderTextWidth > 190) {
@@ -37,7 +37,7 @@ pathvisiojs.renderer.annotation = function(){
       } while (annotationHeaderTextWidth > 190 || annotationHeaderTextSize < 7); // font-size of 6 is really small.
     }
 
-    var detailsSearchUri = annotation.select('#annotation-header-search').select('a')
+    var detailsSearchUri = annotation.select('.annotation-header-search').select('a')
     .attr('href', function(d) {
       // TODO make this generic
       return pathwaySearchUriStub + d.header;
@@ -59,10 +59,10 @@ pathvisiojs.renderer.annotation = function(){
       annotation[0][0].style.visibility = 'hidden';
     });
 
-    var annotationDescription = annotation.select('#annotation-description')
+    var annotationDescription = annotation.select('.annotation-description')
     .text(function(d) { return d.description; });
 
-    var annotationListItemsContainer = annotation.selectAll('#annotation-items-container')
+    var annotationListItemsContainer = annotation.selectAll('.annotation-items-container')
     .data(function(d) {
       //if a single string, then check for special case: img src for loading gif
       if (typeof d.listItems[0] === 'string'){
@@ -152,10 +152,10 @@ pathvisiojs.renderer.annotation = function(){
     .text(function(d) {return ' ' + d.text; });
     // Exit
     annotationItemLinkedTextElements.exit().remove();
-    
+
     annotation[0][0].style.visibility = 'visible';
   }
-      
+
   return {
     render:render,
     pathwaySearchUriStub:pathwaySearchUriStub

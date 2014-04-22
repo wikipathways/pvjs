@@ -1,8 +1,12 @@
-pathvisiojs.formatConverter.gpml.element = function(){
-  // ...element includes all GPML elements and is the parent of both ...node and ...edge.
-  'use strict';
+'use strict';
 
-  var gpmlColorToCssColor = function(gpmlColor, pathvisioDefault) {
+var BiopaxRef = require('./biopax-ref.js')
+  , He = require('./../../../../lib/he/he.js')
+  ;
+
+// ...element includes all GPML elements and is the parent of both ...node and ...edge.
+module.exports = {
+  gpmlColorToCssColor: function(gpmlColor, pathvisioDefault) {
     var color;
     if (gpmlColor !== pathvisioDefault) {
       if (!!gpmlColor) {
@@ -21,12 +25,12 @@ pathvisiojs.formatConverter.gpml.element = function(){
     else {
       return null;
     }
-  };
+  },
 
-  var setColorAsJson = function(jsonElement, currentGpmlColorValue, defaultGpmlColorValue) {
+  setColorAsJson: function(jsonElement, currentGpmlColorValue, defaultGpmlColorValue) {
     var jsonColor;
     if (currentGpmlColorValue !== defaultGpmlColorValue) {
-      jsonColor = gpmlColorToCssColor(currentGpmlColorValue, defaultGpmlColorValue);
+      jsonColor = this.gpmlColorToCssColor(currentGpmlColorValue, defaultGpmlColorValue);
       jsonElement.color = jsonColor;
       jsonElement.borderColor = jsonColor;
       if (jsonElement.hasOwnProperty('text')) {
@@ -34,11 +38,10 @@ pathvisiojs.formatConverter.gpml.element = function(){
       }
     }
     return jsonElement;
-  };
+  },
 
   // TODO can we delete this function?
-
-  var getLineStyle = function(gpmlElement) {
+  getLineStyle: function(gpmlElement) {
     var LineStyle, attributes;
     var graphics = gpmlElement.select('Graphics');
     if (!!graphics) {
@@ -71,9 +74,9 @@ pathvisiojs.formatConverter.gpml.element = function(){
         }
       }
     }
-  };
+  },
 
-  var getBorderStyle = function(gpmlLineStyle, pathvisioDefault) {
+  getBorderStyle: function(gpmlLineStyle, pathvisioDefault) {
 
     // Double-lined EntityNodes will be handled by using a symbol with double lines.
     // Double-lined edges will be rendered as single-lined, solid edges, because we
@@ -107,9 +110,9 @@ pathvisiojs.formatConverter.gpml.element = function(){
 
       return 'whatever the default value is';
     }
-  };
+  },
 
-  var setBorderStyleAsJson = function(jsonElement, currentGpmlLineStyleValue, defaultGpmlLineStyleValue) {
+  setBorderStyleAsJson: function(jsonElement, currentGpmlLineStyleValue, defaultGpmlLineStyleValue) {
     var borderStyle;
 
     // this check happens twice because it doesn't make sense to have getBorderStyle() tell us
@@ -117,14 +120,14 @@ pathvisiojs.formatConverter.gpml.element = function(){
     // default here.
 
     if (currentGpmlLineStyleValue !== defaultGpmlLineStyleValue) {
-      borderStyle = getBorderStyle(currentGpmlLineStyleValue, defaultGpmlLineStyleValue);
+      borderStyle = this.getBorderStyle(currentGpmlLineStyleValue, defaultGpmlLineStyleValue);
       jsonElement.borderStyle = borderStyle;
     }
     return jsonElement;
-  };
+  },
 
   //*
-  var toPvjson = function(gpmlSelection, elementSelection, pvjsonElement, callback) {
+  toPvjson: function(pvjs, gpmlSelection, elementSelection, pvjsonElement, callback) {
     var attribute,
       i,
       pvjsonHeight,
@@ -163,12 +166,12 @@ pathvisiojs.formatConverter.gpml.element = function(){
         return gpmlStyleValue;
       },
       Href: function(gpmlHrefValue){
-        pvjsonHref = encodeURI(he.decode(gpmlHrefValue));
+        pvjsonHref = encodeURI(He.decode(gpmlHrefValue));
         pvjsonElement.href = pvjsonHref;
         return pvjsonHref;
       },
       TextLabel: function(gpmlTextLabelValue){
-        pvjsonTextContent = he.decode(gpmlTextLabelValue);
+        pvjsonTextContent = He.decode(gpmlTextLabelValue);
         pvjsonElement.textContent = pvjsonTextContent;
         return pvjsonTextContent;
       },
@@ -190,7 +193,7 @@ pathvisiojs.formatConverter.gpml.element = function(){
       },
     };
 
-    pathvisiojs.formatConverter.gpml.biopaxRef.getAllAsPvjson(elementSelection, function(publicationXrefs) {
+    BiopaxRef.getAllAsPvjson(elementSelection, function(publicationXrefs) {
       if (!!publicationXrefs) {
         pvjsonElement.publicationXrefs = publicationXrefs;
       }
@@ -221,17 +224,5 @@ pathvisiojs.formatConverter.gpml.element = function(){
       });
       callback(pvjsonElement);
     });
-  };
-  //*/
-
-  return {
-    toPvjson:toPvjson,
-    gpmlColorToCssColor:gpmlColorToCssColor,
-    setColorAsJson:setColorAsJson,
-    getLineStyle:getLineStyle,
-    getBorderStyle:getBorderStyle,
-    setBorderStyleAsJson:setBorderStyleAsJson
-  };
-}();
-  
-
+  }
+}

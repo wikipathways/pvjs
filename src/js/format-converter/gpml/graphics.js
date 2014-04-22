@@ -1,4 +1,11 @@
-pathvisiojs.formatConverter.gpml.graphics = {
+'use strict';
+
+var Utils = require('./../../utilities.js')
+  , Strcase = require('./../../../../lib/strcase/index.js')
+  , RGBColor = require('./../../../../lib/rgb-color/rgb-color.js')
+  ;
+
+module.exports = {
   defaults: {
     'FontSize':{
       'Type':"FontSize",
@@ -6,7 +13,7 @@ pathvisiojs.formatConverter.gpml.graphics = {
     }
   },
 
-  toPvjson: function(gpmlSelection, elementSelection, pvjsonElement, callback) {
+  toPvjson: function(pvjs, gpmlSelection, elementSelection, pvjsonElement, callback) {
       var parentElement,
       attribute,
       i,
@@ -23,7 +30,7 @@ pathvisiojs.formatConverter.gpml.graphics = {
       pvjsonRelY,
       pvjsonX,
       pvjsonY,
-      model = this.model;
+      model = pvjs.sourceData.pvjson;
 
     var attributeDependencyOrder = [
       'LineStyle',
@@ -56,13 +63,13 @@ pathvisiojs.formatConverter.gpml.graphics = {
       },
       ShapeType: function(gpmlShapeTypeValue){
         gpmlShapeType = gpmlShapeTypeValue;
-        pvjsonShape = strcase.paramCase(gpmlShapeType) + gpmlDoubleLineProperty;
+        pvjsonShape = Strcase.paramCase(gpmlShapeType) + gpmlDoubleLineProperty;
         pvjsonElement.shape = pvjsonShape;
         return pvjsonShape;
       },
       ConnectorType: function(gpmlConnectorTypeValue){
         var gpmlConnectorType = gpmlConnectorTypeValue;
-        pvjsonShape = strcase.paramCase('line-' + gpmlConnectorType) + gpmlDoubleLineProperty;
+        pvjsonShape = Strcase.paramCase('line-' + gpmlConnectorType) + gpmlDoubleLineProperty;
         pvjsonElement.shape = pvjsonShape;
         return pvjsonShape;
       },
@@ -85,7 +92,7 @@ pathvisiojs.formatConverter.gpml.graphics = {
       },
       Padding: function(gpmlPaddingValue){
         var cssPadding;
-        if (pathvisiojs.utilities.isNumber(gpmlPaddingValue)) {
+        if (Utils.isNumber(gpmlPaddingValue)) {
           cssPadding = parseFloat(gpmlPaddingValue);
         }
         else {
@@ -95,7 +102,7 @@ pathvisiojs.formatConverter.gpml.graphics = {
       },
       FontSize: function(gpmlFontSizeValue){
         var cssFontSize;
-        if (pathvisiojs.utilities.isNumber(gpmlFontSizeValue)) {
+        if (Utils.isNumber(gpmlFontSizeValue)) {
           cssFontSize = parseFloat(gpmlFontSizeValue);
         }
         else {
@@ -188,12 +195,12 @@ pathvisiojs.formatConverter.gpml.graphics = {
         return pvjsonY;
       },
       Align: function(gpmlAlignValue) {
-        pvjsonTextAlign = strcase.paramCase(gpmlAlignValue);
+        pvjsonTextAlign = Strcase.paramCase(gpmlAlignValue);
         pvjsonElement.textAlign = pvjsonTextAlign;
         return pvjsonTextAlign;
       },
       Valign: function(gpmlValignValue) {
-        pvjsonVerticalAlign = strcase.paramCase(gpmlValignValue);
+        pvjsonVerticalAlign = Strcase.paramCase(gpmlValignValue);
         pvjsonElement.verticalAlign = pvjsonVerticalAlign;
         return pvjsonVerticalAlign;
       },
@@ -226,7 +233,7 @@ pathvisiojs.formatConverter.gpml.graphics = {
         }
         else {
           console.warn('Pathvisiojs has no handler for attribute "' + attributeListItemName + '"');
-          attributeListItemName = strcase.camelCase(attributeListItemName);
+          attributeListItemName = Strcase.camelCase(attributeListItemName);
           pvjsonElement[attributeListItemName] = attributeListItem.value;
         }
       });
