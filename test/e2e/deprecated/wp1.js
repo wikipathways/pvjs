@@ -13,7 +13,7 @@ var bodyElements, shapes, wp1, loadingIconBeforePathwayLoaded, loadingIconAfterP
 
 ptor.get('http://127.0.0.1/~andersriutta/pathvisiojs/test/').
   then(function() {
-    return ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=http://127.0.0.1/~andersriutta/pathvisiojs/test/gpml/shapes.gpml");
+    return ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/prod-vs-dev.html?gpml=http://127.0.0.1/~andersriutta/pathvisiojs/test/gpml/shapes.gpml");
   }).
   then(function() {
     return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 15 * 1000);
@@ -33,7 +33,7 @@ ptor.get('http://127.0.0.1/~andersriutta/pathvisiojs/test/').
     return shapesInShapes;
   }).
   then(function(q) {
-    ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/compare.html?gpml=WP1");
+    ptor.get("http://127.0.0.1/~andersriutta/pathvisiojs/test/prod-vs-dev.html?gpml=WP1");
     loadingIconBeforePathwayLoaded = element.all(by.css('#loading-icon'));
     //expect(loadingIconBeforePathwayLoaded.count()).toEqual(1);
     return loadingIconBeforePathwayLoaded;
