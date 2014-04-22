@@ -29,6 +29,7 @@ var testPathwaysElementCounts = grunt.file.readJSON("test/data/protocol/counts.j
     libDir = './lib/',
     distDir = './dist/',
     tmpDir = './tmp/',
+    demoDir = './demos/'
     distLibDir = distDir + 'lib/';
 
 // Project configuration.
@@ -173,7 +174,8 @@ grunt.initConfig({
       },
       pages: {
         options: {
-          remote: 'git@github.com:wikipathways/pathvisiojs.git',
+          remote: 'git@github.com:bumbu/pathvisiojs.git',
+          // remote: 'git@github.com:wikipathways/pathvisiojs.git',
           branch: 'gh-pages'
         }
       },
@@ -193,6 +195,18 @@ grunt.initConfig({
         src: libDir + 'typeahead.js/dist/typeahead.min.js',
         dest: distLibDir + 'typeahead/js/typeahead.min.js'
       },
+      crossplatform: {
+        expand: true,
+        cwd: libDir,
+        src: ['cross-platform-shapes/**/*', 'cross-platform-text/**/*'],
+        dest: distLibDir
+      },
+      distdemos: {
+        expand: true,
+        cwd: distDir,
+        src: '**',
+        dest: demoDir
+      }
     }
   });
 
@@ -210,21 +224,7 @@ grunt.initConfig({
     grunt.task.run('protractor:firefox');
   });
   grunt.registerTask('protractor-e2e', ['concurrent:protractor_test']);
-*/
 
-
-  // build
-  grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy']);
-  //grunt.registerTask('build', ['sync', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'copy']);
-
-  // build and publish gh-pages
-  grunt.registerTask('build-pages', ['build', 'buildcontrol:pages'])
-
-  // Live development
-  grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'watch:browserify'])
-
-
-/*
   // test
   grunt.registerTask('test-min', 'Run local tests for development', function(val) {
     grunt.option('spec', 'minimal');
@@ -236,6 +236,16 @@ grunt.initConfig({
     grunt.task.run('protractor-e2e');
   });
 */
+
+  // build
+  grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy']);
+  //grunt.registerTask('build', ['sync', 'clean:build', 'git-describe', 'jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify', 'copy']);
+
+  // build and publish gh-pages
+  grunt.registerTask('build-pages', ['build', 'buildcontrol:pages'])
+
+  // Live development
+  grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'watch:browserify'])
 
   // Default task
   grunt.registerTask('default', ['build']);
