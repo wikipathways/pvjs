@@ -172,12 +172,6 @@ var developmentLoader = function() {
           fileType:'gpml'
         });
 
-        pngUri = pathvisiojs.config.diagramNotAvailableIconUri;
-        parsedInputData.sourceData.push({
-          uri:pngUri,
-          fileType:'png'
-        });
-
         console.log(parsedInputData);
         callback(parsedInputData);
       }
@@ -332,7 +326,7 @@ var developmentLoader = function() {
 
     currentUri = document.location;
     var pathname = document.location.pathname;
-    var pathvisiojsRootDirectoryUri = pathname.split('test/development.html')[0];
+    var pathvisiojsRootDirectoryUri = pathname.split('test/one-diagram.html')[0];
     srcDirectoryUri = (pathvisiojsRootDirectoryUri + 'src/');
 
     async.waterfall([
@@ -343,7 +337,7 @@ var developmentLoader = function() {
         });
       },
       function(callback) {
-        if (pathname.indexOf('development.html') > -1) { //if this is the development version
+        if (pathname.indexOf('one-diagram.html') > -1) { //if this is the development version
           var pvjsSourcesDev = pvjsSources; //this file is only used in the build process
 
       /*
@@ -394,7 +388,7 @@ var developmentLoader = function() {
           Modernizr.svg = Modernizr.inlinesvg = false;
           $('#svg-disabled').prop('checked', true);
         }
-        if (pathname.indexOf('development.html') > -1) { //if this is the development version
+        if (pathname.indexOf('one-diagram.html') > -1) { //if this is the development version
           generateHtmlTemplate(function() {
             generateSvgTemplate(function() {
               console.log(pathvisioNS);

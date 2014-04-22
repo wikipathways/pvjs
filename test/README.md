@@ -16,7 +16,7 @@ Leave web server running in terminal window.
 
 B. Open a browser and navigate to the pathvisiojs [test page](https://github.com/wikipathways/pathvisiojs/blob/master/test/index.html). If you are using the included dev server, it will be located at ["http://localhost:3000/test/"](http://localhost:3000/test/). If you are using another server, edit the URL as required for your server setup. Then follow a link for any one of the pathways listed.
 
-C. If you add a new JS file, you will need to add a reference to it in [load-from-wikipathways.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/load-from-wikipathways.js#L116).
+C. If you add a new JS file, you will need to add a reference to it in [load.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/load.js#L116).
 
 # How To Run The Tests
 
