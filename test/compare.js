@@ -1,17 +1,55 @@
 var module = {};
-var srcDirectoryUri;
+var srcDirectoryUri, currentUri, uriParams;
 var pvjsSources;
 var pathvisioNS = pathvisioNS || {};
 
+function isIE() {
+  var myNav = navigator.userAgent.toLowerCase();
+  return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1], 10) : false;
+}
+
 function serializeXmlToString(xmlDoc) {
   var oSerializer;
-  if (!(pathvisiojs.utilities.isIE()) || (pathvisiojs.utilities.isIE() > 8)) {
+  if (!(isIE()) || (isIE() > 8)) {
     oSerializer = new XMLSerializer();
     return oSerializer.serializeToString(xmlDoc);
   }
   else {
     throw new Error('IE8 and older do not support XMLSerializer');
   }
+}
+
+// this both clones a node and inserts it at the same level of the DOM
+// as the element it was cloned from.
+// it returns a d3 selection of the cloned element
+function cloneNode(selector) {
+  var node = d3.select(selector).node();
+  return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
+}
+
+// see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function isOdd(num) {
+  return num % 2;
+}
+
+function isWikiPathwaysId(data) {
+  data = data.trim();
+  if (data.substr(0,2).toUpperCase() === 'WP' && this.isNumber(data.substr(data.length - 1))) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+function isUri(str) {
+  // from https://gist.github.com/samuelcole/920312
+  var uriPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
+  return uriPattern.test(str);
 }
 
 var developmentLoader = function() {
@@ -40,7 +78,7 @@ var developmentLoader = function() {
   function convertUriParamsToJson() {
     // this includes both explicit and implicit URI params, e.g.,
     // if svg-disabled is not specified as a URI param, it will still be included in this object with its default value of false.
-    var uriParams = {
+    uriParams = {
       'svg-disabled': false,
       'gpml': null,
       'rev': 0,
@@ -126,7 +164,7 @@ var developmentLoader = function() {
 
     var wpId, wpRevision, gpmlUri, pngUri;
 
-    if (pathvisiojs.utilities.isUri(gpmlParam)) {
+    if (isUri(gpmlParam)) {
       uri = gpmlParam;
       if (uri.indexOf('.gpml') > -1) {
         parsedInputData.sourceData.push({
@@ -148,7 +186,7 @@ var developmentLoader = function() {
       }
     }
     else {
-      if (pathvisiojs.utilities.isWikiPathwaysId(gpmlParam)) {
+      if (isWikiPathwaysId(gpmlParam)) {
         wpRevision = uriParams.rev || 0;
         // TODO this is messy if we later want to use a data format that is not GPML
         gpmlUri = getGpmlUri(gpmlParam, wpRevision); //get uri
@@ -181,13 +219,13 @@ var developmentLoader = function() {
     var gpmlUri;
 
     // test whether the server serving this file is on a wikipathways.org domain (wikipathways.org, test3.wikipathways.org, etc.)
-    var re = /wikipathways\.org/; 
+    var re = /wikipathways\.org/;
     var isOnWikiPathwaysDomain = re.test(document.location.origin);
 
     // I don't know what this is doing. It might be a start at handling display of multiple pathways on a page.
     var PathwayViewer_viewers = PathwayViewer_viewers || [];
 
-    if (pathvisiojs.utilities.isWikiPathwaysId(wpId)) { // if the input is a WP ID
+    if (isWikiPathwaysId(wpId)) { // if the input is a WP ID
       if (PathwayViewer_viewers.length > 0 && isOnWikiPathwaysDomain) { // if we are also on a *.wikipathways.org domain
         gpmlUri = PathwayViewer_viewers[0].gpml.gpmlUri; // TODO we are not handling multiple pathways on one page here
       }
@@ -292,7 +330,7 @@ var developmentLoader = function() {
   function preload(outsideCallback) {
     var hostname = decodeURI(window.location.hostname);
 
-    var currentUri = document.location;
+    currentUri = document.location;
     var pathname = document.location.pathname;
     var pathvisiojsRootDirectoryUri = pathname.split('test/development.html')[0];
     srcDirectoryUri = (pathvisiojsRootDirectoryUri + 'src/');
@@ -401,7 +439,7 @@ function copyToClipboard(text) {
 }
 
 var getPathvisiojsHtmlTemplate = function() {
-  var html = pathvisiojs.utilities.cloneNode('#pathvisiojs-container');
+  var html = cloneNode('#pathvisiojs-container');
   html.select('svg').remove();
   var html00 = html[0][0];
 
@@ -410,7 +448,7 @@ var getPathvisiojsHtmlTemplate = function() {
 };
 
 var getPathvisiojsSvgTemplate = function() {
-  var svg = pathvisiojs.utilities.cloneNode('#pathvisiojs-diagram');
+  var svg = cloneNode('#pathvisiojs-diagram');
   svg.select('#viewport').selectAll('*').remove();
   var marker, oldMarkerId, newMarkerId;
   var markers = svg.selectAll('marker');
