@@ -335,9 +335,12 @@ module.exports = (function(){
     if (isIE() !== 9) {
       // d3.xml does not work with IE9 (and probably earlier), so we're using d3.xhr instead of d3.xml for IE9
       // TODO file a bug report on d3 issue tracker
-      d3.xml(uri, function(gpmlDoc) {
-        var xml = gpmlDoc.documentElement;
-        callback(xml);
+      d3.xml(uri, 'application/xml', function(xmlDoc) {
+        if (xmlDoc.documentElement) {
+          callback(xmlDoc.documentElement)
+        } else {
+          callback(null)
+        }
       });
     }
     else {

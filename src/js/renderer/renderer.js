@@ -216,7 +216,7 @@ module.exports = function(){
           var elementsWithPublicationXrefs = pvjson.elements.filter(function(element){return !!element.publicationXrefs;});
           if (elementsWithPublicationXrefs.length > 0) {
             elementsWithPublicationXrefs.forEach(function(elementWithPublicationXrefs) {
-              PublicationXref.render(viewport, elementWithPublicationXrefs);
+              PublicationXref.render(pvjs, viewport, elementWithPublicationXrefs);
             });
           }
           vectorRendererCallback(null);

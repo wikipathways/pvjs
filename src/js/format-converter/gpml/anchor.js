@@ -20,7 +20,7 @@ module.exports = function() {
   // }
 
 
-  function toPvjson(gpmlSelection, gpmlEdgeSelection, pvjsonEdge, callback) {
+  function toPvjson(pvjs, gpmlSelection, gpmlEdgeSelection, pvjsonEdge, callback) {
     var anchor, anchorSelection, pvjsonAnchor, pvjsonAnchors = [], pvjsonX, pvjsonY, parentElement, pvjsonMarker, attachedPoint, pvjsonAnchorPosition, pvjsonAnchorWidth, pvjsonAnchorHeight;
     var points = pvjsonEdge.points;
     var pointCount = points.length;
@@ -36,8 +36,8 @@ module.exports = function() {
       pvjsonAnchor.zIndex = pvjsonEdge.zIndex + 0.1;
       pvjsonAnchor.networkType = 'node';
 
-      GpmlElement.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
-        Graphics.toPvjson(gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
+      GpmlElement.toPvjson(pvjs, gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
+        Graphics.toPvjson(pvjs, gpmlSelection, anchorSelection, pvjsonAnchor, function(pvjsonAnchor) {
           attachedPoint = d3.select(gpmlSelection).select('Point[GraphRef=' + pvjsonAnchor.id + ']');
           pvjsonAnchorWidth = pvjsonAnchor.width;
           pvjsonAnchorHeight = pvjsonAnchor.height;
