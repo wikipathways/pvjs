@@ -1,6 +1,6 @@
 // TODO this only works for GPML DataNodes with SVG at present.
-pathvisiojs.renderer.highlighter = {
-  load: function(svgSelection, data, callback) {
+module.exports = {
+  load: function(pvjs, svgSelection, data, callback) {
     'use strict';
     var highlighter = this;
     if (!svgSelection || !data) {
@@ -17,8 +17,11 @@ pathvisiojs.renderer.highlighter = {
       }
     });
 
+    var $highlighterInput = $(pvjs.$element[0][0]).find('.highlight-by-label-input')
+      , $highlighterReset = $highlighterInput.siblings('.clear-highlights-from-typeahead')
+
     // see http://twitter.github.io/typeahead.js/
-    $('#highlight-by-label-input').typeahead({
+    $highlighterInput.typeahead({
       name: 'Highlight node in pathway',
       local: typeaheadElementValues,
       limit: 10
@@ -39,20 +42,38 @@ pathvisiojs.renderer.highlighter = {
     // see http://api.jquery.com/bind/
     // TODO get selected value better and make function to handle
 
-    $( "#highlight-by-label-input" ).bind("typeahead:selected", function() {
-      var typeaheadElementValue = $("#highlight-by-label-input").val();
+    $highlighterInput.bind("typeahead:selected", function() {
+      var typeaheadElementValue = $highlighterInput.val();
       if (!typeaheadElementValue) {
         throw new Error("No data node value entered for type-ahead node highlighter.");
       }
       else {
         // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
         // a highlighter for svg, png, etc. as appropriate.
-        highlighter.highlightByLabel(svgSelection, data, typeaheadElementValue);
+        highlighter.highlightByLabel($highlighterReset, svgSelection, data, typeaheadElementValue);
       }
     });
 
-    d3.select('#clear-highlights-from-typeahead').on('click', function() {
-      highlighter.clearHighlightsFromTypeahead(svgSelection);
+    $highlighterInput.bind("keypress", pressed);
+    function pressed(e) {
+      if (e.keyCode === 13)
+      {
+        // TODO refactor this. it's repeated above.
+        var typeaheadElementValue = $highlighterInput.val();
+        if (!typeaheadElementValue) {
+          throw new Error("No data node value entered for type-ahead node highlighter.");
+        }
+        else {
+          // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
+          // a highlighter for svg, png, etc. as appropriate.
+          highlighter.highlightByLabel($highlighterReset, svgSelection, data, typeaheadElementValue);
+          $highlighterInput.typeahead('setQuery', '');
+        }
+      }
+    }
+
+    $highlighterReset.on('click', function() {
+      highlighter.clearHighlightsFromTypeahead($highlighterInput, $highlighterReset, svgSelection);
     });
     if (!!callback) {
       callback(null, svgSelection);
@@ -132,7 +153,7 @@ pathvisiojs.renderer.highlighter = {
     });
   },
 
-  highlightByLabel: function(svgSelection, data, nodeLabel) {
+  highlightByLabel: function($highlighterReset, svgSelection, data, nodeLabel) {
     'use strict';
     var svgId = svgSelection.attr('id') || 'pathvisiojs-diagram';
     svgSelection.selectAll('.highlighted-from-typeahead').remove();
@@ -142,16 +163,13 @@ pathvisiojs.renderer.highlighter = {
     args.label = nodeLabel;
     args.cssClass = 'highlighted-node highlighted-from-typeahead';
     this.highlight(args);
-    d3.select('#clear-highlights-from-typeahead')[0][0].style.visibility = 'visible';
+    $highlighterReset.show()
   },
 
-  clearHighlightsFromTypeahead: function(svgSelection) {
+  clearHighlightsFromTypeahead: function($highlighterInput, $highlighterReset, svgSelection) {
     'use strict';
     svgSelection.selectAll('.highlighted-from-typeahead').remove();
-    // TODO this won't work well if we have more than one diagram on the page
-    var highlightByLabelInput = d3.select('#highlight-by-label-input');
-    highlightByLabelInput[0][0].value = '';
-    highlightByLabelInput.attr('placeholder', '');
-    d3.select('#clear-highlights-from-typeahead')[0][0].style.visibility = 'hidden';
+    $highlighterInput.val('').attr('placeholder', '')
+    $highlighterReset.hide()
   }
 };

@@ -1,7 +1,11 @@
-pathvisiojs.formatConverter.gpml.state = function(){
+var GpmlElement = require('./element.js')
+  , Graphics = require('./graphics.js')
+  ;
+
+module.exports = function(){
   'use strict';
 
-  var toPvjson = function(gpmlSelection, stateSelection, callback) {
+  var toPvjson = function(pvjs, gpmlSelection, stateSelection, callback) {
     var pvjsonPath = {};
     pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = 'State';
@@ -15,8 +19,8 @@ pathvisiojs.formatConverter.gpml.state = function(){
     //*/
 
         //*
-        pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath) {
-          pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath) {
+        GpmlElement.toPvjson(pvjs, gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath) {
+          Graphics.toPvjson(pvjs, gpmlSelection, stateSelection, pvjsonPath, function(pvjsonPath) {
             var pvjsonElements = [pvjsonPath];
             /*
             console.log('pvjsonPath inside');
