@@ -18,12 +18,12 @@
     </div>
     <div id="main" class="cf">
       <div id="content-1">
-        <div id="left" style="width: 540px; height: 500px; border:1px solid black; ">
+        <div id="left" style="width: 800px; height: 800px; border:1px solid black; ">
         </div>
       </div>
       <div id="content-2">
         <div id="content-2-1">
-          <div id="right" style="float:left; width: 540px; height: 500px; border:1px solid black; ">
+          <div id="right" style="float:left; width: 800px; height: 800px; border:1px solid black; ">
           </div>
         </div>
       </div>
@@ -84,8 +84,7 @@
   <script>
     pathvisiojs = {};
   </script>
-  <script src="../src/js/pathvisiojs/utilities.js"></script>
-  <script src="./load-from-wikipathways.js"></script>
+  <script src="./load.js"></script>
 
   <script>
     window.onload = function() {
@@ -98,7 +97,7 @@
         function(parsedInputData, callback) {
          var inputData = [{
             'containerId':'left',
-            'frameSrc':'./development.html' + document.location.search
+            'frameSrc':'./one-diagram.html' + document.location.search
           }];
 
           // test for whether uriParamList.gpml is a WikiPathways ID
