@@ -5,7 +5,6 @@
   "version": "1.1.0",
   "homepage": "http://wikipathways.github.io/pathvisiojs/",
   "dependencies": {
-    "async": "~0.2.5",
     "blueimp-load-image": "~1.11.0",
     "d3": ">= 3.2.8",
     "jquery": "1.10.2",
