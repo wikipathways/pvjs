@@ -1,8 +1,8 @@
 var _ = require('lodash')
   , fs = require('fs')
-  , Utils = require('./utilities.js')
-  , Renderer = require('./renderer/renderer.js')
-  , FormatConverter = require('./format-converter/format-converter.js')
+  , Utils = require('./utilities')
+  , Renderer = require('./renderer/renderer')
+  , FormatConverter = require('./format-converter/format-converter')
   ;
 
 (function(window, $){
@@ -144,7 +144,7 @@ var _ = require('lodash')
   }
 
   /**
-   * Returns an instanse for public usage
+   * Returns an instance for public usage
    * @return {object}
    */
   Pathvisiojs.prototype.getPublicInstance = function() {
@@ -283,11 +283,9 @@ var _ = require('lodash')
      * Otherwise returns an jQuery object to allow chaining.
      *
      * @param  {string} option
-     * @return {array || jQuery object}
+     * @return {object} array || jQuery object
      */
     $.fn.pathvisiojs = function (option) {
-      var _arguments = arguments
-
       // Instantiate Pathvisiojs for all elements
       var $return = this.each(function () {
         var $this = $(this)
@@ -295,12 +293,12 @@ var _ = require('lodash')
           , options = typeof option == 'object' && option
 
         if (!data) {
-          $this.data('pathvisiojs', (data = new Pathvisiojs(this, options)))
+          $this.data('pathvisiojs', (new Pathvisiojs(this, options)))
         }
       })
 
       if (option === 'get') {
-        // Return an array of Pathvisiojs instnces
+        // Return an array of Pathvisiojs instances
         return $.map(this, function(a){return $(a).data('pathvisiojs').getPublicInstance()})
       } else {
         // Return jQuery object
