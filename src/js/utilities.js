@@ -1,23 +1,12 @@
+'use strict';
+
 var _ = require('lodash')
-  , async = require('async')
+  , Async = require('async')
   , Strcase = require('./../../lib/strcase/index.js')
   ;
 
-module.exports = (function(){
-  'use strict';
-
-  function log() {
-    if (window.console && window.console.log) {
-      if (window.console.log.apply){
-        window.console.log.apply(window.console, arguments)
-      } else {
-        var message = Array.prototype.slice.apply(arguments).join(' ')
-        window.console.log(message)
-      }
-    }
-  }
-
-  function collect() {
+var Utils = {
+  collect: function() {
     // from http://stackoverflow.com/questions/2454295/javascript-concatenate-properties-from-multiple-objects-associative-array
     var ret = {};
     var len = arguments.length;
@@ -31,9 +20,9 @@ module.exports = (function(){
     return ret;
   }
 
-  function clone(src) {
+, clone: function(src) {
     function mixin(dest, source, copyFunc) {
-      var name, s, i, empty = {};
+      var name, s, empty = {};
       for(name in source){
         // the (!(name in empty) || empty[name] !== s) condition avoids copying properties in "source"
         // inherited from Object.prototype.  For example, if dest has a custom toString() method,
@@ -62,13 +51,14 @@ module.exports = (function(){
       // RegExp
       return new RegExp(src);   // RegExp
     }
+
     var r, i, l;
     if(src instanceof Array){
       // array
       r = [];
       for(i = 0, l = src.length; i < l; ++i){
         if(i in src){
-          r.push(clone(src[i]));
+          r.push(Utils.clone(src[i]));
         }
       }
       // we don't clone functions for performance reasons
@@ -79,31 +69,31 @@ module.exports = (function(){
       // generic objects
       r = src.constructor ? new src.constructor() : {};
     }
-    return mixin(r, src, clone);
+    return mixin(r, src, Utils.clone);
 
   }
 
   // this both clones a node and inserts it at the same level of the DOM
   // as the element it was cloned from.
   // it returns a d3 selection of the cloned element
-  function cloneNode(selector) {
+, cloneNode: function(selector) {
     var node = d3.select(selector).node();
     return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
   }
 
-  function convertToArray(object) {
+, convertToArray: function(object) {
     var array = null;
-    if (getObjectType( object ) === 'Object' ) {
+    if (Utils.getObjectType(object) === 'Object' ) {
       array = [];
       array.push(object);
       return array;
     }
     else {
-      if( getObjectType( object ) === 'Array' ) {
+      if(Utils.getObjectType(object) === 'Array' ) {
         return object;
       }
       else {
-        if( getObjectType( object ) === 'String' ) {
+        if(Utils.getObjectType(object) === 'String' ) {
           array = [];
           array.push(object);
           return array;
@@ -112,17 +102,17 @@ module.exports = (function(){
     }
   }
 
-  function getObjectType(object) {
+, getObjectType: function(object) {
     var result;
-    if (Object.prototype.toString.call( object ) === '[object Object]' ) {
+    if (Object.prototype.toString.call( object ) === '[object Object]') {
       result = 'Object';
     }
     else {
-      if( Object.prototype.toString.call( object ) === '[object Array]' ) {
+      if (Object.prototype.toString.call( object ) === '[object Array]') {
         result = 'Array';
       }
       else {
-        if( Object.prototype.toString.call( object ) === '[object String]' ) {
+        if (Object.prototype.toString.call( object ) === '[object String]') {
           result = 'String';
         }
       }
@@ -130,14 +120,12 @@ module.exports = (function(){
     return result;
   }
 
-  function getTextDirection(text) {
+, getTextDirection: function(text) {
     /**
      * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
      * What about Chinese characters that go top to bottom?
      */
     var x =  new RegExp("[\x00-\x80]+"); // is ascii
-
-    //alert(x.test($this.val()));
 
     var isAscii = x.test(text);
 
@@ -152,7 +140,7 @@ module.exports = (function(){
     return direction;
   }
 
-  function getUriParam(name) {
+, getUriParam: function(name) {
     // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
     // This will be replaced once we get the backend php to get the json
     var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
@@ -165,26 +153,26 @@ module.exports = (function(){
     }
   }
 
- function getWindowDimensions(object) {
+, getWindowDimensions: function() {
     var winW = 630, winH = 460;
     if (document.body && document.body.width) {
-     winW = document.body.width;
-     winH = document.body.height;
+      winW = document.body.width;
+      winH = document.body.height;
     }
     if (document.compatMode=='CSS1Compat' &&
         document.documentElement &&
         document.documentElement.width ) {
-     winW = document.documentElement.width;
-     winH = document.documentElement.height;
+      winW = document.documentElement.width;
+      winH = document.documentElement.height;
     }
     if (window.innerWidth && window.innerHeight) {
-     winW = window.innerWidth;
-     winH = window.innerHeight;
+      winW = window.innerWidth;
+      winH = window.innerHeight;
     }
     return {'width':winW, 'height':winH};
   }
 
-  function intersect(a, b) {
+, intersect: function(a, b) {
     // modified version of https://github.com/juliangruber/intersect/blob/master/index.js
     var res = [];
     for (var i = 0; i < a.length; i++) {
@@ -195,37 +183,33 @@ module.exports = (function(){
     return res;
   }
 
-  function isIE() {
+, isIE: function() {
     var myNav = navigator.userAgent.toLowerCase();
     return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1], 10) : false;
   }
 
-  function isUri(str) {
+, isUri: function(str) {
     // from https://gist.github.com/samuelcole/920312
     var uriPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
     return uriPattern.test(str);
   }
 
   // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
-  function isNumber(n) {
+, isNumber: function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
-  var isOdd = function(num) {
+
+, isOdd: function(num) {
     return num % 2;
   }
 
-  function isWikiPathwaysId(data) {
-    data = data.trim();
-    if (data.substr(0,2).toUpperCase() === 'WP' && isNumber(data.substr(data.length - 1))) {
-      return true;
-    }
-    else {
-      return false;
-    }
+, isWikiPathwaysId: function(data) {
+    data = data.trim()
+    return data.substr(0,2).toUpperCase() === 'WP' && Utils.isNumber(data.substr(data.length - 1))
   }
 
   // TODO should we use requirejs for loading scripts instead?
-  function loadScripts(array, callback){
+, loadScripts: function(array, callback){
     var loader = function(src,handler){
       var script = document.createElement('script');
       script.src = src;
@@ -251,7 +235,7 @@ module.exports = (function(){
     })();
   }
 
-  function moveArrayItem(arr, old_index, new_index) {
+, moveArrayItem: function(arr, old_index, new_index) {
     // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
     if (new_index >= arr.length) {
       var k = new_index - arr.length;
@@ -263,20 +247,19 @@ module.exports = (function(){
     return arr; // for testing purposes
   }
 
-  function splitStringByNewLine(str) {
+, splitStringByNewLine: function(str) {
     // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
     return str.split(/\r\n|\r|\n/g);
   }
 
-  function strToHtmlId(str) {
+, strToHtmlId: function(str) {
     var re = /\W/gi;
-    var id = str.replace(re, "");
-    return id;
+    return str.replace(re, "");
   }
 
   // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
   // TODO have not tested x-browser yet.
-  function getElementWidth(element) {
+, getElementWidth: function(element) {
     if (typeof element.clip !== "undefined") {
       return element.clip.width;
     } else {
@@ -288,9 +271,9 @@ module.exports = (function(){
     }
   }
 
-  function getElementHeight(element) {
+, getElementHeight: function(element) {
     if (typeof element.clip !== "undefined") {
-      return element.clip.width;
+      return element.clip.height;
     } else {
       if (element.style.pixelHeight) {
         return element.style.pixelHeight;
@@ -300,7 +283,7 @@ module.exports = (function(){
     }
   }
 
-  function addClassForD3($element, className) {
+, addClassForD3: function($element, className) {
     var elementClass = $element.attr('class') || ""
 
     // There are not classes at all
@@ -312,7 +295,7 @@ module.exports = (function(){
     }
   }
 
-  function removeClassForD3($element, className) {
+, removeClassForD3: function($element, className) {
     var elementClass = $element.attr('class') || ""
       , classes = elementClass.match(/[^\s]+/g)
 
@@ -323,16 +306,14 @@ module.exports = (function(){
     }
   }
 
-  function proxy(fn, context) {
-    var _proxy = function() {
+, proxy: function(fn, context) {
+    return function() {
       fn.apply(context, arguments)
     }
-
-    return _proxy
   }
 
-  function loadXmlFromUri(uri, callback) {
-    if (isIE() !== 9) {
+, loadXmlFromUri: function(uri, callback) {
+    if (Utils.isIE() !== 9) {
       // d3.xml does not work with IE9 (and probably earlier), so we're using d3.xhr instead of d3.xml for IE9
       // TODO file a bug report on d3 issue tracker
       d3.xml(uri, 'application/xml', function(xmlDoc) {
@@ -344,11 +325,11 @@ module.exports = (function(){
       });
     }
     else {
-      async.waterfall([
+      Async.waterfall([
         function(callbackInner) {
           if (!$) {
             // TODO should we use requirejs for loading scripts instead?
-            loadScripts(['http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'], function() {
+            Utils.loadScripts(['http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'], function() {
               callbackInner(null);
             });
           }
@@ -372,7 +353,7 @@ module.exports = (function(){
     }
   }
 
-  var convertToCssClassName = function(inputString) {
+, convertToCssClassName: function(inputString) {
     var cssClassName = Strcase.paramCase(inputString);
     //var cssClassName = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
     // to make valid cssClassName per HTML4 spec, I'm ensuring the first character is a letter
@@ -380,9 +361,9 @@ module.exports = (function(){
       cssClassName = 'class-' + cssClassName;
     }
     return cssClassName;
-  };
+  }
 
-  function convertToCSSId(inputString) {
+, convertToCSSId: function(inputString) {
     var id = Strcase.paramCase(inputString);
     //var id = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
     // to make valid id per HTML4 spec, I'm ensuring the first character is a letter
@@ -391,34 +372,6 @@ module.exports = (function(){
     }
     return id;
   }
+}
 
-  return{
-    log: log,
-    clone: clone,
-    cloneNode: cloneNode,
-    collect: collect,
-    convertToArray: convertToArray,
-    getObjectType: getObjectType,
-    getTextDirection: getTextDirection,
-    getUriParam: getUriParam,
-    getWindowDimensions: getWindowDimensions,
-    isIE: isIE,
-    intersect: intersect,
-    isNumber: isNumber,
-    isOdd: isOdd,
-    isUri: isUri,
-    isWikiPathwaysId: isWikiPathwaysId,
-    loadScripts: loadScripts,
-    moveArrayItem: moveArrayItem,
-    splitStringByNewLine: splitStringByNewLine,
-    strToHtmlId: strToHtmlId,
-    getElementWidth: getElementWidth,
-    getElementHeight: getElementHeight,
-    addClassForD3: addClassForD3,
-    removeClassForD3: removeClassForD3,
-    proxy: proxy,
-    loadXmlFromUri: loadXmlFromUri,
-    convertToCssClassName: convertToCssClassName,
-    convertToCSSId: convertToCSSId
-  };
-})();
+module.exports = Utils
