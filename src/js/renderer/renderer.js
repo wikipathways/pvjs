@@ -173,9 +173,19 @@ module.exports = function(){
                     }
                   }
                   crossPlatformShapesInstance1[shapeName](renderingData, function(shapeElement) {
+                    var path = d3.select(shapeElement)
+                    var typeClassesToAdd = '';
+                    if (!!dataElement['@type'] && dataElement['@type'].length > 0) {
+                      dataElement['@type'].forEach(function(type) {
+                        typeClassesToAdd += 'gpml:' + type + ' ';
+                      });
+                      path.attr('typeof', typeClassesToAdd);
+                    }
+
+
+
                     if (!!dataElement.datasourceReference) {
-                      var path = d3.select(shapeElement)
-                      .attr('class', 'has-xref');
+                      path.classed({'has-xref': true});
 
                       var notDragged = true;
                       path.on("mousedown", function(d,i) {

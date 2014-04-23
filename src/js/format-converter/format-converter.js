@@ -24,7 +24,7 @@ module.exports = {
         })
       })
     } else {
-      return callback('Cannot get jGpml from the specified input.', {})
+      return callback('Cannot get pvjson from the specified input.', {})
     }
   }
 }

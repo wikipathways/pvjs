@@ -128,21 +128,23 @@ module.exports = {
 
   //*
   toPvjson: function(pvjs, gpmlSelection, elementSelection, pvjsonElement, callback) {
-    var attribute,
-      i,
-      pvjsonHeight,
-      pvjsonWidth,
-      pvjsonStrokeWidth,
-      gpmlShapeType,
-      pvjsonShape,
-      pvjsonZIndex,
-      pvjsonRelX,
-      pvjsonRelY,
-      pvjsonX,
-      pvjsonY,
-      pvjsonTextContent,
-      pvjsonHref;
-    pvjsonElement.gpmlType = elementSelection[0][0].tagName;
+    var attribute
+      , i
+      , pvjsonHeight
+      , pvjsonWidth
+      , pvjsonStrokeWidth
+      , gpmlShapeType
+      , pvjsonShape
+      , pvjsonZIndex
+      , pvjsonRelX
+      , pvjsonRelY
+      , pvjsonX
+      , pvjsonY
+      , pvjsonTextContent
+      , pvjsonHref
+      , gpmlType = elementSelection[0][0].tagName;
+    pvjsonElement['@type'] = pvjsonElement['@type'] || [];
+    pvjsonElement.gpmlType = gpmlType;
     pvjsonElement.graphicalType = 'path';
 
 
