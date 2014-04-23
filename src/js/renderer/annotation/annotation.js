@@ -62,7 +62,7 @@ module.exports = function(){
     var annotationDescription = annotation.select('.annotation-description')
     .text(function(d) { return d.description; });
 
-    var annotationListItemsContainer = annotation.selectAll('.annotation-items-container')
+    var annotationListItemsContainer = annotation.selectAll('.annotation-items-container-list')
     .data(function(d) {
       //if a single string, then check for special case: img src for loading gif
       if (typeof d.listItems[0] === 'string'){
