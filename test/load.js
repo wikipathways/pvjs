@@ -329,78 +329,23 @@ var developmentLoader = function() {
     var pathvisiojsRootDirectoryUri = pathname.split('test/one-diagram.html')[0];
     srcDirectoryUri = (pathvisiojsRootDirectoryUri + 'src/');
 
-    async.waterfall([
-      function(callback) {
-        var gruntFileUri = '../Gruntfile.js'; // just for testing/development purposes
-        loadScripts([gruntFileUri], function() {
-          callback(null);
-        });
-      },
-      function(callback) {
-        if (pathname.indexOf('one-diagram.html') > -1) { //if this is the development version
-          var pvjsSourcesDev = pvjsSources; //this file is only used in the build process
-
-      /*
-          // In dev mode, different servers will use different configs.
-          // The code below sets this config file.
-          // For production, we will use default.js for our default config settings and
-          // optionally build other versions as needed if we need a built version that
-          // doesn't use the config settings in default.js.
-          var serverSpecificJsConfigFileName;
-          var regDomainPattern = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i
-          var regexResult = regDomainPattern.exec(hostname);
-          if (!!regexResult) {
-            // www is the same as a bare domain for our purposes, e.g., www.example.org === example.org
-            if (!!regexResult[1]) {
-              serverSpecificJsConfigFileName = regexResult[0];
-            }
-            else {
-              serverSpecificJsConfigFileName = 'www.' + regexResult[0];
-            }
-          }
-          else { //if it's an IP address, just use localhost
-            serverSpecificJsConfigFileName = 'localhost';
-          }
-
-          serverSpecificJsConfigFileName = strcase.paramCase(serverSpecificJsConfigFileName);
-          pvjsSourcesDev[1] = 'config/' + serverSpecificJsConfigFileName + '.js';
-
-      //*/
-          pvjsSourcesDev = pvjsSourcesDev.map(function(source) {
-            return '../' + source;
-          });
-
-          loadScripts(pvjsSourcesDev, function() {
-            callback(null);
-          });
-        }
-        else { //if this is the production version
-          callback(null);
-        }
-      },
-      function(callback) {
-        parseUriParams(function(parsedInputData) {
-          callback(null, parsedInputData);
-        });
-      },
-      function(parsedInputData, callback) {
-        if (parsedInputData.svgDisabled) {
-          Modernizr.svg = Modernizr.inlinesvg = false;
-          $('#svg-disabled').prop('checked', true);
-        }
-        if (pathname.indexOf('one-diagram.html') > -1) { //if this is the development version
-          generateHtmlTemplate(function() {
-            generateSvgTemplate(function() {
-              console.log(pathvisioNS);
-              outsideCallback(parsedInputData);
-            });
-          });
-        }
-        else { //if this is the production version
-          outsideCallback(parsedInputData);
-        }
+    parseUriParams(function (parsedInputData) {
+      if (parsedInputData.svgDisabled) {
+        Modernizr.svg = Modernizr.inlinesvg = false;
+        $('#svg-disabled').prop('checked', true);
       }
-    ]);
+      if (pathname.indexOf('one-diagram.html') > -1) { //if this is the development version
+        generateHtmlTemplate(function() {
+          generateSvgTemplate(function() {
+            console.log(pathvisioNS);
+            outsideCallback(parsedInputData);
+          });
+        });
+      }
+      else { //if this is the production version
+        outsideCallback(parsedInputData);
+      }
+    });
   }
 
   function loadFrames(inputData, callback) {
