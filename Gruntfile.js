@@ -84,7 +84,7 @@ grunt.initConfig({
     watch: {
       browserify: {
         files: ['./src/**/*.js'],
-        tasks: ['browserify:dev'],
+        tasks: ['browserify:dev', 'test-minimal'],
         options: {
           livereload: true
         }
@@ -129,8 +129,8 @@ grunt.initConfig({
       }
     },
     concurrent: {
-      protractor_test: ['protractor-chrome', 'protractor-firefox']
-      //protractor_test: ['protractor-chrome', 'protractor-safari', 'protractor-firefox']
+      //protractor_test: ['protractor-chrome', 'protractor-firefox']
+      protractor_test: ['protractor-chrome', 'protractor-safari', 'protractor-firefox']
     },
     protractor: {
       options: {
@@ -212,7 +212,7 @@ grunt.initConfig({
     }
   });
 
-/*
+//*
   grunt.registerTask('protractor-chrome', 'Run local tests for development', function() {
     grunt.config.set('protractor.chrome.options.args.specs', ['test/e2e/' + grunt.option('spec') + '.js']);
     grunt.task.run('protractor:chrome');
@@ -228,16 +228,16 @@ grunt.initConfig({
   grunt.registerTask('protractor-e2e', ['concurrent:protractor_test']);
 
   // test
-  grunt.registerTask('test-min', 'Run local tests for development', function(val) {
+  grunt.registerTask('test-minimal', 'Run local tests for development', function(val) {
     grunt.option('spec', 'minimal');
-    grunt.task.run('protractor-safari');
+    grunt.task.run('protractor-firefox');
   });
 
   grunt.registerTask('test', 'Run extensive local tests', function(val) {
     grunt.option('spec', val);
     grunt.task.run('protractor-e2e');
   });
-*/
+//*/
 
   // Build
   grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy']);
