@@ -6,6 +6,7 @@ var BiopaxRef = require('./biopax-ref.js')
 
 // ...element includes all GPML elements and is the parent of both ...node and ...edge.
 module.exports = {
+  /* I think these can all be deleted - AR
   gpmlColorToCssColor: function(gpmlColor, pathvisioDefault) {
     var color;
     if (gpmlColor !== pathvisioDefault) {
@@ -111,20 +112,7 @@ module.exports = {
       return 'whatever the default value is';
     }
   },
-
-  setBorderStyleAsJson: function(jsonElement, currentGpmlLineStyleValue, defaultGpmlLineStyleValue) {
-    var borderStyle;
-
-    // this check happens twice because it doesn't make sense to have getBorderStyle() tell us
-    // whether it has returned the default value, and we need to know whether we are using the
-    // default here.
-
-    if (currentGpmlLineStyleValue !== defaultGpmlLineStyleValue) {
-      borderStyle = this.getBorderStyle(currentGpmlLineStyleValue, defaultGpmlLineStyleValue);
-      jsonElement.borderStyle = borderStyle;
-    }
-    return jsonElement;
-  },
+  //*/
 
   //*
   toPvjson: function(pvjs, gpmlSelection, elementSelection, pvjsonElement, callback) {

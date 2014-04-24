@@ -65,7 +65,7 @@ exports.config = {
   // https://code.google.com/p/selenium/wiki/DesiredCapabilities
   // and
   // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
-  capabilities: { 
+  capabilities: {
     'browserName': ['chrome', 'safari', 'firefox'],
   },
 

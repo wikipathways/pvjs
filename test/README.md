@@ -18,13 +18,15 @@ B. Open a browser and navigate to the pathvisiojs [test page](https://github.com
 
 C. If you add a new JS file, you will need to add a reference to it in [load.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/load.js#L116).
 
-# How To Run The Tests
+# How To Run the Full Protocol Tests
+
+The minimal tests will run with the browserify watch. To full the full protocol tests, follow these steps:
 
 A. If you are using the included dev server, you can skip ahead to Step B.
 
 Otherwise, you will need to follow these instructions:
 
-1. Update the variable "baseUri" in [test-selected-pathways.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/e2e/test-selected-pathways.js#L16). Please undo your change to baseUri before making a pull request.
+1. Update the variable "baseUri" in [protocol.js](https://github.com/wikipathways/pathvisiojs/blob/master/test/e2e/protocol.js#L16). Please undo your change to baseUri before making a pull request.
 2. Install [nodejs](http://nodejs.org/download/) (if you haven't already done so).
 3. When node is installed, open a terminal and enter the following commands (update file path if pathvisiojs directory is not located in ~/Sites/ on your computer):
 

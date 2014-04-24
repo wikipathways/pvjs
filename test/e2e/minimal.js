@@ -28,27 +28,27 @@ function testElementCount(pathwayName, elementName, element, selector) {
 function testPathway(pathwayName) {
   var expectedCount;
 
-  var uri = baseUri + "test/development.html?gpml=" + baseUri + "test/data/protocol/" + pathwayName + ".gpml" ;
+  var uri = baseUri + "test/one-diagram.html?gpml=" + baseUri + "test/data/protocol/" + pathwayName + ".gpml" ;
 
   ptor.get(uri).
   then(function() {
-    return ptor.wait(forElementToBePresent(by.css('#pathvisiojs-is-loaded')), 30 * 1000);
+    return ptor.wait(forElementToBePresent(by.css('#viewport')), 30 * 1000);
   }).
   then(function() {
     //console.log('Running ' + pathwayName + ' rendering test protocol...');
     testElementCount(pathwayName, 'InfoBox', element, '#viewport .info-box');
-    testElementCount(pathwayName, 'EdgeAnchor', element, '#viewport .anchor');
-    testElementCount(pathwayName, 'DataNode', element, '#viewport .data-node');
-    testElementCount(pathwayName, 'DataNodeGeneProduct', element, '#viewport .gene-product');
-    testElementCount(pathwayName, 'DataNodeMetabolite', element, '#viewport .metabolite');
-    testElementCount(pathwayName, 'DataNodePathway', element, '#viewport .data-node.pathway');
-    testElementCount(pathwayName, 'DataNodeProtein', element, '#viewport .protein');
-    testElementCount(pathwayName, 'DataNodeRna', element, '#viewport .rna');
-    testElementCount(pathwayName, 'DataNodeUnknown', element, '#viewport .unknown');
-    testElementCount(pathwayName, 'Group', element, '#viewport .group-node');
-    testElementCount(pathwayName, 'Edge', element, '#viewport .edge');
-    testElementCount(pathwayName, 'GraphicalLine', element, '#viewport .graphical-line');
-    testElementCount(pathwayName, 'Interaction', element, '#viewport .interaction');
+    testElementCount(pathwayName, 'gpml:Anchor', element, '#viewport [typeof~="gpml:Anchor"]');
+    testElementCount(pathwayName, 'gpml:DataNode', element, '#viewport [typeof~="gpml:DataNode"]');
+    testElementCount(pathwayName, 'gpml:GeneProduct', element, '#viewport [typeof~="gpml:GeneProduct"]');
+    testElementCount(pathwayName, 'gpml:Metabolite', element, '#viewport [typeof~="gpml:Metabolite"]');
+    testElementCount(pathwayName, 'gpml:Pathway', element, '#viewport [typeof~="gpml:DataNode"] + [typeof~="gpml:Pathway"]');
+    testElementCount(pathwayName, 'gpml:Protein', element, '#viewport [typeof~="gpml:Protein"]');
+    testElementCount(pathwayName, 'gpml:Rna', element, '#viewport [typeof~="gpml:Rna"]');
+    testElementCount(pathwayName, 'gpml:Unknown', element, '#viewport [typeof~="gpml:Unknown"]');
+    testElementCount(pathwayName, 'gpml:Group', element, '#viewport [typeof~="gpml:Group"]');
+    //testElementCount(pathwayName, 'Edge', element, '#viewport .edge');
+    testElementCount(pathwayName, 'gpml:GraphicalLine', element, '#viewport [typeof~="gpml:GraphicalLine"]');
+    testElementCount(pathwayName, 'gpml:Interaction', element, '#viewport [typeof~="gpml:Interaction"]');
   });
 }
 
@@ -60,21 +60,21 @@ var baseUri = 'http://localhost:3000/';
 
 var testPathwayData = {
     "minimal": {
-        "DataNodeMetaboliteCount": 3, 
-        "InfoBoxCount": 1, 
-        "DataNodeRnaCount": 1, 
-        "EdgeCount": 10, 
-        "ShapeCount": 54, 
-        "GroupCount": 1, 
-        "GraphicalLineCount": 2, 
-        "InteractionCount": 8, 
-        "DataNodePathwayCount": 1, 
-        "DataNodeProteinCount": 1, 
-        "DataNodeUnknownCount": 1, 
-        "DataNodeCount": 11, 
-        "LabelCount": 1, 
-        "EdgeAnchorCount": 2, 
-        "NodeCount": 48, 
+        "DataNodeMetaboliteCount": 3,
+        "InfoBoxCount": 1,
+        "DataNodeRnaCount": 1,
+        "EdgeCount": 10,
+        "ShapeCount": 54,
+        "GroupCount": 1,
+        "GraphicalLineCount": 2,
+        "InteractionCount": 8,
+        "DataNodePathwayCount": 1,
+        "DataNodeProteinCount": 1,
+        "DataNodeUnknownCount": 1,
+        "DataNodeCount": 11,
+        "LabelCount": 1,
+        "EdgeAnchorCount": 2,
+        "NodeCount": 48,
         "DataNodeGeneProductCount": 4
     }
 };
