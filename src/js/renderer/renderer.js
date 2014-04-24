@@ -6,7 +6,7 @@ var Img = require('./img.js')
   , PublicationXref = require('./publication-xref.js')
   , Highlighter = require('./highlighter.js')
   , XRef = require('./annotation/x-ref.js')
-  , SvgPanZoom = require('./../../../lib/svg-pan-zoom/dist/svg-pan-zoom.js')
+  , SvgPanZoom = require('./../../../lib_custom/svg-pan-zoom/dist/svg-pan-zoom.js')
   ;
 
 module.exports = function(){
