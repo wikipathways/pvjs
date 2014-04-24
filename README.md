@@ -82,7 +82,20 @@ Pull latest code from wikipathways master branch of pathvisiojs:
 $ git pull wikipathways master
 ```
 
-C. Make Awesome Updates
+C. Install Node.js and all necessary plugin and modules
+
+First install [Node.js](http://nodejs.org/). 
+
+Install grunt and bower `npm install -g grunt-cli bower`.
+
+Than in console `cd` into project folder and install all necessar plugins:
+
+```
+npm install
+bower install
+```
+
+D. Make Awesome Updates
 
 You can edit any of the files in the [src directory](https://github.com/wikipathways/pathvisiojs/tree/master/src):
 
@@ -90,17 +103,15 @@ You can edit any of the files in the [src directory](https://github.com/wikipath
 $ cd ~/Sites/pathvisiojs/src/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
-To view your changes as you edit, you can use the functionalities in the [test directory](https://github.com/wikipathways/pathvisiojs/tree/master/test):
+To view your changes as you edit you have to run `grunt dev` in console. To test your changes you can use the functionalities in the [test directory](https://github.com/wikipathways/pathvisiojs/tree/master/test):
 
 ```
 $ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
-If you add a JS file, you will need to add a reference to it in the "pvJsSources" array in in [Gruntfile.js](https://github.com/wikipathways/pathvisiojs/blob/master/Gruntfile.js#L10).
-
 The [README](https://github.com/wikipathways/pathvisiojs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
 
-D. Send Us a Pull Request
+E. Send Us a Pull Request
 
 * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests

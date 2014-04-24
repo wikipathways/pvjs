@@ -1,6 +1,6 @@
 'use strict';
 
-var RGBColor = require('./../../../../lib/rgb-color/rgb-color.js');
+var RGBColor = require('./../../../../lib_custom/rgb-color/rgb-color.js');
 
 module.exports = {
   supportedNamespaces: [

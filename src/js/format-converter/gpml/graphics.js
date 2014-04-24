@@ -2,7 +2,7 @@
 
 var Utils = require('./../../utilities.js')
   , Strcase = require('./../../../../lib/strcase/index.js')
-  , RGBColor = require('./../../../../lib/rgb-color/rgb-color.js')
+  , RGBColor = require('./../../../../lib_custom/rgb-color/rgb-color.js')
   ;
 
 module.exports = {
