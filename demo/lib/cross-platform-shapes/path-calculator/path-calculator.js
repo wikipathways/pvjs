@@ -1,0 +1,1 @@
+crossPlatformShapes.pathCalculator = {};

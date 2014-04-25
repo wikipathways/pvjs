@@ -289,6 +289,86 @@ module.exports = function(){
           Highlighter.load(pvjs, svgSelection, pvjson);
 
           // callback(null, svgSelection);
+
+
+
+
+
+
+
+      var pathway = pvjson;
+      if (pathway.elements.filter(function(element){return element.gpmlType === 'Group';}).length > 0) {
+        Async.waterfall([
+          function(callbackInside){
+                var relativeZIndexByRenderableType = {
+                  'Group': 0,
+                  'Interaction': 1,
+                  'GraphicalLine': 2,
+                  'Anchor': 3,
+                  'DataNode': 4,
+                  'Label': 4,
+                  'Shape': 4
+                }
+
+                // sort by explicitly set z-index for all elements except GroupNodes, which use the lowest z-index
+                // of their contained elements, and anchors, which use their parent element's z-index
+                //TODO check whether anchors have been set to have a z-index
+                pathway.elements.sort(function(a, b) {
+                  var aPriority, bPriority;
+                  if (a.zIndex !== b.zIndex) {
+                    // if two elements have the same z-index,
+                    // they will be sub-sorted by renderableElementType priority,
+                    // as indicated in relativeZIndexByRenderableType
+                    aPriority = a.zIndex + relativeZIndexByRenderableType[a.gpmlType];
+                    bPriority = b.zIndex + relativeZIndexByRenderableType[b.gpmlType];
+                  }
+                  else {
+                    aPriority = a.zIndex;
+                    bPriority = b.zIndex;
+                  }
+                  return aPriority - bPriority;
+                });
+                callbackInside(null, pathway);
+              },
+              function(pathway, callbackInside){
+                /*
+                 * we don't need this until we start rendering without cached data
+                pathway.pathwayNestedByDependencies = d3.nest()
+                .key(function(d) { return d.hasDependencies; })
+                .entries(pathway.elements);
+                //*/
+
+                pathway.pathwayNestedByGrouping = d3.nest()
+                .key(function(d) { return d.isContainedBy; })
+                .entries(pathway.elements);
+
+                var firstOrderElement = pathway.pathwayNestedByGrouping.filter(function(group) {
+                  return group.key === 'undefined';
+                })[0];
+                //pathway.pathwayNestedByGrouping = pathvisiojs.utilities.moveArrayItem(pathway.pathwayNestedByGrouping, pathway.pathwayNestedByGrouping.indexOf(firstOrderElement), 0);
+                callbackInside(null, pathway);
+              },
+              function(pathway, callbackInside){
+                self.myPathway = pathway;
+              }
+            ]);
+        }
+        else {
+          pathway.elements.sort(function(a, b) {
+            return a.zIndex - b.zIndex;
+          });
+
+          pathway.pathwayNestedByGrouping = d3.nest()
+          .key(function(d) { return d.isContainedBy; })
+          .entries(pathway.elements);
+
+          self.myPathway = pathway;
+        }
+
+
+
+
+
           vectorRendererCallback(null);
           pvjs.trigger('rendered')
         }

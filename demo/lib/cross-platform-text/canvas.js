@@ -1,0 +1,1 @@
+crossPlatformText.canvas = {};

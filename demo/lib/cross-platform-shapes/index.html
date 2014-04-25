@@ -1,0 +1,191 @@
+<html style="margin: 0; width: 100%; height: 100%; ">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<title>Testing and Development</title>
+
+<body style="margin: 0px; width: 100%; height: 100%;">
+<div id="dev" style="width:inherit; height:inherit; margin:0; overflow:hidden;">
+  <div id="container" style="width: inherit; height: inherit;">
+    <div id="diagram-container">
+      <div>
+        <svg id="my-svg1" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="50%" height="60%" style="display:inline" preserveAspectRatio="xMidYMid" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events">
+          <g>
+            <desc>Demo for cross-platform-shapes library.</desc>
+          </g>
+          <title>diagram</title>
+          <defs>
+            <linearGradient id="MyGradient">
+              <stop offset="0%" stop-color="red"></stop>
+              <stop offset="95%" stop-color="red"></stop>
+              <stop offset="95%" stop-opacity="1"></stop>
+              <stop offset="95%" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <g id="viewport">
+          </g>
+        </svg>
+        <svg id="my-svg2" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="50%" height="25%" style="display:inline" preserveAspectRatio="xMidYMid" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events">
+          <g>
+            <desc>Demo for cross-platform-shapes library.</desc>
+          </g>
+          <title>diagram</title>
+          <defs>
+            <linearGradient id="MyGradient">
+              <stop offset="0%" stop-color="red"></stop>
+              <stop offset="95%" stop-color="red"></stop>
+              <stop offset="95%" stop-opacity="1"></stop>
+              <stop offset="95%" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <g id="viewport">
+          </g>
+        </svg>
+        <canvas id="my-canvas" width="150" height="150"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="./dist/lib/cross-platform-shapes/js/cross-platform-shapes.min.js"></script>
+
+<script>
+  var crossPlatformShapesInstance1 = Object.create(crossPlatformShapes);
+  crossPlatformShapesInstance1.init({
+    targetSelector:'#my-svg1',
+    backgroundColor: 'black',
+    customShapes: { // optional
+      arc: {
+        href: 'http://upload.wikimedia.org/wikipedia/commons/5/5c/Triangular_arch.svg'
+      },
+      brace:{
+        href: 'http://farm2.staticflickr.com/1175/1331501691_931c8a09d1_z.jpg'
+      },
+      mitochondria:{
+        href: 'http://farm1.staticflickr.com/128/393913249_f0a61946dc_n.jpg'
+      }
+    }
+  });
+  var edge1RenderingData = crossPlatformShapesInstance1.lineStraight({
+    id:'tBar-and-t-bar',
+    points:[{x:140,y:74},{x:230,y:300}],
+    markerStart:'this-does-not-exist',
+    color:'#00ff00',
+    containerSelector: '#viewport',
+    markerEnd:'arrow'});
+/*
+  var edge1 = d3.select('#my-svg1').select('#viewport').append(edge1RenderingData.elementName)
+  edge1RenderingData.attributes.forEach(function(attribute) {
+    edge1.attr(attribute.name, attribute.value);
+  });
+  //*/
+
+  var edge2RenderingData = crossPlatformShapesInstance1.lineCurved({
+    id:'edge2',
+    points:[{x:180,y:50},{x:500,y:20},{x:290,y:294}],
+    markerStart:'tBar',
+    color:'red',
+    containerSelector: '#viewport',
+    markerEnd:'tBar'});
+/*
+  var edge2 = d3.select('#my-svg1').select('#viewport').append(edge2RenderingData.elementName)
+  edge2RenderingData.attributes.forEach(function(attribute) {
+    edge2.attr(attribute.name, attribute.value);
+  });
+  //*/
+
+  var rectangle1RenderingData = crossPlatformShapesInstance1.rectangle({
+    id:'rectangle1',
+    x:100,
+    y:50,
+    width:80,
+    height:20,
+    color:'blue',
+    containerSelector: '#viewport',
+    backgroundColor:'white',
+    rotation:-15});
+/*
+  var rectangle1 = d3.select('#my-svg1').select('#viewport').append(rectangle1RenderingData.elementName)
+  rectangle1RenderingData.attributes.forEach(function(attribute) {
+    rectangle1.attr(attribute.name, attribute.value);
+  });
+  //*/
+
+  var rectangle2RenderingData = crossPlatformShapesInstance1.rectangle({
+    id:'rectangle2',
+    x:100,
+    y:50,
+    width:80,
+    height:20,
+    color:'black',
+    containerSelector: '#viewport',
+    backgroundColor:'white'});
+/*
+  var rectangle2 = d3.select('#my-svg1').select('#viewport').append(rectangle2RenderingData.elementName)
+  rectangle2RenderingData.attributes.forEach(function(attribute) {
+    rectangle2.attr(attribute.name, attribute.value);
+  });
+  //*/
+
+  var mitochondriaRenderingData = crossPlatformShapesInstance1.mitochondria({
+    x:200,
+    y:300,
+    width:160,
+    height:80,
+    color:'purple',
+    containerSelector: '#viewport',
+    backgroundColor:'white',
+    rotation:45});
+/*
+  var mitochondria = d3.select('#my-svg1').select('#viewport').append(mitochondriaRenderingData.elementName)
+  mitochondriaRenderingData.attributes.forEach(function(attribute) {
+    mitochondria.attr(attribute.name, attribute.value);
+  });
+  //*/
+
+  var crossPlatformShapesInstance2 = Object.create(crossPlatformShapes);
+  crossPlatformShapesInstance2.init({
+    targetSelector:'#diagram-container',
+    id: 'my-svg2',
+    format: 'svg',
+    width:600,
+    height:600
+  },
+  function() {
+    var rectangle3RenderingData = crossPlatformShapesInstance2.rectangle({
+      x:20,
+      y:40,
+      width:80,
+      height:40,
+      color:'purple',
+      containerSelector: '#viewport',
+      backgroundColor:'white',
+      rotation:45});
+    var rectangle4RenderingData = crossPlatformShapesInstance2.rectangle({
+      x:80,
+      y:40,
+      width:80,
+      height:40,
+      color:'black',
+      containerSelector: '#viewport',
+      backgroundColor:'transparent'});
+    var ellipse1RenderingData = crossPlatformShapesInstance2.ellipse({
+      x:80,
+      y:40,
+      width:80,
+      height:40,
+      color:'orange',
+      containerSelector: '#viewport',
+      backgroundColor:'yellow'});
+    var ellipse2RenderingData = crossPlatformShapesInstance2.ellipseDouble({
+      x:200,
+      y:80,
+      width:80,
+      height:40,
+      color:'red',
+      containerSelector: '#viewport',
+      backgroundColor:'orange',
+      rotation:90});
+  });
+</script>
