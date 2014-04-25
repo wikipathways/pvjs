@@ -45,7 +45,8 @@
     "deglobalify": "~0.2.0",
     "brfs": "~1.0.2",
     "lodash": "~2.4.1",
-    "async": "~0.7.0"
+    "async": "~0.7.0",
+    "protractor": "~0.22.0"
   },
   "dependencies": {}
 }
