@@ -6,7 +6,7 @@ var Img = require('./img.js')
   , PublicationXref = require('./publication-xref.js')
   , Highlighter = require('./highlighter.js')
   , XRef = require('./annotation/x-ref.js')
-  , SvgPanZoom = require('./../../../lib_custom/svg-pan-zoom/dist/svg-pan-zoom.js')
+  , SvgPanZoom = require('./../../../lib/svg-pan-zoom/src/svg-pan-zoom.js', ['svgPanZoom'])
   ;
 
 module.exports = function(){
@@ -261,30 +261,36 @@ module.exports = function(){
             fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pvjson.image.width, pvjson.image.height);
           }
 
-          SvgPanZoom.init({
-            'selector': '#' + diagramId,
-            'zoomEnabled': false,
-            'controlIconsEnabled': true,
-            'minZoom': '0.1',
-            'maxZoom': '8.0',
-          });
+          var svgPanZoom = SvgPanZoom.svgPanZoom(svgSelection[0][0], {
+            controlIconsEnabled: true
+          , minZoom: 0.1
+          , maxZoom: 8.0
+          , zoomEnabled: false
+          , onZoom: function(scale) {
+              pvjs.trigger('zoom', scale)
+            }
+          , onPan: function(x, y) {
+              pvjs.trigger('pan', {x: x, y: y})
+            }
+          })
 
-          var svgInFocus = false;
-          svgSelection.on("click", function(d, i){
-            SvgPanZoom.enableZoom();
-            svgInFocus = true;
-          })
-          .on("mouseenter", function(d, i){
-            if (svgInFocus) {
-              SvgPanZoom.enableZoom();
-            }
-          })
-          .on("mouseleave", function(d, i){
-            if (svgInFocus) {
-              SvgPanZoom.disableZoom();
-              svgInFocus = false;
-            }
-          });
+          var svgInFocus = false
+          svgSelection
+            .on("click", function(d, i){
+              svgPanZoom.enableZoom()
+              svgInFocus = true
+            })
+            .on("mouseenter mousemove", function(d, i){
+              if (svgInFocus) {
+                svgPanZoom.enableZoom()
+              }
+            })
+            .on("mouseleave", function(d, i){
+              if (svgInFocus) {
+                svgPanZoom.disableZoom()
+                svgInFocus = false
+              }
+            })
 
           Highlighter.load(pvjs, svgSelection, pvjson);
 
