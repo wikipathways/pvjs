@@ -84,7 +84,7 @@ $ git pull wikipathways master
 
 C. Install Node.js and all necessary plugin and modules
 
-First install [Node.js](http://nodejs.org/). 
+First install [Node.js](http://nodejs.org/).
 
 Install grunt and bower `npm install -g grunt-cli bower`.
 
@@ -129,6 +129,8 @@ Event messages are namespaced and may be called with namespace or without. Names
 * error
 * error.renderer
 * warning
+* zoomed.renderer
+* panned.renderer
 
 License
 =======

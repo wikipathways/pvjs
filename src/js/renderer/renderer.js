@@ -267,10 +267,10 @@ module.exports = function(){
           , maxZoom: 8.0
           , zoomEnabled: false
           , onZoom: function(scale) {
-              pvjs.trigger('zoom', scale)
+              pvjs.trigger('zoomed.renderer', scale)
             }
           , onPan: function(x, y) {
-              pvjs.trigger('pan', {x: x, y: y})
+              pvjs.trigger('panned.renderer', {x: x, y: y})
             }
           })
 
@@ -291,6 +291,9 @@ module.exports = function(){
                 svgInFocus = false
               }
             })
+
+          // Expose panZoom to other objects
+          pvjs.panZoom = svgPanZoom
 
           Highlighter.load(pvjs, svgSelection, pvjson);
 

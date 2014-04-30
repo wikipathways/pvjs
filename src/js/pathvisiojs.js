@@ -148,6 +148,8 @@ var _ = require('lodash')
    * @return {object}
    */
   Pathvisiojs.prototype.getPublicInstance = function() {
+    var that = this
+
     if(this.publicInstance === undefined) {
       // Initialise public instance
       this.publicInstance = {
@@ -157,6 +159,12 @@ var _ = require('lodash')
       , off: Utils.proxy(this.off, this)
       , trigger: Utils.proxy(this.trigger, this)
       , render: Utils.proxy(this.render, this)
+      , pan: function(point) {if (that.panZoom) {that.panZoom.pan(point)}}
+      , panBy: function(point) {if (that.panZoom) {that.panZoom.panBy(point)}}
+      , zoom: function(scale) {if (that.panZoom) {that.panZoom.zoom(scale)}}
+      , zoomBy: function(scale) {if (that.panZoom) {that.panZoom.zoomBy(scale)}}
+      , zoomAtPoint: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPoint(scale, point)}}
+      , zoomAtPointBy: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPointBy(scale, point)}}
       }
     }
 
@@ -231,7 +239,7 @@ var _ = require('lodash')
    *
    * @param  {string} topic
    * @param  {object} message
-   * @param  {bool} async
+   * @param  {bool} async By default true
    * @return {bool}
    */
   Pathvisiojs.prototype.trigger = function(topic, message, async) {
@@ -244,7 +252,7 @@ var _ = require('lodash')
       namespace = pieces[1]
     }
 
-    if (!this.events.hasOwnProperty(eventName)) {return false;}
+    if (!this.events.hasOwnProperty(eventName)) {return false}
 
     var queue = this.events[eventName]
     if (queue.length === 0) {return false;}
