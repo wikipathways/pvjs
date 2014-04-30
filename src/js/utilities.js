@@ -372,6 +372,19 @@ var Utils = {
     }
     return id;
   }
+
+  /**
+   * Checks if an object is a DOM element
+   *
+   * @param  {object}  o HTML element or String
+   * @return {Boolean}   returns true if object is a DOM element
+   */
+, isElement: function(o){
+    return (
+      typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+      o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
+    );
+  }
 }
 
 module.exports = Utils
