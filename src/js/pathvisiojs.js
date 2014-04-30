@@ -150,7 +150,7 @@ var _ = require('lodash')
   Pathvisiojs.prototype.getPublicInstance = function() {
     var that = this
 
-    if(this.publicInstance === undefined) {
+    if (this.publicInstance === undefined) {
       // Initialise public instance
       this.publicInstance = {
         instanceId: this.instanceId
@@ -165,6 +165,7 @@ var _ = require('lodash')
       , zoomBy: function(scale) {if (that.panZoom) {that.panZoom.zoomBy(scale)}}
       , zoomAtPoint: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPoint(scale, point)}}
       , zoomAtPointBy: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPointBy(scale, point)}}
+      , getOptions: function() {return _.clone(that.options, true)}
       }
     }
 
@@ -324,7 +325,11 @@ var _ = require('lodash')
    * @return {array}
    */
   window.pathvisiojs = function (selector, option) {
-    var $elements = d3.selectAll(selector)
+    if (Utils.isElement(selector)) {
+      var $elements = [[selector]]
+    } else {
+      var $elements = d3.selectAll(selector)
+    }
 
     return _.map($elements[0], function(element){
       if (element.data === undefined) {element.data = {}}
