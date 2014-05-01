@@ -1,8 +1,4 @@
 node_modules/
-dist/*
-!dist/plugins/
-demos/lib/
-demos/plugins/
 tmp/
 .idea/
 gh-pages
