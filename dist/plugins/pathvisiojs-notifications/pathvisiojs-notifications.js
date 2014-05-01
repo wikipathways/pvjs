@@ -54,5 +54,5 @@
   /**
    * Expose plugin globally
    */
-  window.pathvisiojs_notifications = PathvisiojsNotifications
+  window.pathvisiojsNotifications = PathvisiojsNotifications
 })(window)
