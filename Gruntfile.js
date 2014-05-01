@@ -197,17 +197,27 @@ grunt.initConfig({
         src: ['cross-platform-shapes/**/*', 'cross-platform-text/**/*'],
         dest: distLibDir
       },
-      distdemos: {
-        expand: true,
-        cwd: distDir,
-        src: '**',
-        dest: demoDir
-      },
       pages: {
         expand: true,
         cwd: demoDir,
         src: '**',
         dest: pagesDir
+      },
+      pagesLibs: {
+        expand: true,
+        cwd: distDir,
+        src: '**',
+        dest: pagesDir
+      },
+    },
+    replace: {
+      pages: {
+        src: [pagesDir + '/*.html'],
+        overwrite: true,
+        replacements: [{
+          from: '../dist/lib/',
+          to: './lib/'
+        }]
       }
     }
   });
@@ -240,10 +250,10 @@ grunt.initConfig({
 //*/
 
   // Build
-  grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy']);
+  grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:jquery', 'copy:typeahead', 'copy:crossplatform']);
 
   // Build, create and publish gh-pages
-  grunt.registerTask('build-pages', ['build', 'buildcontrol:pages', 'clean:pages'])
+  grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages'])
 
   // Live development
   grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'watch:browserify'])

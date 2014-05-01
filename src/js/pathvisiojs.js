@@ -325,10 +325,12 @@ var _ = require('lodash')
    * @return {array}
    */
   window.pathvisiojs = function (selector, option) {
+    var $elements
+
     if (Utils.isElement(selector)) {
-      var $elements = [[selector]]
+      $elements = [[selector]]
     } else {
-      var $elements = d3.selectAll(selector)
+      $elements = d3.selectAll(selector)
     }
 
     return _.map($elements[0], function(element){
