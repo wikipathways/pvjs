@@ -4,3 +4,4 @@ tmp/
 gh-pages
 gh-pages/*
 lib/*
+dist/lib/
