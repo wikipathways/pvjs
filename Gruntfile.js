@@ -191,10 +191,16 @@ grunt.initConfig({
         src: libDir + 'typeahead.js/dist/typeahead.min.js',
         dest: distLibDir + 'typeahead/js/typeahead.min.js'
       },
-      crossplatform: {
+      crossplatformshapes: {
         expand: true,
-        cwd: libDir,
-        src: ['cross-platform-shapes/**/*', 'cross-platform-text/**/*'],
+        cwd: libDir + 'cross-platform-shapes/dist/lib/',
+        src: ['./**/*'],
+        dest: distLibDir
+      },
+      crossplatformtext: {
+        expand: true,
+        cwd: libDir + 'cross-platform-text/dist/lib/',
+        src: ['./**/*'],
         dest: distLibDir
       },
       pages: {
@@ -250,7 +256,7 @@ grunt.initConfig({
 //*/
 
   // Build
-  grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:jquery', 'copy:typeahead', 'copy:crossplatform']);
+  grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:jquery', 'copy:typeahead', 'copy:crossplatformshapes', 'copy:crossplatformtext']);
 
   // Build, create and publish gh-pages
   grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages'])
