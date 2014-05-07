@@ -1,5 +1,5 @@
-/* pathvisiojs 1.1.0
-Built on 2014-05-06
+/* pathvisiojs 1.1.1
+Built on 2014-05-07
 https://github.com/wikipathways/pathvisiojs
 License: http://www.apache.org/licenses/LICENSE-2.0/ */
 
