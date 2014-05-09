@@ -55,10 +55,6 @@ grunt.initConfig({
         src:  pvjsCssSources,
         dest: distLibDir + 'pathvisiojs/css/pathvisiojs.css'
       },
-      d3WithAight: {
-        src:  ['./lib/aight/aight.min.js', './lib/d3/d3.min.js', './lib/aight/aight.d3.min.js'],
-        dest: distLibDir + 'd3/js/d3-with-aight.js'
-      },
       jsonld: {
         src: ['./lib/jsonld.js/js/jsonld.js', './lib/jsonld.js/js/Promise.js'],
         dest: tmpDir + 'jsonld/js/jsonld.js'
