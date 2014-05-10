@@ -63,6 +63,11 @@ grunt.initConfig({
     uglify: {
       options: {
         mangle: true
+      , beautify: {
+          beautify: false
+        , ascii_only: true
+        , quote_keys: true
+        }
       },
       pathvisiojs: {
         src: distLibDir + 'pathvisiojs/js/pathvisiojs.js',
