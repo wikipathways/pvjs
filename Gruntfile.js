@@ -223,6 +223,35 @@ grunt.initConfig({
           to: './lib/'
         }]
       }
+    },
+    rsync: {
+      options: {
+        args: ["--verbose"],
+        exclude: [".git*","*.scss","node_modules",".svn*"],
+        recursive: true
+      },
+      dist: {
+        options: {
+          src: "./",
+          dest: "../dist"
+        }
+      },
+      test: {
+        options: {
+          src: "./gh-pages/",
+          dest: "/var/www/d3/r/pathvisiojs",
+          host: process.env.POINTER_UCSF_EDU_USERNAME + "@pointer.ucsf.edu",
+          syncDestIgnoreExcl: true
+        }
+      },
+      prod: {
+        options: {
+          src: "../dist/",
+          dest: "/var/www/site",
+          host: "user@live-host",
+          syncDestIgnoreExcl: true
+        }
+      }
     }
   });
 
@@ -255,6 +284,10 @@ grunt.initConfig({
 
   // Build
   grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:crossplatformshapes', 'copy:crossplatformtext']);
+
+  // Build, create and publish to test server. Run extensive tests.
+  grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'rsync:test'])
+  //grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'rsync:test', 'clean:pages'])
 
   // Build, create and publish gh-pages
   grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages'])
