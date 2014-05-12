@@ -12447,7 +12447,7 @@ module.exports = function(){
   };
 }();
 
-},{"./../../utilities.js":40}],17:[function(require,module,exports){
+},{"./../../utilities.js":39}],17:[function(require,module,exports){
 var Utils = require('./../utilities.js')
   , Gpml = require('./gpml/gpml.js')
   ;
@@ -12479,7 +12479,7 @@ module.exports = {
   }
 }
 
-},{"./../utilities.js":40,"./gpml/gpml.js":22}],18:[function(require,module,exports){
+},{"./../utilities.js":39,"./gpml/gpml.js":22}],18:[function(require,module,exports){
 var GpmlElement = require('./element.js')
   , Graphics = require('./graphics.js')
   ;
@@ -14091,7 +14091,7 @@ module.exports = {
   }
 };
 
-},{"./../../../../lib/strcase/index.js":3,"./../../../../lib_custom/rgb-color/rgb-color.js":9,"./../../utilities.js":40}],25:[function(require,module,exports){
+},{"./../../../../lib/strcase/index.js":3,"./../../../../lib_custom/rgb-color/rgb-color.js":9,"./../../utilities.js":39}],25:[function(require,module,exports){
 'use strict';
 
 var Utils = require('./../../utilities.js')
@@ -14181,7 +14181,7 @@ var Group = {
 
 module.exports = Group;
 
-},{"./../../utilities.js":40,"./element.js":21,"./graphics.js":24,"async":10}],26:[function(require,module,exports){
+},{"./../../utilities.js":39,"./element.js":21,"./graphics.js":24,"async":10}],26:[function(require,module,exports){
 var GpmlElement = require('./element.js')
   , Graphics = require('./graphics.js')
   , Point = require('./point.js')
@@ -15118,7 +15118,7 @@ var Buffer=require("__browserify_Buffer").Buffer;var _ = require('lodash')
    */
   Pathvisiojs.prototype.initContainer = function() {
     var pvjs = this
-      , containerContents = Buffer("PCEtLSBQYXRod2F5IENvbnRhaW5lciAtLT4KPGRpdiBjbGFzcz0iZGlhZ3JhbS1jb250YWluZXIiPjwvZGl2PgoKPCEtLSBIaWdobGlnaHQgRWxlbWVudCBieSBMYWJlbCBDb250cm9sIC0tPgo8ZGl2IGNsYXNzPSJ0eXBlYWhlYWQiPgogIDxpbnB1dCBjbGFzcz0iaGlnaGxpZ2h0LWJ5LWxhYmVsLWlucHV0IiBwbGFjZWhvbGRlcj0iRW50ZXIgbm9kZSBuYW1lIHRvIGhpZ2hsaWdodCIgcm9sZT0idGV4dGJveCIgYXJpYS1hdXRvY29tcGxldGU9Imxpc3QiIGFyaWEtaGFzcG9wdXA9InRydWUiPgogIDxpIGNsYXNzPSJjbGVhci1oaWdobGlnaHRzLWZyb20tdHlwZWFoZWFkIGNvbnRyb2wtaWNvbiBpY29uLXJlbW92ZSI+PC9pPgo8L2Rpdj4KCjwhLS0gRGV0YWlscyBGcmFtZSAtLT4KPGRpdiBjbGFzcz0iYW5ub3RhdGlvbiB1aS1kcmFnZ2FibGUiPgogIDxoZWFkZXIgY2xhc3M9ImFubm90YXRpb24taGVhZGVyIj4KICAgIDxzcGFuIGNsYXNzPSJhbm5vdGF0aW9uLWhlYWRlci1tb3ZlIj4KICAgICAgPGkgY2xhc3M9Imljb24tbW92ZSI+PC9pPgogICAgPC9zcGFuPgogICAgPHNwYW4gY2xhc3M9ImFubm90YXRpb24taGVhZGVyLWNsb3NlIj4KICAgICAgPGkgY2xhc3M9Imljb24tcmVtb3ZlIj48L2k+CiAgICA8L3NwYW4+CiAgICA8c3BhbiBjbGFzcz0iYW5ub3RhdGlvbi1oZWFkZXItdGV4dCI+SGVhZGVyPC9zcGFuPgogICAgPHNwYW4gY2xhc3M9ImFubm90YXRpb24taGVhZGVyLXNlYXJjaCIgdGl0bGU9IlNlYXJjaCBmb3IgcGF0aHdheXMgY29udGFpbmluZyAnSGVhZGVyIFRleHQnIj4KICAgICAgPGEgaHJlZj0iaHR0cDovL3dpa2lwYXRod2F5cy5vcmcvL2luZGV4LnBocD90aXRsZT1TcGVjaWFsOlNlYXJjaFBhdGh3YXlzIj4KICAgICAgICA8aSBjbGFzcz0iaWNvbi1zZWFyY2giPjwvaT4KICAgICAgPC9hPgogICAgPC9zcGFuPgogICAgPGRpdiBjbGFzcz0iYW5ub3RhdGlvbi1kZXNjcmlwdGlvbiI+CiAgICAgIDxoMj5kZXNjcmlwdGlvbjwvaDI+CiAgICA8L2Rpdj4KICA8L2hlYWRlcj4KICA8c3BhbiBjbGFzcz0iYW5ub3RhdGlvbi1pdGVtcy1jb250YWluZXIiPgogICAgPHVsIGNsYXNzPSJhbm5vdGF0aW9uLWl0ZW1zLWNvbnRhaW5lci1saXN0Ij4KICAgICAgPCEtLSBMaXN0IGl0ZW1zIGluc2lkZSB0aGlzIHVsIGVsZW1lbnQgYXJlIGdlbmVyYXRlZCBhdXRvbWF0aWNhbGx5IGJ5IEphdmFTY3JpcHQuCiAgICAgICAgICBFYWNoIGl0ZW0gd2lsbCBiZSBjb21wb3NlZCBvZiBhIHRpdGxlIGFuZCB0ZXh0LiBUaGUgdGV4dCBjYW4gYmUgc2V0IHRvIGJlIGFuIGhyZWYuCiAgICAgICAgICBZb3UgY2FuIGVkaXQgdGhlIHN0eWxpbmcgb2YgdGhlIHRpdGxlIGJ5IGVkaXRpbmcgQ1NTIGNsYXNzICJhbm5vdGF0aW9uLWl0ZW0tdGl0bGUiCiAgICAgICAgICBhbmQgdGhlIHN0eWxpbmcgb2YgdGhlIHRleHQgYnkgZWRpdGluZyBDU1MgY2xhc3MgImFubm90YXRpb24taXRlbS10ZXh0LgogICAgICAgICAgLS0+CiAgICA8L3VsPgogIDwvc3Bhbj4KPC9kaXY+Cg==","base64").toString()
+      , containerContents = Buffer("PCEtLSBQYXRod2F5IENvbnRhaW5lciAtLT4KPGRpdiBjbGFzcz0iZGlhZ3JhbS1jb250YWluZXIiPjwvZGl2PgoKPCEtLSBEZXRhaWxzIEZyYW1lIC0tPgo8ZGl2IGNsYXNzPSJhbm5vdGF0aW9uIHVpLWRyYWdnYWJsZSI+CiAgPGhlYWRlciBjbGFzcz0iYW5ub3RhdGlvbi1oZWFkZXIiPgogICAgPHNwYW4gY2xhc3M9ImFubm90YXRpb24taGVhZGVyLW1vdmUiPgogICAgICA8aSBjbGFzcz0iaWNvbi1tb3ZlIj48L2k+CiAgICA8L3NwYW4+CiAgICA8c3BhbiBjbGFzcz0iYW5ub3RhdGlvbi1oZWFkZXItY2xvc2UiPgogICAgICA8aSBjbGFzcz0iaWNvbi1yZW1vdmUiPjwvaT4KICAgIDwvc3Bhbj4KICAgIDxzcGFuIGNsYXNzPSJhbm5vdGF0aW9uLWhlYWRlci10ZXh0Ij5IZWFkZXI8L3NwYW4+CiAgICA8c3BhbiBjbGFzcz0iYW5ub3RhdGlvbi1oZWFkZXItc2VhcmNoIiB0aXRsZT0iU2VhcmNoIGZvciBwYXRod2F5cyBjb250YWluaW5nICdIZWFkZXIgVGV4dCciPgogICAgICA8YSBocmVmPSJodHRwOi8vd2lraXBhdGh3YXlzLm9yZy8vaW5kZXgucGhwP3RpdGxlPVNwZWNpYWw6U2VhcmNoUGF0aHdheXMiPgogICAgICAgIDxpIGNsYXNzPSJpY29uLXNlYXJjaCI+PC9pPgogICAgICA8L2E+CiAgICA8L3NwYW4+CiAgICA8ZGl2IGNsYXNzPSJhbm5vdGF0aW9uLWRlc2NyaXB0aW9uIj4KICAgICAgPGgyPmRlc2NyaXB0aW9uPC9oMj4KICAgIDwvZGl2PgogIDwvaGVhZGVyPgogIDxzcGFuIGNsYXNzPSJhbm5vdGF0aW9uLWl0ZW1zLWNvbnRhaW5lciI+CiAgICA8dWwgY2xhc3M9ImFubm90YXRpb24taXRlbXMtY29udGFpbmVyLWxpc3QiPgogICAgICA8IS0tIExpc3QgaXRlbXMgaW5zaWRlIHRoaXMgdWwgZWxlbWVudCBhcmUgZ2VuZXJhdGVkIGF1dG9tYXRpY2FsbHkgYnkgSmF2YVNjcmlwdC4KICAgICAgICAgIEVhY2ggaXRlbSB3aWxsIGJlIGNvbXBvc2VkIG9mIGEgdGl0bGUgYW5kIHRleHQuIFRoZSB0ZXh0IGNhbiBiZSBzZXQgdG8gYmUgYW4gaHJlZi4KICAgICAgICAgIFlvdSBjYW4gZWRpdCB0aGUgc3R5bGluZyBvZiB0aGUgdGl0bGUgYnkgZWRpdGluZyBDU1MgY2xhc3MgImFubm90YXRpb24taXRlbS10aXRsZSIKICAgICAgICAgIGFuZCB0aGUgc3R5bGluZyBvZiB0aGUgdGV4dCBieSBlZGl0aW5nIENTUyBjbGFzcyAiYW5ub3RhdGlvbi1pdGVtLXRleHQuCiAgICAgICAgICAtLT4KICAgIDwvdWw+CiAgPC9zcGFuPgo8L2Rpdj4K","base64").toString()
 
     // Add default container elements
     this.$element.html(containerContents)
@@ -15225,6 +15225,7 @@ var Buffer=require("__browserify_Buffer").Buffer;var _ = require('lodash')
       , zoomAtPoint: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPoint(scale, point)}}
       , zoomAtPointBy: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPointBy(scale, point)}}
       , getOptions: function() {return _.clone(that.options, true)}
+      , getSourceData: function() {return _.clone(that.sourceData, true)}
       }
     }
 
@@ -15407,9 +15408,9 @@ var Buffer=require("__browserify_Buffer").Buffer;var _ = require('lodash')
       return data.getPublicInstance()
     })
   }
-})(window, jQuery)
+})(window, window.jQuery || null)
 
-},{"./format-converter/format-converter":17,"./renderer/renderer":39,"./utilities":40,"__browserify_Buffer":12,"fs":11,"lodash":14}],33:[function(require,module,exports){
+},{"./format-converter/format-converter":17,"./renderer/renderer":38,"./utilities":39,"__browserify_Buffer":12,"fs":11,"lodash":14}],33:[function(require,module,exports){
 module.exports = function(){
   'use strict';
 
@@ -15623,183 +15624,6 @@ module.exports = function(){
 }();
 
 },{"./../../format-converter/bridgedb/bridgedb.js":16,"./annotation.js":33}],35:[function(require,module,exports){
-// TODO this only works for GPML DataNodes with SVG at present.
-module.exports = {
-  load: function(pvjs, svgSelection, data, callback) {
-    'use strict';
-    var highlighter = this;
-    if (!svgSelection || !data) {
-      throw new Error("Missing input data.");
-    }
-
-    var typeaheadElementValues = [], typeaheadElementValue;
-    data.elements.filter(function(element) {return element.gpmlType === 'DataNode';}).forEach(function(node) {
-      if (node.hasOwnProperty('textContent')) {
-        typeaheadElementValue = node.textContent;
-        if (typeaheadElementValues.indexOf(typeaheadElementValue) === -1) {
-          typeaheadElementValues.push(typeaheadElementValue);
-        }
-      }
-    });
-
-    var $highlighterInput = $(pvjs.$element[0][0]).find('.highlight-by-label-input')
-      , $highlighterReset = $highlighterInput.siblings('.clear-highlights-from-typeahead')
-
-    // see http://twitter.github.io/typeahead.js/
-    $highlighterInput.typeahead({
-      name: 'Highlight node in pathway',
-      local: typeaheadElementValues,
-      limit: 10
-    });
-
-
-    /*
-       $('.icon-eye-open').click(function(){
-       var nodeLabel = $("#highlight-by-label-input").val();
-       if (!nodeLabel) {
-       console.warn('Error: No data node value entered.');
-       }
-       else {
-       svgRenderer.node.highlightByLabel(svg, nodeLabel);
-       }
-       });
-    //*/
-    // see http://api.jquery.com/bind/
-    // TODO get selected value better and make function to handle
-
-    $highlighterInput.bind("typeahead:selected", function() {
-      var typeaheadElementValue = $highlighterInput.val();
-      if (!typeaheadElementValue) {
-        throw new Error("No data node value entered for type-ahead node highlighter.");
-      }
-      else {
-        // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
-        // a highlighter for svg, png, etc. as appropriate.
-        highlighter.highlightByLabel($highlighterReset, svgSelection, data, typeaheadElementValue);
-      }
-    });
-
-    $highlighterInput.bind("keypress", pressed);
-    function pressed(e) {
-      if (e.keyCode === 13)
-      {
-        // TODO refactor this. it's repeated above.
-        var typeaheadElementValue = $highlighterInput.val();
-        if (!typeaheadElementValue) {
-          throw new Error("No data node value entered for type-ahead node highlighter.");
-        }
-        else {
-          // TODO refactor this so it calls a generic highlightDataNodeByLabel function that can call
-          // a highlighter for svg, png, etc. as appropriate.
-          highlighter.highlightByLabel($highlighterReset, svgSelection, data, typeaheadElementValue);
-          $highlighterInput.typeahead('setQuery', '');
-        }
-      }
-    }
-
-    $highlighterReset.on('click', function() {
-      highlighter.clearHighlightsFromTypeahead($highlighterInput, $highlighterReset, svgSelection);
-    });
-    if (!!callback) {
-      callback(null, svgSelection);
-    }
-  },
-  highlight: function(args) {
-    'use strict';
-    var highlighter = this,
-      data = args.data;
-
-    var getSelectors = {
-      selectors: function(input) {
-        return input;
-      },
-      label: function(input) {
-        var selectors = data.elements.filter(function(element) {
-          return element.textContent === input;
-        }).map(function(element){
-          return '#' + element.id;
-        });
-        return selectors;
-      },
-      xref: function(input) {
-        var selectors = data.elements.filter(function(element) {
-          return element.datasourceReference.filter(function(datasourceReference) {
-            // TODO this probably doesn't work. What is the format of an Xref again?
-            return input === (datasourceReference.database + datasourceReference.id);
-          });
-        }).map(function(element){
-          return '#' + element.id;
-        });
-        return selectors;
-      }
-    };
-
-    var argsEntries = d3.map(args).entries();
-    var methodsInGetSelectors = d3.map(getSelectors).keys();
-    var i = 0;
-    var selectors, method, methodIndex;
-    do {
-      methodIndex = methodsInGetSelectors.indexOf(argsEntries[i].key);
-      if (methodIndex !== -1) {
-        method = methodsInGetSelectors[methodIndex];
-        selectors = getSelectors[method](argsEntries[i].value);
-      }
-      i += 1;
-    } while ((!selectors) && i < argsEntries.length);
-
-    var cssClass = args.cssClass || 'highlighted-node',
-    style = args.style,
-    svgId = args.svgId || 'pathvisiojs-diagram';
-
-    var svgSelection = d3.select('#' + svgId);
-    var styles, styleString = '';
-    if (!!style) {
-      styles = d3.map(style).entries();
-      styles.forEach(function(styleAttribute) {
-        styleString += strcase.paramCase(styleAttribute.key) + ':' + styleAttribute.value + '; ';
-      });
-    }
-    selectors.forEach(function (selector) {
-      var selectedElement = svgSelection.select(selector);
-      var element = selectedElement[0][0];
-      var targetX = element.getBBox().x;
-      var targetY = element.getBBox().y;
-      var targetHeight = element.getBBox().height;
-      var targetWidth = element.getBBox().width;
-      var padding = 2.5;
-      //TODO get the border width and set the offset based on border width
-      var highlighter = svgSelection.select('#viewport').append('rect')
-      .attr('x', targetX - padding)
-      .attr('y', targetY - padding)
-      .attr('class', cssClass)
-      .attr('style', styleString + ' pointer-events: none')
-      .attr('width', targetWidth + 2 * padding)
-      .attr('height', targetHeight + 2 * padding);
-    });
-  },
-
-  highlightByLabel: function($highlighterReset, svgSelection, data, nodeLabel) {
-    'use strict';
-    var svgId = svgSelection.attr('id') || 'pathvisiojs-diagram';
-    svgSelection.selectAll('.highlighted-from-typeahead').remove();
-    var args = {};
-    args.data = data;
-    args.svgId = svgId;
-    args.label = nodeLabel;
-    args.cssClass = 'highlighted-node highlighted-from-typeahead';
-    this.highlight(args);
-    $highlighterReset.show()
-  },
-
-  clearHighlightsFromTypeahead: function($highlighterInput, $highlighterReset, svgSelection) {
-    'use strict';
-    svgSelection.selectAll('.highlighted-from-typeahead').remove();
-    $highlighterInput.val('').attr('placeholder', '')
-    $highlighterReset.hide()
-  }
-};
-
-},{}],36:[function(require,module,exports){
 'use strict';
 
 var ImageLoader = require('./../../../lib/blueimp-load-image/js/load-image.js')
@@ -15837,7 +15661,7 @@ module.exports = {
   }
 }
 
-},{"./../../../lib/blueimp-load-image/js/load-image.js":1,"./../utilities.js":40}],37:[function(require,module,exports){
+},{"./../../../lib/blueimp-load-image/js/load-image.js":1,"./../utilities.js":39}],36:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -15900,7 +15724,7 @@ module.exports = {
   }
 }
 
-},{}],38:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 var Utils = require('./../utilities.js');
 
 module.exports = {
@@ -16052,14 +15876,15 @@ module.exports = {
   }
 };
 
-},{"./../utilities.js":40}],39:[function(require,module,exports){
+},{"./../utilities.js":39}],38:[function(require,module,exports){
 var Buffer=require("__browserify_Buffer").Buffer;var Img = require('./img.js')
   , Fs = require('fs')
+  , _ = require('lodash')
   , Async = require('async')
+  // , Selector = require('./selector.js')
   , Strcase = require('./../../../lib/strcase/index.js')
   , InfoBox = require('./info-box.js')
   , PublicationXref = require('./publication-xref.js')
-  , Highlighter = require('./highlighter.js')
   , XRef = require('./annotation/x-ref.js')
   , SvgPanZoom = require('./../../../lib/svg-pan-zoom/src/svg-pan-zoom.js')
   ;
@@ -16096,21 +15921,27 @@ module.exports = function(){
    * @return {boolean}
    */
   function canRender(sourceData) {
-    return !!getRendererEngineName(sourceData)
+    return !!getRendererEngineName(sourceData.fileType)
   }
 
-  function getRendererEngineName(sourceData) {
+  /**
+   * Returns renderer engine name
+   *
+   * @param  {string} fileType
+   * @return {string|bool}          engine name or false
+   */
+  function getRendererEngineName(fileType) {
     // If fileType unknown
-    if (renderersMap[sourceData.fileType] === undefined) {
+    if (renderersMap[fileType] === undefined) {
       return false;
     }
 
-    var renderEngines = renderersMap[sourceData.fileType]
+    var rendererEngines = renderersMap[fileType]
 
     // Check if there is a match between necessary and supported renderes
-    for (var i = 0; i < renderEngines.length ; i++) {
-      if (supportedRenderers.indexOf(renderEngines[i]) !== -1) {
-        return renderEngines[i]
+    for (var i = 0; i < rendererEngines.length ; i++) {
+      if (supportedRenderers.indexOf(rendererEngines[i]) !== -1) {
+        return rendererEngines[i]
       }
     }
 
@@ -16125,7 +15956,7 @@ module.exports = function(){
    * @return {boolean}
    */
   function needDataConverted(sourceData) {
-    var rendererEngine = getRendererEngineName(sourceData)
+    var rendererEngine = getRendererEngineName(sourceData.fileType)
 
     if (rendererEngine === 'svg') {
       return true
@@ -16157,11 +15988,14 @@ module.exports = function(){
       , containerBoundingClientRect = pvjs.$element[0][0].getBoundingClientRect()
       , containerWidth = containerBoundingClientRect.width - 3 //account for space for pan/zoom controls,
       , containerHeight = containerBoundingClientRect.height - 3 //account for space for search field;
-      , renderEngine = getRendererEngineName(sourceData)
+      , rendererEngine = getRendererEngineName(sourceData.fileType)
 
-    if (renderEngine === 'img') {
+    // Cache render engine into sourceData
+    sourceData.rendererEngine = rendererEngine
+
+    if (rendererEngine === 'img') {
       Img.render(pvjs, sourceData)
-    } else if (renderEngine === 'svg') {
+    } else if (rendererEngine === 'svg') {
       var diagramId = generateDiagramId(pvjs)
         , pvjson = sourceData.pvjson
         , viewport
@@ -16180,7 +16014,7 @@ module.exports = function(){
             {
               targetSelector: '#' + pvjs.$element.attr('id') + ' .diagram-container',
               id: diagramId,
-              format: renderEngine,
+              format: rendererEngine,
               width:containerWidth,
               height:containerHeight,
               backgroundColor: 'white',
@@ -16207,11 +16041,10 @@ module.exports = function(){
                 targetSelector:'#' + diagramId
               });
 
-              var shapeName;
-              Async.each(pvjson.elements, function(dataElement, callbackEach) {
-                var renderingData = dataElement;
-                renderingData.containerSelector = '#viewport';
-                shapeName = Strcase.camelCase(dataElement.shape);
+              // Render all elements one by one
+              _.forEach(pvjson.elements, function(dataElement){
+                dataElement.containerSelector = '#viewport';
+                var shapeName = Strcase.camelCase(dataElement.shape);
                 if (dataElement.shape !== 'none') {
                   if (!crossPlatformShapesInstance1.hasOwnProperty(shapeName)) {
                     // if pathvisiojs cannot render the shape name indicated, check for whether the shape name a double-line shape.
@@ -16227,7 +16060,7 @@ module.exports = function(){
                       shapeName = 'roundedRectangle';
                     }
                   }
-                  crossPlatformShapesInstance1[shapeName](renderingData, function(shapeElement) {
+                  crossPlatformShapesInstance1[shapeName](dataElement, function(shapeElement) {
                     var path = d3.select(shapeElement)
                     var typeClassesToAdd = '';
                     if (!!dataElement['@type'] && dataElement['@type'].length > 0) {
@@ -16236,8 +16069,6 @@ module.exports = function(){
                       });
                       path.attr('typeof', typeClassesToAdd);
                     }
-
-
 
                     if (!!dataElement.datasourceReference) {
                       path.classed({'has-xref': true});
@@ -16262,15 +16093,14 @@ module.exports = function(){
                 }
 
                 if (!!dataElement.textContent) {
-                  crossPlatformTextInstance1.render(renderingData, function(textArea) {
+                  crossPlatformTextInstance1.render(dataElement, function(textArea) {
                     d3.select(textArea).attr('pointer-events', 'none');
                   });
                 }
-                callbackEach(null);
-              },
-              function() {
-                vectorRendererCallback(null);
-              });
+              })
+
+              // End vector async
+              vectorRendererCallback(null);
             }
           );
           // ***************
@@ -16319,7 +16149,7 @@ module.exports = function(){
           var svgPanZoom = SvgPanZoom.svgPanZoom(svgSelection[0][0], {
             controlIconsEnabled: true
           , minZoom: 0.1
-          , maxZoom: 8.0
+          , maxZoom: 20.0
           , zoomEnabled: false
           , onZoom: function(scale) {
               pvjs.trigger('zoomed.renderer', scale)
@@ -16350,8 +16180,6 @@ module.exports = function(){
           // Expose panZoom to other objects
           pvjs.panZoom = svgPanZoom
 
-          Highlighter.load(pvjs, svgSelection, pvjson);
-
           // callback(null, svgSelection);
           vectorRendererCallback(null);
           pvjs.trigger('rendered')
@@ -16364,7 +16192,7 @@ module.exports = function(){
     return 'pvjs-diagram-' + pvjs.instanceId;
   }
 
-  //calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
+  // calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
   function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
     // viewport is a d3 selection
 
@@ -16388,7 +16216,7 @@ module.exports = function(){
   }
 }()
 
-},{"./../../../lib/strcase/index.js":3,"./../../../lib/svg-pan-zoom/src/svg-pan-zoom.js":6,"./annotation/x-ref.js":34,"./highlighter.js":35,"./img.js":36,"./info-box.js":37,"./publication-xref.js":38,"__browserify_Buffer":12,"async":10,"fs":11}],40:[function(require,module,exports){
+},{"./../../../lib/strcase/index.js":3,"./../../../lib/svg-pan-zoom/src/svg-pan-zoom.js":6,"./annotation/x-ref.js":34,"./img.js":35,"./info-box.js":36,"./publication-xref.js":37,"__browserify_Buffer":12,"async":10,"fs":11,"lodash":14}],39:[function(require,module,exports){
 'use strict';
 
 var _ = require('lodash')
