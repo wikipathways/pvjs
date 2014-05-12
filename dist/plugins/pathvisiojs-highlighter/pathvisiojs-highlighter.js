@@ -126,7 +126,7 @@
       .filter(function(element) {return element.gpmlType === 'DataNode'})
         .forEach(function(node) {
           if (node.hasOwnProperty('textContent')) {
-            var text = node.textContent.replace('&#xA;', ' ').replace("\n", ' ')
+            var text = node.textContent.replace('\n', ' ')
             searcheableValues.push({
               val: text
             , valLower: text.toLowerCase()
