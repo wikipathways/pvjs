@@ -3,11 +3,14 @@
   "version": "2.0.2",
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt nodeunit"
   },
   "repository": {
     "type": "git",
@@ -22,11 +25,18 @@
     "diagram"
   ],
   "author": "Pathvisiojs team",
+  "license": "Apache 2",
+  "bugs": {
+    "url": "https://github.com/wikipathways/pathvisiojs/issues"
+  },
+  "homepage": "http://wikipathways.github.io/pathvisiojs",
   "gitHead": "044be6618ee72b932fcb90f4369eb61706f3cfb9",
   "readmeFilename": "README.md",
   "devDependencies": {
     "async": "~0.7.0",
     "brfs": "~1.0.2",
+    "chai": "latest",
+    "chai-as-promised": "latest",
     "colors": "~0.6.2",
     "deglobalify": "~0.2.0",
     "express": "~3.4.7",
@@ -40,14 +50,19 @@
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-watch": "~0.5.3",
+    "grunt-env": "latest",
     "grunt-git-describe": "~2.3.2",
     "grunt-protractor-runner": "~0.2.1",
+    "grunt-rsync": "~0.5.0",
+    "grunt-simple-mocha": "latest",
     "grunt-sync-pkg": "~0.1.2",
     "grunt-text-replace": "^0.3.11",
+    "image-diff": "~1.0.1",
     "lodash": "~2.4.1",
     "matchdep": "~0.1.2",
     "protractor": "~0.22.0",
-    "reload": "~0.1.0"
+    "reload": "~0.1.0",
+    "wd": "latest"
   },
   "dependencies": {}
 }

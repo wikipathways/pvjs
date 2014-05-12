@@ -1,20 +1,15 @@
-// rarely used libraries (will concatenate with pvjs, because it's unlikely anyone will have them already cached)
-var rarelyUsedJsLibraries = [
-  './lib/es5-shim/es5-sham.min.js',
-  './lib/node-uuid/uuid.js',
-  './lib/strcase/dist/strcase.min.js',
-  './lib/svg-pan-zoom/dist/svg-pan-zoom.min.js',
-  './lib/svg-pan-zoom/control-icons.js',
-  './lib/blueimp-load-image/js/load-image.min.js',
-  './lib/jsonld.js/js/jsonld.js',
-  './lib/jsonld.js/js/Promise.js'
-];
+var _ = require('lodash')
+  , fs = require('fs')
+  ;
 
 var pvjsCssSources = [
   'src/css/pathvisiojs.css',
   'src/css/annotation.css',
   'src/css/pan-zoom.css'
 ];
+
+var desireds = require('./test/desireds');
+var npmPackageFile = JSON.parse(fs.readFileSync('package.json'));
 
 var specFileName;
 
@@ -23,7 +18,7 @@ module.exports = function(grunt) {
 // Load all plugins that provide tasks
 require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-var testPathwaysElementCounts = grunt.file.readJSON("test/data/protocol/counts.json"),
+var testPathwaysElementCounts = JSON.parse(fs.readFileSync("test/data/protocol/counts.json")),
     srcDir = './src/js/',
     libDir = './lib/',
     distDir = './dist/',
@@ -34,7 +29,7 @@ var testPathwaysElementCounts = grunt.file.readJSON("test/data/protocol/counts.j
 
 // Project configuration.
 grunt.initConfig({
-    pkg: grunt.file.readJSON("package.json"),
+    pkg: npmPackageFile,
     clean: {
       build: distLibDir,
       temp: tmpDir,
@@ -50,13 +45,17 @@ grunt.initConfig({
                 "License: http://www.apache.org/licenses/LICENSE-2.0/ */\n\n",
         process: true
       },
-      css: {
-        src:  pvjsCssSources,
-        dest: distLibDir + 'pathvisiojs/css/pathvisiojs.css'
-      },
       jsonld: {
         src: ['./lib/jsonld.js/js/jsonld.js', './lib/jsonld.js/js/Promise.js'],
         dest: tmpDir + 'jsonld/js/jsonld.js'
+      },
+      pathvisiojsCss: {
+        src:  pvjsCssSources,
+        dest: distLibDir + 'pathvisiojs/css/pathvisiojs.css'
+      },
+      pathvisiojsCssBundle: {
+        src:  [distLibDir + 'pathvisiojs/css/pathvisiojs.css', './dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.css', './dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.css'],
+        dest: distLibDir + 'pathvisiojs/css/pathvisiojs.bundle.css'
       }
     },
     uglify: {
@@ -71,6 +70,13 @@ grunt.initConfig({
       pathvisiojs: {
         src: distLibDir + 'pathvisiojs/js/pathvisiojs.js',
         dest: distLibDir + 'pathvisiojs/js/pathvisiojs.min.js'
+      },
+      pathvisiojsBundle: {
+        src: [libDir + 'cross-platform-shapes/dist/lib/cross-platform-shapes/js/cross-platform-shapes.min.js',
+          libDir + 'cross-platform-text/dist/lib/cross-platform-text/js/cross-platform-text.min.js',
+          distLibDir + 'pathvisiojs/js/pathvisiojs.js', './dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.js',
+          './dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js'],
+        dest: distLibDir + 'pathvisiojs/js/pathvisiojs.bundle.min.js'
       },
       jsonld: {
         src: [ tmpDir + 'jsonld/js/jsonld.js' ],
