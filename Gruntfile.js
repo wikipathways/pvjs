@@ -214,6 +214,12 @@ grunt.initConfig({
         src: '**',
         dest: pagesDir
       },
+      pagesTest: {
+        expand: true,
+        cwd: './test',
+        src: '**',
+        dest: pagesDir + 'test'
+      },
     },
     replace: {
       pages: {
@@ -222,6 +228,14 @@ grunt.initConfig({
         replacements: [{
           from: '../dist/lib/',
           to: './lib/'
+        }]
+      },
+      pagesTest: {
+        src: [pagesDir + 'test/*.html'],
+        overwrite: true,
+        replacements: [{
+          from: 'dist/',
+          to: '/'
         }]
       }
     },
@@ -287,8 +301,7 @@ grunt.initConfig({
   grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:crossplatformshapes', 'copy:crossplatformtext']);
 
   // Build, create and publish to test server. Run extensive tests.
-  //grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'rsync:test'])
-  grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'rsync:test', 'clean:pages'])
+  grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'copy:pagesTest', 'replace:pages', 'replace:pagesTest', 'rsync:test', 'clean:pages'])
 
   // Build, create and publish gh-pages
   grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages'])
