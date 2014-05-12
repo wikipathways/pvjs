@@ -166,6 +166,7 @@ var _ = require('lodash')
       , zoomAtPoint: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPoint(scale, point)}}
       , zoomAtPointBy: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPointBy(scale, point)}}
       , getOptions: function() {return _.clone(that.options, true)}
+      , getSourceData: function() {return _.clone(that.sourceData, true)}
       }
     }
 
@@ -348,4 +349,4 @@ var _ = require('lodash')
       return data.getPublicInstance()
     })
   }
-})(window, jQuery)
+})(window, window.jQuery || null)
