@@ -13,8 +13,7 @@ var rarelyUsedJsLibraries = [
 var pvjsCssSources = [
   'src/css/pathvisiojs.css',
   'src/css/annotation.css',
-  'src/css/pan-zoom.css',
-  'src/css/typeahead.css'
+  'src/css/pan-zoom.css'
 ];
 
 var specFileName;
@@ -184,14 +183,6 @@ grunt.initConfig({
       },
     },
     copy: {
-      jquery: {
-        src: libDir + 'jquery/jquery.min.js',
-        dest: distLibDir + 'jquery/js/jquery.min.js'
-      },
-      typeahead: {
-        src: libDir + 'typeahead.js/dist/typeahead.min.js',
-        dest: distLibDir + 'typeahead/js/typeahead.min.js'
-      },
       crossplatformshapes: {
         expand: true,
         cwd: libDir + 'cross-platform-shapes/dist/lib/',
@@ -257,7 +248,7 @@ grunt.initConfig({
 //*/
 
   // Build
-  grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:jquery', 'copy:typeahead', 'copy:crossplatformshapes', 'copy:crossplatformtext']);
+  grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:crossplatformshapes', 'copy:crossplatformtext']);
 
   // Build, create and publish gh-pages
   grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages'])
