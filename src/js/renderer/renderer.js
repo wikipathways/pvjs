@@ -1,10 +1,11 @@
 var Img = require('./img.js')
   , Fs = require('fs')
+  , _ = require('lodash')
   , Async = require('async')
+  // , Selector = require('./selector.js')
   , Strcase = require('./../../../lib/strcase/index.js')
   , InfoBox = require('./info-box.js')
   , PublicationXref = require('./publication-xref.js')
-  , Highlighter = require('./highlighter.js')
   , XRef = require('./annotation/x-ref.js')
   , SvgPanZoom = require('./../../../lib/svg-pan-zoom/src/svg-pan-zoom.js', ['svgPanZoom'])
   ;
@@ -41,21 +42,27 @@ module.exports = function(){
    * @return {boolean}
    */
   function canRender(sourceData) {
-    return !!getRendererEngineName(sourceData)
+    return !!getRendererEngineName(sourceData.fileType)
   }
 
-  function getRendererEngineName(sourceData) {
+  /**
+   * Returns renderer engine name
+   *
+   * @param  {string} fileType
+   * @return {string|bool}          engine name or false
+   */
+  function getRendererEngineName(fileType) {
     // If fileType unknown
-    if (renderersMap[sourceData.fileType] === undefined) {
+    if (renderersMap[fileType] === undefined) {
       return false;
     }
 
-    var renderEngines = renderersMap[sourceData.fileType]
+    var rendererEngines = renderersMap[fileType]
 
     // Check if there is a match between necessary and supported renderes
-    for (var i = 0; i < renderEngines.length ; i++) {
-      if (supportedRenderers.indexOf(renderEngines[i]) !== -1) {
-        return renderEngines[i]
+    for (var i = 0; i < rendererEngines.length ; i++) {
+      if (supportedRenderers.indexOf(rendererEngines[i]) !== -1) {
+        return rendererEngines[i]
       }
     }
 
@@ -70,7 +77,7 @@ module.exports = function(){
    * @return {boolean}
    */
   function needDataConverted(sourceData) {
-    var rendererEngine = getRendererEngineName(sourceData)
+    var rendererEngine = getRendererEngineName(sourceData.fileType)
 
     if (rendererEngine === 'svg') {
       return true
@@ -102,11 +109,14 @@ module.exports = function(){
       , containerBoundingClientRect = pvjs.$element[0][0].getBoundingClientRect()
       , containerWidth = containerBoundingClientRect.width - 3 //account for space for pan/zoom controls,
       , containerHeight = containerBoundingClientRect.height - 3 //account for space for search field;
-      , renderEngine = getRendererEngineName(sourceData)
+      , rendererEngine = getRendererEngineName(sourceData.fileType)
 
-    if (renderEngine === 'img') {
+    // Cache render engine into sourceData
+    sourceData.rendererEngine = rendererEngine
+
+    if (rendererEngine === 'img') {
       Img.render(pvjs, sourceData)
-    } else if (renderEngine === 'svg') {
+    } else if (rendererEngine === 'svg') {
       var diagramId = generateDiagramId(pvjs)
         , pvjson = sourceData.pvjson
         , viewport
@@ -125,7 +135,7 @@ module.exports = function(){
             {
               targetSelector: '#' + pvjs.$element.attr('id') + ' .diagram-container',
               id: diagramId,
-              format: renderEngine,
+              format: rendererEngine,
               width:containerWidth,
               height:containerHeight,
               backgroundColor: 'white',
@@ -152,11 +162,10 @@ module.exports = function(){
                 targetSelector:'#' + diagramId
               });
 
-              var shapeName;
-              Async.each(pvjson.elements, function(dataElement, callbackEach) {
-                var renderingData = dataElement;
-                renderingData.containerSelector = '#viewport';
-                shapeName = Strcase.camelCase(dataElement.shape);
+              // Render all elements one by one
+              _.forEach(pvjson.elements, function(dataElement){
+                dataElement.containerSelector = '#viewport';
+                var shapeName = Strcase.camelCase(dataElement.shape);
                 if (dataElement.shape !== 'none') {
                   if (!crossPlatformShapesInstance1.hasOwnProperty(shapeName)) {
                     // if pathvisiojs cannot render the shape name indicated, check for whether the shape name a double-line shape.
@@ -172,7 +181,7 @@ module.exports = function(){
                       shapeName = 'roundedRectangle';
                     }
                   }
-                  crossPlatformShapesInstance1[shapeName](renderingData, function(shapeElement) {
+                  crossPlatformShapesInstance1[shapeName](dataElement, function(shapeElement) {
                     var path = d3.select(shapeElement)
                     var typeClassesToAdd = '';
                     if (!!dataElement['@type'] && dataElement['@type'].length > 0) {
@@ -181,8 +190,6 @@ module.exports = function(){
                       });
                       path.attr('typeof', typeClassesToAdd);
                     }
-
-
 
                     if (!!dataElement.datasourceReference) {
                       path.classed({'has-xref': true});
@@ -207,15 +214,14 @@ module.exports = function(){
                 }
 
                 if (!!dataElement.textContent) {
-                  crossPlatformTextInstance1.render(renderingData, function(textArea) {
+                  crossPlatformTextInstance1.render(dataElement, function(textArea) {
                     d3.select(textArea).attr('pointer-events', 'none');
                   });
                 }
-                callbackEach(null);
-              },
-              function() {
-                vectorRendererCallback(null);
-              });
+              })
+
+              // End vector async
+              vectorRendererCallback(null);
             }
           );
           // ***************
@@ -264,7 +270,7 @@ module.exports = function(){
           var svgPanZoom = SvgPanZoom.svgPanZoom(svgSelection[0][0], {
             controlIconsEnabled: true
           , minZoom: 0.1
-          , maxZoom: 8.0
+          , maxZoom: 20.0
           , zoomEnabled: false
           , onZoom: function(scale) {
               pvjs.trigger('zoomed.renderer', scale)
@@ -295,8 +301,6 @@ module.exports = function(){
           // Expose panZoom to other objects
           pvjs.panZoom = svgPanZoom
 
-          Highlighter.load(pvjs, svgSelection, pvjson);
-
           // callback(null, svgSelection);
           vectorRendererCallback(null);
           pvjs.trigger('rendered')
@@ -309,7 +313,7 @@ module.exports = function(){
     return 'pvjs-diagram-' + pvjs.instanceId;
   }
 
-  //calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
+  // calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
   function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
     // viewport is a d3 selection
 
