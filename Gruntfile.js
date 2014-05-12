@@ -54,7 +54,7 @@ grunt.initConfig({
         dest: distLibDir + 'pathvisiojs/css/pathvisiojs.css'
       },
       pathvisiojsCssBundle: {
-        src:  [distLibDir + 'pathvisiojs/css/pathvisiojs.css', './dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.css', './dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.css'],
+        src:  [distLibDir + 'pathvisiojs/css/pathvisiojs.css', distDir + 'plugins/pathvisiojs-notifications/pathvisiojs-notifications.css', distDir + 'plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.css'],
         dest: distLibDir + 'pathvisiojs/css/pathvisiojs.bundle.css'
       }
     },
@@ -74,8 +74,9 @@ grunt.initConfig({
       pathvisiojsBundle: {
         src: [libDir + 'cross-platform-shapes/dist/lib/cross-platform-shapes/js/cross-platform-shapes.min.js',
           libDir + 'cross-platform-text/dist/lib/cross-platform-text/js/cross-platform-text.min.js',
-          distLibDir + 'pathvisiojs/js/pathvisiojs.js', './dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.js',
-          './dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js'],
+          distLibDir + 'pathvisiojs/js/pathvisiojs.js',
+          distDir + 'plugins/pathvisiojs-notifications/pathvisiojs-notifications.js',
+          distDir + 'plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js'],
         dest: distLibDir + 'pathvisiojs/js/pathvisiojs.bundle.min.js'
       },
       jsonld: {
@@ -106,7 +107,7 @@ grunt.initConfig({
     browserify: {
       dev: {
         files: {
-          './dist/lib/pathvisiojs/js/pathvisiojs.js': './src/js/pathvisiojs.js'
+          'dist/lib/pathvisiojs/js/pathvisiojs.js': srcDir + 'pathvisiojs.js'
         },
         // src: [srcDir + 'js/pathvisiojs.js'],
         // dest: distLibDir + 'pathvisiojs/js/pathvisiojs.js',
@@ -117,7 +118,7 @@ grunt.initConfig({
       },
       build: {
         files: {
-          './dist/lib/pathvisiojs/js/pathvisiojs.js': './src/js/pathvisiojs.js'
+          'dist/lib/pathvisiojs/js/pathvisiojs.js': srcDir + 'pathvisiojs.js'
         },
         // src: [srcDir + 'js/pathvisiojs.js'],
         // dest: distLibDir + 'pathvisiojs/js/pathvisiojs.js',
@@ -286,8 +287,8 @@ grunt.initConfig({
   grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:crossplatformshapes', 'copy:crossplatformtext']);
 
   // Build, create and publish to test server. Run extensive tests.
-  grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'rsync:test'])
-  //grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'rsync:test', 'clean:pages'])
+  //grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'rsync:test'])
+  grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'rsync:test', 'clean:pages'])
 
   // Build, create and publish gh-pages
   grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages'])
