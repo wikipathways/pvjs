@@ -203,7 +203,11 @@
       highlighter.searcheableValues.forEach(function(searcheableValue){
         if (searcheableValue.valLower === selectorLower) {
           if (searcheableValue.node.id) {
-            d3Selectors.push('#'+searcheableValue.node.id)
+            if (searcheableValue.node.shape === 'none' && !!searcheableValue.node.textContent) {
+              d3Selectors.push('#text-for-' + searcheableValue.node.id)
+            } else {
+              d3Selectors.push('#' + searcheableValue.node.id)
+            }
           }
         }
       })
@@ -266,11 +270,22 @@
       var nodeBBox = node.getBBox()
         // TODO take in account padding based on border width and offset
         , padding = 2.5
+        , transform = node.getAttribute('transform')
+        , translate
+        , translate_x = 0
+        , translate_y = 0
+
+      // If node has translate attribute
+      if (transform && (translate = transform.match(/translate\(([\d\s\.]+)\)/))) {
+        translate = translate[1].split(' ')
+        translate_x = +translate[0]
+        translate_y = translate.length > 1 ? +translate[1] : 0
+      }
 
       highlighting = highlighter.pvjs.$element.select('#viewport')
         .append('rect')
-          .attr('x', nodeBBox.x - padding)
-          .attr('y', nodeBBox.y - padding)
+          .attr('x', nodeBBox.x - padding + translate_x)
+          .attr('y', nodeBBox.y - padding + translate_y)
           .attr('width', nodeBBox.width + 2 * padding)
           .attr('height', nodeBBox.height + 2 * padding)
           .attr('class', 'highlighted-node')
