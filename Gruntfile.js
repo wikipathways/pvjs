@@ -18,8 +18,7 @@ module.exports = function(grunt) {
 // Load all plugins that provide tasks
 require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-var testPathwaysElementCounts = JSON.parse(fs.readFileSync("test/data/protocol/counts.json")),
-    srcDir = './src/js/',
+var srcDir = './src/js/',
     libDir = './lib/',
     distDir = './dist/',
     tmpDir = './tmp/',
@@ -226,16 +225,24 @@ grunt.initConfig({
         src: [pagesDir + '/*.html'],
         overwrite: true,
         replacements: [{
-          from: '../dist/lib/',
-          to: './lib/'
+            from: '../dist/lib',
+            to: './lib'
+          },
+          {
+            from: '../dist/plugins',
+            to: './plugins'
         }]
       },
       pagesTest: {
         src: [pagesDir + 'test/*.html'],
         overwrite: true,
         replacements: [{
-          from: 'dist/',
-          to: '/'
+            from: '../dist/lib',
+            to: './lib'
+          },
+          {
+            from: '../dist/plugins',
+            to: './plugins'
         }]
       }
     },
