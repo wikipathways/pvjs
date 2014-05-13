@@ -123,7 +123,7 @@
     var searcheableValues = []
 
     pvjson.elements
-      .filter(function(element) {return element.gpmlType === 'DataNode'})
+      .filter(function(element) {return element.gpmlType === 'DataNode' || element.gpmlType === 'Label'})
         .forEach(function(node) {
           if (node.hasOwnProperty('textContent')) {
             var text = node.textContent.replace('&#xA;', ' ').replace("\n", ' ')
@@ -366,12 +366,6 @@
       }
     }
     return o1
-  }
-
-  function proxy(fn, context) {
-    return function() {
-      fn.apply(context, arguments)
-    }
   }
 
   /**
