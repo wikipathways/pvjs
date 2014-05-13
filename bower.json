@@ -2,7 +2,7 @@
   "author": "Pathvisiojs team",
   "name": "pathvisiojs",
   "description": "Diagram viewer and editor for biological pathways",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "homepage": "http://wikipathways.github.io/pathvisiojs/",
   "dependencies": {
     "blueimp-load-image": "~1.11.0",
