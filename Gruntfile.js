@@ -27,8 +27,6 @@ var gruntConfig = {
       files: {
         'dist/lib/pathvisiojs/js/pathvisiojs.js': srcDir + 'pathvisiojs.js'
       },
-      // src: [srcDir + 'js/pathvisiojs.js'],
-      // dest: distLibDir + 'pathvisiojs/js/pathvisiojs.js',
       options: {
         bundleOptions: {debug: true}
       , transform: ['deglobalify', 'brfs']
@@ -199,8 +197,6 @@ var gruntConfig = {
         reporter: 'spec'
       },
       src: ['test/e2e/dev.js']
-      //src: ['test/e2e/minimal.js']
-      //src: ['test/sauce/**/*-specs.js']
     },
     protocol: {
       options: {
@@ -208,8 +204,6 @@ var gruntConfig = {
         reporter: 'spec'
       },
       src: ['test/e2e/sauce.js']
-      //src: ['test/e2e/minimal.js']
-      //src: ['test/sauce/**/*-specs.js']
     }
   },    
   uglify: {

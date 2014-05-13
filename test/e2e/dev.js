@@ -66,9 +66,9 @@ describe('dev (' + desired.browserName + ')', function() {
             .nodeify(done);
     });
 
-    it("should get interactions test page", function(done) {
+    it("should get anchors test page", function(done) {
         browser
-            .get("http://pointer.ucsf.edu/d3/r/pathvisiojs/test/one-diagram.html?gpml=http://pointer.ucsf.edu/d3/r/pathvisiojs/test/data/protocol/interactions.gpml.xml")
+            .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/data/protocol/anchors.gpml.xml")
             .title()
             .should.become("Pathvisiojs Simple Built Production Example")
             .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
@@ -76,9 +76,9 @@ describe('dev (' + desired.browserName + ')', function() {
             .nodeify(done);
     });
 
-    it("should get data-nodes test page", function(done) {
+    it("should get publication xrefs test page", function(done) {
         browser
-            .get("http://pointer.ucsf.edu/d3/r/pathvisiojs/test/one-diagram.html?gpml=http://pointer.ucsf.edu/d3/r/pathvisiojs/test/data/protocol/gpml-data-nodes.gpml.xml")
+            .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/data/protocol/citations.gpml.xml")
             .title()
             .should.become("Pathvisiojs Simple Built Production Example")
             .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)

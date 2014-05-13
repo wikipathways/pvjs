@@ -208,7 +208,7 @@ var Utils = {
     return data.substr(0,2).toUpperCase() === 'WP' && Utils.isNumber(data.substr(data.length - 1))
   }
 
-  // TODO should we use requirejs for loading scripts instead?
+  // TODO are we using this anymore?
 , loadScripts: function(array, callback){
     var loader = function(src,handler){
       var script = document.createElement('script');
@@ -316,7 +316,7 @@ var Utils = {
       Async.waterfall([
         function(callbackInner) {
           if (!$) {
-            // TODO should we use requirejs for loading scripts instead?
+            // TODO jQuery is required. Can we get rid of this?
             Utils.loadScripts(['http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'], function() {
               callbackInner(null);
             });
