@@ -8,7 +8,7 @@ var pvjsCssSources = [
   'src/css/pan-zoom.css'
 ];
 
-var desireds = require('./test/desireds');
+var desireds = require('./test/wd-test-config');
 var npmPackageFile = JSON.parse(fs.readFileSync('package.json'));
 
 var specFileName;

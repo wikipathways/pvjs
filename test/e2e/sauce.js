@@ -29,9 +29,9 @@ wd.configureHttp( {
 
 var desired = JSON.parse(process.env.DESIRED || '{browserName: "chrome"}');
 desired.name = 'example with ' + desired.browserName;
-desired.tags = ['tutorial'];
+desired.tags = ['full-protocol'];
 
-describe('tutorial (' + desired.browserName + ')', function() {
+describe('full-protocol (' + desired.browserName + ')', function() {
     var browser;
     var allPassed = true;
 
@@ -65,49 +65,27 @@ describe('tutorial (' + desired.browserName + ')', function() {
             .nodeify(done);
     });
 
-    it("should get home page", function(done) {
+    it("should get interactions test page", function(done) {
         browser
-            .get("http://test2.wikipathways.org/")
+            .get("http://pointer.ucsf.edu/d3/r/pathvisiojs/test/one-diagram.html?gpml=http://pointer.ucsf.edu/d3/r/pathvisiojs/test/data/protocol/interactions.gpml.xml")
             .title()
-            .should.become("WikiPathways - WikiPathways")
-            .elementByCss(".frontPagePanel")
-            .text()
-            .should.eventually.include('WikiPathways is an open, public platform dedicated to the curation of biological pathways by and for the scientific community.')
+            .should.become("Pathvisiojs Simple Built Production Example")
+            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
+            .saveScreenshot('tmp/interactions-' + desired.browserName + '-test.png')
             .nodeify(done);
     });
 
-        it("should go to the browse page", function(done) {
-            browser
-                .elementByCss('#n-Browse > a')
-                .click()
-                .waitForElementByCss("#pageTitle", wd.asserters.textInclude('Browse pathways'), 10000)
-                .title()
-                .should.eventually.include("Browse pathways")
-                .nodeify(done);
-        });
-
-        it("should return to the home page", function(done) {
-            browser
-                .elementByCss('#n-Home > a')
-                .click()
-                .elementByCss(".frontPagePanel", wd.asserters.textInclude('WikiPathways is an open, public platform dedicated to the curation of biological pathways by and for the scientific community.'), 10000)
-                .title()
-                .should.not.eventually.include("WikiPathways is an open, public platform dedicated to the curation of biological pathways by and for the scientific community.")
-                .nodeify(done);
-        });
-
-    it("should get the WP1266 page", function(done) {
+    it("should get data-nodes test page", function(done) {
         browser
-            .get("http://test2.wikipathways.org/index.php/Pathway:WP1266")
+            .get("http://pointer.ucsf.edu/d3/r/pathvisiojs/test/one-diagram.html?gpml=http://pointer.ucsf.edu/d3/r/pathvisiojs/test/data/protocol/gpml-data-nodes.gpml.xml")
             .title()
-            .should.become("SIDS Susceptibility Pathways (Mus musculus) - WikiPathways")
-            .elementById("DOID:9007")
-            .text()
-            .should.eventually.include('SIDS')
-            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 15000)
+            .should.become("Pathvisiojs Simple Built Production Example")
+            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
+            .saveScreenshot('tmp/data-nodes-' + desired.browserName + '-test.png')
             .nodeify(done);
     });
 
+    /*
     it("should get the WP1 widget page on the test site", function(done) {
         browser
             .get("http://test2.wikipathways.org/wpi/PathwayWidget.php?id=WP1")
@@ -142,5 +120,6 @@ describe('tutorial (' + desired.browserName + ')', function() {
           // diffImage will have an image which highlights differences
         });
     });
+    //*/
 
 });
