@@ -168,12 +168,12 @@ var gruntConfig = {
       src: [pagesDir + 'test/*.html'],
       overwrite: true,
       replacements: [{
-          from: '../dist/lib',
-          to: './lib'
+          from: '/dist/lib',
+          to: '/lib'
         },
         {
-          from: '../dist/plugins',
-          to: './plugins'
+          from: '/dist/plugins',
+          to: '/plugins'
       }]
     }
   },

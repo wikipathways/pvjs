@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <title>pathvisio testing home</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <!-- 
 Style guides can be arbitrary, but for sake of consistency within this project, let's use these:
@@ -23,27 +24,70 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
   <h2>View sample pathways with pathvisio</h2>
 
   <h3>Pathways for testing purposes</h3>
-<ul>
-  <!--<li>GPML Anchors: <a href="./prod-vs-dev.html?gpml=http://localhost:3000/test/data/protocol/anchors.gpml.xml">Production-vs-Development</a> || <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/anchors.gpml.xml">Development Only</a></li>-->
-	<li>GPML Anchors: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/anchors.gpml.xml">Development</a></li>
-	<li>Citations: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/citations.gpml.xml">Development</a></li>
-	<li>curves: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/curves.gpml.xml">Development</a></li>
-	<li>GPML DataNodes: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/gpml-data-nodes.gpml.xml">Development</a></li>
-	<li>elbows: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/elbows.gpml.xml">Development</a></li>
-	<li>fill-and-stroke-colors: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/fill-and-stroke.gpml.xml">Development</a></li>
-	<li>GPML Graphical Lines: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/graphical-lines.gpml.xml">Development</a></li>
-	<li>GPML Groups: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/groups.gpml.xml">Development</a></li>
-	<li>GPML Interactions:<a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/interactions.gpml.xml">Development</a></li>
-  <!--<li>GPML Interactions (dark-background): <a href="./one-diagram.html?gpml=WP2545">Development</a></li>-->
-	<li>GPML Shapes: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/shapes.gpml.xml">Development</a></li>
-	<li>node sizes and proportions: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/size-and-proportion.gpml.xml">Development</a></li>
-	<li>Test Protocol - Shapes Visualization: <a href="./one-diagram.html?gpml=WP2545">Development</a></li>
-	<li>GPML Labels: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/gpml-labels.gpml.xml">Development</a></li>
-	<li>text: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/text.gpml.xml">Development</a></li>
-	<li>z-index: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/protocol/z-index.gpml.xml">Development</a></li>
-	<li>Local playground: <a href="./one-diagram.html?gpml=http://localhost:3000/test/data/playground.gpml">Development</a></li>
-	<li>WikiPathways Sandbox: <a href="./prod-vs-dev.html?gpml=WP4">Production-vs-Development</a> || <a href="./one-diagram.html?gpml=WP4">Development Only</a></li>
-</ul>
+  <ul id="test-pathway-list">
+  </ul>
+  <script>
+    var locationHref = location.href;
+    var testProtocolPathwaysDirectoryPath = locationHref + 'data/protocol/';
+    var testPathways = [{
+      title:'GPML Anchors',
+      gpml: testProtocolPathwaysDirectoryPath + 'anchors.gpml.xml'
+    }, {
+      title:'Publication Xrefs (aka Citations, Literature References)',
+      gpml: testProtocolPathwaysDirectoryPath + 'citations.gpml.xml'
+    }, {
+      title:'Curves',
+      gpml: testProtocolPathwaysDirectoryPath + 'curves.gpml.xml'
+    }, {
+      title:'GPML DataNodes',
+      gpml: testProtocolPathwaysDirectoryPath + 'gpml-data-nodes.gpml.xml'
+    }, {
+      title:'Elbows',
+      gpml: testProtocolPathwaysDirectoryPath + 'elbows.gpml.xml'
+    }, {
+      title:'Fill and Stroke Colors',
+      gpml: testProtocolPathwaysDirectoryPath + 'fill-and-stroke.gpml.xml'
+    }, {
+      title:'GPML Graphical Lines',
+      gpml: testProtocolPathwaysDirectoryPath + 'graphical-lines.gpml.xml'
+    }, {
+      title:'GPML Groups',
+      gpml: testProtocolPathwaysDirectoryPath + 'groups.gpml.xml'
+    }, {
+      title:'GPML Interactions',
+      gpml: testProtocolPathwaysDirectoryPath + 'interactions.gpml.xml'
+    }, {
+      title:'GPML Shapes',
+      gpml: testProtocolPathwaysDirectoryPath + 'shapes.gpml.xml'
+    }, {
+      title:'Node Sizes and Proportions',
+      gpml: testProtocolPathwaysDirectoryPath + 'size-and-proportion.gpml.xml'
+    }, {
+      title:'GPML Labels',
+      gpml: testProtocolPathwaysDirectoryPath + 'gpml-labels.gpml.xml'
+    }, {
+      title:'Text',
+      gpml: testProtocolPathwaysDirectoryPath + 'text.gpml.xml'
+    }, {
+      title:'Z-Index',
+      gpml: testProtocolPathwaysDirectoryPath + 'z-index.gpml.xml'
+    }, {
+      title:'WikiPathways Sandbox',
+      gpml: 'WP4'
+    }, {
+      title:'Local Playground (only works on local dev machine)',
+      gpml: locationHref + 'data/playground.gpml'
+    }];
+
+    testPathways.forEach(function(testPathway) {
+        if (!!testPathway && !!testPathway.gpml && testPathway.gpml.indexOf('.gpml') > -1) {
+          $('#test-pathway-list').append('<li>' + testPathway.title + ': <a href="./one-diagram.html?gpml=' + testPathway.gpml + '">Development</a></li>');
+        } else {
+          $('#test-pathway-list').append('<li>' + testPathway.title + ': <a href="./prod-vs-dev.html?gpml=' + testPathway.gpml + '">Production-vs-Development</a> || <a href="./one-diagram.html?gpml=' + testPathway.gpml + '">Development Only</a></li>');
+        }
+    });
+  </script>
+
   <h3>Pathways from WikiPathways</h3>
   <ul>
     
