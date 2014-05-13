@@ -126,7 +126,7 @@
       .filter(function(element) {return element.gpmlType === 'DataNode'})
         .forEach(function(node) {
           if (node.hasOwnProperty('textContent')) {
-            var text = node.textContent.replace('\n', ' ')
+            var text = node.textContent.replace('&#xA;', ' ').replace("\n", ' ')
             searcheableValues.push({
               val: text
             , valLower: text.toLowerCase()
@@ -140,6 +140,7 @@
 
   function filterSearcheableValues(searcheableValues, query, limit) {
     var filteredValues = []
+      , filteredTitles = []
       , queryLower = query.toLowerCase()
       , limit = limit || 10
 
@@ -147,7 +148,11 @@
     for (var i = 0; i < searcheableValues.length; i++) {
       if (filteredValues.length >= limit) break;
       if (searcheableValues[i].valLower.indexOf(queryLower) === 0) {
-        filteredValues.push(searcheableValues[i])
+        // Add only if is not duplicated
+        if (filteredTitles.indexOf(searcheableValues[i].valLower) === -1) {
+          filteredValues.push(searcheableValues[i])
+          filteredTitles.push(searcheableValues[i].valLower)
+        }
       }
     }
 
@@ -157,7 +162,11 @@
         if (filteredValues.length >= limit) break;
         // Search for all except those that start with that string as they were added previously
         if (searcheableValues[i].valLower.indexOf(queryLower) > 0) {
-          filteredValues.push(searcheableValues[i])
+          // Add only if is not duplicated
+          if (filteredTitles.indexOf(searcheableValues[i].valLower) === -1) {
+            filteredValues.push(searcheableValues[i])
+            filteredTitles.push(searcheableValues[i].valLower)
+          }
         }
       }
     }
