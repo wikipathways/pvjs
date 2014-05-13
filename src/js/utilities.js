@@ -313,18 +313,6 @@ var Utils = {
   }
 
 , loadXmlFromUri: function(uri, callback) {
-    if (Utils.isIE() !== 9) {
-      // d3.xml does not work with IE9 (and probably earlier), so we're using d3.xhr instead of d3.xml for IE9
-      // TODO file a bug report on d3 issue tracker
-      d3.xml(uri, 'application/xml', function(xmlDoc) {
-        if (xmlDoc.documentElement) {
-          callback(xmlDoc.documentElement)
-        } else {
-          callback(null)
-        }
-      });
-    }
-    else {
       Async.waterfall([
         function(callbackInner) {
           if (!$) {
@@ -338,19 +326,13 @@ var Utils = {
           }
         },
         function(callbackInner) {
-          d3.xhr(uri, 'application/xml', function(error, data) {
-            var xmlString = data.responseText;
-            callbackInner(null, xmlString);
+          $.get( uri, function( xmlDoc ) {
+            var xml = xmlDoc.documentElement;
+            callback(xml);
+            callbackInner(null);
           });
-        },
-        function(xmlString, callbackInner) {
-          var xmlDoc = $.parseXML(xmlString);
-          var xml = xmlDoc.documentElement;
-          callback(xml);
-          callbackInner(null);
         }
       ]);
-    }
   }
 
 , convertToCssClassName: function(inputString) {

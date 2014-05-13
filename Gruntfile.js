@@ -193,6 +193,15 @@ var gruntConfig = {
     }
   },
   simplemocha: {
+    dev: {
+      options: {
+        timeout: 6000,
+        reporter: 'spec'
+      },
+      src: ['test/e2e/dev.js']
+      //src: ['test/e2e/minimal.js']
+      //src: ['test/sauce/**/*-specs.js']
+    },
     protocol: {
       options: {
         timeout: 60000,
@@ -236,7 +245,7 @@ var gruntConfig = {
   watch: {
     browserify: {
       files: ['./src/**/*.js'],
-      tasks: ['browserify:dev', 'test-minimal'],
+      tasks: ['browserify:dev', 'test-dev'],
       options: {
         livereload: true
       }
@@ -273,6 +282,7 @@ module.exports = function(grunt) {
     grunt.registerTask('test:protocol:' + key, ['env:' + key, 'simplemocha:protocol']);
   });
 
+  grunt.registerTask('test-dev', ['simplemocha:dev']);
   grunt.registerTask('test:protocol:parallel', ['concurrent:test-protocol']);
 
   // Build

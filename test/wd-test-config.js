@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-    chrome: {browserName: 'chrome'},
+    //chrome: {browserName: 'chrome'},
     firefox: {browserName: 'firefox'},
-    explorer: {browserName: 'internet explorer', platform:'Windows 7', version:'10' }
+    ie10: {browserName: 'internet explorer', platform:'Windows 7', version:'10' },
+    ie11: {browserName: 'internet explorer', platform:'Windows 7', version:'11' }
 };
