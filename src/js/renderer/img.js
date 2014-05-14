@@ -11,7 +11,7 @@ module.exports = {
       sourceData.uri
     , function(img){
         if (img.type === 'error') {
-          pvjs.trigger('error', {
+          pvjs.trigger('error.renderer', {
             message: 'Was unable to load provided image'
           })
           // Try to init next renderer
@@ -23,7 +23,7 @@ module.exports = {
           // Set unique id
           $img.attr('id', 'pathvisiojs-render-' + pvjs.instanceId)
 
-          pvjs.trigger('rendered')
+          pvjs.trigger('rendered.renderer')
         }
       }
     , {

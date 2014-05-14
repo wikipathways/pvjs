@@ -114,7 +114,7 @@ var _ = require('lodash')
 
     // Check if any sources left
     if (this.options.sourceData.length < this.sourceData.sourceIndex + 1) {
-      this.trigger('error', {
+      this.trigger('error.sourceData', {
         message: 'No more renderable sources'
       })
       return;
@@ -127,7 +127,7 @@ var _ = require('lodash')
       if (Renderer.needDataConverted(this.sourceData)) {
         FormatConverter.loadAndConvert(pvjs, function(error, pvjson){
           if (error) {
-            pvjs.trigger('error', {message: error})
+            pvjs.trigger('error.pvjson', {message: error})
             pvjs.checkAndRenderNextSource()
           } else {
             pvjs.sourceData.pvjson = pvjson
@@ -271,7 +271,7 @@ var _ = require('lodash')
     }
 
     for (var i = 0; i < queue.length; i++) {
-      if (namespace && namespace !== queue[i].namespace) {continue}
+      if (namespace && queue[i].namespace && namespace !== queue[i].namespace) {continue}
 
       if (async) {
         // freeze i

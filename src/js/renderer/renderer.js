@@ -303,7 +303,7 @@ module.exports = function(){
 
           // callback(null, svgSelection);
           vectorRendererCallback(null);
-          pvjs.trigger('rendered')
+          pvjs.trigger('rendered.renderer')
         }
       ]);
     } // End if sourceData renderingEngine is svg
