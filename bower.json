@@ -15,7 +15,7 @@
     "aight": "~1.2.2",
     "bootstrap": "~3.1.1",
     "he": "~0.3.6",
-    "svg-pan-zoom": "~2.0.0",
+    "svg-pan-zoom": "2.x",
     "cross-platform-text": "https://github.com/ariutta/cross-platform-text.git",
     "cross-platform-shapes": "https://github.com/ariutta/cross-platform-shapes.git"
   },
