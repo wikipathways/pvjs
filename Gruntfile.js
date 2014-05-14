@@ -191,14 +191,14 @@ var gruntConfig = {
     }
   },
   simplemocha: {
-    dev: {
+    dev: { // you need to start selenium locally for this to work: webdriver-manager start
       options: {
         timeout: 6000,
         reporter: 'spec'
       },
       src: ['test/e2e/dev.js']
     },
-    protocol: {
+    protocol: { // you don't need selenium locally for this to work. It runs at saucelabs.
       options: {
         timeout: 60000,
         reporter: 'spec'
