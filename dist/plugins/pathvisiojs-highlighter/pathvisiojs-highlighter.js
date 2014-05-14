@@ -122,19 +122,21 @@
   function getSearcheableValues(pvjson) {
     var searcheableValues = []
 
-    pvjson.elements
-      .filter(function(element) {return element.gpmlType === 'DataNode' || element.gpmlType === 'Label'})
-        .forEach(function(node) {
-          if (node.hasOwnProperty('textContent')) {
-            var text = node.textContent.replace('&#xA;', ' ').replace("\n", ' ')
-            searcheableValues.push({
-              val: text
-            , valLower: text.toLowerCase()
-            , xref: node.datasourceReference ? node.datasourceReference.id : ''
-            , node: node
-            })
-          }
-        })
+    if (pvjson && pvjson.elements) {
+      pvjson.elements
+        .filter(function(element) {return element.gpmlType === 'DataNode' || element.gpmlType === 'Label'})
+          .forEach(function(node) {
+            if (node.hasOwnProperty('textContent')) {
+              var text = node.textContent.replace('&#xA;', ' ').replace("\n", ' ')
+              searcheableValues.push({
+                val: text
+              , valLower: text.toLowerCase()
+              , xref: node.datasourceReference ? node.datasourceReference.id : ''
+              , node: node
+              })
+            }
+          })
+    }
     return searcheableValues
   }
 
