@@ -330,7 +330,7 @@ var Utils = {
             var xml = xmlDoc.documentElement;
             callback(xml);
             callbackInner(null);
-          });
+          }, 'xml');
         }
       ]);
   }
