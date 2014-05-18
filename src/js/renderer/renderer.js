@@ -259,14 +259,6 @@ module.exports = function(){
             style.text(cssData);
           }
 
-          // TODO move this into svg-pan-zoom
-          var viewport = svgSelection.select('#viewport');
-
-          var fitScreenScale;
-          if (pvjs.options.fitToContainer) {
-            fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pvjson.image.width, pvjson.image.height);
-          }
-
           var svgPanZoom = SvgPanZoom.svgPanZoom(svgSelection[0][0], {
             controlIconsEnabled: true
           , minZoom: 0.1
@@ -279,6 +271,11 @@ module.exports = function(){
               pvjs.trigger('panned.renderer', {x: x, y: y})
             }
           })
+
+          // Adjust viewport position
+          // TODO replace magic numbers (26 and 60)
+          svgPanZoom.zoomBy(0.98)
+          svgPanZoom.panBy({x: -26 * svgPanZoom.getZoom(), y: -60 * svgPanZoom.getZoom()})
 
           var svgInFocus = false
           svgSelection
@@ -311,22 +308,6 @@ module.exports = function(){
 
   function generateDiagramId(pvjs){
     return 'pvjs-diagram-' + pvjs.instanceId;
-  }
-
-  // calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
-  function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
-    // viewport is a d3 selection
-
-    var fitScreenScale = Math.min(viewportWidth/diagramWidth, viewportHeight/diagramHeight);
-    var diagramWidthScaled = fitScreenScale * diagramWidth;
-    var diagramHeightScaled = fitScreenScale * diagramHeight;
-
-    var xTranslation = viewportWidth/2 - diagramWidthScaled/2 + 10; //plus margin-left
-    var yTranslation = viewportHeight/2 - diagramHeightScaled/2 + 20; //plus margin-top
-
-    var translationMatrixString = 'matrix(' + fitScreenScale + ', 0, 0, ' + fitScreenScale + ', ' + xTranslation + ', ' + yTranslation + ') ';
-
-    viewport.attr("transform", translationMatrixString);
   }
 
   return {
