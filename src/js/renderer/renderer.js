@@ -1,9 +1,7 @@
-var Img = require('./img.js')
-  , Fs = require('fs')
-  , _ = require('lodash')
+var _ = require('lodash')
+  , RendererImg = require('./renderer-img')
   , RendererSvg = require('./renderer-svg')
-  // , Selector = require('./selector.js')
-  , Strcase = require('./../../../lib/strcase/index.js')
+  , Selector = require('./selector.js')
   , InfoBox = require('./info-box.js')
   , PublicationXref = require('./publication-xref.js')
   , XRef = require('./annotation/x-ref.js')
@@ -96,83 +94,44 @@ module.exports = function(){
    * @return {boolean} success state
    */
   function destroyRender(pvjs, sourceData) {
+    // TODO
     return true
   }
 
   /**
    * Renders a given sourceData object
    * @param  {Object} pvjs       pvjs Instance Object
-   * @param  {Object} sourceData sourceData Instance Object
    */
-  function render(pvjs, sourceData) {
-    var diagramContainer = pvjs.$element
-      , containerBoundingClientRect = pvjs.$element[0][0].getBoundingClientRect()
-      , containerWidth = containerBoundingClientRect.width - 3 //account for space for pan/zoom controls,
-      , containerHeight = containerBoundingClientRect.height - 3 //account for space for search field;
-      , rendererEngine = getRendererEngineName(sourceData.fileType)
-
+  function render(pvjs) {
+    var sourceData = pvjs.sourceData
+      , renderer = null
+      , selector = null
     // Cache render engine into sourceData
-    sourceData.rendererEngine = rendererEngine
+    sourceData.rendererEngine = getRendererEngineName(sourceData.fileType)
 
-    if (rendererEngine === 'img') {
-      Img.render(pvjs, sourceData)
-    } else if (rendererEngine === 'svg') {
-      var diagramId = 'pvjs-diagram-' + pvjs.instanceId
-        , pvjson = sourceData.pvjson
-        , viewport = pvjs.$element.select('#viewport')
-        ;
+    if (sourceData.rendererEngine === 'img') {
+      renderer = RendererImg.init(pvjs)
+      selector = Selector.init([{uri: pvjs.sourceData.uri}], renderer)
+    } else if (sourceData.rendererEngine === 'svg') {
+      renderer = RendererSvg.init(pvjs)
+      selector = Selector.init(pvjs.sourceData.pvjson.elements, renderer)
 
-      // SVG element is created by crossPlatformShapesInstance init
-      var rendererSvg = RendererSvg.init(pvjs, {
-        targetSelector: '#' + pvjs.$element.attr('id') + ' .diagram-container'
-      , id: diagramId
-      , width: containerWidth
-      , height: containerHeight
-      })
+      var viewport = pvjs.$element.select('#viewport')
 
-      // Render all elements one by one
-      _.forEach(pvjson.elements, function(dataElement){
-        dataElement.containerSelector = '#viewport';
-        rendererSvg.render(dataElement)
-      })
+      // InfoBox
+      InfoBox.render(viewport, pvjs.sourceData.pvjson);
 
       // Publication Xref
-      var elementsWithPublicationXrefs = pvjson.elements.filter(function(element){return !!element.publicationXrefs;});
+      var elementsWithPublicationXrefs = pvjs.sourceData.pvjson.elements.filter(function(element){return !!element.publicationXrefs;});
       if (elementsWithPublicationXrefs.length > 0) {
         elementsWithPublicationXrefs.forEach(function(elementWithPublicationXrefs) {
           PublicationXref.render(pvjs, viewport, elementWithPublicationXrefs);
         });
       }
 
-      // InfoBox
-      var svgSelection = d3.select('#' + diagramId);
-      InfoBox.render(viewport, pvjson);
-
-      // Styles
-      var cssData,
-        style,
-        defs = svgSelection.select('defs');
-      if (pvjs.options.cssUri) {
-        d3.text(pvjs.options.cssUri, 'text/css', function(cssData) {
-          style = defs.append('style').attr('type', "text/css");
-          style.text(cssData);
-        });
-      }
-      else {
-        // cssData = pathvisioNS['src/css/pathway-diagram.css'];
-        cssData = Fs.readFileSync(__dirname + '/../../css/pathway-diagram.css').toString()
-        style = defs.append('style').attr('type', "text/css");
-        style.text(cssData);
-      }
-
-      // TODO move this into svg-pan-zoom
-      var viewport = svgSelection.select('#viewport');
-
-      var fitScreenScale;
-      if (pvjs.options.fitToContainer) {
-        fitAndCenterDiagramWithinViewport(viewport, containerWidth, containerHeight, pvjson.image.width, pvjson.image.height);
-      }
-
+      // Svg-pan-zoom
+      // Should come last as it is fitting and centering viewport
+      var svgSelection = d3.select('#' + 'pvjs-diagram-' + pvjs.instanceId);
       var svgPanZoom = SvgPanZoom.svgPanZoom(svgSelection[0][0], {
         controlIconsEnabled: true
       , minZoom: 0.1
@@ -185,6 +144,11 @@ module.exports = function(){
           pvjs.trigger('panned.renderer', {x: x, y: y})
         }
       })
+
+      // Adjust viewport position
+      // TODO replace magic numbers (14 and 10)
+      svgPanZoom.zoomBy(0.95)
+      svgPanZoom.panBy({x: -14 * svgPanZoom.getZoom(), y: -10 * svgPanZoom.getZoom()})
 
       var svgInFocus = false
       svgSelection
@@ -207,24 +171,8 @@ module.exports = function(){
       // Expose panZoom to other objects
       pvjs.panZoom = svgPanZoom
 
-      pvjs.trigger('rendered')
-    } // End if sourceData renderingEngine is svg
-  }
-
-  // calculates the proper scaling and translations to fit content (i.e., diagram) to screen (i.e., viewport)
-  function fitAndCenterDiagramWithinViewport(viewport, viewportWidth, viewportHeight, diagramWidth, diagramHeight) {
-    // viewport is a d3 selection
-
-    var fitScreenScale = Math.min(viewportWidth/diagramWidth, viewportHeight/diagramHeight);
-    var diagramWidthScaled = fitScreenScale * diagramWidth;
-    var diagramHeightScaled = fitScreenScale * diagramHeight;
-
-    var xTranslation = viewportWidth/2 - diagramWidthScaled/2 + 10; //plus margin-left
-    var yTranslation = viewportHeight/2 - diagramHeightScaled/2 + 20; //plus margin-top
-
-    var translationMatrixString = 'matrix(' + fitScreenScale + ', 0, 0, ' + fitScreenScale + ', ' + xTranslation + ', ' + yTranslation + ') ';
-
-    viewport.attr("transform", translationMatrixString);
+      pvjs.trigger('rendered.renderer')
+    }
   }
 
   return {
