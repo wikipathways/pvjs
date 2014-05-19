@@ -124,13 +124,19 @@ wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
 Available event messages
 ------------------------
 
-Event messages are namespaced and may be called with namespace or without. Namespace is defined by a dot: `click.renderer`. List of available events:
-* rendered
-* error
+Event messages are namespaced and may be called with namespace or without. Namespace is defined by a dot: `click.renderer`.
+Triggering events without specifying a namespace will run both events with and without namespace (ex. trigger('click') will run both on('click') and on('click.renderer')).
+Listening on events without a namespace will run hooks event if an event with namespace was triggered (ex. on('click') will run on both trigger('click') and trigger('click.renderer')).
+In order to prevent running unwanted hooks it is better to namespace all events triggers and listeners.
+
+List of available events through application (custom events may be added at any time):
+* error.sourceData
+* error.pvjson
 * error.renderer
-* warning
+* rendered.renderer
 * zoomed.renderer
 * panned.renderer
+* warning.renderer
 
 License
 =======
