@@ -96,6 +96,7 @@ var _ = require('lodash')
     , uri: null // resource uri
     , fileType: ''
     , pvjson: null // pvjson object
+    , rendererEngine: null // renderer engine name
     }
 
     this.checkAndRenderNextSource()
@@ -131,11 +132,11 @@ var _ = require('lodash')
             pvjs.checkAndRenderNextSource()
           } else {
             pvjs.sourceData.pvjson = pvjson
-            Renderer.render(pvjs, pvjs.sourceData)
+            Renderer.render(pvjs)
           }
         })
       } else {
-        Renderer.render(this, this.sourceData)
+        Renderer.render(pvjs)
       }
     } else {
       // try next source
