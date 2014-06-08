@@ -164,14 +164,14 @@
       , title
     for (g in addedGroups) {
       $container = $('<div class="changes-container" data-level="2"/>').appendTo($containerParent)
-      $containerTitle = $('<div class="changes-title change-' + type + '">' + g + '</div>').appendTo($container)
+      $containerTitle = $('<div class="changes-title changes-parent change-' + type + '"><span>' + g + '</span></div>').appendTo($container)
       $containerList = $('<div class="changes-list" />').appendTo($container)
 
       for (e in addedGroups[g]) {
         title = getAddTitle(addedGroups[g][e])
 
         $elementContainer = $('<div class="changes-container" data-level="3"/>').appendTo($containerList)
-        $elementTitle = $('<div class="changes-title change-' + type + '">' + title + '</div>').appendTo($elementContainer)
+        $elementTitle = $('<div class="changes-title change-' + type + '"><span>' + title + '</span></div>').appendTo($elementContainer)
         $elementTitle[0].pvjsonElement = addedGroups[g][e]
       }
     }

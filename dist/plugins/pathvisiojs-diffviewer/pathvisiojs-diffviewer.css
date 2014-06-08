@@ -63,6 +63,30 @@
   font-size: 16px;
 }
 
+.changes-parent span {
+  position: relative;
+  display: inline-block;
+  padding: 0 0 0 13px;
+}
+
+.changes-parent span:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 0;
+  margin: -4px 0 0;
+  border-width: 6px 5px 0 5px;
+  border-color: #000 transparent transparent transparent;
+  border-style: solid;
+}
+
+.open > .changes-parent span:before {
+  border-width: 0 5px 6px 5px;
+  border-color: transparent transparent #000 transparent;
+}
+
 /* Nesting */
 .changes-container .changes-container .changes-title {
   font-size: 14px;
