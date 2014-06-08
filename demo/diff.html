@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html style="margin: 0; width: 100%; height: 100%; ">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>Pathvisiojs Simple Built Production Example</title>
+
+    <style type="text/css">
+      html, body{width: 100%;height: 100%;margin: 0;}
+    </style>
+    <link rel="stylesheet" href="../dist/lib/pathvisiojs/css/pathvisiojs.css">
+    <link rel="stylesheet" href="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.css">
+    <link rel="stylesheet" href="../dist/plugins/pathvisiojs-diffviewer/pathvisiojs-diffviewer.css">
+    <link rel="stylesheet" href="../dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+    <!--
+    <script src="../tmp/d3.min.js"></script>
+    -->
+    <script src="../dist/lib/modernizr/js/modernizr.min.js"></script>
+    <script src="../dist/lib/cross-platform-shapes/js/cross-platform-shapes.min.js"></script>
+    <script src="../dist/lib/cross-platform-text/js/cross-platform-text.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!--
+    <script src="../tmp/jquery-1.11.0.min.js"></script>
+    -->
+    <script src="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.js"></script>
+    <script src="../dist/plugins/pathvisiojs-diffviewer/pathvisiojs-diffviewer.js"></script>
+    <script src="../dist/plugins/pathvisiojs-highlighter/typeahead.jquery.min.js"></script>
+    <script src="../dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js"></script>
+
+    <script src="../dist/lib/pathvisiojs/js/pathvisiojs.js"></script>
+
+  </head>
+  <body>
+    <div id="pathvisiojs-container"></div>
+    <div>This path is for testing multiple instances</div>
+    <div id="pathvisiojs-container2" style="width: 700px; height: 200px; border: 1px solid #ccc;">2text<b>2test2</b>2test3</div>
+
+  <script>
+  /* *******************
+  /* Load pathvisiojs
+  /* *******************/
+  $(function(){
+    $('#pathvisiojs-container').pathvisiojs({
+      fitToContainer: true
+    , manualRender: true
+    , sourceData: [
+        // at least one item required
+        {
+          // uri:'data/WP2533_71989.gpml',
+          uri:'data/WP525_73040.gpml',
+          // uri:'data/WP87_7772.gpml',
+          // uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+          fileType:'gpml' // generally will correspond to filename extension
+        }
+      , {
+          uri:'data/WP87_7772.png',
+          fileType:'png'
+        }
+      // , {
+      //     uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+      //     fileType:'biopax'
+      //   }
+      // , {
+      //     uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+      //     fileType:'png'
+      //   }
+      ]
+    })
+
+    // Get first element from array of instances
+    var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+    window.pathInstance = pathInstance
+
+    var jVal = $('div')
+
+    // Load plugins
+    pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
+    pathvisiojsDiffviewer(pathInstance, {
+      sourceData: [
+        {
+          uri:'data/WP525_74871.gpml',
+          fileType:'gpml'
+        }
+      ]
+    })
+    pathInstance.on('rendered', function(){
+      var hi = pathvisiojsHighlighter(pathInstance)
+      // hi.highlight('#e6e')
+      // hi.highlight('Cholic acid')
+      // hi.highlight('#ecd6d')
+      // hi.highlight('Cholesterol')
+      // // Highlight group g1
+      // hi.highlight('Cholesterol', 'g1')
+      // // Appenuate group g1
+      // hi.attenuate(null, 'g1')
+      // // hi.highlight('Cholesterol')
+      // Acyl coenzyme A
+      // (Acyl-CoA)
+    })
+
+    // Call renderer
+    pathInstance.render()
+
+    // pathInstance.highlight([
+    //   {
+    //     "label": "APC"
+    //   , "style": {
+    //       "fill": "green"
+    //     , "stroke": "green"
+    //     }
+    //   }
+    // , {
+    //     "xref": "HMDB00193,HMDB"
+    //   , "style": {
+    //       "fill": "blue"
+    //     , "stroke": "blue"
+    //     }
+    //   }
+    // ])
+
+/*    $('#pathvisiojs-container2').pathvisiojs({
+      fitToContainer: true
+    , manualRender: true
+    , sourceData: [
+        // at least one item required
+        {
+          uri:'data/WP1_69109.gpml',
+          // uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+          fileType:'gpml' // generally will correspond to filename extension
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'png'
+        }
+      , {
+          uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+          fileType:'gpml' // generally will correspond to filename extension
+        }
+      ]
+    })
+
+    // Get first element from array of instances
+    var pathInstance = $('#pathvisiojs-container2').pathvisiojs('get').pop()
+
+    // Load plugins
+    pathvisiojs_notifications(pathInstance, {displayErrors: true, displayWarnings: true})
+
+    // Call renderer
+    pathInstance.render()*/
+
+
+    $('#pathvisiojs-container2').pathvisiojs({
+      fitToContainer: false
+    , manualRender: true
+    , sourceData: [
+        // at least one item required
+        {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'biopax'
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'png'
+        }
+      , {
+          uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+          fileType:'gpml' // generally will correspond to filename extension
+        }
+      ]
+    })
+
+    // Get first element from array of instances
+    var pathInstance2 = $('#pathvisiojs-container2').pathvisiojs('get').pop()
+
+    // Load plugins
+    pathvisiojsNotifications(pathInstance2, {displayErrors: true, displayWarnings: true})
+
+    // Call renderer
+    pathInstance2.render()
+
+  })
+  </script>
+
+  <div class="test"></div>
+  <div class="test"></div>
+  <div class="test test2"></div>
+  <div class="changes changes-list" id="changes">
+    <div class="changes-container active">
+      <div class="changes-title change-all">All Changes</div>
+    </div>
+    <div class="changes-container" data-level="1" data-type="added">
+      <div class="changes-title change-added">Added</div>
+      <div class="changes-list">
+      </div>
+    </div>
+    <div class="changes-container" data-level="1" data-type="updated">
+      <div class="changes-title change-updated">Updated</div>
+      <div class="changes-list"></div>
+    </div>
+    <div class="changes-container" data-level="1" data-type="removed">
+      <div class="changes-title change-removed">Removed</div>
+      <div class="changes-list"></div>
+    </div>
+  </div>
+</body>
+</html>
