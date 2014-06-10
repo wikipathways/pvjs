@@ -188,10 +188,12 @@ var _ = require('lodash')
       , render: Utils.proxy(this.render, this)
       , pan: function(point) {if (that.panZoom) {that.panZoom.pan(point)}}
       , panBy: function(point) {if (that.panZoom) {that.panZoom.panBy(point)}}
+      , getPan: function() {return that.panZoom.getPan()}
       , zoom: function(scale) {if (that.panZoom) {that.panZoom.zoom(scale)}}
       , zoomBy: function(scale) {if (that.panZoom) {that.panZoom.zoomBy(scale)}}
       , zoomAtPoint: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPoint(scale, point)}}
       , zoomAtPointBy: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPointBy(scale, point)}}
+      , getZoom: function() {return that.panZoom.getZoom()}
       , getOptions: function() {return _.clone(that.options, true)}
       , getSourceData: function() {return _.clone(that.sourceData, true)}
       }
