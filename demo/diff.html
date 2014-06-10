@@ -36,174 +36,98 @@
   </head>
   <body>
     <div id="pathvisiojs-container"></div>
-    <div>This path is for testing multiple instances</div>
-    <div id="pathvisiojs-container2" style="width: 700px; height: 200px; border: 1px solid #ccc;">2text<b>2test2</b>2test3</div>
+    <div style="border: 1px solid blue;height: 30px;">
+      <div style="height: 30px; float: left; width: 40%;"><input type="text" id="pathwayUri" value="WP525 73040" style="display: inline-block; width: 90%;" /></div>
+      <div style="height: 30px; float: left; width: 40%;"><input type="text" id="pathwayUri2" value="WP525 74871" style="display: inline-block; width: 90%;"/></div>
+      <div style="height: 30px; float: left; width: 20%;"><input type="submit" value="Change" id="pathwayUriSubmit"/></div>
+    </div>
+    <div>Insert pathway name followed by optional revision number (divide by space)</div>
 
   <script>
   /* *******************
   /* Load pathvisiojs
   /* *******************/
   $(function(){
-    $('#pathvisiojs-container').pathvisiojs({
-      fitToContainer: true
-    , manualRender: true
-    , sourceData: [
-        // at least one item required
-        {
-          // uri:'data/WP2533_71989.gpml',
-          uri:'data/WP525_73040.gpml',
-          // uri:'data/WP87_7772.gpml',
-          // uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
-          fileType:'gpml' // generally will correspond to filename extension
+    var pathInstance = null
+      , getUrl = function(str) {
+          var base = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id='
+
+          // Return local scripts for faster debugging
+          if (str === 'WP525 74871') return 'data/WP525_74871.gpml';
+          if (str === 'WP525 73040') return 'data/WP525_73040.gpml';
+
+          if (str.trim().indexOf(' ') !== -1) {
+            var pieces = str.trim().split(' ')
+            return base + pieces[0] + '&rev=' + pieces[1]
+          } else {
+            return base + str.trim()
+          }
         }
-      , {
-          uri:'data/WP87_7772.png',
-          fileType:'png'
+      , loadPvjses = function(){
+          $('#pathvisiojs-container').pathvisiojs({
+            fitToContainer: true
+          , manualRender: true
+          , sourceData: [
+              {
+                uri: getUrl($('#pathwayUri').val()),
+                fileType:'gpml'
+              }
+            ]
+          })
+
+          // Get first element from array of instances
+          pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+          window.pathInstance = pathInstance
+
+          // Load plugins
+          pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
+          pathvisiojsDiffviewer(pathInstance, {
+            sourceData: [
+              {
+                uri: getUrl($('#pathwayUri2').val()),
+                fileType:'gpml'
+              }
+            ]
+          })
+          pathInstance.on('rendered', function(){
+            var hi = pathvisiojsHighlighter(pathInstance)
+          })
+
+          // Call renderer
+          pathInstance.render()
         }
-      // , {
-      //     uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
-      //     fileType:'biopax'
-      //   }
-      // , {
-      //     uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
-      //     fileType:'png'
-      //   }
-      ]
+
+    $('#pathwayUriSubmit').on('click', function(ev){
+      ev.preventDefault()
+
+      if (pathInstance != null) {
+        pathInstance.destroy()
+      }
+
+      loadPvjses()
     })
-
-    // Get first element from array of instances
-    var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
-    window.pathInstance = pathInstance
-
-    var jVal = $('div')
-
-    // Load plugins
-    pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
-    pathvisiojsDiffviewer(pathInstance, {
-      sourceData: [
-        {
-          uri:'data/WP525_74871.gpml',
-          fileType:'gpml'
-        }
-      ]
-    })
-    pathInstance.on('rendered', function(){
-      var hi = pathvisiojsHighlighter(pathInstance)
-      // hi.highlight('#e6e')
-      // hi.highlight('Cholic acid')
-      // hi.highlight('#ecd6d')
-      // hi.highlight('Cholesterol')
-      // // Highlight group g1
-      // hi.highlight('Cholesterol', 'g1')
-      // // Appenuate group g1
-      // hi.attenuate(null, 'g1')
-      // // hi.highlight('Cholesterol')
-      // Acyl coenzyme A
-      // (Acyl-CoA)
-    })
-
-    // Call renderer
-    pathInstance.render()
-
-    // pathInstance.highlight([
-    //   {
-    //     "label": "APC"
-    //   , "style": {
-    //       "fill": "green"
-    //     , "stroke": "green"
-    //     }
-    //   }
-    // , {
-    //     "xref": "HMDB00193,HMDB"
-    //   , "style": {
-    //       "fill": "blue"
-    //     , "stroke": "blue"
-    //     }
-    //   }
-    // ])
-
-/*    $('#pathvisiojs-container2').pathvisiojs({
-      fitToContainer: true
-    , manualRender: true
-    , sourceData: [
-        // at least one item required
-        {
-          uri:'data/WP1_69109.gpml',
-          // uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
-          fileType:'gpml' // generally will correspond to filename extension
-        }
-      , {
-          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
-          fileType:'png'
-        }
-      , {
-          uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
-          fileType:'gpml' // generally will correspond to filename extension
-        }
-      ]
-    })
-
-    // Get first element from array of instances
-    var pathInstance = $('#pathvisiojs-container2').pathvisiojs('get').pop()
-
-    // Load plugins
-    pathvisiojs_notifications(pathInstance, {displayErrors: true, displayWarnings: true})
-
-    // Call renderer
-    pathInstance.render()*/
-
-
-    $('#pathvisiojs-container2').pathvisiojs({
-      fitToContainer: false
-    , manualRender: true
-    , sourceData: [
-        // at least one item required
-        {
-          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
-          fileType:'biopax'
-        }
-      , {
-          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
-          fileType:'png'
-        }
-      , {
-          uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
-          fileType:'gpml' // generally will correspond to filename extension
-        }
-      ]
-    })
-
-    // Get first element from array of instances
-    var pathInstance2 = $('#pathvisiojs-container2').pathvisiojs('get').pop()
-
-    // Load plugins
-    pathvisiojsNotifications(pathInstance2, {displayErrors: true, displayWarnings: true})
-
-    // Call renderer
-    pathInstance2.render()
-
+    $('#pathwayUriSubmit').click()
   })
   </script>
 
-  <div class="test"></div>
-  <div class="test"></div>
-  <div class="test test2"></div>
-  <div class="changes changes-list" id="changes">
-    <div class="changes-container active">
-      <div class="changes-title changes-parent change-all"><span>All Changes</span></div>
-    </div>
-    <div class="changes-container" data-level="1" data-type="added">
-      <div class="changes-title changes-parent change-added"><span>Added</span></div>
-      <div class="changes-list">
+  <div style="display: none">
+    <div class="changes changes-list" id="changes">
+      <div class="changes-container active">
+        <div class="changes-title changes-parent change-all"><span>All Changes</span></div>
       </div>
-    </div>
-    <div class="changes-container" data-level="1" data-type="updated">
-      <div class="changes-title changes-parent change-updated"><span>Updated</span></div>
-      <div class="changes-list"></div>
-    </div>
-    <div class="changes-container" data-level="1" data-type="removed">
-      <div class="changes-title changes-parent change-removed"><span>Removed</span></div>
-      <div class="changes-list"></div>
+      <div class="changes-container" data-level="1" data-type="added">
+        <div class="changes-title changes-parent change-added"><span>Added</span></div>
+        <div class="changes-list">
+        </div>
+      </div>
+      <div class="changes-container" data-level="1" data-type="updated">
+        <div class="changes-title changes-parent change-updated"><span>Updated</span></div>
+        <div class="changes-list"></div>
+      </div>
+      <div class="changes-container" data-level="1" data-type="removed">
+        <div class="changes-title changes-parent change-removed"><span>Removed</span></div>
+        <div class="changes-list"></div>
+      </div>
     </div>
   </div>
 </body>
