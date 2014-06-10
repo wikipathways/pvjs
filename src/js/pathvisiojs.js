@@ -152,7 +152,7 @@ var _ = require('lodash')
     Renderer.destroyRender(this, this.sourceData)
 
     // Off all events
-    for (e in this.events) {
+    for (var e in this.events) {
       this.off(e)
     }
 

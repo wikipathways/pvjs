@@ -199,37 +199,40 @@ Selector.filteredByLabel = function(selectorString) {
 }
 
 /**
- * Get attribute of first element
+ * Get style of first element
  *
  * @param  {string} name attribute name
  * @return {string}      attribute value
  */
-Selector.getAttribute = function(name) {
+Selector.getStyle = function(name) {
   // TODO
   return ''
 }
 
 /**
- * Set attribute to all contained elements
+ * Set style to all contained elements
  * If change is visual ask renderer to render element
  *
  * @param {string} name  attribute name
  * @param {string|number} value attribute value
  * @return {object} selector
  */
-Selector.setAttribute = function(name, value) {
+Selector.setStyle = function(name, value) {
   // TODO
   return this
 }
 
 /**
- * Set a set of attributes to all contained elements
+ * Set a set of styles to all contained elements
  *
- * @param {object} obj key-value pairs of name-value attributes
+ * @param {object} obj key-value pairs of name-value styles
  * @return {object} selector
  */
-Selector.setAttributes = function(obj) {
-  // TODO
+Selector.setStyles = function(obj) {
+  for(var key in obj) {
+    this.setStyle(key, obj[key])
+  }
+
   return this
 }
 
