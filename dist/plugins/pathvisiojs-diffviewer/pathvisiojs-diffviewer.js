@@ -64,6 +64,16 @@
       $diffviewer.remove()
     })
 
+    pvjs.on('zoomed.renderer', function(level){
+      pvjs2.zoom(level)
+      pvjs.panBy({x: 0, y: 0}) // TODO fix this by updating pan after zoom
+      pvjs2.pan(pvjs.getPan())
+    })
+
+    pvjs.on('panned.renderer', function(point){
+      pvjs2.pan(point)
+    })
+
     pvjs2.render()
   }
 
