@@ -64,14 +64,51 @@
       $diffviewer.remove()
     })
 
+    var pvjsPanned = false
+      , pvjsZoomed = false
+      , pvjs2Panned = false
+      , pvjs2Zoomed = false
+
     pvjs.on('zoomed.renderer', function(level){
+      if (pvjs2Zoomed) {
+        pvjs2Zoomed = false
+        return
+      }
+      pvjsZoomed = true
+
       pvjs2.zoom(level)
       pvjs.panBy({x: 0, y: 0}) // TODO fix this by updating pan after zoom
       pvjs2.pan(pvjs.getPan())
     })
 
     pvjs.on('panned.renderer', function(point){
+      if (pvjs2Panned) {
+        pvjs2Panned = false
+        return
+      }
+      pvjsPanned = true
       pvjs2.pan(point)
+    })
+
+    pvjs2.on('zoomed.renderer', function(level){
+      if (pvjsZoomed) {
+        pvjsZoomed = false
+        return
+      }
+      pvjs2Zoomed = true
+
+      pvjs.zoom(level)
+      pvjs2.panBy({x: 0, y: 0}) // TODO fix this by updating pan after zoom
+      pvjs.pan(pvjs2.getPan())
+    })
+
+    pvjs2.on('panned.renderer', function(point){
+      if (pvjsPanned) {
+        pvjsPanned = false
+        return
+      }
+      pvjs2Panned = true
+      pvjs.pan(point)
     })
 
     pvjs2.render()
