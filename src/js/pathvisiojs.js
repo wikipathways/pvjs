@@ -144,6 +144,31 @@ var _ = require('lodash')
     }
   }
 
+  Pathvisiojs.prototype.destroy = function() {
+    // Send destroy message
+    this.trigger('destroy.pvjs', {message: 'User requested pvjs destroy'}, false)
+
+    // Destroy renderer
+    Renderer.destroyRender(this, this.sourceData)
+
+    // Off all events
+    for (e in this.events) {
+      this.off(e)
+    }
+
+    // Clean data
+    this.$element[0][0].data = undefined
+
+    if ($) {
+      $(this.$element[0][0]).removeData('pathvisiojs')
+    }
+
+    // Clean HTML
+    // jQuery
+    $(this.$element[0][0]).empty()
+
+  }
+
   /**
    * Returns an instance for public usage
    * @return {object}
@@ -156,6 +181,7 @@ var _ = require('lodash')
       this.publicInstance = {
         instanceId: this.instanceId
       , $element: this.$element
+      , destroy: Utils.proxy(this.destroy, this)
       , on: Utils.proxy(this.on, this)
       , off: Utils.proxy(this.off, this)
       , trigger: Utils.proxy(this.trigger, this)
