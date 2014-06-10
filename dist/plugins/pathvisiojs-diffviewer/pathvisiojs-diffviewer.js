@@ -58,13 +58,19 @@
       }
     })
 
+    pvjs.on('destroy.pvjs', function(){
+      pvjs2.destroy()
+      $pvjsElement.insertBefore($diffviewer)
+      $diffviewer.remove()
+    })
+
     pvjs2.render()
   }
 
   function displayChanges(pvjs, pvjs2, $paneCenter){
     var diff = calculateDiff(pvjs.getSourceData().pvjson, pvjs2.getSourceData().pvjson)
     // Append changes container
-    $paneCenter.append($('#changes'))
+    $paneCenter.append($('#changes').clone().attr('id', 'changes-clone'))
 
     // Add changes to container
     var $containerAdded = $paneCenter.find('[data-type=added]').children('.changes-list').first()
