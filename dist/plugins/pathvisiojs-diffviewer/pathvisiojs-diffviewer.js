@@ -153,7 +153,7 @@
         } else if (type === 'updated') {
           colors.fill = colors.stroke = '#fef090'
         } else if (type === 'removed') {
-          colors.fill = colors.stroke = '#f9cd96'
+          colors.fill = colors.stroke = '#fcaa43'
         }
 
         hi.attenuate(null)
