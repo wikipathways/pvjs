@@ -116,6 +116,25 @@
 
   function displayChanges(pvjs, pvjs2, $paneCenter){
     var diff = calculateDiff(pvjs.getSourceData().pvjson, pvjs2.getSourceData().pvjson)
+      , elementsOld = pvjs.getSourceData().pvjson.elements
+      , elementsNew = pvjs2.getSourceData().pvjson.elements
+      , elementsMix = pvjs2.getSourceData().pvjson.elements
+
+    // Add old elements that does not exist in new
+    var elementFound = false;
+    for (e in elementsOld) {
+      elementFound = false
+      for (e2 in elementsMix) {
+        if (elementsMix[e2].id === elementsOld[e].id) {
+          elementsFound = true
+        }
+      }
+
+      if (!elementsFound) {
+        elemetsMix.push(elementsOld[e])
+      }
+    }
+
     // Append changes container
     $paneCenter.append($('#changes').clone().attr('id', 'changes-clone'))
 
@@ -124,9 +143,9 @@
       , $containerUpdated = $paneCenter.find('[data-type=updated]').children('.changes-list').first()
       , $containerRemoved = $paneCenter.find('[data-type=removed]').children('.changes-list').first()
 
-    parseAndRenderChanges(diff.added, $containerAdded, 'added')
-    parseAndRenderChanges(diff.removed, $containerRemoved, 'removed')
-    parseAndRenderChanges(diff.updated, $containerUpdated, 'updated')
+    parseAndRenderChanges(diff.added, $containerAdded, 'added', elementsNew)
+    parseAndRenderChanges(diff.removed, $containerRemoved, 'removed', elementsOld)
+    parseAndRenderChanges(diff.updated, $containerUpdated, 'updated', elementsMix)
 
     // Events
     var hi = pathvisiojsHighlighter(pvjs, {displayInputField: false})
@@ -212,7 +231,7 @@
     })
   }
 
-  function parseAndRenderChanges(list, $containerParent, type) {
+  function parseAndRenderChanges(list, $containerParent, type, elementsList) {
     if (list.length === 0) return;
 
     // Sort by nodeType and shape
@@ -264,11 +283,11 @@
 
       // Sort ingroup
       addedGroups[g] = addedGroups[g].sort(function(a, b){
-        return getAddTitle(a).toLowerCase() > getAddTitle(b).toLowerCase() ? 1 : -1
+        return getAddTitle(a, elementsList).toLowerCase() > getAddTitle(b, elementsList).toLowerCase() ? 1 : -1
       })
 
       for (e in addedGroups[g]) {
-        title = getAddTitle(addedGroups[g][e])
+        title = getAddTitle(addedGroups[g][e], elementsList)
 
         $elementContainer = $('<div class="changes-container" data-level="3"/>').appendTo($containerList)
         $elementTitle = $('<div class="changes-title change-' + type + '"><span>' + title + '</span></div>').appendTo($elementContainer)
@@ -376,9 +395,10 @@
          || Object.prototype.toString.apply('') === Object.prototype.toString.apply(obj))
   }
 
-  function getAddTitle(obj) {
+  function getAddTitle(obj, list) {
     if (obj.gpmlType === 'Interaction') {
-      return 'from ' + obj.points[0].isAttachedTo + ' to ' + obj.points[1].isAttachedTo
+      // console.log(findTitleById(obj.points[0].isAttachedTo, list))
+      return '' + findTitleById(obj.points[0].isAttachedTo, list) + ' - ' + findTitleById(obj.points[1].isAttachedTo)
     } else if (obj.gpmlType === 'DataNode') {
       return obj.textContent
     } else if (obj.nodeType === 'Label') {
@@ -388,6 +408,26 @@
     }
 
     return 'no title'
+  }
+
+  function findTitleById(id, list) {
+    if (typeof id == 'undefined') {
+      return 'Unknown'
+    }
+
+    for (l in list) {
+      if (list[l].id != null && id === list[l].id) {
+        // Check if is not interaction to avoid circular recursion
+        if (list[l].gpmlType === 'Interaction') {
+          return 'Interaction ' + id
+        } else {
+          // console.log(id, getAddTitle(list[l], list))
+          return getAddTitle(list[l], list)
+        }
+      }
+    }
+
+    return id;
   }
 
   /**
