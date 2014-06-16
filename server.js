@@ -15,7 +15,7 @@ app.use(function(req, res, next) {
   next();    
 });
 
-var testDir = __dirname;
+var testDir = __dirname + '/test';
 
 app.configure(function() {
   app.set('port', process.env.PORT || 3000);
@@ -46,7 +46,7 @@ var server = http.createServer(app);
 reload(server, app);
 
 server.listen(app.get('port'), function(){
-  console.log("Web server listening in %s on port %d", colors.red(process.env.NODE_ENV), app.get('port'));
+  console.log("Testing web server listening in %s at http://localhost:%d", colors.red(process.env.NODE_ENV), app.get('port'));
 });
 
 

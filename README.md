@@ -88,14 +88,14 @@ First install [Node.js](http://nodejs.org/).
 
 Install grunt and bower `npm install -g grunt-cli bower`.
 
-Than in console `cd` into project folder and install all necessar plugins:
+Than in console `cd` into project folder and install all necessary plugins:
 
 ```
 npm install
 bower install
 ```
 
-D. Make Awesome Updates
+D. Make Updates
 
 You can edit any of the files in the [src directory](https://github.com/wikipathways/pathvisiojs/tree/master/src):
 
@@ -103,7 +103,7 @@ You can edit any of the files in the [src directory](https://github.com/wikipath
 $ cd ~/Sites/pathvisiojs/src/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
-To view your changes as you edit you have to run `grunt dev` in console. To test your changes you can use the functionalities in the [test directory](https://github.com/wikipathways/pathvisiojs/tree/master/test):
+To view your changes as you edit you have to run `grunt dev` in console and navigate your browser to [http://localhost:3000](http://localhost:3000):
 
 ```
 $ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer

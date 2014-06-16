@@ -89,6 +89,12 @@ var gruntConfig = {
   },
   concurrent: {
     'test-protocol': [], // dynamically filled
+    dev: {
+      tasks: ['nodemon', 'watch:browserify'],
+      options: {
+        logConcurrentOutput: true
+      }
+    }
   },
   copy: {
     crossplatformshapes: {
@@ -146,6 +152,11 @@ var gruntConfig = {
         jshintrc: 'test/.jshintrc'
       },                
       src: ['test/**/*.js']
+    }
+  },
+  nodemon: {
+    dev: {
+      script: 'server.js'
     }
   },
   pkg: npmPackageFile,
@@ -289,7 +300,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages'])
 
   // Live development
-  grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'watch:browserify'])
+  grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'concurrent:dev'])
 
   // Default task
   grunt.registerTask('default', ['dev']);
