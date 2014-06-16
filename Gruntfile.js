@@ -90,7 +90,7 @@ var gruntConfig = {
   concurrent: {
     'test-protocol': [], // dynamically filled
     dev: {
-      tasks: ['nodemon', 'watch:browserify'],
+      tasks: ['exec:selenium', 'nodemon', 'watch:browserify'],
       options: {
         logConcurrentOutput: true
       }
@@ -130,6 +130,9 @@ var gruntConfig = {
   },
   env: {
     // dynamically filled
+  },
+  exec: {
+    selenium: 'webdriver-manager start'
   },
   "git-describe": {
     build: {
