@@ -103,7 +103,7 @@ You can edit any of the files in the [src directory](https://github.com/wikipath
 $ cd ~/Sites/pathvisiojs/src/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
-To view your changes as you edit you have to run `grunt dev` in console and navigate your browser to [http://localhost:3000](http://localhost:3000):
+To view your changes as you edit you have to run `grunt dev` in console and navigate your browser to [http://localhost:3000/test/](http://localhost:3000/test/):
 
 ```
 $ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
