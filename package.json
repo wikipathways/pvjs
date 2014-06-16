@@ -64,7 +64,8 @@
     "reload": "~0.1.0",
     "wd": "latest",
     "browserify": "~4.1.10",
-    "grunt-nodemon": "~0.2.1"
+    "grunt-nodemon": "~0.2.1",
+    "grunt-exec": "~0.4.5"
   },
   "dependencies": {}
 }
