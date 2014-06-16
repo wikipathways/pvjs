@@ -129,8 +129,8 @@
     parseAndRenderChanges(diff.updated, $containerUpdated, 'updated')
 
     // Events
-    var hi = pathvisiojsHighlighter(pvjs)
-      , hi2 = pathvisiojsHighlighter(pvjs2)
+    var hi = pathvisiojsHighlighter(pvjs, {displayInputField: false})
+      , hi2 = pathvisiojsHighlighter(pvjs2, {displayInputField: false})
     $paneCenter.on('click', '.changes-title', function(ev){
       var $this = $(this)
       if (!$this.parent().hasClass('active')) {
@@ -196,7 +196,7 @@
       } else if (listSorted[d].nodeType === 'DataNode') {
         groupName = listSorted[d].nodeType + 's'
       } else if (listSorted[d].nodeType !== 'GroupNode') {
-        groupName = 'Graphycal Objects'
+        groupName = 'Graphical Objects'
       } else {
         // Skip GroupNode
         continue
