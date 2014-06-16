@@ -220,6 +220,11 @@
       $containerTitle = $('<div class="changes-title changes-parent change-' + type + '"><span>' + g + '</span></div>').appendTo($container)
       $containerList = $('<div class="changes-list" />').appendTo($container)
 
+      // Sort ingroup
+      addedGroups[g] = addedGroups[g].sort(function(a, b){
+        return getAddTitle(a).toLowerCase() > getAddTitle(b).toLowerCase() ? 1 : -1
+      })
+
       for (e in addedGroups[g]) {
         title = getAddTitle(addedGroups[g][e])
 
