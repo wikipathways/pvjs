@@ -1,10 +1,15 @@
 var wd = require('wd')
+  , imageDiff = require('image-diff')
   ;
 
 require('colors');
 var _ = require("lodash");
 var chai = require("chai");
 var chaiAsPromised = require("chai-as-promised");
+
+var desired = JSON.parse(process.env.DESIRED || '{"browserName": "chrome"}');
+desired.name = 'example with ' + desired.browserName;
+desired.tags = ['tutorial'];
 
 chai.use(chaiAsPromised);
 chai.should();
@@ -57,10 +62,48 @@ describe('dev', function() {
     it("should render the 'one of each' test page", function(done) {
         browser
             .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/data/one-of-each.gpml")
-            .title()
-            .should.become("Pathvisiojs Simple Built Production Example")
+            //.title()
+            //.should.become("Pathvisiojs Simple Built Production Example")
             .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
+            .saveScreenshot('tmp/one-of-each-' + desired.browserName + '-test.png')
             .nodeify(done);
     });
 
+    it("should get the difference between screenshots from test and last known good", function(done) {
+        imageDiff({
+          actualImage: 'tmp/one-of-each-' + desired.browserName + '-test.png',
+          expectedImage: 'tmp/one-of-each-' + desired.browserName + '-lkg.png',
+          diffImage: 'tmp/one-of-each-' + desired.browserName + '-difference.png',
+        }, function (err, imagesAreSame) {
+          console.log('Screenshots are exactly the same: ' + imagesAreSame);
+          done();
+          // error will be any errors that occurred
+          // imagesAreSame is a boolean whether the images were the same or not
+          // diffImage will have an image which highlights differences
+        });
+    });
+
+    /*
+    it("should get the WP1 widget page on the test site", function(done) {
+        browser
+            .get("http://test2.wikipathways.org/wpi/PathwayWidget.php?id=WP1")
+            .title()
+            .should.become("WikiPathways Pathway Viewer")
+            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
+            .saveScreenshot('tmp/WP1-' + desired.browserName + '-test.png')
+            .nodeify(done);
+    });
+
+    it("should get the WP1 widget page on the production site", function(done) {
+        browser
+            .get("http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1")
+            .title()
+            .should.become("WikiPathways Pathway Viewer")
+            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
+            .saveScreenshot('tmp/WP1-' + desired.browserName + '-production.png')
+            .nodeify(done);
+    });
+
+
+    //*/
 });

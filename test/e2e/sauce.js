@@ -27,7 +27,7 @@ wd.configureHttp( {
     retries: 5
 });
 
-var desired = JSON.parse(process.env.DESIRED || '{browserName: "chrome"}');
+var desired = JSON.parse(process.env.DESIRED || '{"browserName": "chrome"}');
 desired.name = 'example with ' + desired.browserName;
 desired.tags = ['full-protocol'];
 
@@ -85,13 +85,13 @@ describe('full-protocol (' + desired.browserName + ')', function() {
             .nodeify(done);
     });
 
-    /*
+    //*
     it("should get the WP1 widget page on the test site", function(done) {
         browser
             .get("http://test2.wikipathways.org/wpi/PathwayWidget.php?id=WP1")
             .title()
             .should.become("WikiPathways Pathway Viewer")
-            .waitForElementById("pathwayImage", wd.asserters.isDisplayed, 20000)
+            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
             .saveScreenshot('tmp/WP1-' + desired.browserName + '-test.png')
             .nodeify(done);
     });
@@ -101,7 +101,7 @@ describe('full-protocol (' + desired.browserName + ')', function() {
             .get("http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1")
             .title()
             .should.become("WikiPathways Pathway Viewer")
-            .waitForElementById("pathwayImage", wd.asserters.isDisplayed, 20000)
+            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
             .saveScreenshot('tmp/WP1-' + desired.browserName + '-production.png')
             .nodeify(done);
     });
