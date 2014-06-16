@@ -253,8 +253,7 @@ var gruntConfig = {
   watch: {
     browserify: {
       files: ['./src/**/*.js'],
-      //tasks: ['browserify:dev', 'jshint:beforeconcat', 'simplemocha:dev'],
-      tasks: ['browserify:dev', 'simplemocha:dev'],
+      tasks: ['browserify:dev', 'jshint:beforeconcat', 'simplemocha:dev'],
       options: {
         livereload: true
       }
