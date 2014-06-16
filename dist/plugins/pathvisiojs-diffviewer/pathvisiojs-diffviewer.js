@@ -166,8 +166,88 @@
         }
 
         console.log(this.pvjsonElement)
+      } else if ($this.parent().data('level') === 2) {
+        var type = $this.parent().closest('.changes-container[data-level=1]').data('type')
+          , colors = {}
+
+        if (type === 'added') {
+          colors.fill = colors.stroke = '#c2ce7f'
+        } else if (type === 'updated') {
+          colors.fill = colors.stroke = '#fef090'
+        } else if (type === 'removed') {
+          colors.fill = colors.stroke = '#fcaa43'
+        }
+
+        hi.attenuate(null)
+        hi2.attenuate(null)
+
+        // Find all children
+        var $changesTitles = $this.siblings('.changes-list').find('.changes-title')
+        $changesTitles.each(function(index){
+          if (type === 'removed' || type === 'updated') {
+            hi.highlight('#' + this.pvjsonElement.id, null, colors)
+          }
+          if (type === 'updated' || type === 'added') {
+            hi2.highlight('#' + this.pvjsonElement.id, null, colors)
+          }
+        })
+      } else if ($this.parent().data('level') === 1) {
+        var type = $this.parent().closest('.changes-container[data-level=1]').data('type')
+          , colors = {}
+
+        if (type === 'added') {
+          colors.fill = colors.stroke = '#c2ce7f'
+        } else if (type === 'updated') {
+          colors.fill = colors.stroke = '#fef090'
+        } else if (type === 'removed') {
+          colors.fill = colors.stroke = '#fcaa43'
+        }
+
+        hi.attenuate(null)
+        hi2.attenuate(null)
+
+        // Find all children
+        var $changesTitles = $this.siblings('.changes-list').find('.changes-container[data-level=3] .changes-title')
+        $changesTitles.each(function(index){
+          if (type === 'removed' || type === 'updated') {
+            hi.highlight('#' + this.pvjsonElement.id, null, colors)
+          }
+          if (type === 'updated' || type === 'added') {
+            hi2.highlight('#' + this.pvjsonElement.id, null, colors)
+          }
+        })
+      } else if ($this.parent().data('level') === 0) {
+        hi.attenuate(null)
+        hi2.attenuate(null)
+        $this.closest('.changes-list').children('.changes-container[data-level=1]').each(function(index){
+          $_this = $(this)
+          var type = $_this.data('type')
+            , colors = {}
+
+          if (type === 'added') {
+            colors.fill = colors.stroke = '#c2ce7f'
+          } else if (type === 'updated') {
+            colors.fill = colors.stroke = '#fef090'
+          } else if (type === 'removed') {
+            colors.fill = colors.stroke = '#fcaa43'
+          }
+
+
+          // Find all children
+          var $changesTitles = $_this.children('.changes-list').find('.changes-container[data-level=3] .changes-title')
+          $changesTitles.each(function(index){
+            if (type === 'removed' || type === 'updated') {
+              hi.highlight('#' + this.pvjsonElement.id, null, colors)
+            }
+            if (type === 'updated' || type === 'added') {
+              hi2.highlight('#' + this.pvjsonElement.id, null, colors)
+            }
+          })
+        })
       }
     })
+
+    $paneCenter.find('.changes-container.active > .changes-title').click().click() // activate first one
   }
 
   function parseAndRenderChanges(list, $containerParent, type) {
