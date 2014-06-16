@@ -90,7 +90,7 @@ var gruntConfig = {
   concurrent: {
     'test-protocol': [], // dynamically filled
     dev: {
-      tasks: ['exec:selenium', 'nodemon', 'watch:browserify'],
+      tasks: ['exec:selenium', 'nodemon', 'watch:browserify', 'watch:test'],
       options: {
         logConcurrentOutput: true
       }
@@ -153,7 +153,7 @@ var gruntConfig = {
     test: {
       options: {
         jshintrc: 'test/.jshintrc'
-      },                
+      },
       src: ['test/**/*.js']
     }
   },
@@ -207,7 +207,7 @@ var gruntConfig = {
   simplemocha: {
     dev: { // you need to start selenium locally for this to work: webdriver-manager start
       options: {
-        timeout: 6000,
+        timeout: 10000,
         reporter: 'spec'
       },
       src: ['test/e2e/dev.js']
@@ -219,7 +219,7 @@ var gruntConfig = {
       },
       src: ['test/e2e/sauce.js']
     }
-  },    
+  },
   uglify: {
     options: {
       mangle: true
@@ -253,7 +253,8 @@ var gruntConfig = {
   watch: {
     browserify: {
       files: ['./src/**/*.js'],
-      tasks: ['browserify:dev', 'test-dev'],
+      //tasks: ['browserify:dev', 'jshint:beforeconcat', 'simplemocha:dev'],
+      tasks: ['browserify:dev', 'simplemocha:dev'],
       options: {
         livereload: true
       }
@@ -270,7 +271,7 @@ var gruntConfig = {
 };
  
 _(desireds).each(function(desired, key) {
-  gruntConfig.env[key] = { 
+  gruntConfig.env[key] = {
     DESIRED: JSON.stringify(desired)
   };
   gruntConfig.concurrent['test-protocol'].push('test:protocol:' + key);
@@ -290,20 +291,19 @@ module.exports = function(grunt) {
     grunt.registerTask('test:protocol:' + key, ['env:' + key, 'simplemocha:protocol']);
   });
 
-  grunt.registerTask('test-dev', ['simplemocha:dev']);
   grunt.registerTask('test:protocol:parallel', ['concurrent:test-protocol']);
 
   // Build
   grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:crossplatformshapes', 'copy:crossplatformtext']);
 
   // Build, create and publish to test server. Run extensive tests.
-  grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'copy:pagesTest', 'replace:pages', 'replace:pagesTest', 'rsync:test', 'clean:pages'])
+  grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'copy:pagesTest', 'replace:pages', 'replace:pagesTest', 'rsync:test', 'clean:pages']);
 
   // Build, create and publish gh-pages
-  grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages'])
+  grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages']);
 
   // Live development
-  grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'concurrent:dev'])
+  grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'concurrent:dev']);
 
   // Default task
   grunt.registerTask('default', ['dev']);
