@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO Some of this code can be removed now that we are using lodash and jquery (in browser environment; Cheerio if in Node.js environment)
+
 var _ = require('lodash')
   , Async = require('async')
   , Strcase = require('./../../lib/strcase/index.js')
