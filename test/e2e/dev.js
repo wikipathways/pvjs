@@ -72,7 +72,7 @@ describe('dev', function() {
     it("should get the difference between screenshots from test and last known good", function(done) {
         imageDiff({
           actualImage: 'tmp/one-of-each-' + desired.browserName + '-test.png',
-          expectedImage: 'tmp/one-of-each-' + desired.browserName + '-lkg.png',
+          expectedImage: 'test/one-of-each-' + desired.browserName + '-lkg.png.png',
           diffImage: 'tmp/one-of-each-' + desired.browserName + '-difference.png',
         }, function (err, imagesAreSame) {
           console.log('Screenshots are exactly the same: ' + imagesAreSame);

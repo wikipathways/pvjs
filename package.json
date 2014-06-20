@@ -67,5 +67,7 @@
     "grunt-nodemon": "~0.2.1",
     "grunt-exec": "~0.4.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gpml2json": "wikipathways/gpml2json"
+  }
 }
