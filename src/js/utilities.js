@@ -320,6 +320,7 @@ var Utils = {
         function(callbackInner) {
           if (!$) {
             // TODO jQuery is required. Can we get rid of this?
+            // Yes. -AR
             Utils.loadScripts(['http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'], function() {
               callbackInner(null);
             });
@@ -330,9 +331,8 @@ var Utils = {
         },
         function(callbackInner) {
           $.get( uri, function( xmlDoc ) {
-            var xml = xmlDoc.documentElement;
-            callback(xml);
-            callbackInner(null);
+            var xmlSelection = $(xmlDoc.documentElement);
+            callback(xmlSelection);
           }, 'xml');
         }
       ]);

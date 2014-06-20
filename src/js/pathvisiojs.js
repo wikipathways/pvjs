@@ -3,7 +3,6 @@ var _ = require('lodash')
   , Utils = require('./utilities')
   , Renderer = require('./renderer/renderer')
   , FormatConverter = require('./format-converter/format-converter')
-  , Gpml2Json = require('gpml2json')
   ;
 
 (function(window, $){
