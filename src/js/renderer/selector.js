@@ -27,8 +27,7 @@ function init(context, renderer) {
   var selector = Object.create(Selector)
   // If new selector is created without a predecessor, require renderer
   if (!renderer && (context === null || context === undefined || context.getRenderer === undefined)) {
-    throw new Error('Selector need either a base selector instance either a renderer')
-    return null
+    throw new Error('Selector need either a base selector instance either a renderer');
   }
 
   if (renderer) {
