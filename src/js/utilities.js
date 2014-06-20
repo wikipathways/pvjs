@@ -1,6 +1,6 @@
 'use strict';
 
-// TODO Some of this code can be removed now that we are using lodash and jquery (in browser environment; Cheerio if in Node.js environment)
+// TODO Some of this code can be removed now that we are using lodash and jquery (in browser environment / Cheerio if in Node.js environment).
 
 var _ = require('lodash')
   , Async = require('async')
@@ -206,8 +206,8 @@ var Utils = {
   }
 
 , isWikiPathwaysId: function(data) {
-    data = data.trim()
-    return data.substr(0,2).toUpperCase() === 'WP' && Utils.isNumber(data.substr(data.length - 1))
+    data = data.trim();
+    return data.substr(0,2).toUpperCase() === 'WP' && Utils.isNumber(data.substr(data.length - 1));
   }
 
   // TODO are we using this anymore?
@@ -222,7 +222,7 @@ var Utils = {
         } else {
           handler();
         }
-      }
+      };
       var head = document.getElementsByTagName('head')[0];
       (head || document.body).appendChild( script );
     };
@@ -286,32 +286,33 @@ var Utils = {
   }
 
 , addClassForD3: function($element, className) {
-    var elementClass = $element.attr('class') || ""
+    var elementClass = $element.attr('class') || '';
 
     // There are not classes at all
     if (elementClass.match(/[^\s]+/g) === null) {
-      $element.attr('class', className)
+      $element.attr('class', className);
     // Element has no such class
     } else if (elementClass.match(/[^\s]+/g).indexOf(className) === -1) {
-      $element.attr('class', elementClass + ' ' + className)
+      $element.attr('class', elementClass + ' ' + className);
     }
   }
 
 , removeClassForD3: function($element, className) {
-    var elementClass = $element.attr('class') || ""
+    var elementClass = $element.attr('class') || ''
       , classes = elementClass.match(/[^\s]+/g)
+      ;
 
     // Remove that class from list and join class name back
     if (classes !== null  && classes.indexOf(className) !== -1) {
-      classes = _.filter(classes, function(_class){return _class !== className})
-      $element.attr('class', classes.join(' '))
+      classes = _.filter(classes, function(_class){return _class !== className;});
+      $element.attr('class', classes.join(' '));
     }
   }
 
 , proxy: function(fn, context) {
     return function() {
-      fn.apply(context, arguments)
-    }
+      fn.apply(context, arguments);
+    };
   }
 
 , loadXmlFromUri: function(uri, callback) {
@@ -369,6 +370,6 @@ var Utils = {
       o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
     );
   }
-}
+};
 
-module.exports = Utils
+module.exports = Utils;

@@ -8,7 +8,7 @@
   "undef": true,
   "unused": false,
   "laxcomma": true,
-  "asi": false,
+  "asi": true,
   "-W097": false,
 
   "globals": {

@@ -23,6 +23,7 @@ var specFileName;
 
 var gruntConfig = {
   browserify: {
+    exclude: 'cheerio',
     dev: {
       files: {
         'dist/lib/pathvisiojs/js/pathvisiojs.js': srcDir + 'pathvisiojs.js'
