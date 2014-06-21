@@ -75,7 +75,7 @@ function initStyles(renderer) {
 function render(renderer, pvjsonElement) {
   var shape, text
 
-  if (pvjsonElement.shape !== 'none') {
+  if (!!pvjsonElement.shape && pvjsonElement.shape !== 'none') {
     shape = renderShape(renderer, pvjsonElement)
   }
   if (!!pvjsonElement.textContent) {
