@@ -259,6 +259,13 @@ var gruntConfig = {
         livereload: true
       }
     },
+    browserifyLight: {
+      files: ['./src/**/*.js'],
+      tasks: ['browserify:dev'],
+      options: {
+        livereload: true
+      }
+    },
     gruntfile: {
       files: '<%= jshint.gruntfile.src %>',
       tasks: ['jshint:gruntfile']
@@ -269,7 +276,7 @@ var gruntConfig = {
     },
   },
 };
- 
+
 _(desireds).each(function(desired, key) {
   gruntConfig.env[key] = {
     DESIRED: JSON.stringify(desired)
@@ -304,6 +311,9 @@ module.exports = function(grunt) {
 
   // Live development
   grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'concurrent:dev']);
+
+  // Lightweight live development
+  grunt.registerTask('dev-light', 'Live Browserify', ['browserify:dev', 'watch:browserifyLight']);
 
   // Default task
   grunt.registerTask('default', ['dev']);
