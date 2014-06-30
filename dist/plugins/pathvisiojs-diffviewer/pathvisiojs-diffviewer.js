@@ -210,11 +210,11 @@
     var colors = {}
 
     if (type === 'added') {
-      colors.fill = colors.stroke = '#c2ce7f'
+      colors.fill = colors.stroke = '#0E53A7'
     } else if (type === 'updated') {
-      colors.fill = colors.stroke = '#fef090'
+      colors.fill = colors.stroke = '#FFF700'
     } else if (type === 'removed') {
-      colors.fill = colors.stroke = '#fcaa43'
+      colors.fill = colors.stroke = '#F10026'
     }
 
     if (attenuate) {

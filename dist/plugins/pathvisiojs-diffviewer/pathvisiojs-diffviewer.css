@@ -123,7 +123,7 @@
 }
 
 .changes-title.change-all {
-  background: #8cb4c1;
+  background: #fff;
 }
 .changes-container.active > .changes-title.change-all:before,
 .changes-container.active > .changes-title.change-all:after {
@@ -131,14 +131,14 @@
 }
 
 .changes-title.change-added {
-  background: #c2ce7f;
+  background: #a6c0e1;
 }
 .changes-container.active > .changes-title.change-added:after {
   display: block;
 }
 
 .changes-title.change-updated {
-  background: #fef090; /*fedd90*/
+  background: #fefc96;
 }
 .changes-container.active > .changes-title.change-updated:before,
 .changes-container.active > .changes-title.change-updated:after {
@@ -146,7 +146,7 @@
 }
 
 .changes-title.change-removed {
-  background: #f9cd96;
+  background: #f9a4af;
 }
 .changes-container.active > .changes-title.change-removed:before {
   display: block;
