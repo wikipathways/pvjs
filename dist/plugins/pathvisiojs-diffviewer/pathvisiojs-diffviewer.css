@@ -1,0 +1,177 @@
+.pathvisiojs-diffviewer {
+  position: relative;
+  height: 500px;
+  border: 1px solid #000;
+}
+
+.pathvisiojs-diffviewer .pane {
+  float: left;
+  overflow: hidden;
+  width: 50%;
+  height: 500px;
+}
+
+.pathvisiojs-diffviewer .pane.pane-left {
+}
+
+.pathvisiojs-diffviewer .pane.pane-left .pane-inner {
+  margin-right: 120px;
+}
+
+
+.pathvisiojs-diffviewer .pane.pane-right {
+}
+
+.pathvisiojs-diffviewer .pane.pane-right .pane-inner {
+  margin-left: 120px;
+}
+
+.pathvisiojs-diffviewer .pane.pane-center {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 240px;
+  margin: 0 0 0 -120px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/**************
+  Changes Main
+ **************/
+
+.changes {
+  margin: 0 12px;
+  border-bottom: 1px solid #000;
+
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+.changes-container {
+}
+
+/**************
+  Changes Titles
+ **************/
+
+.changes-title {
+  padding: 5px 4px 3px;
+  border: 1px solid #000;
+  border-bottom: 0px;
+
+  font-size: 16px;
+}
+
+.changes-parent span {
+  position: relative;
+  display: inline-block;
+  padding: 0 0 0 13px;
+}
+
+.changes-parent span:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 0;
+  margin: -4px 0 0;
+  border-width: 6px 5px 0 5px;
+  border-color: #000 transparent transparent transparent;
+  border-style: solid;
+}
+
+.open > .changes-parent span:before {
+  border-width: 0 5px 6px 5px;
+  border-color: transparent transparent #000 transparent;
+}
+
+/* Nesting */
+.changes-container .changes-container .changes-title {
+  font-size: 14px;
+}
+.changes-container .changes-container .changes-container .changes-title {
+  padding-left: 10px;
+  font-size: 12px;
+}
+
+.changes-container.active > .changes-title {
+  position: relative;
+}
+.changes-container.active > .changes-title:before,
+.changes-container.active > .changes-title:after {
+  content: '';
+  display: none;
+  position: absolute;
+  top: 50%;
+  margin: -12px 0 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+.changes-container.active > .changes-title:before {
+  left: -12px;
+  border-right: 12px solid #000;
+}
+
+.changes-container.active > .changes-title:after {
+  right: -12px;
+  border-left: 12px solid #000;
+}
+
+.changes-title.change-all {
+  background: #8cb4c1;
+}
+.changes-container.active > .changes-title.change-all:before,
+.changes-container.active > .changes-title.change-all:after {
+  display: block;
+}
+
+.changes-title.change-added {
+  background: #c2ce7f;
+}
+.changes-container.active > .changes-title.change-added:after {
+  display: block;
+}
+
+.changes-title.change-updated {
+  background: #fef090; /*fedd90*/
+}
+.changes-container.active > .changes-title.change-updated:before,
+.changes-container.active > .changes-title.change-updated:after {
+  display: block;
+}
+
+.changes-title.change-removed {
+  background: #f9cd96;
+}
+.changes-container.active > .changes-title.change-removed:before {
+  display: block;
+}
+
+.changes-title.active {
+  position: relative;
+}
+.changes-title.active:before {
+  content: '';
+  position: absolute;
+}
+
+
+/**************
+  Changes List
+ **************/
+.changes-list {
+  display: none;
+}
+
+.changes.changes-list {
+  display: block;
+}
+
+.changes-container.open > .changes-list {
+  display: block;
+}
