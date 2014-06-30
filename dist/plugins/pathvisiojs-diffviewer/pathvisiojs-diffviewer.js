@@ -120,6 +120,8 @@
       , elementsNew = pvjs2.getSourceData().pvjson.elements
       , elementsMix = pvjs2.getSourceData().pvjson.elements
 
+    console.log(pvjs.getSourceData())
+
     // Add old elements that does not exist in new
     var elementFound = false;
     for (e in elementsOld) {
@@ -308,6 +310,16 @@
       , element
       , found
 
+    // TODO refactor
+    elements = elements.filter(function(e){
+      if (e.type == 'PublicationXref') return false;
+      return e.type == null || !/Reference$/.test(e.type)
+    })
+    elements2 = elements2.filter(function(e){
+      if (e.type == 'PublicationXref') return false;
+      return e.type == null || !/Reference$/.test(e.type)
+    })
+
     for (var i = elements.length - 1; i >= 0; i--) {
       element = elements[i]
       found = false
@@ -321,8 +333,8 @@
           if (calculateElementDiff(elements[i], elements2[j])) {
             diff.updated.push({
               id: elements2[j].id
-            , gpmlType: elements2[j].gpmlType || elements[i].gpmlType || undefined
-            , nodeType: elements2[j].nodeType || elements[i].nodeType || undefined
+            , 'gpml:element': elements2[j]['gpml:element'] || elements[i]['gpml:element'] || undefined
+            , type: elements2[j].type || elements[i].type || undefined
             , shape: elements2[j].shape || elements[i].shape || undefined
             , textContent: elements2[j].textContent || elements[i].textContent || undefined
             , points: elements2[j].points || elements[i].points || undefined
@@ -396,14 +408,14 @@
   }
 
   function getAddTitle(obj, list) {
-    if (obj.gpmlType === 'Interaction') {
+    if (obj['gpml:element'] === 'gpml:Interaction') {
       // console.log(findTitleById(obj.points[0].isAttachedTo, list))
       return '' + findTitleById(obj.points[0].isAttachedTo, list) + ' - ' + findTitleById(obj.points[1].isAttachedTo)
-    } else if (obj.gpmlType === 'DataNode') {
+    } else if (obj['gpml:element'] === 'gpml:DataNode') {
       return obj.textContent
-    } else if (obj.nodeType === 'Label') {
+    } else if (obj['gpml:element'] === 'gpml:Label') {
       return obj.textContent
-    } else if (obj.nodeType === 'Shape') {
+    } else if (obj['gpml:element'] === 'gpml:Shape') {
       return obj.shape + ' ' + obj.id
     }
 
@@ -418,7 +430,7 @@
     for (l in list) {
       if (list[l].id != null && id === list[l].id) {
         // Check if is not interaction to avoid circular recursion
-        if (list[l].gpmlType === 'Interaction') {
+        if (list[l]['gpml:element'] === 'gpml:Interaction') {
           return 'Interaction ' + id
         } else {
           // console.log(id, getAddTitle(list[l], list))

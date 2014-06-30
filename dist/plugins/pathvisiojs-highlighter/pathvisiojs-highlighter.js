@@ -138,7 +138,6 @@
             }
           })
     }
-    console.log(searcheableValues)
     return searcheableValues
   }
 
@@ -219,8 +218,11 @@
       d3Selector = d3Selectors.join(', ')
     }
 
-    if (!d3Selector) return null
-    else return highlighter.pvjs.$element.selectAll(d3Selector)
+    if (!d3Selector) {
+      return null
+    } else {
+      return highlighter.pvjs.$element.selectAll(d3Selector)
+    }
   }
 
   /**
