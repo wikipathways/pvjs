@@ -124,10 +124,11 @@
 
     if (pvjson && pvjson.elements) {
       pvjson.elements
-        .filter(function(element) {return element.gpmlType === 'DataNode' || element.gpmlType === 'Label'})
+        .filter(function(element) {return element['gpml:element'] === 'gpml:DataNode' || element['gpml:element'] === 'gpml:Label'})
           .forEach(function(node) {
             if (node.hasOwnProperty('textContent')) {
-              var text = node.textContent.replace('&#xA;', ' ').replace("\n", ' ')
+
+              var text = node.textContent.replace(/\n/g, ' ')
               searcheableValues.push({
                 val: text
               , valLower: text.toLowerCase()
@@ -137,6 +138,7 @@
             }
           })
     }
+    console.log(searcheableValues)
     return searcheableValues
   }
 
