@@ -182,6 +182,28 @@ RendererSvg.removeElement = function(pvjsonElement) {
 }
 
 /**
+ * Returns element rendered style
+ *
+ * @param  {object} pvjsonElement
+ * @param  {string} styleName
+ * @return {string|number}
+ */
+RendererSvg.getElementStyle = function(pvjsonElement, styleName) {
+  // TODO
+}
+
+/**
+ * Updates element rendered style
+ *
+ * @param {object} pvjsonElement
+ * @param {string} styleName
+ * @param {string|number} styleValue
+ */
+RendererSvg.setElementStyle = function(pvjsonElement, styleName, styleValue) {
+  // TODO
+}
+
+/**
  * Return element bounding box (height, width, left, right, top, bottom)
  * @return {object} BBox
  */

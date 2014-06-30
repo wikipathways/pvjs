@@ -130,6 +130,7 @@ Listening on events without a namespace will run hooks event if an event with na
 In order to prevent running unwanted hooks it is better to namespace all events triggers and listeners.
 
 List of available events through application (custom events may be added at any time):
+* destroy.pvjs
 * error.sourceData
 * error.pvjson
 * error.renderer
