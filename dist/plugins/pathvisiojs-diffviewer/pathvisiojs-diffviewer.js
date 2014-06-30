@@ -120,8 +120,6 @@
       , elementsNew = pvjs2.getSourceData().pvjson.elements
       , elementsMix = pvjs2.getSourceData().pvjson.elements
 
-    console.log(pvjs.getSourceData())
-
     // Add old elements that does not exist in new
     var elementFound = false;
     for (e in elementsOld) {
@@ -236,29 +234,28 @@
   function parseAndRenderChanges(list, $containerParent, type, elementsList) {
     if (list.length === 0) return;
 
-    // Sort by nodeType and shape
+    // Sort by gpml:element and shape
     listSorted = list.sort(function(a, b){
-      if (a.nodeType === b.nodeType) {
+      if (a['gpml:element'] === b['gpml:element']) {
         return a.shape > b.shape ? 1 : -1
       }
-      if (a.nodeType === undefined) return -1
-      if (b.nodeType === undefined) return 1
-      return a.nodeType > b.nodeType ? 1 : -1
+      if (a['gpml:element'] === undefined) return -1
+      if (b['gpml:element'] === undefined) return 1
+      return a['gpml:element'] > b['gpml:element'] ? 1 : -1
     })
 
     // Group only visible elements
     var addedGroups = {}
       , groupName = ''
+      , elementType = ''
     for (d in listSorted) {
-      if (listSorted[d].nodeType === undefined){
-        if (listSorted[d].shape !== 'none') {
-          groupName = 'Interactions'
-        } else {
-          continue;
-        }
-      } else if (listSorted[d].nodeType === 'DataNode') {
-        groupName = listSorted[d].nodeType + 's'
-      } else if (listSorted[d].nodeType !== 'GroupNode') {
+      elementType = listSorted[d]['gpml:element'].replace(/^gpml\:/, '') || '';
+
+      if (elementType === 'Interaction') {
+        groupName = 'Interactions'
+      } else if (elementType === 'DataNode') {
+        groupName = 'Data Nodes'
+      } else if (elementType !== 'GroupNode') {
         groupName = 'Graphical Objects'
       } else {
         // Skip GroupNode

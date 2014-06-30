@@ -122,14 +122,6 @@
   border-left: 12px solid #000;
 }
 
-.changes-title.change-all {
-  background: #fff;
-}
-.changes-container.active > .changes-title.change-all:before,
-.changes-container.active > .changes-title.change-all:after {
-  display: block;
-}
-
 .changes-title.change-added {
   background: #a6c0e1;
 }
