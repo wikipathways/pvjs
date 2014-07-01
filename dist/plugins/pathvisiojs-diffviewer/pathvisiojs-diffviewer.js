@@ -181,23 +181,18 @@
         var $changesTitles = $this.siblings('.changes-list').find('.changes-container[data-level=3] .changes-title')
 
         highlightChanges($changesTitles, type, hi, hi2)
-      } else if ($this.parent().data('level') === 0) {
-        hi.attenuate(null)
-        hi2.attenuate(null)
-
-        $this.closest('.changes-list').children('.changes-container[data-level=1]').each(function(index){
-          $_this = $(this)
-          var type = $_this.data('type')
-
-          // Find all children
-          var $changesTitles = $_this.children('.changes-list').find('.changes-container[data-level=3] .changes-title')
-
-          highlightChanges($changesTitles, type, hi, hi2, false)
-        })
       }
     })
 
-    $paneCenter.find('.changes-container.active > .changes-title').click().click() // activate first one
+    // At the beginning highlight all parent nodes
+    $paneCenter.find('.changes-container[data-level=1]').each(function(index, element){
+      var $this = $(this)
+        , type = $this.data('type')
+        // Find all children
+        , $changesTitles = $this.children('.changes-list').find('.changes-container[data-level=3] .changes-title')
+
+      highlightChanges($changesTitles, type, hi, hi2, false)
+    })
   }
 
   function highlightChanges($changes, type, hi, hi2, attenuate) {
