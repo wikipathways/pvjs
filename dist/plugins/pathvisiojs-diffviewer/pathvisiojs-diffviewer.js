@@ -284,10 +284,47 @@
         title = getAddTitle(addedGroups[g][e], elementsList)
 
         $elementContainer = $('<div class="changes-container" data-level="3"/>').appendTo($containerList)
-        $elementTitle = $('<div class="changes-title change-' + type + '"><span>' + title + '</span></div>').appendTo($elementContainer)
+        $elementTitle = $('<div class="changes-title change-' + type + '"></div>').appendTo($elementContainer)
+        $title = $('<span>' + title + '</span>').appendTo($elementTitle)
+        if (type === 'updated') {
+          $changes = $('<ul class="element-changes"></ul>')
+
+          titles = getUpdateTitles(addedGroups[g][e].diff)
+          for (title in titles) {
+            $changes.append('<li>' + titles[title] + '</li>')
+          }
+
+          $changes.appendTo($elementTitle)
+        }
         $elementTitle[0].pvjsonElement = addedGroups[g][e]
       }
     }
+  }
+
+  function getUpdateTitles(diff) {
+    var titles = []
+      , floatKeys = ['width', 'height', 'x', 'y', 'rotation']
+      , oldValue = ''
+      , newValue = ''
+
+    for (u in diff.added) {
+      titles.push('Added <strong>' + diff.added[u].key + '</strong>')
+    }
+    for (u in diff.removed) {
+      titles.push('Removed <strong>' + diff.removed[u].key + '</strong>')
+    }
+    for (u in diff.updated) {
+      if (floatKeys.indexOf(diff.updated[u].key) !== -1) {
+        oldValue = Math.round(parseFloat(diff.updated[u].old)*100)/100
+        newValue = Math.round(parseFloat(diff.updated[u].value)*100)/100
+      } else {
+        oldValue = diff.updated[u].old
+        newValue = diff.updated[u].value
+      }
+      titles.push('<strong>' + diff.updated[u].key + ':</strong> ' + oldValue + ' -> ' + newValue)
+    }
+
+    return titles
   }
 
   function calculateDiff(pvjson, pvjson2) {
@@ -330,6 +367,7 @@
             , shape: elements2[j].shape || elements[i].shape || undefined
             , textContent: elements2[j].textContent || elements[i].textContent || undefined
             , points: elements2[j].points || elements[i].points || undefined
+            , diff: calculateElementDiff(elements[i], elements2[j])
             , _element: elements[i]
             , _element2: elements2[j]
             })

@@ -169,3 +169,19 @@
 .changes-container.open > .changes-list {
   display: block;
 }
+
+/**************
+  Changes List
+ **************/
+/*.changes-title.active*/
+.changes-title > .element-changes {
+  display: none;
+}
+
+.active > .changes-title > .element-changes {
+  display: block;
+  margin: 0;
+  padding: 4px 0 4px;
+  line-height: 1.4;
+  list-style: none;
+}
