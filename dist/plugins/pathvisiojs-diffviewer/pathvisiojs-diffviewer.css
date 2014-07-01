@@ -73,18 +73,20 @@
   content: '';
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 3px;
   width: 0;
   height: 0;
-  margin: -4px 0 0;
-  border-width: 6px 5px 0 5px;
-  border-color: #000 transparent transparent transparent;
+  margin: -6px 0 0;
+  border-width: 5px 0 5px 6px;
+  border-color: transparent transparent transparent #000;
   border-style: solid;
 }
 
 .open > .changes-parent span:before {
-  border-width: 0 5px 6px 5px;
-  border-color: transparent transparent #000 transparent;
+  left: 0;
+  margin-top: -4px;
+  border-width: 6px 5px 0 5px;
+  border-color: #000 transparent transparent transparent;
 }
 
 /* Nesting */
