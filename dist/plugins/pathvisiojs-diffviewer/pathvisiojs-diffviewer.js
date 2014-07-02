@@ -391,8 +391,8 @@
     // All not matched elements from second list are new
     diff.added = elements2.slice()
 
-    console.log(pvjson, pvjson2)
-    console.log(diff)
+    // console.log(pvjson, pvjson2)
+    // console.log(diff)
     return diff
   }
 
@@ -439,8 +439,7 @@
 
   function getAddTitle(obj, list) {
     if (obj['gpml:element'] === 'gpml:Interaction') {
-      // console.log(findTitleById(obj.points[0].isAttachedTo, list))
-      return '' + findTitleById(obj.points[0].isAttachedTo, list) + ' - ' + findTitleById(obj.points[1].isAttachedTo)
+      return '' + findTitleById(obj.points[0].isAttachedTo, list) + ' - ' + findTitleById(obj.points[1].isAttachedTo, list)
     } else if (obj['gpml:element'] === 'gpml:DataNode') {
       return obj.textContent
     } else if (obj['gpml:element'] === 'gpml:Label') {
@@ -463,7 +462,6 @@
         if (list[l]['gpml:element'] === 'gpml:Interaction') {
           return 'Interaction ' + id
         } else {
-          // console.log(id, getAddTitle(list[l], list))
           return getAddTitle(list[l], list)
         }
       }
