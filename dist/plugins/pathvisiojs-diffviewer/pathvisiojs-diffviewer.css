@@ -127,12 +127,18 @@
 .changes-title.change-added {
   background: #a6c0e1;
 }
+.changes-container.active > .changes-title.change-added {
+  background: #6c91cc;
+}
 .changes-container.active > .changes-title.change-added:after {
   display: block;
 }
 
 .changes-title.change-updated {
   background: #fefc96;
+}
+.changes-container.active > .changes-title.change-updated {
+  background: #fff944;
 }
 .changes-container.active > .changes-title.change-updated:before,
 .changes-container.active > .changes-title.change-updated:after {
@@ -141,6 +147,9 @@
 
 .changes-title.change-removed {
   background: #f9a4af;
+}
+.changes-container.active > .changes-title.change-removed {
+  background: #f36b78;
 }
 .changes-container.active > .changes-title.change-removed:before {
   display: block;
