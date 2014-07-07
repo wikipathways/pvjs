@@ -381,7 +381,8 @@
     }
 
     var markerId = markerAttr.match(/url\(\#(.*)\)/)[1]
-      , newId = markerId.split('-').slice(0, -1).join('-') + '-' + styles.stroke
+      , newColorId = styles.stroke.replace(/[^a-z0-9]/gmi, '') // replace all non alphanumeric chars
+      , newId = markerId.split('-').slice(0, -1).join('-') + '-' + newColorId
       , $defs = highlighter.pvjs.$element.select('defs')
 
     // Create if such marker does not exist
@@ -397,7 +398,7 @@
         .attr('id', newId)
         .attr('markerUnits', 'userSpaceOnUse') // Force arrow to keep its sizes
 
-      $newMarkerGroup.attr('id', $newMarkerGroup.attr('id').split('-').slice(0, -1).join('-') + '-' + styles.stroke)
+      $newMarkerGroup.attr('id', $newMarkerGroup.attr('id').split('-').slice(0, -1).join('-') + '-' + newColorId)
       $newMarkerShape
         .attr('fill', styles.stroke)
         .attr('fill-opacity', styles['stroke-opacity'])
