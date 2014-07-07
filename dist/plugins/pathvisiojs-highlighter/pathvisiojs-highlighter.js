@@ -317,7 +317,7 @@
           .attr('style', generateStyleString(_styles) + 'pointer-events: none')
 
         // Adjust markers
-        adjustMarkers(highlighter, highlighting, options.styles.stroke)
+        adjustMarkers(highlighter, highlighting, _styles)
 
       } else { // Treat element as a rectangle
         // Render node
@@ -368,20 +368,20 @@
     return styleString
   }
 
-  function adjustMarkers(highlighter, highlighting, color) {
-    adjustMarker(highlighter, highlighting, color, 'marker-start')
-    adjustMarker(highlighter, highlighting, color, 'marker-mid')
-    adjustMarker(highlighter, highlighting, color, 'marker-end')
+  function adjustMarkers(highlighter, highlighting, styles) {
+    adjustMarker(highlighter, highlighting, styles, 'marker-start')
+    adjustMarker(highlighter, highlighting, styles, 'marker-mid')
+    adjustMarker(highlighter, highlighting, styles, 'marker-end')
   }
 
-  function adjustMarker(highlighter, $highlighting, color, markerType) {
+  function adjustMarker(highlighter, $highlighting, styles, markerType) {
     var markerAttr = $highlighting.attr(markerType)
     if (markerAttr == null || markerAttr.match(/url\(\#(.*)\)/) == null) {
       return
     }
 
     var markerId = markerAttr.match(/url\(\#(.*)\)/)[1]
-      , newId = markerId.split('-').slice(0, -1).join('-') + '-' + color
+      , newId = markerId.split('-').slice(0, -1).join('-') + '-' + styles.stroke
       , $defs = highlighter.pvjs.$element.select('defs')
 
     // Create if such marker does not exist
@@ -391,13 +391,17 @@
         , $newMarker = d3.select(newMarker)
         , $newMarkerGroup = $newMarker.select('g')
         , $newMarkerShape = $newMarker.select('polygon')
+        , $newMarkerRect = $newMarker.select('rect')
 
       $newMarker
         .attr('id', newId)
         .attr('markerUnits', 'userSpaceOnUse') // Force arrow to keep its sizes
 
-      $newMarkerGroup.attr('id', $newMarkerGroup.attr('id').split('-').slice(0, -1).join('-') + '-' + color)
-      $newMarkerShape.attr('fill', color)
+      $newMarkerGroup.attr('id', $newMarkerGroup.attr('id').split('-').slice(0, -1).join('-') + '-' + styles.stroke)
+      $newMarkerShape
+        .attr('fill', styles.stroke)
+        .attr('fill-opacity', styles['stroke-opacity'])
+      $newMarkerRect.attr('stroke-width', styles['stroke-width'])
 
       // Append new marker to defs
       $defs.node().appendChild(newMarker)
