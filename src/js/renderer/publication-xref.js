@@ -3,7 +3,10 @@ var Utils = require('./../utilities.js');
 module.exports = {
   getReferenceNumberForDisplay: function(pvjs, rdfId) {
     var model = pvjs.sourceData.pvjson;
-    var displayNumberForDisplay = null;
+    var displayNumberForDisplay = model.elements.filter(function(element) {
+      return rdfId === element.id;
+    })[0].displayName;
+    /*
     var i = -1;
     var currentPublicationXref;
     var found = false;
@@ -18,6 +21,7 @@ module.exports = {
         }
       }
     } while (found === false && i < model.Biopax.PublicationXref.length);
+    //*/
 
     return displayNumberForDisplay;
   },
@@ -102,7 +106,7 @@ module.exports = {
     //*/
 
     var text;
-    this.getPublicationXrefString(pvjs, targetData.publicationXrefs, function(publicationXrefString) {
+    this.getPublicationXrefString(pvjs, targetData.xrefs, function(publicationXrefString) {
       var textLength = publicationXrefString.toString().length;
       if (targetData.networkType === 'node') {
         var nodeWidth = targetData.width;
