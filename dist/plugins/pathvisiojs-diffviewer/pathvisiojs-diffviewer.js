@@ -446,6 +446,8 @@
       return obj.textContent
     } else if (obj['gpml:element'] === 'gpml:Shape') {
       return obj.shape + ' ' + obj.id
+    } else if (obj['gpml:element'] === 'gpml:Group') {
+      return 'Group ' + obj.id
     }
 
     return 'no title'
