@@ -3,6 +3,13 @@
   var optionsDefault = {
     displayInputField: true
   , autocompleteLimit: 10
+  , styles: {
+      fill: 'yellow'
+    , 'fill-opacity': 0.2
+    , stroke: 'orange'
+    , 'stroke-width': '3px'
+    , 'stroke-opacity': 1
+    }
   }
 
   /**
@@ -16,7 +23,8 @@
           pvjs: pvjs
         , instance: self
         , options: extend(options || {}, optionsDefault)
-        , searcheableValues: getSearcheableValues(pvjs.getSourceData().pvjson)
+        , elements: pvjs.getSourceData().pvjson.elements
+        , searcheableValues: getSearcheableValues(pvjs.getSourceData().pvjson.elements)
         , groups: {}
         }
 
@@ -119,11 +127,11 @@
     })
   }
 
-  function getSearcheableValues(pvjson) {
+  function getSearcheableValues(elements) {
     var searcheableValues = []
 
-    if (pvjson && pvjson.elements) {
-      pvjson.elements
+    if (elements && elements.length) {
+      elements
         .filter(function(element) {return element['gpml:element'] === 'gpml:DataNode' || element['gpml:element'] === 'gpml:Label'})
           .forEach(function(node) {
             if (node.hasOwnProperty('textContent')) {
@@ -174,6 +182,15 @@
       }
     }
     return filteredValues
+  }
+
+  function getPvjsElementById(elements, id) {
+    for (i = elements.length - 1; i >=0; i--) {
+      if (elements[i].id != null && elements[i].id === id) {
+        return elements[i]
+      }
+    }
+    return null
   }
 
   function select(highlighter, selector) {
@@ -233,12 +250,8 @@
    * @param  {object} node        pvjson.elment object
    */
   function highlight(highlighter, group, node, styles) {
-    var styleString = ''
-    styles = styles || {}
-
-    for (var s in styles) {
-      styleString += s + ':' + styles[s] + ';'
-    }
+    var options = highlighter.options
+    styles = extend(styles || {}, options.styles)
 
     // Create group if it does not exist
     if (highlighter.groups[group] === undefined) {
@@ -272,30 +285,66 @@
 
     // Render highlighting
     if (!highlighting) {
-      // Render node
-      var nodeBBox = node.getBBox()
-        // TODO take in account padding based on border width and offset
-        , padding = 2.5
-        , transform = node.getAttribute('transform')
-        , translate
-        , translate_x = 0
-        , translate_y = 0
+      var $node = d3.select(node)
+        , nodeName = $node.property('nodeName')
+        , pvjsElement = getPvjsElementById(highlighter.elements, $node.attr('id'))
 
-      // If node has translate attribute
-      if (transform && (translate = transform.match(/translate\(([\d\s\.]+)\)/))) {
-        translate = translate[1].split(' ')
-        translate_x = +translate[0]
-        translate_y = translate.length > 1 ? +translate[1] : 0
+      if (pvjsElement && pvjsElement['gpml:element'] === 'gpml:Interaction') { // Clone this path and set different stroke and fill
+        var $parent = d3.select(node.parentNode)
+          , attributes = node.attributes
+          , highlighting = $parent.append(nodeName).attr('id', $node.attr('id') + '9')
+
+        for (var i = 0; i < attributes.length; i++) {
+          if (attributes[i].name === 'id') continue;
+
+          highlighting.attr(attributes[i].name, attributes[i].value)
+        }
+
+        // Recalculate style
+        _styles = extend(styles, {})
+
+        // Adjust stroke-width
+        if ($node.attr('stroke-width') == null) {
+          _styles['stroke-width'] = options['stroke-width']
+        } else {
+          _styles['stroke-width'] = ((parseInt($node.attr('stroke-width'), 10) || 0) + (parseInt(options.styles['stroke-width'], 10) || 0)) + 'px'
+        }
+
+        // Adjust stroke-opacity
+        _styles['stroke-opacity'] = Math.min(0.5, _styles['stroke-opacity'])
+
+        highlighting
+          .attr('style', generateStyleString(_styles) + 'pointer-events: none')
+
+        // Adjust markers
+        adjustMarkers(highlighter, highlighting, options.styles.stroke)
+
+      } else { // Treat element as a rectangle
+        // Render node
+        var nodeBBox = node.getBBox()
+          // TODO take in account padding based on border width and offset
+          , padding = 2.5
+          , transform = node.getAttribute('transform')
+          , translate
+          , translate_x = 0
+          , translate_y = 0
+
+        // If node has translate attribute
+        if (transform && (translate = transform.match(/translate\(([\d\s\.]+)\)/))) {
+          translate = translate[1].split(' ')
+          translate_x = +translate[0]
+          translate_y = translate.length > 1 ? +translate[1] : 0
+        }
+
+        highlighting = highlighter.pvjs.$element.select('#viewport')
+          .append('rect')
+            .attr('x', nodeBBox.x - padding + translate_x)
+            .attr('y', nodeBBox.y - padding + translate_y)
+            .attr('width', nodeBBox.width + 2 * padding)
+            .attr('height', nodeBBox.height + 2 * padding)
+            .attr('class', 'highlighted-node')
+            .attr('style', generateStyleString(styles) + 'pointer-events: none')
       }
-
-      highlighting = highlighter.pvjs.$element.select('#viewport')
-        .append('rect')
-          .attr('x', nodeBBox.x - padding + translate_x)
-          .attr('y', nodeBBox.y - padding + translate_y)
-          .attr('width', nodeBBox.width + 2 * padding)
-          .attr('height', nodeBBox.height + 2 * padding)
-          .attr('class', 'highlighted-node')
-          .attr('style', styleString + 'pointer-events: none')
     } else {
       // Apply new style
       highlighting.attr('style', styleString + 'pointer-events: none')
@@ -306,6 +355,56 @@
       node: node
     , highlighting: highlighting
     })
+  }
+
+
+  function generateStyleString(styles) {
+    var styleString = ''
+
+    for (var s in styles) {
+      styleString += s + ':' + styles[s] + ';'
+    }
+
+    return styleString
+  }
+
+  function adjustMarkers(highlighter, highlighting, color) {
+    adjustMarker(highlighter, highlighting, color, 'marker-start')
+    adjustMarker(highlighter, highlighting, color, 'marker-mid')
+    adjustMarker(highlighter, highlighting, color, 'marker-end')
+  }
+
+  function adjustMarker(highlighter, $highlighting, color, markerType) {
+    var markerAttr = $highlighting.attr(markerType)
+    if (markerAttr == null || markerAttr.match(/url\(\#(.*)\)/) == null) {
+      return
+    }
+
+    var markerId = markerAttr.match(/url\(\#(.*)\)/)[1]
+      , newId = markerId.split('-').slice(0, -1).join('-') + '-' + color
+      , $defs = highlighter.pvjs.$element.select('defs')
+
+    // Create if such marker does not exist
+    if ($defs.select('#' + newId).empty()) {
+      var $originalMarker = highlighter.pvjs.$element.select('#' + markerId)
+        , newMarker = $originalMarker.node().cloneNode(true)
+        , $newMarker = d3.select(newMarker)
+        , $newMarkerGroup = $newMarker.select('g')
+        , $newMarkerShape = $newMarker.select('polygon')
+
+      $newMarker
+        .attr('id', newId)
+        .attr('markerUnits', 'userSpaceOnUse') // Force arrow to keep its sizes
+
+      $newMarkerGroup.attr('id', $newMarkerGroup.attr('id').split('-').slice(0, -1).join('-') + '-' + color)
+      $newMarkerShape.attr('fill', color)
+
+      // Append new marker to defs
+      $defs.node().appendChild(newMarker)
+    }
+
+
+    $highlighting.attr(markerType, 'url(#' + newId + ')')
   }
 
   /**
@@ -367,7 +466,9 @@
 
   function extend(o1, o2) {
     for (var i in o2) {
-      if (o2.hasOwnProperty(i) && !o1.hasOwnProperty(i)) {
+      if (Object.prototype.toString.apply(o2[i]) == '[object Object]') {
+        o1[i] = extend(o1[i] || {}, o2[i])
+      } else if (o2.hasOwnProperty(i) && !o1.hasOwnProperty(i)) {
         o1[i] = o2[i]
       }
     }

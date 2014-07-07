@@ -43,6 +43,13 @@ To customize Highlighter pass arguments to its constructor:
 var hi = pathvisoijsHighlighter(pathInstance, {
   displayInputField: true
 , autocompleteLimit: 10
+, styles: {
+    fill: 'yellow'
+  , 'fill-opacity': 0.2
+  , stroke: 'orange'
+  , 'stroke-width': '3px'
+  , 'stroke-opacity': 1
+  }
 })
 ```
 
