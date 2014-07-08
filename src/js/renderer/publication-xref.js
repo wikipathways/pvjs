@@ -3,7 +3,14 @@ var Utils = require('./../utilities.js');
 module.exports = {
   getReferenceNumberForDisplay: function(pvjs, rdfId) {
     var model = pvjs.sourceData.pvjson;
-    var displayNumberForDisplay = null;
+    var displayNumber;
+    var referencedElements = model.elements.filter(function(element) {
+      return rdfId === element.id && element.type === 'PublicationXref';
+    });
+    if (!!referencedElements && referencedElements.length > 0) {
+      displayNumber = referencedElements[0].displayName;
+    }
+    /*
     var i = -1;
     var currentPublicationXref;
     var found = false;
@@ -14,12 +21,13 @@ module.exports = {
       if (typeof currentPublicationXref != 'undefined'){
         if (currentPublicationXref.rdfId === rdfId) {
           found = true;
-          displayNumberForDisplay = i + 1;
+          displayNumber = i + 1;
         }
       }
     } while (found === false && i < model.Biopax.PublicationXref.length);
+    //*/
 
-    return displayNumberForDisplay;
+    return displayNumber;
   },
 
   // Create a string of citation numbers for display,
@@ -30,8 +38,7 @@ module.exports = {
     var publicationXrefString;
     if (displayNumbers.length === 1) {
       publicationXrefString = displayNumbers[0];
-    }
-    else {
+    } else {
       displayNumbers.sort(function(a, b) {
         return a - b;
       });
@@ -46,12 +53,10 @@ module.exports = {
             if (i !== 1) {
               if (displayNumbers[i - 2] + 2 === displayNumbers[i]) {
                 publicationXrefString += '-' + displayNumbers[i].toString();
-              }
-              else {
+              } else {
                 publicationXrefString += ', ' + displayNumbers[i].toString();
               }
-            }
-            else {
+            } else {
               publicationXrefString += ', ' + displayNumbers[i].toString();
             }
           }
@@ -63,8 +68,7 @@ module.exports = {
 
       if (displayNumbers[i - 2] + 2 === displayNumbers[i]) {
         publicationXrefString += '-' + displayNumbers[i].toString();
-      }
-      else {
+      } else {
         publicationXrefString += ', ' + displayNumbers[i].toString();
       }
     }
@@ -81,10 +85,11 @@ module.exports = {
     rdfIds = Utils.convertToArray(rdfIds);
     rdfIds.forEach(function(rdfId) {
       var num = that.getReferenceNumberForDisplay(pvjs, rdfId);
-      if(!!num) {
+      if (typeof(num) !== 'undefined' && num !== null) {
         displayNumbers.push(num);
       }
     });
+
     if (displayNumbers.length > 0){
       publicationXrefString = this.createPublicationXrefString(displayNumbers);
     }
@@ -93,8 +98,16 @@ module.exports = {
 
   //function render(target, targetType, pathway, rdfIds) {
   render: function(pvjs, containerSelection, targetData) {
-    var translateX,
-        translateY;
+    var translateX
+      , translateY
+      , networkType
+      ;
+
+    if (targetData.hasOwnProperty('points')) {
+      networkType = 'edge';
+    } else {
+      networkType = 'node';
+    }
     /* targetType can be any of the following:
      * node
      * edge
@@ -102,21 +115,22 @@ module.exports = {
     //*/
 
     var text;
-    this.getPublicationXrefString(pvjs, targetData.publicationXrefs, function(publicationXrefString) {
+    this.getPublicationXrefString(pvjs, targetData.xrefs, function(publicationXrefString) {
       var textLength = publicationXrefString.toString().length;
-      if (targetData.networkType === 'node') {
+      if (networkType === 'node') {
+        // TODO targetData.width, x, and y are not available yet here, so the translateX and translateY will always be 0.
+        // refactor to be able to calculate these values.
         var nodeWidth = targetData.width;
         var offsetX = nodeWidth - textLength * 3 / 2 - 2;
-        translateX = targetData.x + offsetX;
-        translateY = targetData.y - 4;
+        translateX = targetData.x + offsetX || 0;
+        translateY = targetData.y - 4 || 0;
         containerSelection.append('text')
         .attr('class', 'citation')
         .attr('transform', function(d) {return 'translate(' + translateX + ' ' + translateY + ')';})
         .text(publicationXrefString);
-      }
-      else {
+      } else {
         // TODO don't repeat svg definition
-        if (targetData.networkType === 'edge') {
+        if (networkType === 'edge') {
           var publicationXrefPosition = 0.5;
           var edgeElement = d3.select('#' + targetData.id)[0][0];
           var totalLength = edgeElement.getTotalLength();
@@ -139,9 +153,8 @@ module.exports = {
           .text(publicationXrefString);
           //*/
 
-        }
-        else {
-          throw new Error('Pathvisiojs cannot render a citation for targets of this type: ' + targetData.networkType);
+        } else {
+          throw new Error('Pathvisiojs cannot render a citation for targets of this type: ' + networkType);
         }
       }
     });
