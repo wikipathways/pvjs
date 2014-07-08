@@ -1,7 +1,7 @@
 var _ = require('lodash')
   , Fs = require('fs')
   , RendererPrototype = require('./renderer-prototype')
-  , XRef = require('./annotation/x-ref.js')
+  , EntityReference = require('./annotation/x-ref.js')
   , Strcase = require('./../../../lib/strcase/index.js')
   ;
 
@@ -126,7 +126,7 @@ function renderShape(renderer, pvjsonElement) {
     })
     .on("mouseup", function(d,i) {
       if (notDragged) {
-        XRef.render(renderer.pvjs, dr.organism, dr.id, dr.database, pvjsonElement.textContent, pvjsonElement.dataNodeType);
+        EntityReference.render(renderer.pvjs, dr.organism, dr.id, dr.database, pvjsonElement.textContent, pvjsonElement.dataNodeType);
       }
     });
   }

@@ -4,7 +4,7 @@ var _ = require('lodash')
   , Selector = require('./selector.js')
   , InfoBox = require('./info-box.js')
   , PublicationXref = require('./publication-xref.js')
-  , XRef = require('./annotation/x-ref.js')
+  , EntityReference = require('./annotation/x-ref.js')
   , SvgPanZoom = require('./../../../lib/svg-pan-zoom/src/svg-pan-zoom.js', ['svgPanZoom'])
   ;
 
@@ -122,7 +122,7 @@ module.exports = function(){
       InfoBox.render(viewport, pvjs.sourceData.pvjson);
 
       // Publication Xref
-      var elementsWithPublicationXrefs = pvjs.sourceData.pvjson.elements.filter(function(element){return !!element.publicationXrefs;});
+      var elementsWithPublicationXrefs = pvjs.sourceData.pvjson.elements.filter(function(element){return !!element.xrefs;});
       if (elementsWithPublicationXrefs.length > 0) {
         elementsWithPublicationXrefs.forEach(function(elementWithPublicationXrefs) {
           PublicationXref.render(pvjs, viewport, elementWithPublicationXrefs);
