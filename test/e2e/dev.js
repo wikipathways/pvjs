@@ -7,7 +7,7 @@ var _ = require("lodash");
 var chai = require("chai");
 var chaiAsPromised = require("chai-as-promised");
 
-var desired = JSON.parse(process.env.DESIRED || '{"browserName": "chrome"}');
+var desired = JSON.parse(process.env.DESIRED || '{"browserName": "phantomjs"}');
 desired.name = 'example with ' + desired.browserName;
 desired.tags = ['tutorial'];
 
@@ -44,7 +44,7 @@ describe('dev', function() {
       });
 
       browser
-          .init({browserName:'chrome'})
+          .init({browserName:'phantomjs'})
           .nodeify(done);
     });
 
@@ -61,10 +61,11 @@ describe('dev', function() {
 
     it("should render the 'one of each' test page", function(done) {
         browser
+            //.get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/data/playground.gpml")
             .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/data/one-of-each.gpml")
-            //.title()
-            //.should.become("Pathvisiojs Simple Built Production Example")
-            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
+            .title()
+            .should.become("Pathvisiojs Simple Built Production Example")
+            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 9000)
             .saveScreenshot('tmp/one-of-each-' + desired.browserName + '-test.png')
             .nodeify(done);
     });

@@ -91,7 +91,7 @@ var gruntConfig = {
   concurrent: {
     'test-protocol': [], // dynamically filled
     dev: {
-      tasks: ['exec:selenium', 'nodemon', 'watch:browserify', 'watch:test'],
+      tasks: ['nodemon', 'watch:browserify', 'exec:selenium'],
       options: {
         logConcurrentOutput: true
       }
@@ -160,7 +160,11 @@ var gruntConfig = {
   },
   nodemon: {
     dev: {
-      script: 'server.js'
+      script: 'server.js',
+      options: {
+        ignore: ['node_modules/**'],
+        watch: ['server']
+      }
     }
   },
   pkg: npmPackageFile,
@@ -206,9 +210,9 @@ var gruntConfig = {
     }
   },
   simplemocha: {
-    dev: { // you need to start selenium locally for this to work: webdriver-manager start
+    dev: {
       options: {
-        timeout: 10000,
+        timeout: 15000,
         reporter: 'spec'
       },
       src: ['test/e2e/dev.js']

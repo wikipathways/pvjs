@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140130" Organism="Aspergillus niger">
-  <Graphics BoardWidth="685.7289828145362" BoardHeight="353.07010634000153" />
-  <DataNode TextLabel="GeneProduct" GraphId="fc51d" Type="GeneProduct">
-    <Graphics CenterX="192.5175095906802" CenterY="114.95970154506732" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140707">
+  <Graphics BoardWidth="689.4690265486727" BoardHeight="506.0766961651918" />
+  <DataNode TextLabel="A" GraphId="dee58" Type="GeneProduct" GroupRef="c0730">
+    <BiopaxRef>fa2</BiopaxRef>
+    <Graphics CenterX="256.63716814159295" CenterY="212.38938053097348" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="Metabolite" GraphId="c989a" Type="Metabolite">
-    <Graphics CenterX="615.7289828145362" CenterY="313.07010634000153" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+  <DataNode TextLabel="B" GraphId="fffed" Type="GeneProduct" GroupRef="c0730">
+    <Graphics CenterX="441.8374476013043" CenterY="213.88371370905176" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <DataNode TextLabel="GeneProduct" GraphId="b3df0" Type="GeneProduct">
-    <Graphics CenterX="234.40949467962844" CenterY="243.25047693706875" Width="80.0" Height="20.0" ZOrder="32769" FontSize="10" Valign="Middle" />
+  <DataNode TextLabel="Metabolite" GraphId="ca6b1" Type="Metabolite">
+    <Graphics CenterX="335.5263157894737" CenterY="54.82456140350877" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
-  <Interaction GraphId="id78bb7ba1">
-    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
-      <Point X="274.40949467962844" Y="243.25047693706875" GraphRef="b3df0" RelX="1.0" RelY="0.0" />
-      <Point X="575.7289828145362" Y="313.07010634000153" GraphRef="c989a" RelX="-1.0" RelY="0.0" ArrowHead="mim-conversion" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Interaction GraphId="idbd153502">
-    <Graphics ConnectorType="Elbow" ZOrder="12288" LineThickness="1.0">
-      <Point X="234.40949467962844" Y="233.25047693706875" GraphRef="b3df0" RelX="0.0" RelY="-1.0" />
-      <Point X="655.7289828145362" Y="313.07010634000153" GraphRef="c989a" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
-    </Graphics>
-    <Xref Database="" ID="" />
-  </Interaction>
-  <Group GroupId="bb9ac" GraphId="a82b4" />
-  <Group GroupId="c2fea" GraphId="dee44" />
+  <Group GroupId="c0730" Style="Complex" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="fa2">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">34253</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Genetically conditioned variability of metabolic profile parameters in dairy cows].</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vet Med (Praha)</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1978</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Simon M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bod'a K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Greksák M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kubinec J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abrahámová D</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cerná S</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
 </Pathway>
 

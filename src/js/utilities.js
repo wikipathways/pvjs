@@ -316,26 +316,19 @@ var Utils = {
   }
 
 , loadXmlFromUri: function(uri, callback) {
-      Async.waterfall([
-        function(callbackInner) {
-          if (!$) {
-            // TODO jQuery is required. Can we get rid of this?
-            // Yes. -AR
-            Utils.loadScripts(['http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'], function() {
-              callbackInner(null);
-            });
-          }
-          else {
-            callbackInner(null);
-          }
-        },
-        function(callbackInner) {
-          $.get( uri, function( xmlDoc ) {
-            var xmlSelection = $(xmlDoc.documentElement);
-            callback(xmlSelection);
-          }, 'xml');
-        }
-      ]);
+    $.get( uri, function(xmlDoc) {
+      var xmlSelection = $(xmlDoc.documentElement);
+      callback(xmlSelection);
+    }, 'xml');
+
+    /* jQuery says the "success" callback is deprecated, but the following code attempting to use .done() does not work
+    $.get( uri, function( ) {
+    }, 'xml')
+    .done(function(xmlDoc) {
+      var xmlSelection = $(xmlDoc);
+      callback(xmlSelection);
+    })
+    //*/
   }
 
 , convertToCssClassName: function(inputString) {
