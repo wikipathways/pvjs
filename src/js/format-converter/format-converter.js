@@ -19,27 +19,14 @@ module.exports = {
     if (pvjs.sourceData.fileType === 'gpml') {
       // Load xml
       Utils.loadXmlFromUri(pvjs.sourceData.uri, function(xml) {
-
           var pathwayMetadata = {};
           pathwayMetadata.idVersion = 0;
           pathwayMetadata.dbName = 'wikipathways';
           pathwayMetadata.dbId = 'WP1234';
 
           Gpml2Json.toPvjson(xml, pathwayMetadata, function(err, pvjson) {
-            console.log('pvjson');
-            console.log(pvjson);
             callback(err, pvjson)
           });
-
-
-
-
-
-          /*
-        Gpml.toPvjson(pvjs, xml, function(error, pvjson) {
-          callback(error, pvjson)
-        })
-        //*/
       })
     } else {
       return callback('Cannot get pvjson from the specified input.', {})
