@@ -9,7 +9,7 @@ var pvjsCssSources = [
   'src/css/pan-zoom.css'
 ];
 var desireds = require('./test/wd-test-config');
-var testPathwaysElementCounts = JSON.parse(fs.readFileSync("test/data/protocol-element-counts.json"));
+var testPathwaysElementCounts = JSON.parse(fs.readFileSync("test/element-counts/protocol-element-counts.json"));
 var npmPackageFile = JSON.parse(fs.readFileSync('package.json'));
 var srcDir = './src/js/',
     libDir = './lib/',
@@ -89,7 +89,7 @@ var gruntConfig = {
     }
   },
   concurrent: {
-    'test-protocol': [], // dynamically filled
+    localProtocol: [], // dynamically filled
     dev: {
       tasks: ['nodemon', 'watch:browserify', 'exec:selenium'],
       options: {
@@ -212,17 +212,31 @@ var gruntConfig = {
   simplemocha: {
     dev: {
       options: {
-        timeout: 15000,
+        timeout: 3000,
         reporter: 'spec'
       },
       src: ['test/e2e/dev.js']
     },
-    protocol: { // you don't need selenium locally for this to work. It runs at saucelabs.
+    localProtocol: {
+      options: {
+        timeout: 15000,
+        reporter: 'spec'
+      },
+      src: ['test/e2e/local-protocol.js']
+    },
+    remoteFull: { // This runs IE tests at saucelabs.
       options: {
         timeout: 60000,
         reporter: 'spec'
       },
-      src: ['test/e2e/sauce.js']
+      src: ['test/e2e/remote-full.js']
+    },
+    testWikipathwaysOrg: { // This runs IE tests at saucelabs.
+      options: {
+        timeout: 60000,
+        reporter: 'spec'
+      },
+      src: ['test/e2e/test-wikipathways-org.js']
     }
   },
   uglify: {
@@ -285,7 +299,7 @@ _(desireds).each(function(desired, key) {
   gruntConfig.env[key] = {
     DESIRED: JSON.stringify(desired)
   };
-  gruntConfig.concurrent['test-protocol'].push('test:protocol:' + key);
+  gruntConfig.concurrent.localProtocol.push('test:localProtocol:' + key);
 });
 
 //console.log(gruntConfig);
@@ -299,10 +313,10 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   _(desireds).each(function(desired, key) {
-    grunt.registerTask('test:protocol:' + key, ['env:' + key, 'simplemocha:protocol']);
+    grunt.registerTask('test:localProtocol:' + key, ['env:' + key, 'simplemocha:localProtocol']);
   });
 
-  grunt.registerTask('test:protocol:parallel', ['concurrent:test-protocol']);
+  grunt.registerTask('test:localProtocol:parallel', ['concurrent:localProtocol']);
 
   // Build
   grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:crossplatformshapes', 'copy:crossplatformtext']);

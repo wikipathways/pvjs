@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140707">
-  <Graphics BoardWidth="689.4690265486727" BoardHeight="506.0766961651918" />
+  <Graphics BoardWidth="511.8374476013043" BoardHeight="253.88371370905176" />
   <DataNode TextLabel="A" GraphId="dee58" Type="GeneProduct" GroupRef="c0730">
     <BiopaxRef>fa2</BiopaxRef>
     <Graphics CenterX="256.63716814159295" CenterY="212.38938053097348" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
@@ -14,6 +14,10 @@
     <Graphics CenterX="335.5263157894737" CenterY="54.82456140350877" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
   </DataNode>
+  <State GraphRef="ca6b1" TextLabel="P" GraphId="f6b00">
+    <Graphics RelX="1.0" RelY="1.0" Width="15.0" Height="15.0" ShapeType="Oval" />
+    <Xref Database="" ID="" />
+  </State>
   <Group GroupId="c0730" Style="Complex" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax>

@@ -67,7 +67,7 @@ describe('Quick test for development', function() {
 
     it("should render the 'dev' test page", function(done) {
         browser
-            .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/dev/dev.gpml")
+            .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/data/dev/dev.gpml")
             .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 500)
             .saveScreenshot('tmp/dev-' + desired.browserName + '-test.png')
             .nodeify(done);
@@ -76,7 +76,7 @@ describe('Quick test for development', function() {
     it("should confirm test and last known good screenshots are the same", function(done) {
         imageDiff({
           actualImage: 'tmp/dev-' + desired.browserName + '-test.png',
-          expectedImage: 'test/input-data/dev/dev-' + desired.browserName + '-lkg.png',
+          expectedImage: 'test/data/dev/dev-' + desired.browserName + '-lkg.png',
           diffImage: 'tmp/dev-' + desired.browserName + '-difference.png',
         }, function (err, imagesAreSame) {
           expect(imagesAreSame).to.equal(true);
