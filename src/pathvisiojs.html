@@ -1,54 +1,32 @@
-<div id="pathvisiojs-container">
+<!-- Pathway Container -->
+<div class="diagram-container"></div>
 
-  <!-- **********************************************************************
-    Pathway Container (JavaScript inserts pathway image inside this div)
-    *********************************************************************** -->
-  <div id="diagram-container">
-  </div>
-
-  <!-- **********************************************************************
-    Highlight Element by Label Control
-    *********************************************************************** -->
-  <div id="typeahead">
-    <input id="highlight-by-label-input" placeholder="Enter node name to highlight" role="textbox" aria-autocomplete="list" aria-haspopup="true">
-    <i id="clear-highlights-from-typeahead" class="control-icon icon-remove"></i>
-  </div> 
-
-  <div id="viewer-toolbar">
-  </div>
-
-  <!-- **********************************************************************
-    Details Frame
-    *********************************************************************** -->
-  <div id="annotation" class="annotation ui-draggable">
-    <header class="annotation-header">
-      <span id="annotation-move" class="annotation-header-move">
-        <i class="icon-move"></i>
-      </span>
-      <span class="annotation-header-close" class="annotation-header-close">
-        <i class="icon-remove"></i>
-      </span>   
-
-      <span id="annotation-header-text" class="annotation-header-text">
-        Header
-      </span> 
-      <span id="annotation-header-search" class="annotation-header-search" title="Search for pathways containing 'Header Text'">
-        <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">
-          <i class="icon-search"></i>
-        </a>
-      </span>
-      <div id="annotation-description" class="annotation-description">
-        <h2>description</h2>
-      </div>
-    </header>
-    <span class="annotation-items-container" class="annotation-items-container">
-      <ul id="annotation-items-container">
-        <!-- List items inside this ul element are generated automatically by JavaScript.
-            Each item will be composed of a title and text. The text can be set to be an href.
-            You can edit the styling of the title by editing CSS class "annotation-item-title"
-            and the styling of the text by editing CSS class "annotation-item-text.
-            -->
-      </ul>
+<!-- Details Frame -->
+<div class="annotation ui-draggable">
+  <header class="annotation-header">
+    <span class="annotation-header-move">
+      <i class="icon-move"></i>
     </span>
-  </div>
+    <span class="annotation-header-close">
+      <i class="icon-remove"></i>
+    </span>
+    <span class="annotation-header-text">Header</span>
+    <span class="annotation-header-search" title="Search for pathways containing 'Header Text'">
+      <a href="http://wikipathways.org//index.php?title=Special:SearchPathways">
+        <i class="icon-search"></i>
+      </a>
+    </span>
+    <div class="annotation-description">
+      <h2>description</h2>
+    </div>
+  </header>
+  <span class="annotation-items-container">
+    <ul class="annotation-items-container-list">
+      <!-- List items inside this ul element are generated automatically by JavaScript.
+          Each item will be composed of a title and text. The text can be set to be an href.
+          You can edit the styling of the title by editing CSS class "annotation-item-title"
+          and the styling of the text by editing CSS class "annotation-item-text.
+          -->
+    </ul>
+  </span>
 </div>

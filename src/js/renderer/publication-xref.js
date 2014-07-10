@@ -1,9 +1,16 @@
-pathvisiojs.renderer.publicationXref = {
+var Utils = require('./../utilities.js');
 
-  getReferenceNumberForDisplay: function(rdfId) {
-    var publicationXrefInstance = this;
-    var model = publicationXrefInstance.model;
-    var displayNumberForDisplay = null;
+module.exports = {
+  getReferenceNumberForDisplay: function(pvjs, rdfId) {
+    var model = pvjs.sourceData.pvjson;
+    var displayNumber;
+    var referencedElements = model.elements.filter(function(element) {
+      return rdfId === element.id && element.type === 'PublicationXref';
+    });
+    if (!!referencedElements && referencedElements.length > 0) {
+      displayNumber = referencedElements[0].displayName;
+    }
+    /*
     var i = -1;
     var currentPublicationXref;
     var found = false;
@@ -14,12 +21,13 @@ pathvisiojs.renderer.publicationXref = {
       if (typeof currentPublicationXref != 'undefined'){
         if (currentPublicationXref.rdfId === rdfId) {
           found = true;
-          displayNumberForDisplay = i + 1;
+          displayNumber = i + 1;
         }
       }
     } while (found === false && i < model.Biopax.PublicationXref.length);
+    //*/
 
-    return displayNumberForDisplay;
+    return displayNumber;
   },
 
   // Create a string of citation numbers for display,
@@ -30,8 +38,7 @@ pathvisiojs.renderer.publicationXref = {
     var publicationXrefString;
     if (displayNumbers.length === 1) {
       publicationXrefString = displayNumbers[0];
-    }
-    else {
+    } else {
       displayNumbers.sort(function(a, b) {
         return a - b;
       });
@@ -46,12 +53,10 @@ pathvisiojs.renderer.publicationXref = {
             if (i !== 1) {
               if (displayNumbers[i - 2] + 2 === displayNumbers[i]) {
                 publicationXrefString += '-' + displayNumbers[i].toString();
-              }
-              else {
+              } else {
                 publicationXrefString += ', ' + displayNumbers[i].toString();
               }
-            }
-            else {
+            } else {
               publicationXrefString += ', ' + displayNumbers[i].toString();
             }
           }
@@ -63,8 +68,7 @@ pathvisiojs.renderer.publicationXref = {
 
       if (displayNumbers[i - 2] + 2 === displayNumbers[i]) {
         publicationXrefString += '-' + displayNumbers[i].toString();
-      }
-      else {
+      } else {
         publicationXrefString += ', ' + displayNumbers[i].toString();
       }
     }
@@ -72,30 +76,38 @@ pathvisiojs.renderer.publicationXref = {
     return publicationXrefString;
   },
 
-  getPublicationXrefString: function(rdfIds, callback) {
-    var publicationXrefInstance = this;
-    var model = publicationXrefInstance.model;
+  getPublicationXrefString: function(pvjs, rdfIds, callback) {
+    var that = this;
+    var model = pvjs.sourceData.pvjson;
     var displayNumbers = [];
     var publicationXrefString = '';
     // make sure it's an array
-    rdfIds = pathvisiojs.utilities.convertToArray(rdfIds);
+    rdfIds = Utils.convertToArray(rdfIds);
     rdfIds.forEach(function(rdfId) {
-      var num = publicationXrefInstance.getReferenceNumberForDisplay(rdfId);
-      if(!!num) {
+      var num = that.getReferenceNumberForDisplay(pvjs, rdfId);
+      if (typeof(num) !== 'undefined' && num !== null) {
         displayNumbers.push(num);
       }
     });
+
     if (displayNumbers.length > 0){
-      publicationXrefString = publicationXrefInstance.createPublicationXrefString(displayNumbers);
+      publicationXrefString = this.createPublicationXrefString(displayNumbers);
     }
     callback(publicationXrefString);
   },
 
   //function render(target, targetType, pathway, rdfIds) {
-  render: function(containerSelection, targetData) {
-    var publicationXrefInstance = this,
-      translateX,
-      translateY;
+  render: function(pvjs, containerSelection, targetData) {
+    var translateX
+      , translateY
+      , networkType
+      ;
+
+    if (targetData.hasOwnProperty('points')) {
+      networkType = 'edge';
+    } else {
+      networkType = 'node';
+    }
     /* targetType can be any of the following:
      * node
      * edge
@@ -103,21 +115,22 @@ pathvisiojs.renderer.publicationXref = {
     //*/
 
     var text;
-    publicationXrefInstance.getPublicationXrefString(targetData.publicationXrefs, function(publicationXrefString) {
+    this.getPublicationXrefString(pvjs, targetData.xrefs, function(publicationXrefString) {
       var textLength = publicationXrefString.toString().length;
-      if (targetData.networkType === 'node') {
+      if (networkType === 'node') {
+        // TODO targetData.width, x, and y are not available yet here, so the translateX and translateY will always be 0.
+        // refactor to be able to calculate these values.
         var nodeWidth = targetData.width;
         var offsetX = nodeWidth - textLength * 3 / 2 - 2;
-        translateX = targetData.x + offsetX;
-        translateY = targetData.y - 4;
+        translateX = targetData.x + offsetX || 0;
+        translateY = targetData.y - 4 || 0;
         containerSelection.append('text')
         .attr('class', 'citation')
         .attr('transform', function(d) {return 'translate(' + translateX + ' ' + translateY + ')';})
         .text(publicationXrefString);
-      }
-      else {
+      } else {
         // TODO don't repeat svg definition
-        if (targetData.networkType === 'edge') {
+        if (networkType === 'edge') {
           var publicationXrefPosition = 0.5;
           var edgeElement = d3.select('#' + targetData.id)[0][0];
           var totalLength = edgeElement.getTotalLength();
@@ -140,9 +153,8 @@ pathvisiojs.renderer.publicationXref = {
           .text(publicationXrefString);
           //*/
 
-        }
-        else {
-          throw new Error('Pathvisiojs cannot render a citation for targets of this type: ' + targetData.networkType);
+        } else {
+          throw new Error('Pathvisiojs cannot render a citation for targets of this type: ' + networkType);
         }
       }
     });

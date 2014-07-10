@@ -1,7 +1,11 @@
-pathvisiojs.formatConverter.gpml.dataNode = function() {
-  'use strict';
+'use strict';
 
-  var toPvjson = function(pathway, gpmlSelection, dataNodeSelection, callbackInside) {
+var GpmlElement = require('./element.js')
+  , Graphics = require('./graphics.js')
+  ;
+
+module.exports = {
+  toPvjson: function(pvjs, pathway, gpmlSelection, dataNodeSelection, callbackInside) {
     var pvjsonPath = {};
     var dataNodeType = dataNodeSelection.attr('Type');
     if (!dataNodeType) {
@@ -16,8 +20,8 @@ pathvisiojs.formatConverter.gpml.dataNode = function() {
 
 
 
-    pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
-      pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
+    GpmlElement.toPvjson(pvjs, gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
+      Graphics.toPvjson(pvjs, gpmlSelection, dataNodeSelection, pvjsonPath, function(pvjsonPath) {
         var database, id, datasourceReference,
           datasourceReferenceSelection = dataNodeSelection.select('Xref');
         if (!!datasourceReferenceSelection) {
@@ -36,9 +40,5 @@ pathvisiojs.formatConverter.gpml.dataNode = function() {
         callbackInside(pvjsonElements);
       });
     });
-  };
-
-  return {
-    toPvjson:toPvjson
-  };
-}();
+  }
+}

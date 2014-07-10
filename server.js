@@ -1,4 +1,6 @@
-if (!process.env.NODE_ENV) process.env.NODE_ENV='development';
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV='development';
+}
 
 var express = require('express')
   , http = require('http')
@@ -24,11 +26,11 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(app.router);
   app.use(express.static(testDir, { maxAge: 0 }));
-})
+});
 
 app.configure('development', function(){
   app.use(express.errorHandler());
-})
+});
 
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -39,14 +41,14 @@ app.all('*', function(req, res, next) {
 app.get('/', function(req, res) {
   res.statusCode = 307;
   res.sendfile(path.join(testDir, 'index.html'));
-})
+});
 
 var server = http.createServer(app);
 
 reload(server, app);
 
 server.listen(app.get('port'), function(){
-  console.log("Web server listening in %s on port %d", colors.red(process.env.NODE_ENV), app.get('port'));
+  console.log("Testing web server listening in %s at http://localhost:%d/test", colors.red(process.env.NODE_ENV), app.get('port'));
 });
 
 
