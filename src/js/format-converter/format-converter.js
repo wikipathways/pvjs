@@ -1,34 +1,35 @@
-pathvisiojs.formatConverter = {
-  // For now, pathvisio.js will attempt to convert any input data, as long as it is of type
-  // GPML or has no type specified, into JSON.
-  // TODO Later, this functionality can be extended to include other data types and
-  // to test for data type when it is not specified.
-  get: function(sourceData, callback) {
-    console.log('model in data');
-    console.log(this.model);
+var Utils = require('./../utilities.js')
+  , Gpml2Json = require('gpml2json')
+  ;
 
-    var uri = sourceData.uri;
-    var object = sourceData.object;
-    var fileType = sourceData.fileType;
+module.exports = {
+  /**
+   * Loads data and converts to pvjson data format
+   * @param  {object}   pvjs     pvjs instance
+   * @param  {Function} callback
+   */
+  loadAndConvert: function(pvjs, callback) {
+    var sourceData = pvjs.sourceData
 
-    if (!uri) {
-      return new Error('No uri specified.');
-    }
-    if (!fileType) {
-      return new Error('No fileType specified.');
+    // Check for uri
+    if (!pvjs.sourceData.uri) {
+      return callback('No uri specified', {})
     }
 
-    // TODO handle if sourceData.object
+    if (pvjs.sourceData.fileType === 'gpml') {
+      // Load xml
+      Utils.loadXmlFromUri(pvjs.sourceData.uri, function(xml) {
+          var pathwayMetadata = {};
+          pathwayMetadata.idVersion = 0;
+          pathwayMetadata.dbName = 'wikipathways';
+          pathwayMetadata.dbId = 'WP1234';
 
-    if (fileType === 'gpml') {
-      this.data.gpml.get(sourceData, function(gpml) {
-        this.data.gpml.toPvjson(gpml, uri, function(json) {
-          callback(json);
-        });
-      });
-    }
-    else {
-      throw new Error('Cannot get jGpml from the specified input.');
+          Gpml2Json.toPvjson(xml, pathwayMetadata, function(err, pvjson) {
+            callback(err, pvjson)
+          });
+      })
+    } else {
+      return callback('Cannot get pvjson from the specified input.', {})
     }
   }
-};
+}

@@ -1,4 +1,12 @@
-pathvisiojs.formatConverter.gpml.group = {
+'use strict';
+
+var Utils = require('./../../utilities.js')
+  , GpmlElement = require('./element.js')
+  , Graphics = require('./graphics.js')
+  , Async = require('async')
+  ;
+
+var Group = {
   getGroupDimensions: function(group, callback) {
     var dimensions = {};
     dimensions.topLeftCorner = {};
@@ -12,10 +20,10 @@ pathvisiojs.formatConverter.gpml.group = {
     var borderWidth = group.borderWidth;
 
     var groupContents = group.contains;
-    groupContents = pathvisiojs.utilities.convertToArray(groupContents);
+    groupContents = Utils.convertToArray(groupContents);
 
     dimensions.zIndex = Infinity;
-    async.each(groupContents, function(groupContent, callbackInside) {
+    Async.each(groupContents, function(groupContent, callbackInside) {
       if (!groupContent.hasOwnProperty('points')) {
         dimensions.topLeftCorner.x = Math.min(dimensions.topLeftCorner.x, groupContent.x);
         dimensions.topLeftCorner.y = Math.min(dimensions.topLeftCorner.y, groupContent.y);
@@ -41,12 +49,12 @@ pathvisiojs.formatConverter.gpml.group = {
     });
   },
 
-  toPvjson: function(elementsPossiblyInGroup, gpmlSelection, groupSelection, callback) {
+  toPvjson: function(pvjs, elementsPossiblyInGroup, gpmlSelection, groupSelection, callback) {
     var pvjsonPath = {},
       pvjsonElements = [],
       groupId,
       groupType,
-      model = this.model;
+      model = pvjs.sourceData.pvjson;
 
     pvjsonPath.renderableType = 'GroupNode';
     pvjsonPath.networkType = 'node';
@@ -55,28 +63,14 @@ pathvisiojs.formatConverter.gpml.group = {
     groupType = groupSelection.attr('Style') || 'None';
     pvjsonPath.groupType = groupType;
 
-
-
-
-
-
-
-
-
-
-
-
-    pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
-
-
-
-      pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
+    GpmlElement.toPvjson(pvjs, gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
+      Graphics.toPvjson(pvjs, gpmlSelection, groupSelection, pvjsonPath, function(pvjsonPath) {
           var contents = elementsPossiblyInGroup.filter(function(element){
             return element.isContainedBy === pvjsonPath.id;
           });
           if (contents.length > 0) {
             pvjsonPath.contains = contents;
-            pathvisiojs.formatConverter.gpml.group.getGroupDimensions(pvjsonPath, function(dimensions){
+            Group.getGroupDimensions(pvjsonPath, function(dimensions){
               pvjsonPath.x = dimensions.x;
               pvjsonPath.y = dimensions.y;
               pvjsonPath.width = dimensions.width;
@@ -91,3 +85,4 @@ pathvisiojs.formatConverter.gpml.group = {
   }
 };
 
+module.exports = Group;

@@ -2,29 +2,25 @@
   "author": "Pathvisiojs team",
   "name": "pathvisiojs",
   "description": "Diagram viewer and editor for biological pathways",
-  "version": "1.0.8",
+  "version": "2.1.2",
   "homepage": "http://wikipathways.github.io/pathvisiojs/",
   "dependencies": {
-    "async": "~0.2.5",
     "blueimp-load-image": "~1.11.0",
     "d3": ">= 3.2.8",
-    "jquery": "1.10.2",
     "jsonld.js": "~0.1.25",
     "modernizr": "~2.7.0",
     "node-uuid": "~1.4.1",
-    "rgb-color": "latest",
     "strcase": "https://github.com/ariutta/strcase.git#~0.6.0",
-    "svg-pan-zoom": "latest",
-    "typeahead.js": "~0.9.3",
     "es5-shim": "~2.3.0",
     "aight": "~1.2.2",
     "bootstrap": "~3.1.1",
-    "he": "~0.3.6"
-  },
-  "resolutions": {
-    "jquery": "1.10.2"
+    "he": "~0.3.6",
+    "svg-pan-zoom": "2.x",
+    "cross-platform-text": "https://github.com/ariutta/cross-platform-text.git",
+    "cross-platform-shapes": "https://github.com/ariutta/cross-platform-shapes.git"
   },
   "main": [
     "Gruntfile.js"
-  ]
+  ],
+  "defaultSave": true
 }

@@ -1,5 +1,7 @@
 node_modules/
-lib/
-dist/
-demos/
 tmp/
+.idea/
+gh-pages
+gh-pages/*
+lib/*
+dist/lib/

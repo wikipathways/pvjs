@@ -1,7 +1,7 @@
-pathvisiojs.renderer.infoBox = function(){
-  'use strict';
-    
-  function render(viewport, data) {
+'use strict';
+
+module.exports = {
+  render: function(viewport, data) {
     if (!viewport || !data) {
       return console.warn('Error: Missing input parameters.');
     }
@@ -9,8 +9,8 @@ pathvisiojs.renderer.infoBox = function(){
     // Although gpml has x and y values for infobox, we have decided to ignore them and always set it in the upper left.
 
     var infoBoxData = [];
-    if (data.hasOwnProperty('Name')) {
-      infoBoxData.push({'key':'Title', 'value':data.Name});
+    if (data.hasOwnProperty('displayName')) {
+      infoBoxData.push({'key':'Title', 'value':data.displayName});
     }
 
     if (data.hasOwnProperty('License')) {
@@ -21,8 +21,8 @@ pathvisiojs.renderer.infoBox = function(){
       infoBoxData.push({'key':'Last modified', 'value':data.LastModified});
     }
 
-    if (data.hasOwnProperty('Organism')) {
-      infoBoxData.push({'key':'Organism', 'value':data.Organism});
+    if (data.hasOwnProperty('organism')) {
+      infoBoxData.push({'key':'Organism', 'value':data.organism});
     }
 
     /*
@@ -58,8 +58,4 @@ pathvisiojs.renderer.infoBox = function(){
     .attr("class", "info-box-item-property-value")
     .text(function (d) {return d.value;});
   }
-
-  return {
-    render:render
-  };
-}();
+}

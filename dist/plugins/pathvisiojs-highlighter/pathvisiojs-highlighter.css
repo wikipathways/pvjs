@@ -1,0 +1,115 @@
+.pathvisiojs-highlighter {
+  /*background-color: #fff;*/
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  line-height: 1.0em; /* needed for wp */
+  display: flex; /* needed for wp */
+}
+
+/*
+  Input
+ */
+.pathvisiojs-highlighter .highlighter-input{
+  width: 185px;
+  padding: 3px 4px 2px;
+  font-size: 13px;
+  line-height: 1.3;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
+.pathvisiojs-highlighter .highlighter-input:focus{
+  border: 1px solid #0097cf;
+}
+
+/*
+  Icon remove
+ */
+.pathvisiojs-highlighter .highlighter-remove{
+  display: inline-block;
+  position: relative;
+  height: 15px;
+  width: 15px;
+  margin: 5px 0 0 4px;
+}
+
+.pathvisiojs-highlighter .highlighter-remove:before,
+.pathvisiojs-highlighter .highlighter-remove:after{
+  content: '';
+  height: 4px;
+  width: 15px;
+  display: block;
+  position: absolute;
+  top: 6px;
+  left: 0px;
+  background: #aaa;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+  -webkit-transform:rotate(-45deg);
+     -moz-transform:rotate(-45deg);
+      -ms-transform:rotate(-45deg);
+       -o-transform:rotate(-45deg);
+          transform:rotate(-45deg);
+}
+
+.pathvisiojs-highlighter .highlighter-remove:after{
+  -webkit-transform:rotate(45deg);
+     -moz-transform:rotate(45deg);
+      -ms-transform:rotate(45deg);
+       -o-transform:rotate(45deg);
+          transform:rotate(45deg);
+}
+
+.pathvisiojs-highlighter .highlighter-remove.active {
+  cursor: pointer;
+}
+
+.pathvisiojs-highlighter .highlighter-remove.active:before,
+.pathvisiojs-highlighter .highlighter-remove.active:after{
+  background: #555;
+}
+
+/*
+  Dropdown
+ */
+.pathvisiojs-highlighter .tt-dropdown-menu {
+  width: 193px;
+  margin-top: 0;
+  padding: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+  -webkit-box-shadow: 0 1px 4px -1px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 1px 4px -1px rgba(0,0,0,.2);
+          box-shadow: 0 1px 4px -1px rgba(0,0,0,.2);
+}
+
+.pathvisiojs-highlighter .tt-suggestion {
+  padding: 2px 4px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.pathvisiojs-highlighter .tt-suggestion p{
+  margin: 0;
+  text-align: left;
+}
+
+.pathvisiojs-highlighter .tt-suggestion:first-child{
+  padding-top: 4px;
+}
+.pathvisiojs-highlighter .tt-suggestion:last-child{
+  padding-bottom: 4px;
+}
+
+.pathvisiojs-highlighter .tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #0097cf;
+  cursor: pointer;
+}

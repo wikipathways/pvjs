@@ -1,13 +1,17 @@
-pathvisiojs.formatConverter.gpml.shape = function(){
+var GpmlElement = require('./element.js')
+  , Graphics = require('./graphics.js')
+  ;
+
+module.exports = function(){
   'use strict';
 
-  function toPvjson(gpmlSelection, shapeSelection, callback) {
+  function toPvjson(pvjs, gpmlSelection, shapeSelection, callback) {
     var pvjsonPath = {};
     pvjsonPath.networkType = 'node';
     pvjsonPath.nodeType = "Shape";
 
-    pathvisiojs.formatConverter.gpml.element.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
-      pathvisiojs.formatConverter.gpml.graphics.toPvjson(gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
+    GpmlElement.toPvjson(pvjs, gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
+      Graphics.toPvjson(pvjs, gpmlSelection, shapeSelection, pvjsonPath, function(pvjsonPath) {
         var pvjsonElements = [pvjsonPath];
         callback(pvjsonElements);
       });

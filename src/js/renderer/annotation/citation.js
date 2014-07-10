@@ -1,4 +1,4 @@
-pathvisiojs.renderer.annotation.citation = function(){
+module.exports = function(){
   'use strict';
     function render(organism, node) {
     }

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+		<!-- BASICS -->
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Pathvisiojs - Create and Edit Diagrams Online</title>
+        <meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />	
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" type="text/css" media="screen" />
+    <!-- TODO: use cdn for as many of these as possible -->
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../dist/lib/pathvisiojs/css/pathvisiojs.bundle.css">
+
+    <link rel="stylesheet" href="css/style.css">
+		<!-- skin -->
+		<link rel="stylesheet" href="skin/default.css">
+    </head>
+	 
+    <body>
+		<section id="header" class="appear"></section>
+		<div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
+			 <div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="fa fa-bars color-white"></span>
+					</button>
+					<h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">		Pathvisiojs Diagrammer	
+					</a></h1>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
+						<li class="active"><a href="index.html">Home</a></li>
+						<li><a href="#section-works">Demos</a></li>
+						<li><a href="./doc/">Documentation</a></li>
+					</ul>
+				</div><!--/.navbar-collapse -->
+			</div>
+		</div>
+
+		<section class="featured">
+			<div class="container"> 
+				<div class="row mar-bot40">
+					<div class="col-md-6 col-md-offset-3">
+						
+						<div class="align-center">
+							<i class="fa fa-flask fa-5x mar-bot20"></i>
+							<h2 class="slogan">Pathvisiojs Diagrammer</h2>
+							<h3 class="slogan">Create and Edit Diagrams Online</h3>
+							<p>
+							Install pathvisiojs on your site to create, view and edit diagrams in your browser. We use it for biological pathways,
+              but you can use it for any type of diagram, from flowcharts to electrical circuits. 
+							</p>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- services -->
+		<section id="section-services" class="section pad-bot30 bg-white">
+		<div class="container"> 
+		
+			<div class="row mar-bot40">
+				<div class="col-lg-4" >
+					<div class="align-center">
+						<i class="fa fa-edit fa-5x mar-bot20"></i>
+						<h4 class="text-bold">Customize It</h4>
+						<p>Add your own PNG, JPG, GIF or SVG files as custom shapes. Add your own CSS file to specify custom styling, such as background color or font family.
+						</p>
+					</div>
+				</div>
+					
+				<div class="col-lg-4" >
+					<div class="align-center">
+						<i class="fa fa-link fa-5x mar-bot20"></i>
+						<h4 class="text-bold">Integrate External Resources</h4>
+						<p>Enrich your diagram with semantic annotations, connecting your diagram elements to the linked open data cloud. Publish your diagram data as JSON-LD for easy re-use.</p>
+					</div>
+				</div>
+			
+				<div class="col-lg-4" >
+					<div class="align-center">
+						<i class="fa fa-question fa-5x mar-bot20"></i>
+						<h4 class="text-bold">Get Help</h4>
+            <p><a href="./doc/">Documentation</a></p>
+            <p><a href="https://github.com/wikipathways/pathvisiojs/blob/master/demo/load_WP1_with_highlights.html">Code Example</a> | <a href="./load_WP1_with_highlights.html">Live Demo</a></p>
+            <p><a href="https://github.com/wikipathways/pathvisiojs/blob/master/demo/">More Examples</a></p>
+					</div>
+				</div>
+			
+			</div>	
+
+		</div>
+		</section>
+			
+    <!-- TODO: this is not centered correctly -->
+		<section id="example" class="section" data-stellar-background-ratio="0.5">
+		<div class="container">
+			<div class="row">				
+					<div class="col-lg-12">
+							<div class="align-center">
+										<div class="pad-top40 pad-bot40 clearfix">
+                      <div id="pathvisiojs-container" style="width: 800px; height: 800px; border: 1px solid #ccc;"></div>
+											<h5>
+                        Click the diagram to enable pan/zoom. Drag to pan or scroll in/out to zoom.
+											</h5>
+											<br/>
+										</div>
+								</div>
+							</div>
+					</div>
+				
+			</div>	
+		</div>	
+		</section>
+		
+    <!-- TODO: some of these overlap others -->
+		<section id="section-works" class="section appear clearfix">
+			<div class="container">
+				
+				<div class="row mar-bot40">
+					<div class="col-md-offset-3 col-md-6">
+						<div class="section-header">
+							<h2 class="section-heading animated" data-animation="bounceInUp">Demos</h2>
+							<p>Currently only biological. Feel free to send pull requests!</p>
+						</div>
+					</div>
+				</div>
+
+        <div class="row">
+          <nav id="filter" class="col-md-12 text-center">
+            <ul>
+              <li><a href="#" class="current btn-theme btn-small" data-filter="*">All</a></li>
+              <li><a href="#"  class="btn-theme btn-small" data-filter=".biology" >Biology</a></li>
+              <li><a href="#"  class="btn-theme btn-small" data-filter=".flowcharts">Flowcharts</a></li>
+              <li ><a href="#" class="btn-theme btn-small" data-filter=".other">Other</a></li>
+            </ul>
+          </nav>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="portfolio-items isotopeWrapper clearfix" id="3">
+
+                <article class="col-md-4 isotopeItem webdesign">
+                  <div class="portfolio-item">
+                    <img src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP554" alt="" />
+                    <div class="portfolio-desc align-center">
+                      <div class="folio-info">
+                        <h5><a href="http://wikipathways.org/index.php/Pathway:WP554">ACE Inhibitor Pathway</a></h5>
+                        <a href="http://wikipathways.org/index.php/Pathway:WP554" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+                      </div>										   
+                    </div>
+                  </div>
+                </article>
+
+                <article class="col-md-4 isotopeItem photography">
+                  <div class="portfolio-item">
+                    <img src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP2267" alt="" />
+                    <div class="portfolio-desc align-center">
+                      <div class="folio-info">
+                        <h5><a href="http://wikipathways.org/index.php/Pathway:WP2267">Synaptic Vesicle Pathway</a></h5>
+                        <a href="http://wikipathways.org/index.php/Pathway:WP2267" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+                      </div>										   
+                    </div>
+                  </div>
+                </article>
+
+
+                <article class="col-md-4 isotopeItem photography">
+                  <div class="portfolio-item">
+                    <img src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1539" alt="" />
+                    <div class="portfolio-desc align-center">
+                      <div class="folio-info">
+                        <h5><a href="http://wikipathways.org/index.php/Pathway:WP1539">Angiogenesis</a></h5>
+                        <a href="http://wikipathways.org/index.php/Pathway:WP1539" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+                      </div>										   
+                    </div>
+                  </div>
+                </article>
+
+                <article class="col-md-4 isotopeItem print">
+                  <div class="portfolio-item">
+                    <img src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP545" alt="" />
+                    <div class="portfolio-desc align-center">
+                      <div class="folio-info">
+                        <h5><a href="http://wikipathways.org/index.php/Pathway:WP545">Complement Activation, Classical Pathway</a></h5>
+                        <a href="http://wikipathways.org/index.php/Pathway:WP545" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+                      </div>										   
+                    </div>
+                  </div>
+                </article>
+
+                <article class="col-md-4 isotopeItem photography">
+                  <div class="portfolio-item">
+                    <img src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP197" alt="" />
+                    <div class="portfolio-desc align-center">
+                      <div class="folio-info">
+                        <h5><a href="http://wikipathways.org/index.php/Pathway:WP197">Cholesterol Biosynthesis</a></h5>
+                        <a href="http://wikipathways.org/index.php/Pathway:WP197" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+                      </div>										   
+                    </div>
+                  </div>
+                </article>
+
+                <article class="col-md-4 isotopeItem webdesign">
+                  <div class="portfolio-item">
+                    <img src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP405" alt="" />
+                    <div class="portfolio-desc align-center">
+                      <div class="folio-info">
+                        <h5><a href="http://wikipathways.org/index.php/Pathway:WP405">Eukaryotic Transcription Initiation</a></h5>
+                        <a href="http://wikipathways.org/index.php/Pathway:WP405" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+                      </div>										   
+                    </div>
+                  </div>
+                </article>
+
+                <article class="col-md-4 isotopeItem print">
+                  <div class="portfolio-item">
+                    <img src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP581" alt="" />
+                    <div class="portfolio-desc align-center">
+                      <div class="folio-info">
+                        <h5><a href="http://wikipathways.org/index.php/Pathway:WP581">EPO Receptor Signaling</a></h5>
+                        <a href="http://wikipathways.org/index.php/Pathway:WP581" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+                      </div>										   
+                    </div>
+                  </div>
+                </article>
+
+                <article class="col-md-4 isotopeItem photography">
+                  <div class="portfolio-item">
+                    <img src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP585" alt="" />
+                    <div class="portfolio-desc align-center">
+                      <div class="folio-info">
+                        <h5><a href="http://wikipathways.org/index.php/Pathway:WP585">Interferon type I signaling pathways</a></h5>
+                        <a href="http://wikipathways.org/index.php/Pathway:WP585" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+                      </div>										   
+                    </div>
+                  </div>
+                </article>
+
+                <article class="col-md-4 isotopeItem print">
+                  <div class="portfolio-item">
+                    <img src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP78" alt="" />
+                    <div class="portfolio-desc align-center">
+                      <div class="folio-info">
+                        <h5><a href="http://wikipathways.org/index.php/Pathway:WP78">TCA Cycle</a></h5>
+                        <a href="http://wikipathways.org/index.php/Pathway:WP78" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
+                      </div>										   
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+				
+			</div>
+		</section>
+		
+	<section id="footer" class="section footer">
+		<div class="container">
+			<div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
+        <div class="col-sm-12 align-center">
+          <!--
+          <ul class="social-network social-circle">
+            <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+          </ul>				
+          -->
+        </div>
+			</div>
+
+			<div class="row align-center copyright">
+					<div class="col-sm-12"><p>Theme Copyright &copy; 2014 Amoeba - by <a href="http://bootstraptaste.com">Bootstraptaste</a></p></div>
+			</div>
+		</div>
+
+	</section>
+	<a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>	
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.1/modernizr.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  <!-- TODO: use cdn for as many of these as possible -->
+	<script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.isotope.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/skrollr.min.js"></script>		
+	<script src="js/jquery.scrollTo-1.4.3.1-min.js"></script>
+	<script src="js/jquery.localscroll-1.2.7-min.js"></script>
+	<script src="js/stellar.js"></script>
+	<script src="js/jquery.appear.js"></script>
+	<script src="js/validate.js"></script>
+  <script src="js/main.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.2/typeahead.bundle.min.js"></script>
+  <script src="../dist/lib/pathvisiojs/js/pathvisiojs.bundle.min.js"></script>
+
+  <script>
+  /* *******************
+  /* Load pathvisiojs
+  /* *******************/
+
+  $(function(){
+    $('#pathvisiojs-container').pathvisiojs({
+      fitToContainer: true
+    , manualRender: true
+    , sourceData: [
+        // at least one item required
+        {
+          uri:'data/wp1.xml',
+          // uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+          fileType:'gpml' // generally will correspond to filename extension
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'biopax'
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'png'
+        }
+      ]
+    })
+
+    // Get first element from array of instances
+    var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+
+    // Load notification plugin
+    pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
+
+    // Call after render
+    pathInstance.on('rendered', function(){
+      // Initialize Highlighter plugin
+      var hi = pathvisiojsHighlighter(pathInstance)
+
+      // Highlight by ID
+      hi.highlight('#e6e')
+
+      // Highlight by Label
+      hi.highlight('Cholic acid', null, {fill: 'gray'})
+
+      // Highlight by xref
+      hi.highlight('xref:15357', null, {fill: 'magenta', stroke: 'black'})
+      hi.highlight('xref:00193', null, {fill: 'magenta', stroke: 'black'})
+    })
+
+    // Call renderer
+    pathInstance.render()
+  })
+  </script>
+
+	</body>
+</html>

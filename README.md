@@ -18,9 +18,43 @@ It's as simple as referencing the pathvisiojs CSS and JavaScript files and [the 
 <script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/js/pathvisiojs.min.js"></script>
 ```
 
-To add the dependencies, you can copy [this example](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html). 
+To add the dependencies, you can copy [this example](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html).
 
-The [pathvisiojs.load() method](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html#L60) requires a value for the container and for the sourceData parameters. All the other parameters are optional. In production, avoid using window.onload as shown in the example, because you could overwrite an earlier window.onload call.
+If you have jQuery than you may do
+
+```js
+$('#pathvisiojs-container').pathvisiojs({
+  sourceData: [
+    // at least one item required
+    {
+      uri:'http://localhost/pathvisiojs/dist_new/data/wp1.xml',
+      fileType:'gpml' // generally will correspond to filename extension
+    }
+  , {
+      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+      fileType:'png'
+    }
+  ]
+})
+```
+
+If you have no jQuery and do not want to add it then you may call `pathvisiojs` directly and pass two argumets: container selector and options object.
+
+```js
+pathvisiojs('#pathvisiojs-container', {
+  sourceData: [
+    // at least one item required
+    {
+      uri:'http://localhost/pathvisiojs/dist_new/data/wp1.xml',
+      fileType:'gpml' // generally will correspond to filename extension
+    }
+  , {
+      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+      fileType:'png'
+    }
+  ]
+})
+```
 
 How To Get Involved
 ===================
@@ -38,7 +72,7 @@ $ cd pathvisiojs
 B. Add the wikipathways pathvisiojs repo as a remote named "wikipathways," if you have not already done so:
 
 ```
-$ cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer  
+$ cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer
 $ git remote add wikipathways https://github.com/wikipathways/pathvisiojs.git
 ```
 
@@ -48,7 +82,20 @@ Pull latest code from wikipathways master branch of pathvisiojs:
 $ git pull wikipathways master
 ```
 
-C. Make Awesome Updates
+C. Install Node.js and all necessary plugin and modules
+
+First install [Node.js](http://nodejs.org/).
+
+Install grunt and bower `npm install -g grunt-cli bower`. The automatic tests perform an image diff to compare the present rendering of a test pathway with the last known good version. This image diff requires you to install [ImageMagick](http://www.imagemagick.org/).
+
+Than in console `cd` into project folder and install all necessary plugins:
+
+```
+npm install
+bower install
+```
+
+D. Make Updates
 
 You can edit any of the files in the [src directory](https://github.com/wikipathways/pathvisiojs/tree/master/src):
 
@@ -56,25 +103,40 @@ You can edit any of the files in the [src directory](https://github.com/wikipath
 $ cd ~/Sites/pathvisiojs/src/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
-To view your changes as you edit, you can use the functionalities in the [test directory](https://github.com/wikipathways/pathvisiojs/tree/master/test):
+To view your changes as you edit you have to run `grunt dev` in console and navigate your browser to [http://localhost:3000/test/](http://localhost:3000/test/):
 
 ```
 $ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
 ```
 
-If you add a JS file, you will need to add a reference to it in the "pvJsSources" array in in [Gruntfile.js](https://github.com/wikipathways/pathvisiojs/blob/master/Gruntfile.js#L10).
-
 The [README](https://github.com/wikipathways/pathvisiojs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
 
-D. Send Us a Pull Request
+E. Send Us a Pull Request
 
 * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests
 * Commit your changes and push them to your github fork of pathvisiojs
-* Create a pull request to the wikipathways fork of pathvisiojs: 
+* Create a pull request to the wikipathways fork of pathvisiojs:
 ```
 wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
 ```
+
+Available event messages
+------------------------
+
+Event messages are namespaced and may be called with namespace or without. Namespace is defined by a dot: `click.renderer`.
+Triggering events without specifying a namespace will run both events with and without namespace (ex. trigger('click') will run both on('click') and on('click.renderer')).
+Listening on events without a namespace will run hooks event if an event with namespace was triggered (ex. on('click') will run on both trigger('click') and trigger('click.renderer')).
+In order to prevent running unwanted hooks it is better to namespace all events triggers and listeners.
+
+List of available events through application (custom events may be added at any time):
+* error.sourceData
+* error.pvjson
+* error.renderer
+* rendered.renderer
+* zoomed.renderer
+* panned.renderer
+* warning.renderer
 
 License
 =======
@@ -90,10 +152,10 @@ License
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   
-   
+
+
 Funding
 =======
 * The National Institute for General Medical Sciences [R01-GM100039](http://www.nigms.nih.gov/)
 * The BioRange program of the Netherlands [Bioinformatics Centre](http://www.nbic.nl/)
-* [University Maastricht](http://www.unimaas.nl/default.asp?taal=en): Broad Research Strategy Program Part 2 (BOS2) 
+* [University Maastricht](http://www.unimaas.nl/default.asp?taal=en): Broad Research Strategy Program Part 2 (BOS2)

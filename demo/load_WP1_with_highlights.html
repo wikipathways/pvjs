@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html style="margin: 0; width: 100%; height: 100%; ">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>Pathvisiojs Simple Built Production Example</title>
+
+    <style type="text/css">
+      html, body{width: 100%;height: 100%;margin: 0;}
+    </style>
+    <link rel="stylesheet" href="../dist/lib/pathvisiojs/css/pathvisiojs.css">
+
+    <!-- Required by Highlight Plugin -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+    <script src="../dist/lib/modernizr/js/modernizr.min.js"></script>
+    <script src="../dist/lib/cross-platform-shapes/js/cross-platform-shapes.min.js"></script>
+    <script src="../dist/lib/cross-platform-text/js/cross-platform-text.min.js"></script>
+    <script src="../dist/lib/pathvisiojs/js/pathvisiojs.min.js"></script>
+
+    <!-- Notification Plugin -->
+    <link rel="stylesheet" href="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.css">
+    <script src="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.js"></script>
+
+    <!-- Highlight Plugin -->
+    <link rel="stylesheet" href="../dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.css">
+    <script src="../dist/plugins/pathvisiojs-highlighter/typeahead.jquery.min.js"></script>
+    <script src="../dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js"></script>
+
+  </head>
+  <body>
+    <div id="pathvisiojs-container" style="width: 800px; height: 570px; border: 1px solid #ccc;">
+    text<b>test2</b>test3</div>
+    <div id="pathvisiojs-container2" style="width: 700px; height: 200px; border: 1px solid #ccc;">2text<b>2test2</b>2test3</div>
+
+
+  <script>
+  /* *******************
+  /* Load pathvisiojs
+  /* *******************/
+  $(function(){
+    $('#pathvisiojs-container').pathvisiojs({
+      fitToContainer: true
+    , manualRender: true
+    , sourceData: [
+        // at least one item required
+        {
+          uri:'data/wp1.xml',
+          // uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+          fileType:'gpml' // generally will correspond to filename extension
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'biopax'
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'png'
+        }
+      ]
+    })
+
+    // Get first element from array of instances
+    var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+
+    // Load notification plugin
+    pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
+
+    // Call after render
+    pathInstance.on('rendered', function(){
+      // Initialize Highlighter plugin
+      var hi = pathvisiojsHighlighter(pathInstance)
+
+      // Highlight by ID
+      hi.highlight('#e6e')
+
+      // Highlight by Label
+      hi.highlight('Cholic acid', null, {fill: 'gray'})
+
+      // Highlight by xref
+      hi.highlight('xref:15357', null, {fill: 'magenta', stroke: 'black'})
+      hi.highlight('xref:00193', null, {fill: 'magenta', stroke: 'black'})
+    })
+
+    // Call renderer
+    pathInstance.render()
+
+
+    $('#pathvisiojs-container2').pathvisiojs({
+      fitToContainer: false
+    , manualRender: true
+    , sourceData: [
+        // at least one item required
+        {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'biopax'
+        }
+      , {
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType:'png'
+        }
+      , {
+          uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+          fileType:'gpml' // generally will correspond to filename extension
+        }
+      ]
+    })
+
+    // Get first element from array of instances
+    var pathInstance2 = $('#pathvisiojs-container2').pathvisiojs('get').pop()
+
+    // Load plugins
+    pathvisiojsNotifications(pathInstance2, {displayErrors: true, displayWarnings: true})
+
+    // Call renderer
+    pathInstance2.render()
+
+  })
+  </script>
+
+  <div class="test"></div>
+  <div class="test"></div>
+  <div class="test test2"></div>
+
+</body>
+</html>
