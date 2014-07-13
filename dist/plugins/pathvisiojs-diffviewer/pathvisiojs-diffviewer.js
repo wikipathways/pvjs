@@ -136,7 +136,7 @@
     }
 
     // Append changes container
-    $paneCenter.append($('#changes').clone().attr('id', 'changes-clone'))
+    $paneCenter.append(createChangesList())
 
     // Add changes to container
     var $containerAdded = $paneCenter.find('[data-type=added]').children('.changes-list').first()
@@ -193,6 +193,28 @@
 
       highlightChanges($changesTitles, type, hi, hi2, false)
     })
+  }
+
+  /**
+   * Creates changes list and containers
+   *
+   * @return {object} jQuery object
+   */
+  function createChangesList() {
+    var $changesList = $('<div class="changes changes-list"></div>')
+      , $changesContainer1 = $('<div class="changes-container" data-level="1" data-type="added">').appendTo($changesList)
+      , $changesContainer2 = $('<div class="changes-container" data-level="1" data-type="updated">').appendTo($changesList)
+      , $changesContainer3 = $('<div class="changes-container" data-level="1" data-type="removed">').appendTo($changesList)
+      ;
+
+    $changesContainer1.append($('<div class="changes-title changes-parent change-added"><span>Added</span></div>'))
+    $changesContainer1.append($('<div class="changes-list"></div>'))
+    $changesContainer2.append($('<div class="changes-title changes-parent change-updated"><span>Updated</span></div>'))
+    $changesContainer2.append($('<div class="changes-list"></div>'))
+    $changesContainer3.append($('<div class="changes-title changes-parent change-removed"><span>Removed</span></div>'))
+    $changesContainer3.append($('<div class="changes-list"></div>'))
+
+    return $changesList;
   }
 
   function highlightChanges($changes, type, hi, hi2, attenuate) {
