@@ -193,4 +193,5 @@
   padding: 4px 0 4px;
   line-height: 1.4;
   list-style: none;
+  word-wrap: break-word;
 }
