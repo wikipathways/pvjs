@@ -314,7 +314,7 @@
         _styles['stroke-opacity'] = Math.min(0.5, _styles['stroke-opacity'])
 
         highlighting
-          .attr('style', generateStyleString(_styles) + 'pointer-events: none')
+          .attr('style', generateStyleString(_styles, ['fill']) + 'pointer-events: none')
 
         // Adjust markers
         adjustMarkers(highlighter, highlighting, _styles)
@@ -358,11 +358,17 @@
   }
 
 
-  function generateStyleString(styles) {
+  function generateStyleString(styles, except) {
     var styleString = ''
 
+    if (except == void 0) {
+      except = []
+    }
+
     for (var s in styles) {
-      styleString += s + ':' + styles[s] + ';'
+      if (except.indexOf(s) === -1) {
+        styleString += s + ':' + styles[s] + ';'
+      }
     }
 
     return styleString
