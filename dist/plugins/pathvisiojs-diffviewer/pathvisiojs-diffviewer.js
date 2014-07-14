@@ -331,10 +331,10 @@
       , newValue = ''
 
     for (u in diff.added) {
-      titles.push('Added <strong>' + diff.added[u].key + '</strong>')
+      titles.push('Added: <strong>' + diff.added[u].key + '</strong> ' + diff.added[u].value)
     }
     for (u in diff.removed) {
-      titles.push('Removed <strong>' + diff.removed[u].key + '</strong>')
+      titles.push('Removed: <strong>' + diff.removed[u].key + '</strong> ' + diff.removed[u].value)
     }
     for (u in diff.updated) {
       if (floatKeys.indexOf(diff.updated[u].key) !== -1) {
