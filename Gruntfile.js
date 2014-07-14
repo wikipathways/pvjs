@@ -93,7 +93,8 @@ var gruntConfig = {
     dev: {
       tasks: ['nodemon', 'watch:browserify', 'exec:selenium'],
       options: {
-        logConcurrentOutput: true
+        limit: 3//,
+        //logConcurrentOutput: true
       }
     }
   },

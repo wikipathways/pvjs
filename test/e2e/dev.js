@@ -6,20 +6,13 @@ var wd = require('wd')
   , expect = chai.expect
   ;
 
-var desired = {"browserName": "safari"};
+var desired = {"browserName": "phantomjs"};
 desired.name = 'example with ' + desired.browserName;
 desired.tags = ['dev-test'];
 
 chai.use(chaiAsPromised);
 chai.should();
 chaiAsPromised.transferPromiseness = wd.transferPromiseness;
-
-// http configuration, not needed for simple runs
-wd.configureHttp( {
-    timeout: 6000,
-    retryDelay: 1500,
-    retries: 5
-});
 
 describe('Quick test for development', function() {
     var browser;
@@ -47,7 +40,7 @@ describe('Quick test for development', function() {
       var width = 800,
           height = 800;
       browser
-          .init({browserName:'safari'})
+          .init({browserName:'phantomjs'})
 
           .setWindowSize(width, height)
 
