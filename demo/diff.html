@@ -42,6 +42,10 @@
       <div style="height: 30px; float: left; width: 20%;"><input type="submit" value="Change" id="pathwayUriSubmit"/></div>
     </div>
     <div>Insert pathway name followed by optional revision number (divide by space)</div>
+    <div style="border: 1px solid blue;height: 30px;">
+      <input type="checkbox" name="display_ids" value="1" id="display_ids" /><label for="display_ids">Display IDs</label>
+    </div>
+
 
   <script>
   /* *******************
@@ -49,6 +53,7 @@
   /* *******************/
   $(function(){
     var pathInstance = null
+      , GLOBAL_displayIds = false
       , getUrl = function(str) {
           var base = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id='
 
@@ -88,6 +93,7 @@
                 fileType:'gpml'
               }
             ]
+          , displayIds: GLOBAL_displayIds
           })
           pathInstance.on('rendered', function(){
             var hi = pathvisiojsHighlighter(pathInstance, {displayInputField: false})
@@ -107,6 +113,20 @@
       loadPvjses()
     })
     $('#pathwayUriSubmit').click()
+
+    $('#display_ids').change(function(){
+      if($(this).is(":checked")) {
+        GLOBAL_displayIds = true
+      } else {
+        GLOBAL_displayIds = false
+      }
+
+      if (pathInstance != null) {
+        pathInstance.destroy()
+      }
+
+      loadPvjses()
+    })
   })
   </script>
 </body>
