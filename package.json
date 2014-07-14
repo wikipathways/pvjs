@@ -34,6 +34,7 @@
   "readmeFilename": "README.md",
   "devDependencies": {
     "async": "~0.7.0",
+    "bower": "latest",
     "brfs": "~1.0.2",
     "chai": "latest",
     "chai-as-promised": "latest",
