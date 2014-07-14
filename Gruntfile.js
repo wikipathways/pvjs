@@ -200,12 +200,16 @@ var gruntConfig = {
       exclude: [".git*","*.scss","node_modules",".svn*"],
       recursive: true
     },
-    test: {
+    pvjsTestServer: { // just testing pvjs on a remote server
       options: {
         src: "./gh-pages/",
-        dest: "/var/www/d3/r/pathvisiojs",
+        dest: "/var/www/pvjs",
         host: process.env.POINTER_UCSF_EDU_USERNAME + "@pointer.ucsf.edu",
         syncDestIgnoreExcl: true
+      }
+    },
+    integrationTestServer: { // testing pvjs integration with WikiPathways
+      options: {
       }
     }
   },
@@ -322,7 +326,10 @@ module.exports = function(grunt) {
   grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:crossplatformshapes', 'copy:crossplatformtext']);
 
   // Build, create and publish to test server. Run extensive tests.
-  grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'copy:pagesTest', 'replace:pages', 'replace:pagesTest', 'rsync:test', 'clean:pages']);
+  grunt.registerTask('remote-test', ['build', 'copy:pages', 'copy:pagesLibs', 'copy:pagesTest', 'replace:pages', 'replace:pagesTest', 'rsync:pvjsTestServer', 'clean:pages']);
+
+  // Build, create and publish to test server. Run extensive tests.
+  grunt.registerTask('integration-test', ['build', 'copy:pages', 'copy:pagesLibs', 'copy:pagesTest', 'replace:pages', 'replace:pagesTest', 'rsync:integrationTestServer', 'clean:pages']);
 
   // Build, create and publish gh-pages
   grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages']);
