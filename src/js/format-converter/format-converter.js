@@ -19,10 +19,11 @@ module.exports = {
     if (pvjs.sourceData.fileType === 'gpml') {
       // Load xml
       Utils.loadXmlFromUri(pvjs.sourceData.uri, function(xml) {
+          // TODO get the correct metadata. this is placeholder text.
           var pathwayMetadata = {};
           pathwayMetadata.idVersion = 0;
           pathwayMetadata.dbName = 'wikipathways';
-          pathwayMetadata.dbId = 'WP1234';
+          pathwayMetadata.dbId = 'WP1';
 
           Gpml2Json.toPvjson(xml, pathwayMetadata, function(err, pvjson) {
             callback(err, pvjson)

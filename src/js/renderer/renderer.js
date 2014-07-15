@@ -4,7 +4,7 @@ var _ = require('lodash')
   , Selector = require('./selector.js')
   , InfoBox = require('./info-box.js')
   , PublicationXref = require('./publication-xref.js')
-  , EntityReference = require('./annotation/x-ref.js')
+  , EntityReference = require('./annotation/entity-reference.js')
   , SvgPanZoom = require('./../../../lib/svg-pan-zoom/src/svg-pan-zoom.js', ['svgPanZoom'])
   ;
 
