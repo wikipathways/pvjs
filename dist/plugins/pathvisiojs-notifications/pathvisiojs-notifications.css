@@ -54,3 +54,41 @@
   filter: alpha(opacity=20);
   opacity: .2;
 }
+
+
+/*
+  Counter
+ */
+.pathvisiojs-notifications .alert .counter{
+  margin: 0 4px 0 0;
+  min-width: 15px;
+  height: 15px;
+  float: left;
+  font-size: 11px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 15px;
+  text-align: center;
+  color: #000;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.pathvisiojs-notifications .alert.alert-success .counter{
+  color: #fff;
+  background: #31708F;
+}
+
+.pathvisiojs-notifications .alert.alert-info .counter{
+  color: #D9534F;
+  background: #EBCCD1;
+}
+
+.pathvisiojs-notifications .alert.alert-warning .counter{
+  color: #D9534F;
+  background: #EBCCD1;
+}
+
+.pathvisiojs-notifications .alert.alert-danger .counter{
+  color: #000;
+  background: #fff;
+}
