@@ -39,9 +39,16 @@
 
         // Highlight all nodes one by one
         if (nodes) {
-          nodes.each(function(){
-            highlight(highlighter, group || 'default', this, styles)
-          })
+          // If is instance of D3
+          if (typeof nodes.html === 'function') {
+            nodes.each(function(){
+              highlight(highlighter, group || 'default', this, styles)
+            })
+          } else {
+            nodes.forEach(function(node){
+              highlight(highlighter, group || 'default', node, styles)
+            })
+          }
         }
 
         // If anything highlighted then return true
@@ -53,9 +60,16 @@
 
           // Attenuate all nodes one by one
           if (nodes) {
-            nodes.each(function(){
-              attenuate(highlighter, group || 'default', this)
-            })
+            // If is instance of D3
+            if (typeof nodes.html === 'function') {
+              nodes.each(function(){
+                attenuate(highlighter, group || 'default', this)
+              })
+            } else {
+              nodes.forEach(function(node){
+                attenuate(highlighter, group || 'default', node)
+              })
+            }
           }
         } else {
           // Attenuate all elements from group
@@ -195,10 +209,12 @@
 
   function select(highlighter, selector) {
     var d3Selector = null
+      , elementSelector = null
 
     if (selector[0] === '#') {
       // Select by id
       d3Selector = selector
+      elementSelector = selector
     } else if(selector.indexOf('xref:') === 0) {
       // Search by xref
 
@@ -238,7 +254,26 @@
     if (!d3Selector) {
       return null
     } else {
-      return highlighter.pvjs.$element.selectAll(d3Selector)
+      var nodes = highlighter.pvjs.$element.selectAll(d3Selector)
+
+      if (!nodes.empty()) {
+        return highlighter.pvjs.$element.selectAll(d3Selector)
+      } else {
+        return searchTroughElements(highlighter, elementSelector)
+      }
+    }
+  }
+
+  function searchTroughElements(highlighter, selector) {
+    if (selector[0] === '#') {
+      // Select by id
+      var _selector = selector.slice(1)
+
+      return highlighter.elements.filter(function(element){
+        return element.id == _selector
+      })
+    } else {
+      return null
     }
   }
 
@@ -285,65 +320,79 @@
 
     // Render highlighting
     if (!highlighting) {
-      var $node = d3.select(node)
-        , nodeName = $node.property('nodeName')
-        , pvjsElement = getPvjsElementById(highlighter.elements, $node.attr('id'))
+      if (isElement(node)) {
+        var $node = d3.select(node)
+          , nodeName = $node.property('nodeName')
+          , pvjsElement = getPvjsElementById(highlighter.elements, $node.attr('id'))
 
-      if (pvjsElement && pvjsElement['gpml:element'] === 'gpml:Interaction') { // Clone this path and set different stroke and fill
-        var $parent = d3.select(node.parentNode)
-          , attributes = node.attributes
-          , highlighting = $parent.append(nodeName).attr('id', $node.attr('id') + '9')
+        if (pvjsElement && pvjsElement['gpml:element'] === 'gpml:Interaction') { // Clone this path and set different stroke and fill
+          var $parent = d3.select(node.parentNode)
+            , attributes = node.attributes
+            , highlighting = $parent.append(nodeName).attr('id', $node.attr('id') + '9')
 
-        for (var i = 0; i < attributes.length; i++) {
-          if (attributes[i].name === 'id') continue;
+          for (var i = 0; i < attributes.length; i++) {
+            if (attributes[i].name === 'id') continue;
 
-          highlighting.attr(attributes[i].name, attributes[i].value)
+            highlighting.attr(attributes[i].name, attributes[i].value)
+          }
+
+          // Recalculate style
+          _styles = extend(styles, {})
+
+          // Adjust stroke-width
+          if ($node.attr('stroke-width') == null) {
+            _styles['stroke-width'] = options['stroke-width']
+          } else {
+            _styles['stroke-width'] = ((parseInt($node.attr('stroke-width'), 10) || 0) + (parseInt(options.styles['stroke-width'], 10) || 0)) + 'px'
+          }
+
+          // Adjust stroke-opacity
+          _styles['stroke-opacity'] = Math.min(0.5, _styles['stroke-opacity'])
+
+          highlighting
+            .attr('style', generateStyleString(_styles, ['fill']) + 'pointer-events: none')
+
+          // Adjust markers
+          adjustMarkers(highlighter, highlighting, _styles)
+
+        } else { // Treat element as a rectangle
+          // Render node
+          var nodeBBox = node.getBBox()
+            // TODO take in account padding based on border width and offset
+            , padding = 2.5
+            , transform = node.getAttribute('transform')
+            , translate
+            , translate_x = 0
+            , translate_y = 0
+
+          // If node has translate attribute
+          if (transform && (translate = transform.match(/translate\(([\d\s\.]+)\)/))) {
+            translate = translate[1].split(' ')
+            translate_x = +translate[0]
+            translate_y = translate.length > 1 ? +translate[1] : 0
+          }
+
+          highlighting = highlighter.pvjs.$element.select('#viewport')
+            .append('rect')
+              .attr('x', nodeBBox.x - padding + translate_x)
+              .attr('y', nodeBBox.y - padding + translate_y)
+              .attr('width', nodeBBox.width + 2 * padding)
+              .attr('height', nodeBBox.height + 2 * padding)
+              .attr('class', 'highlighted-node')
+              .attr('style', generateStyleString(styles) + 'pointer-events: none')
         }
-
-        // Recalculate style
-        _styles = extend(styles, {})
-
-        // Adjust stroke-width
-        if ($node.attr('stroke-width') == null) {
-          _styles['stroke-width'] = options['stroke-width']
-        } else {
-          _styles['stroke-width'] = ((parseInt($node.attr('stroke-width'), 10) || 0) + (parseInt(options.styles['stroke-width'], 10) || 0)) + 'px'
+      } else {
+        // Is pvjson element
+        if (node.height && node.width && node.x && node.y) {
+          highlighting = highlighter.pvjs.$element.select('#viewport')
+            .append('rect')
+              .attr('x', node.x)
+              .attr('y', node.y)
+              .attr('width', node.width)
+              .attr('height', node.height)
+              .attr('class', 'highlighted-node')
+              .attr('style', generateStyleString(styles) + 'pointer-events: none')
         }
-
-        // Adjust stroke-opacity
-        _styles['stroke-opacity'] = Math.min(0.5, _styles['stroke-opacity'])
-
-        highlighting
-          .attr('style', generateStyleString(_styles, ['fill']) + 'pointer-events: none')
-
-        // Adjust markers
-        adjustMarkers(highlighter, highlighting, _styles)
-
-      } else { // Treat element as a rectangle
-        // Render node
-        var nodeBBox = node.getBBox()
-          // TODO take in account padding based on border width and offset
-          , padding = 2.5
-          , transform = node.getAttribute('transform')
-          , translate
-          , translate_x = 0
-          , translate_y = 0
-
-        // If node has translate attribute
-        if (transform && (translate = transform.match(/translate\(([\d\s\.]+)\)/))) {
-          translate = translate[1].split(' ')
-          translate_x = +translate[0]
-          translate_y = translate.length > 1 ? +translate[1] : 0
-        }
-
-        highlighting = highlighter.pvjs.$element.select('#viewport')
-          .append('rect')
-            .attr('x', nodeBBox.x - padding + translate_x)
-            .attr('y', nodeBBox.y - padding + translate_y)
-            .attr('width', nodeBBox.width + 2 * padding)
-            .attr('height', nodeBBox.height + 2 * padding)
-            .attr('class', 'highlighted-node')
-            .attr('style', generateStyleString(styles) + 'pointer-events: none')
       }
     } else {
       // Apply new style
@@ -351,10 +400,19 @@
     }
 
     // Add info to group
-    highlighter.groups[group].push({
-      node: node
-    , highlighting: highlighting
-    })
+    if (highlighting) {
+      highlighter.groups[group].push({
+        node: node
+      , highlighting: highlighting
+      })
+    }
+  }
+
+  function isElement(o){
+    return (
+      typeof HTMLElement === "object" ? (o instanceof HTMLElement || o instanceof SVGElement || o instanceof SVGSVGElement) : //DOM2
+      o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
+    );
   }
 
 
