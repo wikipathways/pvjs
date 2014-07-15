@@ -11,8 +11,9 @@
    * @param {pathvisiojs instance} pvjs
    */
   function PathvisiojsNotifications(pvjs, options) {
-    var $notifications = pvjs.$element.append('div').attr('class', 'pathvisiojs-notifications')
+    var $notifications = $('<div class="pathvisiojs-notifications">').appendTo($(pvjs.$element[0][0]))
       , options = options || {}
+      , lastNotification = {type: null, message: '', counter: 0, $element: null}
 
     // Copy default options
     for (var i in optionsDefault) {
@@ -23,13 +24,13 @@
 
     if (options.displayErrors) {
       pvjs.on('error', function(data){
-        addPathvisiojsNotification($notifications, 'danger', '<strong>Error!</strong> ' + data.message)
+        addPathvisiojsNotification($notifications, 'danger', '<strong>Error!</strong> ' + data.message, lastNotification)
       })
     }
 
     if (options.displayWarnings) {
       pvjs.on('warning', function(data){
-        addPathvisiojsNotification($notifications, 'warning', '<strong>Warning!</strong> ' + data.message)
+        addPathvisiojsNotification($notifications, 'warning', '<strong>Warning!</strong> ' + data.message, lastNotification)
       })
     }
 
@@ -42,13 +43,36 @@
    * @param {string} type. danger, warning, success, info
    * @param {string} message
    */
-  function addPathvisiojsNotification($container, type, message){
-    $container
-      .append('div').attr('class', 'alert alert-' + type)
-      .html(message)
-      .on('click', function(){
-        d3.select(this).on('click', null).remove()
-      })
+  function addPathvisiojsNotification($container, type, message, lastNotification){
+    if (lastNotification.type === type && lastNotification.message == message) {
+      lastNotification.counter += 1
+
+      // Increment counter
+      lastNotification.$element.find('.counter').show().text(lastNotification.counter)
+
+    } else {
+      var $notification = $('<div class="alert alert-' + type + '">')
+        .html(message)
+        .appendTo($container)
+
+      // Add close button
+      $('<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button>')
+        .prependTo($notification)
+        .on('click', function(){
+          $(this).parent().remove()
+        })
+
+      // Add counter
+      $('<span class="counter">1</span>')
+        .hide()
+        .prependTo($notification)
+
+      lastNotification.type = type
+      lastNotification.message = message
+      lastNotification.counter = 1
+      lastNotification.$element = $notification
+    }
+
   }
 
   /**
