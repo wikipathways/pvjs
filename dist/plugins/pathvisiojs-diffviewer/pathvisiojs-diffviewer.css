@@ -66,6 +66,14 @@
 .changes-title i{
   font-size: 90%;
   opacity: 0.8;
+  font-style: normal;
+}
+
+.changes-title i.icon{
+  font-size: 90%;
+  opacity: 0.8;
+  font-style: normal;
+  font-weight: normal;
 }
 
 .changes-parent span {

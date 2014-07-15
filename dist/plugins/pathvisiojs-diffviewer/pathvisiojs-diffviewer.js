@@ -462,7 +462,7 @@
 
   function getChangeTitle(obj, list, displayIds) {
     if (obj['gpml:element'] === 'gpml:Interaction') {
-      return '' + findTitleById(obj.points[0].isAttachedTo, list, displayIds) + ' - ' + findTitleById(obj.points[1].isAttachedTo, list, displayIds)
+      return '' + findTitleById(obj.points[0].isAttachedTo, list, displayIds) + ' <i class="icon icon-arrow-right"></i> ' + findTitleById(obj.points[1].isAttachedTo, list, displayIds)
     } else if (obj['gpml:element'] === 'gpml:DataNode') {
       return obj.textContent
     } else if (obj['gpml:element'] === 'gpml:Label') {
