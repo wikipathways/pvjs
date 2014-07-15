@@ -63,6 +63,11 @@
   font-size: 16px;
 }
 
+.changes-title i{
+  font-size: 90%;
+  opacity: 0.8;
+}
+
 .changes-parent span {
   position: relative;
   display: inline-block;

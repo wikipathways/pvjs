@@ -468,9 +468,9 @@
     } else if (obj['gpml:element'] === 'gpml:Label') {
       return obj.textContent
     } else if (obj['gpml:element'] === 'gpml:Shape') {
-      return obj.shape + (displayIds ? ' ' + obj.id : '')
+      return obj.shape + (displayIds ? ' <i>' + obj.id + '</i>' : '')
     } else if (obj['gpml:element'] === 'gpml:Group') {
-      return 'Group ' + (displayIds ? ' ' + obj.id : '')
+      return 'Group ' + (displayIds ? ' <i>' + obj.id + '</i>' : '')
     }
 
     return 'no title'
@@ -485,7 +485,7 @@
       if (list[l].id != null && id === list[l].id) {
         // Check if is not interaction to avoid circular recursion
         if (list[l]['gpml:element'] === 'gpml:Interaction') {
-          return 'Interaction ' + (displayIds ? ' ' + id : '')
+          return 'Interaction ' + (displayIds ? ' <i>' + id + '</i>': '')
         } else {
           return getChangeTitle(list[l], list, displayIds)
         }
