@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Test Protocol - Interactions" Version="20130813" Organism="Anopheles gambiae">
   <Comment Source="WikiPathways-description">This pathway can be deleted once release 36 is shipped.</Comment>
-  <Graphics BoardWidth="944.8130671506344" BoardHeight="2320.3983581861794" />
+  <Graphics BoardWidth="944.8130671506344" BoardHeight="1337.7681060853372" />
   <DataNode TextLabel="Metabolite" GraphId="b48a3" Type="Metabolite">
     <Graphics CenterX="353.9902409109661" CenterY="473.69583148767674" Width="80.0" Height="20.0" ZOrder="32848" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
@@ -799,6 +799,102 @@
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
+  <Interaction GraphId="bb9aa">
+    <Graphics ZOrder="33159" LineThickness="1.0">
+      <Point X="120.51602501880117" Y="1202.7661058034835" />
+      <Point X="120.51602501880117" Y="1253.5664254130684" />
+      <Anchor Position="0.4" Shape="None" GraphId="e4e80" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="be75e">
+    <Graphics ZOrder="33160" LineThickness="1.0">
+      <Point X="68.90465061121833" Y="1222.5865721713524" GraphRef="f3817" RelX="0.0" RelY="0.0" />
+      <Point X="120.51602501880117" Y="1223.0862336473174" GraphRef="e4e80" RelX="0.0" RelY="0.0" ArrowHead="LigandRound" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="df79d">
+    <Graphics ZOrder="33161" LineThickness="1.0">
+      <Point X="68.90465061121833" Y="1201.9333366768751" />
+      <Point X="68.90465061121833" Y="1253.5664254130684" />
+      <Anchor Position="0.4" Shape="None" GraphId="cedb5" />
+      <Anchor Position="0.4" Shape="None" GraphId="f3817" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ba6ed">
+    <Graphics ZOrder="33163" LineThickness="1.0">
+      <Point X="228.20510064905343" Y="1200.1610637866775" />
+      <Point X="228.20510064905343" Y="1250.9613833962624" />
+      <Anchor Position="0.4" Shape="None" GraphId="b9ca4" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c4a60">
+    <Graphics ZOrder="33164" LineThickness="1.0">
+      <Point X="176.5937262414706" Y="1219.9815301545464" GraphRef="fa215" RelX="0.0" RelY="0.0" />
+      <Point X="228.20510064905343" Y="1220.4811916305114" GraphRef="b9ca4" RelX="0.0" RelY="0.0" ArrowHead="LigandSquare" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="eb9aa">
+    <Graphics ZOrder="33165" LineThickness="1.0">
+      <Point X="176.5937262414706" Y="1199.328294660069" />
+      <Point X="176.5937262414706" Y="1250.9613833962624" />
+      <Anchor Position="0.4" Shape="None" GraphId="a996d" />
+      <Anchor Position="0.4" Shape="None" GraphId="fa215" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c659e">
+    <Graphics ZOrder="33167" LineThickness="1.0">
+      <Point X="335.8941762793054" Y="1198.6064419379375" />
+      <Point X="335.8941762793054" Y="1249.4067615475224" />
+      <Anchor Position="0.4" Shape="None" GraphId="f1574" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="c59cd">
+    <Graphics ZOrder="33168" LineThickness="1.0">
+      <Point X="284.28280187172254" Y="1218.4269083058064" GraphRef="f8248" RelX="0.0" RelY="0.0" />
+      <Point X="335.8941762793054" Y="1218.9265697817714" GraphRef="f1574" RelX="0.0" RelY="0.0" ArrowHead="Receptor" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="af7e7">
+    <Graphics ZOrder="33169" LineThickness="1.0">
+      <Point X="284.28280187172254" Y="1197.773672811329" />
+      <Point X="284.28280187172254" Y="1249.4067615475224" />
+      <Anchor Position="0.4" Shape="None" GraphId="be12d" />
+      <Anchor Position="0.4" Shape="None" GraphId="f8248" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="e1093">
+    <Graphics ZOrder="33171" LineThickness="1.0">
+      <Point X="447.7849325818264" Y="1194.9509797530636" />
+      <Point X="447.7849325818264" Y="1245.7512993626485" />
+      <Anchor Position="0.4" Shape="None" GraphId="a44ed" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="b58f8">
+    <Graphics ZOrder="33172" LineThickness="1.0">
+      <Point X="396.17355817424357" Y="1214.7714461209325" GraphRef="fcee0" RelX="0.0" RelY="0.0" />
+      <Point X="447.7849325818264" Y="1215.2711075968975" GraphRef="a44ed" RelX="0.0" RelY="0.0" ArrowHead="ReceptorSquare" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="e3597">
+    <Graphics ZOrder="33173" LineThickness="1.0">
+      <Point X="396.17355817424357" Y="1194.1182106264553" />
+      <Point X="396.17355817424357" Y="1245.7512993626485" />
+      <Anchor Position="0.4" Shape="None" GraphId="fe1ab" />
+      <Anchor Position="0.4" Shape="None" GraphId="fcee0" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
   <Label TextLabel="Example Legend" GraphId="b608c">
     <Graphics CenterX="845.3130671506344" CenterY="78.90744101633393" Width="139.0" Height="20.0" ZOrder="28672" FillColor="ffffff" FontSize="15" Valign="Middle" />
   </Label>
@@ -855,6 +951,21 @@
   </Label>
   <Label TextLabel="mim-gap" GraphId="b0238">
     <Graphics CenterX="592.5597091764042" CenterY="1008.8753986791719" Width="91.45672238128418" Height="19.844812877748495" ZOrder="33136" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Deprecated Markers" GraphId="e8606">
+    <Graphics CenterX="126.25523127177914" CenterY="1146.9511135672499" Width="211.77525174215577" Height="42.480684469795186" ZOrder="33158" FillColor="ffffff" FontWeight="Bold" FontSize="20" Valign="Middle" />
+  </Label>
+  <Label TextLabel="LigandRound" GraphId="cc51d">
+    <Graphics CenterX="95.17082560132215" CenterY="1191.5113175523861" Width="91.45672238128418" Height="19.844812877748495" ZOrder="33162" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="LigandSquare" GraphId="c40d7">
+    <Graphics CenterX="202.8599012315744" CenterY="1188.90627553558" Width="91.45672238128418" Height="19.844812877748495" ZOrder="33166" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Receptor" GraphId="a07d6">
+    <Graphics CenterX="310.54897686182653" CenterY="1187.35165368684" Width="91.45672238128418" Height="19.844812877748495" ZOrder="33170" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="ReceptorSquare" GraphId="d604c">
+    <Graphics CenterX="422.43973316434733" CenterY="1183.6961915019663" Width="91.45672238128418" Height="19.844812877748495" ZOrder="33174" FillColor="ffffff" FontSize="10" Valign="Middle" />
   </Label>
   <Shape GraphId="d3987">
     <Graphics CenterX="847.7363255364697" CenterY="298.6989671931956" Width="132.32746051032814" Height="418.39793438639134" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />

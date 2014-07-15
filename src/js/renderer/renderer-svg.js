@@ -1,8 +1,8 @@
 var _ = require('lodash')
   , Fs = require('fs')
   , RendererPrototype = require('./renderer-prototype')
-  , EntityReference = require('./annotation/x-ref.js')
-  , Strcase = require('./../../../lib/strcase/index.js')
+  , EntityReference = require('./annotation/entity-reference.js')
+  , Strcase = require('tower-strcase')
   ;
 
 var RendererSvg = Object.create(RendererPrototype)
@@ -86,6 +86,7 @@ function render(renderer, pvjsonElement) {
 }
 
 function renderShape(renderer, pvjsonElement) {
+  var pvjson = renderer.pvjs.sourceData.pvjson;
   var shapeName = Strcase.camelCase(pvjsonElement.shape)
 
   // TODO move this checking into plugin
@@ -110,10 +111,18 @@ function renderShape(renderer, pvjsonElement) {
   var node = renderer.crossPlatformShapesInstance[shapeName](pvjsonElement)
     , $node = d3.select(node)
 
+  var entityReference = pvjsonElement.entityReference;
   // TODO delegate this to selector
-  if (!!pvjsonElement.datasourceReference) {
-    var notDragged = true
-      , dr = pvjsonElement.datasourceReference
+  if (!!entityReference) {
+    var dereferencedEntityReference = pvjson.elements.filter(function(element) {
+      return element.id === entityReference;
+    })[0];
+
+    var bridgedbUri = dereferencedEntityReference.xrefs.filter(function(xref) {
+      return xref.indexOf('bridgedb.org' > -1);
+    })[0];
+
+    var notDragged = true;
 
     // Add class to change mouse hover
     $node.classed({'has-xref': true});
@@ -126,13 +135,17 @@ function renderShape(renderer, pvjsonElement) {
     })
     .on("mouseup", function(d,i) {
       if (notDragged) {
-        EntityReference.render(renderer.pvjs, dr.organism, dr.id, dr.database, pvjsonElement.textContent, pvjsonElement.dataNodeType);
+        EntityReference.render(renderer.pvjs, { bridgedbUri:bridgedbUri,
+          label:pvjsonElement.textContent,
+          description:pvjsonElement.type
+        });
       }
     });
   }
 
   return node
 }
+
 function renderText(renderer, pvjsonElement) {
   var node = renderer.crossPlatformTextInstance.render(pvjsonElement)
 

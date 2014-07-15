@@ -43,6 +43,7 @@ module.exports = function(){
       return pathwaySearchUriStub + d.header;
      })
      .attr('title', function(d) {return 'Search for pathways containing ' + d.header; });
+     //.on('click', function(d) { window.open(d.uri, '_blank'); });
 
     var annotationIconMove = annotation.select('i.icon-move')
     .on("mousedown", function(d, i){
@@ -141,15 +142,15 @@ module.exports = function(){
         }
       });
     })
-    .attr('href', function(d) {return d.uri;})
     .attr('class', 'annotation-item-text')
-    .text(function(d) {return ' ' + d.text; });
+    .text(function(d) {return ' ' + d.text; })
+    .on('click', function(d) { window.open(d.uri, '_blank'); });
     // Enter
     annotationItemLinkedTextElements.enter()
     .append('a')
-    .attr('href', function(d) {return d.uri;})
     .attr('class', 'annotation-item-text')
-    .text(function(d) {return ' ' + d.text; });
+    .text(function(d) {return ' ' + d.text; })
+    .on('click', function(d) { window.open(d.uri, '_blank'); });
     // Exit
     annotationItemLinkedTextElements.exit().remove();
 

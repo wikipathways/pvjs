@@ -311,6 +311,8 @@ _(desireds).each(function(desired, key) {
 
 module.exports = function(grunt) {
 
+  console.log('Test server available at localhost:3000/test/');
+
   // Project configuration.
   grunt.initConfig(gruntConfig);
 

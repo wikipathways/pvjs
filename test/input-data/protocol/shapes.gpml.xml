@@ -74,12 +74,6 @@
     <Graphics CenterX="964.2097488921713" CenterY="1707.1935007385532" Width="80.0" Height="20.0" ZOrder="33031" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
   </DataNode>
-  <Label TextLabel="SAVE" GraphId="d24b3">
-    <Graphics CenterX="212.78721278721278" CenterY="28.986013986013994" Width="95.94405594405595" Height="27.982017982017986" ZOrder="33015" FillColor="ffffff" FontWeight="Bold" FontSize="30" Valign="Middle" />
-  </Label>
-  <Label TextLabel="This pathway is to be saved long-term to test the ability of&#xA;GPML renderers to handle the element type named in the title." GraphId="fbada">
-    <Graphics CenterX="414.08591408591417" CenterY="25.489510489510494" Width="290.7492507492508" Height="32.977022977022976" ZOrder="33016" FillColor="ffffff" FontSize="10" Align="Left" />
-  </Label>
   <Shape GraphId="dba90">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
