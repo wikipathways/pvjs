@@ -6,15 +6,22 @@ var wd = require('wd')
   , expect = chai.expect
   ;
 
-var desired = {"browserName": "phantomjs"};
-desired.name = 'example with ' + desired.browserName;
-desired.tags = ['dev-test'];
+var desired = {"browserName": "safari"};
+desired.name = 'Local protocol test (' + desired.browserName + ')';
+desired.tags = ['local-protocol'];
 
 chai.use(chaiAsPromised);
 chai.should();
 chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 
-describe('Quick test for development', function() {
+// http configuration, not needed for simple runs
+wd.configureHttp( {
+    timeout: 6000,
+    retryDelay: 1500,
+    retries: 5
+});
+
+describe(desired.name, function() {
     var browser;
     var allPassed = true;
 
@@ -40,7 +47,7 @@ describe('Quick test for development', function() {
       var width = 800,
           height = 800;
       browser
-          .init({browserName:'phantomjs'})
+          .init(desired)
 
           .setWindowSize(width, height)
 
@@ -58,19 +65,19 @@ describe('Quick test for development', function() {
             .nodeify(done);
     });
 
-    it("should render the 'dev' test page", function(done) {
+    it("should render the 'anchors' test page", function(done) {
         browser
-            .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/dev/dev.gpml")
+            .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/protocol/anchors.gpml.xml")
             .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 500)
-            .saveScreenshot('tmp/dev-' + desired.browserName + '-test.png')
+            .saveScreenshot('tmp/protocol/anchors-' + desired.browserName + '-test.png')
             .nodeify(done);
     });
 
     it("should confirm test and last known good screenshots are the same", function(done) {
         imageDiff({
-          actualImage: 'tmp/dev-' + desired.browserName + '-test.png',
-          expectedImage: 'test/input-data/dev/dev-' + desired.browserName + '-lkg.png',
-          diffImage: 'tmp/dev-' + desired.browserName + '-difference.png',
+          actualImage: 'tmp/protocol/anchors-' + desired.browserName + '-test.png',
+          expectedImage: 'test/input-data/protocol/anchors-' + desired.browserName + '-lkg.png',
+          diffImage: 'tmp/protocol/anchors-' + desired.browserName + '-difference.png',
         }, function (err, imagesAreSame) {
           expect(imagesAreSame).to.equal(true);
           done();
@@ -80,3 +87,4 @@ describe('Quick test for development', function() {
         });
     });
 });
+
