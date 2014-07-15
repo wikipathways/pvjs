@@ -468,7 +468,7 @@
     } else if (obj['gpml:element'] === 'gpml:Label') {
       return obj.textContent
     } else if (obj['gpml:element'] === 'gpml:Shape') {
-      return obj.shape + (displayIds ? ' <i>' + obj.id + '</i>' : '')
+      return obj.shape.slice(0, 1).toUpperCase() + obj.shape.slice(1) + (displayIds ? ' <i>' + obj.id + '</i>' : '')
     } else if (obj['gpml:element'] === 'gpml:Group') {
       return 'Group ' + (displayIds ? ' <i>' + obj.id + '</i>' : '')
     }
