@@ -8,6 +8,10 @@
 
     <style type="text/css">
       html, body{width: 100%;height: 100%;margin: 0;}
+      h4{margin: 0;padding: 0;}
+      .presets a{
+        display: block;
+      }
     </style>
     <link rel="stylesheet" href="../dist/lib/pathvisiojs/css/pathvisiojs.css">
     <link rel="stylesheet" href="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.css">
@@ -44,6 +48,17 @@
     <div>Insert pathway name followed by optional revision number (divide by space)</div>
     <div style="border: 1px solid blue;height: 30px;">
       <input type="checkbox" name="display_ids" value="1" id="display_ids" /><label for="display_ids">Display IDs</label>
+    </div>
+    <div style="border: 1px solid blue;min-height: 30px;" class="presets">
+      <h4>Presets</h4>
+      <a href="#" data-diff-left="WP525 73040" data-diff-right="WP525 74871">Mitochondrial Unfolded-Protein Response</a>
+      <a href="#" data-diff-left="WP2806 75308" data-diff-right="WP2806">Human Complement System (Homo sapiens)</a>
+      <a href="#" data-diff-left="WP2249 49671" data-diff-right="WP2249">Metastatic brain tumor</a>
+      <a href="#" data-diff-left="WP370 8925" data-diff-right="WP370">Sphingolipid Metabolism</a>
+      <a href="#" data-diff-left="WP2231 49156" data-diff-right="WP2231">Programmed Cell Death and Cell Engulfment</a>
+      <a href="#" data-diff-left="WP414 8535" data-diff-right="WP414">Cell Cycle and Cell Division</a>
+      <a href="#" data-diff-left="WP2075 45977" data-diff-right="WP2075">Alzheimers Disease</a>
+      <a href="#" data-diff-left="WP339 6433" data-diff-right="WP339">ESC Pluripotency Pathways</a>
     </div>
 
 
@@ -120,6 +135,20 @@
       } else {
         GLOBAL_displayIds = false
       }
+
+      if (pathInstance != null) {
+        pathInstance.destroy()
+      }
+
+      loadPvjses()
+    })
+
+    $('.presets').on('click', 'a', function(ev){
+      ev.preventDefault()
+      var $this = $(this)
+
+      $('#pathwayUri').val($this.data('diffLeft'))
+      $('#pathwayUri2').val($this.data('diffRight'))
 
       if (pathInstance != null) {
         pathInstance.destroy()
