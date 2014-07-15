@@ -11,7 +11,7 @@
    * @param {pathvisiojs instance} pvjs
    */
   function PathvisiojsNotifications(pvjs, options) {
-    var $notifications = pvjs.$element.append('div').attr('class', 'pathvisiojs-notifications')
+    var $notifications = $('<div class="pathvisiojs-notifications">').appendTo($(pvjs.$element[0][0]))
       , options = options || {}
 
     // Copy default options
@@ -43,11 +43,14 @@
    * @param {string} message
    */
   function addPathvisiojsNotification($container, type, message){
-    $container
-      .append('div').attr('class', 'alert alert-' + type)
+    var $message = $('<div class="alert alert-' + type + '">')
       .html(message)
+      .appendTo($container)
+
+    var $button = $('<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button>')
+      .prependTo($message)
       .on('click', function(){
-        d3.select(this).on('click', null).remove()
+        $(this).parent().remove()
       })
   }
 
