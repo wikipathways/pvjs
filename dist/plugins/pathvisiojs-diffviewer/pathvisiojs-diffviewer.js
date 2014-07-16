@@ -44,6 +44,7 @@
     // Create second pvjs instance
     var pvjs2 = window.pathvisiojs($pvjsElement2[0], pvjsOptions)[0]
 
+    // Barrier
     var pvjsRendered = false
       , pvjs2Rendered = false
     pvjs.on('rendered', function(){
@@ -318,6 +319,17 @@
           }
 
           $changes.appendTo($elementTitle)
+        } else if (type === 'added') {
+          titles = getAddTitles(addedGroups[g][e])
+
+          if (titles.length) {
+            $changes = $('<ul class="element-changes"></ul>')
+            for (title in titles) {
+              $changes.append('<li>' + titles[title] + '</li>')
+            }
+
+            $changes.appendTo($elementTitle)
+          }
         }
         $elementTitle[0].pvjsonElement = addedGroups[g][e]
       }
@@ -345,6 +357,16 @@
         newValue = diff.updated[u].value
       }
       titles.push('<strong>' + diff.updated[u].key + ':</strong> ' + oldValue + ' -> ' + newValue)
+    }
+
+    return titles
+  }
+
+  function getAddTitles(element) {
+    var titles = []
+
+    if (element.hasOwnProperty('entityReference')) {
+      titles.push('Added <strong>reference</strong>: ' + element.entityReference)
     }
 
     return titles
