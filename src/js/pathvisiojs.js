@@ -96,6 +96,7 @@ var _ = require('lodash')
     , uri: null // resource uri
     , fileType: ''
     , pvjson: null // pvjson object
+    , selector: null // selector instance
     , rendererEngine: null // renderer engine name
     };
 
@@ -195,7 +196,17 @@ var _ = require('lodash')
       , zoomAtPointBy: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPointBy(scale, point);}}
       , getZoom: function() {return that.panZoom.getZoom();}
       , getOptions: function() {return _.clone(that.options, true);}
-      , getSourceData: function() {return _.clone(that.sourceData, true);}
+      , getSourceData: function() {
+        // return _.clone(that.sourceData, true);
+        return {
+            sourceIndex: that.sourceData.sourceIndex
+          , uri: that.sourceData.uri
+          , fileType: that.sourceData.fileType
+          , pvjson: _.clone(that.sourceData.pvjson, true)
+          , selector: that.sourceData.selector.getClone()
+          , rendererEngine: that.sourceData.rendererEngine
+        };
+      }
       };
     }
 
