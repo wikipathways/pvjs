@@ -307,7 +307,6 @@ Selector.getBBox = function() {
   if (this.length > 0) {
     _BBox = this.renderer.getElementBBox(this[0])
     BBox = _.assign(BBox, _BBox)
-    console.log(BBox.top)
 
     // Traverse all except first
     for (var i = this.length; i >= 1; i--) {
