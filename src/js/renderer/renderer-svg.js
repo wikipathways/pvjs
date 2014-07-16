@@ -208,7 +208,39 @@ RendererSvg.setElementStyle = function(pvjsonElement, styleName, styleValue) {
  * @return {object} BBox
  */
 RendererSvg.getElementBBox = function(pvjsonElement) {
-  // TODO
+  var BBox = {
+        width: 0
+      , height: 0
+      , top: null
+      , bottom: null
+      , left: null
+      , right: null
+      }
+    , border = pvjsonElement && pvjsonElement.hasOwnProperty('borderWidth') ? +pvjsonElement.borderWidth : 0
+
+  if (pvjsonElement == null) return BBox;
+
+  // Assume that the object has width, height, x and y
+  if (pvjsonElement.hasOwnProperty('width')) {
+    BBox.width = pvjsonElement.width + (border * 2)
+    BBox.height = pvjsonElement.height + (border * 2)
+    BBox.top = pvjsonElement.x - border
+    BBox.bottom = BBox.top + BBox.height
+    BBox.left = pvjsonElement.y - border
+    BBox.right = BBox.left + BBox.width
+  } else {
+    // If it is an interaction
+    if (pvjsonElement.hasOwnProperty('gpml:element') && pvjsonElement['gpml:element'] === 'gpml:Interaction') {
+      BBox.top = Math.min(pvjsonElement.points[0].y, pvjsonElement.points[1].y) - border
+      BBox.bottom = Math.max(pvjsonElement.points[0].y, pvjsonElement.points[1].y) + border
+      BBox.left = Math.min(pvjsonElement.points[0].x, pvjsonElement.points[1].x) - border
+      BBox.right = Math.max(pvjsonElement.points[0].x, pvjsonElement.points[1].x) + border
+      BBox.width = BBox.right - BBox.left
+      BBox.height = BBox.top - BBox.bottom
+    }
+  }
+
+  return BBox
 }
 
 module.exports = {
