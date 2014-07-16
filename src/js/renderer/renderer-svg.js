@@ -218,7 +218,7 @@ RendererSvg.getElementBBox = function(pvjsonElement) {
       }
     , border = pvjsonElement && pvjsonElement.hasOwnProperty('borderWidth') ? +pvjsonElement.borderWidth : 0
 
-  if (pvjsonElement == null) return BBox;
+  if (pvjsonElement === null || pvjsonElement === void 0) {return BBox;}
 
   // Assume that the object has width, height, x and y
   if (pvjsonElement.hasOwnProperty('width')) {
