@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140707">
-  <Graphics BoardWidth="511.8374476013043" BoardHeight="253.88371370905176" />
-  <DataNode TextLabel="A" GraphId="dee58" Type="GeneProduct" GroupRef="c0730">
-    <BiopaxRef>fa2</BiopaxRef>
-    <Graphics CenterX="256.63716814159295" CenterY="212.38938053097348" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
+  <Graphics BoardWidth="523.8374476013043" BoardHeight="265.8837137090518" />
+  <DataNode TextLabel="Statin Pathway" GraphId="b2579" Type="Pathway">
+    <Graphics CenterX="189.44537815126048" CenterY="108.50420168067228" Width="124.0" Height="20.0" ZOrder="-2" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Xref Database="WikiPathways" ID="WP1" />
   </DataNode>
-  <DataNode TextLabel="B" GraphId="fffed" Type="GeneProduct" GroupRef="c0730">
-    <Graphics CenterX="441.8374476013043" CenterY="213.88371370905176" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <DataNode TextLabel="Metabolite" GraphId="ca6b1" Type="Metabolite">
-    <Graphics CenterX="335.5263157894737" CenterY="54.82456140350877" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
-    <Xref Database="" ID="" />
-  </DataNode>
-  <State GraphRef="ca6b1" TextLabel="P" GraphId="f6b00">
-    <Graphics RelX="1.0" RelY="1.0" Width="15.0" Height="15.0" ShapeType="Oval" />
-    <Xref Database="" ID="" />
-  </State>
-  <Group GroupId="c0730" Style="Complex" />
+  <Shape GraphId="c5cf1">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="136.75" CenterY="98.25" Width="94.5" Height="77.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax>
     <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="fa2">

@@ -71,6 +71,7 @@
   "dependencies": {
     "gpml2json": "wikipathways/gpml2json",
     "bridgedbjs": "bridgedb/bridgedbjs",
-    "tower-strcase": "~0.5.0"
+    "tower-strcase": "~0.5.0",
+    "jsonld": "~0.2.17"
   }
 }
