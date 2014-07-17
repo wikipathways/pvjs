@@ -168,40 +168,8 @@ function renderShape(renderer, pvjsonElement) {
 
 function renderText(renderer, pvjsonElement) {
   var node = renderer.crossPlatformTextInstance.render(pvjsonElement)
-    , $node = d3.select(node);
 
-  // TODO delegate this to selector
-  if (!!pvjsonElement.type && pvjsonElement.type === 'Pathway') {
-    console.log('Pathway');
-    console.log(pvjsonElement);
-    var entityReferenceRendererArguments = {};
-    entityReferenceRendererArguments.metadata = {
-      label:pvjsonElement.textContent,
-      description:pvjsonElement.type
-    };
-    entityReferenceRendererArguments.xrefs = {};
-    entityReferenceRendererArguments.xrefs.id = pvjsonElement.entityReference;
-
-    var notDragged = true;
-
-    // Add class to change mouse hover
-    $node.classed({'has-xref': true});
-
-    $node.on("mousedown", function(d,i) {
-      notDragged = true;
-    })
-    .on("mousemove", function(d,i) {
-      notDragged = false;
-    })
-    .on("mouseup", function(d,i) {
-      if (notDragged) {
-        EntityReference.render(renderer.pvjs, entityReferenceRendererArguments);
-      }
-    });
-  } else {
-    d3.select(node).attr('pointer-events', 'none')
-  }
-
+  d3.select(node).attr('pointer-events', 'none')
 
   return node
 }
