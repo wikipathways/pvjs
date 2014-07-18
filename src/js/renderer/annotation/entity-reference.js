@@ -6,6 +6,8 @@ var Annotation = require('./annotation.js')
 module.exports = function(){
   'use strict';
 
+  var pathwaySearchUriStub = '/index.php?title=Special:SearchPathways&doSearch=1&query=';
+
   function render(pvjs, args) {
     var xrefs = args.xrefs;
     var metadata = args.metadata;
@@ -23,6 +25,11 @@ module.exports = function(){
       var bridgedbArgs = metadata;
       bridgedbArgs.bridgedbUri = xrefs.id;
       var xRefData = Bridgedb.getXrefsNestedForDisplay(bridgedbArgs, function(err, bridgedbData) {
+        //*
+        var searchAtWikiPathwaysListItem = {key:'WikiPathways', values:[ { text: 'Search for ' + metadata.label + ' pathways', uri: pathwaySearchUriStub + metadata.label }]};
+        bridgedbData.listItems.unshift(searchAtWikiPathwaysListItem);
+        //*/
+
         Annotation.render(pvjs, bridgedbData);
       });
     } else {
@@ -56,6 +63,13 @@ module.exports = function(){
             'header': xrefs.id,
             'description': '',
             'listItems':[{key:'GO Cellular Component Ontology', values:[ { text: goId, uri: xrefIri }]}]
+          };
+        } else {
+          // TODO use data-sources.txt and identifiers.org to make this prettier
+          directLinkData = {
+            'header': metadata.label,
+            'description': metadata.description,
+            'listItems':[{key:'More Information', values:[ { text: xrefIri, uri: xrefIri }]}]
           };
         }
 

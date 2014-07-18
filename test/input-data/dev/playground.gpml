@@ -1,30 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="New Pathway" Version="20140707">
-  <Graphics BoardWidth="523.8374476013043" BoardHeight="265.8837137090518" />
-  <DataNode TextLabel="Statin Pathway" GraphId="b2579" Type="Pathway">
-    <Graphics CenterX="189.44537815126048" CenterY="108.50420168067228" Width="124.0" Height="20.0" ZOrder="-2" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Signaling of Hepatocyte Growth Factor Receptor" Organism="Bos taurus">
+  <Comment Source="GenMAPP remarks">Converted to human by GenMAPP.org</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <Comment Source="HomologyConvert">This pathway was inferred from Homo sapiens pathway [http://www.wikipathways.org/index.php?title=Pathway:WP313&amp;amp;amp;amp;amp;oldid=21339 WP313(r21339)] with a 86% conversion rate.</Comment>
+  <Graphics BoardWidth="795.0" BoardHeight="705.0" />
+  <DataNode TextLabel="GeneProduct" GraphId="aa5cd" Type="GeneProduct" GroupRef="da065">
+    <Graphics CenterX="153.0" CenterY="175.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Metabolite" GraphId="f8ae8" Type="Metabolite" GroupRef="da065">
+    <Graphics CenterX="268.0" CenterY="202.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="WP1" GraphId="d43d5" Type="Pathway">
+    <Graphics CenterX="160.9702315325248" CenterY="306.50496141124586" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
     <Xref Database="WikiPathways" ID="WP1" />
   </DataNode>
-  <Shape GraphId="c5cf1">
+  <DataNode TextLabel="REACT_1590" GraphId="c8f6d" Type="Pathway">
+    <Graphics CenterX="159.50937155457552" CenterY="356.1962513781698" Width="102.9217199558986" Height="20.0" ZOrder="32769" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Xref Database="Reactome" ID="REACT_1590" />
+  </DataNode>
+  <Shape GraphId="b7dfe">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="604.75" CenterY="102.25" Width="82.5" Height="75.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="b1683">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Endoplasmic Reticulum" />
+    <Graphics CenterX="437.25" CenterY="221.75" Width="117.5" Height="78.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Endoplasmic Reticulum" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="a219c">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Golgi Apparatus" />
+    <Graphics CenterX="692.25" CenterY="248.25" Width="145.5" Height="105.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Golgi Apparatus" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="d31d4">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Extracellular region" />
+    <Graphics CenterX="438.25" CenterY="370.25" Width="121.5" Height="85.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineStyle="Broken" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="e4a38">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
     <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
-    <Graphics CenterX="136.75" CenterY="98.25" Width="94.5" Height="77.5" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+    <Graphics CenterX="204.05044101433234" CenterY="293.00137816979077" Width="153.5" Height="110.5" ZOrder="32770" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
-  <InfoBox CenterX="0.0" CenterY="0.0" />
-  <Biopax>
-    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="fa2">
-      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">34253</bp:ID>
-      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
-      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[Genetically conditioned variability of metabolic profile parameters in dairy cows].</bp:TITLE>
-      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vet Med (Praha)</bp:SOURCE>
-      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1978</bp:YEAR>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Simon M</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bod'a K</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Greksák M</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kubinec J</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abrahámová D</bp:AUTHORS>
-      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cerná S</bp:AUTHORS>
-    </bp:PublicationXref>
-  </Biopax>
+  <Group GroupId="da065" Style="Pathway" />
+  <InfoBox CenterX="21.666666666666668" CenterY="675.0" />
+  <Biopax />
 </Pathway>
 
