@@ -179,6 +179,12 @@ RendererSvg.updateElement = function(pvjsonElement, attributeName, attributeValu
  */
 RendererSvg.removeElement = function(pvjsonElement) {
   // TODO
+  var $element = this.$svg.select('#' + pvjsonElement.id)
+
+  if (!$element.empty()) {
+    $element.remove()
+    delete this._elementsHash[pvjsonElement.id]
+  }
 }
 
 /**
