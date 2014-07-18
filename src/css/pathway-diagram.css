@@ -11,13 +11,13 @@
 
 	/* default color for pathway elements */
 	.default-fill-color {
-		fill: black; 
+		fill: black;
 	}
 	.default-stroke-color {
 		stroke: black;
 	}
-	
-	/* default color of the background drawing board */ 	
+
+	/* default color of the background drawing board */
 	.board-fill-color {
 		fill: white;
 	}
@@ -74,7 +74,7 @@
 	.data-node:hover {
 	 	cursor: pointer;
 	}
-	
+
 	.has-xref:hover {
 		cursor: pointer;
 	}
@@ -157,7 +157,7 @@
 		fill: black;
 		stroke-width: 0;
 		font-weight: bold;
-  	}	
+  	}
 
 	.group-node.none {
 		fill: rgb(180,180,100);
@@ -166,7 +166,7 @@
 
 	.group-node.none > .text-area {
 		display: none;
-  	}	
+  	}
 
 	/*.group-node.none:hover {
 		fill: rgb(255,180,100);
@@ -199,7 +199,7 @@
 	/*.group-node.complex:hover {
 		fill: rgb(255,0,0);
 		fill-opacity: 0.05;
-	}*/	
+	}*/
 
   	.group-node.pathway {
 		fill: rgb(0,255,0);
@@ -221,14 +221,14 @@
 
   .graphical-line {
 		fill:none;
-		stroke: black; 
-		stroke-width: 1px; 
+		stroke: black;
+		stroke-width: 1px;
 	}
 
 	.interaction {
 		fill:none;
-		stroke: black; 
-		stroke-width: 1px; 
+		stroke: black;
+		stroke-width: 1px;
 	}
 
 	marker {
@@ -242,7 +242,7 @@
     -webkit-transform: rotate(180deg);
     -webkit-transform-origin: 50% 50%;
 
-    -o-transform: rotate(180deg); 
+    -o-transform: rotate(180deg);
     -o-transform-origin: 50% 50%;
 
     transform: rotate(180deg);
@@ -259,10 +259,3 @@
 	.dashed-stroke {
 		stroke-dasharray: 5,3;
 	}
-
-  .highlighted-node {
-		fill: yellow;
-    fill-opacity: 0.2;
-		stroke: orange; 
-    stroke-width: 3px;
-  }
