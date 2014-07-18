@@ -1,4 +1,6 @@
 var Utils = require('./../utilities.js')
+  , _ = require('lodash')
+  ;
 
 /**
  * Elements are stored as indexed attributes
@@ -143,10 +145,9 @@ Selector.addAndGetElement = function(pvjsonElement) {
 }
 
 /**
- * Register element's id selector cache
+ * Clean selector's cache
  *
  * @param  {object} selector
- * @param  {object} pvjsonElement
  */
 function unregisterAllElements(selector) {
   selector._elementsHash = {}
@@ -170,7 +171,16 @@ Selector.removeElements = function() {
 }
 
 /**
- * Create a new selector by merging this with another selector
+ * Create a clone of given selector
+ *
+ * @return {object}           selector
+ */
+Selector.getClone = function() {
+  return init(this)
+}
+
+/**
+ * Create a new selector by merging it with another selector
  *
  * @param  {object} selector2 selector
  * @return {object}           selector
@@ -198,37 +208,40 @@ Selector.filteredByLabel = function(selectorString) {
 }
 
 /**
- * Get attribute of first element
+ * Get style of first element
  *
  * @param  {string} name attribute name
  * @return {string}      attribute value
  */
-Selector.getAttribute = function(name) {
+Selector.getStyle = function(name) {
   // TODO
   return ''
 }
 
 /**
- * Set attribute to all contained elements
+ * Set style to all contained elements
  * If change is visual ask renderer to render element
  *
  * @param {string} name  attribute name
  * @param {string|number} value attribute value
  * @return {object} selector
  */
-Selector.setAttribute = function(name, value) {
+Selector.setStyle = function(name, value) {
   // TODO
   return this
 }
 
 /**
- * Set a set of attributes to all contained elements
+ * Set a set of styles to all contained elements
  *
- * @param {object} obj key-value pairs of name-value attributes
+ * @param {object} obj key-value pairs of name-value styles
  * @return {object} selector
  */
-Selector.setAttributes = function(obj) {
-  // TODO
+Selector.setStyles = function(obj) {
+  for(var key in obj) {
+    this.setStyle(key, obj[key])
+  }
+
   return this
 }
 
@@ -281,8 +294,37 @@ Selector.getHeight = function() {
  * @return {[type]} [description]
  */
 Selector.getBBox = function() {
-  // TODO
-  return {}
+  var BBox = {
+        width: 0
+      , height: 0
+      , top: null
+      , bottom: null
+      , left: null
+      , right: null
+      }
+    , _BBox = null
+
+  if (this.length > 0) {
+    _BBox = this.renderer.getElementBBox(this[0])
+    BBox = _.assign(BBox, _BBox)
+
+    // Traverse all except first
+    for (var i = this.length; i >= 1; i--) {
+      // Ask renderer of element BBox
+      _BBox = this.renderer.getElementBBox(this[i])
+
+      BBox.top = Math.min(BBox.top, _BBox.top)
+      BBox.bottom = Math.max(BBox.bottom, _BBox.bottom)
+      BBox.left = Math.min(BBox.left, _BBox.left)
+      BBox.right = Math.max(BBox.right, _BBox.right)
+    }
+  }
+
+  // Calculate width and height
+  BBox.width = BBox.right - BBox.left
+  BBox.height = BBox.bottom - BBox.top
+
+  return BBox
 }
 
 module.exports = {
