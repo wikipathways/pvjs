@@ -159,7 +159,7 @@ function unregisterAllElements(selector) {
  * @return {object} selector
  */
 Selector.removeElements = function() {
-  for (var i = this.length; i >= 0; i--) {
+  for (var i = this.length - 1; i >= 0; i--) {
     // Ask renderer to remove element
     this.renderer.removeElement(this[i])
   }
@@ -168,6 +168,15 @@ Selector.removeElements = function() {
   this.length = 0
 
   return this
+}
+
+/**
+ * Alias to remove elements
+ *
+ * @return {Object} selector
+ */
+Selector.remove = function() {
+  return this.removeElements()
 }
 
 /**
