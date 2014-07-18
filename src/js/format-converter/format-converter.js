@@ -1,6 +1,5 @@
 var Utils = require('./../utilities.js')
-  , Gpml = require('./gpml/gpml.js')
-  , Gpml2Json = require('gpml2json')
+  , Gpml = require('gpml2json')
   ;
 
 module.exports = {
@@ -26,7 +25,7 @@ module.exports = {
           pathwayMetadata.dbName = 'wikipathways';
           pathwayMetadata.dbId = 'WP1';
 
-          Gpml2Json.toPvjson(xml, pathwayMetadata, function(err, pvjson) {
+          Gpml.toPvjson(xml, pathwayMetadata, function(err, pvjson) {
             callback(err, pvjson)
           });
       })
