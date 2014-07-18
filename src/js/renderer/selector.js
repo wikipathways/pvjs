@@ -200,18 +200,114 @@ Selector.getMerge = function(selector2) {
 }
 
 /**
- * Return a new selector with elements with labels that match  selectorString
- * @param  {string|regexp} selectorString
+ * Return a new selector with all elements having given ID
+ *
+ * @param  {string} selectorString
  * @return {object}                selector
  */
-Selector.filteredByLabel = function(selectorString) {
+Selector.filteredById = function(selectorString) {
   var matchingElements = []
 
   for (var i = 0; i < this.length; i++) {
-    // If element do matches selector
-    // matchingElements.push(this[i])
+    // If element matches the selector
+    if (this[i].id == selectorString) {
+      matchingElements.push(this[i])
+    }
   }
-  // TODO update length
+
+  return init(matchingElements, this.getRenderer())
+}
+
+Selector.xrefTypes = ['PublicationXref', 'RelationshipXref', 'UnificationXref', 'Xref', 'DnaReference'
+  , 'DnaRegionReference', 'EntityReference', 'EntityReferenceTypeVocabulary', 'ProteinReference'
+  , 'RnaReference', 'RnaRegionReference', 'SmallMoleculeReference']
+
+/**
+ * Return a new selector with xref elements
+ *
+ * @param  {string|regexp} selectorString
+ * @return {object}                selector
+ */
+Selector.filteredByXRef = function(selectorString) {
+  var matchingElements = []
+    , selectById = selectorString.indexOf('id:') === 0 ? true : false
+    , selectAttribute = null
+
+  if (selectById) {
+    selectorString = selectorString.slice(3)
+  }
+
+  for (var i = 0; i < this.length; i++) {
+    // If element is xref
+    if (this[i].hasOwnProperty('type') && this.xrefTypes.indexOf(this[i].type) !== -1) {
+      selectAttribute = null
+
+      // Search by attribute
+      if (selectById) {
+        selectAttribute = 'id'
+      } else if (this[i].hasOwnProperty('title')) {
+        selectAttribute = 'title'
+      } else if (this[i].hasOwnProperty('displayName')) {
+        selectAttribute = 'displayName'
+      }
+
+      if (selectAttribute) {
+        if ((_.isRegExp(selectorString) && selectorString.test(this[i][selectAttribute]))
+          ||(_.isString(selectorString) && selectorString === this[i][selectAttribute])) {
+          matchingElements.push(this[i])
+        }
+      }
+    }
+  }
+
+  return init(matchingElements, this.getRenderer())
+}
+
+/**
+ * Return a new selector with elements having given xref
+ *
+ * @param  {string|regexp} selectorString
+ * @return {object}                selector
+ */
+Selector.filteredByHavingXRef = function(selectorString) {
+  var matchingElements = []
+    , xrefSelector = this.filteredByXRef(selectorString)
+    , xrefsIds = {}
+
+  // Fullfill xrefsIds hash object
+  for (var i = xrefSelector.length - 1; i >= 0; i--) {
+    xrefsIds[xrefSelector[i].id] = true
+  }
+
+  for (var i = 0; i < this.length; i++) {
+    // If element has matching entityReference
+    if (this[i].hasOwnProperty('entityReference') && xrefsIds[this[i].entityReference] !== void 0) {
+      matchingElements.push(this[i])
+    }
+  }
+
+  return init(matchingElements, this.getRenderer())
+}
+
+/**
+ * Return a new selector with elements text content matching given string
+ * Original new lines are replaced by space
+ *
+ * @param  {string|regexp} selectorString
+ * @return {object}                selector
+ */
+Selector.filteredByText = function(selectorString) {
+  var matchingElements = []
+
+  for (var i = 0; i < this.length; i++) {
+    if (this[i].hasOwnProperty('textContent')) {
+      // If element do matches selector
+      if ((_.isRegExp(selectorString) && selectorString.test(this[i].textContent.replace(/\n/g, ' ')))
+       ||(_.isString(selectorString) && selectorString === this[i].textContent.replace(/\n/g, ' '))) {
+        matchingElements.push(this[i])
+      }
+    }
+  }
 
   return init(matchingElements, this.getRenderer())
 }
@@ -280,6 +376,20 @@ Selector.getLast = function() {
   }
 }
 
+Selector.getNth = function(n) {
+  if (n < this.length) {
+    return init([this[n]], this.getRenderer())
+  } else {
+    return init([], this.getRenderer())
+  }
+}
+
+Selector.forEach = function(cb) {
+  for (var i = 0; i < this.length; i++) {
+    cb(this.getNth(i))
+  }
+}
+
 /**
  * Returns the width of the box that contains all elements
  * @return {number}
@@ -334,6 +444,19 @@ Selector.getBBox = function() {
   BBox.height = BBox.bottom - BBox.top
 
   return BBox
+}
+
+/**
+ * Return id of first element
+ *
+ * @return {string} id
+ */
+Selector.getId = function() {
+  if (this.length) {
+    return this[0].id
+  } else {
+    return null
+  }
 }
 
 module.exports = {
