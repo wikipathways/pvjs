@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html style="margin: 0; width: 100%; height: 100%; ">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>Pathvisiojs Simple Built Production Example</title>
+
+    <style type="text/css">
+      html, body{width: 100%;height: 100%;margin: 0;}
+      h4{margin: 0;padding: 0;}
+      .presets a{
+        display: block;
+      }
+    </style>
+    <link rel="stylesheet" href="../dist/lib/pathvisiojs/css/pathvisiojs.css">
+    <link rel="stylesheet" href="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.css">
+    <link rel="stylesheet" href="../dist/plugins/pathvisiojs-diffviewer/pathvisiojs-diffviewer.css">
+    <link rel="stylesheet" href="../dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+    <!--
+    <script src="../tmp/d3.min.js"></script>
+    -->
+    <script src="../dist/lib/modernizr/js/modernizr.min.js"></script>
+    <script src="../dist/lib/cross-platform-shapes/js/cross-platform-shapes.min.js"></script>
+    <script src="../dist/lib/cross-platform-text/js/cross-platform-text.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!--
+    <script src="../tmp/jquery-1.11.0.min.js"></script>
+    -->
+    <script src="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.js"></script>
+    <script src="../dist/plugins/pathvisiojs-diffviewer/pathvisiojs-diffviewer.js"></script>
+    <script src="../dist/plugins/pathvisiojs-highlighter/typeahead.jquery.min.js"></script>
+    <script src="../dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js"></script>
+
+    <script src="../dist/lib/pathvisiojs/js/pathvisiojs.js"></script>
+
+  </head>
+  <body>
+    <div id="pathvisiojs-container"></div>
+    <div style="border: 1px solid blue;height: 30px;">
+      <div style="height: 30px; float: left; width: 40%;"><input type="text" id="pathwayUri" value="WP525 73040" style="display: inline-block; width: 90%;" /></div>
+      <div style="height: 30px; float: left; width: 40%;"><input type="text" id="pathwayUri2" value="WP525 74871" style="display: inline-block; width: 90%;"/></div>
+      <div style="height: 30px; float: left; width: 20%;"><input type="submit" value="Change" id="pathwayUriSubmit"/></div>
+    </div>
+    <div>Insert pathway name followed by optional revision number (divide by space)</div>
+    <div style="border: 1px solid blue;height: 30px;">
+      <input type="checkbox" name="display_ids" value="1" id="display_ids" /><label for="display_ids">Display IDs</label>
+    </div>
+    <div style="border: 1px solid blue;min-height: 30px;" class="presets">
+      <h4>Presets</h4>
+      <a href="#" data-diff-left="WP525 73040" data-diff-right="WP525 74871">Mitochondrial Unfolded-Protein Response</a>
+      <a href="#" data-diff-left="WP2806 75308" data-diff-right="WP2806">Human Complement System (Homo sapiens)</a>
+      <a href="#" data-diff-left="WP2249 73839" data-diff-right="WP2249">Metastatic brain tumor</a>
+      <a href="#" data-diff-left="WP370 70269" data-diff-right="WP370">Sphingolipid Metabolism</a>
+      <a href="#" data-diff-left="WP2231 68468" data-diff-right="WP2231">Programmed Cell Death and Cell Engulfment</a>
+      <a href="#" data-diff-left="WP414 71351" data-diff-right="WP414">Cell Cycle and Cell Division</a>
+      <a href="#" data-diff-left="WP2075 71747" data-diff-right="WP2075">Alzheimers Disease</a>
+      <a href="#" data-diff-left="WP339 71750" data-diff-right="WP339">ESC Pluripotency Pathways</a>
+    </div>
+
+
+  <script>
+  /* *******************
+  /* Load pathvisiojs
+  /* *******************/
+  $(function(){
+    var pathInstance = null
+      , GLOBAL_displayIds = false
+      , getUrl = function(str) {
+          var base = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id='
+
+          // Return local scripts for faster debugging
+          if (str === 'WP525 74871') return 'data/WP525_74871.gpml';
+          if (str === 'WP525 73040') return 'data/WP525_73040.gpml';
+
+          if (str.trim().indexOf(' ') !== -1) {
+            var pieces = str.trim().split(' ')
+            return base + pieces[0] + '&rev=' + pieces[1]
+          } else {
+            return base + str.trim()
+          }
+        }
+      , loadPvjses = function(){
+          $('#pathvisiojs-container').pathvisiojs({
+            fitToContainer: true
+          , manualRender: true
+          , sourceData: [
+              {
+                uri: getUrl($('#pathwayUri').val()),
+                fileType:'gpml'
+              }
+            ]
+          })
+
+          // Get first element from array of instances
+          pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+          window.pathInstance = pathInstance
+
+          // Load plugins
+          pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
+          pathvisiojsDiffviewer(pathInstance, {
+            sourceData: [
+              {
+                uri: getUrl($('#pathwayUri2').val()),
+                fileType:'gpml'
+              }
+            ]
+          , displayIds: GLOBAL_displayIds
+          })
+          pathInstance.on('rendered', function(){
+            var hi = pathvisiojsHighlighter(pathInstance, {displayInputField: false})
+          })
+
+          // Call renderer
+          pathInstance.render()
+        }
+
+    $('#pathwayUriSubmit').on('click', function(ev){
+      ev.preventDefault()
+
+      if (pathInstance != null) {
+        pathInstance.destroy()
+      }
+
+      loadPvjses()
+    })
+    $('#pathwayUriSubmit').click()
+
+    $('#display_ids').change(function(){
+      if($(this).is(":checked")) {
+        GLOBAL_displayIds = true
+      } else {
+        GLOBAL_displayIds = false
+      }
+
+      if (pathInstance != null) {
+        pathInstance.destroy()
+      }
+
+      loadPvjses()
+    })
+
+    $('.presets').on('click', 'a', function(ev){
+      ev.preventDefault()
+      var $this = $(this)
+
+      $('#pathwayUri').val($this.data('diffLeft'))
+      $('#pathwayUri2').val($this.data('diffRight'))
+
+      if (pathInstance != null) {
+        pathInstance.destroy()
+      }
+
+      loadPvjses()
+    })
+  })
+  </script>
+</body>
+</html>

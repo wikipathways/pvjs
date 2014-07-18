@@ -111,10 +111,10 @@ module.exports = function(){
 
     if (sourceData.rendererEngine === 'img') {
       renderer = RendererImg.init(pvjs)
-      selector = Selector.init([{uri: pvjs.sourceData.uri}], renderer)
+      sourceData.selector = Selector.init([{uri: pvjs.sourceData.uri}], renderer)
     } else if (sourceData.rendererEngine === 'svg') {
       renderer = RendererSvg.init(pvjs)
-      selector = Selector.init(pvjs.sourceData.pvjson.elements, renderer)
+      sourceData.selector = Selector.init(pvjs.sourceData.pvjson.elements, renderer)
 
       var viewport = pvjs.$element.select('#viewport')
 

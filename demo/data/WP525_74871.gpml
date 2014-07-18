@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Mitochondrial Unfolded-Protein Response (UPRmt)" Organism="Caenorhabditis elegans">
+  <Comment Source="WikiPathways-description">"Mitochondria are required for numerous essential metabolic processes including the regulation of apoptosis; therefore, proper maintenance of the mitochondrial proteome is crucial. The protein-folding environment in mitochondria is challenged by organelle architecture, the presence of reactive oxygen species and the difficulties associated with assembly of the electron transport chain, which consists of components encoded by both the mitochondrial and the nuclear genomes. Mitochondria have dedicated molecular chaperones and proteases that promote proper protein folding, complex assembly and quality control. Work in cultured mammalian cells and Caenorhabditis elegans has yielded clues to the mechanisms linking perturbations in the protein-folding environment in the mitochondrial matrix to the expression of nuclear genes encoding mitochondrial proteins. Here, we review the current knowledge of this mitochondrial unfolded protein response (UPRmt), compare it with the better understood UPR of the endoplasmic reticulum and highlight its potential impact on development and disease." (Haynes and Ron 2010)</Comment>
+  <Comment Source="WikiPathways-category">Physiological Process</Comment>
+  <Comment Source="WikiPathways-category">Cellular Process</Comment>
+  <BiopaxRef>b31</BiopaxRef>
+  <BiopaxRef>a47</BiopaxRef>
+  <BiopaxRef>a26</BiopaxRef>
+  <Graphics BoardWidth="1197.983238081509" BoardHeight="768.1512532411408" />
+  <DataNode TextLabel="CLPP-1" GraphId="db0" Type="Protein">
+    <Graphics CenterX="186.40954915602094" CenterY="188.01496208254926" Width="49.89657332834807" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK970.2" />
+  </DataNode>
+  <DataNode TextLabel="HSP-60" GraphId="b6b" Type="Protein" GroupRef="cf322">
+    <Graphics CenterX="561.0276873250783" CenterY="649.983024648161" Width="49.8545378248742" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y22D7AL.5" />
+  </DataNode>
+  <DataNode TextLabel="HSP-6" GraphId="ff2" Type="Protein" GroupRef="cf322">
+    <Graphics CenterX="561.0276873250783" CenterY="669.983024648161" Width="49.85453782487418" Height="19.999999999999986" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C37H5.8" />
+  </DataNode>
+  <DataNode TextLabel="DVE-1" GraphId="fde" Type="Protein" GroupRef="ff2ca">
+    <Graphics CenterX="659.6518836359378" CenterY="401.08025886375674" Width="42.87418440395335" Height="23.407359724358482" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK1193.5" />
+  </DataNode>
+  <DataNode TextLabel="UBL-5" GraphId="d1b" Type="Protein" GroupRef="ff2ca">
+    <Graphics CenterX="659.0223140408839" CenterY="364.8539603057706" Width="42.87418440395338" Height="23.407359724358475" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F46F11.4" />
+  </DataNode>
+  <DataNode TextLabel="hsp-60" GraphId="a23" Type="GeneProduct" GroupRef="c3d39">
+    <Graphics CenterX="916.0781610282373" CenterY="582.2396421688992" Width="52.26104916671695" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y22D7AL.5" />
+  </DataNode>
+  <DataNode TextLabel="hsp-6" GraphId="eb5" Type="GeneProduct" GroupRef="c3d39">
+    <Graphics CenterX="916.0781610282372" CenterY="562.2396421688984" Width="52.26104916671699" Height="19.999999999999986" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C37H5.8" />
+  </DataNode>
+  <DataNode TextLabel="HAF-1" GraphId="f4283" Type="Protein">
+    <Comment>haf-1, a gene encoding a mitochondria-localized ATP-binding cassestte protein, is required for signaling within the mitochondrial unfolded protein response (UPTmt) and for coping with misfolded protein stress. Peptide efflux from isolated mitochondria was ATP dependent and required HAF-1 and the protease ClpP.</Comment>
+    <Graphics CenterX="357.74215290518094" CenterY="273.96842104934314" Width="43.35014599231124" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C30H6.6" />
+  </DataNode>
+  <DataNode TextLabel="ATFS-1" GraphId="e3f56" Type="Protein">
+    <Graphics CenterX="562.5346213053119" CenterY="516.6877398909891" Width="46.810180647204085" Height="21.694792792974795" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZC376.7" />
+  </DataNode>
+  <DataNode TextLabel="GCN-2" GraphId="cb05a" Type="Protein">
+    <Graphics CenterX="466.78875003844644" CenterY="136.74951303005872" Width="45.82543205166678" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y81G3A.3" />
+  </DataNode>
+  <DataNode TextLabel="Unfolded Proteins" GraphId="a67c9" Type="Protein">
+    <Graphics CenterX="141.489759959124" CenterY="311.5447963068281" Width="96.35349613213049" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Protein Fragments" GraphId="dd906" Type="Metabolite">
+    <Graphics CenterX="328.73892765007474" CenterY="322.5654418433216" Width="97.36286270960854" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16670" />
+  </DataNode>
+  <DataNode TextLabel="ATFS-1 &#xA;Fragments" GraphId="a1652" Type="Metabolite">
+    <Graphics CenterX="164.7542914659011" CenterY="595.1319965371645" Width="64.49967104838822" Height="28.859376410944606" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16670" />
+  </DataNode>
+  <DataNode TextLabel="Lon Protease/&#xA;C34B2.6" GraphId="a3b8f" Type="GeneProduct">
+    <Graphics CenterX="238.02592912705308" CenterY="722.8444252376833" Width="75.81676750216118" Height="30.613656006915093" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C34B2.6" />
+  </DataNode>
+  <DataNode TextLabel="eIF2-alpha&#xA;(Y37E3.10)" GraphId="fafac" Type="Protein">
+    <Graphics CenterX="543.1777370709121" CenterY="98.5942801119731" Width="63.13432835820879" Height="30.149253731343293" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y37E3.10" />
+  </DataNode>
+  <DataNode TextLabel="GSP-1" GraphId="f6117" Type="GeneProduct">
+    <Comment>gsp-1 encodes a protein phosphatase homologous to the yeast phosphatase required for eIF2-alpha dephosphorylation.</Comment>
+    <Graphics CenterX="625.0810761009765" CenterY="137.60501331658486" Width="47.31343283582101" Height="19.701492537313356" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F29F11.6" />
+  </DataNode>
+  <DataNode TextLabel="SPG-7" GraphId="c7c03" Type="Protein">
+    <Graphics CenterX="143.06060606060603" CenterY="408.5858585858586" Width="44.54545454545451" Height="20.10101010101013" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y47G6A.10" />
+  </DataNode>
+  <DataNode TextLabel="Ethidium Bromide" GraphId="c0fa2" Type="Metabolite">
+    <Graphics CenterX="1119.696190902313" CenterY="517.8496447861528" Width="96.57409435839192" Height="22.034519786388046" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:4883" />
+  </DataNode>
+  <DataNode TextLabel="Paraquat" GraphId="cc60b" Type="Metabolite">
+    <Graphics CenterX="1121.0211224318266" CenterY="579.7659354617667" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:34905" />
+  </DataNode>
+  <DataNode TextLabel="PHB-2" GraphId="bb481" Type="Protein">
+    <Comment>PHB-2, along with PHB-1, forms the mitochondrial inner membrane Prohibitin complex which is implicated in assembly of components of the respiratory chain.</Comment>
+    <BiopaxRef>ac8</BiopaxRef>
+    <Graphics CenterX="82.0" CenterY="416.0" Width="46.0" Height="22.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="T24H7.1" />
+  </DataNode>
+  <DataNode TextLabel="ClpX-like&#xA;Protease/&#xA;(K07A3.3)" GraphId="db832" Type="GeneProduct">
+    <Graphics CenterX="240.78582937640238" CenterY="154.2212236387619" Width="56.76337846550646" Height="39.65828497743384" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="K07A3.3" />
+  </DataNode>
+  <DataNode TextLabel="ClpX-like&#xA;Protease/&#xA;(D2030.2)" GraphId="f1fc4" Type="Protein">
+    <Graphics CenterX="306.333750102411" CenterY="172.85709451396457" Width="55.47388781431326" Height="39.65828497743391" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Ensembl" ID="D2030.2" />
+  </DataNode>
+  <DataNode TextLabel="TOMM-40" GraphId="a7261" Type="Protein">
+    <Graphics CenterX="398.7555514210718" CenterY="680.5800075122775" Width="56.45768025078371" Height="20.188087774294576" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C18E9.6" />
+  </DataNode>
+  <DataNode TextLabel="TIMM-23" GraphId="ffdce" Type="GeneProduct">
+    <Graphics CenterX="310.0468241904712" CenterY="678.4020788648734" Width="52.539184952978076" Height="23.32288401253922" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="Entrez Gene" ID="173041" />
+  </DataNode>
+  <DataNode TextLabel="dnj-10" GraphId="c6a6c" Type="GeneProduct">
+    <Graphics CenterX="757.4975377419479" CenterY="519.0520838153104" Width="48.96232537907508" Height="24.603390600399507" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F22B7.5" />
+  </DataNode>
+  <DataNode TextLabel="ATFS-1" GraphId="adc80" Type="Protein">
+    <Graphics CenterX="758.6132955802817" CenterY="588.4369115104141" Width="47.57066394500008" Height="18.80211333313116" ZOrder="32802" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZC376.7" />
+  </DataNode>
+  <DataNode TextLabel="ATFS-1" GraphId="dbab1" Type="Protein">
+    <Graphics CenterX="319.9295708290764" CenterY="586.0506581733088" Width="47.30495794554659" Height="20.173826197381445" ZOrder="32803" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZC376.7" />
+  </DataNode>
+  <DataNode TextLabel="HSP-60" GraphId="c93bd" Type="Protein" GroupRef="e4473">
+    <Graphics CenterX="228.83899154585475" CenterY="435.52944070122055" Width="49.8545378248742" Height="20.0" ZOrder="32814" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y22D7AL.5" />
+  </DataNode>
+  <DataNode TextLabel="HSP-6" GraphId="b040d" Type="Protein" GroupRef="e4473">
+    <Graphics CenterX="228.8389915458547" CenterY="455.52944070122055" Width="49.85453782487418" Height="19.999999999999986" ZOrder="32815" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="C37H5.8" />
+  </DataNode>
+  <DataNode TextLabel="eIF2-alpha&#xA;(Y37E3.10)" GraphId="cee06" Type="Protein">
+    <Graphics CenterX="543.4349855659992" CenterY="177.8494532894839" Width="63.13432835820879" Height="30.149253731343293" ZOrder="32834" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="Y37E3.10" />
+  </DataNode>
+  <DataNode TextLabel="translation" GraphId="caa4a" Type="Pathway">
+    <Graphics CenterX="684.6927431645094" CenterY="191.34576807620644" Width="80.0" Height="20.0" ZOrder="32836" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Xref Database="GeneOntology" ID="GO:0006412" />
+  </DataNode>
+  <DataNode TextLabel="Protein Fragments" GraphId="ab4ad" Type="Metabolite">
+    <Graphics CenterX="513.2705361236398" CenterY="293.83107967844063" Width="97.36286270960854" Height="20.0" ZOrder="32854" FontSize="10" Valign="Middle" Color="0000ff" />
+    <Xref Database="ChEBI" ID="CHEBI:16670" />
+  </DataNode>
+  <DataNode TextLabel="DVE-1" GraphId="d9a63" Type="GeneProduct" GroupRef="f006d">
+    <Graphics CenterX="820.9075681857046" CenterY="462.3749936281854" Width="47.24854626961662" Height="19.999999999999986" ZOrder="32865" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="ZK1193.5" />
+  </DataNode>
+  <DataNode TextLabel="UBL-5" GraphId="b2d52" Type="Protein" GroupRef="f006d">
+    <Graphics CenterX="820.9075681857046" CenterY="442.3749936281854" Width="47.24854626961662" Height="19.999999999999986" ZOrder="32866" FontSize="10" Valign="Middle" />
+    <Xref Database="WormBase" ID="F46F11.4" />
+  </DataNode>
+  <State GraphRef="cee06" TextLabel="" GraphId="d1db6">
+    <Comment>Serine 51 Phosphorylation</Comment>
+    <Graphics RelX="1.0" RelY="1.0" Width="15.0" Height="15.0" ShapeType="Oval" />
+    <Xref Database="" ID="" />
+  </State>
+  <Interaction GraphId="id4ff173f9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="189.66650802518924" Y="311.5447963068281" GraphRef="a67c9" RelX="1.0" RelY="0.0" />
+      <Point X="280.0574962952705" Y="322.5654418433216" GraphRef="dd906" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4611627834370875" Shape="None" GraphId="d1d38" />
+      <Anchor Position="0.26115792201329735" Shape="None" GraphId="d6e10" />
+      <Anchor Position="0.6520328587044243" Shape="None" GraphId="f5a4e" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc1ee3682">
+    <BiopaxRef>f3b</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="561.9519674784441" Y="293.83107967844063" GraphRef="ab4ad" RelX="1.0" RelY="0.0" />
+      <Point X="629.5852218389073" Y="382.96710958476365" GraphRef="a7d42" RelX="-1.0" RelY="0.0" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id482a1806">
+    <Comment>Translational fusion ATFS-1::GFP was nearly undetectable under normal conditions, although the atfs-1 was sufficient to drive GFP expression under normal conditions, suggesting constitutive degradation of ATFS-1</Comment>
+    <BiopaxRef>b35</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="296.27709185630306" Y="586.0506581733088" GraphRef="dbab1" RelX="-1.0" RelY="0.0" />
+      <Point X="197.00412699009522" Y="595.1319965371645" GraphRef="a1652" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Anchor Position="0.4543230693809661" Shape="None" GraphId="d7440" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb1d74a40">
+    <Comment>Lon protease (C34B2.6) RNAi resulted in accumulation of endogenous ATFS-1 protein as well as the transgenic ATFS-1::GFP fusion protein</Comment>
+    <BiopaxRef>b35</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="238.0259291270531" Y="738.1512532411408" GraphRef="a3b8f" RelX="0.0" RelY="1.0" />
+      <Point X="251.1750937517387" Y="590.1765196928628" GraphRef="d7440" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id1af9b5c6">
+    <Comment>HSP-60 is the C. elegans ortholog of the mitochondrial chaperone protein HSP60. hsp-60 RNAi induces expression of the Phsp-6::GFP and Phsp-60::GFP transgenes, supporting the model of a negative feedback loop of mitochondrial chaperone expression.</Comment>
+    <Comment>HSP-6 is the C. elegans ortholog of the mitochondrial chaperone protein HSP70. hsp-6 RNAi induces expression of the Phsp-6::GFP and Phsp-60::GFP transgenes, supporting the model of a negative feedback loop of mitochondrial chaperone expression.</Comment>
+    <BiopaxRef>ac8</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="228.83899154585475" Y="425.52944070122055" GraphRef="c93bd" RelX="0.0" RelY="-1.0" />
+      <Point X="165.5781339921566" Y="321.5447963068281" GraphRef="a67c9" RelX="0.5" RelY="1.0" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id1978e1e1">
+    <BiopaxRef>cb4</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="488.9298204462376" Y="283.83107967844063" GraphRef="ab4ad" RelX="-0.5" RelY="-1.0" />
+      <Point X="466.78875003844644" Y="146.74951303005872" GraphRef="cb05a" RelX="0.0" RelY="1.0" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id468d5052">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="527.39415498136" Y="113.66890697764475" GraphRef="fafac" RelX="-0.5" RelY="1.0" />
+      <Point X="527.6514034764471" Y="162.77482642381227" GraphRef="cee06" RelX="-0.5" RelY="-1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.5" Shape="None" GraphId="b7239" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id693789d7">
+    <Comment>gcn-2 encodes an eIF2-alpha kinase. Knockout mutations in gcn-2 result in reduced phosphorylation of eIF2-alpha</Comment>
+    <BiopaxRef>cb4</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="489.7014660642798" Y="136.74951303005872" GraphRef="cb05a" RelX="1.0" RelY="0.0" />
+      <Point X="527.5227792289036" Y="138.22186670072853" GraphRef="b7239" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idb8a520d6">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="575.0021497451037" Y="177.8494532894839" GraphRef="cee06" RelX="1.0" RelY="0.0" />
+      <Point X="644.6927431645094" Y="191.34576807620644" GraphRef="caa4a" RelX="-1.0" RelY="0.0" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id9fa977d2">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="559.2185676555514" Y="162.77482642381227" GraphRef="cee06" RelX="0.5" RelY="-1.0" />
+      <Point X="558.9613191604643" Y="113.66890697764475" GraphRef="fafac" RelX="0.5" RelY="1.0" ArrowHead="Arrow" />
+      <Anchor Position="0.5" Shape="None" GraphId="ea8f9" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id2a13e278">
+    <Comment>gsp-1 encodes a protein phosphatase homologous to the yeast phosphatase required for eIF2-alpha dephosphorylation. gsp-1 RNAi results in increased phosphorylation of eIF2-alpha (Y37E3.10)</Comment>
+    <BiopaxRef>cb4</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="601.424359683066" Y="137.60501331658486" GraphRef="f6117" RelX="-1.0" RelY="0.0" />
+      <Point X="559.0899434080079" Y="138.22186670072853" GraphRef="ea8f9" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id5081356c">
+    <Comment>SPG-7 is a mitochondrial membrane metalloprotease; knockdown of spg-7 by RNAi results in accumulation of mitochondrially localized GFP and specific upregulation of expression of nuclear-encoded, mitochondrial chaperone proteins HSP-6 and HSP-60 as determined by Phsp-6::GFP and Phsp-60::GFP transgene reporters (both by fluorescence microscopy and western blot) and by northern blot of endogenous hsp-6 mRNA</Comment>
+    <BiopaxRef>ac8</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="143.06060606060603" Y="398.53535353535347" GraphRef="c7c03" RelX="0.0" RelY="-1.0" />
+      <Point X="141.489759959124" Y="321.5447963068281" GraphRef="a67c9" RelX="0.0" RelY="1.0" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id457a1d82">
+    <Comment>Ethidium bromide preferentially impairs replication and transcription of the mitochondrial genome, reducing synthesis of mitochondrially encoded polypeptides. Exposing worms to ethidium bromide results in specific upregulation of expression of the hsp-6 and hsp-60 genes, encoding mitochondrial chaperone proteins, as determined by Northern blot of endogenous hsp-6 as well as increased expression of the Phsp-6::GFP and Phsp-60::GFP transgenes</Comment>
+    <BiopaxRef>ac8</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1071.409143723117" Y="517.8496447861528" GraphRef="c0fa2" RelX="-1.0" RelY="0.0" />
+      <Point X="950.2086856115957" Y="572.2396421688989" GraphRef="f3790" RelX="1.0" RelY="0.0" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc5bdf17d">
+    <Comment>Paraquat induces expression of the nuclear-encoded mitochondrial chaperone gene hsp-60, as indicated by expression of the Phsp-60::GFP reporter transgene</Comment>
+    <BiopaxRef>ac8</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="1081.0211224318266" Y="579.7659354617667" GraphRef="cc60b" RelX="-1.0" RelY="0.0" />
+      <Point X="942.2086856115958" Y="582.2396421688992" GraphRef="a23" RelX="1.0" RelY="0.0" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id87cffd7c">
+    <Comment>RNAi knockdown of phb-2 results in increased expression of the nuclear-encoded mitchondrial chaperone gene hsp-60, as indicated by expression of the Phsp-60::GFP reporter transgene</Comment>
+    <BiopaxRef>ac8</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="82.0" Y="405.0" GraphRef="bb481" RelX="0.0" RelY="-1.0" />
+      <Point X="117.40138592609138" Y="321.5447963068281" GraphRef="a67c9" RelX="-0.5" RelY="1.0" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id4ef39cae">
+    <Comment>A knockout mutation in haf-1 (allele ok705) results in an accumulation of ATFS-1 in mitochondria and less ATFS-1 in the cytosol</Comment>
+    <BiopaxRef>b35</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="513.2705361236398" Y="303.83107967844063" GraphRef="ab4ad" RelX="0.0" RelY="1.0" />
+      <Point X="506.40306639324456" Y="528.2961895382185" GraphRef="d6006" RelX="0.0" RelY="0.0" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id2ce27145">
+    <Comment>haf-1, a gene encoding a mitochondria-localized ATP-binding cassestte protein, is required for signaling within the mitochondrial unfolded protein response (UPTmt) and for coping with misfolded protein stress. Peptide efflux from isolated mitochondria was ATP dependent and required HAF-1 and the protease ClpP.</Comment>
+    <BiopaxRef>f3b</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="357.74215290518094" Y="283.96842104934314" GraphRef="f4283" RelX="0.0" RelY="1.0" />
+      <Point X="421.1820755916733" Y="308.1398010664438" GraphRef="f5489" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idcc616bcc">
+    <Comment>dnj-10 expression was found to be down-regulated in an atfs-1 knockout mutant</Comment>
+    <BiopaxRef>b35</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="758.6132955802818" Y="579.0358548438485" GraphRef="adc80" RelX="0.0" RelY="-1.0" />
+      <Point X="757.4975377419479" Y="531.3537791155102" GraphRef="c6a6c" RelX="0.0" RelY="1.0" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idc9ad097">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="769.7381190867167" Y="506.75038851511067" GraphRef="c6a6c" RelX="0.5" RelY="-1.0" />
+      <Point X="745.2569563971791" Y="506.75038851511067" GraphRef="c6a6c" RelX="-0.5" RelY="-1.0" ArrowHead="mim-transcription-translation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida435914a">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="929.1434233199165" Y="552.2396421688984" GraphRef="eb5" RelX="0.5" RelY="-1.0" />
+      <Point X="903.012898736558" Y="552.2396421688984" GraphRef="eb5" RelX="-0.5" RelY="-1.0" ArrowHead="mim-transcription-translation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idd9dd9146">
+    <Comment>atfs-1 (ZC376.7) RNAi abolishes expression of an Phsp-60::GFP reporter transgene in response to the zc32 mutation or RNAi of the hsp-6 or spg-7 genes.</Comment>
+    <Comment>Unlike wild-type worms, atfs-1(tm4525) (deletion mutation of atfs-1) animals were unable to induce hsp-60pr::gfp when raised on spg-7(RNAi), a mitochondrial protease required for ETC quality control and mitochondrial ribosome biogenesis. atfs-1(tm4525) knockout mutants failed to induce expression of endogenous hsp-60 in response to spg-7 RNAi, as determined by RT-PCR.</Comment>
+    <Comment>atfs-1 (ZC376.7) RNAi attenutates the induction of endogenous hsp-6 expression in response to spg-7 RNAi.</Comment>
+    <BiopaxRef>b35</BiopaxRef>
+    <BiopaxRef>cb4</BiopaxRef>
+    <BiopaxRef>f3b</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="782.3986275527818" Y="588.4369115104141" GraphRef="adc80" RelX="1.0" RelY="0.0" />
+      <Point X="881.9476364448788" Y="572.2396421688989" GraphRef="f3790" RelX="-1.0" RelY="0.0" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id63deac2b">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="885.5781610282373" Y="629.7000381607011" GraphRef="ed00e" RelX="-0.5" RelY="1.0" />
+      <Point X="615.844970728748" Y="677.8815735343404" GraphRef="fcc93" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id5d87cbcd">
+    <Comment>Mitochondrial stress promotes accumulation of GFP-tagged UBL-5 in nuclei of transgenic worms.</Comment>
+    <BiopaxRef>d96</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="680.4594062428605" Y="364.8539603057706" GraphRef="d1b" RelX="1.0" RelY="0.0" />
+      <Point X="797.2832950508962" Y="442.3749936281854" GraphRef="b2d52" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id1a7b5539">
+    <Comment>Activation of the mitochondrial unfolded protein response (UPRmt) correlates temporally and spatially with nuclear redistribution of DVE-1.</Comment>
+    <BiopaxRef>c22</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="681.0889758379144" Y="401.08025886375674" GraphRef="fde" RelX="1.0" RelY="0.0" />
+      <Point X="797.2832950508962" Y="462.3749936281854" GraphRef="d9a63" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida90cc3b4">
+    <Comment>Authors found a putative mitochondrial localization sequence at the N-terminus of ATFS-1 that, when fused to GFP, were sufficient to drive mitochondrial localization of GFP</Comment>
+    <BiopaxRef>b35</BiopaxRef>
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="539.1295309817099" Y="516.6877398909891" GraphRef="e3f56" RelX="-1.0" RelY="0.0" />
+      <Point X="343.58204980184973" Y="586.0506581733088" GraphRef="dbab1" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Anchor Position="0.16735814949395475" Shape="None" GraphId="d6006" />
+      <Anchor Position="0.7248464555325306" Shape="None" GraphId="ddc52" />
+      <Anchor Position="0.5157748470661323" Shape="None" GraphId="e948a" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id756140b4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="585.939711628914" Y="516.6877398909891" GraphRef="e3f56" RelX="1.0" RelY="0.0" />
+      <Point X="734.8279636077818" Y="588.4369115104141" GraphRef="adc80" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Anchor Position="0.31312682009008647" Shape="None" GraphId="d5c7e" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idcf94101c">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="533.6190456232433" Y="631.983024648161" GraphRef="fcc93" RelX="-0.5" RelY="-1.0" />
+      <Point X="283.6562749495246" Y="463.4279895874" GraphRef="f8b84" RelX="1.0" RelY="0.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id7dc4acf4">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="377.420359004879" Y="322.5654418433216" GraphRef="dd906" RelX="1.0" RelY="0.0" />
+      <Point X="464.58910476883545" Y="293.83107967844063" GraphRef="ab4ad" RelX="-1.0" RelY="0.0" ArrowHead="Arrow" />
+      <Anchor Position="0.5020344872839664" Shape="None" GraphId="f5489" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id82dd8a07">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="830.2173263629575" Y="59.454817027632544" />
+      <Point X="771.2180731889474" Y="59.45481702763256" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id81422e78">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="831.2173263629575" Y="93.07468259895444" />
+      <Point X="773.7117251680363" Y="93.07468259895444" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id7f2b40a9">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="832.2173263629575" Y="122.94772218073186" />
+      <Point X="767.2434652725922" Y="122.94772218073186" ArrowHead="mim-inhibition" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id5123d0a5" GroupRef="ada64">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="775.9648991784916" Y="178.09932785660936" />
+      <Point X="775.9648991784916" Y="228.13666915608658" ArrowHead="mim-conversion" />
+      <Anchor Position="0.4" Shape="None" GraphId="a1c06" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id96190f32" GroupRef="ada64">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="833.4705003734132" Y="198.11426437640026" />
+      <Point X="775.9648991784916" Y="198.11426437640026" GraphRef="a1c06" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida3abac28">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="833.0" Y="162.0" />
+      <Point X="772.0" Y="162.0" ArrowHead="mim-transcription-translation" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ed8dc">
+    <Comment>Activation of the UPRmt correlates with enhanced binding of DVE-1 to the promoters of mitochondrial chaperone genes. DVE-1 was found to bind the hsp-6 and hsp-60 gene promoters by Chromatin ImmunoPrecipitation (ChIP).</Comment>
+    <Comment>ubl-5 RNAi results in diminished expression of an hsp-6::GFP reporter and endogenous hsp-6. dve-1 RNAi also disrupts induction of endogenous hsp-6 expression induced by spg-7 RNAi, as determined by QRT-PCR.</Comment>
+    <Comment>RNAi knockdown of dve-1 prevents expression of a Phsp-60::GFP reporter transgene in response to the zc32 allele at 25 degrees Celsius, spg-7 RNAi, or exposure to Ethidium Bromide (all known to induce UPRmt and, hence, hsp-60 expression). dve-1 RNAi also disrupts induction of endogenous hsp-60 expression induced by spg-7 RNAi, as determined by QRT-PCR. ubl-5 RNAi results in diminished expression of an hsp-60::GFP reporter and endogenous hsp-60.</Comment>
+    <BiopaxRef>c22</BiopaxRef>
+    <BiopaxRef>d96</BiopaxRef>
+    <Graphics ZOrder="32780" LineThickness="1.0">
+      <Point X="856.531841320513" Y="468.3749936281854" GraphRef="faa04" RelX="1.0" RelY="0.5" />
+      <Point X="899.012898736558" Y="544.2396421688984" GraphRef="f3790" RelX="-0.5" RelY="-1.0" ArrowHead="mim-stimulation" />
+    </Graphics>
+    <Xref Database="WormBase" ID="WBInteraction000520482" />
+  </Interaction>
+  <Interaction GraphId="id5c5e4f04">
+    <BiopaxRef>b35</BiopaxRef>
+    <Graphics ZOrder="32868" LineThickness="1.0">
+      <Point X="336.31641666696027" Y="678.4020788648734" GraphRef="ffdce" RelX="1.0" RelY="0.0" />
+      <Point X="397.38763236017405" Y="566.965205353321" GraphRef="ddc52" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id438a8c9f">
+    <BiopaxRef>b35</BiopaxRef>
+    <Graphics ZOrder="32869" LineThickness="1.0">
+      <Point X="398.7555514210718" Y="670.4859636251301" GraphRef="a7261" RelX="0.0" RelY="-1.0" />
+      <Point X="438.2710587820001" Y="552.4633884601132" GraphRef="e948a" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id195dea3d">
+    <Comment>During UPRmt activation, ATFS-1::GFP accumulated in nuclei</Comment>
+    <BiopaxRef>f3b</BiopaxRef>
+    <BiopaxRef>b35</BiopaxRef>
+    <Graphics ZOrder="32870" LineThickness="1.0">
+      <Point X="537.6112518010419" Y="303.83107967844063" GraphRef="ab4ad" RelX="0.5" RelY="1.0" />
+      <Point X="632.5606165198284" Y="539.1543298442775" GraphRef="d5c7e" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="ida851659f">
+    <Comment>The mitochondrial unfolded protein response (UPRmt) is attenuated in animals with reduced activity of clpp-1, which encodes a mitochondrial matrix protease homologous to bacterial ClpP. clpp-1 RNAi results in disruption of the UBL-5/DVE-1 complex and interferes with expression of the ubl-5 and dve-1 genes. Peptide efflux from isolated mitochondria was ATP dependent and required HAF-1 and the protease ClpP.</Comment>
+    <BiopaxRef>c22</BiopaxRef>
+    <BiopaxRef>f3b</BiopaxRef>
+    <Graphics ZOrder="32872" LineThickness="1.0">
+      <Point X="186.40954915602094" Y="198.01496208254926" GraphRef="db0" RelX="0.0" RelY="1.0" />
+      <Point X="213.272830690532" Y="314.4229251943839" GraphRef="d6e10" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="idaaff883">
+    <Comment>Although individual RNAi knockdown of the K07A3.3 gene (encoding a ClpX-like mitochondrial protease) did not affect expression of an Phsp-60::GFP reporter transgene, simulataneous knockdown of both ClpX-like proteases, D2030.2 and K07A3.3, attenuated expression of the Phsp-60::GFP transgene in response to the zc32 mutation.</Comment>
+    <BiopaxRef>f3b</BiopaxRef>
+    <Graphics ZOrder="32873" LineThickness="1.0">
+      <Point X="240.7858293764024" Y="174.0503661274788" GraphRef="db832" RelX="0.0" RelY="1.0" />
+      <Point X="231.35146777344903" Y="316.62710787771096" GraphRef="d1d38" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Interaction GraphId="id52299414">
+    <Comment>Although individual knockout of the D2030.2 gene (encoding a ClpX-like mitochondrial protease) with the tm2183 deletion allele did not affect expression of an Phsp-60::GFP reporter transgene, simulataneous knockdown of both ClpX-like proteases, D2030.2 and K07A3.3, attenuated expression of the Phsp-60::GFP transgene in response to the zc32 mutation.</Comment>
+    <BiopaxRef>f3b</BiopaxRef>
+    <Graphics ZOrder="32874" LineThickness="1.0">
+      <Point X="306.33375010241105" Y="192.68623700268154" GraphRef="f1fc4" RelX="0.0" RelY="1.0" />
+      <Point X="248.6044025080484" Y="318.7306193207561" GraphRef="f5a4e" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <Label TextLabel="Mitochondrion" GraphId="ce9">
+    <Graphics CenterX="246.85659868893418" CenterY="109.16214703737766" Width="149.94169048571206" Height="20.0" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="18" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Nucleus" GraphId="fd6">
+    <Graphics CenterX="855.6421288110131" CenterY="369.88788895409664" Width="93.93355730300411" Height="23.949702653543227" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="18" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Protein&#xA;Conformational Stress&#xA;(Unfolded Proteins)" GraphId="eb6">
+    <Graphics CenterX="127.84685837604708" CenterY="252.3951094621014" Width="112.3664509532538" Height="40.0" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Mitochondrial &#xA;Chaperones" GraphId="d25e1" GroupRef="cf322">
+    <Graphics CenterX="561.0276873250782" CenterY="697.8815735343404" Width="93.63456680733958" Height="35.79709777235894" ZOrder="28672" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="LEGEND" GraphId="beee2">
+    <Graphics CenterX="776.692307692307" CenterY="249.9843166542194" Width="63.15160567587782" Height="29.417475728155235" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Translocation, change of state, translation" GraphId="b81c0">
+    <Graphics CenterX="933.817027632562" CenterY="60.80283793876026" Width="215.5041075429428" Height="29.58177744585483" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Direct or indirect stimulation" GraphId="c8ef4">
+    <Graphics CenterX="903.4503360716955" CenterY="92.63778939507067" Width="148.2897684839432" Height="29.58177744585483" ZOrder="28672" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Mitochondrial &#xA;Chaperones" GraphId="dc1ed" GroupRef="e4473">
+    <Graphics CenterX="228.83899154585475" CenterY="483.4279895874" Width="93.63456680733958" Height="35.79709777235894" ZOrder="32863" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Mitochondrial &#xA;Chaperone Genes" GraphId="ed00e">
+    <Graphics CenterX="916.0781610282373" CenterY="610.9698401648003" Width="122.0" Height="37.46039599180153" ZOrder="32867" FillColor="ffffff" FontWeight="Bold" FontSize="12" Valign="Middle" />
+  </Label>
+  <Label TextLabel="P" GraphId="d6e1d">
+    <Graphics CenterX="574.8469006721434" CenterY="194.02912621359263" Width="21.32935026138913" Height="21.20238984316657" ZOrder="32871" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Direct or indirect inhibition" GraphId="ee0fd">
+    <Graphics CenterX="900.7162061239736" CenterY="122.96639283046991" Width="148.2897684839432" Height="29.58177744585483" ZOrder="32875" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Catalysis" GraphId="bfd1f">
+    <Graphics CenterX="862.8685586258408" CenterY="197.7378640776691" Width="57.34129947722277" Height="29.58177744585481" ZOrder="32876" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Label TextLabel="Gene Transcription" GraphId="a6e70">
+    <Graphics CenterX="884.5989544436147" CenterY="162.7378640776691" Width="110.80209111277054" Height="29.58177744585481" ZOrder="32877" FillColor="ffffff" FontSize="10" Valign="Middle" />
+  </Label>
+  <Shape GraphId="da649">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Nucleus" />
+    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Graphics CenterX="857.8630648886619" CenterY="537.7295910205175" Width="376.6074010615821" Height="380.95238095238085" ZOrder="-4" FontWeight="Bold" FontSize="18" Valign="Middle" ShapeType="Oval" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="ec2e7">
+    <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Mitochondria" />
+    <Graphics CenterX="247.1779293313383" CenterY="435.2832170020246" Width="709.493499927801" Height="437.20398085288264" ZOrder="-2" FontSize="10" Valign="Middle" ShapeType="Mitochondria" LineThickness="3.0" Color="c0c0c0" Rotation="1.5666010760642382" />
+  </Shape>
+  <Shape GraphId="dad" GroupRef="a5a3f">
+    <Graphics CenterX="104.94866828151129" CenterY="286.9462114911708" Width="18.68167434990748" Height="19.701855556893214" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.9689014261040172" />
+  </Shape>
+  <Shape GraphId="b0a" GroupRef="a5a3f">
+    <Graphics CenterX="102.63457338367206" CenterY="289.0480678008376" Width="7.4728788733729195" Height="18.35518624297332" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.39851208760105716" />
+  </Shape>
+  <Shape GraphId="b27" GroupRef="a5a3f">
+    <Graphics CenterX="104.17201924259675" CenterY="291.67834807911805" Width="5.433554681412206" Height="15.11730694579887" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="6.036003388110199" />
+  </Shape>
+  <Shape GraphId="df8" GroupRef="a5a3f">
+    <Graphics CenterX="99.83768135408774" CenterY="291.8478458059565" Width="13.896348061839753" Height="7.119559537394751" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="1.3264944765327016" />
+  </Shape>
+  <Shape GraphId="c1590" GroupRef="c787b">
+    <Graphics CenterX="326.0064528052379" CenterY="228.30797440055653" Width="11.694029850746318" Height="13.186567164179081" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="b5e9f">
+    <Graphics CenterX="898.4316654219567" CenterY="144.88424197162064" Width="294.2494398805079" Height="228.52875280059737" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
+  </Shape>
+  <Shape GraphId="c445d" GroupRef="c787b">
+    <Graphics CenterX="339.73779608882" CenterY="231.5915564901087" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32816" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="5.198506360385906" />
+  </Shape>
+  <Shape GraphId="f1167" GroupRef="c787b">
+    <Graphics CenterX="329.5885423574767" CenterY="247.5617057438401" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32817" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.0817495746408845" />
+  </Shape>
+  <Shape GraphId="b2cb6" GroupRef="c787b">
+    <Graphics CenterX="361.2303334022528" CenterY="231.44230275876532" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32818" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.7560072197230092" />
+  </Shape>
+  <Shape GraphId="a2d69" GroupRef="c787b">
+    <Graphics CenterX="351.0810796709094" CenterY="247.41245201249666" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32819" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="c6446" GroupRef="c787b">
+    <Graphics CenterX="375.2601841485215" CenterY="230.5467803707058" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32820" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="be14e" GroupRef="c787b">
+    <Graphics CenterX="366.603467730611" CenterY="246.51692962443695" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32821" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="5.274395770778758" />
+  </Shape>
+  <Shape GraphId="c8544" GroupRef="c787b">
+    <Graphics CenterX="390.8611195499587" CenterY="231.82084804458955" Width="11.694029850746318" Height="12.977182094581917" ZOrder="32822" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="2.9733154995337308" />
+  </Shape>
+  <Shape GraphId="a938e" GroupRef="c787b">
+    <Graphics CenterX="385.85719907389455" CenterY="249.3527505199594" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32823" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="e45f6" GroupRef="d1218">
+    <Graphics CenterX="136.0037313432834" CenterY="550.5559701492531" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32825" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="d63bb" GroupRef="d1218">
+    <Graphics CenterX="149.73507462686547" CenterY="553.8395522388053" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32826" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="5.198506360385906" />
+  </Shape>
+  <Shape GraphId="d552f" GroupRef="d1218">
+    <Graphics CenterX="139.58582089552215" CenterY="569.8097014925369" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32827" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.0817495746408845" />
+  </Shape>
+  <Shape GraphId="a3e3a" GroupRef="d1218">
+    <Graphics CenterX="171.2276119402983" CenterY="553.6902985074619" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32828" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.7560072197230092" />
+  </Shape>
+  <Shape GraphId="e3c6d" GroupRef="d1218">
+    <Graphics CenterX="161.07835820895485" CenterY="569.6604477611934" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32829" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="e569b" GroupRef="d1218">
+    <Graphics CenterX="185.25746268656695" CenterY="552.7947761194024" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32830" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="bd6b4" GroupRef="d1218">
+    <Graphics CenterX="176.60074626865645" CenterY="568.7649253731337" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32831" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="5.274395770778758" />
+  </Shape>
+  <Shape GraphId="a7a91" GroupRef="d1218">
+    <Graphics CenterX="200.8583980880042" CenterY="554.0688437932859" Width="11.694029850746318" Height="12.977182094581917" ZOrder="32832" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="2.9733154995337308" />
+  </Shape>
+  <Shape GraphId="fd25e" GroupRef="d1218">
+    <Graphics CenterX="195.85447761194007" CenterY="571.6007462686562" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32833" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="e9b31" GroupRef="e2aff">
+    <Graphics CenterX="498.1421638539975" CenterY="248.26383978548057" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32845" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="c80e9" GroupRef="e2aff">
+    <Graphics CenterX="511.8735071375794" CenterY="251.5474218750328" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32846" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="5.198506360385906" />
+  </Shape>
+  <Shape GraphId="d7ea5" GroupRef="e2aff">
+    <Graphics CenterX="501.7242534062363" CenterY="267.5175711287645" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32847" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.0817495746408845" />
+  </Shape>
+  <Shape GraphId="bdc05" GroupRef="e2aff">
+    <Graphics CenterX="533.366044451012" CenterY="251.39816814368942" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32848" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.7560072197230092" />
+  </Shape>
+  <Shape GraphId="aa85c" GroupRef="e2aff">
+    <Graphics CenterX="523.2167907196687" CenterY="267.36831739742104" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32849" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="bf6d8" GroupRef="e2aff">
+    <Graphics CenterX="547.3958951972805" CenterY="250.50264575562989" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32850" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="b0280" GroupRef="e2aff">
+    <Graphics CenterX="538.7391787793701" CenterY="266.47279500936133" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32851" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="5.274395770778758" />
+  </Shape>
+  <Shape GraphId="d96b5" GroupRef="e2aff">
+    <Graphics CenterX="562.9968305987179" CenterY="251.7767134295138" Width="11.694029850746318" Height="12.977182094581917" ZOrder="32852" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="2.9733154995337308" />
+  </Shape>
+  <Shape GraphId="eeddf" GroupRef="e2aff">
+    <Graphics CenterX="557.9929101226537" CenterY="269.30861590488377" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32853" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="cc050">
+    <Graphics CenterX="416.3481564436703" CenterY="272.2286884855847" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32855" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.848465660202895" />
+  </Shape>
+  <Shape GraphId="dbc57">
+    <Graphics CenterX="434.6683927367742" CenterY="344.2901786877123" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32856" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.7805704284506818" />
+  </Shape>
+  <Shape GraphId="b081d">
+    <Graphics CenterX="411.9458796477692" CenterY="356.0353793857925" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32857" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="2.550240792228999" />
+  </Shape>
+  <Shape GraphId="f1769">
+    <Graphics CenterX="433.2896841852909" CenterY="363.4175783386722" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32858" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.24203056222222993" />
+  </Shape>
+  <Shape GraphId="c75b0">
+    <Graphics CenterX="438.0540820910503" CenterY="324.98825896694456" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32859" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.9256543674233146" />
+  </Shape>
+  <Shape GraphId="b8270">
+    <Graphics CenterX="427.8878541350562" CenterY="287.99961402047364" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32860" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="3.9252777499245006" />
+  </Shape>
+  <Shape GraphId="cd350">
+    <Graphics CenterX="453.74911228655776" CenterY="279.9223945140794" Width="11.694029850746318" Height="13.186567164179081" ZOrder="32861" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="1.7805704284506818" />
+  </Shape>
+  <Shape GraphId="e5e16" GroupRef="be1ca">
+    <Graphics CenterX="164.65044992376275" CenterY="292.20389246034574" Width="13.896348061839753" Height="7.119559537394751" ZOrder="32879" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="1.3264944765327016" />
+  </Shape>
+  <Shape GraphId="e5b5b" GroupRef="be1ca">
+    <Graphics CenterX="169.76143685118515" CenterY="287.3022581455598" Width="18.68167434990748" Height="19.701855556893214" ZOrder="32880" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.9689014261040172" />
+  </Shape>
+  <Shape GraphId="ae8d8" GroupRef="be1ca">
+    <Graphics CenterX="168.9847878122715" CenterY="292.03439473350716" Width="5.433554681412206" Height="15.11730694579887" ZOrder="32881" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="6.036003388110199" />
+  </Shape>
+  <Shape GraphId="de1c8" GroupRef="be1ca">
+    <Graphics CenterX="167.4473419533468" CenterY="289.4041144552267" Width="7.4728788733729195" Height="18.35518624297332" ZOrder="32882" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.39851208760105716" />
+  </Shape>
+  <Shape GraphId="e6473" GroupRef="dca61">
+    <Graphics CenterX="129.83768135408823" CenterY="291.1541687034397" Width="13.896348061839753" Height="7.119559537394751" ZOrder="32884" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="1.3264944765327016" />
+  </Shape>
+  <Shape GraphId="dc781" GroupRef="dca61">
+    <Graphics CenterX="134.94866828150995" CenterY="286.25253438865394" Width="18.68167434990748" Height="19.701855556893214" ZOrder="32885" FontSize="10" Valign="Middle" ShapeType="Arc" Rotation="0.9689014261040172" />
+  </Shape>
+  <Shape GraphId="d1550" GroupRef="dca61">
+    <Graphics CenterX="134.17201924259695" CenterY="290.98467097660125" Width="5.433554681412206" Height="15.11730694579887" ZOrder="32886" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="6.036003388110199" />
+  </Shape>
+  <Shape GraphId="fc60e" GroupRef="dca61">
+    <Graphics CenterX="132.63457338367226" CenterY="288.35439069832074" Width="7.4728788733729195" Height="18.35518624297332" ZOrder="32887" FontSize="10" Valign="Middle" ShapeType="Oval" Rotation="0.39851208760105716" />
+  </Shape>
+  <Group GroupId="a3062" Style="Group" />
+  <Group GroupId="cddec" Style="Group" />
+  <Group GroupId="f09a5" Style="Group" />
+  <Group GroupId="b6ede" Style="Group" />
+  <Group GroupId="ca89b" Style="Group" />
+  <Group GroupId="a1b0a" Style="Group" />
+  <Group GroupId="c787b" GraphId="c2106" Style="Group" />
+  <Group GroupId="d1218" Style="Group" />
+  <Group GroupId="b673b" GraphId="abebf" Style="Group" />
+  <Group GroupId="a9290" GraphId="c2479" Style="Complex">
+    <Comment>Unfolded protein stress in the mitochondria correlates with complex formation between a homeodomain-constining transcription factor DVE-1 and the small ubiquitin-like protein UBL-5, both of which are encoded by genes required for signaling the UPRmt. Activation of the UPRmt correlates with enhanced binding of DVE-1 to the promoters of mitochondrial chaperone genes.</Comment>
+    <BiopaxRef>c22</BiopaxRef>
+  </Group>
+  <Group GroupId="cf045" GraphId="f9ad5" Style="Group" />
+  <Group GroupId="cf322" GraphId="fcc93" Style="Group" />
+  <Group GroupId="e4473" GraphId="f8b84" Style="Group" />
+  <Group GroupId="f006d" GraphId="faa04" Style="Complex">
+    <Comment>Unfolded protein stress in the mitochondria correlates with complex formation between a homeodomain-consisting transcription factor DVE-1 and the small ubiquitin-like protein UBL-5, both of which are encoded by genes required for signaling the UPRmt.</Comment>
+    <BiopaxRef>c22</BiopaxRef>
+  </Group>
+  <Group GroupId="c3d39" GraphId="f3790" Style="Group" />
+  <Group GroupId="e2aff" GraphId="ec15e" Style="Group" />
+  <Group GroupId="c5b64" GraphId="f95d7" Style="Complex">
+    <Comment>Unfolded protein stress in the mitochondria correlates with complex formation between a homeodomain-constining transcription factor DVE-1 and the small ubiquitin-like protein UBL-5, both of which are encoded by genes required for signaling the UPRmt. Activation of the UPRmt correlates with enhanced binding of DVE-1 to the promoters of mitochondrial chaperone genes. DVE-1 was found to bind the hsp-60 gene promoter by Chromatin ImmunoPrecipitation (ChIP).</Comment>
+    <BiopaxRef>c22</BiopaxRef>
+  </Group>
+  <Group GroupId="ada64" Style="Group" />
+  <Group GroupId="ff2ca" GraphId="a7d42" Style="Group" />
+  <Group GroupId="a5a3f" Style="Group" />
+  <Group GroupId="be1ca" Style="Group" />
+  <Group GroupId="dca61" Style="Group" />
+  <Group GroupId="a1eb0" Style="Group" />
+  <Group GroupId="c5131" Style="Group" />
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="c22">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17925224</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClpP mediates activation of a mitochondrial unfolded protein response in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17925224</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClpP mediates activation of a mitochondrial unfolded protein response in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17925224</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClpP mediates activation of a mitochondrial unfolded protein response in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17925224</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClpP mediates activation of a mitochondrial unfolded protein response in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17925224</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClpP mediates activation of a mitochondrial unfolded protein response in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17925224</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClpP mediates activation of a mitochondrial unfolded protein response in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17925224</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClpP mediates activation of a mitochondrial unfolded protein response in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17925224</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClpP mediates activation of a mitochondrial unfolded protein response in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dev Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haynes CM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Petrova K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Benedetti C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yang Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ron D</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b31">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18068368</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial stress signaling: a pathway unfolds.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Trends Cell Biol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Broadley SA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hartl FU</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a26">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22445420</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Signaling the mitochondrial unfolded protein response.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochim Biophys Acta</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2013</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pellegrino MW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nargund AM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haynes CM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="a47">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21048161</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The mitochondrial UPR - protecting organelle protein homeostasis.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Sci</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haynes CM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ron D</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="f3b">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20188671</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The matrix peptide exporter HAF-1 signals a mitochondrial UPR by activating the transcription factor ZC376.7 in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20188671</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The matrix peptide exporter HAF-1 signals a mitochondrial UPR by activating the transcription factor ZC376.7 in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20188671</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The matrix peptide exporter HAF-1 signals a mitochondrial UPR by activating the transcription factor ZC376.7 in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20188671</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The matrix peptide exporter HAF-1 signals a mitochondrial UPR by activating the transcription factor ZC376.7 in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20188671</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The matrix peptide exporter HAF-1 signals a mitochondrial UPR by activating the transcription factor ZC376.7 in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20188671</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The matrix peptide exporter HAF-1 signals a mitochondrial UPR by activating the transcription factor ZC376.7 in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20188671</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The matrix peptide exporter HAF-1 signals a mitochondrial UPR by activating the transcription factor ZC376.7 in C. elegans.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mol Cell</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2010</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haynes CM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yang Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blais SP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Neubert TA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ron D</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="d96">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16816413</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ubiquitin-like protein 5 positively regulates chaperone gene expression in the mitochondrial unfolded protein response.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetics</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16816413</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ubiquitin-like protein 5 positively regulates chaperone gene expression in the mitochondrial unfolded protein response.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetics</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16816413</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ubiquitin-like protein 5 positively regulates chaperone gene expression in the mitochondrial unfolded protein response.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetics</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16816413</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ubiquitin-like protein 5 positively regulates chaperone gene expression in the mitochondrial unfolded protein response.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetics</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16816413</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ubiquitin-like protein 5 positively regulates chaperone gene expression in the mitochondrial unfolded protein response.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Genetics</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Benedetti C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haynes CM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yang Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Harding HP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ron D</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="ac8">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15280428</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Compartment-specific perturbation of protein handling activates genes encoding mitochondrial chaperones.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Sci</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15280428</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Compartment-specific perturbation of protein handling activates genes encoding mitochondrial chaperones.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Sci</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15280428</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Compartment-specific perturbation of protein handling activates genes encoding mitochondrial chaperones.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Sci</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15280428</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Compartment-specific perturbation of protein handling activates genes encoding mitochondrial chaperones.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Sci</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15280428</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Compartment-specific perturbation of protein handling activates genes encoding mitochondrial chaperones.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Cell Sci</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2004</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yoneda T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Benedetti C</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Urano F</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Clark SG</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Harding HP</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ron D</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stress response pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000237</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="cb4">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22719267</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protective coupling of mitochondrial function and protein synthesis via the eIF2α kinase GCN-2.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PLoS Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22719267</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protective coupling of mitochondrial function and protein synthesis via the eIF2α kinase GCN-2.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PLoS Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22719267</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protective coupling of mitochondrial function and protein synthesis via the eIF2α kinase GCN-2.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PLoS Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22719267</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protective coupling of mitochondrial function and protein synthesis via the eIF2α kinase GCN-2.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PLoS Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22719267</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protective coupling of mitochondrial function and protein synthesis via the eIF2α kinase GCN-2.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PLoS Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22719267</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protective coupling of mitochondrial function and protein synthesis via the eIF2α kinase GCN-2.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PLoS Genet</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Baker BM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nargund AM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sun T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haynes CM</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:id="b35">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22700657</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial import efficiency of ATFS-1 regulates mitochondrial UPR activation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22700657</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial import efficiency of ATFS-1 regulates mitochondrial UPR activation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22700657</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial import efficiency of ATFS-1 regulates mitochondrial UPR activation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22700657</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial import efficiency of ATFS-1 regulates mitochondrial UPR activation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22700657</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial import efficiency of ATFS-1 regulates mitochondrial UPR activation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22700657</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial import efficiency of ATFS-1 regulates mitochondrial UPR activation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22700657</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial import efficiency of ATFS-1 regulates mitochondrial UPR activation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22700657</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial import efficiency of ATFS-1 regulates mitochondrial UPR activation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22700657</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitochondrial import efficiency of ATFS-1 regulates mitochondrial UPR activation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Science</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2012</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nargund AM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pellegrino MW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fiorese CJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Baker BM</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haynes CM</bp:AUTHORS>
+    </bp:PublicationXref>
+  </Biopax>
+</Pathway>
