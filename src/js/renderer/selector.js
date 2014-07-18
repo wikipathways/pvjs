@@ -318,7 +318,7 @@ Selector.getBBox = function() {
     BBox = _.assign(BBox, _BBox)
 
     // Traverse all except first
-    for (var i = this.length; i >= 1; i--) {
+    for (var i = this.length - 1; i >= 1; i--) {
       // Ask renderer of element BBox
       _BBox = this.renderer.getElementBBox(this[i])
 
