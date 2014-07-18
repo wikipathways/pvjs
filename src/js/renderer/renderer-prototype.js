@@ -12,6 +12,8 @@ var RendererPrototype = {
 , addElement: function() {}
 , updateElement: function() {}
 , removeElement: function() {}
+, getElementStyle: function() {}
+, setElementStyle: function() {}
 , getElementBBox: function() {}
 }
 

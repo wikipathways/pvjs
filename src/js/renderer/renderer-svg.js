@@ -247,11 +247,96 @@ RendererSvg.removeElement = function(pvjsonElement) {
 }
 
 /**
+ * Returns element rendered style
+ *
+ * @param  {object} pvjsonElement
+ * @param  {string} styleName
+ * @return {string|number}
+ */
+RendererSvg.getElementStyle = function(pvjsonElement, styleName) {
+  // TODO
+}
+
+/**
+ * Updates element rendered style
+ *
+ * @param {object} pvjsonElement
+ * @param {string} styleName
+ * @param {string|number} styleValue
+ */
+RendererSvg.setElementStyle = function(pvjsonElement, styleName, styleValue) {
+  // TODO
+}
+
+/**
  * Return element bounding box (height, width, left, right, top, bottom)
  * @return {object} BBox
  */
 RendererSvg.getElementBBox = function(pvjsonElement) {
-  // TODO
+  var BBox = {
+        width: 0
+      , height: 0
+      , top: null
+      , bottom: null
+      , left: null
+      , right: null
+      }
+    , border = pvjsonElement && pvjsonElement.hasOwnProperty('borderWidth') ? +pvjsonElement.borderWidth : 0
+
+  if (pvjsonElement === null || pvjsonElement === void 0) {return BBox;}
+
+  // Assume that the object has width, height, x and y
+  if (pvjsonElement.hasOwnProperty('width')) {
+    BBox.width = pvjsonElement.width + (border * 2)
+    BBox.height = pvjsonElement.height + (border * 2)
+    BBox.top = pvjsonElement.y - border
+    BBox.bottom = BBox.top + BBox.height
+    BBox.left = pvjsonElement.x - border
+    BBox.right = BBox.left + BBox.width
+  } else {
+    // If it is an interaction
+    if (pvjsonElement.hasOwnProperty('gpml:element') && pvjsonElement['gpml:element'] === 'gpml:Interaction') {
+      BBox.top = Math.min(pvjsonElement.points[0].y, pvjsonElement.points[1].y) - border
+      BBox.bottom = Math.max(pvjsonElement.points[0].y, pvjsonElement.points[1].y) + border
+      BBox.left = Math.min(pvjsonElement.points[0].x, pvjsonElement.points[1].x) - border
+      BBox.right = Math.max(pvjsonElement.points[0].x, pvjsonElement.points[1].x) + border
+      BBox.width = BBox.right - BBox.left
+      BBox.height = BBox.top - BBox.bottom
+    }
+  }
+
+  if (pvjsonElement.hasOwnProperty('rotation')) {
+    var rotationRad = +pvjsonElement.rotation * Math.PI / 180
+      , points = [0,0,0,0,0,0,0,0] // top_left.x, y, top_right.x, y, bottom_right.x, y, bottom_left.x, y
+      , centerX = (BBox.left + BBox.right)/2
+      , centerY = (BBox.top + BBox.bottom)/2
+      , BBoxCentered = {
+          top: BBox.height / 2
+        , bottom : -BBox.height / 2
+        , left: -BBox.width / 2
+        , right: BBox.width / 2
+        }
+
+    // Calculate points of rotated rectangle
+    points[0] = (BBoxCentered.left) * Math.cos(rotationRad) - (BBoxCentered.top) * Math.sin(rotationRad)
+    points[1] = (BBoxCentered.left) * Math.sin(rotationRad) + (BBoxCentered.top) * Math.cos(rotationRad)
+    points[2] = (BBoxCentered.right) * Math.cos(rotationRad) - (BBoxCentered.top) * Math.sin(rotationRad)
+    points[3] = (BBoxCentered.right) * Math.sin(rotationRad) + (BBoxCentered.top) * Math.cos(rotationRad)
+    points[4] = (BBoxCentered.right) * Math.cos(rotationRad) - (BBoxCentered.bottom) * Math.sin(rotationRad)
+    points[5] = (BBoxCentered.right) * Math.sin(rotationRad) + (BBoxCentered.bottom) * Math.cos(rotationRad)
+    points[6] = (BBoxCentered.left) * Math.cos(rotationRad) - (BBoxCentered.bottom) * Math.sin(rotationRad)
+    points[7] = (BBoxCentered.left) * Math.sin(rotationRad) + (BBoxCentered.bottom) * Math.cos(rotationRad)
+
+    // Update BBox
+    BBox.top = -Math.max(points[1], points[3], points[5], points[7]) + centerY
+    BBox.bottom = -Math.min(points[1], points[3], points[5], points[7]) + centerY
+    BBox.left = Math.min(points[0], points[2], points[4], points[6]) + centerX
+    BBox.right = Math.max(points[0], points[2], points[4], points[6]) + centerX
+    BBox.width = BBox.right - BBox.left
+    BBox.height = BBox.bottom - BBox.top
+  }
+
+  return BBox
 }
 
 module.exports = {

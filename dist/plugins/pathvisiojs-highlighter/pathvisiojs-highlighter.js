@@ -3,6 +3,13 @@
   var optionsDefault = {
     displayInputField: true
   , autocompleteLimit: 10
+  , styles: {
+      fill: 'yellow'
+    , 'fill-opacity': 0.2
+    , stroke: 'orange'
+    , 'stroke-width': '3px'
+    , 'stroke-opacity': 1
+    }
   }
 
   /**
@@ -16,7 +23,8 @@
           pvjs: pvjs
         , instance: self
         , options: extend(options || {}, optionsDefault)
-        , searcheableValues: getSearcheableValues(pvjs.getSourceData().pvjson)
+        , elements: pvjs.getSourceData().pvjson.elements
+        , searcheableValues: getSearcheableValues(pvjs.getSourceData().pvjson.elements)
         , groups: {}
         }
 
@@ -31,9 +39,16 @@
 
         // Highlight all nodes one by one
         if (nodes) {
-          nodes.each(function(){
-            highlight(highlighter, group || 'default', this, styles)
-          })
+          // If is instance of D3
+          if (typeof nodes.html === 'function') {
+            nodes.each(function(){
+              highlight(highlighter, group || 'default', this, styles)
+            })
+          } else {
+            nodes.forEach(function(node){
+              highlight(highlighter, group || 'default', node, styles)
+            })
+          }
         }
 
         // If anything highlighted then return true
@@ -45,9 +60,16 @@
 
           // Attenuate all nodes one by one
           if (nodes) {
-            nodes.each(function(){
-              attenuate(highlighter, group || 'default', this)
-            })
+            // If is instance of D3
+            if (typeof nodes.html === 'function') {
+              nodes.each(function(){
+                attenuate(highlighter, group || 'default', this)
+              })
+            } else {
+              nodes.forEach(function(node){
+                attenuate(highlighter, group || 'default', node)
+              })
+            }
           }
         } else {
           // Attenuate all elements from group
@@ -119,15 +141,16 @@
     })
   }
 
-  function getSearcheableValues(pvjson) {
+  function getSearcheableValues(elements) {
     var searcheableValues = []
 
-    if (pvjson && pvjson.elements) {
-      pvjson.elements
-        .filter(function(element) {return element.gpmlType === 'DataNode' || element.gpmlType === 'Label'})
+    if (elements && elements.length) {
+      elements
+        .filter(function(element) {return element['gpml:element'] === 'gpml:DataNode' || element['gpml:element'] === 'gpml:Label'})
           .forEach(function(node) {
             if (node.hasOwnProperty('textContent')) {
-              var text = node.textContent.replace('&#xA;', ' ').replace("\n", ' ')
+
+              var text = node.textContent.replace(/\n/g, ' ')
               searcheableValues.push({
                 val: text
               , valLower: text.toLowerCase()
@@ -175,12 +198,23 @@
     return filteredValues
   }
 
+  function getPvjsElementById(elements, id) {
+    for (i = elements.length - 1; i >=0; i--) {
+      if (elements[i].id != null && elements[i].id === id) {
+        return elements[i]
+      }
+    }
+    return null
+  }
+
   function select(highlighter, selector) {
     var d3Selector = null
+      , elementSelector = null
 
     if (selector[0] === '#') {
       // Select by id
       d3Selector = selector
+      elementSelector = selector
     } else if(selector.indexOf('xref:') === 0) {
       // Search by xref
 
@@ -217,8 +251,30 @@
       d3Selector = d3Selectors.join(', ')
     }
 
-    if (!d3Selector) return null
-    else return highlighter.pvjs.$element.selectAll(d3Selector)
+    if (!d3Selector) {
+      return null
+    } else {
+      var nodes = highlighter.pvjs.$element.selectAll(d3Selector)
+
+      if (!nodes.empty()) {
+        return highlighter.pvjs.$element.selectAll(d3Selector)
+      } else {
+        return searchTroughElements(highlighter, elementSelector)
+      }
+    }
+  }
+
+  function searchTroughElements(highlighter, selector) {
+    if (selector[0] === '#') {
+      // Select by id
+      var _selector = selector.slice(1)
+
+      return highlighter.elements.filter(function(element){
+        return element.id == _selector
+      })
+    } else {
+      return null
+    }
   }
 
   /**
@@ -229,12 +285,8 @@
    * @param  {object} node        pvjson.elment object
    */
   function highlight(highlighter, group, node, styles) {
-    var styleString = ''
-    styles = styles || {}
-
-    for (var s in styles) {
-      styleString += s + ':' + styles[s] + ';'
-    }
+    var options = highlighter.options
+    styles = extend(styles || {}, options.styles)
 
     // Create group if it does not exist
     if (highlighter.groups[group] === undefined) {
@@ -268,40 +320,160 @@
 
     // Render highlighting
     if (!highlighting) {
-      // Render node
-      var nodeBBox = node.getBBox()
-        // TODO take in account padding based on border width and offset
-        , padding = 2.5
-        , transform = node.getAttribute('transform')
-        , translate
-        , translate_x = 0
-        , translate_y = 0
+      if (isElement(node)) {
+        var $node = d3.select(node)
+          , nodeName = $node.property('nodeName')
+          , pvjsElement = getPvjsElementById(highlighter.elements, $node.attr('id'))
 
-      // If node has translate attribute
-      if (transform && (translate = transform.match(/translate\(([\d\s\.]+)\)/))) {
-        translate = translate[1].split(' ')
-        translate_x = +translate[0]
-        translate_y = translate.length > 1 ? +translate[1] : 0
+        if (pvjsElement && pvjsElement['gpml:element'] === 'gpml:Interaction') { // Clone this path and set different stroke and fill
+          var $parent = d3.select(node.parentNode)
+            , attributes = node.attributes
+            , highlighting = $parent.append(nodeName).attr('id', $node.attr('id') + '9')
+
+          for (var i = 0; i < attributes.length; i++) {
+            if (attributes[i].name === 'id') continue;
+
+            highlighting.attr(attributes[i].name, attributes[i].value)
+          }
+
+          // Recalculate style
+          _styles = extend(styles, {})
+
+          // Adjust stroke-width
+          if ($node.attr('stroke-width') == null) {
+            _styles['stroke-width'] = options['stroke-width']
+          } else {
+            _styles['stroke-width'] = ((parseInt($node.attr('stroke-width'), 10) || 0) + (parseInt(options.styles['stroke-width'], 10) || 0)) + 'px'
+          }
+
+          // Adjust stroke-opacity
+          _styles['stroke-opacity'] = Math.min(0.5, _styles['stroke-opacity'])
+
+          highlighting
+            .attr('style', generateStyleString(_styles, ['fill']) + 'pointer-events: none')
+
+          // Adjust markers
+          adjustMarkers(highlighter, highlighting, _styles)
+
+        } else { // Treat element as a rectangle
+          // Render node
+          var nodeBBox = node.getBBox()
+            // TODO take in account padding based on border width and offset
+            , padding = 2.5
+            , transform = node.getAttribute('transform')
+            , translate
+            , translate_x = 0
+            , translate_y = 0
+
+          // If node has translate attribute
+          if (transform && (translate = transform.match(/translate\(([\d\s\.]+)\)/))) {
+            translate = translate[1].split(' ')
+            translate_x = +translate[0]
+            translate_y = translate.length > 1 ? +translate[1] : 0
+          }
+
+          highlighting = highlighter.pvjs.$element.select('#viewport')
+            .append('rect')
+              .attr('x', nodeBBox.x - padding + translate_x)
+              .attr('y', nodeBBox.y - padding + translate_y)
+              .attr('width', nodeBBox.width + 2 * padding)
+              .attr('height', nodeBBox.height + 2 * padding)
+              .attr('class', 'highlighted-node')
+              .attr('style', generateStyleString(styles) + 'pointer-events: none')
+        }
+      } else {
+        // Is pvjson element
+        if (node.height && node.width && node.x && node.y) {
+          highlighting = highlighter.pvjs.$element.select('#viewport')
+            .append('rect')
+              .attr('x', node.x)
+              .attr('y', node.y)
+              .attr('width', node.width)
+              .attr('height', node.height)
+              .attr('class', 'highlighted-node')
+              .attr('style', generateStyleString(styles) + 'pointer-events: none')
+        }
       }
-
-      highlighting = highlighter.pvjs.$element.select('#viewport')
-        .append('rect')
-          .attr('x', nodeBBox.x - padding + translate_x)
-          .attr('y', nodeBBox.y - padding + translate_y)
-          .attr('width', nodeBBox.width + 2 * padding)
-          .attr('height', nodeBBox.height + 2 * padding)
-          .attr('class', 'highlighted-node')
-          .attr('style', styleString + 'pointer-events: none')
     } else {
       // Apply new style
       highlighting.attr('style', styleString + 'pointer-events: none')
     }
 
     // Add info to group
-    highlighter.groups[group].push({
-      node: node
-    , highlighting: highlighting
-    })
+    if (highlighting) {
+      highlighter.groups[group].push({
+        node: node
+      , highlighting: highlighting
+      })
+    }
+  }
+
+  function isElement(o){
+    return (
+      typeof HTMLElement === "object" ? (o instanceof HTMLElement || o instanceof SVGElement || o instanceof SVGSVGElement) : //DOM2
+      o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
+    );
+  }
+
+
+  function generateStyleString(styles, except) {
+    var styleString = ''
+
+    if (except == void 0) {
+      except = []
+    }
+
+    for (var s in styles) {
+      if (except.indexOf(s) === -1) {
+        styleString += s + ':' + styles[s] + ';'
+      }
+    }
+
+    return styleString
+  }
+
+  function adjustMarkers(highlighter, highlighting, styles) {
+    adjustMarker(highlighter, highlighting, styles, 'marker-start')
+    adjustMarker(highlighter, highlighting, styles, 'marker-mid')
+    adjustMarker(highlighter, highlighting, styles, 'marker-end')
+  }
+
+  function adjustMarker(highlighter, $highlighting, styles, markerType) {
+    var markerAttr = $highlighting.attr(markerType)
+    if (markerAttr == null || markerAttr.match(/url\(\#(.*)\)/) == null) {
+      return
+    }
+
+    var markerId = markerAttr.match(/url\(\#(.*)\)/)[1]
+      , newColorId = styles.stroke.replace(/[^a-z0-9]/gmi, '') // replace all non alphanumeric chars
+      , newId = markerId.split('-').slice(0, -1).join('-') + '-' + newColorId
+      , $defs = highlighter.pvjs.$element.select('defs')
+
+    // Create if such marker does not exist
+    if ($defs.select('#' + newId).empty()) {
+      var $originalMarker = highlighter.pvjs.$element.select('#' + markerId)
+        , newMarker = $originalMarker.node().cloneNode(true)
+        , $newMarker = d3.select(newMarker)
+        , $newMarkerGroup = $newMarker.select('g')
+        , $newMarkerShape = $newMarker.select('polygon')
+        , $newMarkerRect = $newMarker.select('rect')
+
+      $newMarker
+        .attr('id', newId)
+        .attr('markerUnits', 'userSpaceOnUse') // Force arrow to keep its sizes
+
+      $newMarkerGroup.attr('id', $newMarkerGroup.attr('id').split('-').slice(0, -1).join('-') + '-' + newColorId)
+      $newMarkerShape
+        .attr('fill', styles.stroke)
+        .attr('fill-opacity', styles['stroke-opacity'])
+      $newMarkerRect.attr('stroke-width', styles['stroke-width'])
+
+      // Append new marker to defs
+      $defs.node().appendChild(newMarker)
+    }
+
+
+    $highlighting.attr(markerType, 'url(#' + newId + ')')
   }
 
   /**
@@ -363,7 +535,9 @@
 
   function extend(o1, o2) {
     for (var i in o2) {
-      if (o2.hasOwnProperty(i) && !o1.hasOwnProperty(i)) {
+      if (Object.prototype.toString.apply(o2[i]) == '[object Object]') {
+        o1[i] = extend(o1[i] || {}, o2[i])
+      } else if (o2.hasOwnProperty(i) && !o1.hasOwnProperty(i)) {
         o1[i] = o2[i]
       }
     }
