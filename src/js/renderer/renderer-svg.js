@@ -108,14 +108,15 @@ function renderShape(renderer, pvjsonElement) {
     }
   }
 
+  self.mypvjson = pvjson;
+
   var node = renderer.crossPlatformShapesInstance[shapeName](pvjsonElement)
     , $node = d3.select(node)
 
   var entityReference = pvjsonElement.entityReference;
   // TODO delegate this to selector
-  if (!!entityReference || (!!pvjsonElement.type && (pvjsonElement.type.indexOf('Pathway') > -1 || pvjsonElement.type === 'Pathway'))) {
-    console.log('pvjsonElement');
-    console.log(pvjsonElement);
+  if (!!entityReference) {
+    // right now, pathways generally don't have a shape, so they are being handled by attaching events to their text.
     var entityReferenceRendererArguments = {};
     entityReferenceRendererArguments.metadata = {
       label:pvjsonElement.textContent,
@@ -171,9 +172,8 @@ function renderText(renderer, pvjsonElement) {
     , $node = d3.select(node);
 
   // TODO delegate this to selector
-  if (!!pvjsonElement.type && pvjsonElement.type === 'Pathway') {
-    console.log('Pathway');
-    console.log(pvjsonElement);
+  // should a pathway xref be an entity reference or an id?
+  if (!!pvjsonElement.type && pvjsonElement.type === 'Pathway' && !!pvjsonElement.entityReference) {
     var entityReferenceRendererArguments = {};
     entityReferenceRendererArguments.metadata = {
       label:pvjsonElement.textContent,
