@@ -208,10 +208,6 @@ var gruntConfig = {
         host: process.env.POINTER_UCSF_EDU_USERNAME + "@pointer.ucsf.edu",
         syncDestIgnoreExcl: true
       }
-    },
-    integrationTestServer: { // testing pvjs integration with WikiPathways
-      options: {
-      }
     }
   },
   simplemocha: {
@@ -330,9 +326,6 @@ module.exports = function(grunt) {
 
   // Build, create and publish to test server. Run extensive tests.
   grunt.registerTask('remote-test', ['build', 'copy:pages', 'copy:pagesLibs', 'copy:pagesTest', 'replace:pages', 'replace:pagesTest', 'rsync:pvjsTestServer', 'clean:pages']);
-
-  // Build, create and publish to test server. Run extensive tests.
-  grunt.registerTask('integration-test', ['build', 'copy:pages', 'copy:pagesLibs', 'copy:pagesTest', 'replace:pages', 'replace:pagesTest', 'rsync:integrationTestServer', 'clean:pages']);
 
   // Build, create and publish gh-pages
   grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages']);
