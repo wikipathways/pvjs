@@ -90,8 +90,8 @@ Selector.hasElement = function(pvjsonElement) {
  * @param  {object} pvjsonElement
  * @return {object}               pvjsonElement
  */
-function forceAnId(pvjsonElement) {
-  if (pvjsonElement.id === undefined) {
+Selector.forceAnId = function(pvjsonElement) {
+  if (pvjsonElement.id === null || pvjsonElement.id === void 0) {
     // Set a new id to pvjsonElement
     this._idCounter += 1
     pvjsonElement.id = '_selector-id-' + this._idCounter
@@ -120,7 +120,7 @@ function registerElement(selector, pvjsonElement) {
  */
 Selector.addElement = function(pvjsonElement) {
   if (!this.hasElement(pvjsonElement)) {
-    this[this.length] = forceAnId(pvjsonElement)
+    this[this.length] = this.forceAnId(pvjsonElement)
 
     registerElement(this, pvjsonElement)
 
