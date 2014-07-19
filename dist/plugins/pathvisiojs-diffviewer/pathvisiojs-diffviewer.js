@@ -227,11 +227,11 @@
     var colors = {}
 
     if (type === 'added') {
-      colors.fill = colors.stroke = '#0E53A7'
+      colors.backgroundColor = colors.borderColor = '#0E53A7'
     } else if (type === 'updated') {
-      colors.fill = colors.stroke = '#FFF700'
+      colors.backgroundColor = colors.borderColor = '#FFF700'
     } else if (type === 'removed') {
-      colors.fill = colors.stroke = '#F10026'
+      colors.backgroundColor = colors.borderColor = '#F10026'
     }
 
     if (attenuate) {

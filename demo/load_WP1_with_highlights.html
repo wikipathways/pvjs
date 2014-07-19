@@ -48,7 +48,8 @@
         // at least one item required
         {
           // uri:'data/wp1.xml',
-          uri:'data/WP525_74871.gpml',
+          // uri:'data/WP525_74871.gpml',
+          uri:'data/WP525_73040.gpml',
           // uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
           fileType:'gpml' // generally will correspond to filename extension
         }
@@ -65,6 +66,7 @@
 
     // Get first element from array of instances
     var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+    window.pathInstance = pathInstance
 
     // Load notification plugin
     pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
@@ -73,16 +75,24 @@
     pathInstance.on('rendered', function(){
       // Initialize Highlighter plugin
       var hi = pathvisiojsHighlighter(pathInstance)
+      window.hi = hi
 
       // Highlight by ID
-      hi.highlight('#e6e')
+      hi.highlight('#eb5')
+      hi.highlight('id:d25e1')
 
-      // Highlight by Label
-      hi.highlight('Cholic acid', null, {fill: 'gray'})
+      // Highlight by Text
+      hi.highlight('Mitochondrion', null, {backgroundColor: 'gray'})
 
       // Highlight by xref
-      hi.highlight('xref:15357', null, {fill: 'magenta', stroke: 'black'})
-      hi.highlight('xref:00193', null, {fill: 'magenta', stroke: 'black'})
+      hi.highlight('xref:id:http://identifiers.org/wormbase/ZK1193.5', null, {backgroundColor: 'magenta', borderColor: 'black'})
+      hi.highlight('xref:GCN-2', null, {
+        backgroundColor: 'blue'
+      , backgroundOpacity: 0.5
+      , borderColor: 'red'
+      , borderWidth: 1
+      , borderOpacity: 0.7
+      })
     })
 
     // Call renderer
