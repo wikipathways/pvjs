@@ -167,15 +167,33 @@ function renderText(renderer, pvjsonElement) {
 }
 
 /**
+ * Check if data element has an id attribute
+ *
+ * @param  {object} pvjsonElement
+ * @return {Boolean}
+ */
+RendererSvg.isValidElement = function(pvjsonElement) {
+  return pvjsonElement && pvjsonElement.id !== undefined
+}
+
+/**
+ * Check if data element is not rendered
+ *
+ * @param  {object}  pvjsonElement [description]
+ * @return {Boolean}               [description]
+ */
+RendererSvg.hasElement = function(pvjsonElement) {
+  return this._elementsHash[pvjsonElement.id] !== void 0 && this._elementsHash[pvjsonElement.id] !== null
+}
+
+
+/**
  * Check if element is rendered, and if not register and render it
  *
  * @param {object} pvjsonElement
  */
 RendererSvg.addElement = function(pvjsonElement) {
-  // Check if data element has an id attribute
-  if (pvjsonElement && pvjsonElement.id !== undefined &&
-    // Check if data element is not already rendered
-     (this._elementsHash[pvjsonElement.id] === undefined || !this._elementsHash[pvjsonElement.id])) {
+  if (this.isValidElement(pvjsonElement) && !this.hasElement(pvjsonElement)) {
     // TODO this should be refactored and removed
     pvjsonElement.containerSelector = '#viewport'
 
@@ -186,15 +204,88 @@ RendererSvg.addElement = function(pvjsonElement) {
   }
 }
 
+var selectorToSvgStyleMap = {
+  backgroundColor: 'fill'
+, backgroundOpacity: 'fill-opacity'
+, borderColor: 'stroke'
+, borderWidth: 'stroke-width'
+, borderOpacity: 'stroke-opacity'
+}
+
+function normalizeSelectorStyle(key) {
+  if (selectorToSvgStyleMap.hasOwnProperty(key)) {
+    return selectorToSvgStyleMap[key]
+  } else {
+    return key
+  }
+}
+
+function styleStringToMap(str) {
+  var _styles = str.trim().split(';')
+    , _style
+    , styles = {}
+
+  for (var s in _styles) {
+    _style = _styles[s].trim().split(':')
+
+    if (_style.length === 2) {
+      styles[_style[0]] = _style[1]
+    }
+  }
+
+  return styles
+}
+
 /**
- * Update element attributes (if element exists)
+ * Update element attributes and style (if element exists)
  *
  * @param  {object} pvjsonElement
- * @param  {string} attributeName
- * @param  {string|number} attributeValue
+ * @param  {object} styles object style name (key) and style value (value)
  */
-RendererSvg.updateElement = function(pvjsonElement, attributeName, attributeValue) {
-  // TODO
+RendererSvg.updateElement = function(pvjsonElement, styles) {
+  if (!this.hasElement(pvjsonElement)) {return}
+
+  var $element = d3.select(this._elementsHash[pvjsonElement.id].render)
+    , styleKey
+    , styleMap = {}
+    , styleString = ''
+
+  if (!$element.empty()) {
+    // Look for old styles
+    if ($element.attr('style')) {
+      styleMap = styleStringToMap($element.attr('style'))
+    }
+
+    // Adjust new styles
+    for (var key in styles) {
+      // Translate Selector styles to Svg styles
+      styleKey = normalizeSelectorStyle(key)
+
+      // Add style to map if it does not collide with other defined style
+      if (!styles.hasOwnProperty(styleKey)) {
+        styleMap[styleKey] = styles[key]
+      }
+    }
+
+    // Compose style string
+    for (key in styleMap) {
+      styleString += key + ':' + styleMap[key] + ';'
+    }
+
+    // Update element
+    $element.attr('style', styleString)
+  }
+}
+
+RendererSvg.removeElementMarkers = function(pvjsonElement) {
+  if (!this.hasElement(pvjsonElement)) {return}
+
+  var $element = d3.select(this._elementsHash[pvjsonElement.id].render)
+
+  $element
+    .attr('marker-start', null)
+    .attr('marker-mid', null)
+    .attr('marker-end', null)
 }
 
 /**
@@ -203,8 +294,9 @@ RendererSvg.updateElement = function(pvjsonElement, attributeName, attributeValu
  * @param  {object} pvjsonElement
  */
 RendererSvg.removeElement = function(pvjsonElement) {
-  // TODO
-  var $element = this.$svg.select('#' + pvjsonElement.id)
+  if (!this.hasElement(pvjsonElement)) {return}
+
+  var $element = d3.select(this._elementsHash[pvjsonElement.id].render)
 
   if (!$element.empty()) {
     $element.remove()
