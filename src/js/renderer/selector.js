@@ -180,6 +180,28 @@ Selector.remove = function() {
 }
 
 /**
+ * Clone first element and return its selector
+ *
+ * @return {Object} selector
+ */
+Selector.cloneElement = function() {
+  var selector = init([], this.getRenderer())
+
+  if (this.length > 0) {
+    var pvjsonElement = _.clone(this[0], true)
+    delete pvjsonElement.id
+
+    selector.addElement(pvjsonElement)
+
+    // TODO later refactor this to use markers clones
+    // https://github.com/wikipathways/pathvisiojs/blob/2bd230a8241374e12086524d9fd39f48e6cef71d/dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js#L441
+    selector.removeMarkers()
+  }
+
+  return selector
+}
+
+/**
  * Create a clone of given selector
  *
  * @return {object}           selector
@@ -339,12 +361,20 @@ Selector.setStyle = function(name, value) {
 /**
  * Set a set of styles to all contained elements
  *
- * @param {object} obj key-value pairs of name-value styles
+ * @param {object} styles key-value pairs of name-value styles
  * @return {object} selector
  */
-Selector.setStyles = function(obj) {
-  for(var key in obj) {
-    this.setStyle(key, obj[key])
+Selector.setStyles = function(styles) {
+  for (var i = this.length - 1; i >= 0; i--) {
+    this.renderer.updateElement(this[i], styles)
+  };
+
+  return this
+}
+
+Selector.removeMarkers = function() {
+  for (var i = this.length - 1; i >= 0; i--) {
+    this.renderer.removeElementMarkers(this[i])
   }
 
   return this
