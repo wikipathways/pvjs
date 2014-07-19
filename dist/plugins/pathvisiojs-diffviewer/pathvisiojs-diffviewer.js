@@ -2,7 +2,6 @@
 
   var optionsDefault = {
     sourceData: []
-  , displayIds: false
   }
 
   /**
@@ -50,13 +49,13 @@
     pvjs.on('rendered', function(){
       pvjsRendered = true
       if (pvjs2Rendered) {
-        displayChanges(pvjs, pvjs2, $paneCenter, options.displayIds)
+        displayChanges(pvjs, pvjs2, $paneCenter)
       }
     })
     pvjs2.on('rendered', function(){
       pvjs2Rendered = true
       if (pvjsRendered) {
-        displayChanges(pvjs, pvjs2, $paneCenter, options.displayIds)
+        displayChanges(pvjs, pvjs2, $paneCenter)
       }
     })
 
@@ -116,7 +115,7 @@
     pvjs2.render()
   }
 
-  function displayChanges(pvjs, pvjs2, $paneCenter, displayIds){
+  function displayChanges(pvjs, pvjs2, $paneCenter){
     var diff = calculateDiff(pvjs.getSourceData().pvjson, pvjs2.getSourceData().pvjson)
       , elementsOld = pvjs.getSourceData().pvjson.elements
       , elementsNew = pvjs2.getSourceData().pvjson.elements
@@ -145,9 +144,9 @@
       , $containerUpdated = $paneCenter.find('[data-type=updated]').children('.changes-list').first()
       , $containerRemoved = $paneCenter.find('[data-type=removed]').children('.changes-list').first()
 
-    parseAndRenderChanges(diff.added, $containerAdded, 'added', elementsNew, displayIds)
-    parseAndRenderChanges(diff.removed, $containerRemoved, 'removed', elementsOld, displayIds)
-    parseAndRenderChanges(diff.updated, $containerUpdated, 'updated', elementsMix, displayIds)
+    parseAndRenderChanges(diff.added, $containerAdded, 'added', elementsNew)
+    parseAndRenderChanges(diff.removed, $containerRemoved, 'removed', elementsOld)
+    parseAndRenderChanges(diff.updated, $containerUpdated, 'updated', elementsMix)
 
     // Events
     var hi = pathvisiojsHighlighter(pvjs, {displayInputField: false})
@@ -250,7 +249,7 @@
     })
   }
 
-  function parseAndRenderChanges(list, $containerParent, type, elementsList, displayIds) {
+  function parseAndRenderChanges(list, $containerParent, type, elementsList) {
     if (list.length === 0) return;
 
     // Sort by gpml:element and shape
@@ -301,11 +300,11 @@
 
       // Sort ingroup
       addedGroups[g] = addedGroups[g].sort(function(a, b){
-        return getChangeTitle(a, elementsList, displayIds).toLowerCase() > getChangeTitle(b, elementsList, displayIds).toLowerCase() ? 1 : -1
+        return getChangeTitle(a, elementsList).toLowerCase() > getChangeTitle(b, elementsList).toLowerCase() ? 1 : -1
       })
 
       for (e in addedGroups[g]) {
-        title = getChangeTitle(addedGroups[g][e], elementsList, displayIds)
+        title = getChangeTitle(addedGroups[g][e], elementsList)
 
         $elementContainer = $('<div class="changes-container" data-level="3"/>').appendTo($containerList)
         $elementTitle = $('<div class="changes-title change-' + type + '"></div>').appendTo($elementContainer)
@@ -482,27 +481,27 @@
          || Object.prototype.toString.apply('') === Object.prototype.toString.apply(obj))
   }
 
-  function getChangeTitle(obj, list, displayIds) {
+  function getChangeTitle(obj, list) {
     if (obj['gpml:element'] === 'gpml:Interaction') {
-      return '' + findTitleById(obj.points[0].isAttachedTo, list, displayIds) + ' <i class="icon icon-arrow-right"></i> ' + findTitleById(obj.points[1].isAttachedTo, list, displayIds)
+      return '' + findTitleById(obj.points[0].isAttachedTo, list) + ' <i class="icon icon-arrow-right"></i> ' + findTitleById(obj.points[1].isAttachedTo, list)
     } else if (obj['gpml:element'] === 'gpml:DataNode') {
       return obj.textContent
     } else if (obj['gpml:element'] === 'gpml:Label') {
       return obj.textContent
     } else if (obj['gpml:element'] === 'gpml:Shape') {
-      return obj.shape.slice(0, 1).toUpperCase() + obj.shape.slice(1) + (displayIds ? ' <i>' + obj.id + '</i>' : '')
+      return obj.shape.slice(0, 1).toUpperCase() + obj.shape.slice(1)
     } else if (obj['gpml:element'] === 'gpml:GraphicalLine') {
       return 'Graphical line'
     } else if (obj['gpml:element'] === 'gpml:State') {
-      return 'State ' + obj.textContent + ' (' + findTitleById(obj.isAttachedTo, list, displayIds) + ')'
+      return 'State ' + obj.textContent + ' (' + findTitleById(obj.isAttachedTo, list) + ')'
     } else if (obj['gpml:element'] === 'gpml:Group') {
-      return 'Group ' + (displayIds ? ' <i>' + obj.id + '</i>' : '')
+      return 'Group'
     }
 
     return 'no title'
   }
 
-  function findTitleById(id, list, displayIds) {
+  function findTitleById(id, list) {
     if (typeof id == 'undefined') {
       return 'Unknown'
     }
@@ -511,9 +510,9 @@
       if (list[l].id != null && id === list[l].id) {
         // Check if is not interaction to avoid circular recursion
         if (list[l]['gpml:element'] === 'gpml:Interaction') {
-          return 'Interaction ' + (displayIds ? ' <i>' + id + '</i>': '')
+          return 'Interaction'
         } else {
-          return getChangeTitle(list[l], list, displayIds)
+          return getChangeTitle(list[l], list)
         }
       }
     }
