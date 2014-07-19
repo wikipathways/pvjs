@@ -24,6 +24,8 @@ var Utils = require('./../utilities.js')
  * @param {object} renderer         Renderer
  */
 var Selector = {}
+  /** @type {Number} Global counter of added ids to elements */
+  , _idCounter = 0
 
 function init(context, renderer) {
   var selector = Object.create(Selector)
@@ -42,8 +44,6 @@ function init(context, renderer) {
   selector.length = 0
   /** @type {Object} ids of available data elements. Use object instead of array for faster lookup */
   selector._elementsHash = {}
-  /** @type {Number} counter of added id to elements */
-  selector._idCounter = 0
 
   // Copy elements
   if (context && context.length) {
@@ -93,8 +93,8 @@ Selector.hasElement = function(pvjsonElement) {
 Selector.forceAnId = function(pvjsonElement) {
   if (pvjsonElement.id === null || pvjsonElement.id === void 0) {
     // Set a new id to pvjsonElement
-    this._idCounter += 1
-    pvjsonElement.id = '_selector-id-' + this._idCounter
+    _idCounter += 1
+    pvjsonElement.id = '_selector-id-' + _idCounter
   }
 
   return pvjsonElement
