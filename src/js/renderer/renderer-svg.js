@@ -72,16 +72,41 @@ function initStyles(renderer) {
   }
 }
 
+function normalizeShapeStyles(pvjsonElement) {
+  // Do not need normalization:
+  // backgroundColor
+  // borderWidth
+
+  //  backgroundOpacity
+  if (pvjsonElement.hasOwnProperty('backgroundOpacity') && !pvjsonElement.hasOwnProperty('fillOpacity')) {
+    pvjsonElement.fillOpacity = pvjsonElement.backgroundOpacity
+  }
+
+  // borderColor
+  if (pvjsonElement.hasOwnProperty('borderColor') && !pvjsonElement.hasOwnProperty('color')) {
+    pvjsonElement.color = pvjsonElement.borderColor
+  }
+
+  // borderOpacity
+  if (pvjsonElement.hasOwnProperty('borderOpacity')) {
+    // TODO currently cross-platform-shapes do not support borderOpacity upon creation
+  }
+
+  return pvjsonElement
+}
+
 function render(renderer, pvjsonElement) {
+  // Keep both node and text because a node may take both form
   var shape, text
 
   if (!!pvjsonElement.shape && pvjsonElement.shape !== 'none') {
-    shape = renderShape(renderer, pvjsonElement)
+    shape = renderShape(renderer, normalizeShapeStyles(pvjsonElement))
   }
   if (!!pvjsonElement.textContent) {
     text = renderText(renderer, pvjsonElement)
   }
 
+  // If nothing rendered
   return shape || text || null
 }
 
