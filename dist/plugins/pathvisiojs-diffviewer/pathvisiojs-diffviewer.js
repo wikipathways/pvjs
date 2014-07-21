@@ -51,14 +51,21 @@
       pvjsRendered = true
       if (pvjs2Rendered) {
         displayChanges(pvjs, pvjs2, $paneCenter, options.displayIds)
+        getZoomScale(pvjs, pvjs2)
       }
     })
     pvjs2.on('rendered', function(){
       pvjs2Rendered = true
       if (pvjsRendered) {
         displayChanges(pvjs, pvjs2, $paneCenter, options.displayIds)
+        getZoomScale(pvjs, pvjs2)
       }
     })
+
+    var zoomScale = 1
+    function getZoomScale(pvjs, pvjs2) {
+      zoomScale = pvjs.getZoom() / pvjs2.getZoom()
+    }
 
     pvjs.on('destroy.pvjs', function(){
       pvjs2.destroy()
@@ -78,7 +85,7 @@
       }
       pvjsZoomed = true
 
-      pvjs2.zoom(level)
+      pvjs2.zoom(level / zoomScale)
       pvjs.panBy({x: 0, y: 0}) // TODO fix this by updating pan after zoom
       pvjs2.pan(pvjs.getPan())
     })
@@ -99,7 +106,7 @@
       }
       pvjs2Zoomed = true
 
-      pvjs.zoom(level)
+      pvjs.zoom(level * zoomScale)
       pvjs2.panBy({x: 0, y: 0}) // TODO fix this by updating pan after zoom
       pvjs.pan(pvjs2.getPan())
     })
