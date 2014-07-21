@@ -8,7 +8,7 @@
   float: left;
   overflow: hidden;
   width: 50%;
-  height: 500px;
+  height: 100%;
 }
 
 .pathvisiojs-diffviewer .pane.pane-left {
@@ -34,6 +34,10 @@
   margin: 0 0 0 -120px;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.pathvisiojs-diffviewer .pane-inner {
+  height: 100%;
 }
 
 /**************
