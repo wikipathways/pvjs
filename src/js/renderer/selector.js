@@ -274,8 +274,13 @@ Selector.filteredByXRef = function(selectorString) {
       }
 
       if (selectAttribute) {
-        if ((_.isRegExp(selectorString) && selectorString.test(this[i][selectAttribute]))
-          ||(_.isString(selectorString) && selectorString === this[i][selectAttribute])) {
+        // Test for regex
+        if (_.isRegExp(selectorString) && selectorString.test(this[i][selectAttribute])) {
+          matchingElements.push(this[i])
+        }
+
+        // Test for string match
+        if (_.isString(selectorString) && selectorString === this[i][selectAttribute]) {
           matchingElements.push(this[i])
         }
       }
@@ -295,13 +300,15 @@ Selector.filteredByHavingXRef = function(selectorString) {
   var matchingElements = []
     , xrefSelector = this.filteredByXRef(selectorString)
     , xrefsIds = {}
+    , i
+    ;
 
   // Fullfill xrefsIds hash object
-  for (var i = xrefSelector.length - 1; i >= 0; i--) {
+  for (i = xrefSelector.length - 1; i >= 0; i--) {
     xrefsIds[xrefSelector[i].id] = true
   }
 
-  for (var i = 0; i < this.length; i++) {
+  for (i = 0; i < this.length; i++) {
     // If element has matching entityReference
     if (this[i].hasOwnProperty('entityReference') && xrefsIds[this[i].entityReference] !== void 0) {
       matchingElements.push(this[i])
@@ -323,9 +330,13 @@ Selector.filteredByText = function(selectorString) {
 
   for (var i = 0; i < this.length; i++) {
     if (this[i].hasOwnProperty('textContent')) {
-      // If element do matches selector
-      if ((_.isRegExp(selectorString) && selectorString.test(this[i].textContent.replace(/\n/g, ' ')))
-       ||(_.isString(selectorString) && selectorString === this[i].textContent.replace(/\n/g, ' '))) {
+      // Test for regex
+      if (_.isRegExp(selectorString) && selectorString.test(this[i].textContent.replace(/\n/g, ' '))) {
+        matchingElements.push(this[i])
+      }
+
+      // Test for string match
+      if (_.isString(selectorString) && selectorString === this[i].textContent.replace(/\n/g, ' ')) {
         matchingElements.push(this[i])
       }
     }
@@ -367,7 +378,7 @@ Selector.setStyle = function(name, value) {
 Selector.setStyles = function(styles) {
   for (var i = this.length - 1; i >= 0; i--) {
     this.renderer.updateElement(this[i], styles)
-  };
+  }
 
   return this
 }
