@@ -298,8 +298,12 @@
 
     // Typeahead events
     this.$input
-      .on('typeahead:selected typeahead:closed', function(ev, suggestion) {
+      .on('typeahead:selected', function(ev, suggestion) {
         that.updateTypeaheadHighlight()
+      })
+      .on('typeahead:closed', function(ev, suggestion) {
+        // Wait for input field to get cleared
+        setTimeout(function(){that.updateTypeaheadHighlight()}, 10)
       })
       .on('typeahead:autocompleted typeahead:cursorchanged', function(ev, suggestion) {
         that.updateTypeaheadHighlight(true)
