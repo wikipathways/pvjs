@@ -23,36 +23,45 @@ var Utils = require('./../utilities.js')
  * @param {object} context Selector || array
  * @param {object} renderer         Renderer
  */
-var Selector = {}
-  /** @type {Number} Global counter of added ids to elements */
-  , _idCounter = 0
+
+/** @type {Number} Global counter of added ids to elements */
+var _idCounter = 0
 
 function init(context, renderer) {
-  var selector = Object.create(Selector)
+  return new Selector(context, renderer)
+}
+
+/**
+ * Constructor function
+ *
+ * @param {object} context  A selector or an array
+ * @param {object} renderer Optional if context is a selector
+ */
+function Selector(context, renderer) {
   // If new selector is created without a predecessor, require renderer
   if (!renderer && (context === null || context === undefined || context.getRenderer === undefined)) {
-    throw new Error('Selector need either a base selector instance either a renderer');
+    throw new Error('Selector need either a base selector instance or a renderer');
   }
 
   if (renderer) {
-    selector.setRenderer(renderer)
+    this.setRenderer(renderer)
   } else {
-    selector.setRenderer(context.getRenderer())
+    this.setRenderer(context.getRenderer())
   }
 
   // No elements at the beginning
-  selector.length = 0
+  this.length = 0
   /** @type {Object} ids of available data elements. Use object instead of array for faster lookup */
-  selector._elementsHash = {}
+  this._elementsHash = {}
 
   // Copy elements
   if (context && context.length) {
     for (var i = 0; i < context.length; i++) {
-      selector.addElement(context[i])
+      this.addElement(context[i])
     }
   }
 
-  return selector
+  return this
 }
 
 /**
@@ -60,11 +69,11 @@ function init(context, renderer) {
  *
  * @return {object} renderer
  */
-Selector.getRenderer = function() {
+Selector.prototype.getRenderer = function() {
   return this.renderer
 }
 
-Selector.setRenderer = function(renderer) {
+Selector.prototype.setRenderer = function(renderer) {
   this.renderer = renderer
   return this
 }
@@ -75,7 +84,7 @@ Selector.setRenderer = function(renderer) {
  * @param  {object}  pvjsonElement
  * @return {Boolean}         True if element is contained, otherwise false
  */
-Selector.hasElement = function(pvjsonElement) {
+Selector.prototype.hasElement = function(pvjsonElement) {
   if (pvjsonElement && pvjsonElement.id !== undefined &&
       this._elementsHash[pvjsonElement.id] !== undefined && this._elementsHash[pvjsonElement.id]) {
     return true
@@ -90,7 +99,7 @@ Selector.hasElement = function(pvjsonElement) {
  * @param  {object} pvjsonElement
  * @return {object}               pvjsonElement
  */
-Selector.forceAnId = function(pvjsonElement) {
+Selector.prototype.forceAnId = function(pvjsonElement) {
   if (pvjsonElement.id === null || pvjsonElement.id === void 0) {
     // Set a new id to pvjsonElement
     _idCounter += 1
@@ -118,7 +127,7 @@ function registerElement(selector, pvjsonElement) {
  * @param {object} pvjsonElement
  * @return {object} original selector
  */
-Selector.addElement = function(pvjsonElement) {
+Selector.prototype.addElement = function(pvjsonElement) {
   if (!this.hasElement(pvjsonElement)) {
     this[this.length] = this.forceAnId(pvjsonElement)
 
@@ -139,7 +148,7 @@ Selector.addElement = function(pvjsonElement) {
  * @param {object} pvjsonElement
  * @return {object} new selector with just this element
  */
-Selector.addAndGetElement = function(pvjsonElement) {
+Selector.prototype.addAndGetElement = function(pvjsonElement) {
   // Return selector that contain just last element to allow chaining
   return this.addElement().last()
 }
@@ -158,7 +167,7 @@ function unregisterAllElements(selector) {
  *
  * @return {object} selector
  */
-Selector.removeElements = function() {
+Selector.prototype.removeElements = function() {
   for (var i = this.length - 1; i >= 0; i--) {
     // Ask renderer to remove element
     this.renderer.removeElement(this[i])
@@ -175,7 +184,7 @@ Selector.removeElements = function() {
  *
  * @return {Object} selector
  */
-Selector.remove = function() {
+Selector.prototype.remove = function() {
   return this.removeElements()
 }
 
@@ -184,7 +193,7 @@ Selector.remove = function() {
  *
  * @return {Object} selector
  */
-Selector.cloneElement = function() {
+Selector.prototype.cloneElement = function() {
   var selector = init([], this.getRenderer())
 
   if (this.length > 0) {
@@ -206,7 +215,7 @@ Selector.cloneElement = function() {
  *
  * @return {object}           selector
  */
-Selector.getClone = function() {
+Selector.prototype.getClone = function() {
   return init(this)
 }
 
@@ -216,7 +225,7 @@ Selector.getClone = function() {
  * @param  {object} selector2 selector
  * @return {object}           selector
  */
-Selector.getMerge = function(selector2) {
+Selector.prototype.getMerge = function(selector2) {
   // TODO
   return this
 }
@@ -227,7 +236,7 @@ Selector.getMerge = function(selector2) {
  * @param  {string} selectorString
  * @return {object}                selector
  */
-Selector.filteredById = function(selectorString) {
+Selector.prototype.filteredById = function(selectorString) {
   var matchingElements = []
 
   for (var i = 0; i < this.length; i++) {
@@ -240,7 +249,7 @@ Selector.filteredById = function(selectorString) {
   return init(matchingElements, this.getRenderer())
 }
 
-Selector.xrefTypes = ['PublicationXref', 'RelationshipXref', 'UnificationXref', 'Xref', 'DnaReference'
+var xrefTypes = ['PublicationXref', 'RelationshipXref', 'UnificationXref', 'Xref', 'DnaReference'
   , 'DnaRegionReference', 'EntityReference', 'EntityReferenceTypeVocabulary', 'ProteinReference'
   , 'RnaReference', 'RnaRegionReference', 'SmallMoleculeReference']
 
@@ -250,7 +259,7 @@ Selector.xrefTypes = ['PublicationXref', 'RelationshipXref', 'UnificationXref', 
  * @param  {string|regexp} selectorString
  * @return {object}                selector
  */
-Selector.filteredByXRef = function(selectorString) {
+Selector.prototype.filteredByXRef = function(selectorString) {
   var matchingElements = []
     , selectById = selectorString.indexOf('id:') === 0 ? true : false
     , selectAttribute = null
@@ -261,7 +270,7 @@ Selector.filteredByXRef = function(selectorString) {
 
   for (var i = 0; i < this.length; i++) {
     // If element is xref
-    if (this[i].hasOwnProperty('type') && this.xrefTypes.indexOf(this[i].type) !== -1) {
+    if (this[i].hasOwnProperty('type') && xrefTypes.indexOf(this[i].type) !== -1) {
       selectAttribute = null
 
       // Search by attribute
@@ -296,7 +305,7 @@ Selector.filteredByXRef = function(selectorString) {
  * @param  {string|regexp} selectorString
  * @return {object}                selector
  */
-Selector.filteredByHavingXRef = function(selectorString) {
+Selector.prototype.filteredByHavingXRef = function(selectorString) {
   var matchingElements = []
     , xrefSelector = this.filteredByXRef(selectorString)
     , xrefsIds = {}
@@ -325,7 +334,7 @@ Selector.filteredByHavingXRef = function(selectorString) {
  * @param  {string|regexp} selectorString
  * @return {object}                selector
  */
-Selector.filteredByText = function(selectorString) {
+Selector.prototype.filteredByText = function(selectorString) {
   var matchingElements = []
 
   for (var i = 0; i < this.length; i++) {
@@ -351,7 +360,7 @@ Selector.filteredByText = function(selectorString) {
  * @param  {string} name attribute name
  * @return {string}      attribute value
  */
-Selector.getStyle = function(name) {
+Selector.prototype.getStyle = function(name) {
   // TODO
   return ''
 }
@@ -364,7 +373,7 @@ Selector.getStyle = function(name) {
  * @param {string|number} value attribute value
  * @return {object} selector
  */
-Selector.setStyle = function(name, value) {
+Selector.prototype.setStyle = function(name, value) {
   // TODO
   return this
 }
@@ -375,7 +384,7 @@ Selector.setStyle = function(name, value) {
  * @param {object} styles key-value pairs of name-value styles
  * @return {object} selector
  */
-Selector.setStyles = function(styles) {
+Selector.prototype.setStyles = function(styles) {
   for (var i = this.length - 1; i >= 0; i--) {
     this.renderer.updateElement(this[i], styles)
   }
@@ -383,7 +392,7 @@ Selector.setStyles = function(styles) {
   return this
 }
 
-Selector.removeMarkers = function() {
+Selector.prototype.removeMarkers = function() {
   for (var i = this.length - 1; i >= 0; i--) {
     this.renderer.removeElementMarkers(this[i])
   }
@@ -396,7 +405,7 @@ Selector.removeMarkers = function() {
  *
  * @return {object} selector
  */
-Selector.getFirst = function() {
+Selector.prototype.getFirst = function() {
   if (this.length > 0) {
     return init([this[0]], this.getRenderer())
   } else {
@@ -409,7 +418,7 @@ Selector.getFirst = function() {
  *
  * @return {object} selector
  */
-Selector.getLast = function() {
+Selector.prototype.getLast = function() {
   if (this.length > 0) {
     return init([this[this.length - 1]], this.getRenderer())
   } else {
@@ -417,7 +426,7 @@ Selector.getLast = function() {
   }
 }
 
-Selector.getNth = function(n) {
+Selector.prototype.getNth = function(n) {
   if (n < this.length) {
     return init([this[n]], this.getRenderer())
   } else {
@@ -425,7 +434,7 @@ Selector.getNth = function(n) {
   }
 }
 
-Selector.forEach = function(cb) {
+Selector.prototype.forEach = function(cb) {
   for (var i = 0; i < this.length; i++) {
     cb(this.getNth(i))
   }
@@ -435,7 +444,7 @@ Selector.forEach = function(cb) {
  * Returns the width of the box that contains all elements
  * @return {number}
  */
-Selector.getWidth = function() {
+Selector.prototype.getWidth = function() {
   // TODO
   return 0
 }
@@ -444,7 +453,7 @@ Selector.getWidth = function() {
  * Returns the height of the box that contains all elements
  * @return {number}
  */
-Selector.getHeight = function() {
+Selector.prototype.getHeight = function() {
   // TODO
   return 0
 }
@@ -453,7 +462,7 @@ Selector.getHeight = function() {
  * Returns a bounding box (height, width, left, right, top, bottom) of the box that contains all elements
  * @return {[type]} [description]
  */
-Selector.getBBox = function() {
+Selector.prototype.getBBox = function() {
   var BBox = {
         width: 0
       , height: 0
@@ -492,7 +501,7 @@ Selector.getBBox = function() {
  *
  * @return {string} id
  */
-Selector.getId = function() {
+Selector.prototype.getId = function() {
   if (this.length) {
     return this[0].id
   } else {
