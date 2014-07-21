@@ -193,6 +193,9 @@
     if (!highlighting) {
       // If is a highlighting
       if (element[0]['gpml:element'] === 'gpml:Interaction') {
+        // Do not add background to paths as it will create a shape from a broken line
+        delete styles.backgroundColor
+
         highlighting = element.cloneElement().setStyles(styles)
       } else {
         var BBox = element.getBBox()
