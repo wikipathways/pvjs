@@ -5,11 +5,13 @@ var _ = require('lodash')
   , Strcase = require('tower-strcase')
   ;
 
+  // crossPlatformShapes is added to root (window in browser), but it doesn't return anything
+  require('cross-platform-shapes');
+
 var RendererSvg = Object.create(RendererPrototype)
 
 RendererSvg.init = function(pvjs) {
   this.pvjs = pvjs
-  this.crossPlatformShapesInstance = Object.create(crossPlatformShapes)
   this.crossPlatformTextInstance = Object.create(crossPlatformText)
   this.diagramId = 'pvjs-diagram-' + pvjs.instanceId
 
@@ -25,7 +27,7 @@ RendererSvg.init = function(pvjs) {
     , containerWidth = containerBoundingClientRect.width
     , containerHeight = containerBoundingClientRect.height
 
-  this.crossPlatformShapesInstance.init({
+  this.crossPlatformShapesInstance = crossPlatformShapes.getInstance({
       targetSelector: '#' + pvjs.$element.attr('id') + ' .diagram-container'
     , id: this.diagramId
     , format: 'svg'
