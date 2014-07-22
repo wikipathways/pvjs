@@ -170,6 +170,7 @@
       light = this.groups[group][h]
 
       if (light.element.getId() === element.getId()) {
+        highlighting = light.highlighting
         inSameGroup = true
         break
       }
