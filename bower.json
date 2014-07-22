@@ -17,7 +17,7 @@
     "he": "~0.3.6",
     "svg-pan-zoom": "2.x",
     "cross-platform-text": "https://github.com/ariutta/cross-platform-text.git",
-    "cross-platform-shapes": "https://github.com/ariutta/cross-platform-shapes.git"
+    "cross-platform-shapes": "https://github.com/ariutta/cross-platform-shapes.git#1.0.1"
   },
   "main": [
     "Gruntfile.js"
