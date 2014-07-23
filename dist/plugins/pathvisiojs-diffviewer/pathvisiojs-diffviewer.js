@@ -1,9 +1,8 @@
 (function(window, $){
 
   var optionsDefault = {
-        sourceData: []
-      }
-    , instancesMap = {}
+    sourceData: []
+  }
 
   /**
    * Init plugin
@@ -73,13 +72,13 @@
     this.pvjs.on('rendered', function(){
       pvjsRendered = true
       if (pvjs2Rendered) {
-        that.onPvjsesRendered()
+        displayChanges(pvjs, pvjs2, $paneCenter)
       }
     })
     this.pvjs2.on('rendered', function(){
       pvjs2Rendered = true
       if (pvjsRendered) {
-        that.onPvjsesRendered()
+        displayChanges(pvjs, pvjs2, $paneCenter)
       }
     })
 
@@ -140,10 +139,38 @@
     })
   }
 
-  PathvisiojsDiffViewer.prototype.onPvjsesRendered = function() {
-    this.getZoomScale()
-    this.displayDiff()
-  }
+  function displayChanges(pvjs, pvjs2, $paneCenter){
+    var diff = calculateDiff(pvjs.getSourceData().pvjson, pvjs2.getSourceData().pvjson)
+      , elementsOld = pvjs.getSourceData().pvjson.elements
+      , elementsNew = pvjs2.getSourceData().pvjson.elements
+      , elementsMix = pvjs2.getSourceData().pvjson.elements
+
+    // Add old elements that does not exist in new
+    var elementFound = false;
+    for (e in elementsOld) {
+      elementFound = false
+      for (e2 in elementsMix) {
+        if (elementsMix[e2].id === elementsOld[e].id) {
+          elementsFound = true
+        }
+      }
+
+      if (!elementsFound) {
+        elemetsMix.push(elementsOld[e])
+      }
+    }
+
+    // Append changes container
+    $paneCenter.append(createChangesList())
+
+    // Add changes to container
+    var $containerAdded = $paneCenter.find('[data-type=added]').children('.changes-list').first()
+      , $containerUpdated = $paneCenter.find('[data-type=updated]').children('.changes-list').first()
+      , $containerRemoved = $paneCenter.find('[data-type=removed]').children('.changes-list').first()
+
+    parseAndRenderChanges(diff.added, $containerAdded, 'added', elementsNew)
+    parseAndRenderChanges(diff.removed, $containerRemoved, 'removed', elementsOld)
+    parseAndRenderChanges(diff.updated, $containerUpdated, 'updated', elementsMix)
 
   PathvisiojsDiffViewer.prototype.zoomScale = 1
 
@@ -182,9 +209,125 @@
    * @param  {Array} elements2
    * @return {Array}
    */
-  PathvisiojsDiffViewer.prototype.mergeElements = function(elements, elements2) {
-    var elementsMerge = elements.slice()
-      , elementFound = false
+  function createChangesList() {
+    var $changesList = $('<div class="changes changes-list"></div>')
+      , $changesContainer1 = $('<div class="changes-container" data-level="1" data-type="added">').appendTo($changesList)
+      , $changesContainer2 = $('<div class="changes-container" data-level="1" data-type="updated">').appendTo($changesList)
+      , $changesContainer3 = $('<div class="changes-container" data-level="1" data-type="removed">').appendTo($changesList)
+      ;
+
+    $changesContainer1.append($('<div class="changes-title changes-parent change-added"><span>Added</span></div>'))
+    $changesContainer1.append($('<div class="changes-list"></div>'))
+    $changesContainer2.append($('<div class="changes-title changes-parent change-updated"><span>Updated</span></div>'))
+    $changesContainer2.append($('<div class="changes-list"></div>'))
+    $changesContainer3.append($('<div class="changes-title changes-parent change-removed"><span>Removed</span></div>'))
+    $changesContainer3.append($('<div class="changes-list"></div>'))
+
+    return $changesList;
+  }
+
+  function highlightChanges($changes, type, hi, hi2, attenuate) {
+    if (typeof attenuate == 'undefined') {
+      attenuate = true
+    }
+    // Find change type
+    var colors = {}
+
+    if (type === 'added') {
+      colors.fill = colors.stroke = '#0E53A7'
+    } else if (type === 'updated') {
+      colors.fill = colors.stroke = '#FFF700'
+    } else if (type === 'removed') {
+      colors.fill = colors.stroke = '#F10026'
+    }
+
+    if (attenuate) {
+      // Remove old highlights
+      hi.attenuate(null)
+      hi2.attenuate(null)
+    }
+
+    $changes.each(function(index){
+      if (type === 'removed' || type === 'updated') {
+        hi.highlight('#' + this.pvjsonElement.id, null, colors)
+      }
+      if (type === 'updated' || type === 'added') {
+        hi2.highlight('#' + this.pvjsonElement.id, null, colors)
+      }
+    })
+  }
+
+  function parseAndRenderChanges(list, $containerParent, type, elementsList) {
+    if (list.length === 0) return;
+
+    // Sort by gpml:element and shape
+    listSorted = list.sort(function(a, b){
+      if (a['gpml:element'] === b['gpml:element']) {
+        return a.shape > b.shape ? 1 : -1
+      }
+      if (a['gpml:element'] === undefined) return -1
+      if (b['gpml:element'] === undefined) return 1
+      return a['gpml:element'] > b['gpml:element'] ? 1 : -1
+    })
+
+    // Group only visible elements
+    var addedGroups = {}
+      , groupName = ''
+      , elementType = ''
+    for (d in listSorted) {
+      elementType = listSorted[d]['gpml:element'].replace(/^gpml\:/, '') || '';
+
+      if (elementType === 'Interaction') {
+        groupName = 'Interactions'
+      } else if (elementType === 'DataNode') {
+        groupName = 'Data Nodes'
+      } else if (elementType !== 'GroupNode') {
+        groupName = 'Graphical Objects'
+      } else {
+        // Skip GroupNode
+        continue
+      }
+
+      if (addedGroups[groupName] === undefined) {
+        addedGroups[groupName] = []
+      }
+
+      addedGroups[groupName].push(listSorted[d])
+    }
+
+    var $container
+      , $containerTitle
+      , $containerList
+      , $elementContainer
+      , $elementTitle
+      , title
+    for (g in addedGroups) {
+      $container = $('<div class="changes-container" data-level="2"/>').appendTo($containerParent)
+      $containerTitle = $('<div class="changes-title changes-parent change-' + type + '"><span>' + g + '</span></div>').appendTo($container)
+      $containerList = $('<div class="changes-list" />').appendTo($container)
+
+      // Sort ingroup
+      addedGroups[g] = addedGroups[g].sort(function(a, b){
+        return getChangeTitle(a, elementsList).toLowerCase() > getChangeTitle(b, elementsList).toLowerCase() ? 1 : -1
+      })
+
+      for (e in addedGroups[g]) {
+        title = getChangeTitle(addedGroups[g][e], elementsList)
+
+        $elementContainer = $('<div class="changes-container" data-level="3"/>').appendTo($containerList)
+        $elementTitle = $('<div class="changes-title change-' + type + '"></div>').appendTo($elementContainer)
+        $title = $('<span>' + title + '</span>').appendTo($elementTitle)
+        if (type === 'updated') {
+          $changes = $('<ul class="element-changes"></ul>')
+
+          titles = getUpdateTitles(addedGroups[g][e].diff)
+          for (title in titles) {
+            $changes.append('<li>' + titles[title] + '</li>')
+          }
+
+          $changes.appendTo($elementTitle)
+        } else if (type === 'added') {
+          titles = getAddTitles(addedGroups[g][e])
 
     for (e in elements2) {
       elementFound = false
@@ -296,186 +439,9 @@
          || Object.prototype.toString.apply('') === Object.prototype.toString.apply(obj))
   }
 
-  /**
-   * Creates containers for titles and changes list
-   *
-   * @return {object} jQuery object
-   */
-  PathvisiojsDiffViewer.prototype.initDiffView = function(initAdded, initUpdated, initRemoved) {
-    // By default these
-    initAdded = initAdded === void 0 ? true : initAdded
-    initUpdated = initUpdated === void 0 ? true : initUpdated
-    initRemoved = initRemoved === void 0 ? true : initRemoved
-
-    var $changesList = $('<div class="changes changes-list"></div>')
-      , $changesContainer1
-      , $changesContainer2
-      , $changesContainer3
-
-    if (initAdded) {
-      $changesContainer1 = $('<div class="changes-container" data-level="1" data-type="added">').appendTo($changesList)
-      $changesContainer1.append($('<div class="changes-title changes-parent change-added"><span>Added</span></div>'))
-      this.$listAdded = $('<div class="changes-list"></div>').appendTo($changesContainer1)
-    }
-
-    if (initUpdated) {
-      $changesContainer2 = $('<div class="changes-container" data-level="1" data-type="updated">').appendTo($changesList)
-      $changesContainer2.append($('<div class="changes-title changes-parent change-updated"><span>Updated</span></div>'))
-      this.$listUpdated = $('<div class="changes-list"></div>').appendTo($changesContainer2)
-    }
-
-    if (initRemoved) {
-      $changesContainer3 = $('<div class="changes-container" data-level="1" data-type="removed">').appendTo($changesList)
-      $changesContainer3.append($('<div class="changes-title changes-parent change-removed"><span>Removed</span></div>'))
-      this.$listRemoved = $('<div class="changes-list"></div>').appendTo($changesContainer3)
-    }
-
-    this.$paneCenter.append($changesList)
-  }
-
-  PathvisiojsDiffViewer.prototype.renderDiffsOfType = function(type, elementsDiff, $listContainer, elements) {
-    if (elementsDiff.length === 0) {return}
-
-    // Sort by gpml:element and shape
-    elementsDiffSorted = elementsDiff.sort(sorterByElmentAndShape)
-
-    // Group elements
-    var groups = {}
-      , groupName = ''
-      , elementType = ''
-      , _type = ''
-
-    for (d in elementsDiffSorted) {
-      elementType = elementsDiffSorted[d]['gpml:element'] ? elementsDiffSorted[d]['gpml:element'].replace(/^gpml\:/, '') : '';
-      _type = elementsDiffSorted[d]['type'] ? elementsDiffSorted[d]['type'] : ''
-
-      if (elementType === 'Interaction') {
-        groupName = 'Interactions'
-      } else if (elementType === 'DataNode') {
-        groupName = 'Data Nodes'
-      } else if (elementType === '' && _type !== '') { // Assuming it is a reference
-        groupName = 'Reference'
-      } else if (elementType === 'Group') {
-        groupName = 'Groups'
-      } else {
-        // Assume that there are no other groups
-        groupName = 'Graphical Objects'
-      }
-
-      // If this is first element in group then init it
-      if (groups[groupName] === void 0) {
-        groups[groupName] = []
-      }
-
-      groups[groupName].push(elementsDiffSorted[d])
-    }
-
-    for (groupName in groups) {
-      this.renderDiffGroup(type, groupName, groups[groupName], $listContainer, elements)
-    }
-  }
-
-  PathvisiojsDiffViewer.prototype.renderDiffGroup = function(type, groupName, groupElements, $listContainer, elements) {
-    var $container = $('<div class="changes-container" data-level="2" data-type="' + type + '"/>').appendTo($listContainer)
-      , $containerTitle = $('<div class="changes-title changes-parent change-' + type + '"><span>' + groupName + '</span></div>')
-          .appendTo($container)
-          .data('group', groupName)
-      , $containerList = $('<div class="changes-list" />').appendTo($container)
-      , elementTitle = ''
-      , $elementContainer
-      , $elementTitle
-      , elementChanges = null
-      , $elementChanges
-
-    // Sort group elements
-    groupElements = groupElements.sort(function(a, b){
-      return getElementTitle(a, elements).toLowerCase() > getElementTitle(b, elements).toLowerCase() ? 1 : -1
-    })
-
-    // Render elements
-    for (e in groupElements) {
-      elementTitle = getElementTitle(groupElements[e], elements)
-
-      $elementContainer = $('<div class="changes-container" data-level="3" data-type="' + type + '"/>').appendTo($containerList)
-      $elementTitle = $('<div class="changes-title change-' + type + '"><span>' + elementTitle + '</span></div>').appendTo($elementContainer)
-
-      elementChanges = this.getElementChanges(type, groupElements[e])
-
-      // Render element changes (if any)
-      if (elementChanges && elementChanges.length) {
-        $elementChanges = $('<ul class="element-changes"></ul>')
-        for (change in elementChanges) {
-          $elementChanges.append('<li>' + elementChanges[change] + '</li>')
-        }
-
-        $elementChanges.appendTo($elementTitle)
-      }
-
-      // Store id and group
-      $elementTitle
-        .data('id', groupElements[e].id)
-        .data('group', groupName)
-
-      // TODO only for debug purpose
-      $elementTitle[0].pvjson = groupElements[e]
-
-      // Cache element
-      this.cacheElement(type, groupName, groupElements[e].id)
-    }
-  }
-
-  PathvisiojsDiffViewer.prototype.cacheElement = function(type, group, element_id) {
-    // Create group if it does not exist
-    if (this.elementsCache[type][group] === void 0) {
-      this.elementsCache[type][group] = []
-    }
-
-    // Add element to group
-    this.elementsCache[type][group].push(element_id)
-
-    // Reference
-    if (group === 'Reference') {
-      this.elementsReferences[element_id] = true
-    }
-  }
-
-  PathvisiojsDiffViewer.prototype.getAllElements = function(type, group) {
-    if (type === null || type === void 0) {
-      // Get all types
-      return [].concat(this.getAllElements('added'), this.getAllElements('updated'), this.getAllElements('removed'))
-    } else {
-      if (group === null || group === void 0) {
-        // Get all groups
-        var elements = []
-
-        for (var groupName in this.elementsCache[type]) {
-          elements = elements.concat(this.getAllElements(type, groupName))
-        }
-
-        return elements
-      } else {
-        // Get that group
-        return this.elementsCache[type][group].slice()
-      }
-    }
-  }
-
-  PathvisiojsDiffViewer.prototype.isIdReference = function(id) {
-    return this.elementsReferences[id] === true
-  }
-
-  function sorterByElmentAndShape(a, b) {
-    if (a['gpml:element'] === b['gpml:element']) {
-      return a.shape > b.shape ? 1 : -1
-    }
-    if (a['gpml:element'] === undefined) return -1
-    if (b['gpml:element'] === undefined) return 1
-    return a['gpml:element'] > b['gpml:element'] ? 1 : -1
-  }
-
-  function getElementTitle(obj, elements) {
+  function getChangeTitle(obj, list) {
     if (obj['gpml:element'] === 'gpml:Interaction') {
-      return '' + lookupTitleById(obj.points[0].isAttachedTo, elements) + ' <i class="icon icon-arrow-right"></i> ' + lookupTitleById(obj.points[1].isAttachedTo, elements)
+      return '' + findTitleById(obj.points[0].isAttachedTo, list) + ' <i class="icon icon-arrow-right"></i> ' + findTitleById(obj.points[1].isAttachedTo, list)
     } else if (obj['gpml:element'] === 'gpml:DataNode') {
       return obj.textContent
     } else if (obj['gpml:element'] === 'gpml:Label') {
@@ -485,29 +451,26 @@
     } else if (obj['gpml:element'] === 'gpml:GraphicalLine') {
       return 'Graphical line'
     } else if (obj['gpml:element'] === 'gpml:State') {
-      return 'State ' + obj.textContent + ' (' + lookupTitleById(obj.isAttachedTo, elements) + ')'
+      return 'State ' + obj.textContent + ' (' + findTitleById(obj.isAttachedTo, list) + ')'
     } else if (obj['gpml:element'] === 'gpml:Group') {
       return 'Group'
-    } else if (obj['type'] !== void 0) { // Assume it is a reference
-      return obj['textContent'] || obj['title'] || obj['displayName'] || 'no title'
     }
 
     return 'no title'
   }
 
-  function lookupTitleById(id, elements) {
-    // If element has no id then stop lookup
-    if (id === void 0) {
+  function findTitleById(id, list) {
+    if (typeof id == 'undefined') {
       return 'Unknown'
     }
 
-    for (var l in elements) {
-      if (elements[l].id != null && id === elements[l].id) {
-        // Check if it is an interaction to avoid circular recursion
-        if (elements[l]['gpml:element'] === 'gpml:Interaction') {
+    for (l in list) {
+      if (list[l].id != null && id === list[l].id) {
+        // Check if is not interaction to avoid circular recursion
+        if (list[l]['gpml:element'] === 'gpml:Interaction') {
           return 'Interaction'
         } else {
-          return getElementTitle(elements[l], elements)
+          return getChangeTitle(list[l], list)
         }
       }
     }

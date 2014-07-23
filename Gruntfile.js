@@ -91,20 +91,18 @@ var gruntConfig = {
   concurrent: {
     localProtocol: [], // dynamically filled
     dev: {
-      tasks: ['nodemon', 'watch:browserify', 'exec:selenium'],
+      tasks: ['exec:selenium', 'nodemon', 'watch:browserify']/*,
       options: {
         limit: 3//,
         //logConcurrentOutput: true
       }
+      //*/
+    },
+    test: {
+      tasks: ['browserify:dev', 'jshint:beforeconcat', 'simplemocha:dev']
     }
   },
   copy: {
-    crossplatformshapes: {
-      expand: true,
-      cwd: libDir + 'cross-platform-shapes/dist/lib/',
-      src: ['./**/*'],
-      dest: distLibDir
-    },
     crossplatformtext: {
       expand: true,
       cwd: libDir + 'cross-platform-text/dist/lib/',
@@ -201,10 +199,10 @@ var gruntConfig = {
       exclude: [".git*","*.scss","node_modules",".svn*"],
       recursive: true
     },
-    test: {
+    pvjsTestServer: { // just testing pvjs on a remote server
       options: {
         src: "./gh-pages/",
-        dest: "/var/www/d3/r/pathvisiojs",
+        dest: "/var/www/pvjs",
         host: process.env.POINTER_UCSF_EDU_USERNAME + "@pointer.ucsf.edu",
         syncDestIgnoreExcl: true
       }
@@ -254,8 +252,7 @@ var gruntConfig = {
       dest: distLibDir + 'pathvisiojs/js/pathvisiojs.min.js'
     },
     pathvisiojsBundle: {
-      src: [libDir + 'cross-platform-shapes/dist/lib/cross-platform-shapes/js/cross-platform-shapes.min.js',
-        libDir + 'cross-platform-text/dist/lib/cross-platform-text/js/cross-platform-text.min.js',
+      src: [libDir + 'cross-platform-text/dist/lib/cross-platform-text/js/cross-platform-text.min.js',
         distLibDir + 'pathvisiojs/js/pathvisiojs.js',
         distDir + 'plugins/pathvisiojs-notifications/pathvisiojs-notifications.js',
         distDir + 'plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js'],
@@ -273,7 +270,7 @@ var gruntConfig = {
   watch: {
     browserify: {
       files: ['./src/**/*.js'],
-      tasks: ['browserify:dev', 'jshint:beforeconcat', 'simplemocha:dev'],
+      tasks: ['concurrent:test'],
       options: {
         livereload: true
       }
@@ -307,6 +304,8 @@ _(desireds).each(function(desired, key) {
 
 module.exports = function(grunt) {
 
+  console.log('Test server available at localhost:3000/test/');
+
   // Project configuration.
   grunt.initConfig(gruntConfig);
 
@@ -320,16 +319,16 @@ module.exports = function(grunt) {
   grunt.registerTask('test:localProtocol:parallel', ['concurrent:localProtocol']);
 
   // Build
-  grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:crossplatformshapes', 'copy:crossplatformtext']);
+  grunt.registerTask('build', ['sync', 'clean:build', 'jshint:beforeconcat', 'browserify:build', 'concat', 'uglify', 'copy:crossplatformtext']);
 
   // Build, create and publish to test server. Run extensive tests.
-  grunt.registerTask('build-test', ['build', 'copy:pages', 'copy:pagesLibs', 'copy:pagesTest', 'replace:pages', 'replace:pagesTest', 'rsync:test', 'clean:pages']);
+  grunt.registerTask('remote-test', ['build', 'copy:pages', 'copy:pagesLibs', 'copy:pagesTest', 'replace:pages', 'replace:pagesTest', 'rsync:pvjsTestServer', 'clean:pages']);
 
   // Build, create and publish gh-pages
   grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages']);
 
   // Live development
-  grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'concurrent:dev']);
+  grunt.registerTask('dev', 'Live Browserify', ['concurrent:dev']);
 
   // Lightweight live development
   grunt.registerTask('dev-light', 'Live Browserify', ['browserify:dev', 'watch:browserifyLight']);

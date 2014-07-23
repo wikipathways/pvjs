@@ -354,12 +354,6 @@
     </Graphics>
     <Xref Database="" ID="" />
   </Interaction>
-  <Label TextLabel="This pathway can be deleted once release 36 is shipped.&#xA;The test protocol pathways with be stored at:" GraphId="e1214">
-    <Graphics CenterX="534.3016983016983" CenterY="39.5" Width="318.0" Height="33.0" ZOrder="33013" FillColor="ffffff" FontSize="10" Valign="Middle" />
-  </Label>
-  <Label TextLabel="https://github.com/wikipathways/pathvisiojs/tree/master/test/data/test-protocol" GraphId="bfcea" Href="https://github.com/wikipathways/pathvisiojs/tree/master/test/e2e">
-    <Graphics CenterX="542.6508491508491" CenterY="69.97202797202797" Width="373.30169830169825" Height="32.012987012987026" ZOrder="33014" FillColor="ffffff" FontSize="10" Align="Left" Color="0000ff" />
-  </Label>
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
 </Pathway>
