@@ -33,21 +33,11 @@ module.exports = function(){
         Annotation.render(pvjs, bridgedbData);
       });
     } else {
-      console.log('need to display an xref');
-      console.log(xrefs);
-      console.log('pvjs');
-      console.log(pvjs);
-      self.mypvjs = pvjs;
-
       var xrefWithContext = {'@context':pvjs.sourceData.pvjson['@context'], '@graph':{entityReference:xrefs.id}}
       jsonld.expand(xrefWithContext, function(err, expandedXref) {
         console.log('err');
         console.log(err);
-        console.log('expandedXref');
-        console.log(expandedXref);
         var xrefIri = expandedXref[0]['http://www.biopax.org/release/biopax-level3.owl#entityReference'][0]['@id'];
-        console.log('xrefIri');
-        console.log(xrefIri);
 
         var directLinkData;
         if (xrefIri.indexOf('wikipathways') > -1 && xrefIri.search(/WP\d{1,5}(\_r\d+)?$/) > -1) {
