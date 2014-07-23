@@ -509,6 +509,10 @@ Selector.prototype.getId = function() {
   }
 }
 
+Selector.prototype.isEmpty = function() {
+  return this.length === 0
+}
+
 module.exports = {
   init: function(context, renderer) {
     return init(context, renderer)
