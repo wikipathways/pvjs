@@ -636,18 +636,45 @@
       , $next = null
       , $nextTitle = null
 
-    if (direction === 'up') {
-      // Previous sibling
-      $next = $focused.prev()
-    } else if (direction === 'down') {
-      // Next sibling
-      $next = $focused.next()
-    } else if (direction === 'left') {
-      // Get parent
-      $next = $focused.parent().closest('.changes-container')
-    } else if (direction === 'right') {
-      // Get first child
-      $next = $focused.children('.changes-list').children('.changes-container').first()
+    if (GLOBAL_alternative_navigation !== void 0 && GLOBAL_alternative_navigation) {
+      if (direction === 'up' || direction === 'left') {
+        // Previous sibling
+        $next = $focused.prev()
+
+        // If no previous sibling than next is parent
+        if ($next.length == 0) {
+          $next = $focused.parent().closest('.changes-container')
+        }
+      } else if (direction === 'down' || direction === 'right') {
+        // First child
+        $next = $focused.children('.changes-list').children('.changes-container').first()
+
+        // Next parent sibling if no childs
+        if ($next.length == 0) {
+          $next = $focused.next()
+
+          if ($next.length == 0) {
+            $next = $focused.parent().closest('.changes-container').next()
+            if ($next.length == 0) {
+              $next = $focused.parent().closest('.changes-container').parent().closest('.changes-container').next()
+            }
+          }
+        }
+      }
+    } else {
+      if (direction === 'up') {
+        // Previous sibling
+        $next = $focused.prev()
+      } else if (direction === 'down') {
+        // Next sibling
+        $next = $focused.next()
+      } else if (direction === 'left') {
+        // Get parent
+        $next = $focused.parent().closest('.changes-container')
+      } else if (direction === 'right') {
+        // Get first child
+        $next = $focused.children('.changes-list').children('.changes-container').first()
+      }
     }
 
     if ($next && $next.length && $next.get(0) !== $focused.get(0)) {
