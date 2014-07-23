@@ -193,7 +193,7 @@
     // Render highlighting
     if (!highlighting) {
       // If is a highlighting
-      if (element[0]['gpml:element'] === 'gpml:Interaction') {
+      if (element[0]['gpml:element'] === 'gpml:Interaction' || element[0]['gpml:element'] === 'gpml:GraphicalLine') {
         // Do not add background to paths as it will create a shape from a broken line
         delete styles.backgroundColor
 
