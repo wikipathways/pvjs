@@ -557,10 +557,16 @@
   PathvisiojsDiffViewer.prototype.hookDiffNavigation = function() {
     var $paneCenter = this.$paneCenter
       , that = this
+      , isFocused = false
 
     this.initHighlighting()
 
     $paneCenter.on('click', '.changes-title', function(ev){
+      ev.preventDefault()
+      ev.stopPropagation()
+
+      isFocused = true
+
       // Visually opening/closing titles
       var $this = $(this)
         , $active = $this
@@ -568,31 +574,103 @@
       if (!$this.parent().hasClass('active')) {
         $paneCenter.find('.active').removeClass('active')
         $paneCenter.find('.open').removeClass('open')
-        $this.parent().addClass('active')
+        $paneCenter.find('.focus').removeClass('focus')
+        $this.parent().addClass('active focus')
         $this.parentsUntil($paneCenter).addClass('open')
       } else {
         $this.parent().removeClass('active open')
-        $this.parent().parent().closest('.changes-container').addClass('active')
+        $this.parent().parent().closest('.changes-container').addClass('active focus')
 
         $active = $this.parent().parent().closest('.changes-container').children('.changes-title')
       }
 
       // Attenuate all previous elements
       that.attenuate()
-
-      if ($active.length) {
-        var level = +$active.parent().data('level')
-          , type = $active.parent().data('type')
-
-        if (level === 1) {
-          that.highlight(type, null, null)
-        } else if (level === 2) {
-          that.highlight(type, $active.data('group'), null)
-        } else if (level === 3) {
-          that.highlight(type, $active.data('group'), $active.data('id'))
-        }
-      }
+      // Highlight selected
+      that.highlightTitle($active)
     })
+
+    var keysMap = {
+      37: 'left'
+    , 38: 'up'
+    , 39: 'right'
+    , 40: 'down'
+    }
+
+    $(document)
+      .click(function(ev){
+        isFocused = false
+        $paneCenter.find('.focus').removeClass('focus')
+      })
+      .keydown(function(ev){
+        if (!isFocused) return;
+        if (ev.keyCode < 37 || ev.keyCode > 40) return;
+
+        ev.preventDefault()
+        ev.stopPropagation()
+
+        that.navigate(keysMap[ev.keyCode])
+
+        return false
+      })
+  }
+
+  PathvisiojsDiffViewer.prototype.highlightTitle = function($active) {
+    if ($active.length) {
+      var level = +$active.parent().data('level')
+        , type = $active.parent().data('type')
+
+      if (level === 1) {
+        this.highlight(type, null, null)
+      } else if (level === 2) {
+        this.highlight(type, $active.data('group'), null)
+      } else if (level === 3) {
+        this.highlight(type, $active.data('group'), $active.data('id'))
+      }
+    }
+  }
+
+  PathvisiojsDiffViewer.prototype.navigate = function(direction) {
+    var $paneCenter = this.$paneCenter
+      , $focused = $paneCenter.find('.focus').first()
+      , $next = null
+      , $nextTitle = null
+
+    if (direction === 'up') {
+      // Previous sibling
+      $next = $focused.prev()
+    } else if (direction === 'down') {
+      // Next sibling
+      $next = $focused.next()
+    } else if (direction === 'left') {
+      // Get parent
+      $next = $focused.parent().closest('.changes-container')
+    } else if (direction === 'right') {
+      // Get first child
+      $next = $focused.children('.changes-list').children('.changes-container').first()
+    }
+
+    if ($next && $next.length && $next.get(0) !== $focused.get(0)) {
+      $paneCenter.find('.active').removeClass('active')
+      $paneCenter.find('.open').removeClass('open')
+      $paneCenter.find('.focus').removeClass('focus')
+      $next.addClass('active focus open')
+      $next.parentsUntil($paneCenter).addClass('open')
+
+      $nextTitle = $next.children('.changes-title')
+
+      // Scroll diffviewer to contain focused title
+      if ($nextTitle.offset().top < 0) {
+        $paneCenter.scrollTop($paneCenter.scrollTop() + $nextTitle.offset().top)
+      } else if ($nextTitle.offset().top + $nextTitle.outerHeight() > $paneCenter.height()) {
+        $paneCenter.scrollTop($paneCenter.scrollTop() + ($nextTitle.offset().top + $nextTitle.outerHeight() - $paneCenter.height()))
+      }
+
+      // Attenuate all previous elements
+      this.attenuate()
+      // Highlight selected
+      this.highlightTitle($next.children('.changes-title'))
+    }
   }
 
   PathvisiojsDiffViewer.prototype.initHighlighting = function() {
