@@ -26,7 +26,7 @@ module.exports = function(){
       bridgedbArgs.bridgedbUri = xrefs.id;
       var xRefData = Bridgedb.getXrefsNestedForDisplay(bridgedbArgs, function(err, bridgedbData) {
         //*
-        var searchAtWikiPathwaysListItem = {key:'WikiPathways', values:[ { text: 'Search for ' + metadata.label + ' pathways', uri: pathwaySearchUriStub + metadata.label }]};
+        var searchAtWikiPathwaysListItem = {key:'WikiPathways', values:[ { text: 'Search for ' + metadata.label, uri: pathwaySearchUriStub + metadata.label }]};
         bridgedbData.listItems.unshift(searchAtWikiPathwaysListItem);
         //*/
 
