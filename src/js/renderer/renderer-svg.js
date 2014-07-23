@@ -162,9 +162,13 @@ function renderShape(renderer, pvjsonElement) {
         })[0];
 
         // From this Biopax EntityReference, get the xrefs (UnificationXrefs and/or RelationshipXrefs) from BridgeDB (in the future, we could additionally get them from mygene.info)
-        entityReferenceRendererArguments.xrefs.id = dereferencedEntityReference.xrefs.filter(function(xref) {
-          return xref.indexOf('bridgedb.org' > -1);
-        })[0];
+        if (dereferencedEntityReference.xrefs && dereferencedEntityReference.xrefs.length) {
+          entityReferenceRendererArguments.xrefs.id = dereferencedEntityReference.xrefs.filter(function(xref) {
+            return xref.indexOf('bridgedb.org' > -1);
+          })[0];
+        } else {
+          entityReferenceRendererArguments.xrefs.id = pvjsonElement.entityReference;
+        }
       } else {
         // if BridgeDB doesn't handle pathway entities of this type, we will just provide a linkout using the entityReference IRI, but without multiple UnificationXrefs or RelationshipXrefs
         entityReferenceRendererArguments.xrefs.id = pvjsonElement.entityReference;
