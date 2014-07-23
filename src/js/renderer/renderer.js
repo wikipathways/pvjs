@@ -5,6 +5,7 @@ var _ = require('lodash')
   , InfoBox = require('./info-box.js')
   , PublicationXref = require('./publication-xref.js')
   , EntityReference = require('./annotation/entity-reference.js')
+  // using deglobalify
   , SvgPanZoom = require('./../../../lib/svg-pan-zoom/src/svg-pan-zoom.js', ['svgPanZoom'])
   ;
 
