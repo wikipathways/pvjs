@@ -328,7 +328,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build-pages', ['build', 'copy:pages', 'copy:pagesLibs', 'replace:pages', 'buildcontrol:pages', 'clean:pages']);
 
   // Live development
-  grunt.registerTask('dev', 'Live Browserify', ['concurrent:dev']);
+  grunt.registerTask('dev', 'Live Browserify', ['browserify:dev', 'concurrent:dev']);
 
   // Lightweight live development
   grunt.registerTask('dev-light', 'Live Browserify', ['browserify:dev', 'watch:browserifyLight']);
