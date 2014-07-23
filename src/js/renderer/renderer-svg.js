@@ -110,8 +110,6 @@ function renderShape(renderer, pvjsonElement) {
     }
   }
 
-  self.mypvjson = pvjson;
-
   var node = renderer.crossPlatformShapesInstance[shapeName](pvjsonElement)
     , $node = d3.select(node)
 
