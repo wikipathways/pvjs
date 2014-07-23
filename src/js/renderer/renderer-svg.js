@@ -1,9 +1,12 @@
 var _ = require('lodash')
   , Fs = require('fs')
   , RendererPrototype = require('./renderer-prototype')
-  , EntityReference = require('./annotation/x-ref.js')
-  , Strcase = require('./../../../lib/strcase/index.js')
+  , EntityReference = require('./annotation/entity-reference.js')
+  , Strcase = require('tower-strcase')
   ;
+
+  // crossPlatformShapes is added to root (window in browser), but it doesn't return anything
+  require('cross-platform-shapes');
 
 var RendererSvg = Object.create(RendererPrototype)
 
@@ -110,6 +113,7 @@ function render(renderer, pvjsonElement) {
 }
 
 function renderShape(renderer, pvjsonElement) {
+  var pvjson = renderer.pvjs.sourceData.pvjson;
   var shapeName = Strcase.camelCase(pvjsonElement.shape)
 
   // TODO move this checking into plugin
@@ -134,10 +138,40 @@ function renderShape(renderer, pvjsonElement) {
   var node = renderer.crossPlatformShapesInstance[shapeName](pvjsonElement)
     , $node = d3.select(node)
 
+  var entityReference = pvjsonElement.entityReference;
   // TODO delegate this to selector
-  if (!!pvjsonElement.datasourceReference) {
-    var notDragged = true
-      , dr = pvjsonElement.datasourceReference
+  if (!!entityReference) {
+    // right now, pathways generally don't have a shape, so they are being handled by attaching events to their text.
+    var entityReferenceRendererArguments = {};
+    entityReferenceRendererArguments.metadata = {
+      label:pvjsonElement.textContent,
+      description:pvjsonElement.type
+    };
+    entityReferenceRendererArguments.xrefs = {};
+    var typesBridgedbHandles = ['Protein', 'Dna', 'Rna', 'SmallMolecule'];
+    var type = pvjsonElement.type;
+    if (!!type) {
+      if (!_.isArray(type)) {
+        type = [type];
+      }
+
+      if (_.intersection(type, typesBridgedbHandles).length > 0) {
+        // get Biopax EntityReference that this pathway entity refers to
+        var dereferencedEntityReference = pvjson.elements.filter(function(element) {
+          return element.id === entityReference;
+        })[0];
+
+        // From this Biopax EntityReference, get the xrefs (UnificationXrefs and/or RelationshipXrefs) from BridgeDB (in the future, we could additionally get them from mygene.info)
+        entityReferenceRendererArguments.xrefs.id = dereferencedEntityReference.xrefs.filter(function(xref) {
+          return xref.indexOf('bridgedb.org' > -1);
+        })[0];
+      } else {
+        // if BridgeDB doesn't handle pathway entities of this type, we will just provide a linkout using the entityReference IRI, but without multiple UnificationXrefs or RelationshipXrefs
+        entityReferenceRendererArguments.xrefs.id = pvjsonElement.entityReference;
+      }
+    }
+
+    var notDragged = true;
 
     // Add class to change mouse hover
     $node.classed({'has-xref': true});
@@ -150,17 +184,49 @@ function renderShape(renderer, pvjsonElement) {
     })
     .on("mouseup", function(d,i) {
       if (notDragged) {
-        EntityReference.render(renderer.pvjs, dr.organism, dr.id, dr.database, pvjsonElement.textContent, pvjsonElement.dataNodeType);
+        EntityReference.render(renderer.pvjs, entityReferenceRendererArguments);
       }
     });
   }
 
   return node
 }
+
 function renderText(renderer, pvjsonElement) {
   var node = renderer.crossPlatformTextInstance.render(pvjsonElement)
+    , $node = d3.select(node);
 
-  d3.select(node).attr('pointer-events', 'none')
+  // TODO delegate this to selector
+  // should a pathway xref be an entity reference or an id?
+  if (!!pvjsonElement.type && pvjsonElement.type === 'Pathway' && !!pvjsonElement.entityReference) {
+    var entityReferenceRendererArguments = {};
+    entityReferenceRendererArguments.metadata = {
+      label:pvjsonElement.textContent,
+      description:pvjsonElement.type
+    };
+    entityReferenceRendererArguments.xrefs = {};
+    entityReferenceRendererArguments.xrefs.id = pvjsonElement.entityReference;
+
+    var notDragged = true;
+
+    // Add class to change mouse hover
+    $node.classed({'has-xref': true});
+
+    $node.on("mousedown", function(d,i) {
+      notDragged = true;
+    })
+    .on("mousemove", function(d,i) {
+      notDragged = false;
+    })
+    .on("mouseup", function(d,i) {
+      if (notDragged) {
+        EntityReference.render(renderer.pvjs, entityReferenceRendererArguments);
+      }
+    });
+  } else {
+    d3.select(node).attr('pointer-events', 'none')
+  }
+
 
   return node
 }

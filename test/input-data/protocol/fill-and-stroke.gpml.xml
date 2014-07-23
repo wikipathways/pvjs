@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Rendering Test Protocol for fill and stroke colors" Version="20130815" Organism="Anopheles gambiae">
-  <Graphics BoardWidth="1343.3016983016983" BoardHeight="656.165048543689" />
+  <Graphics BoardWidth="947.3016983016983" BoardHeight="656.165048543689" />
   <DataNode TextLabel="GeneProduct" GraphId="e3c6e" Type="GeneProduct">
     <Graphics CenterX="56.06044356136091" CenterY="109.29853181076673" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="" ID="" />
@@ -236,12 +236,6 @@
   <Label TextLabel="Groups" GraphId="d1b24">
     <Graphics CenterX="806.473289475942" CenterY="55.1648847374752" Width="89.51218410788172" Height="20.0" ZOrder="32933" FillColor="ffffff" FontSize="10" Valign="Middle" />
   </Label>
-  <Label TextLabel="This pathway can be deleted once release 36 is shipped.&#xA;The test protocol pathways with be stored at:" GraphId="f6c16">
-    <Graphics CenterX="396.30169830169825" CenterY="14.5" Width="318.0" Height="33.0" ZOrder="33017" FillColor="ffffff" FontSize="10" Valign="Middle" />
-  </Label>
-  <Label TextLabel="https://github.com/wikipathways/pathvisiojs/tree/master/test/data/test-protocol" GraphId="e4417" Href="https://github.com/wikipathways/pathvisiojs/tree/master/test/e2e">
-    <Graphics CenterX="730.6508491508491" CenterY="20.972027972027973" Width="373.30169830169825" Height="32.012987012987026" ZOrder="33018" FillColor="ffffff" FontSize="10" Align="Left" Color="0000ff" />
-  </Label>
   <Shape TextLabel="Rectangle" GraphId="b1514">
     <Graphics CenterX="56.06044356136093" CenterY="304.7487735070671" Width="88.59135399673727" Height="49.43964110929852" ZOrder="16384" FontSize="10" Valign="Middle" ShapeType="Rectangle" Rotation="0.0" />
   </Shape>
@@ -322,3 +316,4 @@
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax />
 </Pathway>
+

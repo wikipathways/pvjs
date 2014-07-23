@@ -30,53 +30,65 @@ http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml#General_Gu
     var locationHref = location.href;
     var testProtocolPathwaysDirectoryPath = locationHref + 'input-data/protocol/';
     var testPathways = [{
-      title:'GPML Anchors',
+      title:'Anchors',
       gpml: testProtocolPathwaysDirectoryPath + 'anchors.gpml.xml'
-    }, {
-      title:'Publication Xrefs (aka Citations, Literature References)',
-      gpml: testProtocolPathwaysDirectoryPath + 'citations.gpml.xml'
     }, {
       title:'Curves',
       gpml: testProtocolPathwaysDirectoryPath + 'curves.gpml.xml'
     }, {
-      title:'GPML DataNodes',
-      gpml: testProtocolPathwaysDirectoryPath + 'gpml-data-nodes.gpml.xml'
+      title:'DataNodes',
+      gpml: testProtocolPathwaysDirectoryPath + 'data-nodes.gpml.xml'
     }, {
       title:'Elbows',
       gpml: testProtocolPathwaysDirectoryPath + 'elbows.gpml.xml'
     }, {
-      title:'Fill and Stroke Colors',
-      gpml: testProtocolPathwaysDirectoryPath + 'fill-and-stroke.gpml.xml'
-    }, {
-      title:'GPML Graphical Lines',
+      title:'Graphical Lines',
       gpml: testProtocolPathwaysDirectoryPath + 'graphical-lines.gpml.xml'
     }, {
-      title:'GPML Groups',
+      title:'Groups',
       gpml: testProtocolPathwaysDirectoryPath + 'groups.gpml.xml'
     }, {
-      title:'GPML Interactions',
+      title:'Interactions',
       gpml: testProtocolPathwaysDirectoryPath + 'interactions.gpml.xml'
     }, {
-      title:'GPML Shapes',
+      title:'Labels',
+      gpml: testProtocolPathwaysDirectoryPath + 'labels.gpml.xml'
+    }, {
+      title:'Shapes',
       gpml: testProtocolPathwaysDirectoryPath + 'shapes.gpml.xml'
     }, {
-      title:'Node Sizes and Proportions',
+      title:'Publication Xrefs (Citations)',
+      gpml: testProtocolPathwaysDirectoryPath + 'publication-xrefs.gpml.xml'
+    }, {
+      title:'Exclusion Test: Empty (e.g., new pathway)',
+      gpml: testProtocolPathwaysDirectoryPath + 'empty.gpml'
+    }, {
+      title:'Exclusion Test: Just One Edge',
+      gpml: testProtocolPathwaysDirectoryPath + 'one-edge.gpml'
+    }, {
+      title:'Exclusion Test: Just One Node',
+      gpml: testProtocolPathwaysDirectoryPath + 'one-node.gpml'
+    }, {
+      title:'Formatting: Text Alignment and Font',
+      gpml: testProtocolPathwaysDirectoryPath + 'text-and-font.gpml.xml'
+    }, {
+      title:'Formatting: Fill and Stroke Colors',
+      gpml: testProtocolPathwaysDirectoryPath + 'fill-and-stroke.gpml.xml'
+    }, {
+      title:'Formatting: Sizes and Proportions for Nodes',
       gpml: testProtocolPathwaysDirectoryPath + 'size-and-proportion.gpml.xml'
     }, {
-      title:'GPML Labels',
-      gpml: testProtocolPathwaysDirectoryPath + 'gpml-labels.gpml.xml'
-    }, {
-      title:'Text',
-      gpml: testProtocolPathwaysDirectoryPath + 'text.gpml.xml'
-    }, {
-      title:'Z-Index',
+      title:'Formatting: Z-Index',
       gpml: testProtocolPathwaysDirectoryPath + 'z-index.gpml.xml'
     }, {
       title:'WikiPathways Sandbox',
       gpml: 'WP4'
     }, {
-      title:'Local Playground (only works on local dev machine)',
-      gpml: locationHref + 'data/playground.gpml'
+      title:'Development Test Pathway',
+      gpml: locationHref + 'input-data/dev/dev.gpml'
+    }, {
+      title:'Local Playground Pathway (Feel free to edit)',
+      gpml: locationHref + 'input-data/dev/playground.gpml'
     }];
 
     testPathways.forEach(function(testPathway) {

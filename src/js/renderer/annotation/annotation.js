@@ -1,7 +1,7 @@
+// Note: the view (HTML) for this annotation panel is in pathvisiojs.html
+
 module.exports = function(){
   'use strict';
-
-  var pathwaySearchUriStub = '/index.php?title=Special:SearchPathways&doSearch=1&query=';
 
   function render(pvjs, annotationData) {
     var annotation = pvjs.$element.select(".annotation")
@@ -17,7 +17,6 @@ module.exports = function(){
       annotation.style("right", dright+"px");
       annotation.style("top", dtop+"px");
     });
-
 
     var annotationHeaderText = annotation.select('.annotation-header-text')
     /*
@@ -37,12 +36,12 @@ module.exports = function(){
       } while (annotationHeaderTextWidth > 190 || annotationHeaderTextSize < 7); // font-size of 6 is really small.
     }
 
-    var detailsSearchUri = annotation.select('.annotation-header-search').select('a')
-    .attr('href', function(d) {
-      // TODO make this generic
-      return pathwaySearchUriStub + d.header;
-     })
-     .attr('title', function(d) {return 'Search for pathways containing ' + d.header; });
+    /*
+    var detailsSearchUri = annotation.select('.annotation-header-search').select('p')
+     .attr('title', function(d) {return 'Search for pathways containing ' + d.header; })
+     .on('click', function(d) { window.open(pathwaySearchUriStub + d.header, '_blank'); });
+     //*/
+    
 
     var annotationIconMove = annotation.select('i.icon-move')
     .on("mousedown", function(d, i){
@@ -141,15 +140,15 @@ module.exports = function(){
         }
       });
     })
-    .attr('href', function(d) {return d.uri;})
     .attr('class', 'annotation-item-text')
-    .text(function(d) {return ' ' + d.text; });
+    .text(function(d) {return ' ' + d.text; })
+    .on('click', function(d) { window.open(d.uri, '_blank'); });
     // Enter
     annotationItemLinkedTextElements.enter()
     .append('a')
-    .attr('href', function(d) {return d.uri;})
     .attr('class', 'annotation-item-text')
-    .text(function(d) {return ' ' + d.text; });
+    .text(function(d) {return ' ' + d.text; })
+    .on('click', function(d) { window.open(d.uri, '_blank'); });
     // Exit
     annotationItemLinkedTextElements.exit().remove();
 
@@ -157,7 +156,6 @@ module.exports = function(){
   }
 
   return {
-    render:render,
-    pathwaySearchUriStub:pathwaySearchUriStub
+    render:render
   };
 }();
