@@ -139,46 +139,15 @@ function renderShape(renderer, pvjsonElement) {
     , $node = d3.select(node)
 
   var entityReference = pvjsonElement.entityReference;
-  // TODO delegate this to selector
-  if (!!entityReference) {
+
+  // TODO delegate events to selector
+  if (!!entityReference && pvjsonElement.type !== void 0) {
     // right now, pathways generally don't have a shape, so they are being handled by attaching events to their text.
-    var entityReferenceRendererArguments = {};
-    entityReferenceRendererArguments.metadata = {
-      label:pvjsonElement.textContent,
-      description:pvjsonElement.type
-    };
-    entityReferenceRendererArguments.xrefs = {};
-    var typesBridgedbHandles = ['Protein', 'Dna', 'Rna', 'SmallMolecule'];
-    var type = pvjsonElement.type;
-    if (!!type) {
-      if (!_.isArray(type)) {
-        type = [type];
-      }
-
-      if (_.intersection(type, typesBridgedbHandles).length > 0) {
-        // get Biopax EntityReference that this pathway entity refers to
-        var dereferencedEntityReference = pvjson.elements.filter(function(element) {
-          return element.id === entityReference;
-        })[0];
-
-        // From this Biopax EntityReference, get the xrefs (UnificationXrefs and/or RelationshipXrefs) from BridgeDB (in the future, we could additionally get them from mygene.info)
-        if (dereferencedEntityReference.xrefs && dereferencedEntityReference.xrefs.length) {
-          entityReferenceRendererArguments.xrefs.id = dereferencedEntityReference.xrefs.filter(function(xref) {
-            return xref.indexOf('bridgedb.org' > -1);
-          })[0];
-        } else {
-          entityReferenceRendererArguments.xrefs.id = pvjsonElement.entityReference;
-        }
-      } else {
-        // if BridgeDB doesn't handle pathway entities of this type, we will just provide a linkout using the entityReference IRI, but without multiple UnificationXrefs or RelationshipXrefs
-        entityReferenceRendererArguments.xrefs.id = pvjsonElement.entityReference;
-      }
-    }
-
-    var notDragged = true;
 
     // Add class to change mouse hover
     $node.classed({'has-xref': true});
+
+    var notDragged = true;
 
     $node.on("mousedown", function(d,i) {
       notDragged = true;
@@ -188,8 +157,41 @@ function renderShape(renderer, pvjsonElement) {
     })
     .on("mouseup", function(d,i) {
       if (notDragged) {
-        EntityReference.render(renderer.pvjs, entityReferenceRendererArguments);
-      }
+        // Search for reference id on demand
+
+        var referenceId = entityReference
+
+        // If BridgeDB handles pathway entities of this type
+        if (['Protein', 'Dna', 'Rna', 'SmallMolecule'].indexOf(pvjsonElement.type) !== -1) {
+          // Get all xrefs with given id
+          var selector = renderer.pvjs.sourceData.selector.filteredByXRef('id:'+entityReference).getFirst()
+          // If any xref found
+          if (!selector.isEmpty()) {
+            // If first element has xrefs field
+            if (selector[0].xrefs && selector[0].xrefs.length) {
+              // Filter only bridgebd xrefs
+              var filtered = selector[0].xrefs.filter(function(xref){
+                return xref.indexOf('bridgedb.org' !== -1)
+              })
+
+              // If at least one xref left
+              if (filtered.length) {
+                referenceId = filtered[0]
+              }
+            }
+          }
+        }
+
+        EntityReference.render(renderer.pvjs, {
+          metadata: {
+            label: pvjsonElement.textContent
+          , description: pvjsonElement.type
+          }
+        , xrefs: {
+            id: referenceId
+          }
+        });
+      } // end of if notDragged
     });
   }
 
