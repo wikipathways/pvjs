@@ -354,7 +354,8 @@
       } else if (elementType === 'DataNode') {
         groupName = 'Data Nodes'
       } else if (elementType === '' && _type !== '') { // Assuming it is a reference
-        groupName = 'Reference'
+        // groupName = 'Reference'
+        continue
       } else if (elementType === 'Group') {
         groupName = 'Groups'
       } else {
