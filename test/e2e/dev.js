@@ -4,6 +4,7 @@ var wd = require('wd')
   , chai = require("chai")
   , chaiAsPromised = require("chai-as-promised")
   , expect = chai.expect
+  , seleniumLauncher = require('selenium-launcher')
   ;
 
 var desired = {"browserName": "phantomjs"};
@@ -17,37 +18,41 @@ chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 describe('Quick test for development', function() {
     var browser;
     var allPassed = true;
-
-    console.log('process.env.SELENIUM_LAUNCHER_PORT in dev.js');
-    console.log(process.env.SELENIUM_LAUNCHER_PORT);
-
+    var selenium;
     before(function(done) {
-      browser = wd.remote({
-        hostname: '127.0.0.1',
-          port: 4444
-      }, 'promiseChain');
+      seleniumLauncher(function(er, thisSelenium) {
+        if (er) {
+          return done(er);
+        }
+        selenium = thisSelenium;
 
-      /*
-      // optional extra logging
-      browser.on('status', function(info) {
-        console.log(info.cyan);
+        browser = wd.remote({
+          hostname: selenium.host,
+            port: selenium.port
+        }, 'promiseChain');
+
+        /*
+        // optional extra logging
+        browser.on('status', function(info) {
+          console.log(info.cyan);
+        });
+        browser.on('command', function(eventType, command, response) {
+          console.log(' > ' + eventType.cyan, command, (response || '').grey);
+        });
+        browser.on('http', function(meth, path, data) {
+          console.log(' > ' + meth.magenta, path, (data || '').grey);
+        });
+        //*/
+
+        var width = 800,
+            height = 800;
+        browser
+            .init({browserName:'phantomjs'})
+
+            .setWindowSize(width, height)
+
+            .nodeify(done);
       });
-      browser.on('command', function(eventType, command, response) {
-        console.log(' > ' + eventType.cyan, command, (response || '').grey);
-      });
-      browser.on('http', function(meth, path, data) {
-        console.log(' > ' + meth.magenta, path, (data || '').grey);
-      });
-      //*/
-
-      var width = 800,
-          height = 800;
-      browser
-          .init({browserName:'phantomjs'})
-
-          .setWindowSize(width, height)
-
-          .nodeify(done);
     });
 
     afterEach(function(done) {
@@ -56,6 +61,7 @@ describe('Quick test for development', function() {
     });
 
     after(function(done) {
+        //selenium.kill()
         browser
             .quit()
             .nodeify(done);
