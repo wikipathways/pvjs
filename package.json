@@ -81,10 +81,10 @@
     "watchify": "~0.10.1",
     "wd": "latest",
     "gulp-brfs": "0.0.5",
-    "nightwatch": "~0.5.11",
     "selenium-launcher": "~1.1.10",
     "mocha": "~1.21.0",
-    "gulp-spawn-mocha": "~0.1.7-beta.3"
+    "gulp-spawn-mocha": "~0.1.7-beta.3",
+    "gulp-mocha": "~0.5.1"
   },
   "dependencies": {
     "bridgedbjs": "bridgedb/bridgedbjs",

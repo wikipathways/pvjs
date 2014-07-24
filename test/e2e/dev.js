@@ -18,6 +18,9 @@ describe('Quick test for development', function() {
     var browser;
     var allPassed = true;
 
+    console.log('process.env.SELENIUM_LAUNCHER_PORT in dev.js');
+    console.log(process.env.SELENIUM_LAUNCHER_PORT);
+
     before(function(done) {
       browser = wd.remote({
         hostname: '127.0.0.1',
