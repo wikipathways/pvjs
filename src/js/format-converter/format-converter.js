@@ -19,7 +19,7 @@ module.exports = {
     if (pvjs.sourceData.fileType === 'gpml') {
       // Load xml
       Utils.loadXmlFromUri(pvjs.sourceData.uri, function(xml) {
-          // TODO get the correct metadata. this is placeholder text.
+          // TODO get the correct metadata (possibly from input arguments). Below is just placeholder text.
           var pathwayMetadata = {};
           pathwayMetadata.idVersion = 0;
           pathwayMetadata.dbName = 'wikipathways';

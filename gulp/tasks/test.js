@@ -25,7 +25,8 @@ gulp.task('test', function () {
     return devTest()
     .on('error', function (e) {
       console.log('Error');
-      throw e;
+      console.log(e);
+      //throw e;
     })
 /*
     .on('end', function () {
