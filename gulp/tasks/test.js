@@ -17,20 +17,37 @@
 var gulp = require('gulp')
   , seleniumLauncher = require('selenium-launcher')
   , mocha = require('gulp-spawn-mocha')
+  , wd = require('wd')
   ;
 
 
 gulp.task('test', function () {
-  process.env.SELENIUM_LAUNCHER_PORT = 4444;
+    return devTest()
+    .on('error', function (e) {
+      console.log('Error');
+      throw e;
+    })
+/*
+    .on('end', function () {
+      console.log('bye');
+    });
+    //*/
+
+
   /*
+  process.env.SELENIUM_LAUNCHER_PORT = '4444';
   seleniumLauncher(function(er, selenium) {
     // selenium is running
     // selenium.host / selenium.port are available
     // selenium is a child process, so you can do selenium.kill()
     if (er) {
+      console.log('Error starting selenium server');
+      console.log(er);
       selenium.kill();
     }
 
+      console.log('selenium');
+      console.log(selenium);
 
 
     console.log('process.env.SELENIUM_LAUNCHER_PORT in test.js');
@@ -39,34 +56,23 @@ gulp.task('test', function () {
     console.log(selenium.host);
     console.log('selenium.port in test.js');
     console.log(selenium.port);
-    //*/
 
 
 
-    return test()
+    devTest()
     .on('error', function (e) {
       console.log('Error');
-      //selenium.kill();
+      selenium.kill();
       throw e;
     })
     .on('end', function () {
-      //*
-      //selenium.kill();
+      selenium.kill();
       console.log('bye');
-      //*/
     });
 
 
-//})
-
-
-
-
-
-
-
-  //require('../../tests/demo.js');
-
+  });
+      //*/
 });
 
 /*
@@ -76,7 +82,7 @@ gulp.task('default', function () {
 });
 //*/
 
-function test() {
+function devTest() {
   return gulp.src(['./test/e2e/dev.js'], {read: false}).pipe(mocha({
     // module to require
     r: './test/wd-test-config.js',

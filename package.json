@@ -84,7 +84,8 @@
     "selenium-launcher": "~1.1.10",
     "mocha": "~1.21.0",
     "gulp-spawn-mocha": "~0.1.7-beta.3",
-    "gulp-mocha": "~0.5.1"
+    "gulp-mocha": "~0.5.1",
+    "soda": "~0.2.5"
   },
   "dependencies": {
     "bridgedbjs": "bridgedb/bridgedbjs",
