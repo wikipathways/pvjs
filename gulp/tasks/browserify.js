@@ -34,6 +34,7 @@ gulp.task('browserify', function() {
 		return bundler
 			.bundle({
         insertGlobals : true,
+        exclude: 'cheerio',
         // Enable source maps!
         debug: true
       })
