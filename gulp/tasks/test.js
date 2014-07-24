@@ -14,11 +14,15 @@
     //
 //
 
-var gulp = require('gulp');
-var seleniumLauncher = require('selenium-launcher');
-var mocha = require('gulp-spawn-mocha');
+var gulp = require('gulp')
+  , seleniumLauncher = require('selenium-launcher')
+  , mocha = require('gulp-spawn-mocha')
+  ;
+
 
 gulp.task('test', function () {
+  process.env.SELENIUM_LAUNCHER_PORT = 4444;
+  /*
   seleniumLauncher(function(er, selenium) {
     // selenium is running
     // selenium.host / selenium.port are available
@@ -29,15 +33,31 @@ gulp.task('test', function () {
 
 
 
+    console.log('process.env.SELENIUM_LAUNCHER_PORT in test.js');
+    console.log(process.env.SELENIUM_LAUNCHER_PORT);
+    console.log('selenium.host in test.js');
+    console.log(selenium.host);
+    console.log('selenium.port in test.js');
+    console.log(selenium.port);
+    //*/
 
 
-    return test().on('error', function (e) {
+
+    return test()
+    .on('error', function (e) {
+      console.log('Error');
+      //selenium.kill();
       throw e;
+    })
+    .on('end', function () {
+      //*
+      //selenium.kill();
+      console.log('bye');
+      //*/
     });
-  });
 
 
-
+//})
 
 
 
@@ -47,10 +67,6 @@ gulp.task('test', function () {
 
   //require('../../tests/demo.js');
 
-  /*
-  selenium.kill();
-  console.log('bye');
-  //*/
 });
 
 /*
@@ -62,8 +78,11 @@ gulp.task('default', function () {
 
 function test() {
   return gulp.src(['./test/e2e/dev.js'], {read: false}).pipe(mocha({
+    // module to require
     r: './test/wd-test-config.js',
+    // reporter to use
     R: 'spec',
+    // enable colors
     c: true,
     debug: true
   })).on('error', console.warn.bind(console));
