@@ -5,27 +5,19 @@
              tests="3">
   
   <testsuite errors="0" failures="0" hostname="" id=""
-    name="step one" package="demotest" skipped="0"
-    tests="2" time="" timestamp="">
+    name="demoTestGoogle" package="demotest" skipped="0"
+    tests="3" time="" timestamp="">
     
     
-      <testcase name="Element &lt;body&gt; was visible after 183 milliseconds.">
+      <testcase name="Element &lt;body&gt; was visible after 104 milliseconds.">
         
         
       </testcase>
     
-      <testcase name="Element &lt;button[name=btnG]&gt; was visible after 22 milliseconds.">
+      <testcase name="Element &lt;button[name=btnG]&gt; was visible after 20 milliseconds.">
         
         
       </testcase>
-    
-    
-    </testsuite>
-  
-  <testsuite errors="0" failures="0" hostname="" id=""
-    name="step two" package="demotest" skipped="0"
-    tests="1" time="" timestamp="">
-    
     
       <testcase name="Testing if element &lt;#main&gt; contains text: &quot;The Night Watch&quot;.">
         
