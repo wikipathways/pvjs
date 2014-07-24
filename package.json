@@ -80,7 +80,9 @@
     "vinyl-source-stream": "~0.1.1",
     "watchify": "~0.10.1",
     "wd": "latest",
-    "gulp-brfs": "0.0.5"
+    "gulp-brfs": "0.0.5",
+    "nightwatch": "~0.5.11",
+    "selenium-launcher": "~1.1.10"
   },
   "dependencies": {
     "bridgedbjs": "bridgedb/bridgedbjs",
