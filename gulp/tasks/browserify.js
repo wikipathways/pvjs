@@ -43,7 +43,7 @@ gulp.task('browserify', function() {
 			// Use vinyl-source-stream to make the
 			// stream gulp compatible. Specify the
 			// desired output filename here.
-			.pipe(source('pathvisiojs.js'))
+			.pipe(source('pathvisiojs.min.js'))
       // Specify the output destination
 			.pipe(gulp.dest('./dist/lib/pathvisiojs/js/'))
 			// Log when bundling completes!
