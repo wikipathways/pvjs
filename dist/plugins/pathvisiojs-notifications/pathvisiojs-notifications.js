@@ -46,6 +46,14 @@
     return null
   }
 
+  function removeNotification(notification, notifications) {
+    for (var n in notifications) {
+      if (notifications[n] === notification) {
+        notifications.splice(n, 1)
+      }
+    }
+  }
+
   /**
    * Append the element to notifications container
    *
@@ -66,11 +74,18 @@
         .html(message)
         .appendTo($container)
 
+      notification = {
+        type: type
+      , message: message
+      , counter: 1
+      , $element: $notification
+      }
+
       // Add close button
       $('<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button>')
         .prependTo($notification)
         .on('click', function(){
-
+          removeNotification(notification, notifications)
           $(this).parent().remove()
         })
 
@@ -78,13 +93,6 @@
       $('<span class="counter">1</span>')
         .hide()
         .prependTo($notification)
-
-      notification = {
-        type: type
-      , message: message
-      , counter: 1
-      , $element: $notification
-      }
 
       notifications.push(notification)
     }
