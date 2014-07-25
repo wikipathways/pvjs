@@ -15,22 +15,76 @@
 //
 
 var gulp = require('gulp')
-  , seleniumLauncher = require('selenium-launcher')
+  //, seleniumLauncher = require('selenium-launcher')
   , mocha = require('gulp-mocha')
   //, mocha = require('gulp-spawn-mocha')
   , wd = require('wd')
+  , highland = require('highland')
   ;
 
+  //*
+var seleniumLauncher = require('selenium-launcher')
+  // https://github.com/dominictarr/event-stream
+  , es = require('event-stream')
+  ;
 
+var launchSeleniumAsync = function(callback) {
+  process.env.SELENIUM_LAUNCHER_PORT = '4444';
+  seleniumLauncher(function(er, selenium) {
+    if (er) {
+      selenium.kill();
+      return console.log(er);
+    }
+    console.log('selenium in seleniumLauncher in test.js');
+    console.log(selenium);
+    callback(null, selenium);
+  });
+};
+
+var launchSeleniumStream = highland.wrapCallback(launchSeleniumAsync);
+
+/*
+function getData(filename) {
+    // create a new Stream
+    return _(function (push, next) {
+        // do something async when we read from the Stream
+        fs.readFile(filename, function (err, data) {
+            push(err, data);
+            push(null, _.nil);
+        });
+    });
+};
+
+var getData = _.wrapCallback(fs.readFile);
+
+getData('myfile').map(toUpperCase).map(function (x) {
+    return {name: x};
+});
+//*/
+
+//*/
+
+/*
+gulp.task('test', ['launchSelenium'], function (selenium) {
+  console.log('selenium in test.js');
+  console.log(selenium);
+  console.log('process.env.SELENIUM_LAUNCHER_PORT in test.js');
+  console.log(process.env.SELENIUM_LAUNCHER_PORT);
+  //*/
 gulp.task('test', function () {
-    return devTest()
+    return launchSeleniumStream()
+    .apply(devTest)
+  //*
     .on('error', function (e) {
       console.log('Error');
       console.log(e);
       //throw e;
     })
-//*
-    .on('end', function () {
+    .on('end', function (selenium) {
+      if (selenium) {
+        // Rebundle with watchify on changes.
+        selenium.kill();
+      }
       console.log('End of test');
     });
     //*/
@@ -84,7 +138,13 @@ gulp.task('default', function () {
 });
 //*/
 
-function devTest() {
+function devTest(selenium) {
+  global.selenium = selenium;
+  console.log('selenium in devTest in test.js');
+  console.log(selenium);
+  console.log('process.env.SELENIUM_LAUNCHER_PORT in test.js');
+  console.log(process.env.SELENIUM_LAUNCHER_PORT);
+  //return gulp.src(['./test/e2e/dev-with-selenium-launcher.js'], {read: false}).pipe(mocha({
   return gulp.src(['./test/e2e/dev.js'], {read: false}).pipe(mocha({
     // module to require
     r: './test/wd-test-config.js',
