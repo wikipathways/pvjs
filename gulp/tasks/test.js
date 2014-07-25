@@ -16,7 +16,8 @@
 
 var gulp = require('gulp')
   , seleniumLauncher = require('selenium-launcher')
-  , mocha = require('gulp-spawn-mocha')
+  , mocha = require('gulp-mocha')
+  //, mocha = require('gulp-spawn-mocha')
   , wd = require('wd')
   ;
 
@@ -28,9 +29,9 @@ gulp.task('test', function () {
       console.log(e);
       //throw e;
     })
-/*
+//*
     .on('end', function () {
-      console.log('bye');
+      console.log('End of test');
     });
     //*/
 
@@ -87,10 +88,11 @@ function devTest() {
   return gulp.src(['./test/e2e/dev.js'], {read: false}).pipe(mocha({
     // module to require
     r: './test/wd-test-config.js',
-    // reporter to use
-    R: 'spec',
+    reporter: 'spec',
+    timeout: 4000,
     // enable colors
     c: true,
     debug: true
-  })).on('error', console.warn.bind(console));
+  }))
+  .on('error', console.warn.bind(console));
 }

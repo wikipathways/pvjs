@@ -18,13 +18,12 @@ chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 describe('Quick test for development', function() {
     var browser;
     var allPassed = true;
-    var selenium;
     before(function(done) {
-      seleniumLauncher(function(er, thisSelenium) {
+      seleniumLauncher(function(er, selenium) {
         if (er) {
+          selenium.kill();
           return done(er);
         }
-        selenium = thisSelenium;
 
         browser = wd.remote({
           hostname: selenium.host,
@@ -43,14 +42,18 @@ describe('Quick test for development', function() {
           console.log(' > ' + meth.magenta, path, (data || '').grey);
         });
         //*/
+        browser.on('command', function(eventType, command, response) {
+          if (eventType === 'RESPONSE' && command === 'quit()') {
+            console.log('Exiting selenium...');
+            selenium.kill();
+          }
+        });
 
         var width = 800,
             height = 800;
         browser
             .init({browserName:'phantomjs'})
-
             .setWindowSize(width, height)
-
             .nodeify(done);
       });
     });
@@ -61,7 +64,6 @@ describe('Quick test for development', function() {
     });
 
     after(function(done) {
-        //selenium.kill()
         browser
             .quit()
             .nodeify(done);

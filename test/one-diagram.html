@@ -52,7 +52,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.2/typeahead.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.1/modernizr.min.js"></script>
     <script src="../dist/lib/cross-platform-text/js/cross-platform-text.min.js"></script>
-    <script src="../dist/lib/pathvisiojs/js/pathvisiojs.js"></script>
+    <script src="../dist/lib/pathvisiojs/js/pathvisiojs.min.js"></script>
 
     <!-- Notification Plugin -->
     <link rel="stylesheet" href="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.css">
@@ -76,23 +76,23 @@
           $(function(){
             $('#production-container').pathvisiojs({
               fitToContainer: true
-            , manualRender: true
-            , sourceData:parsedInputData.sourceData
-            //, cssUri: srcDirectoryUri + 'css/pathway-diagram.css'
-            //, cssUri: '../src/css/pathway-diagram.css'
-            //, customMarkers: customMarkers
-            //, customSymbols: customSymbols
-            , bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/' // optional
-            , bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php' // optional
-            , diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif' // optional
-            , diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg' // optional
-            , imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' // optional
-            , pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=' // optional
-            , highlights: parsedInputData.highlights //optional
-            , hiddenElements: [
-              'find',
-              'wikipathways-link'
-            ]
+              , manualRender: true
+              , sourceData: parsedInputData.sourceData
+              //, cssUri: srcDirectoryUri + 'css/pathway-diagram.css'
+              //, cssUri: '../src/css/pathway-diagram.css'
+              //, customMarkers: customMarkers
+              //, customSymbols: customSymbols
+              , bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/' // optional
+              , bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php' // optional
+              , diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif' // optional
+              , diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg' // optional
+              , imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' // optional
+              , pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=' // optional
+              , highlights: parsedInputData.highlights //optional
+              , hiddenElements: [
+                'find',
+                'wikipathways-link'
+              ]
             })
 
             // Get first element from array of instances
