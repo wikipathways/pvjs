@@ -4,6 +4,7 @@ var wd = require('wd')
   , chai = require("chai")
   , chaiAsPromised = require("chai-as-promised")
   , expect = chai.expect
+  , seleniumLauncher = require('selenium-launcher')
   ;
 
 var desired = {"browserName": "phantomjs"};
@@ -14,26 +15,21 @@ chai.use(chaiAsPromised);
 chai.should();
 chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 
-
-//global.selenium = selenium;
-console.log('selenium in devTest in dev.js');
-console.log(selenium);
-console.log('process.env.SELENIUM_LAUNCHER_PORT in dev.js');
-console.log(process.env.SELENIUM_LAUNCHER_PORT);
-
 describe('Quick test for development', function() {
     var browser;
     var allPassed = true;
     before(function(done) {
+      seleniumLauncher(function(er, selenium) {
+        if (er) {
+          selenium.kill();
+          return done(er);
+        }
+
         browser = wd.remote({
-          hostname: '127.0.0.1',
-            port: '4444' 
+          hostname: selenium.host,
+            port: selenium.port
         }, 'promiseChain');
 
-        console.log('selenium in devTest in dev.js');
-        console.log(selenium);
-        console.log('process.env.SELENIUM_LAUNCHER_PORT in dev.js');
-        console.log(process.env.SELENIUM_LAUNCHER_PORT);
         /*
         // optional extra logging
         browser.on('status', function(info) {
@@ -45,13 +41,13 @@ describe('Quick test for development', function() {
         browser.on('http', function(meth, path, data) {
           console.log(' > ' + meth.magenta, path, (data || '').grey);
         });
+        //*/
         browser.on('command', function(eventType, command, response) {
           if (eventType === 'RESPONSE' && command === 'quit()') {
             console.log('Exiting selenium...');
             selenium.kill();
           }
         });
-        //*/
 
         var width = 800,
             height = 800;
@@ -59,6 +55,7 @@ describe('Quick test for development', function() {
             .init({browserName:'phantomjs'})
             .setWindowSize(width, height)
             .nodeify(done);
+      });
     });
 
     afterEach(function(done) {
