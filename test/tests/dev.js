@@ -4,7 +4,6 @@ var wd = require('wd')
   , chai = require("chai")
   , chaiAsPromised = require("chai-as-promised")
   , expect = chai.expect
-  , seleniumLauncher = require('selenium-launcher')
   ;
 
 var desired = {"browserName": "phantomjs"};
@@ -19,15 +18,9 @@ describe('Quick test for development', function() {
     var browser;
     var allPassed = true;
     before(function(done) {
-      seleniumLauncher(function(er, selenium) {
-        if (er) {
-          selenium.kill();
-          return done(er);
-        }
-
         browser = wd.remote({
-          hostname: selenium.host,
-            port: selenium.port
+          hostname: '127.0.0.1',
+            port: '4444' 
         }, 'promiseChain');
 
         /*
@@ -41,21 +34,19 @@ describe('Quick test for development', function() {
         browser.on('http', function(meth, path, data) {
           console.log(' > ' + meth.magenta, path, (data || '').grey);
         });
-        //*/
         browser.on('command', function(eventType, command, response) {
           if (eventType === 'RESPONSE' && command === 'quit()') {
             console.log('Exiting selenium...');
-            selenium.kill();
           }
         });
+        //*/
 
         var width = 800,
             height = 800;
         browser
-            .init({browserName:'phantomjs'})
+            .init(desired)
             .setWindowSize(width, height)
             .nodeify(done);
-      });
     });
 
     afterEach(function(done) {
@@ -71,7 +62,7 @@ describe('Quick test for development', function() {
 
     it("should render the 'dev' test page", function(done) {
         browser
-            .get("http://localhost:3002/test/one-diagram.html?gpml=http://localhost:3002/test/input-data/dev/dev.gpml")
+            .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/dev/dev.gpml")
             .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 3000)
             .saveScreenshot('tmp/dev-' + desired.browserName + '-test.png')
             .nodeify(done);
