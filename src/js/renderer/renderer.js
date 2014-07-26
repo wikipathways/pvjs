@@ -31,7 +31,7 @@ module.exports = function(){
 
   // Check for Modernizr support
   if (Modernizr && Modernizr.inlinesvg) {
-    supportedRenderers.push('svg')
+    supportedRenderers.push('svg');
   }
 
   /**

@@ -7,14 +7,12 @@ evt.on('rs', function () {
     console.log('You want to reload BrowserSync!');
 });
 
-
-
 gulp.task('browserSync', ['build'], function() {
 	browserSync.init(['./src/**/*.js'], {
 		server: {
 			baseDir: './'
 		},
-    //port: 3000,
+    port: 3000,
     // Don't show any notifications in the browser.
     notify: false,
     startPath: './test/'
