@@ -2,6 +2,7 @@
 var gulp = require('gulp')
   , _ = require('lodash')
   , args   = require('yargs').argv
+  , fs   = require('fs')
   , highland = require('highland')
   , path = require('path')
   , through = require('through')
@@ -25,12 +26,33 @@ args.browsers = (args.browser || 'safari,firefox').split(',');
 //var BROWSERS = ['safari', 'firefox'];
 //var BROWSERS = ['firefox'];
 
-var pathway = {};
-pathway.relativePath = '/test/input-data/protocol/anchors.gpml.xml';
+//var pathways = fs.readdirSync('./test/input-data/protocol')
+var pathways = ['anchors', 'curves']
+//var pathways = ['anchors']
+/*
+  .filter(function(fileName) {
+    return fileName.indexOf('gpml') > -1;
+  })
+  .map(function(pathwayFileName) {
+    return pathwayFileName.replace('.gpml.xml', '').replace('.gpml', '');
+  })
+  //*/
+  .map(function(pathwayName) {
+    var pathway = {};
+    pathway.name = pathwayName;
+    return JSON.stringify(pathway);
+  });
 
-var pathways = [JSON.stringify(pathway)];
+console.log('pathways');
+console.log(pathways);
+
+var pathwayFileNames = fs.readdirSync('./test/input-data/protocol');
+console.log('pathwayFileNames');
+console.log(pathwayFileNames);
 
 function mocha(opts) {
+  console.log('opts in mocha');
+  console.log(opts);
   var spawnMocha = new SpawnMocha(opts);
   var stream = through(function write(file) {
     spawnMocha.add(file.path);
@@ -70,7 +92,7 @@ function buildMochaOpts(opts) {
   }
   mochaOpts.env = function() {
     var env = _.clone(process.env);
-    env.PVJS_PATHWAY = pathways[0];
+    env.PVJS_PATHWAY = opts.pathway;
     if(opts.unit) {
       // unit test
       delete env.SAUCE;
@@ -90,15 +112,34 @@ function buildMochaOpts(opts) {
   return mochaOpts;
 }
 
-function testLocalhost(browser) {
-  var opts = buildMochaOpts({ midway: true, browser: browser });
+
+function generateMochaOpts(browser) {
+  return highland(pathways)
+    .map(function(pathway) {
+      return { midway: true, browser: browser, pathway: pathway };
+    })
+    .map(buildMochaOpts)
+    .map(testLocalhost)
+    .errors(function (e) {
+      console.log('Error');
+      console.log(e);
+      //throw e;
+    })
+    .toArray(function (x) {
+      //console.log(x);
+      console.log('End of test');
+    });
+  //return buildMochaOpts({ midway: true, browser: browser, pathway: pathways[0] });
+}
+
+function testLocalhost(opts) {
   return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]}).pipe(mocha(opts));
 }
 
 //gulp.task('testLocalhost', ['browserSync'], function () {
 gulp.task('testLocalhost', function () {
   return highland(args.browsers)
-  .map(testLocalhost)
+  .map(generateMochaOpts)
   .errors(function (e) {
     console.log('Error');
     console.log(e);
