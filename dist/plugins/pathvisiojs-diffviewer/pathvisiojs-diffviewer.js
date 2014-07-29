@@ -326,6 +326,7 @@
       , elementType = ''
       , _type = ''
       , $listContainer = null
+      , groupsOrdered = []
 
     for (d in elementsDiffSorted) {
       elementType = elementsDiffSorted[d]['gpml:element'] ? elementsDiffSorted[d]['gpml:element'].replace(/^gpml\:/, '') : '';
@@ -357,10 +358,37 @@
     if (!$.isEmptyObject(groups)) {
       $listContainer = this.initDiffViewList($changesList, type, type.charAt(0).toUpperCase() + type.slice(1))
 
-      for (groupName in groups) {
-        this.renderDiffGroup(type, groupName, groups[groupName], $listContainer, elements)
+      // Create an array of ordered groups
+      groupsOrdered = orderGroups(groups)
+
+      for (var i in groupsOrdered) {
+        this.renderDiffGroup(type, groupsOrdered[i].name, groupsOrdered[i].group, $listContainer, elements)
       }
     }
+  }
+
+  var groupsOrder = ['Data Nodes', 'Groups', 'Interactions', 'Graphical Objects']
+
+  function orderGroups(groups) {
+    var groupName = ''
+      , groupsOrdered = []
+
+    // First add ordered groups
+    for (var i in groupsOrder) {
+      groupName = groupsOrder[i]
+
+      if (groups.hasOwnProperty(groupName)) {
+        groupsOrdered.push({group: groups[groupName], name: groupName})
+        delete groups[groupName]
+      }
+    }
+
+    // If there are still groups, add them to the end in any order
+    for(groupName in groups) {
+      groupsOrdered.push({group: groups[groupName], name: groupName})
+    }
+
+    return groupsOrdered
   }
 
   PathvisiojsDiffViewer.prototype.renderDiffGroup = function(type, groupName, groupElements, $listContainer, elements) {
