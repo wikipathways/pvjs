@@ -25,6 +25,11 @@ args.browsers = (args.browser || 'safari,firefox').split(',');
 //var BROWSERS = ['safari', 'firefox'];
 //var BROWSERS = ['firefox'];
 
+var pathway = {};
+pathway.relativePath = '/test/input-data/protocol/anchors.gpml.xml';
+
+var pathways = [JSON.stringify(pathway)];
+
 function mocha(opts) {
   var spawnMocha = new SpawnMocha(opts);
   var stream = through(function write(file) {
@@ -65,6 +70,7 @@ function buildMochaOpts(opts) {
   }
   mochaOpts.env = function() {
     var env = _.clone(process.env);
+    env.PVJS_PATHWAY = pathways[0];
     if(opts.unit) {
       // unit test
       delete env.SAUCE;
