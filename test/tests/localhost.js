@@ -7,6 +7,7 @@ var wd = require('wd')
   ;
 
 var pathway = JSON.parse(process.env.PVJS_PATHWAY);
+var pathwayName = pathway.name;
 
 console.log('pathway');
 console.log(pathway);
@@ -68,19 +69,19 @@ describe(desired.name, function() {
             .nodeify(done);
     });
 
-    it("should render the 'anchors' test page", function(done) {
+    it('should render the "' + pathwayName + '" test page', function(done) {
         browser
-            .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/protocol/anchors.gpml.xml")
+            .get('http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/protocol/' + pathwayName + '.gpml.xml')
             .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 500)
-            .saveScreenshot('tmp/protocol/anchors-' + desired.browserName + '-test.png')
+            .saveScreenshot('tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png')
             .nodeify(done);
     });
 
     it("should confirm test and last known good screenshots are the same", function(done) {
         imageDiff({
-          actualImage: 'tmp/protocol/anchors-' + desired.browserName + '-test.png',
-          expectedImage: 'test/input-data/protocol/anchors-' + desired.browserName + '-lkg.png',
-          diffImage: 'tmp/protocol/anchors-' + desired.browserName + '-difference.png',
+          actualImage: 'tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png',
+          expectedImage: 'test/input-data/protocol/' + pathwayName + '-' + desired.browserName + '-lkg.png',
+          diffImage: 'tmp/protocol/' + pathwayName + '-' + desired.browserName + '-difference.png',
         }, function (err, imagesAreSame) {
           expect(imagesAreSame).to.equal(true);
           done();
