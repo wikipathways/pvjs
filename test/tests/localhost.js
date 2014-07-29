@@ -6,21 +6,7 @@ var wd = require('wd')
   , expect = chai.expect
   ;
 
-// chrome is not currently working
-//var desired = {"browserName": "chrome"};
-
-/* enabling this code below for multiple browsers will not work right now
-var desired = {
-  firefox: {"browserName": "firefox"},
-  safari: {"browserName": "safari"}
-};
-//*/
-
-// this is what was originally here, but process.env.DESIRED does not appear
-// to be being set currently
-//var desired = JSON.parse(process.env.DESIRED || '{"browserName": "chrome"}');
-
-var desired = {"browserName": "safari"};
+var desired = {"browserName": process.env.BROWSER};
 desired.name = 'Local protocol test (' + desired.browserName + ')';
 desired.tags = ['localhost'];
 

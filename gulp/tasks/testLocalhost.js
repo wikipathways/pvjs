@@ -17,8 +17,13 @@ gulp.task('default', function () {
 //*/
 
 var expressPort = 3000; // incremented after each test to avoid colision
-args.browsers = (args.browser || 'safari').split(',');
-var BROWSERS = ['safari', 'firefox'];
+args.browsers = (args.browser || 'safari,firefox').split(',');
+//args.browsers = (args.browser || 'safari').split(',');
+//args.browsers = ('firefox').split(',');
+//args.browsers = ('safari').split(',');
+//var BROWSERS = ['safari'];
+//var BROWSERS = ['safari', 'firefox'];
+//var BROWSERS = ['firefox'];
 
 function mocha(opts) {
   var spawnMocha = new SpawnMocha(opts);
@@ -42,19 +47,17 @@ function mocha(opts) {
   return stream;
 }
 
-//*
 function buildMochaOpts(opts) {
-  
   var mochaOpts = {
     flags: {
       //u: 'bdd-with-opts',
       R: 'spec',
       b: true,
       t: 4000,
-      //R: 'nyan',      
+      c: true,
+      debug: true,
     },
     bin: path.join('./node_modules/mocha/bin/mocha'),
-    //bin: path.join(__dirname,  'node_modules/.bin/mocha'),
     concurrency: args.concurrency | process.env.CONCURRENCY || 3
   };  
   if(args.grep) {
@@ -80,34 +83,23 @@ function buildMochaOpts(opts) {
   };
   return mochaOpts;
 }
-//*/
 
-function testLocalhost() {
-  var opts = buildMochaOpts({ midway: true, browser: 'safari' });
+function testLocalhost(browser) {
+  var opts = buildMochaOpts({ midway: true, browser: browser });
   return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]}).pipe(mocha(opts));
-    /*
-  return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]}).pipe(mocha({
-    // module to require
-    r: './test/wd-test-config.js',
-    reporter: 'spec',
-    timeout: 4000,
-    // enable colors
-    c: true,
-    debug: true
-  }));
-  //*/
-  //.on('error', console.warn.bind(console));
 }
 
 //gulp.task('testLocalhost', ['browserSync'], function () {
 gulp.task('testLocalhost', function () {
-  return testLocalhost()
-  .on('error', function (e) {
+  return highland(args.browsers)
+  .map(testLocalhost)
+  .errors(function (e) {
     console.log('Error');
     console.log(e);
     //throw e;
   })
-  .on('end', function () {
+  .toArray(function (x) {
+    //console.log(x);
     console.log('End of test');
   });
 });
