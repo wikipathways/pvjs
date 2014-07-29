@@ -26,10 +26,8 @@ args.browsers = (args.browser || 'safari,firefox').split(',');
 //var BROWSERS = ['safari', 'firefox'];
 //var BROWSERS = ['firefox'];
 
-//var pathways = fs.readdirSync('./test/input-data/protocol')
-var pathways = ['anchors', 'curves']
-//var pathways = ['anchors']
 /*
+var pathways = fs.readdirSync('./test/input-data/protocol')
   .filter(function(fileName) {
     return fileName.indexOf('gpml') > -1;
   })
@@ -37,6 +35,7 @@ var pathways = ['anchors', 'curves']
     return pathwayFileName.replace('.gpml.xml', '').replace('.gpml', '');
   })
   //*/
+var pathways = ['anchors', 'curves']
   .map(function(pathwayName) {
     var pathway = {};
     pathway.name = pathwayName;
