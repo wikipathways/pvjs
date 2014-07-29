@@ -84,7 +84,11 @@ var gruntConfig = {
       dest: distLibDir + 'pathvisiojs/css/pathvisiojs.css'
     },
     pathvisiojsCssBundle: {
-      src:  [distLibDir + 'pathvisiojs/css/pathvisiojs.css', distDir + 'plugins/pathvisiojs-notifications/pathvisiojs-notifications.css', distDir + 'plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.css'],
+      src:  [
+        distLibDir + 'pathvisiojs/css/pathvisiojs.css',
+        distDir + 'plugins/pathvisiojs-notifications/pathvisiojs-notifications.css',
+        distDir + 'plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.css',
+        distDir + 'plugins/pathvisiojs-diffviewer/pathvisiojs-diffviewer.css'],
       dest: distLibDir + 'pathvisiojs/css/pathvisiojs.bundle.css'
     }
   },
@@ -255,7 +259,8 @@ var gruntConfig = {
       src: [libDir + 'cross-platform-text/dist/lib/cross-platform-text/js/cross-platform-text.min.js',
         distLibDir + 'pathvisiojs/js/pathvisiojs.js',
         distDir + 'plugins/pathvisiojs-notifications/pathvisiojs-notifications.js',
-        distDir + 'plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js'],
+        distDir + 'plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js',
+        distDir + 'plugins/pathvisiojs-diffviewer/pathvisiojs-diffviewer.js'],
       dest: distLibDir + 'pathvisiojs/js/pathvisiojs.bundle.min.js'
     },
     jsonld: {
