@@ -6,6 +6,11 @@ var wd = require('wd')
   , expect = chai.expect
   ;
 
+var pathway = JSON.parse(process.env.PVJS_PATHWAY);
+
+console.log('pathway');
+console.log(pathway);
+
 var desired = {"browserName": process.env.BROWSER};
 desired.name = 'Local protocol test (' + desired.browserName + ')';
 desired.tags = ['localhost'];
