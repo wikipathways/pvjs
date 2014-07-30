@@ -91,7 +91,10 @@
     "wd": "latest",
     "yargs": "~1.2.6",
     "q": "~1.0.1",
-    "run-sequence": "~0.3.6"
+    "run-sequence": "~0.3.6",
+    "pretty-data": "~0.40.0",
+    "gulp-minify-html": "~0.1.4",
+    "minimize": "~0.7.6"
   },
   "dependencies": {
     "bridgedbjs": "bridgedb/bridgedbjs",

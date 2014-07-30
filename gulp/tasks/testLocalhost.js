@@ -18,27 +18,38 @@ gulp.task('default', function () {
 //*/
 
 var expressPort = 3000; // incremented after each test to avoid colision
-args.browsers = (args.browser || 'safari,firefox').split(',');
-//args.browsers = (args.browser || 'safari').split(',');
-//args.browsers = ('firefox').split(',');
-//args.browsers = ('safari').split(',');
-//var BROWSERS = ['safari'];
-//var BROWSERS = ['safari', 'firefox'];
-//var BROWSERS = ['firefox'];
+//args.browsers = (args.browser || 'phantomjs').split(',');
+//args.browsers = (args.browser || 'firefox,safari').split(',');
+args.browsers = (args.browser || 'safari').split(',');
 
 /*
+var pathwaysAlreadyConsidered = fs.readdirSync('./test/input-data/protocol')
+  .filter(function(fileName) {
+    return fileName.indexOf('-firefox-lkg.png') > -1;
+  })
+  .map(function(pathwayFileName) {
+    return pathwayFileName.replace('-safari', '').replace('-firefox', '').replace('-lkg.png', '');
+  });
+
+console.log('pathwaysAlreadyConsidered');
+console.log(pathwaysAlreadyConsidered);
+  //*/
+
 var pathways = fs.readdirSync('./test/input-data/protocol')
   .filter(function(fileName) {
     return fileName.indexOf('gpml') > -1;
   })
-  .map(function(pathwayFileName) {
-    return pathwayFileName.replace('.gpml.xml', '').replace('.gpml', '');
+  .filter(function(fileName) {
+    return fileName;
+    //return pathwaysAlreadyConsidered.indexOf(fileName.replace('.gpml.xml', '').replace('.gpml', '')) === -1;
   })
-  //*/
-var pathways = ['anchors', 'curves', 'elbows']
-  .map(function(pathwayName) {
+  .map(function(pathwayFileName) {
     var pathway = {};
-    pathway.name = pathwayName;
+    pathway.name = pathwayFileName.replace('.gpml.xml', '').replace('.gpml', '');
+    pathway.fileName = pathwayFileName;
+    return pathway;
+  })
+  .map(function(pathway) {
     return JSON.stringify(pathway);
   });
 
@@ -127,22 +138,30 @@ function testMultiplePathways(pathway) {
     });
 }
 
+var browsersCompletedCount = 0;
 function runLocalhostTest(opts) {
   return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
     .pipe(mocha(opts))
     .on('error', function() {
-      pathwaysStream.destroy();
+      //pathwaysStream.destroy();
       console.log('Destroyed stream due to error.');
     })
     .on('end', function() {
-      pathwaysStream.resume();
-      console.log('Finished a test.');
+      browsersCompletedCount += 1;
+      if (browsersCompletedCount === args.browsers.length) {
+        console.log('Finished a test for browser #' + browsersCompletedCount + ' (last)');
+        browsersCompletedCount = 0;
+        pathwaysStream.resume();
+      } else {
+        console.log('Finished a test for browser #' + browsersCompletedCount);
+      }
     });
 }
 
 //gulp.task('testLocalhost', ['browserSync'], function () {
 gulp.task('testLocalhost', function () {
   return pathwaysStream
+  .take(1)
   .each(testMultiplePathways)
   /*
   .errors(function (e) {
