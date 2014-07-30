@@ -130,6 +130,10 @@ function testMultiplePathways(pathway) {
 function runLocalhostTest(opts) {
   return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
     .pipe(mocha(opts))
+    .on('error', function() {
+      pathwaysStream.destroy();
+      console.log('Destroyed stream due to error.');
+    })
     .on('end', function() {
       pathwaysStream.resume();
       console.log('Finished a test.');
