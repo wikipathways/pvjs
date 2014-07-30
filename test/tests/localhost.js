@@ -9,11 +9,8 @@ var wd = require('wd')
 var pathway = JSON.parse(process.env.PVJS_PATHWAY);
 var pathwayName = pathway.name;
 
-console.log('pathway');
-console.log(pathway);
-
 var desired = {"browserName": process.env.BROWSER};
-desired.name = 'Local protocol test (' + desired.browserName + ')';
+desired.name = 'Local Protocol Test for ' + pathwayName.toUpperCase() + ' (' + desired.browserName + ')';
 desired.tags = ['localhost'];
 
 chai.use(chaiAsPromised);
@@ -69,7 +66,7 @@ describe(desired.name, function() {
             .nodeify(done);
     });
 
-    it('should render the "' + pathwayName + '" test page', function(done) {
+    it('should render diagram', function(done) {
         browser
             .get('http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/protocol/' + pathwayName + '.gpml.xml')
             .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 500)
