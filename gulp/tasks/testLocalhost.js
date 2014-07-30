@@ -42,16 +42,7 @@ var pathways = ['anchors', 'curves']
     return JSON.stringify(pathway);
   });
 
-console.log('pathways');
-console.log(pathways);
-
-var pathwayFileNames = fs.readdirSync('./test/input-data/protocol');
-console.log('pathwayFileNames');
-console.log(pathwayFileNames);
-
 function mocha(opts) {
-  console.log('opts in mocha');
-  console.log(opts);
   var spawnMocha = new SpawnMocha(opts);
   var stream = through(function write(file) {
     spawnMocha.add(file.path);
@@ -111,14 +102,17 @@ function buildMochaOpts(opts) {
   return mochaOpts;
 }
 
-
-function generateMochaOpts(browser) {
+function testMultiplePathways(browser) {
   return highland(pathways)
     .map(function(pathway) {
-      return { midway: true, browser: browser, pathway: pathway };
+      var opts = {};
+      opts.midway = true;
+      opts.browser = browser;
+      opts.pathway = pathway;
+      return opts;
     })
     .map(buildMochaOpts)
-    .map(testLocalhost)
+    .map(runLocalhostTest)
     .errors(function (e) {
       console.log('Error');
       console.log(e);
@@ -128,17 +122,17 @@ function generateMochaOpts(browser) {
       //console.log(x);
       console.log('End of test');
     });
-  //return buildMochaOpts({ midway: true, browser: browser, pathway: pathways[0] });
 }
 
-function testLocalhost(opts) {
+function runLocalhostTest(opts) {
   return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]}).pipe(mocha(opts));
 }
 
 //gulp.task('testLocalhost', ['browserSync'], function () {
 gulp.task('testLocalhost', function () {
   return highland(args.browsers)
-  .map(generateMochaOpts)
+  .each(testMultiplePathways);
+  /*
   .errors(function (e) {
     console.log('Error');
     console.log(e);
@@ -148,5 +142,6 @@ gulp.task('testLocalhost', function () {
     //console.log(x);
     console.log('End of test');
   });
+  //*/
 });
 
