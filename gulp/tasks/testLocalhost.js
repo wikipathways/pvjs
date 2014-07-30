@@ -102,9 +102,9 @@ function buildMochaOpts(opts) {
   return mochaOpts;
 }
 
-function testMultiplePathways(browser) {
-  return highland(pathways)
-    .map(function(pathway) {
+function testMultiplePathways(pathway) {
+  return highland(args.browsers)
+    .map(function(browser) {
       var opts = {};
       opts.midway = true;
       opts.browser = browser;
@@ -130,7 +130,7 @@ function runLocalhostTest(opts) {
 
 //gulp.task('testLocalhost', ['browserSync'], function () {
 gulp.task('testLocalhost', function () {
-  return highland(args.browsers)
+  return highland(pathways)
   .each(testMultiplePathways);
   /*
   .errors(function (e) {
