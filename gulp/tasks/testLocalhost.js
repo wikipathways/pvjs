@@ -35,12 +35,14 @@ var pathways = fs.readdirSync('./test/input-data/protocol')
     return pathwayFileName.replace('.gpml.xml', '').replace('.gpml', '');
   })
   //*/
-var pathways = ['anchors', 'curves']
+var pathways = ['anchors', 'curves', 'elbows']
   .map(function(pathwayName) {
     var pathway = {};
     pathway.name = pathwayName;
     return JSON.stringify(pathway);
   });
+
+var pathwaysStream = highland(pathways);
 
 function mocha(opts) {
   var spawnMocha = new SpawnMocha(opts);
@@ -103,6 +105,7 @@ function buildMochaOpts(opts) {
 }
 
 function testMultiplePathways(pathway) {
+  pathwaysStream.pause();
   return highland(args.browsers)
     .map(function(browser) {
       var opts = {};
@@ -125,13 +128,18 @@ function testMultiplePathways(pathway) {
 }
 
 function runLocalhostTest(opts) {
-  return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]}).pipe(mocha(opts));
+  return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
+    .pipe(mocha(opts))
+    .on('end', function() {
+      pathwaysStream.resume();
+      console.log('Finished a test.');
+    });
 }
 
 //gulp.task('testLocalhost', ['browserSync'], function () {
 gulp.task('testLocalhost', function () {
-  return highland(pathways)
-  .each(testMultiplePathways);
+  return pathwaysStream
+  .each(testMultiplePathways)
   /*
   .errors(function (e) {
     console.log('Error');
