@@ -151,8 +151,8 @@ var developmentLoader = function() {
     // object we will return
     var parsedInputData = {};
     parsedInputData.sourceData = [];
-        console.log('uriParams.highlights');
-        console.log(JSON.stringify(uriParams.highlights));
+    console.log('uriParams.highlights');
+    console.log(JSON.stringify(uriParams.highlights));
 
     if (!!uriParams.highlights) {
       parsedInputData.highlights = uriParams.highlights;
@@ -169,39 +169,45 @@ var developmentLoader = function() {
       if (uri.indexOf('.gpml') > -1) {
         parsedInputData.sourceData.push({
           uri:gpmlParam,
-          fileType:'gpml'
+          fileType:'gpml',
+          db: 'local',
+          dbId: 'unspecified',
+          idVersion: 'unspecified'
         });
 
         console.log(parsedInputData);
-        callback(parsedInputData);
-      }
-      else {
+        return callback(parsedInputData);
+      } else {
         throw new Error('Pathvisiojs cannot handle the data source type entered.');
       }
-    }
-    else {
+    } else {
       if (isWikiPathwaysId(gpmlParam)) {
         wpRevision = uriParams.rev || 0;
         // TODO this is messy if we later want to use a data format that is not GPML
         gpmlUri = getGpmlUri(gpmlParam, wpRevision); //get uri
         parsedInputData.sourceData.push({
           uri:gpmlUri,
-          fileType:'gpml'
+          fileType:'gpml',
+          db: 'wikipathways',
+          dbId: gpmlParam,
+          idVersion: wpRevision
         });
 
         pngUri = encodeURI('http://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + gpmlParam + '&revision=' + wpRevision);
         parsedInputData.sourceData.push({
           uri:pngUri,
-          fileType:'png'
+          fileType:'png',
+          db: 'wikipathways',
+          dbId: gpmlParam,
+          idVersion: wpRevision
         });
 
         parsedInputData.wpId = gpmlParam;
         parsedInputData.revision = wpRevision;
         console.log('parsedInputData');
         console.log(parsedInputData);
-        callback(parsedInputData);
-      }
-      else {
+        return callback(parsedInputData);
+      } else {
         throw new Error('Pathvisiojs cannot handle the data source type entered.');
       }
     }
@@ -222,12 +228,10 @@ var developmentLoader = function() {
     if (isWikiPathwaysId(wpId)) { // if the input is a WP ID
       if (PathwayViewer_viewers.length > 0 && isOnWikiPathwaysDomain) { // if we are also on a *.wikipathways.org domain
         gpmlUri = PathwayViewer_viewers[0].gpml.gpmlUri; // TODO we are not handling multiple pathways on one page here
-      }
-      else {
+      } else {
         gpmlUri = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=' + wpId + '&rev=' + revision;
       }
-    }
-    else {
+    } else {
       throw new Error('Pathvisiojs cannot handle the data source type entered.');
     }
 
@@ -244,8 +248,7 @@ var developmentLoader = function() {
         script.onreadystatechange = script.onload = null;
         if(/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent)) {
           window.setTimeout(function(){handler();},8,this);
-        }
-        else {
+        } else {
           handler();
         }
       };
@@ -255,7 +258,7 @@ var developmentLoader = function() {
     (function(){
       if(array.length!==0){
         loader(array.shift(),arguments.callee);
-      }else{
+      } else{
         callback();
       }
     })();
@@ -267,9 +270,12 @@ var developmentLoader = function() {
     attr('id', 'pathvisiojs-diagram').
     attr('version', '1.1').
     attr('baseProfile', 'full').
+    /*
     attr('xmlns', 'http://www.w3.org/2000/svg').
-    attr('xmlns:xmlns:xlink', 'http://www.w3.org/1999/xlink').
-    attr('xmlns:xmlns:ev', 'http://www.w3.org/2001/xml-events').
+    attr('xmlns:xlink', 'http://www.w3.org/1999/xlink').
+    attr('xmlns:ev', 'http://www.w3.org/2001/xml-events').
+    //*/
+    attr('data-hello', 'whiz').
     attr('width', '100%').
     attr('height', '100%').
     attr('style', 'display: none; ');
@@ -321,6 +327,7 @@ var developmentLoader = function() {
     });
   }
 
+  /*
   function preload(outsideCallback) {
     var hostname = decodeURI(window.location.hostname);
 
@@ -341,12 +348,12 @@ var developmentLoader = function() {
             outsideCallback(parsedInputData);
           });
         });
-      }
-      else { //if this is the production version
+      } else { //if this is the production version
         outsideCallback(parsedInputData);
       }
     });
   }
+  //*/
 
   function loadFrames(inputData, callback) {
     console.log(inputData);
@@ -362,7 +369,7 @@ var developmentLoader = function() {
   }
 
   return{
-    preload:preload,
+    //preload:preload,
     loadFrames:loadFrames,
     parseUriParams:parseUriParams
   };

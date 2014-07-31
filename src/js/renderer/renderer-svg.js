@@ -74,16 +74,41 @@ function initStyles(renderer) {
   }
 }
 
+function normalizeShapeStyles(pvjsonElement) {
+  // Do not need normalization:
+  // backgroundColor
+  // borderWidth
+
+  //  backgroundOpacity
+  if (pvjsonElement.hasOwnProperty('backgroundOpacity') && !pvjsonElement.hasOwnProperty('fillOpacity')) {
+    pvjsonElement.fillOpacity = pvjsonElement.backgroundOpacity
+  }
+
+  // borderColor
+  if (pvjsonElement.hasOwnProperty('borderColor') && !pvjsonElement.hasOwnProperty('color')) {
+    pvjsonElement.color = pvjsonElement.borderColor
+  }
+
+  // borderOpacity
+  if (pvjsonElement.hasOwnProperty('borderOpacity')) {
+    // TODO currently cross-platform-shapes do not support borderOpacity upon creation
+  }
+
+  return pvjsonElement
+}
+
 function render(renderer, pvjsonElement) {
+  // Keep both node and text because a node may take both form
   var shape, text
 
   if (!!pvjsonElement.shape && pvjsonElement.shape !== 'none') {
-    shape = renderShape(renderer, pvjsonElement)
+    shape = renderShape(renderer, normalizeShapeStyles(pvjsonElement))
   }
   if (!!pvjsonElement.textContent) {
     text = renderText(renderer, pvjsonElement)
   }
 
+  // If nothing rendered
   return shape || text || null
 }
 
@@ -110,48 +135,19 @@ function renderShape(renderer, pvjsonElement) {
     }
   }
 
-  self.mypvjson = pvjson;
-
   var node = renderer.crossPlatformShapesInstance[shapeName](pvjsonElement)
     , $node = d3.select(node)
 
   var entityReference = pvjsonElement.entityReference;
-  // TODO delegate this to selector
-  if (!!entityReference) {
+
+  // TODO delegate events to selector
+  if (!!entityReference && pvjsonElement.type !== void 0) {
     // right now, pathways generally don't have a shape, so they are being handled by attaching events to their text.
-    var entityReferenceRendererArguments = {};
-    entityReferenceRendererArguments.metadata = {
-      label:pvjsonElement.textContent,
-      description:pvjsonElement.type
-    };
-    entityReferenceRendererArguments.xrefs = {};
-    var typesBridgedbHandles = ['Protein', 'Dna', 'Rna', 'SmallMolecule'];
-    var type = pvjsonElement.type;
-    if (!!type) {
-      if (!_.isArray(type)) {
-        type = [type];
-      }
-
-      if (_.intersection(type, typesBridgedbHandles).length > 0) {
-        // get Biopax EntityReference that this pathway entity refers to
-        var dereferencedEntityReference = pvjson.elements.filter(function(element) {
-          return element.id === entityReference;
-        })[0];
-
-        // From this Biopax EntityReference, get the xrefs (UnificationXrefs and/or RelationshipXrefs) from BridgeDB (in the future, we could additionally get them from mygene.info)
-        entityReferenceRendererArguments.xrefs.id = dereferencedEntityReference.xrefs.filter(function(xref) {
-          return xref.indexOf('bridgedb.org' > -1);
-        })[0];
-      } else {
-        // if BridgeDB doesn't handle pathway entities of this type, we will just provide a linkout using the entityReference IRI, but without multiple UnificationXrefs or RelationshipXrefs
-        entityReferenceRendererArguments.xrefs.id = pvjsonElement.entityReference;
-      }
-    }
-
-    var notDragged = true;
 
     // Add class to change mouse hover
     $node.classed({'has-xref': true});
+
+    var notDragged = true;
 
     $node.on("mousedown", function(d,i) {
       notDragged = true;
@@ -161,8 +157,41 @@ function renderShape(renderer, pvjsonElement) {
     })
     .on("mouseup", function(d,i) {
       if (notDragged) {
-        EntityReference.render(renderer.pvjs, entityReferenceRendererArguments);
-      }
+        // Search for reference id on demand
+
+        var referenceId = entityReference
+
+        // If BridgeDB handles pathway entities of this type
+        if (['Protein', 'Dna', 'Rna', 'SmallMolecule'].indexOf(pvjsonElement.type) !== -1) {
+          // Get all xrefs with given id
+          var selector = renderer.pvjs.sourceData.selector.filteredByXRef('id:'+entityReference).getFirst()
+          // If any xref found
+          if (!selector.isEmpty()) {
+            // If first element has xrefs field
+            if (selector[0].xrefs && selector[0].xrefs.length) {
+              // Filter only bridgebd xrefs
+              var filtered = selector[0].xrefs.filter(function(xref){
+                return xref.indexOf('bridgedb.org' !== -1)
+              })
+
+              // If at least one xref left
+              if (filtered.length) {
+                referenceId = filtered[0]
+              }
+            }
+          }
+        }
+
+        EntityReference.render(renderer.pvjs, {
+          metadata: {
+            label: pvjsonElement.textContent
+          , description: pvjsonElement.type
+          }
+        , xrefs: {
+            id: referenceId
+          }
+        });
+      } // end of if notDragged
     });
   }
 
@@ -209,15 +238,33 @@ function renderText(renderer, pvjsonElement) {
 }
 
 /**
+ * Check if data element has an id attribute
+ *
+ * @param  {object} pvjsonElement
+ * @return {Boolean}
+ */
+RendererSvg.isValidElement = function(pvjsonElement) {
+  return pvjsonElement && pvjsonElement.id !== undefined
+}
+
+/**
+ * Check if data element is not rendered
+ *
+ * @param  {object}  pvjsonElement [description]
+ * @return {Boolean}               [description]
+ */
+RendererSvg.hasElement = function(pvjsonElement) {
+  return this._elementsHash[pvjsonElement.id] !== void 0 && this._elementsHash[pvjsonElement.id] !== null
+}
+
+
+/**
  * Check if element is rendered, and if not register and render it
  *
  * @param {object} pvjsonElement
  */
 RendererSvg.addElement = function(pvjsonElement) {
-  // Check if data element has an id attribute
-  if (pvjsonElement && pvjsonElement.id !== undefined &&
-    // Check if data element is not already rendered
-     (this._elementsHash[pvjsonElement.id] === undefined || !this._elementsHash[pvjsonElement.id])) {
+  if (this.isValidElement(pvjsonElement) && !this.hasElement(pvjsonElement)) {
     // TODO this should be refactored and removed
     pvjsonElement.containerSelector = '#viewport'
 
@@ -228,15 +275,88 @@ RendererSvg.addElement = function(pvjsonElement) {
   }
 }
 
+var selectorToSvgStyleMap = {
+  backgroundColor: 'fill'
+, backgroundOpacity: 'fill-opacity'
+, borderColor: 'stroke'
+, borderWidth: 'stroke-width'
+, borderOpacity: 'stroke-opacity'
+}
+
+function normalizeSelectorStyle(key) {
+  if (selectorToSvgStyleMap.hasOwnProperty(key)) {
+    return selectorToSvgStyleMap[key]
+  } else {
+    return key
+  }
+}
+
+function styleStringToMap(str) {
+  var _styles = str.trim().split(';')
+    , _style
+    , styles = {}
+
+  for (var s in _styles) {
+    _style = _styles[s].trim().split(':')
+
+    if (_style.length === 2) {
+      styles[_style[0]] = _style[1]
+    }
+  }
+
+  return styles
+}
+
 /**
- * Update element attributes (if element exists)
+ * Update element attributes and style (if element exists)
  *
  * @param  {object} pvjsonElement
- * @param  {string} attributeName
- * @param  {string|number} attributeValue
+ * @param  {object} styles object style name (key) and style value (value)
  */
-RendererSvg.updateElement = function(pvjsonElement, attributeName, attributeValue) {
-  // TODO
+RendererSvg.updateElement = function(pvjsonElement, styles) {
+  if (!this.hasElement(pvjsonElement)) {return}
+
+  var $element = d3.select(this._elementsHash[pvjsonElement.id].render)
+    , styleKey
+    , styleMap = {}
+    , styleString = ''
+
+  if (!$element.empty()) {
+    // Look for old styles
+    if ($element.attr('style')) {
+      styleMap = styleStringToMap($element.attr('style'))
+    }
+
+    // Adjust new styles
+    for (var key in styles) {
+      // Translate Selector styles to Svg styles
+      styleKey = normalizeSelectorStyle(key)
+
+      // Add style to map if it does not collide with other defined style
+      if (!styles.hasOwnProperty(styleKey)) {
+        styleMap[styleKey] = styles[key]
+      }
+    }
+
+    // Compose style string
+    for (key in styleMap) {
+      styleString += key + ':' + styleMap[key] + ';'
+    }
+
+    // Update element
+    $element.attr('style', styleString)
+  }
+}
+
+RendererSvg.removeElementMarkers = function(pvjsonElement) {
+  if (!this.hasElement(pvjsonElement)) {return}
+
+  var $element = d3.select(this._elementsHash[pvjsonElement.id].render)
+
+  $element
+    .attr('marker-start', null)
+    .attr('marker-mid', null)
+    .attr('marker-end', null)
 }
 
 /**
@@ -245,7 +365,14 @@ RendererSvg.updateElement = function(pvjsonElement, attributeName, attributeValu
  * @param  {object} pvjsonElement
  */
 RendererSvg.removeElement = function(pvjsonElement) {
-  // TODO
+  if (!this.hasElement(pvjsonElement)) {return}
+
+  var $element = d3.select(this._elementsHash[pvjsonElement.id].render)
+
+  if (!$element.empty()) {
+    $element.remove()
+    delete this._elementsHash[pvjsonElement.id]
+  }
 }
 
 /**

@@ -23,7 +23,6 @@
     <script src="../tmp/d3.min.js"></script>
     -->
     <script src="../dist/lib/modernizr/js/modernizr.min.js"></script>
-    <script src="../dist/lib/cross-platform-shapes/js/cross-platform-shapes.min.js"></script>
     <script src="../dist/lib/cross-platform-text/js/cross-platform-text.min.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -56,10 +55,11 @@
       <a href="#" data-diff-left="WP414 71351" data-diff-right="WP414">Cell Cycle and Cell Division</a>
       <a href="#" data-diff-left="WP2075 71747" data-diff-right="WP2075">Alzheimers Disease</a>
       <a href="#" data-diff-left="WP339 71750" data-diff-right="WP339">ESC Pluripotency Pathways</a>
+      <a href="#" data-diff-left="WP2804 75228" data-diff-right="WP2804 75844"><i>zoom bug</i></a>
     </div>
 
-
   <script>
+  GLOBAL_alternative_navigation = false;
   /* *******************
   /* Load pathvisiojs
   /* *******************/
@@ -96,7 +96,7 @@
           window.pathInstance = pathInstance
 
           // Load plugins
-          pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
+          // pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
           pathvisiojsDiffviewer(pathInstance, {
             sourceData: [
               {

@@ -10,27 +10,26 @@ module.exports = {
    */
   loadAndConvert: function(pvjs, callback) {
     var sourceData = pvjs.sourceData
+      , pathwayMetadata = {}
+      ;
 
     // Check for uri
     if (!pvjs.sourceData.uri) {
-      return callback('No uri specified', {})
+      return callback('No uri specified', {});
     }
 
     if (pvjs.sourceData.fileType === 'gpml') {
+      pathwayMetadata.dbName = sourceData.db || 'wikipathways';
+      pathwayMetadata.dbId = sourceData.dbId || 'WP0';
+      pathwayMetadata.idVersion = sourceData.idVersion || 0;
       // Load xml
       Utils.loadXmlFromUri(pvjs.sourceData.uri, function(xml) {
-          // TODO get the correct metadata. this is placeholder text.
-          var pathwayMetadata = {};
-          pathwayMetadata.idVersion = 0;
-          pathwayMetadata.dbName = 'wikipathways';
-          pathwayMetadata.dbId = 'WP1';
-
-          Gpml.toPvjson(xml, pathwayMetadata, function(err, pvjson) {
-            callback(err, pvjson)
-          });
-      })
+        Gpml.toPvjson(xml, pathwayMetadata, function(err, pvjson) {
+          return callback(err, pvjson);
+        });
+      });
     } else {
-      return callback('Cannot get pvjson from the specified input.', {})
+      return callback('Cannot get pvjson from the specified input.', {});
     }
   }
 }

@@ -17,34 +17,36 @@ chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 describe('Quick test for development', function() {
     var browser;
     var allPassed = true;
-
     before(function(done) {
-      browser = wd.remote({
-        hostname: '127.0.0.1',
-          port: 4444
-      }, 'promiseChain');
+        browser = wd.remote({
+          hostname: '127.0.0.1',
+            port: '4444' 
+        }, 'promiseChain');
 
-      /*
-      // optional extra logging
-      browser.on('status', function(info) {
-        console.log(info.cyan);
-      });
-      browser.on('command', function(eventType, command, response) {
-        console.log(' > ' + eventType.cyan, command, (response || '').grey);
-      });
-      browser.on('http', function(meth, path, data) {
-        console.log(' > ' + meth.magenta, path, (data || '').grey);
-      });
-      //*/
+        /*
+        // optional extra logging
+        browser.on('status', function(info) {
+          console.log(info.cyan);
+        });
+        browser.on('command', function(eventType, command, response) {
+          console.log(' > ' + eventType.cyan, command, (response || '').grey);
+        });
+        browser.on('http', function(meth, path, data) {
+          console.log(' > ' + meth.magenta, path, (data || '').grey);
+        });
+        browser.on('command', function(eventType, command, response) {
+          if (eventType === 'RESPONSE' && command === 'quit()') {
+            console.log('Exiting selenium...');
+          }
+        });
+        //*/
 
-      var width = 800,
-          height = 800;
-      browser
-          .init({browserName:'phantomjs'})
-
-          .setWindowSize(width, height)
-
-          .nodeify(done);
+        var width = 800,
+            height = 800;
+        browser
+            .init(desired)
+            .setWindowSize(width, height)
+            .nodeify(done);
     });
 
     afterEach(function(done) {
@@ -61,7 +63,7 @@ describe('Quick test for development', function() {
     it("should render the 'dev' test page", function(done) {
         browser
             .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/dev/dev.gpml")
-            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 500)
+            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 3000)
             .saveScreenshot('tmp/dev-' + desired.browserName + '-test.png')
             .nodeify(done);
     });
