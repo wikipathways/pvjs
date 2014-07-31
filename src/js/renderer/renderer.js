@@ -5,6 +5,7 @@ var _ = require('lodash')
   , InfoBox = require('./info-box.js')
   , PublicationXref = require('./publication-xref.js')
   , EntityReference = require('./annotation/entity-reference.js')
+  // using deglobalify
   , SvgPanZoom = require('./../../../lib/svg-pan-zoom/src/svg-pan-zoom.js', ['svgPanZoom'])
   ;
 
@@ -30,7 +31,7 @@ module.exports = function(){
 
   // Check for Modernizr support
   if (Modernizr && Modernizr.inlinesvg) {
-    supportedRenderers.push('svg')
+    supportedRenderers.push('svg');
   }
 
   /**
