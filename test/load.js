@@ -270,9 +270,12 @@ var developmentLoader = function() {
     attr('id', 'pathvisiojs-diagram').
     attr('version', '1.1').
     attr('baseProfile', 'full').
+    /*
     attr('xmlns', 'http://www.w3.org/2000/svg').
-    attr('xmlns:xmlns:xlink', 'http://www.w3.org/1999/xlink').
-    attr('xmlns:xmlns:ev', 'http://www.w3.org/2001/xml-events').
+    attr('xmlns:xlink', 'http://www.w3.org/1999/xlink').
+    attr('xmlns:ev', 'http://www.w3.org/2001/xml-events').
+    //*/
+    attr('data-hello', 'whiz').
     attr('width', '100%').
     attr('height', '100%').
     attr('style', 'display: none; ');
@@ -324,6 +327,7 @@ var developmentLoader = function() {
     });
   }
 
+  /*
   function preload(outsideCallback) {
     var hostname = decodeURI(window.location.hostname);
 
@@ -349,6 +353,7 @@ var developmentLoader = function() {
       }
     });
   }
+  //*/
 
   function loadFrames(inputData, callback) {
     console.log(inputData);
@@ -364,7 +369,7 @@ var developmentLoader = function() {
   }
 
   return{
-    preload:preload,
+    //preload:preload,
     loadFrames:loadFrames,
     parseUriParams:parseUriParams
   };
