@@ -158,15 +158,15 @@
 
     var diff = this.computeDiff()
 
-    this.initDiffView(diff.added.length, diff.updated.length, diff.removed.length)
+    var $changesList = this.initDiffView()
 
     // Store elements grouped by change type and group name
     this.elementsCache = {added: {}, updated: {}, removed: {}}
     this.elementsReferences = {}
 
-    if (diff.added.length) {this.renderDiffsOfType('added', diff.added, this.$listAdded, this.elements2)}
-    if (diff.updated.length) {this.renderDiffsOfType('updated', diff.updated, this.$listUpdated, this.elementsMerge)}
-    if (diff.removed.length) {this.renderDiffsOfType('removed', diff.removed, this.$listRemoved, this.elements)}
+    this.renderDiffsOfType('added', diff.added, $changesList, this.elements2)
+    this.renderDiffsOfType('updated', diff.updated, $changesList, this.elementsMerge)
+    this.renderDiffsOfType('removed', diff.removed, $changesList, this.elements)
 
     this.hookDiffNavigation()
 
@@ -301,39 +301,20 @@
    *
    * @return {object} jQuery object
    */
-  PathvisiojsDiffViewer.prototype.initDiffView = function(initAdded, initUpdated, initRemoved) {
-    // By default these
-    initAdded = initAdded === void 0 ? true : initAdded
-    initUpdated = initUpdated === void 0 ? true : initUpdated
-    initRemoved = initRemoved === void 0 ? true : initRemoved
-
-    var $changesList = $('<div class="changes changes-list"></div>')
-      , $changesContainer1
-      , $changesContainer2
-      , $changesContainer3
-
-    if (initAdded) {
-      $changesContainer1 = $('<div class="changes-container" data-level="1" data-type="added">').appendTo($changesList)
-      $changesContainer1.append($('<div class="changes-title changes-parent change-added"><span>Added</span></div>'))
-      this.$listAdded = $('<div class="changes-list"></div>').appendTo($changesContainer1)
-    }
-
-    if (initUpdated) {
-      $changesContainer2 = $('<div class="changes-container" data-level="1" data-type="updated">').appendTo($changesList)
-      $changesContainer2.append($('<div class="changes-title changes-parent change-updated"><span>Updated</span></div>'))
-      this.$listUpdated = $('<div class="changes-list"></div>').appendTo($changesContainer2)
-    }
-
-    if (initRemoved) {
-      $changesContainer3 = $('<div class="changes-container" data-level="1" data-type="removed">').appendTo($changesList)
-      $changesContainer3.append($('<div class="changes-title changes-parent change-removed"><span>Removed</span></div>'))
-      this.$listRemoved = $('<div class="changes-list"></div>').appendTo($changesContainer3)
-    }
-
-    this.$paneCenter.append($changesList)
+  PathvisiojsDiffViewer.prototype.initDiffView = function() {
+    return $('<div class="changes changes-list"></div>').appendTo(this.$paneCenter)
   }
 
-  PathvisiojsDiffViewer.prototype.renderDiffsOfType = function(type, elementsDiff, $listContainer, elements) {
+  PathvisiojsDiffViewer.prototype.initDiffViewList = function($changesList, type, title) {
+    var $changesContainer = $('<div class="changes-container" data-level="1" data-type="' + type + '">')
+      .appendTo($changesList)
+      .append($('<div class="changes-title changes-parent change-' + type + '"><span>' + title + '</span></div>'))
+
+    // Return jQuery element of changes list
+    return $('<div class="changes-list"></div>').appendTo($changesContainer)
+  }
+
+  PathvisiojsDiffViewer.prototype.renderDiffsOfType = function(type, elementsDiff, $changesList, elements) {
     if (elementsDiff.length === 0) {return}
 
     // Sort by gpml:element and shape
@@ -344,6 +325,8 @@
       , groupName = ''
       , elementType = ''
       , _type = ''
+      , $listContainer = null
+      , groupsOrdered = []
 
     for (d in elementsDiffSorted) {
       elementType = elementsDiffSorted[d]['gpml:element'] ? elementsDiffSorted[d]['gpml:element'].replace(/^gpml\:/, '') : '';
@@ -371,9 +354,41 @@
       groups[groupName].push(elementsDiffSorted[d])
     }
 
-    for (groupName in groups) {
-      this.renderDiffGroup(type, groupName, groups[groupName], $listContainer, elements)
+    // Render only if at least one group exists
+    if (!$.isEmptyObject(groups)) {
+      $listContainer = this.initDiffViewList($changesList, type, type.charAt(0).toUpperCase() + type.slice(1))
+
+      // Create an array of ordered groups
+      groupsOrdered = orderGroups(groups)
+
+      for (var i in groupsOrdered) {
+        this.renderDiffGroup(type, groupsOrdered[i].name, groupsOrdered[i].group, $listContainer, elements)
+      }
     }
+  }
+
+  var groupsOrder = ['Data Nodes', 'Groups', 'Interactions', 'Graphical Objects']
+
+  function orderGroups(groups) {
+    var groupName = ''
+      , groupsOrdered = []
+
+    // First add ordered groups
+    for (var i in groupsOrder) {
+      groupName = groupsOrder[i]
+
+      if (groups.hasOwnProperty(groupName)) {
+        groupsOrdered.push({group: groups[groupName], name: groupName})
+        delete groups[groupName]
+      }
+    }
+
+    // If there are still groups, add them to the end in any order
+    for(groupName in groups) {
+      groupsOrdered.push({group: groups[groupName], name: groupName})
+    }
+
+    return groupsOrdered
   }
 
   PathvisiojsDiffViewer.prototype.renderDiffGroup = function(type, groupName, groupElements, $listContainer, elements) {
@@ -636,18 +651,29 @@
       , $next = null
       , $nextTitle = null
 
-    if (direction === 'up') {
+    if (direction === 'up' || direction === 'left') {
       // Previous sibling
       $next = $focused.prev()
-    } else if (direction === 'down') {
-      // Next sibling
-      $next = $focused.next()
-    } else if (direction === 'left') {
-      // Get parent
-      $next = $focused.parent().closest('.changes-container')
-    } else if (direction === 'right') {
-      // Get first child
+
+      // If no previous sibling than next is parent
+      if ($next.length == 0) {
+        $next = $focused.parent().closest('.changes-container')
+      }
+    } else if (direction === 'down' || direction === 'right') {
+      // First child
       $next = $focused.children('.changes-list').children('.changes-container').first()
+
+      // Next parent sibling if no childs
+      if ($next.length == 0) {
+        $next = $focused.next()
+
+        if ($next.length == 0) {
+          $next = $focused.parent().closest('.changes-container').next()
+          if ($next.length == 0) {
+            $next = $focused.parent().closest('.changes-container').parent().closest('.changes-container').next()
+          }
+        }
+      }
     }
 
     if ($next && $next.length && $next.get(0) !== $focused.get(0)) {
