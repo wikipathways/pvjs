@@ -191,8 +191,8 @@ function runLocalhostTest(opts) {
 
 //gulp.task('testLocalhost', ['browserSync'], function () {
 gulp.task('testLocalhost', function () {
-  return pathwaysStream
-  .take(16)
+  pathwaysStream
+  .take(15)
   .each(runBrowsers)
 });
 
