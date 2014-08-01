@@ -1,0 +1,262 @@
+<div class=diagram-container><svg id=pvjs-diagram-1 version=1.1 baseprofile=full xmlns=http://www.w3.org/2000/svg xlink=http://www.w3.org/1999/xlink ev=http://www.w3.org/2001/xml-events preserveaspectratio=xMidYMid width=1024 height=768 style="overflow: hidden; background-color:white; "><g class=viewport transform=matrix(4.30442476272583,0,0,4.30442476272583,160.0566423348621,-23.844242509487458)><defs id=defs><style type=text/css>	svg {
+		color-interpolation: auto;
+		image-rendering: auto;
+		shape-rendering: auto;
+		vector-effect: non-scaling-stroke;
+                background: white;
+	/* removed fill and stroke since they override marker specs */
+	/*	fill: white;
+    		stroke: black; */
+	}
+
+	/* default color for pathway elements */
+	.default-fill-color {
+		fill: black;
+	}
+	.default-stroke-color {
+		stroke: black;
+	}
+
+	/* default color of the background drawing board */
+	.board-fill-color {
+		fill: white;
+	}
+	.board-stroke-color {
+		stroke: white;
+	}
+
+	.text-area {
+		font-family: Sans-Serif, Helvetica, Arial;
+		text-align: center;
+		vertical-align: middle;
+		font-size: 10px;
+		fill: black;
+		fill-opacity: 1;
+		stroke: none;
+	}
+
+	.citation {
+		font-family: Sans-Serif, Helvetica, Arial;
+		text-align: center;
+		vertical-align: top;
+		font-size: 7px;
+		fill: #999999;
+		fill-opacity: 1;
+		stroke: none;
+	}
+
+	.info-box {
+		font-family: Sans-Serif;
+		font-size: 10px;
+		fill: black;
+		stroke: none;
+		text-align: left;
+		vertical-align: top;
+	}
+
+	.info-box-item-property-name {
+		font-weight: bold;
+	}
+
+	.info-box-item-property-value {
+	}
+
+	.data-node {
+		text-align: right;
+		fill-opacity: 1;
+		fill: white;
+		stroke: black;
+		stroke-width: 1;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+    		pointer-events:auto;
+	}
+	.data-node:hover {
+	 	cursor: pointer;
+	}
+
+	.has-xref:hover {
+		cursor: pointer;
+	}
+
+	.data-node.gene-product {
+	}
+
+	.metabolite {
+		stroke: blue;
+	}
+
+	.data-node.metabolite &gt; .text-area {
+		fill: blue;
+		fill-opacity: 1;
+		stroke: none;
+	}
+
+	.data-node.pathway {
+		stroke: none;
+		fill-opacity: 0;
+	}
+
+	.data-node.pathway &gt; .text-area {
+		fill: rgb(20,150,30);
+		fill-opacity: 1;
+		font-size: 12px;
+		font-weight: bold;
+	}
+
+	.data-node.protein {
+	}
+
+	.data-node.rna {
+	}
+
+	.data-node.unknown {
+	}
+
+	.label {
+		stroke: null;
+		stroke-width: 0;
+		fill-opacity: 0;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+	}
+
+	.shape {
+		fill-opacity: 0;
+		stroke: black;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+	}
+
+	.shape.none {
+		fill: none;
+		fill-opacity: 0;
+		stroke: none;
+	}
+
+	g.group-node &gt; .shape {
+		fill-opacity: 0.098;
+		stroke: gray;
+		stroke-miterlimit: 1;
+		stroke-width: 1px;
+    		pointer-events:none;
+	}
+
+	.group-node {
+		fill-opacity: 0.098;
+		stroke: gray;
+		stroke-miterlimit: 1;
+		stroke-width: 1px;
+    		pointer-events:none;
+	}
+
+	.group-node &gt; .text-area {
+		fill-opacity: 0.4;
+		font-family: Serif, Times;
+		font-size: 32px;
+		fill: black;
+		stroke-width: 0;
+		font-weight: bold;
+  	}
+
+	.group-node.none {
+		fill: rgb(180,180,100);
+		stroke-dasharray: 5,3;
+	}
+
+	.group-node.none &gt; .text-area {
+		display: none;
+  	}
+
+	/*.group-node.none:hover {
+		fill: rgb(255,180,100);
+		fill-opacity: 0.05;
+	}*/
+
+	.group-node.group {
+		fill-opacity: 0;
+		stroke: none;
+	}
+
+	.group-node.group &gt; .text-area {
+		display: none;
+  	}
+	/*.group-node.group:hover {
+		fill: rgb(0,0,255);
+		stroke-width: 1px;
+		stroke-dasharray: 5,3;
+		stroke: gray;
+		fill-opacity: 0.1;
+	}*/
+
+	.group-node.complex {
+		fill: rgb(180,180,100);
+	}
+
+	.group-node.complex &gt; .text-area {
+		display: none;
+  	}
+	/*.group-node.complex:hover {
+		fill: rgb(255,0,0);
+		fill-opacity: 0.05;
+	}*/
+
+  	.group-node.pathway {
+		fill: rgb(0,255,0);
+		stroke-dasharray: 5,3;
+	}
+	/*.group-node.pathway:hover {
+		fill: rgb(0,255,0);
+		fill-opacity: 0.2;
+	}*/
+	.group-node.pathway &gt; .text-area {
+		fill: rgb(20,150,30);
+		stroke: rgb(20,150,30);
+  }
+
+  .cellular-component {
+		fill-opacity: 0;
+		stroke: silver;
+	}
+
+  .graphical-line {
+		fill:none;
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	.interaction {
+		fill:none;
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	marker {
+		/* this is what should work per the spec
+		   stroke-dasharray: none; */
+		/* but I need to add this to make it work in Safari */
+		stroke-dasharray: 9999999999999999999999999;
+	}
+
+  .marker-end {
+    -webkit-transform: rotate(180deg);
+    -webkit-transform-origin: 50% 50%;
+
+    -o-transform: rotate(180deg);
+    -o-transform-origin: 50% 50%;
+
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
+  }
+
+	.solid-stroke {
+		/* this is what should work per the spec
+		   stroke-dasharray: none; */
+		/* but I need to add this to make it work in Safari */
+		stroke-dasharray: 9999999999999999999999999;
+	}
+
+	.dashed-stroke {
+		stroke-dasharray: 5,3;
+	}
+</style></defs><g id=viewport><path d=M49.5,154.5L130.5,154.5L130.5,175.5L49.5,175.5Z fill=#ffffff id=d6efe stroke-width=1 stroke=#000000></path><g transform="translate(90 165)" id=text-for-d6efe fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><g id=info-box-0 class="text-area info-box"><text id=info-box-text0 class=item x=0 y=14><tspan class=info-box-item-property-name>Title:</tspan><tspan class=info-box-item-property-value>New Pathway</tspan></text></g></g></g></svg></div><div class="annotation ui-draggable"><header class=annotation-header><span class=annotation-header-move><i class=icon-move></i></span> <span class=annotation-header-close><i class=icon-remove></i></span> <span class=annotation-header-text>Header</span><div class=annotation-description><h2>description</h2></div></header><span class=annotation-items-container><ul class=annotation-items-container-list></ul></span></div><div class=pathvisiojs-notifications></div><div class=pathvisiojs-highlighter><span class=twitter-typeahead style="position: relative; display: inline-block; direction: ltr; "><input type=text class="highlighter-input tt-hint" style="position: absolute; top: 0px; left: 0px; border-top-color: transparent; border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent; box-shadow: none; opacity: 1; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size:  ; background-position: 0% 0%; background-repeat: repeat repeat; " readonly autocomplete=off spellcheck=false tabindex=-1><input type=text placeholder="Enter node name to highlight" class="highlighter-input tt-input" autocomplete=off spellcheck=false style="position: relative; vertical-align: top; background-color: transparent; " dir=auto><pre aria-hidden=true style="position: absolute; visibility: hidden; white-space: pre; font-family: Helvetica, sans-serif, Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none; "></pre><span class=tt-dropdown-menu style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto; "><div class=tt-dataset-0></div></span></span><i class=highlighter-remove></i></div>
