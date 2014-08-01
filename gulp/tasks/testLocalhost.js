@@ -6,7 +6,8 @@ var gulp = require('gulp')
   , highland = require('highland')
   , path = require('path')
   , through = require('through')
-  , SpawnMocha = require('spawn-mocha-parallel')
+  , mocha = require('gulp-mocha')
+  //, SpawnMocha = require('spawn-mocha-parallel')
   ;
 
 /*
@@ -17,7 +18,25 @@ gulp.task('default', function () {
 //*/
 
 var expressPort = 3000; // incremented after each test to avoid colision
-args.browsers = (args.browser || 'phantomjs').split(',');
+var browsers = (args.browser || 'phantomjs').split(',');
+/*
+var browserInstances = {};
+browsers.forEach(function(browser) {
+  browserInstances[browser] = {};
+});
+
+highland(browsers)
+    .map(function(browser) {
+      var opts = {};
+      opts.midway = true;
+      opts.browser = browser;
+      opts.pathway = pathway;
+      return opts;
+    })
+    .map(buildMochaOpts)
+    .each(runLocalhostTest);
+    //*/
+
 //args.browsers = (args.browser || 'firefox,safari').split(',');
 //args.browsers = (args.browser || 'safari').split(',');
 
@@ -88,6 +107,7 @@ var startTime = new Date();
 
 var pathwaysStream = highland(pathways);
 
+/*
 function mocha(opts) {
   var spawnMocha = new SpawnMocha(opts);
   var stream = through(function write(file) {
@@ -116,7 +136,8 @@ function buildMochaOpts(opts) {
       //u: 'bdd-with-opts',
       R: 'spec',
       b: true,
-      t: 12000,
+      // timeout: this is the time mocha will spend on one test
+      t: 6000,
       c: true,
       debug: true,
     },
@@ -147,16 +168,21 @@ function buildMochaOpts(opts) {
   };
   return mochaOpts;
 }
+//*/
 
+//*
 var pathwaysCompletedCount = 0;
 function runBrowsers(pathway) {
+  console.log('pathway');
+  console.log(pathway);
+  process.env.PVJS_PATHWAY = pathway;
   pathwaysCompletedCount += 1;
   //console.log('Testing pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
   pathwaysStream.pause();
   if (pathwaysCompletedCount < pathways.length) {
     //pathwaysStream.pause();
   }
-  return highland(args.browsers)
+  return highland(browsers)
     .map(function(browser) {
       var opts = {};
       opts.midway = true;
@@ -164,19 +190,50 @@ function runBrowsers(pathway) {
       opts.pathway = pathway;
       return opts;
     })
-    .map(buildMochaOpts)
+    //.map(buildMochaOpts)
     .each(runLocalhostTest);
 }
+//*/
 
+process.env.BROWSER = 'phantomjs';
 
+function moveToNextPathway() {
+    browsersCompletedCount += 1;
+    console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + browsers.length + ' for pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
+    var later = new Date();
+    console.log('Elapsed time (ms): ' + (later - startTime));
+    if (browsersCompletedCount === browsers.length) {
+      browsersCompletedCount = 0;
+      pathwaysStream.resume();
+    }
+  through(function write(data) {
+    this.queue(data) //data *must* not be null
+  },
+  function end () { //optional
+    this.queue(null)
+  })
+}
+
+/*
+gulp.task('testLocalhost', function () {
+    return gulp.src('./test/tests/localhost.js', {read: false})
+        .pipe(mocha({reporter: 'nyan', timeout: 6000}));
+});
+//*/
+
+//*
 var browsersCompletedCount = 0;
 function runLocalhostTest(opts) {
-  return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
-    .pipe(mocha(opts))
+  console.log('runLocalhostTest')
+  return gulp.src('./test/tests/localhost.js', {read: false})
+    .pipe(mocha({reporter: 'nyan', timeout: 6000}))
+    .pipe(moveToNextPathway)
+  /*
     .on('error', function() {
       pathwaysStream.destroy();
       console.log('Destroyed stream due to error.');
     })
+  /*
     .on('end', function() {
       browsersCompletedCount += 1;
       console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + args.browsers.length + ' for pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
@@ -187,6 +244,7 @@ function runLocalhostTest(opts) {
         pathwaysStream.resume();
       }
     });
+    //*/
 }
 
 //gulp.task('testLocalhost', ['browserSync'], function () {
@@ -195,4 +253,4 @@ gulp.task('testLocalhost', function () {
   .take(15)
   .each(runBrowsers)
 });
-
+//*/
