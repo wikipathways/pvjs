@@ -1,0 +1,262 @@
+<div class=diagram-container><svg id=pvjs-diagram-1 version=1.1 baseprofile=full xmlns=http://www.w3.org/2000/svg xlink=http://www.w3.org/1999/xlink ev=http://www.w3.org/2001/xml-events preserveaspectratio=xMidYMid width=1024 height=768 style="overflow: hidden; background-color:white; "><g class=viewport transform=matrix(1.048206090927124,0,0,1.048206090927124,10.925120931234929,279.5950265650004)><defs id=defs><style type=text/css>	svg {
+		color-interpolation: auto;
+		image-rendering: auto;
+		shape-rendering: auto;
+		vector-effect: non-scaling-stroke;
+                background: white;
+	/* removed fill and stroke since they override marker specs */
+	/*	fill: white;
+    		stroke: black; */
+	}
+
+	/* default color for pathway elements */
+	.default-fill-color {
+		fill: black;
+	}
+	.default-stroke-color {
+		stroke: black;
+	}
+
+	/* default color of the background drawing board */
+	.board-fill-color {
+		fill: white;
+	}
+	.board-stroke-color {
+		stroke: white;
+	}
+
+	.text-area {
+		font-family: Sans-Serif, Helvetica, Arial;
+		text-align: center;
+		vertical-align: middle;
+		font-size: 10px;
+		fill: black;
+		fill-opacity: 1;
+		stroke: none;
+	}
+
+	.citation {
+		font-family: Sans-Serif, Helvetica, Arial;
+		text-align: center;
+		vertical-align: top;
+		font-size: 7px;
+		fill: #999999;
+		fill-opacity: 1;
+		stroke: none;
+	}
+
+	.info-box {
+		font-family: Sans-Serif;
+		font-size: 10px;
+		fill: black;
+		stroke: none;
+		text-align: left;
+		vertical-align: top;
+	}
+
+	.info-box-item-property-name {
+		font-weight: bold;
+	}
+
+	.info-box-item-property-value {
+	}
+
+	.data-node {
+		text-align: right;
+		fill-opacity: 1;
+		fill: white;
+		stroke: black;
+		stroke-width: 1;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+    		pointer-events:auto;
+	}
+	.data-node:hover {
+	 	cursor: pointer;
+	}
+
+	.has-xref:hover {
+		cursor: pointer;
+	}
+
+	.data-node.gene-product {
+	}
+
+	.metabolite {
+		stroke: blue;
+	}
+
+	.data-node.metabolite &gt; .text-area {
+		fill: blue;
+		fill-opacity: 1;
+		stroke: none;
+	}
+
+	.data-node.pathway {
+		stroke: none;
+		fill-opacity: 0;
+	}
+
+	.data-node.pathway &gt; .text-area {
+		fill: rgb(20,150,30);
+		fill-opacity: 1;
+		font-size: 12px;
+		font-weight: bold;
+	}
+
+	.data-node.protein {
+	}
+
+	.data-node.rna {
+	}
+
+	.data-node.unknown {
+	}
+
+	.label {
+		stroke: null;
+		stroke-width: 0;
+		fill-opacity: 0;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+	}
+
+	.shape {
+		fill-opacity: 0;
+		stroke: black;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+	}
+
+	.shape.none {
+		fill: none;
+		fill-opacity: 0;
+		stroke: none;
+	}
+
+	g.group-node &gt; .shape {
+		fill-opacity: 0.098;
+		stroke: gray;
+		stroke-miterlimit: 1;
+		stroke-width: 1px;
+    		pointer-events:none;
+	}
+
+	.group-node {
+		fill-opacity: 0.098;
+		stroke: gray;
+		stroke-miterlimit: 1;
+		stroke-width: 1px;
+    		pointer-events:none;
+	}
+
+	.group-node &gt; .text-area {
+		fill-opacity: 0.4;
+		font-family: Serif, Times;
+		font-size: 32px;
+		fill: black;
+		stroke-width: 0;
+		font-weight: bold;
+  	}
+
+	.group-node.none {
+		fill: rgb(180,180,100);
+		stroke-dasharray: 5,3;
+	}
+
+	.group-node.none &gt; .text-area {
+		display: none;
+  	}
+
+	/*.group-node.none:hover {
+		fill: rgb(255,180,100);
+		fill-opacity: 0.05;
+	}*/
+
+	.group-node.group {
+		fill-opacity: 0;
+		stroke: none;
+	}
+
+	.group-node.group &gt; .text-area {
+		display: none;
+  	}
+	/*.group-node.group:hover {
+		fill: rgb(0,0,255);
+		stroke-width: 1px;
+		stroke-dasharray: 5,3;
+		stroke: gray;
+		fill-opacity: 0.1;
+	}*/
+
+	.group-node.complex {
+		fill: rgb(180,180,100);
+	}
+
+	.group-node.complex &gt; .text-area {
+		display: none;
+  	}
+	/*.group-node.complex:hover {
+		fill: rgb(255,0,0);
+		fill-opacity: 0.05;
+	}*/
+
+  	.group-node.pathway {
+		fill: rgb(0,255,0);
+		stroke-dasharray: 5,3;
+	}
+	/*.group-node.pathway:hover {
+		fill: rgb(0,255,0);
+		fill-opacity: 0.2;
+	}*/
+	.group-node.pathway &gt; .text-area {
+		fill: rgb(20,150,30);
+		stroke: rgb(20,150,30);
+  }
+
+  .cellular-component {
+		fill-opacity: 0;
+		stroke: silver;
+	}
+
+  .graphical-line {
+		fill:none;
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	.interaction {
+		fill:none;
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	marker {
+		/* this is what should work per the spec
+		   stroke-dasharray: none; */
+		/* but I need to add this to make it work in Safari */
+		stroke-dasharray: 9999999999999999999999999;
+	}
+
+  .marker-end {
+    -webkit-transform: rotate(180deg);
+    -webkit-transform-origin: 50% 50%;
+
+    -o-transform: rotate(180deg);
+    -o-transform-origin: 50% 50%;
+
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
+  }
+
+	.solid-stroke {
+		/* this is what should work per the spec
+		   stroke-dasharray: none; */
+		/* but I need to add this to make it work in Safari */
+		stroke-dasharray: 9999999999999999999999999;
+	}
+
+	.dashed-stroke {
+		stroke-dasharray: 5,3;
+	}
+</style></defs><g id=viewport><path d=M46.779798240527754,68.67569686439079L223.99431092799242,68.67569686439079L223.99431092799242,156.493665670104L46.779798240527754,156.493665670104Z fill=#99ffff id=a14a0 stroke-width=1 stroke=#000000></path><g transform="translate(135.38705458426008 112.58468126724739)" id=text-for-a14a0 font-family="Times New Roman" fill=#000000 font-size=15 pointer-events=none><text id=text-line0 x=0 y=-0.55em dominant-baseline=central text-anchor=middle>Label</text><text id=text-line1 x=0 y=0.55em dominant-baseline=central text-anchor=middle>font: Times New Roman</text></g><path d=M288.8300451978405,67.97028504632709L369.8300451978405,67.97028504632709L369.8300451978405,88.97028504632709L288.8300451978405,88.97028504632709Z fill=#99ffff id=bd539 stroke-width=1 stroke=#000000></path><g transform="translate(329.3300451978405 78.47028504632709)" id=text-for-bd539 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>Label</text></g><path d=M324.0465341408019,118.47339819311014L405.0465341408019,118.47339819311014L405.0465341408019,139.47339819311014L324.0465341408019,139.47339819311014Z fill=#99ffff id=f4e58 stroke-width=1 stroke=#000000></path><g transform="translate(364.5465341408019 128.97339819311014)" id=text-for-f4e58 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>Label</text></g><path d=M295.0083891468851,104.72187740301501L376.0083891468851,104.72187740301501L376.0083891468851,125.72187740301501L295.0083891468851,125.72187740301501Z fill=transparent id=ac5bb stroke-width=1 stroke=#000000></path><g transform="translate(335.5083891468851 115.22187740301501)" id=text-for-ac5bb fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>Label</text></g><path d=M454.244057936694,65.23143154314242L535.2440579366939,65.23143154314242L535.2440579366939,86.23143154314242L454.244057936694,86.23143154314242Z fill=#99ffff id=f3bc5 stroke-width=1 stroke=#000000></path><g transform="translate(494.744057936694 75.73143154314242)" id=text-for-f3bc5 font-weight=bold fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>Label</text></g><path d=M457.8746311851016,109.9958360252928L538.8746311851016,109.9958360252928L538.8746311851016,130.99583602529282L457.8746311851016,130.99583602529282Z fill=#99ffff id=a2cca stroke-width=1 stroke=#000000></path><g transform="translate(498.3746311851016 120.4958360252928)" id=text-for-a2cca font-style=italic fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>Label</text></g><path d=M569.7854592105792,69.94480733932077L650.7854592105792,69.94480733932077L650.7854592105792,90.94480733932077L569.7854592105792,90.94480733932077Z fill=#99ffff id=fb9a8 stroke-width=1 stroke=#ff0000></path><g transform="translate(610.2854592105792 80.44480733932077)" id=text-for-fb9a8 font-style=italic fill=#ff0000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>Label</text></g><path d=M612.6421471086685,115.61359714823796C666.6421471086685,115.61359714823796,666.6421471086685,136.61359714823794,612.6421471086685,136.61359714823794C558.6421471086685,136.61359714823794,558.6421471086685,115.61359714823796,612.6421471086685,115.61359714823796 fill=#99ffff id=dab04 stroke-width=1 stroke=#ff0000></path><g transform="translate(612.6421471086685 126.11359714823796)" id=text-for-dab04 fill=#ff0000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>Label</text></g><path d=M687.3650770449742,114.91296020556277L781.3917197452229,114.91296020556277L781.3917197452229,153.36624203821654L687.3650770449742,153.36624203821654Z fill=#99ffff id=fcadd stroke-width=1 stroke=#000000></path><g transform="translate(734.3783983950985 134.13960112188965)" id=text-for-fcadd fill=#000000 font-size=20 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>Label</text></g><path d=M836.8268247011688,69.12921348314609L928.061797752809,69.12921348314609L928.061797752809,101.4927211731432L836.8268247011688,101.4927211731432Z fill=#99ffff id=ff6ef stroke-width=5 stroke=#000000></path><g transform="translate(882.4443112269889 85.31096732814464)" id=text-for-ff6ef fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>Label</text></g><path d=M841.3141216309621,123.63907485524436L922.3141216309621,123.63907485524436L922.3141216309621,144.63907485524436L841.3141216309621,144.63907485524436Z fill=#99ffff id=da678 stroke-width=1 stroke=#0000ff></path><g transform="translate(881.8141216309621 134.13907485524436)" id=text-for-da678 fill=#0000ff font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>Label</text></g><path d=M698.8300451978403,64.96215496502629L779.8300451978403,64.96215496502629L779.8300451978403,85.96215496502629L698.8300451978403,85.96215496502629Z fill=#99ffff id=f83ef stroke-dasharray=5,3 stroke-width=1 stroke=#000000></path><g transform="translate(739.3300451978403 75.46215496502629)" id=text-for-f83ef fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>Label</text></g><g transform="translate(212.78721278721278 28.986013986013994)" id=text-for-e7b2b font-weight=bold fill=#000000 font-size=30 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>SAVE</text></g><g transform="translate(273.2112887112888 25.66766566766567)" id=text-for-cbd2a fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=-0.55em dominant-baseline=central text-anchor=start>This pathway is to be saved long-term to test the ability of</text><text id=text-line1 x=0 y=0.55em dominant-baseline=central text-anchor=start>GPML renderers to handle the element type named in the title.</text></g><g id=info-box-0 class="text-area info-box"><text id=info-box-text0 class=item x=0 y=14><tspan class=info-box-item-property-name>Title:</tspan><tspan class=info-box-item-property-value>Rendering Test Protocol for labels</tspan></text><text id=info-box-text1 class=item x=0 y=28><tspan class=info-box-item-property-name>Organism:</tspan><tspan class=info-box-item-property-value>Anopheles gambiae</tspan></text></g></g></g></svg></div><div class="annotation ui-draggable"><header class=annotation-header><span class=annotation-header-move><i class=icon-move></i></span> <span class=annotation-header-close><i class=icon-remove></i></span> <span class=annotation-header-text>Header</span><div class=annotation-description><h2>description</h2></div></header><span class=annotation-items-container><ul class=annotation-items-container-list></ul></span></div><div class=pathvisiojs-notifications></div><div class=pathvisiojs-highlighter><span class=twitter-typeahead style="position: relative; display: inline-block; direction: ltr; "><input type=text class="highlighter-input tt-hint" style="position: absolute; top: 0px; left: 0px; border-top-color: transparent; border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent; box-shadow: none; opacity: 1; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size:  ; background-position: 0% 0%; background-repeat: repeat repeat; " readonly autocomplete=off spellcheck=false tabindex=-1><input type=text placeholder="Enter node name to highlight" class="highlighter-input tt-input" autocomplete=off spellcheck=false style="position: relative; vertical-align: top; background-color: transparent; " dir=auto><pre aria-hidden=true style="position: absolute; visibility: hidden; white-space: pre; font-family: Helvetica, sans-serif, Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none; "></pre><span class=tt-dropdown-menu style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto; "><div class=tt-dataset-0></div></span></span><i class=highlighter-remove></i></div>

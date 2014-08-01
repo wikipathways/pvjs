@@ -14,7 +14,7 @@ var pathway = JSON.parse(process.env.PVJS_PATHWAY);
 var pathwayName = pathway.name;
 
 var desired = {"browserName": process.env.BROWSER};
-desired.name = 'Local Protocol Test for ' + pathwayName.toUpperCase() + ' (' + desired.browserName + ')';
+desired.name = 'Local Protocol for ' + pathwayName.toUpperCase().cyan + ' (' + desired.browserName.grey + ')';
 desired.tags = ['localhost'];
 
 chai.use(chaiAsPromised);
@@ -23,7 +23,7 @@ chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 
 // http configuration, not needed for simple runs
 wd.configureHttp( {
-    timeout: 6000,
+    timeout: 3000,
     retryDelay: 1500,
     retries: 5
 });
@@ -51,8 +51,8 @@ describe(desired.name, function() {
       });
       //*/
 
-      var width = 800,
-          height = 800;
+      var width = 1024,
+          height = 768;
       browser
           .init(desired)
           .setWindowSize(width, height)
@@ -73,11 +73,37 @@ describe(desired.name, function() {
     it('should render diagram', function(done) {
         browser
             .get('http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/protocol/' + pathway.fileName)
-            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 500)
+            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 4000)
             .saveScreenshot('tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png')
             .nodeify(done);
     });
 
+    /*
+    it("should save the HTML if it is PhantomJS", function(done) {
+        browser
+            .elementsByTagName('div')
+            .then(function(elements){
+                return elements[0].getAttribute("innerHTML")
+            })
+            .then(function(innerHTML){
+                var Minimize = require('minimize')
+                , minimize = new Minimize();
+
+              if (desired.browserName === 'phantomjs') {
+                  minimize.parse(innerHTML, function (error, minifiedInnerHtml) {
+                    fs.writeFileSync('tmp/protocol/' + pathwayName + '-' + desired.browserName + '.html', minifiedInnerHtml);
+                    expect(1).to.equal(1);
+                    return done();
+                  });
+              } else {
+                  expect(1).to.equal(1);
+                  return done();
+              }
+            });
+    });
+    //*/
+
+    /*
     it("should confirm test and last known good screenshots are the same", function(done) {
         imageDiff({
           actualImage: 'tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png',
@@ -85,13 +111,15 @@ describe(desired.name, function() {
           diffImage: 'tmp/protocol/' + pathwayName + '-' + desired.browserName + '-difference.png',
         }, function (err, imagesAreSame) {
           expect(imagesAreSame).to.equal(true);
-          done();
+          return done();
           // error will be any errors that occurred
           // imagesAreSame is a boolean whether the images were the same or not
           // diffImage will have an image which highlights differences
         });
     });
+    //*/
 
+    /*
     it("should confirm test and last known good innerHTML is the same", function(done) {
         browser
             .elementsByTagName('div')
@@ -102,17 +130,12 @@ describe(desired.name, function() {
                 var Minimize = require('minimize')
                 , minimize = new Minimize();
 
-                //*
                 minimize.parse(innerHTML, function (error, minifiedInnerHtml) {
                   fs.writeFileSync('tmp/protocol/' + pathwayName + '-' + desired.browserName + '.html', minifiedInnerHtml);
-                  var lastKnownGood = fs.readFileSync('tmp/protocol/' + pathwayName + '-phantomjs.html', {encoding: 'utf8'});
-                  console.log('They are the same');
-                  console.log(lastKnownGood === minifiedInnerHtml);
-                  expect(lastKnownGood).to.equal(minifiedInnerHtml);
-                  done();
-                  //console.log(lastKnownGood);
+                  var lastKnownGoodHtml = fs.readFileSync('test/input-data/protocol/' + pathwayName + '-phantomjs-lkg.html', {encoding: 'utf8'});
+                  expect(lastKnownGoodHtml).to.equal(minifiedInnerHtml);
+                  return done();
                 });
-                //*/
 
                 /*
                 var minimizeSync = highland.wrapCallback(minimize.parse);
@@ -123,7 +146,9 @@ describe(desired.name, function() {
                     console.log(result);
                   });
                 //*/
+    /*
             });
     });
+    //*/
 });
 

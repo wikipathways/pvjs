@@ -7,86 +7,13 @@ var gulp = require('gulp')
   , path = require('path')
   , through = require('through')
   , SpawnMocha = require('spawn-mocha-parallel')
+  , through2 = require('through2')
   ;
-
-/*
-gulp.task('default', function () {
-  gulp.watch('{lib,test}/*', test);
-  test();
-});
-//*/
 
 var expressPort = 3000; // incremented after each test to avoid colision
 args.browsers = (args.browser || 'phantomjs').split(',');
 //args.browsers = (args.browser || 'firefox,safari').split(',');
 //args.browsers = (args.browser || 'safari').split(',');
-
-/*
-var pathwaysAlreadyConsidered = fs.readdirSync('./test/input-data/protocol')
-  .filter(function(fileName) {
-    return fileName.indexOf('-firefox-lkg.png') > -1;
-  })
-  .map(function(pathwayFileName) {
-    return pathwayFileName.replace('-safari', '').replace('-firefox', '').replace('-lkg.png', '');
-  });
-
-console.log('pathwaysAlreadyConsidered');
-console.log(pathwaysAlreadyConsidered);
-  //*/
-
-var pathwayNames = [
-"z-index",
-"text-and-font",
-"size-and-proportion",
-"shapes",
-"publication-xrefs",
-"one-node",
-"one-edge",
-"labels",
-"interactions",
-"groups",
-"graphical-lines",
-"fill-and-stroke",
-"empty",
-"elbows",
-"data-nodes",
-"curves",
-"anchors",
-"dev"
-];
-
-var pathways = fs.readdirSync('./test/input-data/protocol')
-  .filter(function(fileName) {
-    return fileName.indexOf('gpml') > -1;
-  })
-  .map(function(pathwayFileName) {
-    var pathway = {};
-    pathway.name = pathwayFileName.replace('.gpml.xml', '').replace('.gpml', '');
-    pathway.fileName = pathwayFileName;
-    return pathway;
-  })
-  .filter(function(pathway) {
-    return pathwayNames.indexOf(pathway.name) > -1; // && pathwayNames.indexOf(pathway.name) > 13;
-  })
-  .sort(function(b,a) {
-    var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
-    if (nameA < nameB) //sort string ascending
-    return -1 
-    if (nameA > nameB)
-    return 1
-    return 0 //default return value (no sorting)
-  })
-  .map(function(pathway) {
-    return JSON.stringify(pathway);
-  });
-
-console.log('pathways');
-console.log(pathways);
-console.log(pathways.length);
-
-var startTime = new Date();
-
-var pathwaysStream = highland(pathways);
 
 function mocha(opts) {
   var spawnMocha = new SpawnMocha(opts);
@@ -148,14 +75,26 @@ function buildMochaOpts(opts) {
   return mochaOpts;
 }
 
-var pathwaysCompletedCount = 0;
-function runBrowsers(pathway) {
-  pathwaysCompletedCount += 1;
+function runBrowsers(pathwaysStream, pathway) {
+  function moveToNextPathway (done) {
+      return through2.obj(function (data, enc, cb) {
+        cb();
+      },
+      function (cb) {
+        browsersCompletedCount += 1;
+        console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + args.browsers.length);
+        var later = new Date();
+        if (browsersCompletedCount === args.browsers.length) {
+          browsersCompletedCount = 0;
+          pathwaysStream.resume();
+        }
+        cb();
+        done(null, 'success');
+      });
+  }
+
   //console.log('Testing pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
   pathwaysStream.pause();
-  if (pathwaysCompletedCount < pathways.length) {
-    //pathwaysStream.pause();
-  }
   return highland(args.browsers)
     .map(function(browser) {
       var opts = {};
@@ -166,13 +105,48 @@ function runBrowsers(pathway) {
     })
     .map(buildMochaOpts)
     .each(runLocalhostTest);
+    /*
+    .errors(function (e) {
+      console.log('Error');
+      console.log(e);
+      //throw e;
+    })
+    .each()
+    .toArray(function (x) {
+      //console.log(x);
+      console.log('Finished testing  pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
+    });
+    //*/
 }
-
 
 var browsersCompletedCount = 0;
 function runLocalhostTest(opts) {
   return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
     .pipe(mocha(opts))
+  /*
+    .pipe(moveToNextPathway(function(err, result) {
+      console.log('err');
+      console.log(err);
+      console.log('result');
+      console.log(result);
+    }));
+    /*
+    .pipe(function(err, result) {
+      console.log('err');
+      console.log(err);
+      console.log('result');
+      console.log(result);
+      browsersCompletedCount += 1;
+      console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + args.browsers.length + ' for pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
+      var later = new Date();
+      console.log('Elapsed time (ms): ' + (later - startTime));
+      if (browsersCompletedCount === args.browsers.length) {
+        browsersCompletedCount = 0;
+        pathwaysStream.resume();
+      }
+    })
+    //*/
+    //*
     .on('error', function() {
       pathwaysStream.destroy();
       console.log('Destroyed stream due to error.');
@@ -187,12 +161,7 @@ function runLocalhostTest(opts) {
         pathwaysStream.resume();
       }
     });
+    //*/
 }
 
-//gulp.task('testLocalhost', ['browserSync'], function () {
-gulp.task('testLocalhost', function () {
-  return pathwaysStream
-  .take(16)
-  .each(runBrowsers)
-});
 

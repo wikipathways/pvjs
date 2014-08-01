@@ -1,0 +1,262 @@
+<div class=diagram-container><svg id=pvjs-diagram-1 version=1.1 baseprofile=full xmlns=http://www.w3.org/2000/svg xlink=http://www.w3.org/1999/xlink ev=http://www.w3.org/2001/xml-events preserveaspectratio=xMidYMid width=1024 height=768 style="overflow: hidden; background-color:white; "><g class=viewport transform=matrix(1.0426170825958252,0,0,1.0426170825958252,11.003367714463266,123.40859229534765)><defs id=defs><style type=text/css>	svg {
+		color-interpolation: auto;
+		image-rendering: auto;
+		shape-rendering: auto;
+		vector-effect: non-scaling-stroke;
+                background: white;
+	/* removed fill and stroke since they override marker specs */
+	/*	fill: white;
+    		stroke: black; */
+	}
+
+	/* default color for pathway elements */
+	.default-fill-color {
+		fill: black;
+	}
+	.default-stroke-color {
+		stroke: black;
+	}
+
+	/* default color of the background drawing board */
+	.board-fill-color {
+		fill: white;
+	}
+	.board-stroke-color {
+		stroke: white;
+	}
+
+	.text-area {
+		font-family: Sans-Serif, Helvetica, Arial;
+		text-align: center;
+		vertical-align: middle;
+		font-size: 10px;
+		fill: black;
+		fill-opacity: 1;
+		stroke: none;
+	}
+
+	.citation {
+		font-family: Sans-Serif, Helvetica, Arial;
+		text-align: center;
+		vertical-align: top;
+		font-size: 7px;
+		fill: #999999;
+		fill-opacity: 1;
+		stroke: none;
+	}
+
+	.info-box {
+		font-family: Sans-Serif;
+		font-size: 10px;
+		fill: black;
+		stroke: none;
+		text-align: left;
+		vertical-align: top;
+	}
+
+	.info-box-item-property-name {
+		font-weight: bold;
+	}
+
+	.info-box-item-property-value {
+	}
+
+	.data-node {
+		text-align: right;
+		fill-opacity: 1;
+		fill: white;
+		stroke: black;
+		stroke-width: 1;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+    		pointer-events:auto;
+	}
+	.data-node:hover {
+	 	cursor: pointer;
+	}
+
+	.has-xref:hover {
+		cursor: pointer;
+	}
+
+	.data-node.gene-product {
+	}
+
+	.metabolite {
+		stroke: blue;
+	}
+
+	.data-node.metabolite &gt; .text-area {
+		fill: blue;
+		fill-opacity: 1;
+		stroke: none;
+	}
+
+	.data-node.pathway {
+		stroke: none;
+		fill-opacity: 0;
+	}
+
+	.data-node.pathway &gt; .text-area {
+		fill: rgb(20,150,30);
+		fill-opacity: 1;
+		font-size: 12px;
+		font-weight: bold;
+	}
+
+	.data-node.protein {
+	}
+
+	.data-node.rna {
+	}
+
+	.data-node.unknown {
+	}
+
+	.label {
+		stroke: null;
+		stroke-width: 0;
+		fill-opacity: 0;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+	}
+
+	.shape {
+		fill-opacity: 0;
+		stroke: black;
+		stroke-dasharray: 0;
+		stroke-miterlimit: 1;
+	}
+
+	.shape.none {
+		fill: none;
+		fill-opacity: 0;
+		stroke: none;
+	}
+
+	g.group-node &gt; .shape {
+		fill-opacity: 0.098;
+		stroke: gray;
+		stroke-miterlimit: 1;
+		stroke-width: 1px;
+    		pointer-events:none;
+	}
+
+	.group-node {
+		fill-opacity: 0.098;
+		stroke: gray;
+		stroke-miterlimit: 1;
+		stroke-width: 1px;
+    		pointer-events:none;
+	}
+
+	.group-node &gt; .text-area {
+		fill-opacity: 0.4;
+		font-family: Serif, Times;
+		font-size: 32px;
+		fill: black;
+		stroke-width: 0;
+		font-weight: bold;
+  	}
+
+	.group-node.none {
+		fill: rgb(180,180,100);
+		stroke-dasharray: 5,3;
+	}
+
+	.group-node.none &gt; .text-area {
+		display: none;
+  	}
+
+	/*.group-node.none:hover {
+		fill: rgb(255,180,100);
+		fill-opacity: 0.05;
+	}*/
+
+	.group-node.group {
+		fill-opacity: 0;
+		stroke: none;
+	}
+
+	.group-node.group &gt; .text-area {
+		display: none;
+  	}
+	/*.group-node.group:hover {
+		fill: rgb(0,0,255);
+		stroke-width: 1px;
+		stroke-dasharray: 5,3;
+		stroke: gray;
+		fill-opacity: 0.1;
+	}*/
+
+	.group-node.complex {
+		fill: rgb(180,180,100);
+	}
+
+	.group-node.complex &gt; .text-area {
+		display: none;
+  	}
+	/*.group-node.complex:hover {
+		fill: rgb(255,0,0);
+		fill-opacity: 0.05;
+	}*/
+
+  	.group-node.pathway {
+		fill: rgb(0,255,0);
+		stroke-dasharray: 5,3;
+	}
+	/*.group-node.pathway:hover {
+		fill: rgb(0,255,0);
+		fill-opacity: 0.2;
+	}*/
+	.group-node.pathway &gt; .text-area {
+		fill: rgb(20,150,30);
+		stroke: rgb(20,150,30);
+  }
+
+  .cellular-component {
+		fill-opacity: 0;
+		stroke: silver;
+	}
+
+  .graphical-line {
+		fill:none;
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	.interaction {
+		fill:none;
+		stroke: black;
+		stroke-width: 1px;
+	}
+
+	marker {
+		/* this is what should work per the spec
+		   stroke-dasharray: none; */
+		/* but I need to add this to make it work in Safari */
+		stroke-dasharray: 9999999999999999999999999;
+	}
+
+  .marker-end {
+    -webkit-transform: rotate(180deg);
+    -webkit-transform-origin: 50% 50%;
+
+    -o-transform: rotate(180deg);
+    -o-transform-origin: 50% 50%;
+
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
+  }
+
+	.solid-stroke {
+		/* this is what should work per the spec
+		   stroke-dasharray: none; */
+		/* but I need to add this to make it work in Safari */
+		stroke-dasharray: 9999999999999999999999999;
+	}
+
+	.dashed-stroke {
+		stroke-dasharray: 5,3;
+	}
+</style><marker id=id-tbar-start-000000 orient=auto markerunits=strokeWidth preserveaspectratio=none refy=10 viewbox="0 0 10 20" markerwidth=10 markerheight=20 refx=0><g id=g-id-tbar-start-000000><rect x=0 y=9 width=8 height=2 fill=white></rect><line x=0 y=0 width=12 height=12 stroke=#000000 stroke-width=1.8 x1=7 y1=0 x2=7 y2=20></line></g></marker><marker id=id-arrow-end-000000 orient=auto markerunits=strokeWidth preserveaspectratio=none refy=6 viewbox="0 0 12 12" markerwidth=12 markerheight=12 refx=12><g id=g-id-arrow-end-000000 transform="rotate(180, 6, 6)"><rect x=0 y=5.4 width=2 height=1.2 stroke=white fill=white></rect><polygon points="12,11 0,6 12,1" stroke-width=0 fill=#000000></polygon></g></marker></defs><g id=viewport><path d=M48.103650944985745,40.780355620509525L48.103650944985745,21.410455486542432L157.97727914022613,21.410455486542432L157.97727914022613,74.72505716889819 fill=transparent id=c99cf stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M137.47727914022613,74.22505716889819L218.47727914022613,74.22505716889819L218.47727914022613,95.22505716889819L137.47727914022613,95.22505716889819Z fill=#ffffff id=cc766 stroke-width=1 stroke=#000000></path><g transform="translate(177.97727914022613 84.72505716889819)" id=text-for-cc766 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M7.603650944985745,40.280355620509525L88.60365094498574,40.280355620509525L88.60365094498574,61.280355620509525L7.603650944985745,61.280355620509525Z fill=#ffffff id=f2465 stroke-width=1 stroke=#000000></path><g transform="translate(48.103650944985745 50.780355620509525)" id=text-for-f2465 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M51.06038919584152,363.4276512537381L51.06038919584152,346.53324131584986L125.77639751552795,346.53324131584986L125.77639751552795,473.6628709454799L185.42029257748442,473.6628709454799L185.42029257748442,450.5572808833681 fill=transparent id=f8809 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M144.92029257748442,430.0572808833681L225.92029257748442,430.0572808833681L225.92029257748442,451.0572808833681L144.92029257748442,451.0572808833681Z fill=#ffffff id=ad716 stroke-width=1 stroke=#000000></path><g transform="translate(185.42029257748442 440.5572808833681)" id=text-for-ad716 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M10.560389195841523,362.9276512537381L91.56038919584152,362.9276512537381L91.56038919584152,383.9276512537381L10.560389195841523,383.9276512537381Z fill=#ffffff id=ea3a3 stroke-width=1 stroke=#000000></path><g transform="translate(51.06038919584152 373.4276512537381)" id=text-for-ea3a3 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M557.6493517330525,258.0339288718528L638.9767640160151,258.0339288718528L638.9767640160151,321.558666295842 fill=transparent id=bed49 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M598.4767640160151,321.058666295842L679.4767640160151,321.058666295842L679.4767640160151,342.058666295842L598.4767640160151,342.058666295842Z fill=#ffffff id=bb674 stroke-width=1 stroke=#000000></path><g transform="translate(638.9767640160151 331.558666295842)" id=text-for-bb674 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M477.1493517330525,247.53392887185282L558.1493517330525,247.53392887185282L558.1493517330525,268.5339288718528L477.1493517330525,268.5339288718528Z fill=#ffffff id=b6b65 stroke-width=1 stroke=#000000></path><g transform="translate(517.6493517330525 258.0339288718528)" id=text-for-b6b65 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M476.49747224162184,54.7952610996071L476.49747224162184,17.341557395904083L586.0186937737137,17.341557395904083 fill=transparent id=d6ee8 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M585.5186937737137,6.841557395904083L666.5186937737137,6.841557395904083L666.5186937737137,27.841557395904083L585.5186937737137,27.841557395904083Z fill=#ffffff id=af9e0 stroke-width=1 stroke=#000000></path><g transform="translate(626.0186937737137 17.341557395904083)" id=text-for-af9e0 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M435.99747224162184,54.2952610996071L516.9974722416218,54.2952610996071L516.9974722416218,75.2952610996071L435.99747224162184,75.2952610996071Z fill=#ffffff id=a0723 stroke-width=1 stroke=#000000></path><g transform="translate(476.49747224162184 64.7952610996071)" id=text-for-a0723 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M495.34006483421444,187.8971129514573L495.34006483421444,134.32074073510654L611.4641412544569,134.32074073510654 fill=transparent id=b233f stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M610.9641412544569,98.45680596339962L674.3899907090205,98.45680596339962L674.3899907090205,240.91254505022727L610.9641412544569,240.91254505022727Z fill=#ffffff id=ba4b6 stroke-width=1 stroke=#000000></path><g transform="translate(642.6770659817387 169.68467550681345)" id=text-for-ba4b6 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M434.84006483421444,187.3971129514573L515.8400648342144,187.3971129514573L515.8400648342144,208.3971129514573L434.84006483421444,208.3971129514573Z fill=#ffffff id=dc87f stroke-width=1 stroke=#000000></path><g transform="translate(475.34006483421444 197.8971129514573)" id=text-for-dc87f fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M353.0362785646214,374.1870867156468L333.0362785646214,374.1870867156468L333.0362785646214,291.6516687929651L278.8161657721134,291.6516687929651L278.8161657721134,311.6516687929651 fill=transparent id=ebee3 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M238.31616577211338,311.1516687929651L319.3161657721134,311.1516687929651L319.3161657721134,332.1516687929651L238.31616577211338,332.1516687929651Z fill=#ffffff id=e691a stroke-width=1 stroke=#000000></path><g transform="translate(278.8161657721134 321.6516687929651)" id=text-for-e691a fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M352.5362785646214,363.6870867156468L433.5362785646214,363.6870867156468L433.5362785646214,384.6870867156468L352.5362785646214,384.6870867156468Z fill=#ffffff id=a00ff stroke-width=1 stroke=#000000></path><g transform="translate(393.0362785646214 374.1870867156468)" id=text-for-a00ff fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M340.15204282970615,415.1531963911838L320.15204282970615,415.1531963911838L320.15204282970615,399.4918914295675L272.67464677991484,399.4918914295675 fill=transparent id=c9937 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M192.17464677991484,388.9918914295675L273.17464677991484,388.9918914295675L273.17464677991484,409.9918914295675L192.17464677991484,409.9918914295675Z fill=#ffffff id=fe768 stroke-width=1 stroke=#000000></path><g transform="translate(232.67464677991484 399.4918914295675)" id=text-for-fe768 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M339.65204282970615,404.6531963911838L420.65204282970615,404.6531963911838L420.65204282970615,425.6531963911838L339.65204282970615,425.6531963911838Z fill=#ffffff id=d5dea stroke-width=1 stroke=#000000></path><g transform="translate(380.15204282970615 415.1531963911838)" id=text-for-d5dea fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M48.103650944985745,127.80553221773539L48.103650944985745,107.80553221773539L177.97727914022613,107.80553221773539L177.97727914022613,157.2303472864802 fill=transparent id=b26be stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M137.47727914022613,156.7303472864802L218.47727914022613,156.7303472864802L218.47727914022613,177.7303472864802L137.47727914022613,177.7303472864802Z fill=#ffffff id=cf2f3 stroke-width=1 stroke=#000000></path><g transform="translate(177.97727914022613 167.2303472864802)" id=text-for-cf2f3 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M7.603650944985745,127.30553221773539L88.60365094498574,127.30553221773539L88.60365094498574,148.3055322177354L7.603650944985745,148.3055322177354Z fill=#ffffff id=e3c5e stroke-width=1 stroke=#000000></path><g transform="translate(48.103650944985745 137.8055322177354)" id=text-for-e3c5e fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M43.693507615327505,208.69468285426206L43.693507615327505,188.69468285426206L194.66967164298245,188.69468285426206L194.66967164298245,239.22203375542142 fill=transparent id=d0ffc stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M134.16967164298245,238.72203375542142L215.16967164298245,238.72203375542142L215.16967164298245,259.7220337554214L134.16967164298245,259.7220337554214Z fill=#ffffff id=c2913 stroke-width=1 stroke=#000000></path><g transform="translate(174.66967164298245 249.22203375542142)" id=text-for-c2913 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M3.193507615327505,208.19468285426206L84.1935076153275,208.19468285426206L84.1935076153275,229.19468285426206L3.193507615327505,229.19468285426206Z fill=#ffffff id=a165e stroke-width=1 stroke=#000000></path><g transform="translate(43.693507615327505 218.69468285426206)" id=text-for-a165e fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M43.693507615327505,286.6802608638086L43.693507615327505,269.7858509259204L210.0263427270118,269.7858509259204L210.0263427270118,327.20761176496796L183.61377102186458,327.20761176496796 fill=transparent id=c0fac stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M103.11377102186458,316.70761176496796L184.11377102186458,316.70761176496796L184.11377102186458,337.70761176496796L103.11377102186458,337.70761176496796Z fill=#ffffff id=fe12c stroke-width=1 stroke=#000000></path><g transform="translate(143.61377102186458 327.20761176496796)" id=text-for-fe12c fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M3.193507615327505,286.1802608638086L84.1935076153275,286.1802608638086L84.1935076153275,307.1802608638086L3.193507615327505,307.1802608638086Z fill=#ffffff id=fc22c stroke-width=1 stroke=#000000></path><g transform="translate(43.693507615327505 296.6802608638086)" id=text-for-fc22c fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M552.4254711360375,347.58616767782297L698.6861407005701,347.58616767782297L698.6861407005701,383.1133926640012L678.6861407005701,383.1133926640012 fill=transparent id=dac07 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M598.1861407005701,372.6133926640012L679.1861407005701,372.6133926640012L679.1861407005701,393.6133926640012L598.1861407005701,393.6133926640012Z fill=#ffffff id=ce66e stroke-width=1 stroke=#000000></path><g transform="translate(638.6861407005701 383.1133926640012)" id=text-for-ce66e fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M471.92547113603746,337.08616767782297L552.9254711360375,337.08616767782297L552.9254711360375,358.08616767782297L471.92547113603746,358.08616767782297Z fill=#ffffff id=f1f5c stroke-width=1 stroke=#000000></path><g transform="translate(512.4254711360375 347.58616767782297)" id=text-for-f1f5c fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M552.4254711360375,402.8100482748378L572.4254711360375,402.8100482748378L572.4254711360375,468.3372732610161L635.5805506384584,468.3372732610161L635.5805506384584,448.3372732610161 fill=transparent id=e4428 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M595.0805506384584,427.8372732610161L676.0805506384584,427.8372732610161L676.0805506384584,448.8372732610161L595.0805506384584,448.8372732610161Z fill=#ffffff id=b4ae1 stroke-width=1 stroke=#000000></path><g transform="translate(635.5805506384584 438.3372732610161)" id=text-for-b4ae1 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M471.92547113603746,392.3100482748378L552.9254711360375,392.3100482748378L552.9254711360375,413.3100482748378L471.92547113603746,413.3100482748378Z fill=#ffffff id=e795e stroke-width=1 stroke=#000000></path><g transform="translate(512.4254711360375 402.8100482748378)" id=text-for-e795e fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M787.1922847462752,22.44394079727364L807.1922847462752,22.44394079727364L807.1922847462752,40.219686493511645L852.5367133611221,40.219686493511645 fill=transparent id=a3966 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M852.0367133611221,29.719686493511645L933.0367133611221,29.719686493511645L933.0367133611221,50.719686493511645L852.0367133611221,50.719686493511645Z fill=#ffffff id=fb99b stroke-width=1 stroke=#000000></path><g transform="translate(892.5367133611221 40.219686493511645)" id=text-for-fb99b fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M706.6922847462752,11.94394079727364L787.6922847462752,11.94394079727364L787.6922847462752,32.94394079727364L706.6922847462752,32.94394079727364Z fill=#ffffff id=baae2 stroke-width=1 stroke=#000000></path><g transform="translate(747.1922847462752 22.44394079727364)" id=text-for-baae2 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M294.6877482114567,27.375461792675353L294.6877482114567,47.37546179267535L362.2267187176858,47.37546179267535L362.2267187176858,67.65924859011528 fill=transparent id=d1b0f stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M341.7267187176858,67.15924859011528L422.7267187176858,67.15924859011528L422.7267187176858,88.15924859011528L341.7267187176858,88.15924859011528Z fill=#ffffff id=dfb9b stroke-width=1 stroke=#000000></path><g transform="translate(382.2267187176858 77.65924859011528)" id=text-for-dfb9b fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M254.18774821145672,6.8754617926753525L335.1877482114567,6.8754617926753525L335.1877482114567,27.875461792675353L254.18774821145672,27.875461792675353Z fill=#ffffff id=d9b36 stroke-width=1 stroke=#000000></path><g transform="translate(294.6877482114567 17.375461792675353)" id=text-for-d9b36 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M284.8460331243001,90.34881382633506L284.8460331243001,110.34881382633506L433.4348934321715,110.34881382633506L433.4348934321715,135.4933499726027L413.4348934321715,135.4933499726027 fill=transparent id=fe51b stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M332.9348934321715,124.99334997260269L413.9348934321715,124.99334997260269L413.9348934321715,145.9933499726027L332.9348934321715,145.9933499726027Z fill=#ffffff id=a97fd stroke-width=1 stroke=#000000></path><g transform="translate(373.4348934321715 135.4933499726027)" id=text-for-a97fd fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M244.3460331243001,69.84881382633506L325.3460331243001,69.84881382633506L325.3460331243001,90.84881382633506L244.3460331243001,90.84881382633506Z fill=#ffffff id=c3303 stroke-width=1 stroke=#000000></path><g transform="translate(284.8460331243001 80.34881382633506)" id=text-for-c3303 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M278.02060238582595,142.8996707250177L278.02060238582595,216.49141184022892L366.3154423327875,216.49141184022892L366.3154423327875,196.49141184022892 fill=transparent id=e2bec stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M325.8154423327875,175.99141184022892L406.8154423327875,175.99141184022892L406.8154423327875,196.99141184022892L325.8154423327875,196.99141184022892Z fill=#ffffff id=b531e stroke-width=1 stroke=#000000></path><g transform="translate(366.3154423327875 186.49141184022892)" id=text-for-b531e fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M237.52060238582595,122.3996707250177L318.52060238582595,122.3996707250177L318.52060238582595,143.3996707250177L237.52060238582595,143.3996707250177Z fill=#ffffff id=cfd74 stroke-width=1 stroke=#000000></path><g transform="translate(278.02060238582595 132.8996707250177)" id=text-for-cfd74 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M266.17815576077027,197.70150813554977L266.17815576077027,225.93698389449713L318.3838457724273,225.93698389449713 fill=transparent id=f1448 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M317.8838457724273,215.43698389449713L398.8838457724273,215.43698389449713L398.8838457724273,236.43698389449713L317.8838457724273,236.43698389449713Z fill=#ffffff id=cf394 stroke-width=1 stroke=#000000></path><g transform="translate(358.3838457724273 225.93698389449713)" id=text-for-cf394 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M225.67815576077027,177.20150813554977L306.67815576077027,177.20150813554977L306.67815576077027,198.20150813554977L225.67815576077027,198.20150813554977Z fill=#ffffff id=fc9ba stroke-width=1 stroke=#000000></path><g transform="translate(266.17815576077027 187.70150813554977)" id=text-for-fc9ba fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M256.0398921442466,255.09497519456687L236.0398921442466,255.09497519456687L236.0398921442466,282.9864706095338L395.00233891265907,282.9864706095338L395.00233891265907,302.9864706095338 fill=transparent id=a6c76 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M354.50233891265907,302.4864706095338L435.50233891265907,302.4864706095338L435.50233891265907,323.4864706095338L354.50233891265907,323.4864706095338Z fill=#ffffff id=e1286 stroke-width=1 stroke=#000000></path><g transform="translate(395.00233891265907 312.9864706095338)" id=text-for-e1286 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M255.5398921442466,244.59497519456687L336.5398921442466,244.59497519456687L336.5398921442466,265.59497519456687L255.5398921442466,265.59497519456687Z fill=#ffffff id=c42ad stroke-width=1 stroke=#000000></path><g transform="translate(296.0398921442466 255.09497519456687)" id=text-for-c42ad fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M810.924071429842,270.9493149625463L739.160961094337,270.9493149625463L739.160961094337,241.99608453509205 fill=transparent id=e8d93 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M698.660961094337,221.49608453509205L779.660961094337,221.49608453509205L779.660961094337,242.49608453509205L698.660961094337,242.49608453509205Z fill=#ffffff id=a9dcb stroke-width=1 stroke=#000000></path><g transform="translate(739.160961094337 231.99608453509205)" id=text-for-a9dcb fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M810.424071429842,260.4493149625463L891.424071429842,260.4493149625463L891.424071429842,281.4493149625463L810.424071429842,281.4493149625463Z fill=#ffffff id=a90f1 stroke-width=1 stroke=#000000></path><g transform="translate(850.924071429842 270.9493149625463)" id=text-for-a90f1 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M832.7662128372014,333.3968556709566L663.7360217563543,333.3968556709566L663.7360217563543,297.5492153056138L683.7360217563543,297.5492153056138 fill=transparent id=c7443 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M683.2360217563543,287.0492153056138L764.2360217563543,287.0492153056138L764.2360217563543,308.0492153056138L683.2360217563543,308.0492153056138Z fill=#ffffff id=d2043 stroke-width=1 stroke=#000000></path><g transform="translate(723.7360217563543 297.5492153056138)" id=text-for-d2043 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M832.2662128372014,322.8968556709566L913.2662128372014,322.8968556709566L913.2662128372014,343.8968556709566L832.2662128372014,343.8968556709566Z fill=#ffffff id=d5d3a stroke-width=1 stroke=#000000></path><g transform="translate(872.7662128372014 333.3968556709566)" id=text-for-d5d3a fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M718.802340541448,115.74605223822921L718.802340541448,135.7460522382292L838.3135404505036,135.7460522382292L838.3135404505036,156.10997555496513 fill=transparent id=e3b17 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M797.8135404505036,155.60997555496513L878.8135404505036,155.60997555496513L878.8135404505036,176.60997555496513L797.8135404505036,176.60997555496513Z fill=#ffffff id=d5cad stroke-width=1 stroke=#000000></path><g transform="translate(838.3135404505036 166.10997555496513)" id=text-for-d5cad fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M698.302340541448,95.24605223822921L779.302340541448,95.24605223822921L779.302340541448,116.24605223822921L698.302340541448,116.24605223822921Z fill=#ffffff id=cf964 stroke-width=1 stroke=#000000></path><g transform="translate(738.802340541448 105.74605223822921)" id=text-for-cf964 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M718.6068454066811,182.95383260390804L718.6068454066811,202.95383260390804L872.4234834673306,202.95383260390804L872.4234834673306,228.4036956219693 fill=transparent id=ca8eb stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M831.9234834673306,227.9036956219693L912.9234834673306,227.9036956219693L912.9234834673306,248.9036956219693L831.9234834673306,248.9036956219693Z fill=#ffffff id=dd71a stroke-width=1 stroke=#000000></path><g transform="translate(872.4234834673306 238.4036956219693)" id=text-for-dd71a fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M698.1068454066811,162.45383260390804L779.1068454066811,162.45383260390804L779.1068454066811,183.45383260390804L698.1068454066811,183.45383260390804Z fill=#ffffff id=bece9 stroke-width=1 stroke=#000000></path><g transform="translate(738.6068454066811 172.95383260390804)" id=text-for-bece9 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M763.0216763408182,67.67433779638483L816.2747311439371,67.67433779638483L816.2747311439371,113.18219403033497L845.2565132650107,113.18219403033497 fill=transparent id=e4b31 stroke-width=1 stroke=#000000 marker-start=url(#id-tbar-start-000000) marker-end=url(#id-arrow-end-000000)></path><path d=M844.7565132650107,102.68219403033497L925.7565132650107,102.68219403033497L925.7565132650107,123.68219403033497L844.7565132650107,123.68219403033497Z fill=#ffffff id=a739c stroke-width=1 stroke=#000000></path><g transform="translate(885.2565132650107 113.18219403033497)" id=text-for-a739c fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><path d=M682.5216763408182,57.17433779638483L763.5216763408182,57.17433779638483L763.5216763408182,78.17433779638483L682.5216763408182,78.17433779638483Z fill=#ffffff id=d3ec7 stroke-width=1 stroke=#000000></path><g transform="translate(723.0216763408182 67.67433779638483)" id=text-for-d3ec7 fill=#000000 font-size=10 pointer-events=none><text id=text-line0 x=0 y=0em dominant-baseline=central text-anchor=middle>GeneProduct</text></g><g id=info-box-0 class="text-area info-box"><text id=info-box-text0 class=item x=0 y=14><tspan class=info-box-item-property-name>Title:</tspan><tspan class=info-box-item-property-value>Rendering Test Protocol for elbows</tspan></text><text id=info-box-text1 class=item x=0 y=28><tspan class=info-box-item-property-name>Organism:</tspan><tspan class=info-box-item-property-value>Anopheles gambiae</tspan></text></g></g></g></svg></div><div class="annotation ui-draggable"><header class=annotation-header><span class=annotation-header-move><i class=icon-move></i></span> <span class=annotation-header-close><i class=icon-remove></i></span> <span class=annotation-header-text>Header</span><div class=annotation-description><h2>description</h2></div></header><span class=annotation-items-container><ul class=annotation-items-container-list></ul></span></div><div class=pathvisiojs-notifications></div><div class=pathvisiojs-highlighter><span class=twitter-typeahead style="position: relative; display: inline-block; direction: ltr; "><input type=text class="highlighter-input tt-hint" style="position: absolute; top: 0px; left: 0px; border-top-color: transparent; border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent; box-shadow: none; opacity: 1; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size:  ; background-position: 0% 0%; background-repeat: repeat repeat; " readonly autocomplete=off spellcheck=false tabindex=-1><input type=text placeholder="Enter node name to highlight" class="highlighter-input tt-input" autocomplete=off spellcheck=false style="position: relative; vertical-align: top; background-color: transparent; " dir=auto><pre aria-hidden=true style="position: absolute; visibility: hidden; white-space: pre; font-family: Helvetica, sans-serif, Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none; "></pre><span class=tt-dropdown-menu style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto; "><div class=tt-dataset-0></div></span></span><i class=highlighter-remove></i></div>
