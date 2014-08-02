@@ -66,13 +66,11 @@ describe(desired.name, function() {
     done();
   });
 
-  /*
   after(function(done) {
     return browser
-      //.quit()
+      .quit()
       .nodeify(done);
   });
-  //*/
 
   it('should render diagram', function(done) {
     browser

@@ -79,7 +79,7 @@
     "image-diff": "~1.0.1",
     "lodash": "~2.4.1",
     "matchdep": "~0.1.2",
-    "mocha": "~1.21.3",
+    "mocha": "~1.18.2",
     "path": "~0.4.9",
     "pretty-hrtime": "~0.2.1",
     "reload": "~0.1.0",
