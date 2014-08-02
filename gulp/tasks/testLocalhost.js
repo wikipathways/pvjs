@@ -20,11 +20,11 @@ gulp.task('testLocalhost', function () {
   var browsersCompletedCount = 0;
   var pathwayIndexOneBased = 1;
   var expressPort = 3000;
-  args.browsers = (args.browser || 'phantomjs').split(',');
-  var batchSize = 15;
-  //args.browsers = (args.browser || 'firefox').split(',');
+  //args.browsers = (args.browser || 'phantomjs').split(',');
+  args.browsers = (args.browser || 'firefox').split(',');
   //args.browsers = (args.browser || 'safari').split(',');
   //args.browsers = (args.browser || 'firefox,safari').split(',');
+  var batchSize = 15;
 
   var pathways = fs.readdirSync('./test/input-data/protocol')
     .filter(function(fileName) {
