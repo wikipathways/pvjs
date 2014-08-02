@@ -10,16 +10,10 @@ var gulp = require('gulp')
   , seleniumLauncher = require('selenium-launcher')
   ;
 
-//require('bdd-with-opts');
+require('bdd-with-opts');
 
 //gulp.task('testLocalhost', ['browserSync'], function () {
 gulp.task('testLocalhost', function () {
-  /*
-  gulp.task('default', function () {
-    gulp.watch('{lib,test}/*', test);
-    test();
-  });
-  //*/
 
   var expressPort = 3000; // incremented after each test to avoid colision
   args.browsers = (args.browser || 'phantomjs').split(',');
@@ -85,21 +79,13 @@ gulp.task('testLocalhost', function () {
       return JSON.stringify(pathway);
     });
 
-  console.log('pathways');
-  console.log(pathways);
-  console.log(pathways.length);
-
   var startTime = new Date();
 
   var pathwaysStream = highland(pathways);
 
   function mocha(opts) {
-    console.log('opts');
-    console.log(opts);
     var spawnMocha = new SpawnMocha(opts);
     var stream = through(function write(file) {
-      console.log('file');
-      console.log(file);
       spawnMocha.add(file.path);
     }, function() {});
     var errors = [];
@@ -162,13 +148,7 @@ gulp.task('testLocalhost', function () {
   var pathwaysCompletedCount = 0;
   function runBrowsers(pathway) {
     pathwaysStream.pause();
-    console.log('pathway');
-    console.log(pathway);
-    pathwaysCompletedCount += 1;
     //console.log('Testing pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
-    if (pathwaysCompletedCount < pathways.length) {
-      //pathwaysStream.pause();
-    }
     return highland(args.browsers)
       .map(function(browser) {
         var opts = {};
@@ -197,6 +177,7 @@ gulp.task('testLocalhost', function () {
         console.log('Elapsed time (ms): ' + (later - startTime));
         if (browsersCompletedCount === args.browsers.length) {
           browsersCompletedCount = 0;
+          pathwaysCompletedCount += 1;
           pathwaysStream.resume();
         }
       });
@@ -205,11 +186,7 @@ gulp.task('testLocalhost', function () {
 
   var selenium;
   function seleniumLauncherAndPathwayBatchPasser(pathwayBatchStream, callback) {
-    console.log('pathwayBatchStream in seleniumLauncherAndPathwayBatchPasser 1');
-    console.log(pathwayBatchStream);
     seleniumLauncher(function(err, seleniumInstance) {
-      console.log('pathwayBatchStream in seleniumLauncherAndPathwayBatchPasser 2');
-      console.log(pathwayBatchStream);
       selenium = seleniumInstance;
       return callback(null, pathwayBatchStream);
     });
@@ -221,8 +198,6 @@ gulp.task('testLocalhost', function () {
   .batch(5)
   .map(function(pathwayBatch) {
     pathwaysStream.pause();
-    console.log('pathwayBatch');
-    console.log(pathwayBatch);
     if (!!selenium) {
       selenium.kill();
     }
@@ -232,16 +207,12 @@ gulp.task('testLocalhost', function () {
     var pipeInstance = this;
     pipeInstance.pause();
     seleniumLauncher(function(err, seleniumInstance) {
-      console.log('pathwayBatch in through');
-      console.log(pathwayBatch);
       selenium = seleniumInstance;
       pipeInstance.push(pathwayBatch);
       pipeInstance.resume();
     });
   }))
   .pipe(through(function(pathwayBatch) {
-    console.log('pathwayBatch in through 2');
-    console.log(pathwayBatch);
     return highland(pathwayBatch).each(runBrowsers);
   }))
   .pipe(through(function() {
