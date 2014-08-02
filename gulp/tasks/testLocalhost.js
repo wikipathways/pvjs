@@ -12,47 +12,17 @@ var gulp = require('gulp')
 
 require('bdd-with-opts');
 
+// TODO use browserSync or something to enable automatically starting the server
 //gulp.task('testLocalhost', ['browserSync'], function () {
 gulp.task('testLocalhost', function () {
 
-  var expressPort = 3000; // incremented after each test to avoid colision
+  var selenium;
+  var browsersCompletedCount = 0;
+  var pathwayIndexOneBased = 1;
+  var expressPort = 3000;
   args.browsers = (args.browser || 'phantomjs').split(',');
   //args.browsers = (args.browser || 'firefox,safari').split(',');
   //args.browsers = (args.browser || 'safari').split(',');
-
-  /*
-  var pathwaysAlreadyConsidered = fs.readdirSync('./test/input-data/protocol')
-    .filter(function(fileName) {
-      return fileName.indexOf('-firefox-lkg.png') > -1;
-    })
-    .map(function(pathwayFileName) {
-      return pathwayFileName.replace('-safari', '').replace('-firefox', '').replace('-lkg.png', '');
-    });
-
-  console.log('pathwaysAlreadyConsidered');
-  console.log(pathwaysAlreadyConsidered);
-    //*/
-
-  var pathwayNames = [
-  "z-index",
-  "text-and-font",
-  "size-and-proportion",
-  "shapes",
-  "publication-xrefs",
-  "one-node",
-  "one-edge",
-  "labels",
-  "interactions",
-  "groups",
-  "graphical-lines",
-  "fill-and-stroke",
-  "empty",
-  "elbows",
-  "data-nodes",
-  "curves",
-  "anchors",
-  "dev"
-  ];
 
   var pathways = fs.readdirSync('./test/input-data/protocol')
     .filter(function(fileName) {
@@ -64,22 +34,9 @@ gulp.task('testLocalhost', function () {
       pathway.fileName = pathwayFileName;
       return pathway;
     })
-    .filter(function(pathway) {
-      return pathwayNames.indexOf(pathway.name) > -1; // && pathwayNames.indexOf(pathway.name) > 13;
-    })
-    .sort(function(b,a) {
-      var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
-      if (nameA < nameB) //sort string ascending
-      return -1 
-      if (nameA > nameB)
-      return 1
-      return 0 //default return value (no sorting)
-    })
     .map(function(pathway) {
       return JSON.stringify(pathway);
     });
-
-  var startTime = new Date();
 
   var pathwaysStream = highland(pathways);
 
@@ -108,8 +65,8 @@ gulp.task('testLocalhost', function () {
   function buildMochaOpts(opts) {
     var mochaOpts = {
       flags: {
-        u: 'bdd',
-        //u: 'bdd-with-opts',
+        //u: 'bdd',
+        u: 'bdd-with-opts',
         R: 'spec',
         b: true,
         // timeout: this is the time mocha will spend on one test
@@ -145,10 +102,7 @@ gulp.task('testLocalhost', function () {
     return mochaOpts;
   }
 
-  var pathwaysCompletedCount = 0;
   function runBrowsers(pathway) {
-    pathwaysStream.pause();
-    //console.log('Testing pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
     return highland(args.browsers)
       .map(function(browser) {
         var opts = {};
@@ -161,8 +115,6 @@ gulp.task('testLocalhost', function () {
       .each(runLocalhostTest);
   }
 
-
-  var browsersCompletedCount = 0;
   function runLocalhostTest(opts) {
     return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
       .pipe(mocha(opts))
@@ -172,29 +124,24 @@ gulp.task('testLocalhost', function () {
       })
       .on('end', function() {
         browsersCompletedCount += 1;
-        console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + args.browsers.length + ' for pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
-        var later = new Date();
-        console.log('Elapsed time (ms): ' + (later - startTime));
+        console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + args.browsers.length + ' for pathway ' + pathwayIndexOneBased + ' of ' + pathways.length);
         if (browsersCompletedCount === args.browsers.length) {
           browsersCompletedCount = 0;
-          pathwaysCompletedCount += 1;
-          pathwaysStream.resume();
+          pathwayIndexOneBased += 1;
+          if (pathwayIndexOneBased < pathways.length) {
+            pathwaysStream.resume();
+          } else {
+            console.log('Completed all tests requested.');
+            selenium.kill();
+          }
         }
       });
   }
 
-
-  var selenium;
-  function seleniumLauncherAndPathwayBatchPasser(pathwayBatchStream, callback) {
-    seleniumLauncher(function(err, seleniumInstance) {
-      selenium = seleniumInstance;
-      return callback(null, pathwayBatchStream);
-    });
-  }
-
-  var seleniumLauncherAndPathwayBatchPasserAsync = highland.wrapCallback(seleniumLauncherAndPathwayBatchPasser);
-
   pathwaysStream
+  // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
+  // after running 16 tests, at least on my machine. --AR
+  // so this batching is a hack that restarts selenium after every 5 pathways.
   .batch(5)
   .map(function(pathwayBatch) {
     pathwaysStream.pause();
@@ -215,17 +162,5 @@ gulp.task('testLocalhost', function () {
   .pipe(through(function(pathwayBatch) {
     return highland(pathwayBatch).each(runBrowsers);
   }))
-  .pipe(through(function() {
-    console.log('Completed all tests requested.');
-    return selenium.kill();
-  }))
-  /*
-  .each(function(result) {
-    console.log('result in test');
-    console.log(result);
-    return result;
-  })
-  .each(runBrowsers);
-  //*/
 });
 
