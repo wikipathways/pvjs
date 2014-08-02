@@ -21,8 +21,10 @@ gulp.task('testLocalhost', function () {
   var pathwayIndexOneBased = 1;
   var expressPort = 3000;
   args.browsers = (args.browser || 'phantomjs').split(',');
-  //args.browsers = (args.browser || 'firefox,safari').split(',');
+  var batchSize = 15;
+  //args.browsers = (args.browser || 'firefox').split(',');
   //args.browsers = (args.browser || 'safari').split(',');
+  //args.browsers = (args.browser || 'firefox,safari').split(',');
 
   var pathways = fs.readdirSync('./test/input-data/protocol')
     .filter(function(fileName) {
@@ -121,16 +123,17 @@ gulp.task('testLocalhost', function () {
       .on('error', function() {
         pathwaysStream.destroy();
         console.log('Destroyed stream due to error.');
+        selenium.kill();
       })
       .on('end', function() {
         browsersCompletedCount += 1;
-        console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + args.browsers.length + ' for pathway ' + pathwayIndexOneBased + ' of ' + pathways.length);
+        //console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + args.browsers.length + ' for pathway ' + pathwayIndexOneBased + ' of ' + pathways.length);
         if (browsersCompletedCount === args.browsers.length) {
           browsersCompletedCount = 0;
           pathwayIndexOneBased += 1;
-          if (pathwayIndexOneBased < pathways.length) {
+          if (pathwayIndexOneBased < pathways.length && (pathwayIndexOneBased % batchSize === 0)) {
             pathwaysStream.resume();
-          } else {
+          } else if (pathwayIndexOneBased === pathways.length) {
             console.log('Completed all tests requested.');
             selenium.kill();
           }
@@ -141,8 +144,8 @@ gulp.task('testLocalhost', function () {
   pathwaysStream
   // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
   // after running 16 tests, at least on my machine. --AR
-  // so this batching is a hack that restarts selenium after every 5 pathways.
-  .batch(5)
+  // so this batching is a hack that restarts selenium after every 16 pathways.
+  .batch(batchSize)
   .map(function(pathwayBatch) {
     pathwaysStream.pause();
     if (!!selenium) {
@@ -151,16 +154,16 @@ gulp.task('testLocalhost', function () {
     return pathwayBatch;
   })
   .pipe(through(function(pathwayBatch) {
-    var pipeInstance = this;
-    pipeInstance.pause();
     seleniumLauncher(function(err, seleniumInstance) {
       selenium = seleniumInstance;
-      pipeInstance.push(pathwayBatch);
-      pipeInstance.resume();
+      process.env.SELENIUM_PORT = selenium.port;
+      /*
+      setTimeout(function() {
+        return highland(pathwayBatch).each(runBrowsers);
+      }, 1000);
+      //*/
+      return highland(pathwayBatch).each(runBrowsers);
     });
-  }))
-  .pipe(through(function(pathwayBatch) {
-    return highland(pathwayBatch).each(runBrowsers);
   }))
 });
 
