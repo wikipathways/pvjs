@@ -6,251 +6,255 @@ var gulp = require('gulp')
   , highland = require('highland')
   , path = require('path')
   , through = require('through')
-  , mocha = require('gulp-mocha')
-  //, SpawnMocha = require('spawn-mocha-parallel')
+  , SpawnMocha = require('spawn-mocha-parallel')
+  , seleniumLauncher = require('selenium-launcher')
   ;
 
-/*
-gulp.task('default', function () {
-  gulp.watch('{lib,test}/*', test);
-  test();
-});
-//*/
-
-var expressPort = 3000; // incremented after each test to avoid colision
-var browsers = (args.browser || 'phantomjs').split(',');
-/*
-var browserInstances = {};
-browsers.forEach(function(browser) {
-  browserInstances[browser] = {};
-});
-
-highland(browsers)
-    .map(function(browser) {
-      var opts = {};
-      opts.midway = true;
-      opts.browser = browser;
-      opts.pathway = pathway;
-      return opts;
-    })
-    .map(buildMochaOpts)
-    .each(runLocalhostTest);
-    //*/
-
-//args.browsers = (args.browser || 'firefox,safari').split(',');
-//args.browsers = (args.browser || 'safari').split(',');
-
-/*
-var pathwaysAlreadyConsidered = fs.readdirSync('./test/input-data/protocol')
-  .filter(function(fileName) {
-    return fileName.indexOf('-firefox-lkg.png') > -1;
-  })
-  .map(function(pathwayFileName) {
-    return pathwayFileName.replace('-safari', '').replace('-firefox', '').replace('-lkg.png', '');
-  });
-
-console.log('pathwaysAlreadyConsidered');
-console.log(pathwaysAlreadyConsidered);
-  //*/
-
-var pathwayNames = [
-"z-index",
-"text-and-font",
-"size-and-proportion",
-"shapes",
-"publication-xrefs",
-"one-node",
-"one-edge",
-"labels",
-"interactions",
-"groups",
-"graphical-lines",
-"fill-and-stroke",
-"empty",
-"elbows",
-"data-nodes",
-"curves",
-"anchors",
-"dev"
-];
-
-var pathways = fs.readdirSync('./test/input-data/protocol')
-  .filter(function(fileName) {
-    return fileName.indexOf('gpml') > -1;
-  })
-  .map(function(pathwayFileName) {
-    var pathway = {};
-    pathway.name = pathwayFileName.replace('.gpml.xml', '').replace('.gpml', '');
-    pathway.fileName = pathwayFileName;
-    return pathway;
-  })
-  .filter(function(pathway) {
-    return pathwayNames.indexOf(pathway.name) > -1; // && pathwayNames.indexOf(pathway.name) > 13;
-  })
-  .sort(function(b,a) {
-    var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
-    if (nameA < nameB) //sort string ascending
-    return -1 
-    if (nameA > nameB)
-    return 1
-    return 0 //default return value (no sorting)
-  })
-  .map(function(pathway) {
-    return JSON.stringify(pathway);
-  });
-
-console.log('pathways');
-console.log(pathways);
-console.log(pathways.length);
-
-var startTime = new Date();
-
-var pathwaysStream = highland(pathways);
-
-/*
-function mocha(opts) {
-  var spawnMocha = new SpawnMocha(opts);
-  var stream = through(function write(file) {
-    spawnMocha.add(file.path);
-  }, function() {});
-  var errors = [];
-  spawnMocha.on('error', function(err) {
-    console.error(err.toString());
-    errors.push(err);
-  }).on('end', function() {
-    if(errors.length > 0) {
-      console.error('ERROR SUMMARY: ');
-      _(errors).each(function(err) {
-        console.error(err.toString());
-      });
-      stream.emit('error', "Some tests failed.");
-    }
-    stream.emit('end');
-  });
-  return stream;
-}
-
-function buildMochaOpts(opts) {
-  var mochaOpts = {
-    flags: {
-      //u: 'bdd-with-opts',
-      R: 'spec',
-      b: true,
-      // timeout: this is the time mocha will spend on one test
-      t: 6000,
-      c: true,
-      debug: true,
-    },
-    bin: path.join('./node_modules/mocha/bin/mocha'),
-    concurrency: args.concurrency | process.env.CONCURRENCY || 3
-  };  
-  if(args.grep) {
-    mochaOpts.flags.g = args.grep;
-  }
-  mochaOpts.env = function() {
-    var env = _.clone(process.env);
-    env.PVJS_PATHWAY = opts.pathway;
-    if(opts.unit) {
-      // unit test
-      delete env.SAUCE;
-      delete env.SAUCE_USERNAME;
-      delete env.SAUCE_ACCESS_KEY;    
-    } else {
-      // midway + e2e tests
-      env.BROWSER = opts.browser;
-      env.SAUCE = args.sauce;
-    }
-    if(opts.midway) {
-      // local server port
-      env.EXPRESS_PORT = expressPort;
-    }
-    return env;
-  };
-  return mochaOpts;
-}
-//*/
-
-//*
-var pathwaysCompletedCount = 0;
-function runBrowsers(pathway) {
-  console.log('pathway');
-  console.log(pathway);
-  process.env.PVJS_PATHWAY = pathway;
-  pathwaysCompletedCount += 1;
-  //console.log('Testing pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
-  pathwaysStream.pause();
-  if (pathwaysCompletedCount < pathways.length) {
-    //pathwaysStream.pause();
-  }
-  return highland(browsers)
-    .map(function(browser) {
-      var opts = {};
-      opts.midway = true;
-      opts.browser = browser;
-      opts.pathway = pathway;
-      return opts;
-    })
-    //.map(buildMochaOpts)
-    .each(runLocalhostTest);
-}
-//*/
-
-process.env.BROWSER = 'phantomjs';
-
-function moveToNextPathway() {
-    browsersCompletedCount += 1;
-    console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + browsers.length + ' for pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
-    var later = new Date();
-    console.log('Elapsed time (ms): ' + (later - startTime));
-    if (browsersCompletedCount === browsers.length) {
-      browsersCompletedCount = 0;
-      pathwaysStream.resume();
-    }
-  through(function write(data) {
-    this.queue(data) //data *must* not be null
-  },
-  function end () { //optional
-    this.queue(null)
-  })
-}
-
-/*
-gulp.task('testLocalhost', function () {
-    return gulp.src('./test/tests/localhost.js', {read: false})
-        .pipe(mocha({reporter: 'nyan', timeout: 6000}));
-});
-//*/
-
-//*
-var browsersCompletedCount = 0;
-function runLocalhostTest(opts) {
-  console.log('runLocalhostTest')
-  return gulp.src('./test/tests/localhost.js', {read: false})
-    .pipe(mocha({reporter: 'nyan', timeout: 6000}))
-    .pipe(moveToNextPathway)
-  /*
-    .on('error', function() {
-      pathwaysStream.destroy();
-      console.log('Destroyed stream due to error.');
-    })
-  /*
-    .on('end', function() {
-      browsersCompletedCount += 1;
-      console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + args.browsers.length + ' for pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
-      var later = new Date();
-      console.log('Elapsed time (ms): ' + (later - startTime));
-      if (browsersCompletedCount === args.browsers.length) {
-        browsersCompletedCount = 0;
-        pathwaysStream.resume();
-      }
-    });
-    //*/
-}
+//require('bdd-with-opts');
 
 //gulp.task('testLocalhost', ['browserSync'], function () {
 gulp.task('testLocalhost', function () {
+  /*
+  gulp.task('default', function () {
+    gulp.watch('{lib,test}/*', test);
+    test();
+  });
+  //*/
+
+  var expressPort = 3000; // incremented after each test to avoid colision
+  args.browsers = (args.browser || 'phantomjs').split(',');
+  //args.browsers = (args.browser || 'firefox,safari').split(',');
+  //args.browsers = (args.browser || 'safari').split(',');
+
+  /*
+  var pathwaysAlreadyConsidered = fs.readdirSync('./test/input-data/protocol')
+    .filter(function(fileName) {
+      return fileName.indexOf('-firefox-lkg.png') > -1;
+    })
+    .map(function(pathwayFileName) {
+      return pathwayFileName.replace('-safari', '').replace('-firefox', '').replace('-lkg.png', '');
+    });
+
+  console.log('pathwaysAlreadyConsidered');
+  console.log(pathwaysAlreadyConsidered);
+    //*/
+
+  var pathwayNames = [
+  "z-index",
+  "text-and-font",
+  "size-and-proportion",
+  "shapes",
+  "publication-xrefs",
+  "one-node",
+  "one-edge",
+  "labels",
+  "interactions",
+  "groups",
+  "graphical-lines",
+  "fill-and-stroke",
+  "empty",
+  "elbows",
+  "data-nodes",
+  "curves",
+  "anchors",
+  "dev"
+  ];
+
+  var pathways = fs.readdirSync('./test/input-data/protocol')
+    .filter(function(fileName) {
+      return fileName.indexOf('gpml') > -1;
+    })
+    .map(function(pathwayFileName) {
+      var pathway = {};
+      pathway.name = pathwayFileName.replace('.gpml.xml', '').replace('.gpml', '');
+      pathway.fileName = pathwayFileName;
+      return pathway;
+    })
+    .filter(function(pathway) {
+      return pathwayNames.indexOf(pathway.name) > -1; // && pathwayNames.indexOf(pathway.name) > 13;
+    })
+    .sort(function(b,a) {
+      var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+      if (nameA < nameB) //sort string ascending
+      return -1 
+      if (nameA > nameB)
+      return 1
+      return 0 //default return value (no sorting)
+    })
+    .map(function(pathway) {
+      return JSON.stringify(pathway);
+    });
+
+  console.log('pathways');
+  console.log(pathways);
+  console.log(pathways.length);
+
+  var startTime = new Date();
+
+  var pathwaysStream = highland(pathways);
+
+  function mocha(opts) {
+    console.log('opts');
+    console.log(opts);
+    var spawnMocha = new SpawnMocha(opts);
+    var stream = through(function write(file) {
+      console.log('file');
+      console.log(file);
+      spawnMocha.add(file.path);
+    }, function() {});
+    var errors = [];
+    spawnMocha.on('error', function(err) {
+      console.error(err.toString());
+      errors.push(err);
+    }).on('end', function() {
+      if(errors.length > 0) {
+        console.error('ERROR SUMMARY: ');
+        _(errors).each(function(err) {
+          console.error(err.toString());
+        });
+        stream.emit('error', "Some tests failed.");
+      }
+      stream.emit('end');
+    });
+    return stream;
+  }
+
+  function buildMochaOpts(opts) {
+    var mochaOpts = {
+      flags: {
+        u: 'bdd',
+        //u: 'bdd-with-opts',
+        R: 'spec',
+        b: true,
+        // timeout: this is the time mocha will spend on one test
+        t: 6000,
+        c: true,
+        debug: true,
+      },
+      bin: path.join('./node_modules/mocha/bin/mocha'),
+      concurrency: args.concurrency | process.env.CONCURRENCY || 3
+    };  
+    if(args.grep) {
+      mochaOpts.flags.g = args.grep;
+    }
+    mochaOpts.env = function() {
+      var env = _.clone(process.env);
+      env.PVJS_PATHWAY = opts.pathway;
+      if(opts.unit) {
+        // unit test
+        delete env.SAUCE;
+        delete env.SAUCE_USERNAME;
+        delete env.SAUCE_ACCESS_KEY;    
+      } else {
+        // midway + e2e tests
+        env.BROWSER = opts.browser;
+        env.SAUCE = args.sauce;
+      }
+      if(opts.midway) {
+        // local server port
+        env.EXPRESS_PORT = expressPort;
+      }
+      return env;
+    };
+    return mochaOpts;
+  }
+
+  var pathwaysCompletedCount = 0;
+  function runBrowsers(pathway) {
+    pathwaysStream.pause();
+    console.log('pathway');
+    console.log(pathway);
+    pathwaysCompletedCount += 1;
+    //console.log('Testing pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
+    if (pathwaysCompletedCount < pathways.length) {
+      //pathwaysStream.pause();
+    }
+    return highland(args.browsers)
+      .map(function(browser) {
+        var opts = {};
+        opts.midway = true;
+        opts.browser = browser;
+        opts.pathway = pathway;
+        return opts;
+      })
+      .map(buildMochaOpts)
+      .each(runLocalhostTest);
+  }
+
+
+  var browsersCompletedCount = 0;
+  function runLocalhostTest(opts) {
+    return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
+      .pipe(mocha(opts))
+      .on('error', function() {
+        pathwaysStream.destroy();
+        console.log('Destroyed stream due to error.');
+      })
+      .on('end', function() {
+        browsersCompletedCount += 1;
+        console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + args.browsers.length + ' for pathway ' + pathwaysCompletedCount + ' of ' + pathways.length);
+        var later = new Date();
+        console.log('Elapsed time (ms): ' + (later - startTime));
+        if (browsersCompletedCount === args.browsers.length) {
+          browsersCompletedCount = 0;
+          pathwaysStream.resume();
+        }
+      });
+  }
+
+
+  var selenium;
+  function seleniumLauncherAndPathwayBatchPasser(pathwayBatchStream, callback) {
+    console.log('pathwayBatchStream in seleniumLauncherAndPathwayBatchPasser 1');
+    console.log(pathwayBatchStream);
+    seleniumLauncher(function(err, seleniumInstance) {
+      console.log('pathwayBatchStream in seleniumLauncherAndPathwayBatchPasser 2');
+      console.log(pathwayBatchStream);
+      selenium = seleniumInstance;
+      return callback(null, pathwayBatchStream);
+    });
+  }
+
+  var seleniumLauncherAndPathwayBatchPasserAsync = highland.wrapCallback(seleniumLauncherAndPathwayBatchPasser);
+
   pathwaysStream
-  .take(15)
-  .each(runBrowsers)
+  .batch(5)
+  .map(function(pathwayBatch) {
+    pathwaysStream.pause();
+    console.log('pathwayBatch');
+    console.log(pathwayBatch);
+    if (!!selenium) {
+      selenium.kill();
+    }
+    return pathwayBatch;
+  })
+  .pipe(through(function(pathwayBatch) {
+    var pipeInstance = this;
+    pipeInstance.pause();
+    seleniumLauncher(function(err, seleniumInstance) {
+      console.log('pathwayBatch in through');
+      console.log(pathwayBatch);
+      selenium = seleniumInstance;
+      pipeInstance.push(pathwayBatch);
+      pipeInstance.resume();
+    });
+  }))
+  .pipe(through(function(pathwayBatch) {
+    console.log('pathwayBatch in through 2');
+    console.log(pathwayBatch);
+    return highland(pathwayBatch).each(runBrowsers);
+  }))
+  .pipe(through(function() {
+    console.log('Completed all tests requested.');
+    return selenium.kill();
+  }))
+  /*
+  .each(function(result) {
+    console.log('result in test');
+    console.log(result);
+    return result;
+  })
+  .each(runBrowsers);
+  //*/
 });
-//*/
+
