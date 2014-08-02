@@ -83,7 +83,7 @@ describe(desired.name, function() {
       .nodeify(done);
   });
 
-  /*
+  //*
   it("should save the HTML if it is PhantomJS", function(done) {
       browser
           .elementsByTagName('div')
