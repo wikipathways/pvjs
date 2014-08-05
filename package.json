@@ -93,9 +93,9 @@
     "q": "~1.0.1",
     "run-sequence": "~0.3.6",
     "pretty-data": "~0.40.0",
-    "gulp-minify-html": "~0.1.4",
     "minimize": "~0.7.6",
-    "bdd-with-opts": "0.0.4"
+    "bdd-with-opts": "0.0.4",
+    "prompt": "~0.2.13"
   },
   "dependencies": {
     "bridgedbjs": "bridgedb/bridgedbjs",

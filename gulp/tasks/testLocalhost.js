@@ -24,7 +24,7 @@ gulp.task('testLocalhost', function () {
   args.browsers = (args.browser || 'firefox').split(',');
   //args.browsers = (args.browser || 'safari').split(',');
   //args.browsers = (args.browser || 'firefox,safari').split(',');
-  var batchSize = 15;
+  var batchSize = 5;
 
   var pathways = fs.readdirSync('./test/input-data/protocol')
     .filter(function(fileName) {
@@ -126,16 +126,55 @@ gulp.task('testLocalhost', function () {
         selenium.kill();
       })
       .on('end', function() {
+        /*
+        if (process.ENV.PVJS_PATHWAY) {
+          console.log('Images are different. Please inspect the difference between the expected and actual images here:');
+          console.log(pathDiffImage);
+          console.log('You can also compare the following two images.');
+          console.log('Actual image' + pathActualImage);
+          console.log('vs');
+          console.log('Expected image' + pathExpectedImage);
+          console.log('After comparing, please choose the option corresponding to which image(s) are correct:');
+          console.log('(1) Actual');
+          console.log('(2) Expected');
+          console.log('(3) Both');
+          console.log('(4) Neither');
+
+          //
+          // Start the prompt
+          //
+          prompt.start();
+
+          //
+          // Get two properties from the user: username and email
+          //
+          prompt.get(['Option'], function (err, result) {
+            //
+            // Log the results.
+            //
+            console.log('Command-line input received:');
+            console.log('  Option: ' + result.Option);
+          });
+        }
+        //*/
+
         browsersCompletedCount += 1;
         //console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + args.browsers.length + ' for pathway ' + pathwayIndexOneBased + ' of ' + pathways.length);
         if (browsersCompletedCount === args.browsers.length) {
           browsersCompletedCount = 0;
           pathwayIndexOneBased += 1;
           if (pathwayIndexOneBased < pathways.length && (pathwayIndexOneBased % batchSize === 0)) {
-            pathwaysStream.resume();
+            setTimeout(function(){
+              pathwaysStream.resume();
+            }, 3000)
           } else if (pathwayIndexOneBased === pathways.length) {
             console.log('Completed all tests requested.');
-            selenium.kill();
+            //*
+            setTimeout(function(){
+              selenium.kill();
+              process.exit();
+            }, 3000)
+            //*/
           }
         }
       });
@@ -145,6 +184,7 @@ gulp.task('testLocalhost', function () {
   // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
   // after running 16 tests, at least on my machine. --AR
   // so this batching is a hack that restarts selenium after every 16 pathways.
+  .take(batchSize)
   .batch(batchSize)
   .map(function(pathwayBatch) {
     pathwaysStream.pause();
