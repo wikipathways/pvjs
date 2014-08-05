@@ -17,9 +17,10 @@ gulp.task('setLastKnownGoods', function () {
     });
 
   var testImageFileNameStream = highland(testImageFileNames);
+  var testImageTagStream = testImageFileNameStream.fork();
+  var imageHashStream = testImageFileNameStream.fork();
 
-  var testImageTagStream = highland(testImageFileNames)
-    .map(function(testImageFileName) {
+  testImageTagStream.map(function(testImageFileName) {
       var testImageFileNameComponents = testImageFileName.split('-');
       var testImageFileNameComponentsLength = testImageFileNameComponents.length;
 
@@ -32,6 +33,7 @@ gulp.task('setLastKnownGoods', function () {
         type: type,
         name: name
       };
+      testImageTagStream.resume();
       return result;
     })
 
@@ -46,10 +48,11 @@ gulp.task('setLastKnownGoods', function () {
       })
       .last()
       .map(function() {
+        imageHashStream.resume();
         return sha1Sum.digest('hex');
       });
   }
-  var imageHashStream = testImageFileNameStream.map(getHash).sequence();
+  imageHashStream.map(getHash).sequence();
 
   testImageTagStream.zip(imageHashStream).reduce({}, function(imageHashes, input) {
       var testImageTags = input[0];
