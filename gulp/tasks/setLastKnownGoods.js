@@ -11,31 +11,26 @@ var gulp = require('gulp')
 gulp.task('setLastKnownGoods', function () {
   var protocolTestResultsDirectory = './tmp/protocol/';
 
+  var imageHashStream;
   var testImageFileNameStream = highland(fs.readdirSync(protocolTestResultsDirectory))
   .filter(function(fileName) {
     return fileName.indexOf('png') > -1 && fileName.indexOf('test') > -1;
-  });
-
-  var testImageTagStream = testImageFileNameStream.fork();
-  var imageHashStream = testImageFileNameStream.fork();
-  
-  var imageHashStream2 = imageHashStream.map(function(testImageFileName) {
+  })
+  .doto(function(testImageFileName) {
     var imagePath = protocolTestResultsDirectory + testImageFileName;
     var sha1Sum = crypto.createHash('sha1');
-    return highland(fs.ReadStream(imagePath))
-      .map(function(d) {
-        sha1Sum.update(d);
-        return;
-      })
-      .last()
-      .map(function() {
-        imageHashStream.resume();
-        return sha1Sum.digest('hex');
-      });
-  })
-  .sequence();
-
-  testImageTagStream.map(function(testImageFileName) {
+    imageHashStream = highland(fs.ReadStream(imagePath))
+    .map(function(d) {
+      sha1Sum.update(d);
+      return;
+    })
+    .last()
+    .map(function() {
+      imageHashStream.resume();
+      return sha1Sum.digest('hex');
+    });
+    return;
+  }).map(function(testImageFileName) {
     var testImageFileNameComponents = testImageFileName.split('-');
     var testImageFileNameComponentsLength = testImageFileNameComponents.length;
 
@@ -48,10 +43,9 @@ gulp.task('setLastKnownGoods', function () {
       type: type,
       name: name
     };
-    testImageTagStream.resume();
     return result;
   })
-  .zip(imageHashStream2)
+  .zip(imageHashStream)
   .reduce({}, function(imageHashes, input) {
     var testImageTags = input[0];
     var browser = testImageTags.browser;
