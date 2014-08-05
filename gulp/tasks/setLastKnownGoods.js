@@ -11,35 +11,16 @@ var gulp = require('gulp')
 gulp.task('setLastKnownGoods', function () {
   var protocolTestResultsDirectory = './tmp/protocol/';
 
-  var testImageFileNames = fs.readdirSync(protocolTestResultsDirectory)
-    .filter(function(fileName) {
-      return fileName.indexOf('png') > -1 && fileName.indexOf('test') > -1;
-    });
+  var testImageFileNameStream = highland(fs.readdirSync(protocolTestResultsDirectory))
+  .filter(function(fileName) {
+    return fileName.indexOf('png') > -1 && fileName.indexOf('test') > -1;
+  });
 
-  var testImageFileNameStream = highland(testImageFileNames);
   var testImageTagStream = testImageFileNameStream.fork();
   var imageHashStream = testImageFileNameStream.fork();
-
-  testImageTagStream.map(function(testImageFileName) {
-      var testImageFileNameComponents = testImageFileName.split('-');
-      var testImageFileNameComponentsLength = testImageFileNameComponents.length;
-
-      var browser = testImageFileNameComponents[testImageFileNameComponentsLength - 2];
-      var type = testImageFileNameComponents[testImageFileNameComponentsLength - 1].replace('.png', '');
-      var name = testImageFileName.split('-' + browser)[0];
-
-      var result = {
-        browser: browser,
-        type: type,
-        name: name
-      };
-      testImageTagStream.resume();
-      return result;
-    })
-
-  function getHash(testImageFileName) {
+  
+  var imageHashStream2 = imageHashStream.map(function(testImageFileName) {
     var imagePath = protocolTestResultsDirectory + testImageFileName;
-
     var sha1Sum = crypto.createHash('sha1');
     return highland(fs.ReadStream(imagePath))
       .map(function(d) {
@@ -51,25 +32,42 @@ gulp.task('setLastKnownGoods', function () {
         imageHashStream.resume();
         return sha1Sum.digest('hex');
       });
-  }
-  imageHashStream.map(getHash).sequence();
+  })
+  .sequence();
 
-  testImageTagStream.zip(imageHashStream).reduce({}, function(imageHashes, input) {
-      var testImageTags = input[0];
-      var browser = testImageTags.browser;
-      var type = testImageTags.type;
-      var name = testImageTags.name;
+  testImageTagStream.map(function(testImageFileName) {
+    var testImageFileNameComponents = testImageFileName.split('-');
+    var testImageFileNameComponentsLength = testImageFileNameComponents.length;
 
-      var imageHash = input[1];
+    var browser = testImageFileNameComponents[testImageFileNameComponentsLength - 2];
+    var type = testImageFileNameComponents[testImageFileNameComponentsLength - 1].replace('.png', '');
+    var name = testImageFileName.split('-' + browser)[0];
 
-      imageHashes[name] = imageHashes[name] || {};
-      imageHashes[name][browser] = imageHash;
-      return imageHashes;
-    })
-    .each(function(result) {
-      console.log(result.curves.safari);
-      console.log('result');
-      console.log(result);
-    });
+    var result = {
+      browser: browser,
+      type: type,
+      name: name
+    };
+    testImageTagStream.resume();
+    return result;
+  })
+  .zip(imageHashStream2)
+  .reduce({}, function(imageHashes, input) {
+    var testImageTags = input[0];
+    var browser = testImageTags.browser;
+    var type = testImageTags.type;
+    var name = testImageTags.name;
+
+    var imageHash = input[1];
+
+    imageHashes[name] = imageHashes[name] || {};
+    imageHashes[name][browser] = imageHash;
+    return imageHashes;
+  })
+  .each(function(result) {
+    console.log(result.curves.safari);
+    console.log('result');
+    console.log(result);
+  });
 });
 
