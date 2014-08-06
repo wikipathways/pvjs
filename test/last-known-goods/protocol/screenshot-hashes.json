@@ -15,9 +15,9 @@
 	},
 	"data-nodes": {
 		"Darwin12.5.0": {
-			"firefox": "9387818599c87ac03669aa94d6006bc9d5cc8275",
-			"phantomjs": "f3db26329a6eb6618112d03cc0d5042f26117df8",
-			"safari": "85b23b36c63f3e5b6eb9650942eec7345bc3d196"
+			"firefox": "0373a9be89ddfc86dcaf02e6bf0e8b26ed1c158b",
+			"phantomjs": "e9c4fc86e7491591ac612a9c0460e3be7139ffa6",
+			"safari": "380a08b507116c2e0ce3852f22d8d69ccf5aed64"
 		}
 	},
 	"elbows": {

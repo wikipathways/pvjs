@@ -81,14 +81,26 @@ describe(desired.name, function() {
       .get('http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/protocol/' + pathway.fileName)
       .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 4000)
       .waitForElementByCss(".pathvisiojs-highlighter", wd.asserters.isDisplayed, 4000)
-      .saveScreenshot('tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png')
       .nodeify(done);
   });
 
-  //*
+  var detailsPanelTimeout = 6000;
+  if (pathwayName === 'data-nodes') {
+    it('should open the details panel for CCR5', function(done) {
+      browser
+        // TODO the contains selector isn't working for me, even though it would be nice to use it
+        //.waitForElementByCss(":contains('CCR5')", wd.asserters.isDisplayed, detailsPanelTimeout)
+        .waitForElementByCss("#bbd97", wd.asserters.isDisplayed, 500)
+        .elementById('bbd97')
+        .click()
+        //.waitForElementByCss("span:contains('CCR5')", wd.asserters.isDisplayed, detailsPanelTimeout)
+        .waitForElementByCss("a.annotation-item-text", wd.asserters.isDisplayed, detailsPanelTimeout)
+        .nodeify(done);
+    });
+  }
+
   it("should confirm test and last known good screenshots are the same", function(done) {
-    // thanks to http://www.hacksparrow.com/how-to-generate-md5-sha1-sha512-sha256-checksum-hashes-in-node-js.html
-    // change the algo to sha1, sha256 etc according to your requirements
+    browser.saveScreenshot('tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png')
 
     var pathActualImage = 'tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png'
       , pathExpectedImage = 'test/input-data/protocol/' + pathwayName + '-lkg.png'
@@ -103,25 +115,25 @@ describe(desired.name, function() {
       if (!imagesAreSame) {
         var operatingSystem = os.type() + os.release();
         var screenshotHash = lastKnownGoodScreenshotHashes[pathwayName][operatingSystem][desired.browserName];
-        var algo = 'sha1';
-        var shasum = crypto.createHash(algo);
 
-        var s = fs.ReadStream(pathActualImage);
-        s.on('data', function(d) { shasum.update(d); });
-        s.on('end', function() {
-          var d = shasum.digest('hex');
-          expect(d).to.equal(screenshotHash);
-          return done();
+        var sha1Sum = crypto.createHash('sha1');
+        var imageStream = fs.ReadStream(pathActualImage);
+        imageStream.on('data', function(d) { sha1Sum.update(d); });
+        imageStream.on('end', function() {
+          var d = sha1Sum.digest('hex');
+          setTimeout(function() {
+            expect(d).to.equal(screenshotHash);
+            return done();
+          }, detailsPanelTimeout + 500);
         });
       } else {
         expect(imagesAreSame).to.equal(true);
         return done();
       }
       // error will be any errors that occurred
-      // imagesAreSame is a boolean whether the images were the same or not
-      // diffImage will have an image which highlights differences
+      // imagesAreSame is a boolean
+      // diffImage is an image which highlights differences
     });
   });
-  //*/
 });
 

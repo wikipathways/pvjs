@@ -12,19 +12,28 @@ var gulp = require('gulp')
 
 require('bdd-with-opts');
 
-// TODO use browserSync or something to enable automatically starting the server
-//gulp.task('testLocalhost', ['browserSync'], function () {
 gulp.task('testLocalhost', function () {
-
   var selenium;
   var browsersCompletedCount = 0;
   var pathwayIndexOneBased = 1;
   var expressPort = 3000;
-  args.browsers = (args.browser || 'phantomjs').split(',');
+  //args.browsers = (args.browser || 'phantomjs').split(',');
   //args.browsers = (args.browser || 'firefox').split(',');
   //args.browsers = (args.browser || 'safari').split(',');
-  //args.browsers = (args.browser || 'firefox,safari').split(',');
-  var batchSize = 5;
+  // TODO get Chrome working in tests. The chromedriver doesn't seem to be working at present.
+  //args.browsers = (args.browser || 'chrome').split(',');
+  args.browsers = (args.browser || 'phantomjs,firefox,safari').split(',');
+
+  // TODO figure out why this hack is needed so as to
+  // avoid getting errors in selenium/mocha.
+  // This is telling the system to restart the selenium server
+  // after running "batchSize" number of tests
+  var batchSize;
+  if (args.browsers.length > 1) {
+    batchSize = 1;
+  } else {
+    batchSize = 4;
+  }
 
   var pathways = fs.readdirSync('./test/input-data/protocol')
     .filter(function(fileName) {
@@ -159,7 +168,6 @@ gulp.task('testLocalhost', function () {
         //*/
 
         browsersCompletedCount += 1;
-        //console.log('Finished testing browser ' + browsersCompletedCount + ' of ' + args.browsers.length + ' for pathway ' + pathwayIndexOneBased + ' of ' + pathways.length);
         if (browsersCompletedCount === args.browsers.length) {
           browsersCompletedCount = 0;
           pathwayIndexOneBased += 1;
@@ -169,12 +177,10 @@ gulp.task('testLocalhost', function () {
             }, 3000)
           } else if (pathwayIndexOneBased === pathways.length) {
             console.log('Completed all tests requested.');
-            //*
             setTimeout(function(){
               selenium.kill();
               process.exit();
-            }, 3000)
-            //*/
+            }, 2000)
           }
         }
       });
@@ -184,7 +190,7 @@ gulp.task('testLocalhost', function () {
   // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
   // after running 16 tests, at least on my machine. --AR
   // so this batching is a hack that restarts selenium after every 16 pathways.
-  //.take(batchSize)
+  // See also the discussion near the top of this file.
   .batch(batchSize)
   .map(function(pathwayBatch) {
     pathwaysStream.pause();
@@ -197,11 +203,6 @@ gulp.task('testLocalhost', function () {
     seleniumLauncher(function(err, seleniumInstance) {
       selenium = seleniumInstance;
       process.env.SELENIUM_PORT = selenium.port;
-      /*
-      setTimeout(function() {
-        return highland(pathwayBatch).each(runBrowsers);
-      }, 1000);
-      //*/
       return highland(pathwayBatch).each(runBrowsers);
     });
   }))
