@@ -95,7 +95,8 @@
     "pretty-data": "~0.40.0",
     "minimize": "~0.7.6",
     "bdd-with-opts": "0.0.4",
-    "prompt": "~0.2.13"
+    "prompt": "~0.2.13",
+    "rsyncwrapper": "~0.4.1"
   },
   "dependencies": {
     "bridgedbjs": "bridgedb/bridgedbjs",
