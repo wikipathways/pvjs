@@ -1,5 +1,4 @@
-var wd = require('wd')
-  , chai = require("chai")
+var  chai = require("chai")
   , chaiAsPromised = require("chai-as-promised")
   , colors = require('colors')
   , crypto = require('crypto')
@@ -8,7 +7,9 @@ var wd = require('wd')
   , gulp = require('gulp')
   , highland = require('highland')
   , imageDiff = require('image-diff')
+  , os   = require('os')
   , prompt = require('prompt')
+  , wd = require('wd')
   ;
 
 var pathway = JSON.parse(process.env.PVJS_PATHWAY);
@@ -18,7 +19,7 @@ var desired = {"browserName": process.env.BROWSER};
 desired.name = 'Local Protocol for ' + pathwayName.toUpperCase().cyan + ' (' + desired.browserName.grey + ')';
 desired.tags = ['localhost'];
 
-var report = {};
+var lastKnownGoodScreenshotHashes = JSON.parse(fs.readFileSync('./test/last-known-goods/protocol/screenshot-hashes.json'));
 
 chai.use(chaiAsPromised);
 chai.should();
@@ -84,31 +85,6 @@ describe(desired.name, function() {
       .nodeify(done);
   });
 
-  /*
-  it("should save the HTML if it is PhantomJS", function(done) {
-      browser
-          .elementsByTagName('div')
-          .then(function(elements){
-              return elements[0].getAttribute("innerHTML")
-          })
-          .then(function(innerHTML){
-              var Minimize = require('minimize')
-              , minimize = new Minimize();
-
-            if (desired.browserName === 'phantomjs') {
-                minimize.parse(innerHTML, function (error, minifiedInnerHtml) {
-                  fs.writeFileSync('tmp/protocol/' + pathwayName + '-' + desired.browserName + '.html', minifiedInnerHtml);
-                  expect(1).to.equal(1);
-                  return done();
-                });
-            } else {
-                expect(1).to.equal(1);
-                return done();
-            }
-          });
-  });
-  //*/
-
   //*
   it("should confirm test and last known good screenshots are the same", function(done) {
     // thanks to http://www.hacksparrow.com/how-to-generate-md5-sha1-sha512-sha256-checksum-hashes-in-node-js.html
@@ -125,7 +101,8 @@ describe(desired.name, function() {
       diffImage: pathDiffImage,
     }, function (err, imagesAreSame) {
       if (!imagesAreSame) {
-        var pathActualImage = 'tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png'
+        var operatingSystem = os.type() + os.release();
+        var screenshotHash = lastKnownGoodScreenshotHashes[pathwayName][operatingSystem][desired.browserName];
         var algo = 'sha1';
         var shasum = crypto.createHash(algo);
 
@@ -133,9 +110,7 @@ describe(desired.name, function() {
         s.on('data', function(d) { shasum.update(d); });
         s.on('end', function() {
           var d = shasum.digest('hex');
-          console.log(d);
-          // TODO get actual checksum for the image
-          expect(d).to.equal(d);
+          expect(d).to.equal(screenshotHash);
           return done();
         });
       } else {
@@ -146,56 +121,6 @@ describe(desired.name, function() {
       // imagesAreSame is a boolean whether the images were the same or not
       // diffImage will have an image which highlights differences
     });
-  });
-  //*/
-
-  /*
-  it("should confirm test and last known good innerHTML is the same", function(done) {
-      browser
-          .elementsByTagName('div')
-          .then(function(elements){
-              return elements[0].getAttribute("innerHTML");
-          })
-          .then(function(markupString){
-              var Minimize = require('minimize')
-              , minimize = new Minimize();
-
-              // PhantomJS produces a buggy version of the markup that lacks namespace qualifications,
-              // so this is a hack to ignore that difference.
-              markupString = markupString.replace('xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events"', '')
-                        .replace('xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"', '')
-
-              console.log('markupString');
-              console.log(markupString);
-
-
-              minimize.parse(markupString, function (error, minifiedMarkupString) {
-                console.log('minifiedMarkupString');
-                //console.log(minifiedMarkupString);
-                fs.writeFileSync('tmp/protocol/' + pathwayName + '-' + desired.browserName + '.html', minifiedMarkupString);
-                var lastKnownGoodHtml = fs.readFileSync('test/input-data/protocol/' + pathwayName + '-phantomjs-lkg.html', {encoding: 'utf8'});
-                //console.log('lastKnownGoodHtml');
-                //console.log(lastKnownGoodHtml);
-                console.log('here******************************************');
-                console.log(lastKnownGoodHtml === minifiedMarkupString);
-                expect(lastKnownGoodHtml).to.equal(minifiedMarkupString);
-                console.log('Finished HTML comparison')
-                return done();
-              });
-
-          });
-  });
-  //*/
-
-  /*
-  it("should confirm test and last known good innerHTML is the same", function(done) {
-    var minimizeSync = highland.wrapCallback(minimize.parse);
-    highland([ innerHTML ])
-      .map(minimizeSync)
-      .toArray(function(result) {
-        console.log('result');
-        console.log(result);
-      });
   });
   //*/
 });
