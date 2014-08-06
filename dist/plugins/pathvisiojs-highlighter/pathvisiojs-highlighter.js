@@ -41,16 +41,22 @@
     this.pvjs = pvjs;
     this.$pvjsElement = $(this.pvjs.$element[0][0])
     this.pvjsSourceData = this.pvjs.getSourceData();
-    this.selector = this.pvjsSourceData.selector;
-    this.elements = this.pvjsSourceData.pvjson.elements;
+    this.isInitiated = false
 
-    this.groups = {};
+    // Right now working only with SVG renderer
+    if (this.pvjsSourceData.rendererEngine === 'svg') {
+      this.isInitiated = true
+      this.selector = this.pvjsSourceData.selector;
+      this.elements = this.pvjsSourceData.pvjson.elements;
 
-    if (this.options.displayInputField) {
-      // Used only for typeahead search
-      this.searcheableValues = getSearcheableValues(this.elements);
-      // Creat DOM elements and hooks for them
-      this.initInputField();
+      this.groups = {};
+
+      if (this.options.displayInputField) {
+        // Used only for typeahead search
+        this.searcheableValues = getSearcheableValues(this.elements);
+        // Creat DOM elements and hooks for them
+        this.initInputField();
+      }
     }
   }
 
@@ -83,6 +89,8 @@
    * @return {Boolean} if anything found
    */
   PathvisiojsHighlighter.prototype.highlightPublic = function(stringSelector, group, styles) {
+    if (!this.isInitiated) {return}
+
     var selector = this.selectByString(stringSelector)
       , that = this
 
@@ -105,6 +113,8 @@
    * @param  {string} group   Group name
    */
   PathvisiojsHighlighter.prototype.attenuatePublic = function(stringSelector, group) {
+    if (!this.isInitiated) {return}
+
     if (stringSelector === null) {
       this.attenuate(group || 'default', null)
     } else {
