@@ -184,7 +184,7 @@ gulp.task('testLocalhost', function () {
   // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
   // after running 16 tests, at least on my machine. --AR
   // so this batching is a hack that restarts selenium after every 16 pathways.
-  .take(batchSize)
+  //.take(batchSize)
   .batch(batchSize)
   .map(function(pathwayBatch) {
     pathwaysStream.pause();
