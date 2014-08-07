@@ -261,11 +261,14 @@ var xrefTypes = ['PublicationXref', 'RelationshipXref', 'UnificationXref', 'Xref
  */
 Selector.prototype.filteredByXRef = function(selectorString) {
   var matchingElements = []
-    , selectById = selectorString.indexOf('id:') === 0 ? true : false
+    , selectById = _.isString(selectorString) && selectorString.indexOf('id:') === 0 ? true : false
+    , fallbackIdSelector = null
     , selectAttribute = null
 
   if (selectById) {
     selectorString = selectorString.slice(3)
+    // Create a RegExp from alpha-numeric characters that match the end of a string
+    fallbackIdSelector = new RegExp(selectorString.replace(/[^a-z0-9]/gi, '') + '$', 'ig')
   }
 
   for (var i = 0; i < this.length; i++) {
@@ -291,6 +294,13 @@ Selector.prototype.filteredByXRef = function(selectorString) {
         // Test for string match
         if (_.isString(selectorString) && selectorString === this[i][selectAttribute]) {
           matchingElements.push(this[i])
+        }
+
+        // If element not matched, try fallback search (by id)
+        if ((matchingElements.length === 0 || matchingElements[matchingElements.length - 1] !== this[i]) && fallbackIdSelector !== null) {
+          if (fallbackIdSelector.test(this[i].id)) {
+            matchingElements.push(this[i])
+          }
         }
       }
     }
