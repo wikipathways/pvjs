@@ -861,6 +861,10 @@ var Mousewheel = require('./mousewheel')  // Keep it here so that mousewheel is 
 
       // Cache zoom level
       this._zoom = setZoom.a
+
+      // Cache new pan coordinates
+      this._pan.x = setZoom.e
+      this._pan.y = setZoom.f
     }
 
     if (!this.stateTf) {
@@ -1116,6 +1120,22 @@ var Mousewheel = require('./mousewheel')  // Keep it here so that mousewheel is 
   }
 
   /**
+   * Recalculates cached svg dimensions and controls position
+   */
+  SvgPanZoom.prototype.resize = function() {
+    // Get dimensions
+    var dimensions = SvgUtils.getSvgDimensions(this.svg)
+    this.width = dimensions.width
+    this.height = dimensions.height
+
+    // Reposition control icons by re-enabling them
+    if (this.options.controlIconsEnabled) {
+      this.getPublicInstance().disableControlIcons()
+      this.getPublicInstance().enableControlIcons()
+    }
+  }
+
+  /**
    * Returns a public instance object
    * @return {object} Public instance object
    */
@@ -1195,6 +1215,7 @@ var Mousewheel = require('./mousewheel')  // Keep it here so that mousewheel is 
       , getZoom: function() {return that.getZoom()}
       , fit: function(dropCache) {return that.fit(dropCache)}
       , center: function(dropCache) {return that.center(dropCache)}
+      , resize: function() {that.resize()}
       }
     }
 
@@ -1291,18 +1312,19 @@ module.exports = {
   }
 
   /**
-   * Gets g.viewport element or creates it if it doesn't exist
+   * Gets g#viewport element or creates it if it doesn't exist
    * @param  {object} svg
    * @return {object}     g element
    */
 , getOrCreateViewport: function(svg) {
-    var viewport = svg.querySelector('g.viewport')
+    var viewport = svg.querySelector('g#viewport')
 
     // If no g container with id 'viewport' exists, create one
     if (!viewport) {
-      var viewport = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      viewport.setAttribute('class', 'viewport');
+      viewport = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      viewport.setAttribute('id', 'viewport');
 
+      // Internet Explorer (all versions?) can't use childNodes, but other browsers prefer (require?) using childNodes
       var svgChildren = svg.childNodes || svg.children;
       do {
         viewport.appendChild(svgChildren[0]);
@@ -1317,15 +1339,21 @@ module.exports = {
     // Setting default attributes
     // TODO the svgNS value is repeated in the codebase. It should be defined once.
     var svgNS = 'http://www.w3.org/2000/svg'
-      , xlinkNS = 'http://www.w3.org/1999/xlink'
       , xmlNS = 'http://www.w3.org/XML/1998/namespace'
       , xmlnsNS = 'http://www.w3.org/2000/xmlns/'
+      , xlinkNS = 'http://www.w3.org/1999/xlink'
       , evNS = 'http://www.w3.org/2001/xml-events'
       ;
 
-    svg.setAttribute('xmlns', svgNS);
-    svg.setAttributeNS(xmlnsNS, 'xmlns:xlink', xlinkNS);
-    svg.setAttributeNS(xmlnsNS, 'xmlns:ev', evNS);
+    if (!svg.getAttribute('xmlns')) {
+      svg.setAttribute('xmlns', svgNS);
+    }
+    if (!svg.getAttributeNS(xmlnsNS, 'xmlns:xlink')) {
+      svg.setAttributeNS(xmlnsNS, 'xmlns:xlink', xlinkNS);
+    }
+    if (!svg.getAttributeNS(xmlnsNS, 'xmlns:ev')) {
+      svg.setAttributeNS(xmlnsNS, 'xmlns:ev', evNS);
+    }
 
     // Needed for Internet Explorer, otherwise the viewport overflows
     if (svg.parentNode !== null) {
@@ -23418,7 +23446,7 @@ module.exports = {
       var markerId = crossPlatformShapesInstance.svg.marker.generateId(name, position, color);
       var markerAttributeValue = 'url(#' + markerId + ')';
       if (availableMarkers[markerId]) {
-        callback(markerAttributeValue);
+        return callback(markerAttributeValue);
       } else {
         var marker = d3.select(targetSvgDefs).append('marker')
         .attr('id', markerId)
@@ -23454,11 +23482,11 @@ module.exports = {
           });
         });
         availableMarkers[markerId] = true;
-        callback(markerAttributeValue);
+        return callback(markerAttributeValue);
       }
     } else {
       console.warn('Marker (arrowhead) named "' + name + '" is not available.');
-      callback('none');
+      return callback('none');
     }
   }
 };
@@ -23555,7 +23583,7 @@ module.exports = {
     });
 
     if (!!callback) {
-      callback(shapeSelection[0][0]);
+      return callback(shapeSelection[0][0]);
     } else {
       return shapeSelection[0][0];
     }
@@ -23570,8 +23598,11 @@ module.exports = {
       , backgroundColor = args.backgroundColor || '#ffffff'
       , targetElement = args.targetElement
       , targetTagName = args.targetTagName
+      , xmlNS = 'http://www.w3.org/XML/1998/namespace'
       , svgNS = 'http://www.w3.org/2000/svg'
-      , xmlNS = 'http://www.w3.org/2000/xmlns/'
+      , xmlnsNS = 'http://www.w3.org/2000/xmlns/'
+      , xlinkNS = 'http://www.w3.org/1999/xlink'
+      , evNS = 'http://www.w3.org/2001/xml-events'
       ;
 
       crossPlatformShapesInstance.svgNS = svgNS;
@@ -23580,47 +23611,61 @@ module.exports = {
 
     var viewport, defs, targetSvg;
     if (targetTagName !== 'svg') {
-      var id = args.id || 'cross-platform-shape-svg';
+      // var id = args.id || 'cross-platform-shape-svg';
+      // TODO look at using this for creating the id:
+      var id = args.id || 'svg-' + new Date().toISOString().replace(/\D/g, '');
 
-      var $targetSvg = d3.select(targetElement)
-        .append('svg')
-        .attr('id', id)
-        .attr('version', '1.1')
-        .attr('baseProfile', 'full')
-        .attr('xmlns', 'http://www.w3.org/1999/xlink')
-        .attr('xmlns:xmlns:xlink', 'http://www.w3.org/1999/xlink')
-        .attr('xmlns:xmlns:ev', 'http://www.w3.org/2001/xml-events')
-        .attr('preserveAspectRatio', 'xMidYMid')
-        .attr('width', width)
-        .attr('height', height)
-        ;
+      targetSvg = document.createElementNS(svgNS, 'svg');
+      targetSvg.setAttribute('xmlns', svgNS);
+      targetSvg.setAttributeNS(xmlnsNS, 'xmlns:xlink', xlinkNS);
+      targetSvg.setAttributeNS(xmlnsNS, 'xmlns:ev', evNS);
+      targetSvg.setAttribute('id', id);
+      targetSvg.setAttribute('version', '1.1');
+      targetSvg.setAttribute('baseProfile', 'full');
+      targetSvg.setAttribute('preserveAspectRatio', 'xMidYMid');
+      targetSvg.setAttribute('width', width);
+      targetSvg.setAttribute('height', height);
+      targetElement.appendChild(targetSvg);
 
-      targetSvg = $targetSvg[0][0];
+      viewport = document.createElementNS(svgNS, 'g');
+      viewport.setAttribute('id', 'viewport');
+      targetSvg.appendChild(viewport);
 
-      // svgInstance.path.targetSvg = svgInstance.image.targetSvg = targetSvg;
-
-      defs = $targetSvg.append('defs').attr('id', 'defs')[0][0];
-
-      crossPlatformShapesInstance.targetSvg = targetSvg;
-      crossPlatformShapesInstance.targetSvgDefs = defs;
-
-      viewport = $targetSvg.append('g').attr('id', 'viewport')[0][0];
+      defs = document.createElementNS(svgNS, 'defs');
+      defs.setAttribute('id', 'defs');
+      viewport.appendChild(defs);
     } else {
       targetSvg = targetElement;
 
-      crossPlatformShapesInstance.targetSvg = targetSvg;
-      crossPlatformShapesInstance.targetSvgDefs = targetSvg.querySelector('defs');
+      viewport = targetSvg.querySelector('g#viewport');
 
-      viewport = targetSvg.querySelector('#viewport');
-      // TODO look at creating a new g element and putting all content into it here.
+      // TODO don't repeat this with the code already in the svg-pan-zoom library
+      // If no g container with id 'viewport' exists, create one
       if (!viewport) {
-        viewport = targetSvg.querySelector('g');
+        viewport = document.createElementNS(svgNS, 'g');
+        viewport.setAttribute('id', 'viewport');
+
+        // Internet Explorer (all versions?) can't use childNodes, but other browsers prefer (require?) using childNodes
+        var svgChildren = targetSvg.childNodes || targetSvg.children;
+        do {
+          viewport.appendChild(svgChildren[0]);
+        } while (svgChildren.length > 0);
+        targetSvg.appendChild(viewport);
+      }
+
+      defs = targetSvg.querySelector('defs');
+      if (!defs) {
+        defs = document.createElementNS(svgNS, 'defs');
+        defs.setAttribute('id', 'defs');
+        viewport.appendChild(defs);
       }
     }
 
+    crossPlatformShapesInstance.targetSvg = targetSvg;
+    crossPlatformShapesInstance.targetSvgDefs = defs;
     crossPlatformShapesInstance.availableMarkers = {};
     crossPlatformShapesInstance.backgroundColor = backgroundColor;
-    targetSvg.setAttributeNS(null, 'style', 'background-color:' + backgroundColor + '; ');
+    targetSvg.setAttribute('style', 'background-color:' + backgroundColor + '; ');
 
     crossPlatformShapesInstance.viewport = viewport;
 
@@ -61553,11 +61598,14 @@ var xrefTypes = ['PublicationXref', 'RelationshipXref', 'UnificationXref', 'Xref
  */
 Selector.prototype.filteredByXRef = function(selectorString) {
   var matchingElements = []
-    , selectById = selectorString.indexOf('id:') === 0 ? true : false
+    , selectById = _.isString(selectorString) && selectorString.indexOf('id:') === 0 ? true : false
+    , fallbackIdSelector = null
     , selectAttribute = null
 
   if (selectById) {
     selectorString = selectorString.slice(3)
+    // Create a RegExp from alpha-numeric characters that match the end of a string
+    fallbackIdSelector = new RegExp(selectorString.replace(/[^a-z0-9]/gi, '') + '$', 'ig')
   }
 
   for (var i = 0; i < this.length; i++) {
@@ -61583,6 +61631,13 @@ Selector.prototype.filteredByXRef = function(selectorString) {
         // Test for string match
         if (_.isString(selectorString) && selectorString === this[i][selectAttribute]) {
           matchingElements.push(this[i])
+        }
+
+        // If element not matched, try fallback search (by id)
+        if ((matchingElements.length === 0 || matchingElements[matchingElements.length - 1] !== this[i]) && fallbackIdSelector !== null) {
+          if (fallbackIdSelector.test(this[i].id)) {
+            matchingElements.push(this[i])
+          }
         }
       }
     }

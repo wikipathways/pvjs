@@ -12,7 +12,6 @@ var RendererSvg = Object.create(RendererPrototype)
 
 RendererSvg.init = function(pvjs) {
   this.pvjs = pvjs
-  this.crossPlatformTextInstance = Object.create(crossPlatformText)
   this.diagramId = 'pvjs-diagram-' + pvjs.instanceId
 
   /**
@@ -50,7 +49,7 @@ RendererSvg.init = function(pvjs) {
       }
   })
 
-  this.crossPlatformTextInstance.init({
+  this.crossPlatformTextInstance = crossPlatformText.getInstance({
     targetSelector: '#' + this.diagramId
   })
 
@@ -266,7 +265,7 @@ RendererSvg.hasElement = function(pvjsonElement) {
 RendererSvg.addElement = function(pvjsonElement) {
   if (this.isValidElement(pvjsonElement) && !this.hasElement(pvjsonElement)) {
     // TODO this should be refactored and removed
-    pvjsonElement.containerSelector = '#viewport'
+    pvjsonElement.containerSelector = 'g.viewport'
 
     this._elementsHash[pvjsonElement.id] = {
       pvjsonElement: pvjsonElement
