@@ -264,18 +264,16 @@ var developmentLoader = function() {
     })();
   }
 
+  /*
   function generateSvgTemplate(callback) {
     var docFragment = document.createDocumentFragment();
     var svg = d3.select(docFragment).append('svg').
     attr('id', 'pathvisiojs-diagram').
     attr('version', '1.1').
     attr('baseProfile', 'full').
-    /*
     attr('xmlns', 'http://www.w3.org/2000/svg').
     attr('xmlns:xlink', 'http://www.w3.org/1999/xlink').
     attr('xmlns:ev', 'http://www.w3.org/2001/xml-events').
-    //*/
-    attr('data-hello', 'whiz').
     attr('width', '100%').
     attr('height', '100%').
     attr('style', 'display: none; ');
@@ -326,6 +324,7 @@ var developmentLoader = function() {
       callback();
     });
   }
+  //*/
 
   /*
   function preload(outsideCallback) {

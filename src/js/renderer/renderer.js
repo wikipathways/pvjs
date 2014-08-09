@@ -117,7 +117,7 @@ module.exports = function(){
       renderer = RendererSvg.init(pvjs)
       sourceData.selector = Selector.init(pvjs.sourceData.pvjson.elements, renderer)
 
-      var viewport = pvjs.$element.select('#viewport')
+      var viewport = pvjs.$element.select('g.viewport')
 
       // InfoBox
       InfoBox.render(viewport, pvjs.sourceData.pvjson);
@@ -133,7 +133,7 @@ module.exports = function(){
       // Svg-pan-zoom
       // Should come last as it is fitting and centering viewport
       var svgSelection = d3.select('#' + 'pvjs-diagram-' + pvjs.instanceId);
-      var svgPanZoom = SvgPanZoom.svgPanZoom(svgSelection[0][0], {
+      var svgPanZoom = SvgPanZoom(svgSelection[0][0], {
         controlIconsEnabled: true
       , minZoom: 0.1
       , maxZoom: 20.0

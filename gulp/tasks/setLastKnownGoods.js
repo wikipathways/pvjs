@@ -31,6 +31,7 @@ gulp.task('setLastKnownGoods', function () {
   // TODO figure out how to do this properly without redefining the variable
   var screenshotHashStream2 = screenshotHashStream.map(function(testScreenshotFileName) {
     var screenshotSourcePath = protocolTestResultsDirectory + testScreenshotFileName;
+    // TODO look at using a perceptual image hash instead, like http://www.phash.org/
     var sha1Sum = crypto.createHash('sha1');
     var screenshotBufferStream = highland(fs.ReadStream(screenshotSourcePath));
 
