@@ -96,7 +96,8 @@
     "minimize": "~0.7.6",
     "bdd-with-opts": "0.0.4",
     "prompt": "~0.2.13",
-    "rsyncwrapper": "~0.4.1"
+    "rsyncwrapper": "~0.4.1",
+    "svg-pan-zoom": "git://github.com/ariutta/svg-pan-zoom"
   },
   "dependencies": {
     "bridgedbjs": "bridgedb/bridgedbjs",
