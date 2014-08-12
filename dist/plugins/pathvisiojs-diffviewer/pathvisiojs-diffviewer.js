@@ -68,19 +68,35 @@
     var that = this
       , pvjsRendered = false
       , pvjs2Rendered = false
+      , noDiff = false
 
     // pvjs renderer barrier
     this.pvjs.on('rendered', function(){
       pvjsRendered = true
-      if (pvjs2Rendered) {
+      if (pvjs2Rendered && !noDiff) {
         that.onPvjsesRendered()
       }
     })
     this.pvjs2.on('rendered', function(){
       pvjs2Rendered = true
-      if (pvjsRendered) {
+      if (pvjsRendered && !noDiff) {
         that.onPvjsesRendered()
       }
+    })
+
+    this.pvjs.on('error.sourceData', function(){
+      if (!noDiff) {
+        that.onNoDiff('One or both pathways were not rendered. Most probably one pathways uses old format that is not supported by PathvisioJS.')
+      }
+
+      noDiff = true
+    })
+    this.pvjs2.on('error.sourceData', function(){
+      if (!noDiff) {
+        that.onNoDiff('One or both pathways were not rendered. Most probably one pathways uses old format that is not supported by PathvisioJS.')
+      }
+
+      noDiff = true
     })
 
     // On destroy pvjs
@@ -138,6 +154,16 @@
       pvjs2Panned = true
       that.pvjs.pan(point)
     })
+  }
+
+  /**
+   * Create an overlay with a message
+   * @param  {String} message Message why diff viewer shows nothing
+   */
+  PathvisiojsDiffViewer.prototype.onNoDiff = function(message) {
+    this.$overlay = $('<div class="overlay"></div>').appendTo(this.$diffviewer)
+
+    this.$overlay.append($('<div class="alert alert-info"></div>').text(message))
   }
 
   PathvisiojsDiffViewer.prototype.onPvjsesRendered = function() {
