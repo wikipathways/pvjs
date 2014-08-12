@@ -161,8 +161,12 @@
    * @param  {String} message Message why diff viewer shows nothing
    */
   PathvisiojsDiffViewer.prototype.onNoDiff = function(message) {
-    this.$overlay = $('<div class="overlay"></div>').appendTo(this.$diffviewer)
+    // Create an overlay
+    if (this.$overlay === void 0) {
+      this.$overlay = $('<div class="overlay"></div>').appendTo(this.$diffviewer)
+    }
 
+    // Add a message
     this.$overlay.append($('<div class="alert alert-info"></div>').text(message))
   }
 
@@ -183,6 +187,12 @@
     this.elementsMerge = this.mergeElements(this.elements2, this.elements) // New elements have priority
 
     var diff = this.computeDiff()
+
+    // IF no diffs then display an overlay message and stop further rendering
+    if (diff.added.length + diff.updated.length + diff.removed.length === 0) {
+      this.onNoDiff('Pathways have no visual differences between them.')
+      return
+    }
 
     var $changesList = this.initDiffView()
 
