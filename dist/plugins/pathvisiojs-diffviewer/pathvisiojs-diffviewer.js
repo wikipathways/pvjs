@@ -171,8 +171,16 @@
   }
 
   PathvisiojsDiffViewer.prototype.onPvjsesRendered = function() {
-    this.getZoomScale()
-    this.displayDiff()
+    if (this.checkPvjsesData()) {
+      this.getZoomScale()
+      this.displayDiff()
+    } else {
+      this.onNoDiff('One or both pathways were rendered using a format (ex. png) that has no details about nodes.')
+    }
+  }
+
+  PathvisiojsDiffViewer.prototype.checkPvjsesData = function() {
+    return (this.pvjs.getSourceData().pvjson && this.pvjs2.getSourceData().pvjson)
   }
 
   PathvisiojsDiffViewer.prototype.zoomScale = 1
