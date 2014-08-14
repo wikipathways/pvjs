@@ -459,7 +459,7 @@
       $elementContainer = $('<div class="changes-container" data-level="3" data-type="' + type + '"/>').appendTo($containerList)
       $elementTitle = $('<div class="changes-title change-' + type + '"><span>' + elementTitle + '</span></div>').appendTo($elementContainer)
 
-      elementChanges = this.getElementChanges(type, groupElements[e])
+      elementChanges = this.getElementChanges(type, groupElements[e], elements)
 
       // Render element changes (if any)
       if (elementChanges && elementChanges.length) {
@@ -576,7 +576,20 @@
     return id;
   }
 
-  PathvisiojsDiffViewer.prototype.getElementChanges = function(type, element) {
+  var normalizationFloatKeys = ['width', 'height', 'x', 'y', 'rotation']
+    , normalizationIdKeys = ['isPartOf', 'controller', 'controlled']
+
+  function normalizeValue(value, key, elements) {
+    if (normalizationFloatKeys.indexOf(key) !== -1) {
+      return Math.round(parseFloat(value)*100)/100
+    } else if (normalizationIdKeys.indexOf(key) !== -1) {
+      return lookupTitleById(value, elements)
+    } else {
+      return value
+    }
+  }
+
+  PathvisiojsDiffViewer.prototype.getElementChanges = function(type, element, elements) {
     var titles = []
 
     if (type === 'added') {
@@ -584,28 +597,24 @@
         titles.push('Added <strong>reference</strong>: ' + element.entityReference)
       }
     } else if (type === 'updated') {
-      var floatKeys = ['width', 'height', 'x', 'y', 'rotation']
-        , oldValue = ''
+      var oldValue = ''
         , newValue = ''
         , diff = element.diff
 
       for (u in diff.added) {
-        titles.push('Added: <strong>' + diff.added[u].key + '</strong> ' + diff.added[u].value)
+        newValue = normalizeValue(diff.added[u].value, diff.added[u].key, elements)
+        titles.push('Added: <strong>' + diff.added[u].key + '</strong> ' + newValue)
       }
 
       for (u in diff.removed) {
-        titles.push('Removed: <strong>' + diff.removed[u].key + '</strong> ' + diff.removed[u].value)
+        newValue = normalizeValue(diff.removed[u].value, diff.removed[u].key, elements)
+        titles.push('Removed: <strong>' + diff.removed[u].key + '</strong> ' + newValue)
       }
 
       for (u in diff.updated) {
-        // Round float values
-        if (floatKeys.indexOf(diff.updated[u].key) !== -1) {
-          oldValue = Math.round(parseFloat(diff.updated[u].old)*100)/100
-          newValue = Math.round(parseFloat(diff.updated[u].value)*100)/100
-        } else {
-          oldValue = diff.updated[u].old
-          newValue = diff.updated[u].value
-        }
+        oldValue = normalizeValue(diff.updated[u].old, diff.updated[u].key, elements)
+        newValue = normalizeValue(diff.updated[u].value, diff.updated[u].key, elements)
+
         titles.push('<strong>' + diff.updated[u].key + ':</strong> ' + oldValue + ' <i class="icon icon-arrow-right"></i> ' + newValue)
       }
     }
