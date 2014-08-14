@@ -639,23 +639,19 @@
       var $this = $(this)
         , $active = $this
 
+      // Only if element is not active
       if (!$this.parent().hasClass('active')) {
         $paneCenter.find('.active').removeClass('active')
         $paneCenter.find('.open').removeClass('open')
         $paneCenter.find('.focus').removeClass('focus')
         $this.parent().addClass('active focus')
         $this.parentsUntil($paneCenter).addClass('open')
-      } else {
-        $this.parent().removeClass('active open')
-        $this.parent().parent().closest('.changes-container').addClass('active focus')
 
-        $active = $this.parent().parent().closest('.changes-container').children('.changes-title')
+        // Attenuate all previous elements
+        that.attenuate()
+        // Highlight selected
+        that.highlightTitle($active)
       }
-
-      // Attenuate all previous elements
-      that.attenuate()
-      // Highlight selected
-      that.highlightTitle($active)
     })
 
     var keysMap = {
