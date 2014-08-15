@@ -215,9 +215,9 @@
     this.hookDiffNavigation()
 
     // Highlight all changes
-    this.highlight('added')
-    this.highlight('updated')
-    this.highlight('removed')
+    this.highlightType('added')
+    this.highlightType('updated')
+    this.highlightType('removed')
   }
 
   /**
@@ -626,6 +626,7 @@
     var $paneCenter = this.$paneCenter
       , that = this
       , isFocused = false
+      , initialZoom = this.pvjs.getZoom()
 
     this.initHighlighting()
 
@@ -649,9 +650,15 @@
 
         // Attenuate all previous elements
         that.attenuate()
+
         // Highlight selected
-        that.highlightTitle($active)
+        that.highlightIds(that.getTitleIds($active), getTitleType($active))
       }
+    }).on('dblclick', '.changes-title', function(ev){
+      ev.preventDefault()
+      ev.stopPropagation()
+
+      that.zoomToTitle($(this), initialZoom)
     })
 
     var keysMap = {
@@ -679,19 +686,136 @@
       })
   }
 
-  PathvisiojsDiffViewer.prototype.highlightTitle = function($active) {
+  function getTitleType($active) {
+    if ($active.length) {
+      return $active.parent().data('type')
+    } else {
+      return null
+    }
+  }
+
+  PathvisiojsDiffViewer.prototype.getTitleIds = function($active) {
+    var ids = []
     if ($active.length) {
       var level = +$active.parent().data('level')
-        , type = $active.parent().data('type')
+        , type = getTitleType($active)
+        , group = null
+        , id = null
 
       if (level === 1) {
-        this.highlight(type, null, null)
+        // group and id = null
       } else if (level === 2) {
-        this.highlight(type, $active.data('group'), null)
+        group = $active.data('group')
       } else if (level === 3) {
-        this.highlight(type, $active.data('group'), $active.data('id'))
+        group = $active.data('group')
+        id = $active.data('id')
+      }
+
+      ids = this.getIds(type, group, id)
+    }
+
+    return ids
+  }
+
+  PathvisiojsDiffViewer.prototype.getIds = function(type, group, id) {
+    var ids = []
+    if (type && group && id) {
+      ids = [id]
+    } else {
+      ids = this.getAllElements(type, group)
+    }
+
+    return ids
+  }
+
+  PathvisiojsDiffViewer.prototype.highlightIds = function(ids, type) {
+    var colors = {}
+
+    if (type === 'added') {
+      colors.backgroundColor = colors.borderColor = '#0E53A7'
+    } else if (type === 'updated') {
+      colors.backgroundColor = colors.borderColor = '#FFF700'
+    } else if (type === 'removed') {
+      colors.backgroundColor = colors.borderColor = '#F10026'
+    }
+
+    for (var i in ids) {
+      // If is a reference
+      if (this.isIdReference(ids[i])) {
+        highlightString = 'xref:id:' + ids[i]
+      } else {
+        highlightString = '#' + ids[i]
+      }
+
+      if (type === 'removed' || type === 'updated') {
+        this.hi.highlight(highlightString, null, colors)
+      }
+      if (type === 'updated' || type === 'added') {
+        this.hi2.highlight(highlightString, null, colors)
       }
     }
+  }
+
+  PathvisiojsDiffViewer.prototype.highlightType = function(type) {
+    this.highlightIds(this.getIds(type), type)
+  }
+
+  PathvisiojsDiffViewer.prototype.highlightTitle = function($active) {
+    this.highlightIds(this.getTitleIds($active), getTitleType($active))
+  }
+
+  PathvisiojsDiffViewer.prototype.zoomToTitle = function($active, relativeZoom) {
+    if (relativeZoom === void 0) {relativeZoom = 1}
+
+    var type = getTitleType($active)
+      , selector
+      , bBox
+      , ids
+      , highlightSelector
+      , highlightBBox = {}
+      , zoom = relativeZoom
+
+    if (type === 'added') {
+      selector = this.pvjs2.getSourceData().selector
+    } else {
+      selector = this.pvjs.getSourceData().selector
+    }
+
+    bBox = selector.getBBox()
+    ids = this.getTitleIds($active)
+    highlightSelector = selector.filteredByCallback(function(element){
+      return (element.id !== void 0 && ids.indexOf(element.id) !== -1)
+    })
+    highlightBBox = highlightSelector.getBBox()
+
+    // If updated get BBox of element from both screens
+    if (type === 'updated') {
+      highlightSelector = this.pvjs2.getSourceData().selector.filteredByCallback(function(element){
+        return (element.id !== void 0 && ids.indexOf(element.id) !== -1)
+      })
+      var highlightBBox2 = highlightSelector.getBBox()
+
+      highlightBBox.left = Math.min(highlightBBox.left, highlightBBox2.left)
+      highlightBBox.top = Math.min(highlightBBox.top, highlightBBox2.top)
+      highlightBBox.right = Math.max(highlightBBox.right, highlightBBox2.right)
+      highlightBBox.bottom = Math.max(highlightBBox.bottom, highlightBBox2.bottom)
+      highlightBBox.width = Math.abs(highlightBBox.right - highlightBBox.left)
+      highlightBBox.height = Math.abs(highlightBBox.bottom - highlightBBox.top)
+    }
+
+    zoom = relativeZoom / (Math.max(highlightBBox.width/bBox.width, highlightBBox.height/bBox.height) || 1)
+
+    // Lower zoom by 10%
+    zoom *= 0.7
+
+    this.pvjs.zoom(zoom)
+
+    // Get real set zoom
+    var boundedZoom = this.pvjs.getZoom()
+      , x = -highlightBBox.left * boundedZoom + (highlightBBox.width * boundedZoom * 0.15)
+      , y = -highlightBBox.top * boundedZoom + (highlightBBox.height * boundedZoom * 0.15)
+
+    this.pvjs.pan({x: x, y: y})
   }
 
   PathvisiojsDiffViewer.prototype.navigate = function(direction) {
@@ -751,45 +875,6 @@
   PathvisiojsDiffViewer.prototype.initHighlighting = function() {
     this.hi = window.pathvisiojsHighlighter(this.pvjs, {displayInputField: false})
     this.hi2 = window.pathvisiojsHighlighter(this.pvjs2, {displayInputField: false})
-  }
-
-  PathvisiojsDiffViewer.prototype.highlight = function(type, group, id) {
-    var ids = []
-      , highlightString = ''
-
-    // If we have type, group and id - get only that id
-    if (type && group && id) {
-      ids = [id]
-    } else {
-      ids = this.getAllElements(type, group)
-    }
-
-    // Find change type
-    var colors = {}
-
-    if (type === 'added') {
-      colors.backgroundColor = colors.borderColor = '#0E53A7'
-    } else if (type === 'updated') {
-      colors.backgroundColor = colors.borderColor = '#FFF700'
-    } else if (type === 'removed') {
-      colors.backgroundColor = colors.borderColor = '#F10026'
-    }
-
-    for (var i in ids) {
-      // If is a reference
-      if (this.isIdReference(ids[i])) {
-        highlightString = 'xref:id:' + ids[i]
-      } else {
-        highlightString = '#' + ids[i]
-      }
-
-      if (type === 'removed' || type === 'updated') {
-        this.hi.highlight(highlightString, null, colors)
-      }
-      if (type === 'updated' || type === 'added') {
-        this.hi2.highlight(highlightString, null, colors)
-      }
-    }
   }
 
   PathvisiojsDiffViewer.prototype.attenuate = function() {
