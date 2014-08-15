@@ -627,6 +627,7 @@
       , that = this
       , isFocused = false
       , initialZoom = this.pvjs.getZoom()
+      , initialZoom2 = this.pvjs2.getZoom()
 
     this.initHighlighting()
 
@@ -658,7 +659,7 @@
       ev.preventDefault()
       ev.stopPropagation()
 
-      that.zoomToTitle($(this), initialZoom)
+      that.zoomToTitle($(this), initialZoom, initialZoom2)
     })
 
     var keysMap = {
@@ -764,29 +765,21 @@
     this.highlightIds(this.getTitleIds($active), getTitleType($active))
   }
 
-  PathvisiojsDiffViewer.prototype.zoomToTitle = function($active, relativeZoom) {
-    if (relativeZoom === void 0) {relativeZoom = 1}
+  PathvisiojsDiffViewer.prototype.zoomToTitle = function($active, relativeZoom1, relativeZoom2) {
+    if (relativeZoom1 === void 0) {relativeZoom1 = 1}
+    if (relativeZoom2 === void 0) {relativeZoom2 = 1}
 
     var type = getTitleType($active)
-      , selector
-      , bBox
-      , ids
-      , highlightSelector
-      , highlightBBox = {}
+      , relativeZoom = type === 'added' ? relativeZoom2 : relativeZoom1
       , zoom = relativeZoom
-
-    if (type === 'added') {
-      selector = this.pvjs2.getSourceData().selector
-    } else {
-      selector = this.pvjs.getSourceData().selector
-    }
-
-    bBox = selector.getBBox()
-    ids = this.getTitleIds($active)
-    highlightSelector = selector.filteredByCallback(function(element){
-      return (element.id !== void 0 && ids.indexOf(element.id) !== -1)
-    })
-    highlightBBox = highlightSelector.getBBox()
+      , pvjs = type === 'added' ? this.pvjs2 : this.pvjs
+      , selector = pvjs.getSourceData().selector
+      , bBox = selector.getBBox()
+      , ids = this.getTitleIds($active)
+      , highlightSelector = selector.filteredByCallback(function(element){
+          return (element.id !== void 0 && ids.indexOf(element.id) !== -1)
+        })
+      , highlightBBox = highlightSelector.getBBox()
 
     // If updated get BBox of element from both screens
     if (type === 'updated') {
@@ -808,14 +801,14 @@
     // Lower zoom by 10%
     zoom *= 0.7
 
-    this.pvjs.zoom(zoom)
+    pvjs.zoom(zoom)
 
     // Get real set zoom
-    var boundedZoom = this.pvjs.getZoom()
+    var boundedZoom = pvjs.getZoom()
       , x = -highlightBBox.left * boundedZoom + (highlightBBox.width * boundedZoom * 0.15)
       , y = -highlightBBox.top * boundedZoom + (highlightBBox.height * boundedZoom * 0.15)
 
-    this.pvjs.pan({x: x, y: y})
+    pvjs.pan({x: x, y: y})
   }
 
   PathvisiojsDiffViewer.prototype.navigate = function(direction) {
