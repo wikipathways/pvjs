@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Test Protocol - Interactions" Version="20130813" Organism="Anopheles gambiae">
+  <Comment Source="WikiPathways-description">This pathway can be deleted once release 36 is shipped.</Comment>
+  <Graphics BoardWidth="629.6860282574568" BoardHeight="468.49938499385" />
+  <Interaction GraphId="b7fa2">
+    <Graphics ZOrder="33176" LineThickness="1.0">
+      <Point X="156.71870158161448" Y="85.28391532029701" ArrowHead="Arrow" />
+      <Point X="94.0" Y="181.0" ArrowHead="Arrow" />
+    </Graphics>
+    <Xref Database="" ID="" />
+  </Interaction>
+  <InfoBox CenterX="0.0" CenterY="0.0" />
+  <Biopax />
+</Pathway>
+

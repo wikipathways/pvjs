@@ -5,21 +5,19 @@
   "version": "2.1.2",
   "homepage": "http://wikipathways.github.io/pathvisiojs/",
   "dependencies": {
-    "blueimp-load-image": "~1.11.0",
-    "d3": ">= 3.2.8",
-    "jsonld.js": "~0.1.25",
-    "modernizr": "~2.7.0",
-    "node-uuid": "~1.4.1",
-    "strcase": "https://github.com/ariutta/strcase.git#~0.6.0",
-    "es5-shim": "~2.3.0",
     "aight": "~1.2.2",
+    "blueimp-load-image": "~1.11.0",
     "bootstrap": "~3.1.1",
-    "he": "~0.3.6",
     "cross-platform-text": "https://github.com/ariutta/cross-platform-text.git",
-    "cross-platform-shapes": "https://github.com/ariutta/cross-platform-shapes.git#1.0.1"
+    "d3": ">= 3.2.8",
+    "es5-shim": "~2.3.0",
+    "he": "~0.3.6",
+    "jquery": "1.x",
+    "modernizr": "~2.7.0",
+    "node-uuid": "~1.4.1"
   },
   "main": [
-    "Gruntfile.js"
+    "./dist/lib/pathvisiojs/js/pathvisiojs.bundle.min.js"
   ],
   "defaultSave": true
 }

@@ -2,7 +2,7 @@
   "name": "pathvisiojs",
   "version": "2.1.2",
   "description": "Diagram viewer and editor for biological pathways.",
-  "main": "Gruntfile.js",
+  "main": "./dist/lib/pathvisiojs/js/pathvisiojs.bundle.min.js",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -83,7 +83,7 @@
     "path": "~0.4.9",
     "pretty-hrtime": "~0.2.1",
     "reload": "~0.1.0",
-    "selenium-launcher": "git://github.com/ariutta/nodejs-selenium-launcher#1.2.0",
+    "selenium-launcher": "git://github.com/ariutta/nodejs-selenium-launcher",
     "spawn-mocha-parallel": "0.0.1-beta2",
     "through": "~2.3.4",
     "vinyl-source-stream": "~0.1.1",
@@ -97,7 +97,8 @@
     "bdd-with-opts": "0.0.4",
     "prompt": "~0.2.13",
     "rsyncwrapper": "~0.4.1",
-    "svg-pan-zoom": "git://github.com/ariutta/svg-pan-zoom"
+    "imagemagick-native": "~1.2.2",
+    "phash": "0.0.5"
   },
   "dependencies": {
     "bridgedbjs": "bridgedb/bridgedbjs",

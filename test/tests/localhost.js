@@ -1,13 +1,14 @@
 var  chai = require("chai")
   , chaiAsPromised = require("chai-as-promised")
   , colors = require('colors')
-  , crypto = require('crypto')
   , expect = chai.expect
   , fs = require('fs')
   , gulp = require('gulp')
   , highland = require('highland')
   , imageDiff = require('image-diff')
+  , imagemagick = require('imagemagick-native')
   , os   = require('os')
+  , pHash = require('phash')
   , prompt = require('prompt')
   , wd = require('wd')
   ;
@@ -81,6 +82,7 @@ describe(desired.name, function() {
       .get('http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/protocol/' + pathway.fileName)
       .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 4000)
       .waitForElementByCss(".pathvisiojs-highlighter", wd.asserters.isDisplayed, 4000)
+      .saveScreenshot('tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png')
       .nodeify(done);
   });
 
@@ -95,13 +97,12 @@ describe(desired.name, function() {
         .click()
         //.waitForElementByCss("span:contains('CCR5')", wd.asserters.isDisplayed, detailsPanelTimeout)
         .waitForElementByCss("a.annotation-item-text", wd.asserters.isDisplayed, detailsPanelTimeout)
+        .saveScreenshot('tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png')
         .nodeify(done);
     });
   }
 
   it("should confirm test and last known good screenshots are the same", function(done) {
-    browser.saveScreenshot('tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png')
-
     var pathActualImage = 'tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png'
       , pathExpectedImage = 'test/input-data/protocol/' + pathwayName + '-lkg.png'
       , pathDiffImage = 'tmp/protocol/' + pathwayName + '-' + desired.browserName + '-difference.png'
@@ -114,19 +115,46 @@ describe(desired.name, function() {
     }, function (err, imagesAreSame) {
       if (!imagesAreSame) {
         var operatingSystem = os.type() + os.release();
-        var screenshotHash = lastKnownGoodScreenshotHashes[pathwayName][operatingSystem][desired.browserName];
+        var screenshotHashExpected = '';
+        if (!!lastKnownGoodScreenshotHashes[pathwayName] && !!lastKnownGoodScreenshotHashes[pathwayName][operatingSystem] && !!lastKnownGoodScreenshotHashes[pathwayName][operatingSystem][desired.browserName]) {
+          screenshotHashExpected = lastKnownGoodScreenshotHashes[pathwayName][operatingSystem][desired.browserName];
+          console.log('screenshotHashExpected');
+          console.log(screenshotHashExpected);
+        }
 
-        var sha1Sum = crypto.createHash('sha1');
-        var imageStream = fs.ReadStream(pathActualImage);
-        imageStream.on('data', function(d) { sha1Sum.update(d); });
-        imageStream.on('end', function() {
-          var d = sha1Sum.digest('hex');
-          setTimeout(function() {
-            expect(d).to.equal(screenshotHash);
-            return done();
-          }, detailsPanelTimeout + 500);
+        var srcData = fs.readFileSync(pathActualImage);
+
+        // returns a Buffer instance
+        var resizedBuffer = imagemagick.convert({
+            srcData: srcData, // provide a Buffer instance
+            //width: 100,
+            //height: 100,
+            //resizeStyle: "aspectfill",
+            quality: 100,
+            format: 'JPEG'
         });
+
+        var screenshotJpgFilePath = pathActualImage.replace('.png', '.jpg');
+        fs.writeFileSync(screenshotJpgFilePath, resizedBuffer, 'binary');
+
+        var screenshotHashObserved = pHash.imageHashSync(screenshotJpgFilePath);
+        console.log('screenshotHashObserved');
+        console.log(screenshotHashObserved);
+        fs.unlinkSync(screenshotJpgFilePath);
+
+        console.log('they are equal');
+        console.log(screenshotHashObserved.toString() === screenshotHashExpected.toString());
+        if (screenshotHashObserved.toString() === screenshotHashExpected.toString()) {
+          fs.unlinkSync(pathActualImage);
+          fs.unlinkSync(pathDiffImage);
+        }
+        expect(screenshotHashObserved.toString()).to.equal(screenshotHashExpected.toString());
+        return setTimeout(function() {
+          return done();
+        }, detailsPanelTimeout + 500);
       } else {
+        fs.unlinkSync(pathActualImage);
+        fs.unlinkSync(pathDiffImage);
         expect(imagesAreSame).to.equal(true);
         return done();
       }
