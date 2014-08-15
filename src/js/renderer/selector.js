@@ -364,6 +364,26 @@ Selector.prototype.filteredByText = function(selectorString) {
   return init(matchingElements, this.getRenderer())
 }
 
+
+/**
+ * Return a new selector with elements that match callback
+ * Callback should return True for elements that should stay
+ *
+ * @param  {Function} cb
+ * @return {object}                selector
+ */
+Selector.prototype.filteredByCallback = function(cb) {
+  var matchingElements = []
+
+  for (var i = 0; i < this.length; i++) {
+    if (cb(this[i])) {
+      matchingElements.push(this[i])
+    }
+  }
+
+  return init(matchingElements, this.getRenderer())
+}
+
 /**
  * Get style of first element
  *
