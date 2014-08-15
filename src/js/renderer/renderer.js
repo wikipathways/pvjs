@@ -134,6 +134,8 @@ module.exports = function(){
       var svgSelection = d3.select('#' + 'pvjs-diagram-' + pvjs.instanceId);
       var svgPanZoom = SvgPanZoom(svgSelection[0][0], {
         controlIconsEnabled: true
+      , fit: true
+      , center: true
       , minZoom: 0.1
       , maxZoom: 20.0
       , zoomEnabled: false
@@ -145,10 +147,12 @@ module.exports = function(){
         }
       })
 
+      /*
       // Adjust viewport position
       // TODO replace magic numbers (14 and 10)
       svgPanZoom.zoomBy(0.95)
       svgPanZoom.panBy({x: -14 * svgPanZoom.getZoom(), y: -10 * svgPanZoom.getZoom()})
+      //*/
 
       var svgInFocus = false
       svgSelection
