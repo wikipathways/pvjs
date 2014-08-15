@@ -86,7 +86,7 @@ describe(desired.name, function() {
       .nodeify(done);
   });
 
-  //*
+  /*
   var detailsPanelTimeout = 6000;
   if (pathwayName === 'data-nodes') {
     it('should open the details panel for CCR5', function(done) {
