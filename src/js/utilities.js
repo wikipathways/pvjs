@@ -4,7 +4,7 @@
 
 var _ = require('lodash')
   , Async = require('async')
-  , Strcase = require('./../../lib/strcase/index.js')
+  , Strcase = require('tower-strcase')
   ;
 
 var Utils = {

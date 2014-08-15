@@ -1,11 +1,12 @@
 var gulp = require('gulp')
   , _ = require('lodash')
   , args   = require('yargs').argv
-  , crypto = require('crypto')
   , fs   = require('fs')
   , highland = require('highland')
+  , imagemagick = require('imagemagick-native')
   , os   = require('os')
   , path = require('path')
+  , pHash = require('phash')
   , through = require('through')
   ;
 
@@ -16,8 +17,8 @@ var gulp = require('gulp')
  */
 
 gulp.task('setLastKnownGoods', function () {
-  var protocolTestResultsDirectory = './tmp/protocol/'
-    , protocolTestLastKnownGoodsDirectory = './test/last-known-goods/protocol/'
+  var protocolTestResultsDirectory = 'tmp/protocol/'
+    , protocolTestLastKnownGoodsDirectory = 'test/last-known-goods/protocol/'
     ;
 
   var testScreenshotFileNameStream = highland(fs.readdirSync(protocolTestResultsDirectory))
@@ -31,27 +32,37 @@ gulp.task('setLastKnownGoods', function () {
   // TODO figure out how to do this properly without redefining the variable
   var screenshotHashStream2 = screenshotHashStream.map(function(testScreenshotFileName) {
     var screenshotSourcePath = protocolTestResultsDirectory + testScreenshotFileName;
-    // TODO look at using a perceptual image hash instead, like http://www.phash.org/
-    var sha1Sum = crypto.createHash('sha1');
-    var screenshotBufferStream = highland(fs.ReadStream(screenshotSourcePath));
+    console.log('screenshotSourcePath');
+    console.log(screenshotSourcePath);
+
+    var srcData = fs.readFileSync(screenshotSourcePath);
+
+    // returns a Buffer instance
+    var resizedBuffer = imagemagick.convert({
+        srcData: srcData, // provide a Buffer instance
+        //width: 100,
+        //height: 100,
+        //resizeStyle: "aspectfill",
+        quality: 100,
+        format: 'JPEG'
+    });
+
+    var screenshotJpgFilePath = screenshotSourcePath.replace('.png', '.jpg');
+
+    fs.writeFileSync(screenshotJpgFilePath, resizedBuffer, 'binary');
+
+    var screenshotHash = pHash.imageHashSync(screenshotJpgFilePath);
+    console.log('screenshotHash');
+    console.log(screenshotHash);
 
     if (testScreenshotFileName.indexOf('phantomjs') > -1) {
+      var screenshotBufferStream = highland(fs.ReadStream(screenshotSourcePath));
       var screenshotDestinationPath = protocolTestLastKnownGoodsDirectory + testScreenshotFileName.replace('phantomjs-test', 'lkg');
       var dest = fs.createWriteStream(screenshotDestinationPath)
       screenshotBufferStream.fork().pipe(dest);
     }
-
-    return screenshotBufferStream.fork().map(function(d) {
-      sha1Sum.update(d);
-      return;
-    })
-    .last()
-    .map(function() {
-      screenshotHashStream.resume();
-      return sha1Sum.digest('hex');
-    });
-  })
-  .sequence();
+    return screenshotHash;
+  });
 
   var screenshotHashesDestination = fs.createWriteStream(protocolTestLastKnownGoodsDirectory + 'screenshot-hashes.json')
 
