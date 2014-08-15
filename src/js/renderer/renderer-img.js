@@ -10,6 +10,9 @@ var RendererImg = Object.create(RendererPrototype)
 
 RendererImg.init = function(pvjs) {
   this.pvjs = pvjs
+
+  // Element cache
+  this.$element = null
 }
 
 function render(renderer, element) {
@@ -29,6 +32,9 @@ function render(renderer, element) {
         // Set unique id
         $img.attr('id', 'pathvisiojs-render-' + pvjs.instanceId)
 
+        // Cache element
+        renderer.$element = $img
+
         pvjs.trigger('rendered.renderer')
       }
     }
@@ -41,7 +47,10 @@ function render(renderer, element) {
 }
 
 RendererImg.addElement = function(element) {
-  if (element && element.uri) {
+  if (this.$element === null && element && element.uri) {
+    // If function will be called againg before loadImage will finish - it will do nothing
+    this.$element = true
+
     render(this, element)
   }
 }
