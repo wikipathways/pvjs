@@ -45,7 +45,7 @@ gulp.task('saveScreenshots', function () {
       pathway.fileName = pathwayFileName;
       return pathway;
     })
-    /*
+    //*
     .filter(function(pathway) {
       return pathway.name === 'data-nodes';
     })
