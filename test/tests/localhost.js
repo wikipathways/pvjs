@@ -88,6 +88,20 @@ describe(desired.name, function() {
 
   var detailsPanelTimeout = 6000;
   if (pathwayName === 'data-nodes') {
+    it('should highlight the CCR5 node', function(done) {
+      browser
+        .waitForElementByCss('[placeholder="Enter node name to highlight"]', wd.asserters.isDisplayed, 500)
+        .elementByCss('[placeholder="Enter node name to highlight"]')
+        //.elementByCss('.pathvisiojs-highlighter')
+        .click()
+        .type('CCR')
+        .type('\uE014') // right arrow key
+        .type('\uE007') // enter key
+        //.moveTo(null, 20, 20)
+        //.elementByCss('.tt-dropdown-menu')
+        //.click()
+        .nodeify(done);
+    });
     it('should open the details panel for CCR5', function(done) {
       browser
         // TODO the contains selector isn't working for me, even though it would be nice to use it
@@ -97,7 +111,6 @@ describe(desired.name, function() {
         .click()
         //.waitForElementByCss("span:contains('CCR5')", wd.asserters.isDisplayed, detailsPanelTimeout)
         .waitForElementByCss("a.annotation-item-text", wd.asserters.isDisplayed, detailsPanelTimeout)
-        .saveScreenshot('tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png')
         .nodeify(done);
     });
   }
