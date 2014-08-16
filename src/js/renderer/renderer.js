@@ -148,6 +148,7 @@ module.exports = function(){
       })
 
       /*
+      // TODO can we get rid of this code now? --AR
       // Adjust viewport position
       // TODO replace magic numbers (14 and 10)
       svgPanZoom.zoomBy(0.95)
