@@ -229,7 +229,7 @@ function renderText(renderer, pvjsonElement) {
       }
     });
   } else {
-    d3.select(node).attr('pointer-events', 'none')
+    $node.style('pointer-events', 'none')
   }
 
 
