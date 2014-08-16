@@ -17,12 +17,12 @@ gulp.task('testLocalhost', function () {
   var browsersCompletedCount = 0;
   var pathwayIndexOneBased = 1;
   var expressPort = 3000;
-  args.browsers = (args.browser || 'phantomjs').split(',');
+  //args.browsers = (args.browser || 'phantomjs').split(',');
   //args.browsers = (args.browser || 'firefox').split(',');
   //args.browsers = (args.browser || 'safari').split(',');
   // TODO get Chrome working in tests. The chromedriver doesn't seem to be working at present.
   //args.browsers = (args.browser || 'chrome').split(',');
-  //args.browsers = (args.browser || 'phantomjs,firefox,safari').split(',');
+  args.browsers = (args.browser || 'chrome,firefox,safari').split(',');
 
   // TODO figure out why this hack is needed so as to
   // avoid getting errors in selenium/mocha.

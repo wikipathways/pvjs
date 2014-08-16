@@ -55,9 +55,9 @@ gulp.task('setLastKnownGoods', function () {
     console.log('screenshotHash');
     console.log(screenshotHash);
 
-    if (testScreenshotFileName.indexOf('phantomjs') > -1) {
+    if (testScreenshotFileName.indexOf('chrome') > -1) {
       var screenshotBufferStream = highland(fs.ReadStream(screenshotSourcePath));
-      var screenshotDestinationPath = protocolTestLastKnownGoodsDirectory + testScreenshotFileName.replace('phantomjs-test', 'lkg');
+      var screenshotDestinationPath = protocolTestLastKnownGoodsDirectory + testScreenshotFileName.replace('chrome-test', 'lkg');
       var dest = fs.createWriteStream(screenshotDestinationPath)
       screenshotBufferStream.fork().pipe(dest);
     }
