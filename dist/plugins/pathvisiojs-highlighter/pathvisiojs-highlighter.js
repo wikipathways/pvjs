@@ -216,6 +216,10 @@
 
         this.selector.addElement($.extend({shape: 'rectangle'}, styles, BBox))
         highlighting = this.selector.getLast()
+
+        // TODO make this task in selector or in renderer
+        // Update styles because cross-platform-shapes may not apply all styles
+        highlighting.setStyles(styles)
       }
     } else {
       // Apply new styles
