@@ -88,6 +88,8 @@ First install [Node.js](http://nodejs.org/).
 
 Install grunt and bower `npm install -g grunt-cli bower`. The automatic tests perform an image diff to compare the present rendering of a test pathway with the last known good version. This image diff requires you to install [ImageMagick](http://www.imagemagick.org/).
 
+Install [Phash dependencies](https://github.com/aaronm67/node-phash) depending on your system.
+
 Than in console `cd` into project folder and install all necessary plugins:
 
 ```
