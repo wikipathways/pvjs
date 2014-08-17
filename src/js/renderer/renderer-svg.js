@@ -331,8 +331,8 @@ RendererSvg.updateElement = function(pvjsonElement, styles) {
       // Translate Selector styles to Svg styles
       styleKey = normalizeSelectorStyle(key)
 
-      // Add style to map if it does not collide with other defined style
-      if (!styles.hasOwnProperty(styleKey)) {
+      // Add style to map if it does not collide with any other passed style
+      if (key == styleKey || !styles.hasOwnProperty(styleKey)) {
         styleMap[styleKey] = styles[key]
       }
     }
