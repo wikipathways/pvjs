@@ -1,14 +1,30 @@
 (function(window){
 
   var optionsDefault = {
-    displayErrors: true
-  , displayWarnings: false
-  }
+        displayErrors: true
+      , displayWarnings: false
+      }
+    , instancesMap = {}
 
   /**
    * Init plugin
-   *
    * @param {pathvisiojs instance} pvjs
+   * @param {object} options
+   * @return {object} PathvisiojsNotifications instance
+   */
+  function init(pvjs, options) {
+    // Create new instance if it does not exist
+    if (!instancesMap.hasOwnProperty(pvjs.instanceId)) {
+      instancesMap[pvjs.instanceId] = new PathvisiojsNotifications(pvjs, options)
+    }
+
+    return instancesMap[pvjs.instanceId]
+  }
+
+  /**
+   * Plugin constructor
+   * @param {pathvisiojs instance} pvjs
+   * @param {objects} options
    */
   function PathvisiojsNotifications(pvjs, options) {
     var $notifications = $('<div class="pathvisiojs-notifications">').appendTo($(pvjs.$element[0][0]))
@@ -36,6 +52,13 @@
     }
   }
 
+  /**
+   * Search for a notification in a list of notifications
+   * @param  {String} type
+   * @param  {String} message
+   * @param  {Array} notifications List of notifications
+   * @return {Object|Null}               Notification or Null
+   */
   function getNotification(type, message, notifications) {
     for (var n in notifications) {
       if (notifications[n].type === type && notifications[n].message === message) {
@@ -46,6 +69,11 @@
     return null
   }
 
+  /**
+   * Remove a notification from a list of notifications
+   * @param  {Object} notification Notification to search for
+   * @param  {Array} notifications List of notifications
+   */
   function removeNotification(notification, notifications) {
     for (var n in notifications) {
       if (notifications[n] === notification) {
@@ -56,7 +84,6 @@
 
   /**
    * Append the element to notifications container
-   *
    * @param {d3 selector} $container
    * @param {string} type. danger, warning, success, info
    * @param {string} message
@@ -101,5 +128,5 @@
   /**
    * Expose plugin globally
    */
-  window.pathvisiojsNotifications = PathvisiojsNotifications
+  window.pathvisiojsNotifications = init
 })(window)
