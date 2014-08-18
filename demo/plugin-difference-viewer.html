@@ -93,10 +93,11 @@
 
           // Get first element from array of instances
           pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+
+          // Expose pathInstance for debug
           window.pathInstance = pathInstance
 
-          // Load plugins
-          // pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
+          // Load difference viewer plugin
           pathvisiojsDiffviewer(pathInstance, {
             sourceData: [
               {
@@ -104,9 +105,6 @@
                 fileType:'gpml'
               }
             ]
-          })
-          pathInstance.on('rendered', function(){
-            var hi = pathvisiojsHighlighter(pathInstance, {displayInputField: false})
           })
 
           // Call renderer
