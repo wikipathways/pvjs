@@ -123,6 +123,9 @@ E. Send Us a Pull Request
 wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
 ```
 
+For developers
+==============
+
 Available event messages
 ------------------------
 
@@ -140,6 +143,19 @@ List of available events through application (custom events may be added at any 
 * zoomed.renderer
 * panned.renderer
 * warning.renderer
+
+Notifications Plugin
+-------------------
+
+Notifications plugin listenes for warning and error messages and displays them as alert boxes.
+In order to add notifications to pvjs do:
+
+1. Link plugin's _.js_ and _.css_ files in your _.html_ file or use bundle version of pathvisiojs
+2. Activate notifications for a given pathvisiojs: 
+
+    ```js
+    pathvisiojsNotifications(pvjsInstance, {displayErrors: true, displayWarnings: true})
+    ```
 
 License
 =======
