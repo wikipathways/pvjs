@@ -7,7 +7,6 @@
 
   /**
    * Init plugin
-   *
    * @param {pathvisiojs instance} pvjs
    * @param {objects} options
    */
@@ -19,8 +18,7 @@
   }
 
   /**
-   * Costructor
-   *
+   * Constructor
    * @param {Object} pvjs
    */
   var PathvisiojsDiffViewer = function(pvjs, options) {
@@ -32,9 +30,14 @@
     this.initContainer()
     this.initSecondPvjs()
     this.hookEvents()
+
+    // Trigger pvjs2 render when everything is ready
     this.pvjs2.render()
   }
 
+  /**
+   * Create differences container
+   */
   PathvisiojsDiffViewer.prototype.initContainer = function() {
     this.$diffviewer = $('<div class="pathvisiojs-diffviewer"/>')
 
@@ -50,6 +53,9 @@
     this.$paneLeft.append(this.$pvjsElement)
   }
 
+  /**
+   * Initialize second pvjs. Save its instance into this.pvjs2
+   */
   PathvisiojsDiffViewer.prototype.initSecondPvjs = function() {
     // Create second instance container
     this.$pvjsElement2 = $('<div/>').appendTo(this.$paneRight)
@@ -64,6 +70,12 @@
     this.pvjs2 = window.pathvisiojs(this.$pvjsElement2[0], pvjsOptions)[0]
   }
 
+  /**
+   * Hook render events. Display diffViewer only when both pvjses are ready
+   * Hook for error events so to know when to display a message instead of diffViewer
+   * Hook zoom and pan events in order to keep both pathways synchronized
+   * Hook main pvjs destroy event in order to know when to destroy second pathway
+   */
   PathvisiojsDiffViewer.prototype.hookEvents = function() {
     var that = this
       , pvjsRendered = false
@@ -158,7 +170,7 @@
 
   /**
    * Create an overlay with a message
-   * @param  {String} message Message why diff viewer shows nothing
+   * @param  {String} message Message why diffViewer shows nothing
    */
   PathvisiojsDiffViewer.prototype.onNoDiff = function(message) {
     // Create an overlay
@@ -170,6 +182,9 @@
     this.$overlay.append($('<div class="alert alert-info"></div>').text(message))
   }
 
+  /**
+   * When both pvjses are rendered
+   */
   PathvisiojsDiffViewer.prototype.onPvjsesRendered = function() {
     if (this.checkPvjsesData()) {
       this.getZoomScale()
@@ -179,16 +194,27 @@
     }
   }
 
+  /**
+   * Check if both pvjses have pvjson objects
+   * @return {Boolean} True if pvjson is avaliable for both pvjses
+   */
   PathvisiojsDiffViewer.prototype.checkPvjsesData = function() {
     return (this.pvjs.getSourceData().pvjson && this.pvjs2.getSourceData().pvjson)
   }
 
+  /** @type {Number} zoom scale between pathways */
   PathvisiojsDiffViewer.prototype.zoomScale = 1
 
+  /**
+   * Detect and cache zoom scale between pathways
+   */
   PathvisiojsDiffViewer.prototype.getZoomScale = function() {
     this.zoomScale = this.pvjs.getZoom() / this.pvjs2.getZoom()
   }
 
+  /**
+   * Entry point of diffViewer rendering and highlighting differences
+   */
   PathvisiojsDiffViewer.prototype.displayDiff = function() {
     this.elements = this.pvjs.getSourceData().pvjson.elements
     this.elements2 = this.pvjs2.getSourceData().pvjson.elements
@@ -248,6 +274,10 @@
     return elementsMerge
   }
 
+  /**
+   * Compute difference between elements of both pvjses
+   * @return {Object} An object with 3 arrays: updated, added and removed
+   */
   PathvisiojsDiffViewer.prototype.computeDiff = function() {
     // Clone lists to be safe from modifying them internally (in case that pvjson was not deep-cloned)
     var elements = this.elements.slice()    // Old pathway elements
@@ -303,6 +333,12 @@
     return diff
   }
 
+  /**
+   * Calculate difference between 2 elements
+   * @param  {Object} element
+   * @param  {Object} element2
+   * @return {Object}          Difference object
+   */
   function calculateElementDiff(element, element2) {
     var diff = {
           added: []
@@ -335,29 +371,48 @@
     }
   }
 
+  /**
+   * Check if passed argument is a string or a number
+   * @param  {Object|String|Number}  obj
+   * @return {Boolean}     True if passed argument is a string or number
+   */
   function isStringOrNumber(obj) {
     return (Object.prototype.toString.apply(1) === Object.prototype.toString.apply(obj)
          || Object.prototype.toString.apply('') === Object.prototype.toString.apply(obj))
   }
 
   /**
-   * Creates containers for titles and changes list
-   *
-   * @return {object} jQuery object
+   * Creates a container for titles and changes list
+   * @return {JQuery} jQuery object
    */
   PathvisiojsDiffViewer.prototype.initDiffView = function() {
     return $('<div class="changes changes-list"></div>').appendTo(this.$paneCenter)
   }
 
+  /**
+   * Create specific type containers for changes
+   * @param  {JQuery} $changesList
+   * @param  {String} type
+   * @param  {String} title
+   * @return {JQuery}              Changes list container
+   */
   PathvisiojsDiffViewer.prototype.initDiffViewList = function($changesList, type, title) {
     var $changesContainer = $('<div class="changes-container" data-level="1" data-type="' + type + '">')
       .appendTo($changesList)
       .append($('<div class="changes-title changes-parent change-' + type + '"><span>' + title + '</span></div>'))
 
-    // Return jQuery element of changes list
+    // Return changes list jQuery element
     return $('<div class="changes-list"></div>').appendTo($changesContainer)
   }
 
+  /**
+   * Render differences of a specified type
+   * Group differences by elements types
+   * @param  {String} type
+   * @param  {Object} elementsDiff Elements differences
+   * @param  {JQuery} $changesList Changes list container
+   * @param  {Array} elements     List of elements
+   */
   PathvisiojsDiffViewer.prototype.renderDiffsOfType = function(type, elementsDiff, $changesList, elements) {
     if (elementsDiff.length === 0) {return}
 
@@ -411,8 +466,15 @@
     }
   }
 
+  /** @type {Array} Groups render order */
   var groupsOrder = ['Data Nodes', 'Groups', 'Interactions', 'Graphical Objects']
 
+  /**
+   * Order groups by groupsOrder
+   * If a group is not in groupsOrder append it
+   * @param  {Object} groups An object with groups
+   * @return {Array}        Ordered groups
+   */
   function orderGroups(groups) {
     var groupName = ''
       , groupsOrdered = []
@@ -435,6 +497,14 @@
     return groupsOrdered
   }
 
+  /**
+   * Render a group
+   * @param  {String} type
+   * @param  {String} groupName
+   * @param  {Array} groupElements
+   * @param  {JQuery} $listContainer
+   * @param  {Array} elements       List of all elements. Used to get elements titles (replacing ids)
+   */
   PathvisiojsDiffViewer.prototype.renderDiffGroup = function(type, groupName, groupElements, $listContainer, elements) {
     var $container = $('<div class="changes-container" data-level="2" data-type="' + type + '"/>').appendTo($listContainer)
       , $containerTitle = $('<div class="changes-title changes-parent change-' + type + '"><span>' + groupName + '</span></div>')
@@ -484,6 +554,12 @@
     }
   }
 
+  /**
+   * Cache element id based on type and group
+   * @param  {String} type
+   * @param  {String} group
+   * @param  {String} element_id
+   */
   PathvisiojsDiffViewer.prototype.cacheElement = function(type, group, element_id) {
     // Create group if it does not exist
     if (this.elementsCache[type][group] === void 0) {
@@ -499,17 +575,23 @@
     }
   }
 
-  PathvisiojsDiffViewer.prototype.getAllElements = function(type, group) {
+  /**
+   * Get an array of elements ids based on type and group
+   * @param  {String} type
+   * @param  {String} group
+   * @return {Array}       Array of ids
+   */
+  PathvisiojsDiffViewer.prototype.getAllElementsIds = function(type, group) {
     if (type === null || type === void 0) {
       // Get all types
-      return [].concat(this.getAllElements('added'), this.getAllElements('updated'), this.getAllElements('removed'))
+      return [].concat(this.getAllElementsIds('added'), this.getAllElementsIds('updated'), this.getAllElementsIds('removed'))
     } else {
       if (group === null || group === void 0) {
         // Get all groups
         var elements = []
 
         for (var groupName in this.elementsCache[type]) {
-          elements = elements.concat(this.getAllElements(type, groupName))
+          elements = elements.concat(this.getAllElementsIds(type, groupName))
         }
 
         return elements
@@ -520,10 +602,18 @@
     }
   }
 
+  /**
+   * Check if the element with given id is a reference
+   * @param  {String}  id Element id
+   * @return {Boolean}    True if element if a reference
+   */
   PathvisiojsDiffViewer.prototype.isIdReference = function(id) {
     return this.elementsReferences[id] === true
   }
 
+  /**
+   * Sorter function
+   */
   function sorterByElmentAndShape(a, b) {
     if (a['gpml:element'] === b['gpml:element']) {
       return a.shape > b.shape ? 1 : -1
@@ -533,6 +623,12 @@
     return a['gpml:element'] > b['gpml:element'] ? 1 : -1
   }
 
+  /**
+   * Get element title
+   * @param  {Object} obj      Pvjson element
+   * @param  {Array} elements Array of pvjson elements
+   * @return {String}          Element title
+   */
   function getElementTitle(obj, elements) {
     if (obj['gpml:element'] === 'gpml:Interaction') {
       return '' + lookupTitleById(obj.points[0].isAttachedTo, elements) + ' <i class="icon icon-arrow-right"></i> ' + lookupTitleById(obj.points[1].isAttachedTo, elements)
@@ -555,6 +651,12 @@
     return 'no title'
   }
 
+  /**
+   * Get title of element with given id
+   * @param  {String} id
+   * @param  {Array} elements Array of pvjson elements
+   * @return {String}          Element title
+   */
   function lookupTitleById(id, elements) {
     // If element has no id then stop lookup
     if (id === void 0) {
@@ -579,6 +681,15 @@
   var normalizationFloatKeys = ['width', 'height', 'x', 'y', 'rotation']
     , normalizationIdKeys = ['isPartOf', 'controller', 'controlled']
 
+  /**
+   * Normalize values:
+   * * Round numbers
+   * * Replace ids with elements titles
+   * @param  {String|Number} value
+   * @param  {String} key
+   * @param  {Array} elements Array of pvjson elements
+   * @return {String|Number}          Normalized title
+   */
   function normalizeValue(value, key, elements) {
     if (normalizationFloatKeys.indexOf(key) !== -1) {
       return Math.round(parseFloat(value)*100)/100
@@ -589,6 +700,13 @@
     }
   }
 
+  /**
+   * Get element changes
+   * @param  {String} type
+   * @param  {Object} element  Pvjson element
+   * @param  {Array} elements Array of pvjson elements
+   * @return {Array}          Array of strings (changes titles)
+   */
   PathvisiojsDiffViewer.prototype.getElementChanges = function(type, element, elements) {
     var titles = []
 
@@ -622,6 +740,9 @@
     return titles
   }
 
+  /**
+   * Hook clicking on diffViewere of using arrow keys when diffViewere is active
+   */
   PathvisiojsDiffViewer.prototype.hookDiffNavigation = function() {
     var $paneCenter = this.$paneCenter
       , that = this
@@ -687,6 +808,11 @@
       })
   }
 
+  /**
+   * Get change type from jQuery title
+   * @param  {JQuery} $active Change title
+   * @return {String|Null}         Change type
+   */
   function getTitleType($active) {
     if ($active.length) {
       return $active.parent().data('type')
@@ -695,6 +821,12 @@
     }
   }
 
+  /**
+   * Get id of change title.
+   * If it is a parent title then get ids of change title and all its children
+   * @param  {JQuery} $active Change title
+   * @return {Array}         Array of pvjson elements ids
+   */
   PathvisiojsDiffViewer.prototype.getTitleIds = function($active) {
     var ids = []
     if ($active.length) {
@@ -718,17 +850,29 @@
     return ids
   }
 
+  /**
+   * Get ids of element by type, group and element id
+   * @param  {String} type
+   * @param  {String} group
+   * @param  {String} id
+   * @return {Array}       Array of pvjson elements ids
+   */
   PathvisiojsDiffViewer.prototype.getIds = function(type, group, id) {
     var ids = []
     if (type && group && id) {
       ids = [id]
     } else {
-      ids = this.getAllElements(type, group)
+      ids = this.getAllElementsIds(type, group)
     }
 
     return ids
   }
 
+  /**
+   * Highlight pvjson elements by ids
+   * @param  {Array} ids  Arraw of pvjson elements ids
+   * @param  {String} type Changes type
+   */
   PathvisiojsDiffViewer.prototype.highlightIds = function(ids, type) {
     var colors = {}
 
@@ -757,14 +901,29 @@
     }
   }
 
+  /**
+   * Highlight all pvjson elements that have changes of provided type
+   * @param  {String} type Change type
+   */
   PathvisiojsDiffViewer.prototype.highlightType = function(type) {
     this.highlightIds(this.getIds(type), type)
   }
 
+  /**
+   * Highlight all changes of a change title
+   * @param  {jQuery} $active Change title
+   */
   PathvisiojsDiffViewer.prototype.highlightTitle = function($active) {
     this.highlightIds(this.getTitleIds($active), getTitleType($active))
   }
 
+  /**
+   * Zoom and pan pathways in such a way that elements from changes title will be focused (maximally visible)
+   * @param  {JQuery} $active       Change title
+   * @param  {Float} relativeZoom1 1/Initial zoom of first pathway
+   * @param  {Float} relativeZoom2 1/Initial zoom of second pathway
+   * @return {[type]}               [description]
+   */
   PathvisiojsDiffViewer.prototype.zoomToTitle = function($active, relativeZoom1, relativeZoom2) {
     if (relativeZoom1 === void 0) {relativeZoom1 = 1}
     if (relativeZoom2 === void 0) {relativeZoom2 = 1}
@@ -798,19 +957,24 @@
 
     zoom = relativeZoom / (Math.max(highlightBBox.width/bBox.width, highlightBBox.height/bBox.height) || 1)
 
-    // Lower zoom by 10%
+    // Lower zoom by 30%
     zoom *= 0.7
 
     pvjs.zoom(zoom)
 
     // Get real set zoom
     var boundedZoom = pvjs.getZoom()
+      // Center pvjs (it is necessary to pan by 15 because of previous zoom out by 30%)
       , x = -highlightBBox.left * boundedZoom + (highlightBBox.width * boundedZoom * 0.15)
       , y = -highlightBBox.top * boundedZoom + (highlightBBox.height * boundedZoom * 0.15)
 
     pvjs.pan({x: x, y: y})
   }
 
+  /**
+   * Navigate to provided direction. Relative to focused change title
+   * @param  {String} direction Navigation direction
+   */
   PathvisiojsDiffViewer.prototype.navigate = function(direction) {
     var $paneCenter = this.$paneCenter
       , $focused = $paneCenter.find('.focus').first()
@@ -865,11 +1029,18 @@
     }
   }
 
+  /**
+   * Initialize highlighting for pathways
+   * Store highlighter instances as this.h1 and this.h2
+   */
   PathvisiojsDiffViewer.prototype.initHighlighting = function() {
     this.hi = window.pathvisiojsHighlighter(this.pvjs, {displayInputField: false})
     this.hi2 = window.pathvisiojsHighlighter(this.pvjs2, {displayInputField: false})
   }
 
+  /**
+   * Remove highlighting from all elements
+   */
   PathvisiojsDiffViewer.prototype.attenuate = function() {
     this.hi.attenuate(null)
     this.hi2.attenuate(null)
