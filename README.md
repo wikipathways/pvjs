@@ -257,6 +257,46 @@ var hi = pathvisiojsHighlighter(pathInstance)
 hi.highlight('#e6e', null, {fill: 'red', stroke: 'blue'})
 ```
 
+Difference Viewer Plugin (DiffViewer)
+------------------------
+
+DiffViewer pulgin allows to compare difference between 2 different versions of a pathway.
+
+### Usage
+
+First reference plugin's _JS_ and _CSS_ files or use bundle version of pathvisiojs.
+
+Highlighter should be instantiated before PathvisioJS was rendered:
+
+```js
+$('#pathvisiojs-container').pathvisiojs({
+  fitToContainer: true
+, manualRender: true
+, sourceData: [
+    {
+      uri: 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP2806&rev=75308',
+      fileType:'gpml'
+    }
+  ]
+})
+
+// Get first element from array of instances
+pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+
+// Init difference viewer
+pathvisiojsDiffviewer(pathInstance, {
+  sourceData: [
+    {
+      uri: 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP2806',
+      fileType:'gpml'
+    }
+  ]
+})
+
+// Call renderer
+pathInstance.render()
+```
+
 License
 =======
 
