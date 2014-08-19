@@ -15,7 +15,7 @@ require('bdd-with-opts');
 gulp.task('saveScreenshots', function () {
   var selenium;
   var browsersCompletedCount = 0;
-  var pathwayIndexOneBased = 1;
+  var pathwayIndex = 0;
   var expressPort = 3000;
   // TODO figure out why phantomjs throws an error when trying to get screenshots whenever the # of tests > 1
   //args.browsers = (args.browser || 'phantomjs').split(',');
@@ -175,12 +175,13 @@ gulp.task('saveScreenshots', function () {
         browsersCompletedCount += 1;
         if (browsersCompletedCount === args.browsers.length) {
           browsersCompletedCount = 0;
-          pathwayIndexOneBased += 1;
-          if (pathwayIndexOneBased < pathways.length && (pathwayIndexOneBased % batchSize === 0)) {
+          pathwayIndex += 1;
+
+          if (pathwayIndex < pathways.length && (pathwayIndex % batchSize === 0)) {
             setTimeout(function(){
               pathwaysStream.resume();
             }, 3000)
-          } else if (pathwayIndexOneBased === pathways.length) {
+          } else if (pathwayIndex === pathways.length) {
             console.log('Completed all tests requested.');
             setTimeout(function(){
               selenium.kill();
