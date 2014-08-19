@@ -45,6 +45,13 @@ describe(desired.name, function() {
         port: process.env.SELENIUM_PORT || 4444
     }, 'promiseChain');
 
+    // Check if tmp/protocol folder exists. Create if it does not exist
+    if (!fs.existsSync('./tmp/protocol/')) {
+      fs.mkdirSync('./tmp/protocol/', 0755, function(err){
+        if(err){console.log(err);}
+      });
+    }
+
     /*
     // optional extra logging
     browser.on('status', function(info) {
@@ -67,7 +74,7 @@ describe(desired.name, function() {
   });
 
   afterEach(function(done) {
-    allPassed = allPassed && (this.currentTest.state === 'passed');  
+    allPassed = allPassed && (this.currentTest.state === 'passed');
     done();
   });
 
