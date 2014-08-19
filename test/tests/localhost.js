@@ -132,11 +132,14 @@ describe(desired.name, function() {
     }, function (err, imagesAreSame) {
       if (!imagesAreSame) {
         var operatingSystem = os.type() + os.release();
-        var screenshotHashExpected = '';
+        var screenshotHashExpected;
         if (!!lastKnownGoodScreenshotHashes[pathwayName] && !!lastKnownGoodScreenshotHashes[pathwayName][operatingSystem] && !!lastKnownGoodScreenshotHashes[pathwayName][operatingSystem][desired.browserName]) {
           screenshotHashExpected = lastKnownGoodScreenshotHashes[pathwayName][operatingSystem][desired.browserName];
         } else {
-          throw new Error('Screenshot not available. Run "gulp saveScreenshots" and inspect each one in "./tmp/protocol/". If each one is valid, run "gulp setLastKnownGoods". Then re-run this test.')
+          console.error('screenshotHashExpected is not available for pathway named "' + pathwayName + '" as tested with browser "' + desired.browserName + '" in "./test/last-known-goods/protocol/screenshot-hashes.json".');
+          console.error('Run "gulp saveScreenshots" and inspect each one in "./tmp/protocol/".');
+          console.error('If they are all correct, run "gulp setLastKnownGoods"; then re-run this test.');
+          throw new Error();
         }
 
         var srcData = fs.readFileSync(pathActualImage);
