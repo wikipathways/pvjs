@@ -19,7 +19,10 @@ var gulp = require('gulp')
 gulp.task('setLastKnownGoods', function () {
   var protocolTestResultsDirectory = 'tmp/protocol/'
     , protocolTestLastKnownGoodsDirectory = 'test/last-known-goods/protocol/'
+    , screenshotHashesFilePath = 'test/last-known-goods/protocol/screenshot-hashes.json'
     ;
+
+  var existingScreenshotHashes = JSON.parse(fs.readFileSync(screenshotHashesFilePath));
 
   var testScreenshotFileNameStream = highland(fs.readdirSync(protocolTestResultsDirectory))
   .filter(function(fileName) {
@@ -61,6 +64,10 @@ gulp.task('setLastKnownGoods', function () {
       var dest = fs.createWriteStream(screenshotDestinationPath)
       screenshotBufferStream.fork().pipe(dest);
     }
+
+    fs.unlinkSync(screenshotJpgFilePath);
+    fs.unlinkSync(screenshotSourcePath);
+
     return screenshotHash;
   });
 
@@ -83,7 +90,7 @@ gulp.task('setLastKnownGoods', function () {
     return result;
   })
   .zip(screenshotHashStream2)
-  .reduce({}, function(screenshotHashes, input) {
+  .reduce(existingScreenshotHashes, function(screenshotHashes, input) {
     // NOTE: we are setting a hash for every combination of these variables that we test:
     // test protocol pathway name, operating system + version, browser
     var testScreenshotTags = input[0];
