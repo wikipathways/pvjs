@@ -45,11 +45,6 @@ gulp.task('saveScreenshots', function () {
       pathway.fileName = pathwayFileName;
       return pathway;
     })
-    //*
-    .filter(function(pathway) {
-      return pathway.name === 'data-nodes';
-    })
-    //*/
     .map(function(pathway) {
       return JSON.stringify(pathway);
     });
@@ -92,7 +87,7 @@ gulp.task('saveScreenshots', function () {
       },
       bin: path.join('./node_modules/mocha/bin/mocha'),
       concurrency: args.concurrency | process.env.CONCURRENCY || 3
-    };  
+    };
     if(args.grep) {
       mochaOpts.flags.g = args.grep;
     }
@@ -103,7 +98,7 @@ gulp.task('saveScreenshots', function () {
         // unit test
         delete env.SAUCE;
         delete env.SAUCE_USERNAME;
-        delete env.SAUCE_ACCESS_KEY;    
+        delete env.SAUCE_ACCESS_KEY;
       } else {
         // midway + e2e tests
         env.BROWSER = opts.browser;
