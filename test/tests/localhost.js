@@ -82,7 +82,6 @@ describe(desired.name, function() {
       .get('http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/protocol/' + pathway.fileName)
       .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 4000)
       .waitForElementByCss(".pathvisiojs-highlighter", wd.asserters.isDisplayed, 4000)
-      .saveScreenshot('tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png')
       .nodeify(done);
   });
 
@@ -115,6 +114,11 @@ describe(desired.name, function() {
     });
   }
 
+  it("should save the screenshot", function(done) {
+    browser.saveScreenshot('tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png')
+    .nodeify(done);
+  });
+
   it("should confirm test and last known good screenshots are the same", function(done) {
     var pathActualImage = 'tmp/protocol/' + pathwayName + '-' + desired.browserName + '-test.png'
       , pathExpectedImage = 'test/input-data/protocol/' + pathwayName + '-lkg.png'
@@ -131,8 +135,8 @@ describe(desired.name, function() {
         var screenshotHashExpected = '';
         if (!!lastKnownGoodScreenshotHashes[pathwayName] && !!lastKnownGoodScreenshotHashes[pathwayName][operatingSystem] && !!lastKnownGoodScreenshotHashes[pathwayName][operatingSystem][desired.browserName]) {
           screenshotHashExpected = lastKnownGoodScreenshotHashes[pathwayName][operatingSystem][desired.browserName];
-          console.log('screenshotHashExpected');
-          console.log(screenshotHashExpected);
+        } else {
+          throw new Error('Screenshot not available. Run "gulp saveScreenshots" and inspect each one in "./tmp/protocol/". If each one is valid, run "gulp setLastKnownGoods". Then re-run this test.')
         }
 
         var srcData = fs.readFileSync(pathActualImage);
@@ -151,12 +155,8 @@ describe(desired.name, function() {
         fs.writeFileSync(screenshotJpgFilePath, resizedBuffer, 'binary');
 
         var screenshotHashObserved = pHash.imageHashSync(screenshotJpgFilePath);
-        console.log('screenshotHashObserved');
-        console.log(screenshotHashObserved);
         fs.unlinkSync(screenshotJpgFilePath);
 
-        console.log('they are equal');
-        console.log(screenshotHashObserved.toString() === screenshotHashExpected.toString());
         if (screenshotHashObserved.toString() === screenshotHashExpected.toString()) {
           fs.unlinkSync(pathActualImage);
           fs.unlinkSync(pathDiffImage);
