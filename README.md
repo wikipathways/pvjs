@@ -126,6 +126,16 @@ wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
 For developers
 ==============
 
+Components
+----------
+* Viewer
+  - Notifications Plugin
+  - Highlighter Plugin
+  - DiffViewer Plugin
+  - Annotations Panel
+* Editor
+* bridgedbjs
+
 Available event messages
 ------------------------
 
@@ -145,7 +155,7 @@ List of available events through application (custom events may be added at any 
 * warning.renderer
 
 Notifications Plugin
--------------------
+--------------------
 
 Notifications plugin listenes for warning and error messages and displays them as alert boxes.
 
@@ -163,7 +173,7 @@ In order to add notifications to pvjs do:
 Highlighter Plugin
 ------------------
 
-Highlighter pulgin allows to highlight pathway nodes, interactions, groups and other entities. It allows to select data nodes using autocomplete text input.
+Highlighter plugin allows to highlight pathway nodes, interactions, groups and other entities. It allows to select data nodes using autocomplete text input.
 
 ### Usage
 
@@ -258,7 +268,7 @@ hi.highlight('#e6e', null, {fill: 'red', stroke: 'blue'})
 ```
 
 Difference Viewer Plugin (DiffViewer)
-------------------------
+-------------------------------------
 
 DiffViewer pulgin allows to compare difference between 2 different versions of a pathway.
 
