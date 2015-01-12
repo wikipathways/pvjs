@@ -75,7 +75,7 @@
     "gulp-open": "~0.2.8",
     "gulp-rename": "~1.2.0",
     "gulp-util": "~2.2.14",
-    "highland": "~1.26.3",
+    "highland": "~2.3.0",
     "image-diff": "~1.0.1",
     "lodash": "~2.4.1",
     "matchdep": "~0.1.2",
@@ -84,11 +84,9 @@
     "pretty-hrtime": "~0.2.1",
     "reload": "~0.1.0",
     "selenium-launcher": "git://github.com/ariutta/nodejs-selenium-launcher",
-    "spawn-mocha-parallel": "0.0.1-beta2",
     "through": "~2.3.4",
     "vinyl-source-stream": "~0.1.1",
     "watchify": "~0.10.1",
-    "wd": "latest",
     "yargs": "~1.2.6",
     "q": "~1.0.1",
     "run-sequence": "~0.3.6",
@@ -98,14 +96,21 @@
     "prompt": "~0.2.13",
     "rsyncwrapper": "~0.4.1",
     "imagemagick-native": "~1.2.2",
-    "phash": "0.0.5"
+    "phash": "0.0.5",
+    "mockserver": "~1.1.0",
+    "freeport": "~1.0.4",
+    "inquirer": "~0.8.0",
+    "selenium-standalone": "~2.44.0-7",
+    "ecstatic": "~0.5.8",
+    "wd": "~0.3.11",
+    "spawn-mocha-parallel": "~1.0.0"
   },
   "dependencies": {
-    "bridgedbjs": "bridgedb/bridgedbjs",
+    "bridgedb": "~1.0.3",
     "cross-platform-shapes": "ariutta/cross-platform-shapes",
-    "gpml2json": "wikipathways/gpml2json",
     "jsonld": "~0.2.17",
     "svg-pan-zoom": "ariutta/svg-pan-zoom",
-    "tower-strcase": "~0.5.0"
+    "tower-strcase": "~0.5.0",
+    "gpml2json": "git://github.com/wikipathways/gpml2json.git"
   }
 }

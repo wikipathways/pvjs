@@ -147,7 +147,7 @@
   </Label>
   <Shape GraphId="c5ad2">
     <Attribute Key="org.pathvisio.CellularComponentProperty" Value="Cell" />
-    <Attribute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
+    <Attributeibute Key="org.pathvisio.DoubleLineProperty" Value="Double" />
     <Graphics CenterX="434.80908303938486" CenterY="296.93632336655594" Width="607.7798493567318" Height="426.1273532668881" ZOrder="-2" FontSize="10" Valign="Middle" ShapeType="RoundedRectangle" LineThickness="3.0" Color="c0c0c0" Rotation="0.0" />
   </Shape>
   <Shape GraphId="ab8f5">

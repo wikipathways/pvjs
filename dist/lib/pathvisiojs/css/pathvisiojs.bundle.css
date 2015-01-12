@@ -1,10 +1,10 @@
 /* pathvisiojs 2.1.2
-Built on 2014-08-07
+Built on 2014-08-18
 https://github.com/wikipathways/pathvisiojs
 License: http://www.apache.org/licenses/LICENSE-2.0/ */
 
 /* pathvisiojs 2.1.2
-Built on 2014-08-07
+Built on 2014-08-18
 https://github.com/wikipathways/pathvisiojs
 License: http://www.apache.org/licenses/LICENSE-2.0/ */
 
@@ -653,6 +653,50 @@ header.annotation-header {
 
 .pathvisiojs-diffviewer .pane-inner {
   height: 100%;
+}
+
+/**************
+  Overlay
+ **************/
+
+.pathvisiojs-diffviewer > .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+}
+
+.pathvisiojs-diffviewer > .overlay .alert{
+  padding: 9px 15px;
+  margin: 4px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.pathvisiojs-diffviewer > .overlay .alert.alert-success{
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+
+.pathvisiojs-diffviewer > .overlay .alert.alert-info{
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
+
+.pathvisiojs-diffviewer > .overlay .alert.alert-warning{
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+}
+
+.pathvisiojs-diffviewer > .overlay .alert.alert-danger{
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
 }
 
 /**************

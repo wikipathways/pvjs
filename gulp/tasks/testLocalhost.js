@@ -1,28 +1,44 @@
 // see the wd example for how to build this: https://github.com/admc/wd/blob/master/gulpfile.js
-var gulp = require('gulp')
-  , _ = require('lodash')
-  , args   = require('yargs').argv
-  , fs   = require('fs')
-  , highland = require('highland')
-  , path = require('path')
-  , through = require('through')
-  , SpawnMocha = require('spawn-mocha-parallel')
-  , seleniumLauncher = require('selenium-launcher')
-  ;
+var gulp = require('gulp');
+var _ = require('lodash');
+var args   = require('yargs').argv;
+var fs   = require('fs');
+var highland = require('highland');
+var inquirer = require('inquirer');
+var path = require('path');
+var through = require('through');
+//var mochaStream = require('spawn-mocha-parallel').mochaStream;
+var selenium = require('selenium-standalone');
+var mochaStream = require('spawn-mocha-parallel').mochaStream;
+var SpawnMocha = require('spawn-mocha-parallel').SpawnMocha;
+//var mocha = mochaStream({concurrency: 10});
 
 require('bdd-with-opts');
 
-gulp.task('testLocalhost', function () {
-  var selenium;
+var createPromptStream = highland.wrapCallback(inquirer.prompt);
+
+/**
+ * Start selenium server and web server (if needed)
+ * Init browser(s), if needed
+ * Run tests
+ * After X tests, restart selenium server
+ *
+ */
+gulp.task('testLocalhost', ['launchLocalServer'], function() {
+/*
+gulp.task('testLocalhost',
+    ['launchLocalServer', 'launchSeleniumServer'], function() {
+//*/
   var browsersCompletedCount = 0;
   var pathwayIndexOneBased = 1;
-  var expressPort = 3000;
+  process.env.TESTS_RUN_COUNT = pathwayIndexOneBased;
+  //var localServerPort = 3000;
+  var localServerPort = process.env.LOCALSERVER_PORT;
   //args.browsers = (args.browser || 'phantomjs').split(',');
-  //args.browsers = (args.browser || 'firefox').split(',');
+  args.browsers = (args.browser || 'firefox').split(',');
   //args.browsers = (args.browser || 'safari').split(',');
-  // TODO get Chrome working in tests. The chromedriver doesn't seem to be working at present.
   //args.browsers = (args.browser || 'chrome').split(',');
-  args.browsers = (args.browser || 'chrome,firefox,safari').split(',');
+  //args.browsers = (args.browser || 'chrome,firefox,safari').split(',');
 
   // TODO figure out why this hack is needed so as to
   // avoid getting errors in selenium/mocha.
@@ -41,7 +57,9 @@ gulp.task('testLocalhost', function () {
     })
     .map(function(pathwayFileName) {
       var pathway = {};
-      pathway.name = pathwayFileName.replace('.gpml.xml', '').replace('.gpml', '');
+      pathway.name = pathwayFileName
+      .replace('.gpml.xml', '')
+      .replace('.gpml', '');
       pathway.fileName = pathwayFileName;
       return pathway;
     })
@@ -49,30 +67,96 @@ gulp.task('testLocalhost', function () {
       return JSON.stringify(pathway);
     });
 
+  pathways.forEach(function(pathway, index, array) {
+    array[index] = pathways[0];
+  });
+
+  console.log('pathway count: ' + pathways.length);
+
   var pathwaysStream = highland(pathways);
 
-  function mocha(opts) {
-    var spawnMocha = new SpawnMocha(opts);
-    var stream = through(function write(file) {
-      spawnMocha.add(file.path);
-    }, function() {});
-    var errors = [];
-    spawnMocha.on('error', function(err) {
-      console.error(err.toString());
-      errors.push(err);
-    }).on('end', function() {
-      if(errors.length > 0) {
-        console.error('ERROR SUMMARY: ');
-        _(errors).each(function(err) {
-          console.error(err.toString());
-        });
-        stream.emit('error', "Some tests failed.");
-      }
-      stream.emit('end');
-    });
-    return stream;
-  }
+  var seleniumServer;
+  pathwaysStream
+  // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
+  // after running 16 tests, at least on my machine. --AR
+  // so this batching is a hack that restarts selenium after every 16 pathways.
+  // See also the discussion near the top of this file.
+  //*
+  .batch(batchSize)
+  .flatMap(function(pathwayBatch) {
+    console.log('flatMap1');
+    //pathwaysStream.pause();
+    if (!!seleniumServer) {
+      console.log('kill seleniumServer');
+      seleniumServer.kill();
+    }
 
+    return highland.wrapCallback(function(done) {
+      //seleniumServer = selenium.start({stdio: 'pipe'});
+      selenium.start({stdio: 'pipe'}, function(err, seleniumInstance) {
+        seleniumServer = seleniumInstance;
+        console.log('started seleniumServer');
+        //console.log(seleniumServer);
+        //process.env.SELENIUM_PORT = selenium.port;
+        process.env.SELENIUM_PORT = 4444;
+        return done(null, pathwayBatch);
+      });
+    })();
+  })
+  .map(function(pathwayBatch) {
+    console.log('pathwayBatch');
+    console.log(pathwayBatch);
+    return pathwayBatch;
+  })
+  .sequence()
+    .map(function(pathway) {
+      console.log('pathway');
+      console.log(pathway);
+      return pathway;
+    })
+    .map(function(result) {
+      //pathwaysStream.resume();
+      console.log('result1');
+      console.log(result);
+      return result;
+    })
+    .flatMap(runBrowsers)
+    .map(function(result) {
+      //pathwaysStream.resume();
+      console.log('result2');
+      console.log(result);
+      return result;
+    })
+    //.last()
+    .map(function(result) {
+      //pathwaysStream.resume();
+      console.log('result3');
+      console.log(result);
+      return result;
+    })
+  .each(function(result) {
+    //pathwaysStream.resume();
+    console.log('final result');
+    console.log(result);
+  });
+  //*/
+  /*
+  .map(function(pathway) {
+    pathwaysStream.pause();
+    return runBrowsers(pathway);
+  })
+  .last()
+  .each(function() {
+  });
+  //*/
+
+  /**
+   * Create a mocha options object
+   *
+   * @param {object} opts I think these are the options
+   *                  specific to this run?
+   * @return {object} opts With any defaults added?
+   */
   function buildMochaOpts(opts) {
     var mochaOpts = {
       flags: {
@@ -87,124 +171,316 @@ gulp.task('testLocalhost', function () {
       },
       bin: path.join('./node_modules/mocha/bin/mocha'),
       concurrency: args.concurrency | process.env.CONCURRENCY || 3
-    };  
-    if(args.grep) {
+    };
+    if (args.grep) {
       mochaOpts.flags.g = args.grep;
     }
     mochaOpts.env = function() {
       var env = _.clone(process.env);
       env.PVJS_PATHWAY = opts.pathway;
-      if(opts.unit) {
+      if (opts.unit) {
         // unit test
         delete env.SAUCE;
         delete env.SAUCE_USERNAME;
-        delete env.SAUCE_ACCESS_KEY;    
+        delete env.SAUCE_ACCESS_KEY;
       } else {
         // midway + e2e tests
         env.BROWSER = opts.browser;
         env.SAUCE = args.sauce;
       }
-      if(opts.midway) {
+      if (opts.midway) {
         // local server port
-        env.EXPRESS_PORT = expressPort;
+        env.EXPRESS_PORT = localServerPort;
       }
       return env;
     };
     return mochaOpts;
   }
 
-  function runBrowsers(pathway) {
-    return highland(args.browsers)
-      .map(function(browser) {
-        var opts = {};
-        opts.midway = true;
-        opts.browser = browser;
-        opts.pathway = pathway;
-        return opts;
-      })
-      .map(buildMochaOpts)
-      .each(runLocalhostTest);
-  }
+  /**
+   * Start a new mocha instance. Mocha is a JS test framework that provides
+   * the high-level structure for describing what is being tested and
+   * displaying the results in the console in a pretty format.
+   *
+   * @param {object} opts
+   * @return
+   */
+  function mocha1(opts) {
+    /*
+    var spawnMocha = new SpawnMocha(opts);
+    console.log('opts');
+    console.log(opts);
+    console.log('spawnMocha.add(');
+    console.log(spawnMocha.add.toString());
+    return highland.pipeline(
+      highland.map(function write(file) {
+        spawnMocha.add(file.path);
+      }, function() {})
+    );
+    //return highland(spawnMocha.add(file.path));
+    //*/
+    /*
+    var spawnMocha = new SpawnMocha(opts);
+    return through(function write(file) {
+      spawnMocha.add(file.path);
+    }, function() {});
+    //*/
+    //*
+    var spawnMocha = new SpawnMocha(opts);
 
-  function runLocalhostTest(opts) {
-    return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
-      .pipe(mocha(opts))
-      .on('error', function() {
+    var activeError = false;
+
+    var errorStream = highland('error', spawnMocha)
+    .flatMap(function handleTestFailure(err) {
+      activeError = true;
+      console.log('Mocha error - probably a failed test.');
+      console.log(err);
+
+      //pathwaysStream.pause();
+
+      if (!!err.files) {
+        var browserName = opts.env().BROWSER;
+        //var testedItem = opts.env().env.PVJS_PATHWAY;
+        var testedItem = 'it';
+        return highland(createPromptStream({
+          type: 'confirm',
+          name: 'passes',
+          message: 'Does ' + testedItem +
+              ' render correctly in ' + browserName + '?'
+        }))
+        .errors(function(err, push) {
+          // inquirer.prompt doesn't follow the node callback style convention
+          // of passing error back as first argument, so this "error handling" is
+          // required to pass along the actual response in addition to any errors.
+          if (_.isPlainObject(err)) {
+            // err is not actually an error! It's res.
+            push(null, err);
+          } else {
+            // err is an error.
+            push(err);
+          }
+        })
+        .last()
+        .map(function(res) {
+          var passes = res.passes;
+          if (passes) {
+            highland(
+              fs.createReadStream(
+                'tmp/protocol/proposed-screenshot-hashes.json'))
+            //.pipe(process.stdout);
+            .pipe(fs.createWriteStream(
+                './test/last-known-goods/protocol/screenshot-hashes.json'));
+            activeError = false;
+            //pathwaysStream.resume();
+          } else {
+            pathwaysStream.destroy();
+            console.log('Destroyed stream due to error.');
+            process.exit();
+          }
+        });
+      } else {
+        console.log('Mocha err');
+        console.log(err);
         pathwaysStream.destroy();
         console.log('Destroyed stream due to error.');
-        selenium.kill();
-      })
-      .on('end', function() {
-        /*
-        if (process.ENV.PVJS_PATHWAY) {
-          console.log('Images are different. Please inspect the difference between the expected and actual images here:');
-          console.log(pathDiffImage);
-          console.log('You can also compare the following two images.');
-          console.log('Actual image' + pathActualImage);
-          console.log('vs');
-          console.log('Expected image' + pathExpectedImage);
-          console.log('After comparing, please choose the option corresponding to which image(s) are correct:');
-          console.log('(1) Actual');
-          console.log('(2) Expected');
-          console.log('(3) Both');
-          console.log('(4) Neither');
+        process.exit();
+      }
+    })
+    .each(function(result) {
+      return result;
+    });
 
-          //
-          // Start the prompt
-          //
-          prompt.start();
+    var endStream = highland('end', spawnMocha).map(function() {
+      console.log('end spawnMocha');
+      if (!activeError) {
+        pathwaysStream.resume();
+      }
+      return highland.nil;
+    });
 
-          //
-          // Get two properties from the user: username and email
-          //
-          prompt.get(['Option'], function (err, result) {
-            //
-            // Log the results.
-            //
-            console.log('Command-line input received:');
-            console.log('  Option: ' + result.Option);
-          });
-        }
-        //*/
-
-        browsersCompletedCount += 1;
-        if (browsersCompletedCount === args.browsers.length) {
-          browsersCompletedCount = 0;
-          pathwayIndexOneBased += 1;
-          if (pathwayIndexOneBased < pathways.length && (pathwayIndexOneBased % batchSize === 0)) {
-            setTimeout(function(){
-              pathwaysStream.resume();
-            }, 3000)
-          } else if (pathwayIndexOneBased === pathways.length) {
-            console.log('Completed all tests requested.');
-            setTimeout(function(){
-              selenium.kill();
-              process.exit();
-            }, 2000)
-          }
-        }
+    return highland.pipeline(function(s) {
+      console.log('s isStream? ' + highland.isStream(s));
+      s.each(function write(file) {
+        console.log('spawnMocha');
+        return spawnMocha.add(file.path);
       });
+
+      //return errorStream.otherwise(endStream);
+      return endStream;
+    });
+    /*
+    var stream = through(function write(file) {
+      spawnMocha.add(file.path);
+    }, function() {});
+    var errors = [];
+    spawnMocha.on('error', function(err) {
+      stream.emit('error', err);
+    }).on('end', function() {
+      if (errors.length > 0) {
+        console.error('ERROR SUMMARY: ');
+        _(errors).each(function(err) {
+        });
+      }
+      stream.emit('end');
+    });
+    //*/
+    //*/
   }
 
-  pathwaysStream
-  // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
-  // after running 16 tests, at least on my machine. --AR
-  // so this batching is a hack that restarts selenium after every 16 pathways.
-  // See also the discussion near the top of this file.
-  .batch(batchSize)
-  .map(function(pathwayBatch) {
-    pathwaysStream.pause();
-    if (!!selenium) {
-      selenium.kill();
-    }
-    return pathwayBatch;
-  })
-  .pipe(through(function(pathwayBatch) {
-    seleniumLauncher(function(err, seleniumInstance) {
-      selenium = seleniumInstance;
-      process.env.SELENIUM_PORT = selenium.port;
-      return highland(pathwayBatch).each(runBrowsers);
-    });
-  }))
-});
+  /**
+   * Run current test on all browsers currently enabled
+   *
+   * @param {string} pathway
+   * @return
+   */
+  function runBrowsers(pathway) {
+    return highland(args.browsers)
+    .map(function(browser) {
+      var opts = {};
+      opts.midway = true;
+      opts.browser = browser;
+      opts.pathway = pathway;
+      return opts;
+    })
+    .map(buildMochaOpts)
+    .flatMap(runLocalhostTest);
+    /*
+    .map(function(result) {
+      console.log('result from runBrowsers');
+      console.log(result);
+      //pathwaysStream.pause();
 
+      process.env.RESET_SELENIUM_SERVER = false;
+      console.log('pathwayIndexOneBased: ' + pathwayIndexOneBased);
+      pathwayIndexOneBased += 1;
+      if (pathwayIndexOneBased < pathways.length &&
+          (pathwayIndexOneBased % batchSize === 0)) {
+        console.log('End of batch.');
+        process.env.RESET_SELENIUM_SERVER = true;
+        //pathwaysStream.resume();
+        //pathwaysStream.pause();
+      } else if (pathwayIndexOneBased === pathways.length) {
+        console.log('Completed all tests requested.');
+        setTimeout(function() {
+          process.exit();
+        }, 1000)
+      }
+
+      return result;
+    });
+    //*/
+  }
+
+  /**
+   * Run tests for localhost. This could be
+   * abstracted to allow for running on other servers.
+   *
+   * @param {object} opts Mocha options
+   * @return
+   */
+  function runLocalhostTest(opts) {
+    //return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
+    return gulp.src(['./test/tests/empty.js'], {read: false, globals:[]})
+    //.pipe(mocha(opts))
+    .pipe(mochaStream(opts))
+    .pipe(highland.pipeline(function(s) {
+      console.log('s isStream? ' + highland.isStream(s));
+      return s.errors(function handleTestFailure(err, push) {
+        //pathwaysStream.pause();
+
+        // This is a failure of the test.
+        if (!!err.files) {
+          var browserName = opts.env().BROWSER;
+          //var testedItem = opts.env().env.PVJS_PATHWAY;
+          var testedItem = 'it';
+          return highland(createPromptStream({
+            type: 'confirm',
+            name: 'passes',
+            message: 'Does ' + testedItem +
+                ' render correctly in ' + browserName + '?'
+          }))
+          .errors(function(err, push) {
+            // inquirer.prompt doesn't follow the node callback style convention
+            // of passing error back as first argument, so this "error handling" is
+            // required to pass along the actual response in addition to any errors.
+            if (_.isPlainObject(err)) {
+              // err is not actually an error! It's res.
+              push(null, err);
+            } else {
+              // err is an error.
+              push(err);
+            }
+          })
+          .last()
+          .map(function(res) {
+            var passes = res.passes;
+            if (passes) {
+              highland(
+                fs.createReadStream(
+                  'tmp/protocol/proposed-screenshot-hashes.json'))
+              //.pipe(process.stdout);
+              .pipe(fs.createWriteStream(
+                  './test/last-known-goods/protocol/screenshot-hashes.json'));
+              //pathwaysStream.resume();
+            } else {
+              pathwaysStream.destroy();
+              console.log('Destroyed stream due to error.');
+              process.exit();
+            }
+          });
+        } else {
+          console.log('Mocha err');
+          console.log(err);
+          pathwaysStream.destroy();
+          console.log('Destroyed stream due to error.');
+          process.exit();
+        }
+      })
+      .otherwise(highland('end', s)
+      .map(function(result) {
+        console.log('end one runLocalhostTest');
+        //pathwaysStream.pause();
+
+        process.env.RESET_SELENIUM_SERVER = false;
+        browsersCompletedCount += 1;
+        console.log('browsersCompletedCount: ' + browsersCompletedCount);
+        if (browsersCompletedCount === args.browsers.length) {
+          browsersCompletedCount = 0;
+          console.log('pathwayIndexOneBased: ' + pathwayIndexOneBased);
+          pathwayIndexOneBased += 1;
+          if (pathwayIndexOneBased < pathways.length &&
+              (pathwayIndexOneBased % batchSize === 0)) {
+            console.log('End of batch.');
+            process.env.RESET_SELENIUM_SERVER = true;
+            //pathwaysStream.resume();
+            //pathwaysStream.pause();
+          } else if (pathwayIndexOneBased === pathways.length) {
+            console.log('Completed all tests requested.');
+            setTimeout(function() {
+              process.exit();
+            }, 1000)
+          }
+        }
+
+        return result;
+      })
+      .map(function() {
+        console.log('end one');
+        return highland.nil;
+      }))
+      //.last()
+      .map(function(result) {
+        console.log('result444');
+        console.log(result);
+        return result;
+      });
+    }));
+    /*
+    .errors(function(err, push) {
+      console.log('err in runLocalhostTest');
+      console.log(err);
+    });
+    //*/
+  }
+
+});
