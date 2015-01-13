@@ -19,8 +19,8 @@ require('bdd-with-opts');
  */
 gulp.task('testLocalhost', ['launchLocalServer'], function() {
   var browsersCompletedCount = 0;
-  var pathwayIndexOneBased = 1;
-  process.env.TESTS_RUN_COUNT = pathwayIndexOneBased;
+  var pathwaysTestedCount = 0;
+  process.env.TESTS_RUN_COUNT = pathwaysTestedCount;
   //var localServerPort = 3000;
   var localServerPort = process.env.LOCALSERVER_PORT;
   //args.browsers = (args.browser || 'phantomjs').split(',');
@@ -29,20 +29,6 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
   //args.browsers = (args.browser || 'chrome').split(',');
   args.browsers = (args.browser || 'chrome,firefox').split(',');
   //args.browsers = (args.browser || 'chrome,firefox,safari').split(',');
-
-  // TODO figure out why this hack is needed so as to
-  // avoid getting errors in selenium/mocha.
-  // This is telling the system to restart the selenium server
-  // after running "batchSize" number of tests
-  /*
-  var batchSize;
-  if (args.browsers.length > 1) {
-    batchSize = 1;
-  } else {
-    batchSize = 4;
-  }
-  //*/
-  var batchSize = 1;
 
   var pathways = fs.readdirSync('./test/input-data/protocol')
     .filter(function(fileName) {
@@ -72,55 +58,38 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
 
   var seleniumServer;
   pathwaysStream
-  //.take(12)
-  // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
-  // after running 16 tests, at least on my machine. --AR
-  // so this batching is a hack that restarts selenium after every 16 pathways.
-  // See also the discussion near the top of this file.
-  //*
-  .batch(batchSize)
   .flatMap(function(pathwayBatch) {
-    console.log('flatMap1');
-    //pathwaysStream.pause();
+    // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
+    // after running 16 tests, at least on my machine. --AR
+    // so this batching is a hack that restarts selenium after every 16 pathways.
+    // See also the discussion near the top of this file.
     if (!!seleniumServer) {
       console.log('kill seleniumServer');
       seleniumServer.kill();
     }
 
     return highland.wrapCallback(function(done) {
-      //seleniumServer = selenium.start({stdio: 'pipe'});
       selenium.start({stdio: 'pipe'}, function(err, seleniumInstance) {
         seleniumServer = seleniumInstance;
         console.log('started seleniumServer');
-        //console.log(seleniumServer);
-        //process.env.SELENIUM_PORT = selenium.port;
         process.env.SELENIUM_PORT = 4444;
         return done(null, pathwayBatch);
       });
     })();
   })
-  .map(function(pathwayBatch) {
-    console.log('pathwayBatch');
-    console.log(pathwayBatch);
-    return pathwayBatch;
-  })
   .sequence()
   .flatMap(runBrowsers)
   .each(function(result) {
-    console.log('pathwayIndexOneBased: ' + pathwayIndexOneBased);
-    if (pathwayIndexOneBased < pathways.length &&
-        (pathwayIndexOneBased % batchSize === 0)) {
-      console.log('End of batch.');
-      //pathwaysStream.resume();
-      //pathwaysStream.pause();
-    } else if (pathwayIndexOneBased === pathways.length) {
+    console.log('pathwaysTestedCount: ' + pathwaysTestedCount);
+    if (pathwaysTestedCount === pathways.length) {
       console.log('Completed all tests requested.');
       setTimeout(function() {
         process.exit();
       }, 1000)
     }
 
-    pathwayIndexOneBased += 1;
+    pathwaysTestedCount += 1;
+
     pathwaysStream.resume();
     return result;
   });
