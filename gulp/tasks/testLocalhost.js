@@ -24,21 +24,25 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
   //var localServerPort = 3000;
   var localServerPort = process.env.LOCALSERVER_PORT;
   //args.browsers = (args.browser || 'phantomjs').split(',');
-  args.browsers = (args.browser || 'firefox').split(',');
+  //args.browsers = (args.browser || 'firefox').split(',');
   //args.browsers = (args.browser || 'safari').split(',');
   //args.browsers = (args.browser || 'chrome').split(',');
+  args.browsers = (args.browser || 'chrome,firefox').split(',');
   //args.browsers = (args.browser || 'chrome,firefox,safari').split(',');
 
   // TODO figure out why this hack is needed so as to
   // avoid getting errors in selenium/mocha.
   // This is telling the system to restart the selenium server
   // after running "batchSize" number of tests
+  /*
   var batchSize;
   if (args.browsers.length > 1) {
     batchSize = 1;
   } else {
     batchSize = 4;
   }
+  //*/
+  var batchSize = 1;
 
   var pathways = fs.readdirSync('./test/input-data/protocol')
     .filter(function(fileName) {
@@ -56,9 +60,11 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
       return JSON.stringify(pathway);
     });
 
+  /*
   pathways.forEach(function(pathway, index, array) {
     array[index] = pathways[0];
   });
+  //*/
 
   console.log('pathway count: ' + pathways.length);
 
@@ -66,6 +72,7 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
 
   var seleniumServer;
   pathwaysStream
+  //.take(12)
   // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
   // after running 16 tests, at least on my machine. --AR
   // so this batching is a hack that restarts selenium after every 16 pathways.
@@ -100,9 +107,22 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
   .sequence()
   .flatMap(runBrowsers)
   .each(function(result) {
-    //pathwaysStream.resume();
-    console.log('final result');
-    console.log(result);
+    console.log('pathwayIndexOneBased: ' + pathwayIndexOneBased);
+    if (pathwayIndexOneBased < pathways.length &&
+        (pathwayIndexOneBased % batchSize === 0)) {
+      console.log('End of batch.');
+      //pathwaysStream.resume();
+      //pathwaysStream.pause();
+    } else if (pathwayIndexOneBased === pathways.length) {
+      console.log('Completed all tests requested.');
+      setTimeout(function() {
+        process.exit();
+      }, 1000)
+    }
+
+    pathwayIndexOneBased += 1;
+    pathwaysStream.resume();
+    return result;
   });
 
   /**
@@ -125,7 +145,7 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
         //debug: true,
       },
       bin: path.join('./node_modules/mocha/bin/mocha'),
-      concurrency: args.concurrency | process.env.CONCURRENCY || 3
+      concurrency: 2 //args.concurrency | process.env.CONCURRENCY || 3
     };
     if (args.grep) {
       mochaOpts.flags.g = args.grep;
@@ -159,31 +179,17 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
     var spawnMocha = new SpawnMocha(opts);
 
     var endStream = highland('end', spawnMocha)
-    //*
     .map(function(result) {
-      console.log('end');
+      console.log('endStream');
       browsersCompletedCount += 1;
       console.log('browsersCompletedCount: ' + browsersCompletedCount);
       if (browsersCompletedCount === args.browsers.length) {
         browsersCompletedCount = 0;
-        console.log('pathwayIndexOneBased: ' + pathwayIndexOneBased);
-        pathwayIndexOneBased += 1;
-        if (pathwayIndexOneBased < pathways.length &&
-            (pathwayIndexOneBased % batchSize === 0)) {
-          console.log('End of batch.');
-          //pathwaysStream.resume();
-          //pathwaysStream.pause();
-        } else if (pathwayIndexOneBased === pathways.length) {
-          console.log('Completed all tests requested.');
-          setTimeout(function() {
-            process.exit();
-          }, 1000)
-        }
       }
 
-      pathwaysStream.resume();
       return result;
-    })
+    });
+    /*
     .map(function(result) {
       //errorStream.end();
       console.log('endStream');
@@ -305,6 +311,12 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
    */
   function runBrowsers(pathway) {
     return highland(args.browsers)
+    /*
+    .map(function(browser) {
+      return highland([browser]);
+    })
+    .parallel(args.browsers.length)
+    //*/
     .map(function(browser) {
       var opts = {};
       opts.midway = true;
@@ -313,7 +325,9 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
       return opts;
     })
     .map(buildMochaOpts)
-    .flatMap(runLocalhostTest);
+    .map(runLocalhostTest)
+    .parallel(args.browsers.length)
+    .collect();
   }
 
   /**
