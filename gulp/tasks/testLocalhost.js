@@ -58,7 +58,9 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
 
   var seleniumServer;
   pathwaysStream
-  .flatMap(function(pathwayBatch) {
+  .flatMap(function(pathway) {
+    console.log('pathway');
+    console.log(pathway);
     // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
     // after running 16 tests, at least on my machine. --AR
     // so this batching is a hack that restarts selenium after every 16 pathways.
@@ -73,13 +75,13 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
         seleniumServer = seleniumInstance;
         console.log('started seleniumServer');
         process.env.SELENIUM_PORT = 4444;
-        return done(null, pathwayBatch);
+        return done(null, pathway);
       });
     })();
   })
-  .sequence()
   .flatMap(runBrowsers)
   .each(function(result) {
+    pathwaysTestedCount += 1;
     console.log('pathwaysTestedCount: ' + pathwaysTestedCount);
     if (pathwaysTestedCount === pathways.length) {
       console.log('Completed all tests requested.');
@@ -87,8 +89,6 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
         process.exit();
       }, 1000)
     }
-
-    pathwaysTestedCount += 1;
 
     pathwaysStream.resume();
     return result;
