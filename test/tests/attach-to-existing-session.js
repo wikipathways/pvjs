@@ -43,6 +43,9 @@ describe(desired.name, function() {
   // how long the details panel takes to load
   var detailsPanelTimeout = 6000;
   var localServerPort = process.env.LOCALSERVER_PORT;
+  console.log('process.env.RESET_SELENIUM_SERVER');
+  console.log(process.env.RESET_SELENIUM_SERVER);
+  var resetSeleniumServer = (process.env.RESET_SELENIUM_SERVER === 'true');
 
   before(function(done) {
     var testsRunCount;
@@ -55,12 +58,71 @@ describe(desired.name, function() {
         port: process.env.SELENIUM_PORT || 4444
     }, 'promiseChain');
 
-    var width = 1024;
-    var height = 768;
-    browser
-    .init(desired)
-    .setWindowSize(width, height)
-    .nodeify(done);
+    browser.sessions(function(err, sessions) {
+      if (!!err) {
+        console.log('sessions err:');
+        console.log(err);
+      }
+      var oneSessionExists = !!sessions && !!sessions.length && !!sessions[0];
+      var selectedSessionId;
+      if (oneSessionExists) {
+        var previousSession = sessions[0];
+        var selectedSessionIds = sessions.map(function(session) {
+          return session.id;
+        })
+        //*
+        .filter(function(sessionId) {
+          return sessions.length === 1 || sessionId !== previousSession.id;
+        })
+        //*/
+        //*
+        .sort(function(a, b) {
+          if (a.firstname < b.firstname) {
+            return -1;
+          }
+          if (a.firstname > b.firstname) {
+            return 1;
+          }
+          return 0;
+        });
+        //*/
+
+        console.log(selectedSessionIds);
+        selectedSessionId = selectedSessionIds[0];
+        //selectedSessionId = selectedSessionIds[selectedSessionIds.length - 1];
+      }
+      console.log('selectedSessionId: ' + selectedSessionId);
+      console.log('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv');
+      console.log('resetSeleniumServer');
+      console.log(resetSeleniumServer);
+      console.log('process.env.RESET_SELENIUM_SERVER');
+      console.log(process.env.RESET_SELENIUM_SERVER);
+      console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+
+      if (!selectedSessionId || resetSeleniumServer) {
+        console.log('Launching new session.');
+        var width = 1024;
+        var height = 768;
+        browser
+        .init(desired)
+        .setWindowSize(width, height)
+        .nodeify(done);
+      } else {
+        console.log('Attaching to existing session.');
+        /*
+        console.log('process.env.iteration');
+        console.log(process.env.iteration);
+        process.env.iteration += 1;
+        //*/
+        browser.attach(selectedSessionId, function(err) {
+          if (!!err) {
+            console.log('attach err:');
+            console.log(err);
+          }
+          return done();
+        });
+      }
+    });
 
     /*
     // optional extra logging
@@ -85,11 +147,21 @@ describe(desired.name, function() {
     console.log('----------------------------------');
     console.log('after');
     console.log('----------------------------------');
+    /*
     browser
       .quit()
       .nodeify(function() {
         return done(null, allPassed);
       });
+    //*/
+
+    /*
+    browser.detach(function() {
+      return done(null, allPassed);
+    });
+    //*/
+
+    return done(null, allPassed);
   });
 
   it('work1', function(done) {
@@ -158,11 +230,5 @@ describe(desired.name, function() {
       .nodeify(done);
     //*/
   });
-
-  //*
-  it('work2', function(done) {
-    expect(true).to.be.false;
-  });
-  //*/
 
 });
