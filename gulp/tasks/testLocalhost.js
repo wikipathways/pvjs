@@ -31,28 +31,20 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
   //args.browsers = (args.browser || 'chrome,firefox,safari').split(',');
 
   var pathways = fs.readdirSync('./test/input-data/protocol')
-    .filter(function(fileName) {
-      return fileName.indexOf('gpml') > -1;
-    })
-    .map(function(pathwayFileName) {
-      var pathway = {};
-      pathway.name = pathwayFileName
-      .replace('.gpml.xml', '')
-      .replace('.gpml', '');
-      pathway.fileName = pathwayFileName;
-      return pathway;
-    })
-    .map(function(pathway) {
-      return JSON.stringify(pathway);
-    });
-
-  /*
-  pathways.forEach(function(pathway, index, array) {
-    array[index] = pathways[0];
+  .filter(function(fileName) {
+    return fileName.indexOf('gpml') > -1;
+  })
+  .map(function(pathwayFileName) {
+    var pathway = {};
+    pathway.name = pathwayFileName
+    .replace('.gpml.xml', '')
+    .replace('.gpml', '');
+    pathway.fileName = pathwayFileName;
+    return pathway;
+  })
+  .map(function(pathway) {
+    return JSON.stringify(pathway);
   });
-  //*/
-
-  console.log('pathway count: ' + pathways.length);
 
   var pathwaysStream = highland(pathways);
 
@@ -82,16 +74,16 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
   .flatMap(runBrowsers)
   .each(function(result) {
     pathwaysTestedCount += 1;
-    console.log('pathwaysTestedCount: ' + pathwaysTestedCount);
+    console.log('Tests completed: ' + pathwaysTestedCount +
+      ' of ' + pathways.length);
     if (pathwaysTestedCount === pathways.length) {
       console.log('Completed all tests requested.');
       setTimeout(function() {
         process.exit();
       }, 1000)
+    } else {
+      pathwaysStream.resume();
     }
-
-    pathwaysStream.resume();
-    return result;
   });
 
   /**
@@ -149,26 +141,17 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
 
     var endStream = highland('end', spawnMocha)
     .map(function(result) {
-      console.log('endStream');
       browsersCompletedCount += 1;
-      console.log('browsersCompletedCount: ' + browsersCompletedCount);
+      console.log('Browsers run for this test: ' +
+        browsersCompletedCount + ' of ' + args.browsers.length);
       if (browsersCompletedCount === args.browsers.length) {
         browsersCompletedCount = 0;
       }
 
       return result;
     });
-    /*
-    .map(function(result) {
-      //errorStream.end();
-      console.log('endStream');
-      //return highland.nil;
-      return result;
-    });
-    //*/
 
     var errorStream = highland('error', spawnMocha)
-    //*
     .flatMap(function handleTestFailure(err) {
       endStream.pause();
 
@@ -220,55 +203,14 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
         console.log('Destroyed stream due to error.');
         process.exit();
       }
-    })
-    .map(function(err) {
-      console.log('error');
-      return err;
     });
-    //*/
 
     return highland.pipeline(function(s) {
       s.each(function write(file) {
         spawnMocha.add(file.path);
       });
 
-      //return errorStream;
-
-      //return endStream;
-
-      //return highland([errorStream.concat(endStream).head()]);
-
-      return highland([errorStream, endStream]).merge().head()
-      .map(function(result) {
-        console.log('result126');
-        console.log(result);
-        return result;
-      });
-
-      /*
-      return highland([errorStream, endStream])
-      .merge(function(result) {
-        console.log('result1131');
-        console.log(result);
-        return result;
-      });
-      //*/
-
-      /*
-      return highland(function(push, next) {
-        endStream.each(function() {
-          console.log('end event in generator');
-          next();
-          push(null, highland.nil);
-        });
-
-        errorStream.each(function(err, value) {
-          console.log('error event in generator');
-          next();
-          push(err, highland.nil);
-        });
-      });
-      //*/
+      return highland([errorStream, endStream]).merge().head();
     });
   }
 
@@ -280,12 +222,6 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
    */
   function runBrowsers(pathway) {
     return highland(args.browsers)
-    /*
-    .map(function(browser) {
-      return highland([browser]);
-    })
-    .parallel(args.browsers.length)
-    //*/
     .map(function(browser) {
       var opts = {};
       opts.midway = true;
