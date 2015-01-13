@@ -18,16 +18,15 @@ require('bdd-with-opts');
  *
  */
 gulp.task('testLocalhost', ['launchLocalServer'], function() {
-  var browsersCompletedCount = 0;
   var pathwaysTestedCount = 0;
-  process.env.TESTS_RUN_COUNT = pathwaysTestedCount;
   //var localServerPort = 3000;
-  var localServerPort = process.env.LOCALSERVER_PORT;
+  var localServerPort = process.env.LOCALSERVER_PORT || 3000;
   //args.browsers = (args.browser || 'phantomjs').split(',');
   //args.browsers = (args.browser || 'firefox').split(',');
   //args.browsers = (args.browser || 'safari').split(',');
   //args.browsers = (args.browser || 'chrome').split(',');
   args.browsers = (args.browser || 'chrome,firefox').split(',');
+  // TODO Need to install Safari driver
   //args.browsers = (args.browser || 'chrome,firefox,safari').split(',');
 
   var pathways = fs.readdirSync('./test/input-data/protocol')
@@ -46,26 +45,21 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
     return JSON.stringify(pathway);
   });
 
-  var pathwaysStream = highland(pathways);
-
   var seleniumServer;
+  var pathwaysStream = highland(pathways);
   pathwaysStream
   .flatMap(function(pathway) {
-    console.log('pathway');
-    console.log(pathway);
     // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
     // after running 16 tests, at least on my machine. --AR
     // so this batching is a hack that restarts selenium after every 16 pathways.
     // See also the discussion near the top of this file.
     if (!!seleniumServer) {
-      console.log('kill seleniumServer');
       seleniumServer.kill();
     }
 
     return highland.wrapCallback(function(done) {
       selenium.start({stdio: 'pipe'}, function(err, seleniumInstance) {
         seleniumServer = seleniumInstance;
-        console.log('started seleniumServer');
         process.env.SELENIUM_PORT = 4444;
         return done(null, pathway);
       });
@@ -74,10 +68,11 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
   .flatMap(runBrowsers)
   .each(function(result) {
     pathwaysTestedCount += 1;
-    console.log('Tests completed: ' + pathwaysTestedCount +
-      ' of ' + pathways.length);
+    console.log('Test ' + pathwaysTestedCount +
+      ' of ' + pathways.length + ' completed');
     if (pathwaysTestedCount === pathways.length) {
-      console.log('Completed all tests requested.');
+      console.log('Completed all ' + pathways.length +
+        ' tests requested.');
       setTimeout(function() {
         process.exit();
       }, 1000)
@@ -106,7 +101,8 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
         //debug: true,
       },
       bin: path.join('./node_modules/mocha/bin/mocha'),
-      concurrency: 2 //args.concurrency | process.env.CONCURRENCY || 3
+      // TODO 3 might not work on a single or dual core CPU
+      concurrency: args.concurrency | process.env.CONCURRENCY || 3
     };
     if (args.grep) {
       mochaOpts.flags.g = args.grep;
@@ -139,17 +135,7 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
     opts = opts || {};
     var spawnMocha = new SpawnMocha(opts);
 
-    var endStream = highland('end', spawnMocha)
-    .map(function(result) {
-      browsersCompletedCount += 1;
-      console.log('Browsers run for this test: ' +
-        browsersCompletedCount + ' of ' + args.browsers.length);
-      if (browsersCompletedCount === args.browsers.length) {
-        browsersCompletedCount = 0;
-      }
-
-      return result;
-    });
+    var endStream = highland('end', spawnMocha);
 
     var errorStream = highland('error', spawnMocha)
     .flatMap(function handleTestFailure(err) {
@@ -221,6 +207,8 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
    * @return
    */
   function runBrowsers(pathway) {
+    var browsersCompletedCount = 0;
+
     return highland(args.browsers)
     .map(function(browser) {
       var opts = {};
@@ -232,6 +220,14 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
     .map(buildMochaOpts)
     .map(runLocalhostTest)
     .parallel(args.browsers.length)
+    .map(function(result) {
+      browsersCompletedCount += 1;
+      console.log('Browser ' + browsersCompletedCount +
+        ' of ' + args.browsers.length +
+        ' completed for this test');
+
+      return result;
+    })
     .collect();
   }
 
@@ -243,8 +239,8 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
    * @return
    */
   function runLocalhostTest(opts) {
-    //return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
-    return gulp.src(['./test/tests/empty.js'], {read: false, globals:[]})
+    return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
+    //return gulp.src(['./test/tests/empty.js'], {read: false, globals:[]})
     .pipe(mochaStream(opts));
   }
 

@@ -6,10 +6,10 @@ var expect = chai.expect;
 var fs = require('fs');
 var gulp = require('gulp');
 var highland = require('highland');
-//var imageDiff = require('image-diff');
-//var imagemagick = require('imagemagick-native');
+var imageDiff = require('image-diff');
+var imagemagick = require('imagemagick-native');
 var os   = require('os');
-//var pHash = require('phash');
+var pHash = require('phash');
 var wd = require('wd');
 
 var pathway = JSON.parse(process.env.PVJS_PATHWAY);
@@ -132,7 +132,7 @@ describe(desired.name, function() {
     .nodeify(done);
   });
 
-  /*
+  //*
   it('should confirm test and last known good screenshots are the same',
       function(done) {
     var pathToDiffImage = __dirname +
