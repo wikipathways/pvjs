@@ -159,7 +159,74 @@ describe(desired.name, function() {
     //*/
   });
 
-  //*
+  it('work2', function(done) {
+    /* this allows all 17 pathways to run
+    return done();
+    //*/
+    /* this allows all 17 pathways to run
+    expect(1).to.equal(1);
+    return done();
+    //*/
+    /* this allows all 17 pathways to run
+    browser
+      .get('http://localhost:' + localServerPort +
+          '/test/one-diagram.html?gpml=' +
+          'http://localhost:' + localServerPort +
+          '/test/input-data/protocol/' + pathway.fileName)
+      .then(function() {
+        return done();
+      });
+    //*/
+    /*
+    browser
+      .get('http://localhost:' + localServerPort +
+          '/test/one-diagram.html?gpml=' +
+          'http://localhost:' + localServerPort +
+          '/test/input-data/protocol/' + pathway.fileName)
+      .then(function() {
+        return done();
+      });
+    //*/
+    //* this hangs at 12
+    browser
+      .get('http://localhost:' + localServerPort +
+          '/test/one-diagram.html?gpml=' +
+          'http://localhost:' + localServerPort +
+          '/test/input-data/protocol/' + pathway.fileName)
+      .waitForElementById('pvjs-diagram-1', wd.asserters.isDisplayed, 4000)
+      //*
+      .waitForElementByCss('.pathvisiojs-highlighter',
+          wd.asserters.isDisplayed, 4000)
+      //*/
+      .then(function() {
+        return done();
+      });
+    //*/
+    /* this hangs at 12
+    browser
+      .get('http://localhost:' + localServerPort +
+          '/test/one-diagram.html?gpml=' +
+          'http://localhost:' + localServerPort +
+          '/test/input-data/protocol/' + pathway.fileName)
+      .waitForElementById('pvjs-diagram-1', wd.asserters.isDisplayed, 4000)
+      .waitForElementByCss('.pathvisiojs-highlighter',
+          wd.asserters.isDisplayed, 4000)
+      .nodeify(done);
+    //*/
+    /* this hangs at 12
+    return browser
+      .get('http://localhost:' + localServerPort +
+          '/test/one-diagram.html?gpml=' +
+          'http://localhost:' + localServerPort +
+          '/test/input-data/protocol/' + pathway.fileName)
+      .waitForElementById('pvjs-diagram-1', wd.asserters.isDisplayed, 4000)
+      .waitForElementByCss('.pathvisiojs-highlighter',
+          wd.asserters.isDisplayed, 4000)
+      .nodeify(done);
+    //*/
+  });
+
+  /*
   it('work2', function(done) {
     expect(true).to.be.false;
   });
