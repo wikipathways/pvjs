@@ -8,12 +8,19 @@ var gulp = require('gulp');
 var highland = require('highland');
 var imageDiff = require('image-diff');
 var imagemagick = require('imagemagick-native');
+var notification = require('../../gulp/util/notification.js');
 var os   = require('os');
 var pHash = require('phash');
 var wd = require('wd');
 
+var createImageDiffStream = highland.wrapCallback(imageDiff);
+
+var osId = os.type() + os.release();
 var pathway = JSON.parse(process.env.PVJS_PATHWAY);
 var pathwayName = pathway.name;
+
+// TODO Shouldn't I be able to get this some other way?
+var mochaTimeout = process.env.MOCHA_TIMEOUT;
 
 var browserName = process.env.BROWSER;
 var desired = {'browserName': browserName};
@@ -21,8 +28,16 @@ desired.name = 'Local Protocol for ' + pathwayName.toUpperCase().cyan +
     ' (' + browserName.grey + ')';
 desired.tags = ['localhost'];
 
-var lastKnownGoodScreenshotHashes = JSON.parse(
-    fs.readFileSync('./test/last-known-goods/protocol/screenshot-hashes.json'));
+var lastKnownGoodScreenshotHashesPath = __dirname +
+    '/../../test/last-known-goods/protocol/screenshot-hashes.json';
+
+var lastKnownGoodScreenshotHashes;
+if (!!fs.existsSync(lastKnownGoodScreenshotHashesPath)) {
+  lastKnownGoodScreenshotHashes = JSON.parse(
+      fs.readFileSync(lastKnownGoodScreenshotHashesPath));
+} else {
+  lastKnownGoodScreenshotHashes = {};
+}
 
 chai.use(chaiAsPromised);
 chai.should();
@@ -36,6 +51,55 @@ wd.configureHttp({
     retries: 1
 });
 //*/
+
+function getScreenshotHash(actualImagePath) {
+  var srcData = fs.readFileSync(actualImagePath);
+
+  // returns a Buffer instance
+  var resizedBuffer = imagemagick.convert({
+      srcData: srcData, // provide a Buffer instance
+      //width: 100,
+      //height: 100,
+      //resizeStyle: "aspectfill",
+      quality: 100,
+      format: 'JPEG'
+  });
+
+  var screenshotJpgFilePath = actualImagePath
+  .replace('.png', '.jpg');
+  fs.writeFileSync(screenshotJpgFilePath, resizedBuffer, 'binary');
+
+  var screenshotHashActual = pHash.imageHashSync(screenshotJpgFilePath);
+  fs.unlinkSync(screenshotJpgFilePath);
+
+  return screenshotHashActual;
+}
+
+function saveScreenshotHashes(
+    lastKnownGoodScreenshotHashes, pathwayName,
+    browserName, screenshotHashActual) {
+
+  console.log('You said the screenshot looked OK, ' +
+      'so we\'re calculating its hash and ' +
+      'saving it as APPROVED for:');
+  console.log('Operating system: ' + osId);
+  console.log('Browser: ' + browserName);
+  console.log('File path: ' + lastKnownGoodScreenshotHashesPath);
+  console.log('Please commit this file in git.');
+
+  lastKnownGoodScreenshotHashes[pathwayName] =
+      lastKnownGoodScreenshotHashes[pathwayName] || {};
+  lastKnownGoodScreenshotHashes[pathwayName][osId] =
+      lastKnownGoodScreenshotHashes[pathwayName][osId] || {};
+  lastKnownGoodScreenshotHashes[pathwayName][osId][browserName] =
+      screenshotHashActual;
+
+  var updatedScreenshotHashes =
+      JSON.stringify(lastKnownGoodScreenshotHashes, null, '\t');
+  fs.writeFileSync(
+      lastKnownGoodScreenshotHashesPath,
+      updatedScreenshotHashes, 'utf8');
+}
 
 describe(desired.name, function() {
   var browser;
@@ -126,135 +190,190 @@ describe(desired.name, function() {
     });
   }
 
-  it('should save the screenshot', function(done) {
-    browser.saveScreenshot('tmp/protocol/' + pathwayName +
-        '-' + browserName + '-test.png')
-    .nodeify(done);
-  });
-
   //*
   it('should confirm test and last known good screenshots are the same',
       function(done) {
-    var pathToDiffImage = __dirname +
-        '/../../' + 'tmp/protocol/' + pathwayName + '-' +
-        browserName + '-difference.png';
 
-    var pathToObservedImage = __dirname +
-        '/../../' + 'tmp/protocol/' + pathwayName + '-' +
-        browserName + '-test.png';
+    var pathsToImages = {
+      diffImage: __dirname +
+          '/../../' + 'tmp/protocol/' + pathwayName + '-' +
+          browserName + '-difference.png',
+      actualImage: __dirname +
+          '/../../' + 'tmp/protocol/' + pathwayName + '-' +
+          browserName + '-test.png',
+      expectedImage: __dirname +
+          '/../../' + 'test/last-known-goods/protocol/' +
+          pathwayName + '-lkg.png'
+    };
 
-    var pathToExpectedImage = __dirname +
-        '/../../' + 'test/last-known-goods/protocol/' +
-        pathwayName + '-lkg.png';
-
-    imageDiff({
-      actualImage: pathToObservedImage,
-      expectedImage: pathToExpectedImage,
-      diffImage: pathToDiffImage,
-    }, function(err, imagesAreSame) {
-      if (!imagesAreSame) {
-        var osId = os.type() + os.release();
-        var screenshotHashExpected;
-        if (!!lastKnownGoodScreenshotHashes[pathwayName] &&
-            !!lastKnownGoodScreenshotHashes[pathwayName][osId] &&
-            !!lastKnownGoodScreenshotHashes[pathwayName][osId][browserName]) {
-          screenshotHashExpected =
-              lastKnownGoodScreenshotHashes[pathwayName][osId][browserName];
-        } else {
-          console.error('screenshotHashExpected is not available for pathway ' +
-              'named "' + pathwayName + '" as tested with browser "' +
-              browserName + '" in ' +
-              '"./test/last-known-goods/protocol/screenshot-hashes.json".');
-          console.error('Run "gulp saveScreenshots" and inspect each one in ' +
-              '"./tmp/protocol/".');
-          console.error('If they are all correct, run ' +
-              '"gulp setLastKnownGoods"; ' +
-              'then re-run this test.');
-          throw new Error();
-        }
-
-        var srcData = fs.readFileSync(pathToObservedImage);
-
-        // returns a Buffer instance
-        var resizedBuffer = imagemagick.convert({
-            srcData: srcData, // provide a Buffer instance
-            //width: 100,
-            //height: 100,
-            //resizeStyle: "aspectfill",
-            quality: 100,
-            format: 'JPEG'
-        });
-
-        var screenshotJpgFilePath = pathToObservedImage.replace('.png', '.jpg');
-        fs.writeFileSync(screenshotJpgFilePath, resizedBuffer, 'binary');
-
-        var screenshotHashObserved = pHash.imageHashSync(screenshotJpgFilePath);
-        fs.unlinkSync(screenshotJpgFilePath);
-
-        if (screenshotHashObserved.toString() ===
-            screenshotHashExpected.toString()) {
-          fs.unlinkSync(pathToObservedImage);
-          fs.unlinkSync(pathToDiffImage);
-        }
-
-        if (String(screenshotHashObserved) !== String(screenshotHashExpected)) {
-          lastKnownGoodScreenshotHashes[pathwayName][osId][browserName] =
-              screenshotHashObserved;
-          var proposedScreenshotHashes =
-              JSON.stringify(lastKnownGoodScreenshotHashes, null, '\t');
-          fs.writeFileSync('tmp/protocol/proposed-screenshot-hashes.json',
-              proposedScreenshotHashes, 'utf8');
-          var sleepPeriod = 750;
-          console.log('Observed image hash does not match expected.');
-          highland(_.range(10))
-          .map(function(iteration) {
-            browser.get('file://' + pathToDiffImage)
-            .sleep(sleepPeriod)
-            .get('file://' + pathToExpectedImage)
-            .sleep(sleepPeriod)
-            .get('file://' + pathToObservedImage)
-            .sleep(sleepPeriod);
-          })
-          .ratelimit(1, 3 * sleepPeriod)
-          .last()
-          .map(function() {
-            expect(screenshotHashObserved.toString()).to.equal(
-                screenshotHashExpected.toString());
-            return true;
-          })
-          .errors(function(err, push) {
-            console.log('err');
-            console.log(err);
-            return push(null, err);
-          })
-          .each(function(result) {
-            console.log('result');
-            console.log(result);
-            return done(result);
-          });
-        } else {
-          if (screenshotHashObserved.toString() ===
-              screenshotHashExpected.toString()) {
-            expect(screenshotHashObserved.toString()).to.equal(
-                screenshotHashExpected.toString());
-            return done();
-          } else {
-            return setTimeout(function() {
-              expect(screenshotHashObserved.toString()).to.equal(
-                  screenshotHashExpected.toString());
-              return done();
-            }, detailsPanelTimeout + 500);
-          }
-        }
-      } else {
-        fs.unlinkSync(pathToObservedImage);
-        fs.unlinkSync(pathToDiffImage);
-        expect(imagesAreSame).to.equal(true);
-        return done();
+    highland([pathsToImages])
+    .flatMap(function(pathsToImages) {
+      return highland(browser.saveScreenshot(pathsToImages.actualImage));
+    })
+    .flatMap(function(result) {
+      if (!!fs.existsSync(pathsToImages.expectedImage)) {
+        return highland([pathsToImages]);
       }
-      // error will be any errors that occurred
-      // imagesAreSame is a boolean
-      // diffImage is an image which highlights differences
+
+      return notification.createStream({
+        title: 'Expected Screenshot Unavailable',
+        message: 'Click here if it rendered correctly in ' +
+                  browserName + '.',
+        //icon: path.join(__dirname, 'coulson.jpg'), // absolute path (not balloons)
+        sound: false, // Only Notification Center or Windows Toasters
+        wait: true, // wait with callback until user action is taken on notification
+        time: 15 * 1000
+      })
+      .flatMap(function(res) {
+        if (res.indexOf('Activate') === -1) {
+          var message = 'Expected screenshot not available for pathway ' +
+              'named "' + pathwayName + '" as tested with browser "' +
+              browserName + '." ' +
+              'It should be located at: ' +
+              pathsToImages.expectedImage + '. ' +
+              'Update code so it renders correctly, and then ' +
+              're-run this test to save the current screenshot ' +
+              'as a reference for future tests.';
+          throw new Error(message);
+        }
+
+        var screenshotHashActual = getScreenshotHash(pathsToImages.actualImage);
+        saveScreenshotHashes(
+            lastKnownGoodScreenshotHashes, pathwayName,
+            browserName, screenshotHashActual);
+
+        console.log('You said the screenshot looked OK, ' +
+            'so we\'re saving it for future comparison purposes ' +
+            'as the last known good reference screenshot ' +
+            'for this pathway.');
+        console.log('File path: ' + pathsToImages.actualImage);
+        console.log('Please add and commit it in git.');
+
+        var actualImageStream = highland(fs.createReadStream(
+            pathsToImages.actualImage));
+
+        actualImageStream.fork()
+        .pipe(fs.createWriteStream(pathsToImages.expectedImage));
+
+        return actualImageStream.fork()
+        .last();
+      });
+    })
+    .flatMap(function() {
+      // Here we check the actual image against a list of hashes
+      // for specific OS's and browsers. We use this because it's
+      // possible to save a large number of hashes, but it would
+      // not be reasonable to save the actual images for every
+      // OS/browser combination.
+      var screenshotHashExpected;
+      if (!!lastKnownGoodScreenshotHashes[pathwayName] &&
+          !!lastKnownGoodScreenshotHashes[pathwayName][osId] &&
+          !!lastKnownGoodScreenshotHashes[pathwayName][osId][browserName]) {
+        screenshotHashExpected =
+            lastKnownGoodScreenshotHashes[pathwayName][osId][browserName];
+      } else {
+        /*
+        notification.createStream({
+          title: 'Expected Screenshot Hash Unavailable',
+          message: 'Click here if it rendered correctly in ' +
+                    browserName + '.',
+          //icon: path.join(__dirname, 'coulson.jpg'), // absolute path (not balloons)
+          sound: false, // Only Notification Center or Windows Toasters
+          wait:  false// wait with callback until user action is taken on notification
+        })
+        .each(function() {});
+        //*/
+      }
+
+      var screenshotHashActual = getScreenshotHash(pathsToImages.actualImage);
+
+      if (String(screenshotHashActual) ===
+          String(screenshotHashExpected)) {
+        fs.unlinkSync(pathsToImages.actualImage);
+        expect(String(screenshotHashActual)).to.equal(
+            String(screenshotHashExpected));
+        return highland([true]);
+      }
+
+      return highland([pathsToImages])
+      .flatMap(createImageDiffStream)
+      .flatMap(function(imagesAreSame) {
+        if (imagesAreSame) {
+          fs.unlinkSync(pathsToImages.actualImage);
+          fs.unlinkSync(pathsToImages.diffImage);
+          expect(imagesAreSame).to.equal(true);
+          return highland([true]);
+        }
+
+        // Display new, old and diff screenshots.
+        var sleepPeriod = 750;
+        highland(_.range(5))
+        .map(function(iteration) {
+          browser.get('file://' + pathsToImages.diffImage)
+          .sleep(sleepPeriod)
+          .get('file://' + pathsToImages.expectedImage)
+          .sleep(sleepPeriod)
+          .get('file://' + pathsToImages.actualImage)
+          .sleep(sleepPeriod);
+        })
+        .ratelimit(1, 3 * sleepPeriod)
+        .last()
+        .map(function() {
+          expect(String(screenshotHashActual)).to.equal(
+              String(screenshotHashExpected));
+          return true;
+        })
+        .errors(function(err, push) {
+          console.log('err');
+          console.log(err);
+          return push(null, err);
+        })
+        .each(function() {});
+        // error will be any errors that occurred
+        // imagesAreSame is a boolean
+        // diffImage is an image which highlights differences
+
+        return notification.createStream({
+          title: 'Screenshot Looks OK for ' + browserName + '?',
+          message: 'If yes, click here. Otherwise, wait for timeout.',
+          //icon: path.join(__dirname, 'coulson.jpg'), // absolute path (not balloons)
+          sound: false, // Only Notification Center or Windows Toasters
+          wait: true, // wait with callback until user action is taken on notification
+          time: mochaTimeout - 2 * 1000
+        })
+        .flatMap(function(res) {
+          if (res.indexOf('Activate') === -1) {
+            var message = 'Hash of expected screenshot did not match ' +
+                'hash of actual screenshot for ' +
+                'pathway named "' + pathwayName +
+                '" as tested with browser "' +
+                browserName + '" in "' +
+                lastKnownGoodScreenshotHashesPath + '". ' +
+                'Update code so it renders correctly, and then ' +
+                're-run this test to save a hash of the current screenshot ' +
+                'as a reference for future tests.';
+            console.error(message);
+            expect(String(screenshotHashActual)).to.equal(
+                String(screenshotHashExpected));
+            //throw new Error(message);
+            /*
+            var err = new Error(message);
+            return highland([err]);
+            //*/
+          }
+
+          saveScreenshotHashes(
+              lastKnownGoodScreenshotHashes, pathwayName,
+              browserName, screenshotHashActual);
+
+          return highland([null]);
+        });
+      });
+    })
+    //*
+    //*/
+    .each(function(result) {
+      return done(null, result);
     });
   });
   //*/

@@ -71,11 +71,9 @@
     "gulp-browserify": "~0.5.0",
     "gulp-changed": "~0.3.0",
     "gulp-mocha": "~0.5.1",
-    "gulp-notify": "~1.2.4",
     "gulp-open": "~0.2.8",
     "gulp-rename": "~1.2.0",
     "gulp-util": "~2.2.14",
-    "highland": "~2.3.0",
     "image-diff": "~1.0.1",
     "lodash": "~2.4.1",
     "matchdep": "~0.1.2",
@@ -103,7 +101,10 @@
     "selenium-standalone": "~2.44.0-7",
     "ecstatic": "~0.5.8",
     "wd": "~0.3.11",
-    "spawn-mocha-parallel": "~1.0.0"
+    "spawn-mocha-parallel": "~1.0.0",
+    "highland": "~2.3.0",
+    "node-notifier": "~4.0.3",
+    "gulp-notify": "~2.1.0"
   },
   "dependencies": {
     "bridgedb": "~1.0.3",
