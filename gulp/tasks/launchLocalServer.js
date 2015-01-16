@@ -26,12 +26,7 @@ function getPort(preferredPort) {
 
 gulp.task('launchLocalServer', function(done) {
 
-  console.log('process.env.LOCALSERVER_PORT should be undefined');
-  console.log(process.env.LOCALSERVER_PORT);
-  console.log(!!process.env.LOCALSERVER_PORT);
-  console.log(process.env.LOCALSERVER_PORT === undefined);
-
-  var waitBeforeClosingInterval = 30000;
+  var waitBeforeClosingInterval = 2 * 1000 * 60;
 
   highland(getFreePort())
   .each(function(port) {
