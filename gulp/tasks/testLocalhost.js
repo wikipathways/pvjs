@@ -10,14 +10,7 @@ var selenium = require('selenium-standalone');
 var SpawnMocha = require('spawn-mocha-parallel').SpawnMocha;
 require('bdd-with-opts');
 
-/**
- * Start selenium server and web server (if needed)
- * Init browser(s), if needed
- * Run tests
- * After X tests, restart selenium server
- *
- */
-gulp.task('testLocalhost', ['launchLocalServer'], function() {
+gulp.task('testLocalhost', ['launchLocalServer'], function(done) {
 
   /**
    * Create a mocha options object
@@ -75,110 +68,32 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
     var spawnMocha = new SpawnMocha(opts);
 
     var endStream = highland('end', spawnMocha);
-    /*
-    .flatMap(notification.createStream({
-      title: 'End',
-      message: 'Hello from node, Mr. User!',
-      //icon: path.join(__dirname, 'coulson.jpg'), // absolute path (not balloons)
-      sound: false, // Only Notification Center or Windows Toasters
-      wait: true // wait with callback until user action is taken on notification
-    }));
-    //*/
 
-    // Unknown errors (not a test failure)
+    // Unknown errors (not test failures)
+    // When a test fails, it causes an error to be thrown.
+    // Mocha can be working fine; the error is just how Mocha
+    // indicates the test didn't pass. These test failure
+    // errors are filtered out here.
     var errorStream = highland('error', spawnMocha)
     .filter(function(err) {
       return !err.files;
     })
     .map(function(err) {
       console.log('Unknown Mocha error');
-      console.log(err);
-      throw err;
+      //console.log(err);
       /*
       pathwaysStream.destroy();
       console.log('Ending all tests.');
       process.exit();
       //*/
+      throw err;
     });
-
-    /*
-    // When a test fails, it causes an error to be thrown.
-    // Mocha might be working fine; the error is just how Mocha
-    // indicates the test didn't pass.
-    var testFailureStream = highland('error', spawnMocha)
-    .map(function(err) {
-      console.log('caught err in map from failed test');
-      console.log(err);
-      return err;
-    })
-    .filter(function(err) {
-      return !!err.files;
-    })
-    .errors(function(err, push) {
-      console.log('caught err from failed test in errors');
-      console.log(err);
-    })
-    .each(function(err) {
-      console.log('caught err from failed test');
-      console.log(err);
-    });
-    //.pipe(process.stdout);
-    /*
-    .map(function(result) {
-      pathwaysStream.pause();
-      endStream.pause();
-      return result;
-    })
-    .flatMap(function handleTestFailure(err) {
-      endStream.pause();
-
-      // This is a failure of the test.
-      if (!!err.files) {
-        var browserName = opts.env().BROWSER;
-        //var testedItem = opts.env().env.PVJS_PATHWAY;
-        var testedItem = 'it';
-        return notification.createStream({
-          title: 'Test Failed',
-          message: 'Click here if it rendered correctly in ' +
-                    opts.env().BROWSER,
-          //icon: path.join(__dirname, 'coulson.jpg'), // absolute path (not balloons)
-          sound: false, // Only Notification Center or Windows Toasters
-          wait: true, // wait with callback until user action is taken on notification
-          time: 10 * 1000
-        })
-        .map(function(res) {
-          var passes = res.passes;
-          if (passes) {
-            highland(
-              fs.createReadStream(
-                'tmp/protocol/proposed-screenshot-hashes.json'))
-            //.pipe(process.stdout);
-            .pipe(fs.createWriteStream(
-                './test/last-known-goods/protocol/screenshot-hashes.json'));
-            endStream.resume();
-            return highland.nil;
-          } else {
-            pathwaysStream.destroy();
-            console.log('Destroyed stream due to error.');
-            process.exit();
-          }
-        });
-      } else {
-        console.log('Mocha err');
-        console.log(err);
-        pathwaysStream.destroy();
-        console.log('Destroyed stream due to error.');
-        process.exit();
-      }
-    });
-    //*/
 
     return highland.pipeline(function(s) {
       s.each(function write(file) {
         spawnMocha.add(file.path);
       });
 
-      //return highland([testFailureStream, errorStream, endStream])
       return highland([errorStream, endStream])
       .merge()
       .head();
@@ -225,12 +140,10 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
    */
   function runLocalhostTest(opts) {
     return gulp.src(['./test/tests/localhost.js'], {read: false, globals:[]})
-    //return gulp.src(['./test/tests/empty.js'], {read: false, globals:[]})
     .pipe(mochaStream(opts));
   }
 
   var pathwaysTestedCount = 0;
-  //var localServerPort = 3000;
   var localServerPort = process.env.LOCALSERVER_PORT || 3000;
   //args.browsers = (args.browser || 'phantomjs').split(',');
   //args.browsers = (args.browser || 'firefox').split(',');
@@ -263,36 +176,21 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
   .flatMap(function(pathway) {
     // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
     // after running 16 tests, at least on my machine. --AR
-    // so this batching is a hack that restarts selenium after every 16 pathways.
+    // so this kludge restarts selenium after every pathway.
     // See also the discussion near the top of this file.
     if (!!seleniumServer) {
       seleniumServer.kill();
     }
 
-    return highland.wrapCallback(function(done) {
+    return highland.wrapCallback(function(cb) {
       selenium.start({stdio: 'pipe'}, function(err, seleniumInstance) {
         seleniumServer = seleniumInstance;
         process.env.SELENIUM_PORT = 4444;
-        return done(null, pathway);
+        return cb(null, pathway);
       });
     })();
   })
   .flatMap(runBrowsers)
-  /*
-  .flatMap(notification.createStream({
-    title: 'My awesome title',
-    message: 'Hello from node, Mr. User!',
-    //icon: path.join(__dirname, 'coulson.jpg'), // absolute path (not balloons)
-    sound: false, // Only Notification Center or Windows Toasters
-    wait: true // wait with callback until user action is taken on notification
-  }))
-  .map(function(response) {
-    // response is response from notification
-    console.log('response');
-    console.log(response);
-    return response;
-  })
-  //*/
   .each(function(result) {
     pathwaysTestedCount += 1;
     console.log('Test ' + pathwaysTestedCount +
@@ -301,12 +199,12 @@ gulp.task('testLocalhost', ['launchLocalServer'], function() {
       console.log('Completed all ' + pathways.length +
         ' tests requested.');
       setTimeout(function() {
-        process.exit();
+        //process.exit();
+        return done();
       }, 1000)
     } else {
       pathwaysStream.resume();
     }
   });
-  //*/
 
 });
