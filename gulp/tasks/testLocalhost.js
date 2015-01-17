@@ -176,8 +176,7 @@ gulp.task('testLocalhost', ['launchLocalServer'], function(done) {
   .flatMap(function(pathway) {
     // there is some sort of bug in how selenium and spawn-mocha-parallel are working together that causes it to hang
     // after running 16 tests, at least on my machine. --AR
-    // so this kludge restarts selenium after every pathway.
-    // See also the discussion near the top of this file.
+    // We're using a kludge of restarting selenium after every pathway.
     if (!!seleniumServer) {
       seleniumServer.kill();
     }
@@ -199,8 +198,11 @@ gulp.task('testLocalhost', ['launchLocalServer'], function(done) {
       console.log('Completed all ' + pathways.length +
         ' tests requested.');
       setTimeout(function() {
-        //process.exit();
-        return done();
+        // TODO we're using exit() to stop the servers,
+        // but this might cause problems down the road,
+        // such as: what happens if we run both local and remote tests?
+        process.exit();
+        //return done();
       }, 1000)
     } else {
       pathwaysStream.resume();

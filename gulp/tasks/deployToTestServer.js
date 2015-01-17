@@ -16,5 +16,3 @@ gulp.task('deployToTestServer', ['build'], function() {
       console.log('Finished deploying pvjs to test server.')
     });
 });
-
-
