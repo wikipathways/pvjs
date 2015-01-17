@@ -15,7 +15,7 @@ require('bdd-with-opts');
 gulp.task('saveScreenshots', function () {
   var selenium;
   var browsersCompletedCount = 0;
-  var pathwayIndexOneBased = 1;
+  var pathwayIndex = 0;
   var expressPort = 3000;
   // TODO figure out why phantomjs throws an error when trying to get screenshots whenever the # of tests > 1
   //args.browsers = (args.browser || 'phantomjs').split(',');
@@ -45,11 +45,6 @@ gulp.task('saveScreenshots', function () {
       pathway.fileName = pathwayFileName;
       return pathway;
     })
-    //*
-    .filter(function(pathway) {
-      return pathway.name === 'data-nodes';
-    })
-    //*/
     .map(function(pathway) {
       return JSON.stringify(pathway);
     });
@@ -92,7 +87,7 @@ gulp.task('saveScreenshots', function () {
       },
       bin: path.join('./node_modules/mocha/bin/mocha'),
       concurrency: args.concurrency | process.env.CONCURRENCY || 3
-    };  
+    };
     if(args.grep) {
       mochaOpts.flags.g = args.grep;
     }
@@ -103,7 +98,7 @@ gulp.task('saveScreenshots', function () {
         // unit test
         delete env.SAUCE;
         delete env.SAUCE_USERNAME;
-        delete env.SAUCE_ACCESS_KEY;    
+        delete env.SAUCE_ACCESS_KEY;
       } else {
         // midway + e2e tests
         env.BROWSER = opts.browser;
@@ -175,12 +170,13 @@ gulp.task('saveScreenshots', function () {
         browsersCompletedCount += 1;
         if (browsersCompletedCount === args.browsers.length) {
           browsersCompletedCount = 0;
-          pathwayIndexOneBased += 1;
-          if (pathwayIndexOneBased < pathways.length && (pathwayIndexOneBased % batchSize === 0)) {
+          pathwayIndex += 1;
+
+          if (pathwayIndex < pathways.length && (pathwayIndex % batchSize === 0)) {
             setTimeout(function(){
               pathwaysStream.resume();
             }, 3000)
-          } else if (pathwayIndexOneBased === pathways.length) {
+          } else if (pathwayIndex === pathways.length) {
             console.log('Completed all tests requested.');
             setTimeout(function(){
               selenium.kill();
