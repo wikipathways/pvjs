@@ -1,12 +1,13 @@
-var _ = require('lodash')
-  , Fs = require('fs')
-  , RendererPrototype = require('./renderer-prototype')
-  , EntityReference = require('./annotation/entity-reference.js')
-  , Strcase = require('tower-strcase')
-  ;
+var _ = require('lodash');
+var Fs = require('fs');
+var RendererPrototype = require('./renderer-prototype');
+var EntityReference = require('./annotation/entity-reference.js');
+var Strcase = require('tower-strcase');
+var crossPlatformText =
+    require('../../../../cross-platform-text/cross-platform-text.js');
 
-  // crossPlatformShapes is added to root (window in browser), but it doesn't return anything
-  require('cross-platform-shapes');
+// crossPlatformShapes is added to root (window in browser), but it doesn't return anything
+require('cross-platform-shapes');
 
 var RendererSvg = Object.create(RendererPrototype)
 

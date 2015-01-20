@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-    <title>Pathvisiojs Simple Built Production Example</title>
+    <title>Pathvisiojs Difference Viewer Example</title>
 
     <style type="text/css">
       html, body{width: 100%;height: 100%;margin: 0;}
@@ -13,28 +13,13 @@
         display: block;
       }
     </style>
-    <link rel="stylesheet" href="../dist/lib/pathvisiojs/css/pathvisiojs.css">
-    <link rel="stylesheet" href="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.css">
-    <link rel="stylesheet" href="../dist/plugins/pathvisiojs-diffviewer/pathvisiojs-diffviewer.css">
-    <link rel="stylesheet" href="../dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.css">
+
+    <!-- Required by Highlight Plugin -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
-    <!--
-    <script src="../tmp/d3.min.js"></script>
-    -->
-    <script src="../dist/lib/modernizr/js/modernizr.min.js"></script>
-    <script src="../dist/lib/cross-platform-text/js/cross-platform-text.min.js"></script>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!--
-    <script src="../tmp/jquery-1.11.0.min.js"></script>
-    -->
-    <script src="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.js"></script>
-    <script src="../dist/plugins/pathvisiojs-diffviewer/pathvisiojs-diffviewer.js"></script>
-    <script src="../dist/plugins/pathvisiojs-highlighter/typeahead.jquery.min.js"></script>
-    <script src="../dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js"></script>
-
-    <script src="../dist/lib/pathvisiojs/js/pathvisiojs.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="../demo/lib/pathvisiojs/pathvisiojs-2.1.2.bundle.min.js"></script>
 
   </head>
   <body>

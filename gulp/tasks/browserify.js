@@ -10,6 +10,7 @@ var browserify   = require('browserify');
 var buffer = require('vinyl-buffer');
 var watchify     = require('watchify');
 var bundleLogger = require('../util/bundleLogger');
+var fs = require('fs');
 var gulp         = require('gulp');
 var brfs = require('gulp-brfs');
 var handleErrors = require('../util/handleErrors');
@@ -21,9 +22,21 @@ gulp.task('browserify', function() {
 
   var bundleMethod = global.isWatching ? watchify : browserify;
 
+  var getBundleName = function() {
+    var package = JSON.parse(fs.readFileSync('package.json'));
+    var version = package.version;
+    console.log('version for browserify');
+    console.log(version);
+    var name = package.name;
+    return name + '-' + version + '.bundle.min';
+  };
+
   var bundler = bundleMethod({
     // Specify the entry point of your app
-    entries: ['./src/js/pathvisiojs.js']
+    entries: ['./src/js/pathvisiojs.js',
+      './src/components/pathvisiojs-highlighter/pathvisiojs-highlighter.js',
+      './src/components/pathvisiojs-notifications/pathvisiojs-notifications.js',
+      './src/components/pathvisiojs-diffviewer/pathvisiojs-diffviewer.js']
   })
   // enable fs.readFileSync() in browser
   .transform('brfs')
@@ -38,21 +51,22 @@ gulp.task('browserify', function() {
       insertGlobals : true,
       exclude: 'cheerio',
       // Enable source maps!
-      //debug: true
+      debug: true
     })
     // Report compile errors
     .on('error', handleErrors)
     // Use vinyl-source-stream to make the
     // stream gulp compatible. Specify the
     // desired output filename here.
-    .pipe(source('pathvisiojs.min.js'))
+    .pipe(source(getBundleName() + '.js'))
+    //.pipe(source('pathvisiojs.bundle.min.js'))
     .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
     // Add transformation tasks to the pipeline here.
     .pipe(uglify())
-    .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(sourcemaps.write('./'))
     // Specify the output destination
-    .pipe(gulp.dest('./dist/lib/pathvisiojs/js/'))
+    .pipe(gulp.dest('./dist/'))
     // Log when bundling completes!
     .on('end', bundleLogger.end);
   };
