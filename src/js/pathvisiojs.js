@@ -1,12 +1,18 @@
-var _ = require('lodash')
-  , fs = require('fs')
-  , Utils = require('./utilities')
-  , Renderer = require('./renderer/renderer')
-  , FormatConverter = require('./format-converter/format-converter')
-  ;
+var _ = require('lodash');
+var fs = require('fs');
+var insertCss = require('insert-css');
+var Utils = require('./utilities');
+var Renderer = require('./renderer/renderer');
+var FormatConverter = require('./format-converter/format-converter');
+var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
+          fs.readFileSync(__dirname + '/../css/pan-zoom.css'),
+          fs.readFileSync(__dirname + '/../css/pathvisiojs.css'),
+          fs.readFileSync(__dirname + '/../css/pathway-diagram.css')];
 
-(function(window, $){
+(function(window, $) {
   'use strict';
+
+  css.map(insertCss);
 
   /**
    * Pathvisiojs constructor
@@ -14,16 +20,16 @@ var _ = require('lodash')
    * @param {object} element Dom element
    * @param {object} options
    */
-  var Pathvisiojs = function (element, options) {
+  var Pathvisiojs = function(element, options) {
     this.init(element, options);
   };
 
-  var instanceCounter = 0
-    , optionsDefault = {
-        fitToContainer: true
-      , sourceData: []
-      , manualRender: false
-    };
+  var instanceCounter = 0;
+  var optionsDefault = {
+    fitToContainer: true,
+    sourceData: [],
+    manualRender: false
+  };
 
   /**
    * Pathvisiojs initialisation
@@ -58,8 +64,9 @@ var _ = require('lodash')
    * Adds hook for loaded event to remove loading state
    */
   Pathvisiojs.prototype.initContainer = function() {
-    var pvjs = this
-      , containerContents = fs.readFileSync(__dirname + '/../pathvisiojs.html').toString();
+    var pvjs = this;
+    var containerContents = fs.readFileSync(
+        __dirname + '/../pathvisiojs.html').toString();
 
     // Add default container elements
     this.$element.html(containerContents);

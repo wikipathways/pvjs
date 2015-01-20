@@ -1,12 +1,11 @@
-var _ = require('lodash')
-  , RendererImg = require('./renderer-img')
-  , RendererSvg = require('./renderer-svg')
-  , Selector = require('./selector.js')
-  , InfoBox = require('./info-box.js')
-  , PublicationXref = require('./publication-xref.js')
-  , EntityReference = require('./annotation/entity-reference.js')
-  , SvgPanZoom = require('svg-pan-zoom')
-  ;
+var _ = require('lodash');
+var RendererImg = require('./renderer-img');
+var RendererSvg = require('./renderer-svg');
+var Selector = require('./selector.js');
+var InfoBox = require('./info-box.js');
+var PublicationXref = require('./publication-xref.js');
+var EntityReference = require('./annotation/entity-reference.js');
+var SvgPanZoom = require('svg-pan-zoom');
 
 module.exports = function(){
   // Render engines are sorted in order of preference - viewMethod with lower index will be used if more than one is returned.

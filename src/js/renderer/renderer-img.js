@@ -1,8 +1,9 @@
 'use strict';
 
-var ImageLoader = require('./../../../lib/blueimp-load-image/js/load-image.js')
-  , Utils = require('./../utilities.js')
-  , RendererPrototype = require('./renderer-prototype')
+var ImageLoader =
+  require('./../../../node_modules/blueimp-load-image/js/load-image.js');
+var Utils = require('./../utilities.js');
+var RendererPrototype = require('./renderer-prototype');
 
 // TODO: add abitily to zoom and pan image
 

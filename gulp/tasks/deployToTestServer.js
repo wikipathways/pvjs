@@ -1,12 +1,11 @@
-var gulp = require('gulp')
-  , rsyncwrapper = require('rsyncwrapper')
-  ;
+var gulp = require('gulp');
+var rsyncwrapper = require('rsyncwrapper');
 
 gulp.task('deployToTestServer', ['build'], function() {
   var rsync = require('rsyncwrapper').rsync;
   rsync({
       args: ['--verbose'],
-      exclude: ['.*','.git*','*.scss','node_modules','.svn*'],
+      exclude: ['.*', '.git*', '*.scss', 'node_modules', '.svn*'],
       recursive: true,
       src: './**',
       dest: '/var/www/pvjs/',
