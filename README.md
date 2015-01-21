@@ -12,10 +12,9 @@ Demo
 
 How To Add It To Your Site
 ===================
-It's as simple as referencing the pathvisiojs CSS and JavaScript files and [the dependencies](https://github.com/wikipathways/pathvisiojs/tree/gh-pages/lib) in your HTML document:
+It's as simple as referencing the pathvisiojs JavaScript bundle and [the dependencies](https://github.com/wikipathways/pathvisiojs/tree/gh-pages/lib) in your HTML document:
 ```HTML
-<link rel="stylesheet" href="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/css/pathvisiojs.css">
-<script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/js/pathvisiojs.min.js"></script>
+<script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/js/pathvisiojs-2.1.3.min.js"></script>
 ```
 
 To add the dependencies, you can copy [this example](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html).
