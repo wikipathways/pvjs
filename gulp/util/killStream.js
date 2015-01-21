@@ -11,6 +11,8 @@ module.exports = function killStream(err, push) {
     err = jsError;
   }
 
+  console.error(err);
+
   // Using process.exit is a kludge to stop everything in this case.
   process.exit(1);
   // It would seem that Highland could kill the stream by

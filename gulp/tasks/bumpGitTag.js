@@ -12,11 +12,18 @@ gulp.task('bumpGitTag', function bumpGitTag(callback) {
   var version = package.version;
 
   gitStreaming.readTags
-  .filter(function(tag) {
-    return tag !== version;
+  .reduce(false, function checkTagExists(accumulator, tag) {
+    if (accumulator || (tag === version)) {
+      return true;
+    }
+
+    return false;
   })
-  .last()
-  .each(function(tag) {
+  .each(function(tagExists) {
+    if (tagExists) {
+      return callback();
+    }
+
     gulp.src(['./dist/*',
               './docs/*',
               'README.md']
