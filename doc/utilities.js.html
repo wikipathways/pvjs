@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>DocStrap Source: utilities.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+	
+</head>
+
+<body>
+<div class="container-fluid">
+	<div class="navbar navbar-fixed-top navbar-inverse">
+		<div class="navbar-inner">
+			<a class="brand" href="index.html">DocStrap</a>
+			<ul class="nav">
+				
+				<li class="dropdown">
+					<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="Pathvisiojs.html">Pathvisiojs</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
+
+	<div class="row-fluid">
+
+		
+			<div class="span12">
+				
+				<div id="main">
+					
+
+
+		<h1 class="page-title">Source: utilities.js</h1>
+    
+    <section>
+        <article>
+            <pre class="sunlight-highlight-javascript linenums">'use strict';
+
+var _ = require('lodash')
+  , Async = require('async')
+  , Strcase = require('./../../lib/strcase/index.js')
+  ;
+
+var Utils = {
+  collect: function() {
+    // from http://stackoverflow.com/questions/2454295/javascript-concatenate-properties-from-multiple-objects-associative-array
+    var ret = {};
+    var len = arguments.length;
+    for (var i=0; i&lt;len; i++) {
+      for (var p in arguments[i]) {
+        if (arguments[i].hasOwnProperty(p)) {
+          ret[p] = arguments[i][p];
+        }
+      }
+    }
+    return ret;
+  }
+
+, clone: function(src) {
+    function mixin(dest, source, copyFunc) {
+      var name, s, empty = {};
+      for(name in source){
+        // the (!(name in empty) || empty[name] !== s) condition avoids copying properties in "source"
+        // inherited from Object.prototype.  For example, if dest has a custom toString() method,
+        // don't overwrite it with the toString() method that source inherited from Object.prototype
+        s = source[name];
+        if(!(name in dest) || (dest[name] !== s && (!(name in empty) || empty[name] !== s))){
+          dest[name] = copyFunc ? copyFunc(s) : s;
+        }
+      }
+      return dest;
+    }
+
+    if(!src || typeof src != "object" || Object.prototype.toString.call(src) === "[object Function]"){
+      // null, undefined, any non-object, or function
+      return src; // anything
+    }
+    if(src.nodeType && "cloneNode" in src){
+      // DOM Node
+      return src.cloneNode(true); // Node
+    }
+    if(src instanceof Date){
+      // Date
+      return new Date(src.getTime()); // Date
+    }
+    if(src instanceof RegExp){
+      // RegExp
+      return new RegExp(src);   // RegExp
+    }
+
+    var r, i, l;
+    if(src instanceof Array){
+      // array
+      r = [];
+      for(i = 0, l = src.length; i &lt; l; ++i){
+        if(i in src){
+          r.push(Utils.clone(src[i]));
+        }
+      }
+      // we don't clone functions for performance reasons
+      //    }else if(d.isFunction(src)){
+      //      // function
+      //      r = function(){ return src.apply(this, arguments); };
+    }else{
+      // generic objects
+      r = src.constructor ? new src.constructor() : {};
+    }
+    return mixin(r, src, Utils.clone);
+
+  }
+
+  // this both clones a node and inserts it at the same level of the DOM
+  // as the element it was cloned from.
+  // it returns a d3 selection of the cloned element
+, cloneNode: function(selector) {
+    var node = d3.select(selector).node();
+    return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
+  }
+
+, convertToArray: function(object) {
+    var array = null;
+    if (Utils.getObjectType(object) === 'Object' ) {
+      array = [];
+      array.push(object);
+      return array;
+    }
+    else {
+      if(Utils.getObjectType(object) === 'Array' ) {
+        return object;
+      }
+      else {
+        if(Utils.getObjectType(object) === 'String' ) {
+          array = [];
+          array.push(object);
+          return array;
+        }
+      }
+    }
+  }
+
+, getObjectType: function(object) {
+    var result;
+    if (Object.prototype.toString.call( object ) === '[object Object]') {
+      result = 'Object';
+    }
+    else {
+      if (Object.prototype.toString.call( object ) === '[object Array]') {
+        result = 'Array';
+      }
+      else {
+        if (Object.prototype.toString.call( object ) === '[object String]') {
+          result = 'String';
+        }
+      }
+    }
+    return result;
+  }
+
+, getTextDirection: function(text) {
+    /**
+     * From http://stackoverflow.com/questions/7770235/change-text-direction-of-textbox-automatically
+     * What about Chinese characters that go top to bottom?
+     */
+    var x =  new RegExp("[\x00-\x80]+"); // is ascii
+
+    var isAscii = x.test(text);
+
+    var direction;
+    if (isAscii) {
+      direction = "ltr";
+    }
+    else {
+      direction = "rtl";
+    }
+
+    return direction;
+  }
+
+, getUriParam: function(name) {
+    // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
+    // This will be replaced once we get the backend php to get the json
+    var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+    if (!!parameter) {
+      return parameter;
+    }
+    else {
+      console.warn('Warning: URL parameter "' + name + '" is null.');
+      return null;
+    }
+  }
+
+, getWindowDimensions: function() {
+    var winW = 630, winH = 460;
+    if (document.body && document.body.width) {
+      winW = document.body.width;
+      winH = document.body.height;
+    }
+    if (document.compatMode=='CSS1Compat' &&
+        document.documentElement &&
+        document.documentElement.width ) {
+      winW = document.documentElement.width;
+      winH = document.documentElement.height;
+    }
+    if (window.innerWidth && window.innerHeight) {
+      winW = window.innerWidth;
+      winH = window.innerHeight;
+    }
+    return {'width':winW, 'height':winH};
+  }
+
+, intersect: function(a, b) {
+    // modified version of https://github.com/juliangruber/intersect/blob/master/index.js
+    var res = [];
+    for (var i = 0; i &lt; a.length; i++) {
+      if (b.indexOf(a[i]) > -1) {
+        res.push(a[i]);
+      }
+    }
+    return res;
+  }
+
+, isIE: function() {
+    var myNav = navigator.userAgent.toLowerCase();
+    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1], 10) : false;
+  }
+
+, isUri: function(str) {
+    // from https://gist.github.com/samuelcole/920312
+    var uriPattern = /(?:(?=[\s`!()\[\]{};:'".,&lt;>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()&lt;>]+|\(([^\s()&lt;>]+|(\([^\s()&lt;>]+\)))*\))*(?:\(([^\s()&lt;>]+|(\([^\s()&lt;>]+\)))*\)|[^\s`!()\[\]{};:'".,&lt;>?«»“”‘’]|\b))/gi;
+    return uriPattern.test(str);
+  }
+
+  // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
+, isNumber: function(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+
+, isOdd: function(num) {
+    return num % 2;
+  }
+
+, isWikiPathwaysId: function(data) {
+    data = data.trim()
+    return data.substr(0,2).toUpperCase() === 'WP' && Utils.isNumber(data.substr(data.length - 1))
+  }
+
+  // TODO should we use requirejs for loading scripts instead?
+, loadScripts: function(array, callback){
+    var loader = function(src,handler){
+      var script = document.createElement('script');
+      script.src = src;
+      script.onload = script.onreadystatechange = function(){
+        script.onreadystatechange = script.onload = null;
+        if (/MSIE ([6-9]+\.\d+);/.test(navigator.userAgent)) {
+          window.setTimeout(function(){handler();},8,this);
+        } else {
+          handler();
+        }
+      }
+      var head = document.getElementsByTagName('head')[0];
+      (head || document.body).appendChild( script );
+    };
+    (function _handler(){
+      if(array.length !== 0){
+        loader(array.shift(), _handler);
+      }else{
+        if (callback) {
+          callback();
+        }
+      }
+    })();
+  }
+
+, moveArrayItem: function(arr, old_index, new_index) {
+    // from http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another
+    if (new_index >= arr.length) {
+      var k = new_index - arr.length;
+      while ((k--) + 1) {
+        arr.push(undefined);
+      }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    return arr; // for testing purposes
+  }
+
+, splitStringByNewLine: function(str) {
+    // PathVisio (Java) uses '&#xA;' for indicating newline, and browsers convert this into '\r\n' or '\n' in JavaScript.
+    return str.split(/\r\n|\r|\n/g);
+  }
+
+, strToHtmlId: function(str) {
+    var re = /\W/gi;
+    return str.replace(re, "");
+  }
+
+  // from here: http://www.cjboco.com/blog.cfm/post/determining-an-elements-width-and-height-using-javascript/
+  // TODO have not tested x-browser yet.
+, getElementWidth: function(element) {
+    if (typeof element.clip !== "undefined") {
+      return element.clip.width;
+    } else {
+      if (element.style.pixelWidth) {
+        return element.style.pixelWidth;
+      } else {
+        return element.width;
+      }
+    }
+  }
+
+, getElementHeight: function(element) {
+    if (typeof element.clip !== "undefined") {
+      return element.clip.height;
+    } else {
+      if (element.style.pixelHeight) {
+        return element.style.pixelHeight;
+      } else {
+        return element.height;
+      }
+    }
+  }
+
+, addClassForD3: function($element, className) {
+    var elementClass = $element.attr('class') || ""
+
+    // There are not classes at all
+    if (elementClass.match(/[^\s]+/g) === null) {
+      $element.attr('class', className)
+    // Element has no such class
+    } else if (elementClass.match(/[^\s]+/g).indexOf(className) === -1) {
+      $element.attr('class', elementClass + ' ' + className)
+    }
+  }
+
+, removeClassForD3: function($element, className) {
+    var elementClass = $element.attr('class') || ""
+      , classes = elementClass.match(/[^\s]+/g)
+
+    // Remove that class from list and join class name back
+    if (classes !== null  && classes.indexOf(className) !== -1) {
+      classes = _.filter(classes, function(_class){return _class !== className})
+      $element.attr('class', classes.join(' '))
+    }
+  }
+
+, proxy: function(fn, context) {
+    return function() {
+      fn.apply(context, arguments)
+    }
+  }
+
+, loadXmlFromUri: function(uri, callback) {
+    if (Utils.isIE() !== 9) {
+      // d3.xml does not work with IE9 (and probably earlier), so we're using d3.xhr instead of d3.xml for IE9
+      // TODO file a bug report on d3 issue tracker
+      d3.xml(uri, 'application/xml', function(xmlDoc) {
+        if (xmlDoc.documentElement) {
+          callback(xmlDoc.documentElement)
+        } else {
+          callback(null)
+        }
+      });
+    }
+    else {
+      Async.waterfall([
+        function(callbackInner) {
+          if (!$) {
+            // TODO should we use requirejs for loading scripts instead?
+            Utils.loadScripts(['http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'], function() {
+              callbackInner(null);
+            });
+          }
+          else {
+            callbackInner(null);
+          }
+        },
+        function(callbackInner) {
+          d3.xhr(uri, 'application/xml', function(error, data) {
+            var xmlString = data.responseText;
+            callbackInner(null, xmlString);
+          });
+        },
+        function(xmlString, callbackInner) {
+          var xmlDoc = $.parseXML(xmlString);
+          var xml = xmlDoc.documentElement;
+          callback(xml);
+          callbackInner(null);
+        }
+      ]);
+    }
+  }
+
+, convertToCssClassName: function(inputString) {
+    var cssClassName = Strcase.paramCase(inputString);
+    //var cssClassName = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
+    // to make valid cssClassName per HTML4 spec, I'm ensuring the first character is a letter
+    if (!/^[a-zA-Z]/.test(cssClassName)) {
+      cssClassName = 'class-' + cssClassName;
+    }
+    return cssClassName;
+  }
+
+, convertToCSSId: function(inputString) {
+    var id = Strcase.paramCase(inputString);
+    //var id = (inputString).replace(/[^(\w|\-)]/g, '').toLowerCase();
+    // to make valid id per HTML4 spec, I'm ensuring the first character is a letter
+    if (!/^[a-zA-Z]/.test(id)) {
+      id = 'id-' + id;
+    }
+    return id;
+  }
+}
+
+module.exports = Utils</pre>
+        </article>
+    </section>
+
+
+
+
+
+				</div>
+
+				<div class="clearfix"></div>
+				<footer>
+					
+					
+		<span class="copyright">
+		DocStrap Copyright © 2012-2013 The contributors to the JSDoc3 and DocStrap projects.
+		</span>
+					<br />
+					
+		<span class="jsdoc-message">
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a>
+		on Tue Apr 29 2014 16:49:51 GMT-0700 (PDT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		</span>
+				</footer>
+			</div>
+
+			
+			<br clear="both">
+		</div>
+
+	</div>
+	<script src="scripts/sunlight.js"></script>
+	<script src="scripts/sunlight.javascript.js"></script>
+	<script src="scripts/sunlight-plugin.doclinks.js"></script>
+	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
+	<script src="scripts/sunlight-plugin.menu.js"></script>
+	<script src="scripts/jquery.min.js"></script>
+	<script src="scripts/jquery.scrollTo.js"></script>
+	<script src="scripts/jquery.localScroll.js"></script>
+	<script src="scripts/bootstrap-dropdown.js"></script>
+	<script src="scripts/toc.js"></script>
+
+
+	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
+
+	<script>
+		$( function () {
+			$( "#toc" ).toc( {
+				selectors   : "h1,h2,h3,h4",
+				showAndHide : false,
+				scrollTo    : 60
+			} );
+			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
+			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+
+		} );
+	</script>
+
+	
+
+</body>
+</html>
