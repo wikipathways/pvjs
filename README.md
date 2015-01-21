@@ -14,7 +14,7 @@ How To Add It To Your Site
 ===================
 It's as simple as referencing the pathvisiojs JavaScript bundle and [the dependencies](https://github.com/wikipathways/pathvisiojs/tree/gh-pages/lib) in your HTML document:
 ```HTML
-<script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/js/pathvisiojs-2.1.3.min.js"></script>
+<script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/pathvisiojs-2.1.3.bundle.min.js"></script>
 ```
 
 To add the dependencies, you can copy [this example](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html).
