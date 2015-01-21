@@ -1,4 +1,4 @@
-pathvisiojs (v2.1.2)
+pathvisiojs (v2.1.3)
 ====================
 
 JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pathvisiojs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pathvisiojs.
