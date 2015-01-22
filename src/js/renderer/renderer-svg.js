@@ -4,6 +4,8 @@ var RendererPrototype = require('./renderer-prototype');
 var EntityReference = require('./annotation/entity-reference.js');
 var Strcase = require('tower-strcase');
 var crossPlatformText =
+//TODO use the following
+    //require('cross-platform-text');
     require('../../../../cross-platform-text/cross-platform-text.js');
 
 // crossPlatformShapes is added to root (window in browser), but it doesn't return anything

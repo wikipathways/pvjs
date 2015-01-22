@@ -101,280 +101,287 @@ function saveScreenshotHashes(
       updatedScreenshotHashes, 'utf8');
 }
 
-describe(desired.name, function() {
-  var browser;
-  var allPassed = true;
-  // how long the details panel takes to load
-  var detailsPanelTimeout = 6000;
-  var localServerPort = process.env.LOCALSERVER_PORT;
+function runTest(baseIri) {
+  describe(desired.name, function() {
+    var browser;
+    var allPassed = true;
+    // how long the details panel takes to load
+    var detailsPanelTimeout = 6000;
 
-  before(function(done) {
-    browser = wd.remote({
-      hostname: '127.0.0.1',
-        port: process.env.SELENIUM_PORT || 4444
-    }, 'promiseChain');
+    before(function(done) {
+      browser = wd.remote({
+        hostname: '127.0.0.1',
+          port: process.env.SELENIUM_PORT || 4444
+      }, 'promiseChain');
 
-    /*
-    // optional extra logging
-    browser.on('status', function(info) {
-      console.log(info.cyan);
-    });
-    browser.on('command', function(eventType, command, response) {
-      console.log(' > ' + eventType.cyan, command, (response || '').grey);
-    });
-    browser.on('http', function(meth, path, data) {
-      console.log(' > ' + meth.magenta, path, (data || '').grey);
-    });
-    //*/
-
-    var width = 1024;
-    var height = 768;
-    browser
-      .init(desired)
-      .setWindowSize(width, height)
-      .nodeify(done);
-  });
-
-  afterEach(function(done) {
-    allPassed = allPassed && (this.currentTest.state === 'passed');
-    done();
-  });
-
-  after(function(done) {
-    browser
-      .quit()
-      .nodeify(function() {
-        return done(null, allPassed);
+      /*
+      // optional extra logging
+      browser.on('status', function(info) {
+        console.log(info.cyan);
       });
-  });
+      browser.on('command', function(eventType, command, response) {
+        console.log(' > ' + eventType.cyan, command, (response || '').grey);
+      });
+      browser.on('http', function(meth, path, data) {
+        console.log(' > ' + meth.magenta, path, (data || '').grey);
+      });
+      //*/
 
-  it('should render diagram', function(done) {
-    browser
-      .get('http://localhost:' + localServerPort +
-          '/test/one-diagram.html?gpml=' +
-          'http://localhost:' + localServerPort +
-          '/test/input-data/protocol/' + pathway.fileName)
-      .waitForElementById('pvjs-diagram-1', wd.asserters.isDisplayed, 4000)
-      .waitForElementByCss('.pathvisiojs-highlighter',
-          wd.asserters.isDisplayed, 4000)
-      .nodeify(done);
-  });
-
-  if (pathwayName === 'data-nodes') {
-    it('should highlight the CCR5 node', function(done) {
+      var width = 1024;
+      var height = 768;
       browser
-        .waitForElementByCss('[placeholder="Enter node name to highlight"]',
-            wd.asserters.isDisplayed, 500)
-        .elementByCss('[placeholder="Enter node name to highlight"]')
-        //.elementByCss('.pathvisiojs-highlighter')
-        .click()
-        .type('CCR')
-        .type('\uE014') // right arrow key
-        .type('\uE007') // enter key
-        //.moveTo(null, 20, 20)
-        //.elementByCss('.tt-dropdown-menu')
-        //.click()
+        .init(desired)
+        .setWindowSize(width, height)
         .nodeify(done);
     });
-    it('should open the details panel for CCR5', function(done) {
+
+    afterEach(function(done) {
+      allPassed = allPassed && (this.currentTest.state === 'passed');
+      done();
+    });
+
+    after(function(done) {
       browser
-        // TODO the contains selector isn't working for me, even though it would be nice to use it
-        //.waitForElementByCss(":contains('CCR5')", wd.asserters.isDisplayed, detailsPanelTimeout)
-        .waitForElementByCss('#bbd97', wd.asserters.isDisplayed, 500)
-        .elementById('bbd97')
-        .click()
-        //.waitForElementByCss("span:contains('CCR5')", wd.asserters.isDisplayed, detailsPanelTimeout)
-        .waitForElementByCss('a.annotation-item-text',
-            wd.asserters.isDisplayed, detailsPanelTimeout)
+        .quit()
+        .nodeify(function() {
+          return done(null, allPassed);
+        });
+    });
+
+    it('should render diagram', function(done) {
+      browser
+        .get(baseIri + '/test/one-diagram.html?gpml=' +
+            baseIri + '/test/input-data/protocol/' + pathway.fileName)
+        .waitForElementById('pvjs-diagram-1', wd.asserters.isDisplayed, 4000)
+        .waitForElementByCss('.pathvisiojs-highlighter',
+            wd.asserters.isDisplayed, 4000)
         .nodeify(done);
     });
-  }
 
-  //*
-  it('should confirm test and last known good screenshots are the same',
-      function(done) {
+    if (pathwayName === 'data-nodes') {
+      it('should highlight the CCR5 node', function(done) {
+        browser
+          .waitForElementByCss('[placeholder="Enter node name to highlight"]',
+              wd.asserters.isDisplayed, 500)
+          .elementByCss('[placeholder="Enter node name to highlight"]')
+          //.elementByCss('.pathvisiojs-highlighter')
+          .click()
+          .type('CCR')
+          .type('\uE014') // right arrow key
+          .type('\uE007') // enter key
+          //.moveTo(null, 20, 20)
+          //.elementByCss('.tt-dropdown-menu')
+          //.click()
+          .nodeify(done);
+      });
+      it('should open the details panel for CCR5', function(done) {
+        browser
+          // TODO the contains selector isn't working for me, even though it would be nice to use it
+          //.waitForElementByCss(":contains('CCR5')", wd.asserters.isDisplayed, detailsPanelTimeout)
+          .waitForElementByCss('#bbd97', wd.asserters.isDisplayed, 500)
+          .elementById('bbd97')
+          .click()
+          //.waitForElementByCss("span:contains('CCR5')", wd.asserters.isDisplayed, detailsPanelTimeout)
+          .waitForElementByCss('a.annotation-item-text',
+              wd.asserters.isDisplayed, detailsPanelTimeout)
+          .nodeify(done);
+      });
+    }
 
-    var pathsToImages = {
-      diffImage: __dirname +
-          '/../../' + 'tmp/protocol/' + pathwayName + '-' +
-          browserName + '-difference.png',
-      actualImage: __dirname +
-          '/../../' + 'tmp/protocol/' + pathwayName + '-' +
-          browserName + '-test.png',
-      expectedImage: __dirname +
-          '/../../' + 'test/last-known-goods/protocol/' +
-          pathwayName + '-lkg.png'
-    };
+    //*
+    it('should confirm test and last known good screenshots are the same',
+        function(done) {
 
-    highland([pathsToImages])
-    .flatMap(function(pathsToImages) {
-      return highland(browser.saveScreenshot(pathsToImages.actualImage));
-    })
-    .flatMap(function(result) {
-      if (!!fs.existsSync(pathsToImages.expectedImage)) {
-        return highland([pathsToImages]);
-      }
+      var pathsToImages = {
+        diffImage: __dirname +
+            '/../../' + 'tmp/protocol/' + pathwayName + '-' +
+            browserName + '-difference.png',
+        actualImage: __dirname +
+            '/../../' + 'tmp/protocol/' + pathwayName + '-' +
+            browserName + '-test.png',
+        expectedImage: __dirname +
+            '/../../' + 'test/last-known-goods/protocol/' +
+            pathwayName + '-lkg.png'
+      };
 
-      return notification.createStream({
-        title: 'Expected Screenshot Unavailable',
-        message: 'Click here if it rendered correctly in ' +
-                  browserName + '.',
-        //icon: path.join(__dirname, 'coulson.jpg'), // absolute path (not balloons)
-        sound: false, // Only Notification Center or Windows Toasters
-        wait: true, // wait with callback until user action is taken on notification
-        time: 15 * 1000
+      highland([pathsToImages])
+      .flatMap(function(pathsToImages) {
+        return highland(browser.saveScreenshot(pathsToImages.actualImage));
       })
-      .flatMap(function(res) {
-        if (res.indexOf('Activate') === -1) {
-          var message = 'Expected screenshot not available for pathway ' +
-              'named "' + pathwayName + '" as tested with browser "' +
-              browserName + '." ' +
-              'It should be located at: ' +
-              pathsToImages.expectedImage + '. ' +
-              'Update code so it renders correctly, and then ' +
-              're-run this test to save the current screenshot ' +
-              'as a reference for future tests.';
-          throw new Error(message);
+      .flatMap(function(result) {
+        if (!!fs.existsSync(pathsToImages.expectedImage)) {
+          return highland([pathsToImages]);
         }
 
-        var screenshotHashActual = getScreenshotHash(pathsToImages.actualImage);
-        saveScreenshotHashes(
-            lastKnownGoodScreenshotHashes, pathwayName,
-            browserName, screenshotHashActual);
-
-        console.log('You said the screenshot looked OK, ' +
-            'so we\'re saving it for future comparison purposes ' +
-            'as the last known good reference screenshot ' +
-            'for this pathway.');
-        console.log('File path: ' + pathsToImages.actualImage);
-        console.log('Please add and commit it in git.');
-
-        var actualImageStream = highland(fs.createReadStream(
-            pathsToImages.actualImage));
-
-        actualImageStream.fork()
-        .pipe(fs.createWriteStream(pathsToImages.expectedImage));
-
-        return actualImageStream.fork()
-        .last();
-      });
-    })
-    .flatMap(function() {
-      // Here we check the actual image against a list of hashes
-      // for specific OS's and browsers. We use this because it's
-      // possible to save a large number of hashes, but it would
-      // not be reasonable to save the actual images for every
-      // OS/browser combination.
-      var screenshotHashExpected;
-      if (!!lastKnownGoodScreenshotHashes[pathwayName] &&
-          !!lastKnownGoodScreenshotHashes[pathwayName][osId] &&
-          !!lastKnownGoodScreenshotHashes[pathwayName][osId][browserName]) {
-        screenshotHashExpected =
-            lastKnownGoodScreenshotHashes[pathwayName][osId][browserName];
-      } else {
-        /*
-        notification.createStream({
-          title: 'Expected Screenshot Hash Unavailable',
+        return notification.createStream({
+          title: 'Expected Screenshot Unavailable',
           message: 'Click here if it rendered correctly in ' +
                     browserName + '.',
           //icon: path.join(__dirname, 'coulson.jpg'), // absolute path (not balloons)
           sound: false, // Only Notification Center or Windows Toasters
-          wait:  false// wait with callback until user action is taken on notification
-        })
-        .each(function() {});
-        //*/
-      }
-
-      var screenshotHashActual = getScreenshotHash(pathsToImages.actualImage);
-
-      if (String(screenshotHashActual) ===
-          String(screenshotHashExpected)) {
-        fs.unlinkSync(pathsToImages.actualImage);
-        expect(String(screenshotHashActual)).to.equal(
-            String(screenshotHashExpected));
-        return highland([true]);
-      }
-
-      return highland([pathsToImages])
-      .flatMap(createImageDiffStream)
-      .flatMap(function(imagesAreSame) {
-        if (imagesAreSame) {
-          fs.unlinkSync(pathsToImages.actualImage);
-          fs.unlinkSync(pathsToImages.diffImage);
-          expect(imagesAreSame).to.equal(true);
-          return highland([true]);
-        }
-
-        // Display new, old and diff screenshots.
-        var sleepPeriod = 750;
-        highland(_.range(5))
-        .map(function(iteration) {
-          browser.get('file://' + pathsToImages.diffImage)
-          .sleep(sleepPeriod)
-          .get('file://' + pathsToImages.expectedImage)
-          .sleep(sleepPeriod)
-          .get('file://' + pathsToImages.actualImage)
-          .sleep(sleepPeriod);
-        })
-        .ratelimit(1, 3 * sleepPeriod)
-        .last()
-        .map(function() {
-          expect(String(screenshotHashActual)).to.equal(
-              String(screenshotHashExpected));
-          return true;
-        })
-        .errors(function(err, push) {
-          console.log('err');
-          console.log(err);
-          return push(null, err);
-        })
-        .each(function() {});
-        // error will be any errors that occurred
-        // imagesAreSame is a boolean
-        // diffImage is an image which highlights differences
-
-        return notification.createStream({
-          title: 'Screenshot Looks OK for ' + browserName + '?',
-          message: 'If yes, click here. Otherwise, wait for timeout.',
-          //icon: path.join(__dirname, 'coulson.jpg'), // absolute path (not balloons)
-          sound: false, // Only Notification Center or Windows Toasters
           wait: true, // wait with callback until user action is taken on notification
-          time: mochaTimeout - 2 * 1000
+          time: 15 * 1000
         })
         .flatMap(function(res) {
           if (res.indexOf('Activate') === -1) {
-            var message = 'Hash of expected screenshot did not match ' +
-                'hash of actual screenshot for ' +
-                'pathway named "' + pathwayName +
-                '" as tested with browser "' +
-                browserName + '" in "' +
-                lastKnownGoodScreenshotHashesPath + '". ' +
+            var message = 'Expected screenshot not available for pathway ' +
+                'named "' + pathwayName + '" as tested with browser "' +
+                browserName + '." ' +
+                'It should be located at: ' +
+                pathsToImages.expectedImage + '. ' +
                 'Update code so it renders correctly, and then ' +
-                're-run this test to save a hash of the current screenshot ' +
+                're-run this test to save the current screenshot ' +
                 'as a reference for future tests.';
-            console.error(message);
-            expect(String(screenshotHashActual)).to.equal(
-                String(screenshotHashExpected));
-            //throw new Error(message);
-            /*
-            var err = new Error(message);
-            return highland([err]);
-            //*/
+            throw new Error(message);
           }
 
+          var screenshotHashActual = getScreenshotHash(
+            pathsToImages.actualImage);
           saveScreenshotHashes(
               lastKnownGoodScreenshotHashes, pathwayName,
               browserName, screenshotHashActual);
 
-          return highland([null]);
+          console.log('You said the screenshot looked OK, ' +
+              'so we\'re saving it for future comparison purposes ' +
+              'as the last known good reference screenshot ' +
+              'for this pathway.');
+          console.log('File path: ' + pathsToImages.actualImage);
+          console.log('Please add and commit it in git.');
+
+          var actualImageStream = highland(fs.createReadStream(
+              pathsToImages.actualImage));
+
+          actualImageStream.fork()
+          .pipe(fs.createWriteStream(pathsToImages.expectedImage));
+
+          return actualImageStream.fork()
+          .last();
         });
+      })
+      .flatMap(function() {
+        // Here we check the actual image against a list of hashes
+        // for specific OS's and browsers. We use this because it's
+        // possible to save a large number of hashes, but it would
+        // not be reasonable to save the actual images for every
+        // OS/browser combination.
+        var screenshotHashExpected;
+        if (!!lastKnownGoodScreenshotHashes[pathwayName] &&
+            !!lastKnownGoodScreenshotHashes[pathwayName][osId] &&
+            !!lastKnownGoodScreenshotHashes[pathwayName][osId][browserName]) {
+          screenshotHashExpected =
+              lastKnownGoodScreenshotHashes[pathwayName][osId][browserName];
+        } else {
+          /*
+          notification.createStream({
+            title: 'Expected Screenshot Hash Unavailable',
+            message: 'Click here if it rendered correctly in ' +
+                      browserName + '.',
+            //icon: path.join(__dirname, 'coulson.jpg'), // absolute path (not balloons)
+            sound: false, // Only Notification Center or Windows Toasters
+            wait:  false// wait with callback until user action is taken on notification
+          })
+          .each(function() {});
+          //*/
+        }
+
+        var screenshotHashActual = getScreenshotHash(pathsToImages.actualImage);
+
+        if (String(screenshotHashActual) ===
+            String(screenshotHashExpected)) {
+          fs.unlinkSync(pathsToImages.actualImage);
+          expect(String(screenshotHashActual)).to.equal(
+              String(screenshotHashExpected));
+          return highland([true]);
+        }
+
+        return highland([pathsToImages])
+        .flatMap(createImageDiffStream)
+        .flatMap(function(imagesAreSame) {
+          if (imagesAreSame) {
+            fs.unlinkSync(pathsToImages.actualImage);
+            fs.unlinkSync(pathsToImages.diffImage);
+            expect(imagesAreSame).to.equal(true);
+            return highland([true]);
+          }
+
+          // Display new, old and diff screenshots.
+          var sleepPeriod = 750;
+          highland(_.range(5))
+          .map(function(iteration) {
+            browser.get('file://' + pathsToImages.diffImage)
+            .sleep(sleepPeriod)
+            .get('file://' + pathsToImages.expectedImage)
+            .sleep(sleepPeriod)
+            .get('file://' + pathsToImages.actualImage)
+            .sleep(sleepPeriod);
+          })
+          .ratelimit(1, 3 * sleepPeriod)
+          .last()
+          .map(function() {
+            expect(String(screenshotHashActual)).to.equal(
+                String(screenshotHashExpected));
+            return true;
+          })
+          .errors(function(err, push) {
+            console.log('err');
+            console.log(err);
+            return push(null, err);
+          })
+          .each(function() {});
+          // error will be any errors that occurred
+          // imagesAreSame is a boolean
+          // diffImage is an image which highlights differences
+
+          return notification.createStream({
+            title: 'Screenshot Looks OK for ' + browserName + '?',
+            message: 'If yes, click here. Otherwise, wait for timeout.',
+            //icon: path.join(__dirname, 'coulson.jpg'), // absolute path (not balloons)
+            sound: false, // Only Notification Center or Windows Toasters
+            wait: true, // wait with callback until user action is taken on notification
+            time: mochaTimeout - 2 * 1000
+          })
+          .flatMap(function(res) {
+            if (res.indexOf('Activate') === -1) {
+              var message = 'Hash of expected screenshot did not match ' +
+                  'hash of actual screenshot for ' +
+                  'pathway named "' + pathwayName +
+                  '" as tested with browser "' +
+                  browserName + '" in "' +
+                  lastKnownGoodScreenshotHashesPath + '". ' +
+                  'Update code so it renders correctly, and then ' +
+                  're-run this test to save a hash of the current screenshot ' +
+                  'as a reference for future tests.';
+              console.error(message);
+              expect(String(screenshotHashActual)).to.equal(
+                  String(screenshotHashExpected));
+              //throw new Error(message);
+              /*
+              var err = new Error(message);
+              return highland([err]);
+              //*/
+            }
+
+            saveScreenshotHashes(
+                lastKnownGoodScreenshotHashes, pathwayName,
+                browserName, screenshotHashActual);
+
+            return highland([null]);
+          });
+        });
+      })
+      //*
+      //*/
+      .each(function(result) {
+        return done(null, result);
       });
-    })
-    //*
-    //*/
-    .each(function(result) {
-      return done(null, result);
     });
+    //*/
   });
-  //*/
-});
+}
+
+//*
+var localServerPort = process.env.LOCALSERVER_PORT;
+var thisBaseIri = 'http://localhost:' + localServerPort;
+//*/
+//var thisBaseIri = 'http://pointer.ucsf.edu/pvjs';
+runTest(thisBaseIri);
