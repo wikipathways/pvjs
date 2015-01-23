@@ -4,32 +4,124 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-    <title>Pathvisiojs Simple Built Production Example</title>
+    <title>Pathvisiojs Template</title>
 
     <style type="text/css">
-      html, body{width: 100%;height: 100%;margin: 0;}
+      html, body, x-layout{width: 100%;height: 100%;margin: 0;}
+      #pathvisiojs-header{background-color: gray;}
+      #pathvisiojs-inner-modal{width: 100%;height: 100%;margin: 10;border: 10;background-color: white;}
+      #pathvisiojs-section{width: 100%;height: 80%;margin: 0;}
+      #pathvisiojs-footer{background-color: gray;}
     </style>
 
     <!-- Required by Highlight Plugin -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.2/typeahead.bundle.min.js"></script>
+    <script src="http://www.x-tags.org/js/x-tag-components.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://www.x-tags.org/css/x-tag-components.css"/>
 
     <script src="https://rawgit.com/caolan/highland/master/dist/highland.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+
+    <script src="https://rawgit.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.min.js"></script>
     <script src="https://rawgit.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.contentWindow.min.js"></script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="./lib/pathvisiojs/pathvisiojs-2.1.3.bundle.min.js"></script>
 
   </head>
   <body>
-    <div id="pathvisiojs-container">
+
+  <x-layout id="pathvisiojs-container" class="pathvisiojs-container">
+    <header id="pathvisiojs-header">
+      I'm the header!<br>
+      I'm the header!<br>
+      I'm the header!<br>
+    </header>
+    <section id="pathvisiojs-section">
+      <div id="pathvisiojs-viewer">
+    </section>
+    <footer id="pathvisiojs-footer">
+      <bridgedb-xref-search></bridgedb-xref-search>
+    </footer>
+    <!-- We can put the x-modal just before the closing x-layout tag to cover up
+          the entire x-layout-->
+    <x-modal id="pathvisiojs-inner-modal" escape-hide>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+      Place content markup here<br>
+    </x-modal>
+  </x-layout>
 
   <script>
+
+  xtag.register('bridgedb-xref-search', {
+    // TODO extends isn't working
+    //extends: 'div',
+    lifecycle: {
+      created: function() {
+        // TODO compile the template and insert it as a string, using the script tag method of including another page in this one
+        xtag.innerHTML(this, '<iframe id="bridgedb-xref-search-frame" src="./bridgedb-xref-search-template.html" style="width:inherit; height:inherit; margin:0px; border: 0px; " />');
+
+        iFrameResize({
+          enablePublicMethods: true,
+          messageCallback: function(response) {
+            console.log('bridgedb-xref-search sends message');
+            console.log(response.message);
+            document.querySelector('#pathvisiojs-inner-modal').innerHTML = response.message;
+          },
+          resizedCallback: function() {
+            console.log('bridgedb-xref-search parent says resized');
+          }
+        },'#bridgedb-xref-search-frame');
+
+      }
+    }
+  });
+
   /* *******************
   /* Load pathvisiojs
   /* *******************/
   $(function() {
-    $('#pathvisiojs-container').pathvisiojs({
+    $('#pathvisiojs-viewer').pathvisiojs({
       fitToContainer: true
     , manualRender: true
     , sourceData: [
@@ -59,10 +151,10 @@
     //*/
 
     // Get first element from array of instances
-    var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop();
+    var pathInstance = $('#pathvisiojs-viewer').pathvisiojs('get').pop();
     window.pathInstance = pathInstance;
 
-    highland('click', $('#pathvisiojs-container')).each(function() {
+    highland('click', $('#pathvisiojs-viewer')).each(function() {
       console.log('click');
     });
 
@@ -105,8 +197,6 @@
 
   });
   </script>
-
-  <div class="test"></div>
 
 </body>
 </html>
