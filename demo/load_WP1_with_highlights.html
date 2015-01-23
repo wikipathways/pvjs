@@ -4,22 +4,24 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title>Pathvisiojs Simple Built Production Example</title>
+    <link rel="stylesheet" type="text/css" href="http://www.x-tags.org/css/x-tag-components.css"/>
   </head>
   <body>
     <!--
     <iframe id="pathway1" src="./template.html" style="width: 800px; height: 570px; border: 1px solid #ccc;"></iframe>
     -->
     <wikipathways-pathvisiojs style="resize:both; width: 800px; height: 570px; border: 5px solid #ccc; margin:5px;"></wikipathways-pathvisiojs>
+
     <script src="http://www.x-tags.org/js/x-tag-components.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://rawgit.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.min.js"></script>
     <script>
-
       xtag.register('wikipathways-pathvisiojs', {
         // TODO extends isn't working
         //extends: 'div',
         lifecycle: {
           created: function() {
+            // TODO compile the template and insert it as a string, using the script tag method of including another page in this one
             xtag.innerHTML(this, '<iframe id="pathvisiojs-frame" src="./load-one.html" style="width:inherit; height:inherit; margin:0px; border: 0px; " />');
             iFrameResize({
               enablePublicMethods: true,

@@ -135,6 +135,7 @@ module.exports = function() {
       }
 
       var documentElement = document.documentElement;
+      var pvjsViewerElement = document.querySelector('#pathvisiojs-viewer');
       // Svg-pan-zoom
       // Should come last as it is fitting and centering viewport
       var svgSelection = d3.select('#' + 'pvjs-diagram-' + pvjs.instanceId);
@@ -218,8 +219,8 @@ module.exports = function() {
         windowResizeListener.fork()
         .debounce(refreshInterval)
         .each(function() {
-          svgElement.setAttribute('width', documentElement.clientWidth)
-          svgElement.setAttribute('height', documentElement.clientHeight)
+          svgElement.setAttribute('width', pvjsViewerElement.clientWidth)
+          svgElement.setAttribute('height', pvjsViewerElement.clientHeight)
 
           svgPanZoom.updateBBox();
           svgPanZoom.resize();
