@@ -28,7 +28,7 @@
   /* *******************
   /* Load pathvisiojs
   /* *******************/
-  $(function(){
+  $(function() {
     $('#pathvisiojs-container').pathvisiojs({
       fitToContainer: true
     , manualRender: true
@@ -50,7 +50,7 @@
           fileType:'png'
         }
       ]
-    })
+    });
 
     /*
     if ('parentIFrame' in window) {
@@ -59,59 +59,51 @@
     //*/
 
     // Get first element from array of instances
-    var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
-    window.pathInstance = pathInstance
+    var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop();
+    window.pathInstance = pathInstance;
 
     highland('click', $('#pathvisiojs-container')).each(function() {
       console.log('click');
     });
 
     // Load notification plugin
-    pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
+    pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true});
 
     // Call after render
-    pathInstance.on('rendered', function(){
+    pathInstance.on('rendered', function() {
       // Initialize Highlighter plugin
-      var hi = pathvisiojsHighlighter(pathInstance)
-      window.hi = hi
+      var hi = pathvisiojsHighlighter(pathInstance);
+      window.hi = hi;
 
       // Highlight by ID
-      hi.highlight('#eb5')
-      hi.highlight('id:d25e1')
+      hi.highlight('#eb5');
+      hi.highlight('id:d25e1');
 
       // Highlight by Text
-      hi.highlight('Mitochondrion', null, {backgroundColor: 'gray'})
+      hi.highlight('Mitochondrion', null, {backgroundColor: 'gray'});
 
       // Highlight by xref
-      hi.highlight('xref:id:http://identifiers.org/wormbase/ZK1193.5', null, {backgroundColor: 'magenta', borderColor: 'black'})
+      hi.highlight('xref:id:http://identifiers.org/wormbase/ZK1193.5', null, {backgroundColor: 'magenta', borderColor: 'black'});
       hi.highlight('xref:GCN-2', null, {
         backgroundColor: 'blue'
       , backgroundOpacity: 0.5
       , borderColor: 'red'
       , borderWidth: 1
       , borderOpacity: 0.7
-      })
-
-      var mySvg = $('#pvjs-diagram-1');
-      mySvg.attr('width', 1200);
-      highland('resize', $(window)).each(function() {
-        console.log('child says resized');
-        // TODO in pathvisiojs, set svg to resize
-        // when the container changes in size.
-        // also, make sure that the updates are throttled.
-        // svgPanZoom.resize();
-        mySvg.attr('width', 1100);
-        mySvg.attr('height', 1100);
-        console.log('mySvg[0]');
-        console.log(mySvg[0]);
       });
 
-    })
+      /*
+      window.addEventListener('resize', function(event) {
+        console.log('event in load-one');
+        console.log(event);
+      }, false);
+      //*/
+    });
 
     // Call renderer
-    pathInstance.render()
+    pathInstance.render();
 
-  })
+  });
   </script>
 
   <div class="test"></div>

@@ -12,7 +12,11 @@ var gulpSequence = require('gulp-sequence');
  * After this task, run gulp publish
  */
 
-gulp.task('build', gulpSequence(
-    'browserify',
-    'copy'
+gulp.task('bump', gulpSequence(
+    'verifyGitStatus',
+    'bumpVersionNumberInFiles',
+    'build',
+    // TODO build docs
+    //['build', 'build-docs'],
+    'bumpGitTag'
 ));

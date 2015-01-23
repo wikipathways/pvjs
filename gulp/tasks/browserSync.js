@@ -3,12 +3,12 @@ var browserSync = require('browser-sync');
 var gulp        = require('gulp');
 var evt = browserSync.emitter;
 
-evt.on('rs', function () {
-    console.log('You want to reload BrowserSync!');
+evt.on('rs', function() {
+  console.log('You want to reload BrowserSync!');
 });
 
 gulp.task('browserSync', ['build'], function() {
-	browserSync.init(['./src/**/*.js'], {
+  browserSync.init(['./src/**/*.js'], {
 		server: {
 			baseDir: './'
 		},
