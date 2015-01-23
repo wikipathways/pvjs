@@ -9,16 +9,18 @@
     <!--
     <iframe id="pathway1" src="./template.html" style="width: 800px; height: 570px; border: 1px solid #ccc;"></iframe>
     -->
-    <wikipathways-pathvisiojs style="resize:both; width: 800px; height: 570px; border: 1px solid #ccc;"></wikipathways-pathvisiojs>
+    <wikipathways-pathvisiojs style="resize:both; width: 800px; height: 570px; border: 5px solid #ccc; margin:5px;"></wikipathways-pathvisiojs>
     <script src="http://www.x-tags.org/js/x-tag-components.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://rawgit.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.min.js"></script>
     <script>
 
       xtag.register('wikipathways-pathvisiojs', {
+        // TODO extends isn't working
+        //extends: 'div',
         lifecycle: {
           created: function() {
-            xtag.innerHTML(this, '<iframe id="pathvisiojs-frame" src="./load-one.html" style="width:inherit; height:inherit; margin:0; " />');
+            xtag.innerHTML(this, '<iframe id="pathvisiojs-frame" src="./load-one.html" style="width:inherit; height:inherit; margin:0px; border: 0px; " />');
             iFrameResize({
               enablePublicMethods: true,
               resizedCallback: function() {
