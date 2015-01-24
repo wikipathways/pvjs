@@ -238,6 +238,8 @@ module.exports = function() {
 
       createWindowResizeListener();
 
+      var simpleModal = global.simpleModal = require('simple-modal');
+
       pvjs.trigger('rendered.renderer')
     }
   }

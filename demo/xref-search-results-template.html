@@ -1,0 +1,39 @@
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" ng-click="cancel()" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">Select Reference</h4>
+	    </div>
+         <div class="modal-body">
+          <div class="form-group">
+            <table class="table table-hover" style="cursor:pointer">
+              <thead>
+              <tr>
+               <th>Name</th>
+               <th>Database</th>
+               <th>Identifier</th>
+              </tr>
+              </thead>
+              <tr ng-repeat="xrefCandidate in xrefCandidates" ng-click="selected.xrefCandidate = xrefCandidate; ok()">
+                <!--[{{$index + 1}}]-->
+                <td><small>{{xrefCandidate.displayName}}</small>
+                </td>
+                <td><small>{{xrefCandidate.db}}</small>
+                </td>
+                <td><small>{{xrefCandidate.identifier}}</small>
+                </td>
+              </tr>
+              
+              <tr ng-if="loading">
+                <td><strong>Loading... </strong>
+                <img src="http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif">
+                </td>
+              </tr>
+              <tr ng-if="!loading && xrefCandidates.length == 0">
+                <td><strong>No results found...</strong>
+                </td>
+              </tr>
+            </table>
+           </div>
+         </div>
+        </div>

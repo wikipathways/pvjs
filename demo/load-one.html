@@ -17,6 +17,7 @@
     <!-- Required by Highlight Plugin -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.2/typeahead.bundle.min.js"></script>
+
     <script src="http://www.x-tags.org/js/x-tag-components.js"></script>
     <link rel="stylesheet" type="text/css" href="http://www.x-tags.org/css/x-tag-components.css"/>
 
@@ -42,10 +43,21 @@
       <div id="pathvisiojs-viewer">
     </section>
     <footer id="pathvisiojs-footer">
+
+      <style type="text/css">
+        html, body, x-layout{width: 100%;height: 100%;margin: 0;}
+      </style>
+
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+      <script src="https://rawgit.com/caolan/highland/master/dist/highland.js"></script>
+      <script src="https://rawgit.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.contentWindow.min.js"></script>
+      <script src="https://bridgedb.github.io/bridgedbjs/dist/bridgedb-4.0.0.min.js"></script>
       <bridgedb-xref-search></bridgedb-xref-search>
     </footer>
     <!-- We can put the x-modal just before the closing x-layout tag to cover up
           the entire x-layout-->
+    <!--
     <x-modal id="pathvisiojs-inner-modal" escape-hide>
       Place content markup here<br>
       Place content markup here<br>
@@ -90,9 +102,20 @@
       Place content markup here<br>
     </x-modal>
   </x-layout>
+  -->
+
+  <!-- include riot.js -->
+  <script src="https://muut.com/riotjs/dist/demo/js/riot.js"></script>
+
+  <!-- include the tag -->
+  <script src="./bridgedb-xref-search.js"></script>
+
+  <!-- mount the tag -->
+  <script>riot.mount('bridgedb-xref-search')</script>
 
   <script>
 
+  /*
   xtag.register('bridgedb-xref-search', {
     // TODO extends isn't working
     //extends: 'div',
@@ -106,7 +129,7 @@
           messageCallback: function(response) {
             console.log('bridgedb-xref-search sends message');
             console.log(response.message);
-            document.querySelector('#pathvisiojs-inner-modal').innerHTML = response.message;
+            //document.querySelector('#pathvisiojs-inner-modal').innerHTML = response.message;
           },
           resizedCallback: function() {
             console.log('bridgedb-xref-search parent says resized');
@@ -116,6 +139,7 @@
       }
     }
   });
+  //*/
 
   /* *******************
   /* Load pathvisiojs
