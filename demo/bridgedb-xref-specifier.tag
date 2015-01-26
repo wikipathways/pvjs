@@ -1,5 +1,4 @@
 <bridgedb-xref-specifier>
-
        <form class="well well-sm col-sm-9 form-inline" role="form" onsubmit={ submit }>
           <!--<div ng-show="xref">Selection from a modal: {{ xref }}</div>-->
 
@@ -23,6 +22,7 @@
       <input type="text" onchange={ edit } ng-model="xref.identifier" class="form-control" placeholder="ID" ng-click="isEdited = true">
       <input type="text" ng-model="xref.displayName" class="form-control" placeholder="Display name" ng-click="isEdited = true">
   </form>
+  <script>
 
   var vm = this;
 
@@ -55,4 +55,5 @@
   submit(e) {
   }
 
+  </script>
 </bridgedb-xref-specifier>

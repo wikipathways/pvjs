@@ -29,4 +29,5 @@ riot.tag('bridgedb-xref-specifier', '<form class="well well-sm col-sm-9 form-inl
   this.submit = function(e) {
   }.bind(this)
 
+ 
 })
