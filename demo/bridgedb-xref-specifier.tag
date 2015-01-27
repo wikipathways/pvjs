@@ -1,6 +1,6 @@
 <bridgedb-xref-specifier>
-       <form class="well well-sm col-sm-9 form-inline" role="form" onsubmit={ submit }>
-          <!--<div ng-show="xref">Selection from a modal: {{ xref }}</div>-->
+       <form class="well well-sm col-sm-9 form-inline" role="form" onsubmit="{ submit }" action="#">
+          <!--<div data-ng-show="xref">Selection from a modal: {{ xref }}</div>-->
 
       <bridgedb-gpml-type-selector id="gpmlTypeSelectorComponent" class="form-control">
       </bridgedb-gpml-type-selector>
@@ -8,22 +8,22 @@
       <bridgedb-dataset-selector id="datasetSelectorComponent" class="form-control">
       </bridgedb-dataset-selector>
   
-      <span ng-hide = "isEdited">
+      <section data-ng-hide="isEdited">
         <button class="btn pull-right" type="button">
-         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+         <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
         </button>
-      </span>
+      </section>
 
-      <span ng-show = "isEdited">
-        <button type="button" class="btn btn-link pull-right" ng-click = "isEdited = false">Cancel</button>
-        <button type="button" ng-click="success = true; isEdited = false" class="btn btn-success pull-right">OK</button>
-      </span>
+      <section data-ng-show = "isEdited">
+        <button type="button" class="btn btn-link pull-right" data-ng-click = "isEdited = false">Cancel</button>
+        <button type="button" data-ng-click="success = true; isEdited = false" class="btn btn-success pull-right">OK</button>
+      </section>
 
-      <input type="text" onchange={ edit } ng-model="xref.identifier" class="form-control" placeholder="ID" ng-click="isEdited = true">
-      <input type="text" ng-model="xref.displayName" class="form-control" placeholder="Display name" ng-click="isEdited = true">
+      <input type="text" onchange="{ edit }" data-ng-model="xref.identifier" class="form-control" placeholder="ID" data-ng-click="isEdited = true">
+      <input type="text" data-ng-model="xref.displayName" class="form-control" placeholder="Display name" data-ng-click="isEdited = true">
   </form>
-  <script>
 
+  <script>
   var vm = this;
 
   riot.observable(vm);
@@ -54,6 +54,6 @@
 
   submit(e) {
   }
-
   </script>
+
 </bridgedb-xref-specifier>
