@@ -9,6 +9,16 @@ var replace = require('gulp-regex-replace');
 // But the riotjs compiler can't handle the
 // script tags, so I need to remove them for
 // actually running the compiled JS.
+/*
+gulp.task('watchStripScriptTags',
+    function watchStripScriptTags(callback) {
+
+  gulp.watch(['./demo/*.js'], [
+                       'runStripScriptTags'
+    ]);
+});
+//*/
+
 gulp.task('stripScriptTags',
     function stripScriptTags(callback) {
 
@@ -20,5 +30,5 @@ gulp.task('stripScriptTags',
       regex: ' ?<\/?script> ?',
       replace: ''
     }))
-    .pipe(gulp.dest('./demo/'));
+    .pipe(gulp.dest('./demo/'))
 });

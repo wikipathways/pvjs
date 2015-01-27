@@ -1,5 +1,5 @@
 <wikipathways-pathvisiojs style="margin: 0; width: 100%; height: 100%; ">
- 
+
   <style type="text/css">
     html, body, x-layout{width: 100%;height: 100%;margin: 0;}
     #pathvisiojs-header{background-color: gray;}
@@ -11,15 +11,16 @@
   <div id="pathvisiojs-container" class="pathvisiojs-container">
 
   <div class="well well-sm col-sm-12">
-    <span title="Search mode" class="glyphicon glyphicon-bold"></span>
-    <span title="Search mode" class="glyphicon glyphicon-italic"></span>
-    <span title="Search mode" class="glyphicon glyphicon-align-left"></span>
-    <span title="Search mode" class="glyphicon glyphicon-align-center"></span>
-    <span title="Search mode" class="glyphicon glyphicon-align-right"></span>
+    <i title="Search mode" class="glyphicon glyphicon-bold"></i>
+    <i title="Search mode" class="glyphicon glyphicon-italic"></i>
+    <i title="Search mode" class="glyphicon glyphicon-align-left"></i>
+    <i title="Search mode" class="glyphicon glyphicon-align-center"></i>
+    <i title="Search mode" class="glyphicon glyphicon-align-right"></i>
   </div>
 
     <section id="pathvisiojs-section" class="well well-sm col-sm-12">
-      <div id="pathvisiojs-viewer">
+      <!--<div id="pathvisiojs-viewer"></div>-->
+      <bridgedb-xref-search-results></bridgedb-xref-search-results>
     </section> 
 
     <footer id="pathvisiojs-footer" class="col-lg-12">
@@ -28,6 +29,7 @@
     </footer>
   </div>
 
+  <script>
   this.on('mount', function() {
     // right after tag is mounted on the page
 
@@ -93,4 +95,5 @@
     pathInstance.render();
 
   });
+  </script>
 </wikipathways-pathvisiojs>
