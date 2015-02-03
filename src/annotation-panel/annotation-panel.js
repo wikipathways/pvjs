@@ -1,7 +1,15 @@
 // Note: the view (HTML) for this annotation panel is in pathvisiojs.html
+var fs = require('fs');
+var insertCss = require('insert-css');
+
+var css = [
+  fs.readFileSync(__dirname + '/annotation-panel.css'),
+];
 
 module.exports = function(){
   'use strict';
+
+  css.map(insertCss);
 
   function render(pvjs, annotationData) {
     var annotation = pvjs.$element.select(".annotation")

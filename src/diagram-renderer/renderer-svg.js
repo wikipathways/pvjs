@@ -1,12 +1,12 @@
 var _ = require('lodash');
 var Fs = require('fs');
 var RendererPrototype = require('./renderer-prototype');
-var EntityReference = require('./annotation/entity-reference.js');
+var EntityReference = require('../annotation-panel/entity-reference.js');
 var Strcase = require('tower-strcase');
 var crossPlatformText =
 //TODO use the following
     //require('cross-platform-text');
-    require('../../../../cross-platform-text/cross-platform-text.js');
+    require('../../../cross-platform-text/cross-platform-text.js');
 
 // crossPlatformShapes is added to root (window in browser), but it doesn't return anything
 require('cross-platform-shapes');
@@ -71,7 +71,7 @@ function initStyles(renderer) {
     });
   }
   else {
-    cssData = Fs.readFileSync(__dirname + '/../../css/pathway-diagram.css').toString()
+    cssData = Fs.readFileSync(__dirname + '/diagram.css').toString()
     $defs.append('style').attr('type', "text/css").text(cssData)
   }
 }

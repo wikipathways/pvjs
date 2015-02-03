@@ -1,15 +1,24 @@
 var _ = require('lodash');
+var fs = require('fs');
 var highland = require('highland');
+var insertCss = require('insert-css');
 var RendererImg = require('./renderer-img');
 var RendererSvg = require('./renderer-svg');
 var Selector = require('./selector.js');
 var InfoBox = require('./info-box.js');
 var PublicationXref = require('./publication-xref.js');
-var EntityReference = require('./annotation/entity-reference.js');
+var EntityReference = require('../annotation-panel/entity-reference.js');
 var simpleModal = global.simpleModal = require('simple-modal');
 var SvgPanZoom = require('svg-pan-zoom');
 
+var css = [
+  fs.readFileSync(__dirname + '/pan-zoom.css')
+];
+
 module.exports = function renderer() {
+
+  css.map(insertCss);
+
   // Render engines are sorted in order of preference - viewMethod with lower index will be used if more than one is returned.
   var renderersMap = {
     gpml:   ['svg'], // Could add canvas support

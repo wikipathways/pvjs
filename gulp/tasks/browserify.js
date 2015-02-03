@@ -33,10 +33,10 @@ gulp.task('browserify', function() {
 
   var bundler = bundleMethod({
     // Specify the entry point of your app
-    entries: ['./src/js/pathvisiojs.js',
-      './src/components/pathvisiojs-highlighter/pathvisiojs-highlighter.js',
-      './src/components/pathvisiojs-notifications/pathvisiojs-notifications.js',
-      './src/components/pathvisiojs-diffviewer/pathvisiojs-diffviewer.js']
+    entries: ['./src/pathvisiojs.js',
+      './src/highlighter/highlighter.js',
+      './src/notifications/notifications.js',
+      './src/diff-viewer/diff-viewer.js']
   })
   // enable fs.readFileSync() in browser
   .transform('brfs')

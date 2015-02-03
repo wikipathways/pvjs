@@ -1,7 +1,7 @@
 var fs = require('fs');
 var insertCss = require('insert-css');
 var css = fs.readFileSync(
-    __dirname + '/pathvisiojs-diffviewer.css');
+    __dirname + '/diff-viewer.css');
 
 (function(window, $) {
   insertCss(css);

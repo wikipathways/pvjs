@@ -3,14 +3,14 @@ var fs = require('fs');
 var insertCss = require('insert-css');
 var highland = require('highland');
 var promisescript = require('promisescript');
-var Utils = require('./utilities');
-var Renderer = require('./renderer/renderer');
+var Utils = require('./utils');
+var DiagramRenderer = require('./diagram-renderer/diagram-renderer');
 var FormatConverter = require('./format-converter/format-converter');
 
-var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
-          fs.readFileSync(__dirname + '/../css/pan-zoom.css'),
-          fs.readFileSync(__dirname + '/../css/pathvisiojs.css'),
-          fs.readFileSync(__dirname + '/../css/pathway-diagram.css')];
+var css = [
+  fs.readFileSync(__dirname + '/annotation-panel/annotation-panel.css'),
+  fs.readFileSync(__dirname + '/pathvisiojs.css')
+];
 
 /**
  * initPathvisiojs
@@ -22,7 +22,7 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
 function initPathvisiojs(window, $) {
   'use strict';
 
-  Renderer = Renderer();
+  DiagramRenderer = DiagramRenderer();
   css.map(insertCss);
 
   /**
@@ -77,7 +77,7 @@ function initPathvisiojs(window, $) {
   Pathvisiojs.prototype.initContainer = function() {
     var pvjs = this;
     var containerContents = fs.readFileSync(
-        __dirname + '/../pathvisiojs.html').toString();
+        __dirname + '/pathvisiojs.html').toString();
 
     // Add default container elements
     this.$element.html(containerContents);
@@ -132,7 +132,7 @@ function initPathvisiojs(window, $) {
 
     // Listen for renderer errors
     this.on('error.renderer', function() {
-      Renderer.destroyRender(pvjs, pvjs.sourceData);
+      DiagramRenderer.destroyRender(pvjs, pvjs.sourceData);
       pvjs.checkAndRenderNextSource();
     });
   };
@@ -155,19 +155,19 @@ function initPathvisiojs(window, $) {
     this.sourceData.fileType = this.options.sourceData[
       this.sourceData.sourceIndex].fileType;
 
-    if (Renderer.canRender(this.sourceData)) {
-      if (Renderer.needDataConverted(this.sourceData)) {
+    if (DiagramRenderer.canRender(this.sourceData)) {
+      if (DiagramRenderer.needDataConverted(this.sourceData)) {
         FormatConverter.loadAndConvert(pvjs, function(error, pvjson) {
           if (error) {
             pvjs.trigger('error.pvjson', {message: error});
             pvjs.checkAndRenderNextSource();
           } else {
             pvjs.sourceData.pvjson = pvjson;
-            Renderer.render(pvjs);
+            DiagramRenderer.render(pvjs);
           }
         });
       } else {
-        Renderer.render(pvjs);
+        DiagramRenderer.render(pvjs);
       }
     } else {
       // try next source
@@ -181,7 +181,7 @@ function initPathvisiojs(window, $) {
         'destroy.pvjs', {message: 'User requested pvjs destroy'}, false)
 
     // Destroy renderer
-    Renderer.destroyRender(this, this.sourceData)
+    DiagramRenderer.destroyRender(this, this.sourceData)
 
     // Off all events
     for (var e in this.events) {
@@ -630,6 +630,7 @@ var assetsToLoad = [
 
 /**
  * Streaming version of promisescript
+ * https://www.npmjs.com/package/promisescript
  *
  * @param {object} args
  * @param {string} args.exposed
