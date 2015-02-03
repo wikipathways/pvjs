@@ -3,7 +3,7 @@ var insertCss = require('insert-css');
 var css = fs.readFileSync(
     __dirname + '/pathvisiojs-highlighter.css');
 
-(function(window, $) {
+window.initPathvisiojsHighlighter = function(window, $) {
   insertCss(css);
 
   var optionsDefault = {
@@ -444,4 +444,4 @@ var css = fs.readFileSync(
    * Expose plugin globally as pathvisiojsHighlighter
    */
   window.pathvisiojsHighlighter = init
-})(window, window.jQuery || window.Zepto)
+};
