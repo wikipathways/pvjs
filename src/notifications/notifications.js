@@ -1,7 +1,7 @@
 var fs = require('fs');
 var insertCss = require('insert-css');
 var css = fs.readFileSync(
-    __dirname + '/pathvisiojs-notifications.css');
+    __dirname + '/notifications.css');
 
 (function(window) {
   insertCss(css);

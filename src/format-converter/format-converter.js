@@ -1,4 +1,4 @@
-var Utils = require('./../utilities.js')
+var Utils = require('./../utils.js')
   , Gpml = require('gpml2json')
   ;
 

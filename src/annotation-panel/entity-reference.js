@@ -1,4 +1,4 @@
-var Annotation = require('./annotation.js')
+var Annotation = require('./annotation-panel.js')
   , Bridgedb = require('bridgedbjs')
   , jsonld = require('jsonld')
   ;

@@ -1,4 +1,4 @@
-var Utils = require('./../utilities.js')
+var Utils = require('./../utils.js')
   , _ = require('lodash')
   ;
 
