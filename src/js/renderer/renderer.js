@@ -9,7 +9,7 @@ var EntityReference = require('./annotation/entity-reference.js');
 var simpleModal = global.simpleModal = require('simple-modal');
 var SvgPanZoom = require('svg-pan-zoom');
 
-module.exports = function() {
+module.exports = function renderer() {
   // Render engines are sorted in order of preference - viewMethod with lower index will be used if more than one is returned.
   var renderersMap = {
     gpml:   ['svg'], // Could add canvas support
@@ -30,7 +30,7 @@ module.exports = function() {
   var supportedRenderers = ['img'];  // Assumption that all browsers we care about support the HTML img tag
 
   // Check for Modernizr support
-  if (Modernizr && Modernizr.inlinesvg) {
+  if (!!window.Modernizr && window.Modernizr.inlinesvg) {
     supportedRenderers.push('svg');
   }
 
@@ -249,4 +249,4 @@ module.exports = function() {
     destroyRender: destroyRender,
     render: render
   }
-}()
+};

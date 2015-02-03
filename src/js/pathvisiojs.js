@@ -1,17 +1,28 @@
 var _ = require('lodash');
 var fs = require('fs');
 var insertCss = require('insert-css');
+var highland = require('highland');
+var promisescript = require('promisescript');
 var Utils = require('./utilities');
 var Renderer = require('./renderer/renderer');
 var FormatConverter = require('./format-converter/format-converter');
+
 var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
           fs.readFileSync(__dirname + '/../css/pan-zoom.css'),
           fs.readFileSync(__dirname + '/../css/pathvisiojs.css'),
           fs.readFileSync(__dirname + '/../css/pathway-diagram.css')];
 
-(function(window, $) {
+/**
+ * initPathvisiojs
+ *
+ * @param {object} window
+ * @param {object} $
+ * @return
+ */
+function initPathvisiojs(window, $) {
   'use strict';
 
+  Renderer = Renderer();
   css.map(insertCss);
 
   /**
@@ -72,23 +83,33 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
     this.$element.html(containerContents);
 
     // Set ID to $element if it has no ID
-    this.$element.attr('id', this.$element.attr('id') || 'pathvisio-' + this.instanceId);
+    this.$element.attr('id', this.$element.attr('id') ||
+        'pathvisio-' + this.instanceId);
 
+    // TODO figure out the best way to handle styling of the
+    // pathvisiojs container as a whole and the viewer/editor.
+    // Also, consider our defaults vs. the user-specified
+    // styles. I've commented this out for the moment, because
+    // it overrides user-specified styles.
     // Set container class
-    Utils.addClassForD3(this.$element, 'pathvisiojs-container');
+    //Utils.addClassForD3(this.$element, 'pathvisiojs-container');
 
     // Set loading class
     Utils.addClassForD3(this.$element, 'loading');
 
     // Remove loading state after pathvisiojs is loaded
-    this.on('rendered', function(){
+    this.on('rendered', function() {
       Utils.removeClassForD3(pvjs.$element, 'loading');
     });
 
     // Get container sizes
     var boundingRect = this.$element[0][0].getBoundingClientRect();
-    this.element_width = +boundingRect.width; // TODO take in account paddings, margins and border
-    this.element_height = +boundingRect.height; // TODO take in account paddings, margins and border
+
+    // TODO take in account paddings, margins and border
+    this.element_width = +boundingRect.width;
+
+    // TODO take in account paddings, margins and border
+    this.element_height = +boundingRect.height;
   };
 
   /**
@@ -99,18 +120,18 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
 
     // Init sourceData object
     this.sourceData = {
-      sourceIndex: -1
-    , uri: null // resource uri
-    , fileType: ''
-    , pvjson: null // pvjson object
-    , selector: null // selector instance
-    , rendererEngine: null // renderer engine name
+      sourceIndex: -1,
+      uri: null, // resource uri
+      fileType: '',
+      pvjson: null, // pvjson object
+      selector: null, // selector instance
+      rendererEngine: null // renderer engine name
     };
 
     this.checkAndRenderNextSource();
 
     // Listen for renderer errors
-    this.on('error.renderer', function(){
+    this.on('error.renderer', function() {
       Renderer.destroyRender(pvjs, pvjs.sourceData);
       pvjs.checkAndRenderNextSource();
     });
@@ -129,12 +150,14 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
       return;
     }
 
-    this.sourceData.uri = this.options.sourceData[this.sourceData.sourceIndex].uri;
-    this.sourceData.fileType = this.options.sourceData[this.sourceData.sourceIndex].fileType;
+    this.sourceData.uri = this.options.sourceData[
+      this.sourceData.sourceIndex].uri;
+    this.sourceData.fileType = this.options.sourceData[
+      this.sourceData.sourceIndex].fileType;
 
     if (Renderer.canRender(this.sourceData)) {
       if (Renderer.needDataConverted(this.sourceData)) {
-        FormatConverter.loadAndConvert(pvjs, function(error, pvjson){
+        FormatConverter.loadAndConvert(pvjs, function(error, pvjson) {
           if (error) {
             pvjs.trigger('error.pvjson', {message: error});
             pvjs.checkAndRenderNextSource();
@@ -154,7 +177,8 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
 
   Pathvisiojs.prototype.destroy = function() {
     // Send destroy message
-    this.trigger('destroy.pvjs', {message: 'User requested pvjs destroy'}, false)
+    this.trigger(
+        'destroy.pvjs', {message: 'User requested pvjs destroy'}, false)
 
     // Destroy renderer
     Renderer.destroyRender(this, this.sourceData)
@@ -187,31 +211,43 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
     if (this.publicInstance === undefined) {
       // Initialise public instance
       this.publicInstance = {
-        instanceId: this.instanceId
-      , $element: this.$element
-      , destroy: Utils.proxy(this.destroy, this)
-      , on: Utils.proxy(this.on, this)
-      , off: Utils.proxy(this.off, this)
-      , trigger: Utils.proxy(this.trigger, this)
-      , render: Utils.proxy(this.render, this)
-      , pan: function(point) {if (that.panZoom) {that.panZoom.pan(point);}}
-      , panBy: function(point) {if (that.panZoom) {that.panZoom.panBy(point);}}
-      , getPan: function() {return that.panZoom.getPan();}
-      , zoom: function(scale) {if (that.panZoom) {that.panZoom.zoom(scale);}}
-      , zoomBy: function(scale) {if (that.panZoom) {that.panZoom.zoomBy(scale);}}
-      , zoomAtPoint: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPoint(scale, point);}}
-      , zoomAtPointBy: function(scale, point) {if (that.panZoom) {that.panZoom.zoomAtPointBy(scale, point);}}
-      , getZoom: function() {return that.panZoom.getZoom();}
-      , getOptions: function() {return _.clone(that.options, true);}
-      , getSourceData: function() {
+        instanceId: this.instanceId,
+        $element: this.$element,
+        destroy: Utils.proxy(this.destroy, this),
+        on: Utils.proxy(this.on, this),
+        off: Utils.proxy(this.off, this),
+        trigger: Utils.proxy(this.trigger, this),
+        render: Utils.proxy(this.render, this),
+        pan: function(point) {if (that.panZoom) {that.panZoom.pan(point);}},
+        panBy: function(point) {if (that.panZoom) {that.panZoom.panBy(point);}},
+        getPan: function() {return that.panZoom.getPan();},
+        zoom: function(scale) {if (that.panZoom) {that.panZoom.zoom(scale);}},
+        zoomBy: function(scale) {
+          if (that.panZoom) {
+            that.panZoom.zoomBy(scale);
+          }
+        },
+        zoomAtPoint: function(scale, point) {
+          if (that.panZoom) {
+            that.panZoom.zoomAtPoint(scale, point);
+          }
+        },
+        zoomAtPointBy: function(scale, point) {
+          if (that.panZoom) {
+            that.panZoom.zoomAtPointBy(scale, point);
+          }
+        },
+        getZoom: function() {return that.panZoom.getZoom();},
+        getOptions: function() {return _.clone(that.options, true);},
+        getSourceData: function() {
         // return _.clone(that.sourceData, true);
         return {
-            sourceIndex: that.sourceData.sourceIndex
-          , uri: that.sourceData.uri
-          , fileType: that.sourceData.fileType
-          , pvjson: _.clone(that.sourceData.pvjson, true)
-          , selector: that.sourceData.selector.getClone()
-          , rendererEngine: that.sourceData.rendererEngine
+          sourceIndex: that.sourceData.sourceIndex,
+          uri: that.sourceData.uri,
+          fileType: that.sourceData.fileType,
+          pvjson: _.clone(that.sourceData.pvjson, true),
+          selector: that.sourceData.selector.getClone(),
+          rendererEngine: that.sourceData.rendererEngine
         };
       }
       };
@@ -227,9 +263,8 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
    * @param  {Function} callback
    */
   Pathvisiojs.prototype.on = function(topic, callback) {
-    var namespace = null
-      , eventName = topic
-      ;
+    var namespace = null;
+    var eventName = topic;
 
     if (topic.indexOf('.') !== -1) {
       var pieces = topic.split('.');
@@ -242,8 +277,8 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
     }
 
     this.events[eventName].push({
-      callback: callback
-    , namespace: namespace
+      callback: callback,
+      namespace: namespace
     });
   };
 
@@ -256,9 +291,9 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
    * @return {bool}
    */
   Pathvisiojs.prototype.off = function(topic, callback) {
-    var namespace = null
-      , eventName = topic
-      , flagRemove = true;
+    var namespace = null;
+    var eventName = topic;
+    var flagRemove = true;
     callback = callback || null;
 
     if (topic.indexOf('.') !== -1) {
@@ -293,9 +328,8 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
    * @return {bool}
    */
   Pathvisiojs.prototype.trigger = function(topic, message, async) {
-    var namespace = null
-      , eventName = topic
-      ;
+    var namespace = null;
+    var eventName = topic;
 
     if (topic.indexOf('.') !== -1) {
       var pieces = topic.split('.');
@@ -314,13 +348,15 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
 
     // Use a function as i may change meanwhile
     var callAsync = function(i) {
-      setTimeout(function(){
+      setTimeout(function() {
         queue[i].callback(message);
       }, 0);
     };
 
     for (var i = 0; i < queue.length; i++) {
-      if (namespace && queue[i].namespace && namespace !== queue[i].namespace) {continue;}
+      if (namespace && queue[i].namespace && namespace !== queue[i].namespace) {
+        continue;
+      }
 
       if (async) {
         // freeze i
@@ -335,6 +371,9 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
   /**
    *
    */
+  // TODO re-enable the jQuery entry point. I removed it to make pathvisiojs
+  // work with the wikipathways-pathvisiojs custom element, but it would be
+  // good to re-enable it.
   if ($) {
     /**
      * jQuery plugin entry point. Only if jQuery is defined.
@@ -344,13 +383,12 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
      * @param  {string} option
      * @return {object} array || jQuery object
      */
-    $.fn.pathvisiojs = function (option) {
+    $.fn.pathvisiojs = function(option) {
       // Instantiate Pathvisiojs for all elements
-      var $return = this.each(function () {
-        var $this = $(this)
-          , data = $this.data('pathvisiojs')
-          , options = typeof option == 'object' && option
-          ;
+      var $return = this.each(function() {
+        var $this = $(this);
+        var data = $this.data('pathvisiojs');
+        var options = typeof option == 'object' && option;
 
         if (!data) {
           $this.data('pathvisiojs', (new Pathvisiojs(this, options)));
@@ -359,7 +397,9 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
 
       if (option === 'get') {
         // Return an array of Pathvisiojs instances
-        return $.map(this, function(a){return $(a).data('pathvisiojs').getPublicInstance();});
+        return $.map(this, function(a) {
+          return $(a).data('pathvisiojs').getPublicInstance();
+        });
       } else {
         // Return jQuery object
         return $return;
@@ -375,7 +415,7 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
    * @param  {object} option
    * @return {array}
    */
-  window.pathvisiojs = function (selector, option) {
+  window.pathvisiojs = function(selector, option) {
     var $elements;
 
     if (Utils.isElement(selector)) {
@@ -384,12 +424,11 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
       $elements = d3.selectAll(selector);
     }
 
-    return _.map($elements[0], function(element){
+    return _.map($elements[0], function(element) {
       if (element.data === undefined) {element.data = {};}
 
-      var data
-        , options = typeof option == 'object' ? option : {}
-        ;
+      var data;
+      var options = typeof option == 'object' ? option : {};
 
       if (element.data.pathvisiojs === undefined) {
         element.data.pathvisiojs = (data = new Pathvisiojs(element, options));
@@ -400,6 +439,220 @@ var css = [fs.readFileSync(__dirname + '/../css/annotation.css'),
       return data.getPublicInstance();
     });
   };
-})(window, window.jQuery || null);
+};
 
+/**
+ * Enable the wikipathways-pathvisiojs custom element
+ *
+ * @return
+ */
+function registerWikiPathwaysPathvisiojsElement() {
+  'use strict';
 
+  var DivPrototype = Object.create(window.HTMLDivElement.prototype);
+
+  DivPrototype.attributeChangedCallback = function(
+      attrName, oldValue, newValue) {
+    if (attrName === 'alt') {
+      this.textContent = newValue;
+    }
+  };
+
+  var WikiPathwaysPathvisiojsPrototype = Object.create(DivPrototype);
+
+  WikiPathwaysPathvisiojsPrototype.createdCallback = function() {
+    var alt = this.getAttribute('alt');
+    if (!!alt) {
+      this.attributeChangedCallback('alt', null, alt);
+    }
+
+    var src = this.getAttribute('src');
+    if (!!src) {
+      this.attributeChangedCallback('src', null, src);
+    }
+
+    loadPathvisiojs(this);
+  };
+
+  // Public: WikiPathwaysPathvisiojsPrototype constructor.
+  //
+  //   Currently:
+  //   var wikiPathwaysPathvisiojs = new WikiPathwaysPathvisiojsPrototype()
+  //   # => <div is=wikipathways-pathvisiojs"></div>
+  //
+  //   We could consider setting it up like this, but
+  //   then we would need to create the DIV box model ourselves.
+  //   # => <wikipathways-pathvisiojs></wikipathways-pathvisiojs>
+  //
+  window.WikiPathwaysPathvisiojs = document.registerElement(
+      'wikipathways-pathvisiojs', {
+    prototype: WikiPathwaysPathvisiojsPrototype,
+    extends: 'div'
+  });
+
+}
+
+/**
+ * Automatically load all wikipathways-pathvisiojs custom elements
+ *
+ * @param {object} el a wikipathways-pathvisiojs custom element
+ * @return
+ */
+function loadPathvisiojs(el) {
+  $(el).pathvisiojs({
+    fitToContainer: Boolean(el.getAttribute('fit-to-container')),
+    manualRender: Boolean(el.getAttribute('manual-render')),
+    sourceData: [
+      {
+        uri: el.getAttribute('src'),
+        // TODO we should be able to use the content type
+        // header from the server response instead of relying
+        // on this.
+        // Think analogous to .png, .gif, etc. for the img tag.
+        fileType:'gpml' // generally will correspond to filename extension
+      }
+    ]
+  });
+
+  // Get first element from array of instances
+  var pathInstance = $(el).pathvisiojs('get').pop()
+  window.pathInstance = pathInstance
+
+  // Load notification plugin
+  pathvisiojsNotifications(pathInstance, {
+    displayErrors: Boolean(el.getAttribute('display-errors')),
+    displayWarnings: Boolean(el.getAttribute('display-warnings'))
+  });
+
+  // Call after render
+  pathInstance.on('rendered', function() {
+
+    window.initPathvisiojsHighlighter(window, window.jQuery || window.Zepto);
+    // Initialize Highlighter plugin
+    var hi = pathvisiojsHighlighter(pathInstance)
+    window.hi = hi
+
+    // Highlight by ID
+    hi.highlight('#eb5')
+    hi.highlight('id:d25e1')
+
+    // Highlight by Text
+    hi.highlight('Mitochondrion', null, {backgroundColor: 'gray'})
+
+    // Highlight by xref
+    hi.highlight('xref:id:http://identifiers.org/wormbase/ZK1193.5', null, {
+      backgroundColor: 'magenta', borderColor: 'black'})
+    hi.highlight('xref:GCN-2', null, {
+      backgroundColor: 'blue',
+      backgroundOpacity: 0.5,
+      borderColor: 'red',
+      borderWidth: 1,
+      borderOpacity: 0.7
+    });
+
+    var mySvg = $('#pvjs-diagram-1');
+    mySvg.attr('width', '100%');
+    highland('resize', $(window)).each(function() {
+      console.log('child says resized');
+      // TODO in pathvisiojs, set svg to resize
+      // when the container changes in size.
+      // also, make sure that the updates are throttled.
+      // svgPanZoom.resize();
+      mySvg.attr('width', '100%');
+      mySvg.attr('height', '100%');
+    });
+
+  });
+
+  // Call renderer
+  pathInstance.render()
+
+};
+
+/*********************************
+ * A very simple asset loader. It checks all
+ * assets that could be loaded already. If they
+ * are loaded already, great. Otherwise, it
+ * loads them.
+ *
+ * It would be nice to use an
+ * open-source library for this
+ * to ensure it works x-browser.
+ * Why did Modernizr/yepnope deprecate this
+ * type of strategy?
+ * ******************************/
+var assetsToLoad = [
+  {
+    exposed: 'd3',
+    type: 'script',
+    url: '//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js',
+    loaded: (function() {
+      return !!window.d3;
+    })()
+  },
+  {
+    exposed: 'jQuery',
+    type: 'script',
+    url: '//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js',
+    loaded: (function() {
+      return !!window.jQuery;
+    })()
+  },
+  {
+    // TODO figure out the path for the jQuery typeahead.js
+    // plugin, starting from window or document. We need it
+    // to ensure the plugin has loaded.
+    //exposed: '',
+    type: 'script',
+    url: '//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.2/' +
+      'typeahead.bundle.min.js',
+    loaded: (function() {
+      return !!window.jQuery && !!window.jQuery('body').typeahead;
+    })()
+  },
+  {
+    exposed: 'Modernizr',
+    type: 'script',
+    url: '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js',
+    loaded: (function() {
+      return !!window.Modernizr;
+    })()
+  },
+  {
+    exposed: 'document.registerElement',
+    type: 'script',
+    url: '//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.5.2/CustomElements.min.js',
+    loaded: (function() {
+      return !!document.registerElement;
+    })()
+  }
+];
+
+/**
+ * Streaming version of promisescript
+ *
+ * @param {object} args
+ * @param {string} args.exposed
+ * @param {string} args.type script or style
+ * @param {string} args.url
+ * @return {stream}
+ */
+function loadAssetStreaming(args) {
+  return highland(promisescript(args));
+}
+
+highland(assetsToLoad)
+  .filter(function(asset) {
+    return !asset.loaded;
+  })
+  .errors(function(err, push) {
+    push(err);
+  })
+  .flatMap(loadAssetStreaming)
+  .collect()
+  .each(function(result) {
+    console.log('result');
+    console.log(result);
+    initPathvisiojs(window, window.jQuery || null);
+    registerWikiPathwaysPathvisiojsElement();
+  });

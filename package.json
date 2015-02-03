@@ -131,6 +131,7 @@
     "cross-platform-text": "git://github.com/ariutta/cross-platform-text.git",
     "modernizr": "~3.0.0-pre",
     "insert-css": "~0.2.0",
-    "highland": "~2.3.0"
+    "highland": "~2.3.0",
+    "promisescript": "~1.1.0"
   }
 }
