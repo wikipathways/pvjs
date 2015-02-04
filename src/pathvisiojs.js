@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var ElementResizeDetector = require('element-resize-detector');
 var fs = require('fs');
 var insertCss = require('insert-css');
 var highland = require('highland');
@@ -8,7 +9,6 @@ var DiagramRenderer = require('./diagram-renderer/diagram-renderer');
 var FormatConverter = require('./format-converter/format-converter');
 
 var css = [
-  fs.readFileSync(__dirname + '/annotation-panel/annotation-panel.css'),
   fs.readFileSync(__dirname + '/pathvisiojs.css')
 ];
 
@@ -86,13 +86,9 @@ function initPathvisiojs(window, $) {
     this.$element.attr('id', this.$element.attr('id') ||
         'pathvisio-' + this.instanceId);
 
-    // TODO figure out the best way to handle styling of the
-    // pathvisiojs container as a whole and the viewer/editor.
-    // Also, consider our defaults vs. the user-specified
-    // styles. I've commented this out for the moment, because
-    // it overrides user-specified styles.
-    // Set container class
-    //Utils.addClassForD3(this.$element, 'pathvisiojs-container');
+    // TODO Look into allowing user to override our default styling,
+    // possibly via a custom stylesheet.
+    Utils.addClassForD3(this.$element, 'pathvisiojs-container');
 
     // Set loading class
     Utils.addClassForD3(this.$element, 'loading');
@@ -221,6 +217,7 @@ function initPathvisiojs(window, $) {
         pan: function(point) {if (that.panZoom) {that.panZoom.pan(point);}},
         panBy: function(point) {if (that.panZoom) {that.panZoom.panBy(point);}},
         getPan: function() {return that.panZoom.getPan();},
+        resizeDiagram: function() {return that.panZoom.resizeDiagram();},
         zoom: function(scale) {if (that.panZoom) {that.panZoom.zoom(scale);}},
         zoomBy: function(scale) {
           if (that.panZoom) {
@@ -461,17 +458,216 @@ function registerWikiPathwaysPathvisiojsElement() {
   var WikiPathwaysPathvisiojsPrototype = Object.create(DivPrototype);
 
   WikiPathwaysPathvisiojsPrototype.createdCallback = function() {
-    var alt = this.getAttribute('alt');
+    var vm = this;
+    var args = {};
+
+    var alt = args.alt = vm.getAttribute('alt');
     if (!!alt) {
-      this.attributeChangedCallback('alt', null, alt);
+      vm.attributeChangedCallback('alt', null, alt);
     }
 
-    var src = this.getAttribute('src');
+    var displayErrors = args.displayErrors =
+        Boolean(vm.getAttribute('display-errors'));
+    if (!!displayErrors) {
+      vm.attributeChangedCallback('display-errors', null, displayErrors);
+    }
+
+    var displayWarnings = args.displayErrors =
+        Boolean(vm.getAttribute('display-warnings'));
+    if (!!displayWarnings) {
+      vm.attributeChangedCallback('display-warnings', null, displayWarnings);
+    }
+
+    var fitToContainer = args.fitToContainer =
+        Boolean(vm.getAttribute('fit-to-container'));
+    if (!!fitToContainer) {
+      vm.attributeChangedCallback('fit-to-container', null, fitToContainer);
+    }
+
+    var manualRender = args.manualRender =
+        Boolean(vm.getAttribute('manual-render'));
+    if (!!manualRender) {
+      vm.attributeChangedCallback('manual-render', null, manualRender);
+    }
+
+    var src = vm.getAttribute('src');
     if (!!src) {
-      this.attributeChangedCallback('src', null, src);
+      vm.attributeChangedCallback('src', null, src);
     }
+    args.sourceData = [
+      {
+        uri: src,
+        // TODO we should be able to use the content type
+        // header from the server response instead of relying
+        // on this.
+        // Think analogous to image/png, image/gif, etc. for the img tag.
+        fileType:'gpml' // generally will correspond to filename extension
+      }
+    ];
 
-    loadPathvisiojs(this);
+    vm.innerHTML = '<div class="pathvisiojs-container"></div>';
+
+    var pathvisiojsContainerElement =
+        vm.querySelector('.pathvisiojs-container');
+
+    $(pathvisiojsContainerElement).pathvisiojs(args);
+
+    // Get first element from array of instances
+    var pathInstance = $(pathvisiojsContainerElement).pathvisiojs('get').pop()
+    // TODO remove this from the global namespace
+    window.pathInstance = pathInstance
+
+    // Load notification plugin
+    pathvisiojsNotifications(pathInstance, {
+      displayErrors: displayErrors,
+      displayWarnings: displayWarnings
+    });
+
+    // Call after render
+    pathInstance.on('rendered', function() {
+
+      var diagramContainerElement = pathvisiojsContainerElement.querySelector(
+          '.diagram-container');
+      console.log('diagramContainerElement first');
+      console.log(diagramContainerElement);
+      var svgElement = diagramContainerElement.querySelector(
+        '#pvjs-diagram-' + pathInstance.instanceId);
+
+      var createEventListenerStream = function(type, eventTarget) {
+        var addEventListenerCurried =
+            highland.ncurry(2, eventTarget.addEventListener, type);
+
+        var addEventListenerFlipped = highland.flip(addEventListenerCurried);
+
+        var createStream = highland.wrapCallback(addEventListenerFlipped);
+
+        var stream = createStream(type)
+        .errors(function(err, push) {
+          // The callback is not a Node.js-style callback
+          // with err as the first argument, so we need
+          // to push it along if it's an event, not an error.
+          // TODO is this a cross-browser compatible
+          // for detecting an event?
+          if (err.hasOwnProperty('bubbles')) {
+            return push(null, err);
+          }
+
+          throw err;
+        });
+
+        return stream;
+      }
+
+      // corresponds to ~60Hz
+      var refreshInterval = 16;
+
+      // TODO look at using wrapCallbackUnending here
+      // to avoid the issue with forking and recursion.
+      var createWindowResizeListener = function() {
+        var windowResizeListener = createEventListenerStream('resize', window);
+        windowResizeListener.fork()
+        .debounce(refreshInterval)
+        .each(function() {
+          console.log('window resized');
+          /* TODO make this work correctly
+          diagramContainerElement.setAttribute('style',
+            'width: ' + element.clientWidth + 'px; ' +
+            'height: ' + element.clientHeight + 'px; ')
+          svgElement.setAttribute('width', '100%')
+          svgElement.setAttribute('height', '100%')
+          /*/
+          pathInstance.resizeDiagram();
+        });
+
+        // TODO This seems kludgey.
+        windowResizeListener.fork()
+        .last()
+        .each(function() {
+          createWindowResizeListener();
+        });
+      };
+      createWindowResizeListener();
+
+      function wrapCallbackUnending(fn) {
+        return highland(function(push, next) {
+          fn(function(data) {
+            // TODO figure out why lodash throws the error below
+            // when I try to use _.isError()
+            // "Uncaught TypeError: undefined is not a function"
+            // It's probably becase I'm using an old version of lodash
+            // that doesn't yet have the isError method.
+            //if (_.isError(data)) {
+            // Using the following as error detector, until I update the
+            // lodash version.
+            if (!!data.message && !!data.name &&
+                data.name.toLowerCase().indexOf('error') > -1) {
+              var err = data;
+              push(err);
+              return next();
+            }
+
+            push(null, data);
+            return next();
+          });
+        });
+      };
+
+      // TODO avoid multiple resize event listeners. One should work fine.
+      // But right now, it doesn't.
+      var elementResizeDetectorInstance = ElementResizeDetector({
+        allowMultipleListeners: true
+      });
+      var createElementResizeListener = function(element) {
+        var curried = highland.curry(
+            elementResizeDetectorInstance.listenTo, element);
+        return wrapCallbackUnending(curried);
+      };
+
+      createElementResizeListener(pathvisiojsContainerElement)
+        .debounce(refreshInterval)
+        .each(function(element) {
+          console.log('element resized');
+          if (_.isElement(element)) {
+            diagramContainerElement.setAttribute('style',
+              'width: ' + element.clientWidth + 'px; ' +
+              'height: ' + element.clientHeight + 'px; ')
+            svgElement.setAttribute('width', '100%')
+            svgElement.setAttribute('height', '100%')
+          }
+          pathInstance.resizeDiagram();
+        });
+
+      // TODO check for whether this needs to be loaded
+      // before doing it.
+      window.initPathvisiojsHighlighter(window, window.jQuery || window.Zepto);
+      // Initialize Highlighter plugin
+      var hi = pathvisiojsHighlighter(pathInstance);
+      // TODO don't use hi in global namespace
+      window.hi = hi
+
+      // TODO don't hard-code these
+      // Highlight by ID
+      hi.highlight('#eb5')
+      hi.highlight('id:d25e1')
+
+      // Highlight by Text
+      hi.highlight('Mitochondrion', null, {backgroundColor: 'gray'})
+
+      // Highlight by xref
+      hi.highlight('xref:id:http://identifiers.org/wormbase/ZK1193.5', null, {
+        backgroundColor: 'magenta', borderColor: 'black'})
+      hi.highlight('xref:GCN-2', null, {
+        backgroundColor: 'blue',
+        backgroundOpacity: 0.5,
+        borderColor: 'red',
+        borderWidth: 1,
+        borderOpacity: 0.7
+      });
+
+    });
+
+    // Call renderer
+    pathInstance.render();
   };
 
   // Public: WikiPathwaysPathvisiojsPrototype constructor.
@@ -491,83 +687,6 @@ function registerWikiPathwaysPathvisiojsElement() {
   });
 
 }
-
-/**
- * Automatically load all wikipathways-pathvisiojs custom elements
- *
- * @param {object} el a wikipathways-pathvisiojs custom element
- * @return
- */
-function loadPathvisiojs(el) {
-  $(el).pathvisiojs({
-    fitToContainer: Boolean(el.getAttribute('fit-to-container')),
-    manualRender: Boolean(el.getAttribute('manual-render')),
-    sourceData: [
-      {
-        uri: el.getAttribute('src'),
-        // TODO we should be able to use the content type
-        // header from the server response instead of relying
-        // on this.
-        // Think analogous to .png, .gif, etc. for the img tag.
-        fileType:'gpml' // generally will correspond to filename extension
-      }
-    ]
-  });
-
-  // Get first element from array of instances
-  var pathInstance = $(el).pathvisiojs('get').pop()
-  window.pathInstance = pathInstance
-
-  // Load notification plugin
-  pathvisiojsNotifications(pathInstance, {
-    displayErrors: Boolean(el.getAttribute('display-errors')),
-    displayWarnings: Boolean(el.getAttribute('display-warnings'))
-  });
-
-  // Call after render
-  pathInstance.on('rendered', function() {
-
-    window.initPathvisiojsHighlighter(window, window.jQuery || window.Zepto);
-    // Initialize Highlighter plugin
-    var hi = pathvisiojsHighlighter(pathInstance)
-    window.hi = hi
-
-    // Highlight by ID
-    hi.highlight('#eb5')
-    hi.highlight('id:d25e1')
-
-    // Highlight by Text
-    hi.highlight('Mitochondrion', null, {backgroundColor: 'gray'})
-
-    // Highlight by xref
-    hi.highlight('xref:id:http://identifiers.org/wormbase/ZK1193.5', null, {
-      backgroundColor: 'magenta', borderColor: 'black'})
-    hi.highlight('xref:GCN-2', null, {
-      backgroundColor: 'blue',
-      backgroundOpacity: 0.5,
-      borderColor: 'red',
-      borderWidth: 1,
-      borderOpacity: 0.7
-    });
-
-    var mySvg = $('#pvjs-diagram-1');
-    mySvg.attr('width', '100%');
-    highland('resize', $(window)).each(function() {
-      console.log('child says resized');
-      // TODO in pathvisiojs, set svg to resize
-      // when the container changes in size.
-      // also, make sure that the updates are throttled.
-      // svgPanZoom.resize();
-      mySvg.attr('width', '100%');
-      mySvg.attr('height', '100%');
-    });
-
-  });
-
-  // Call renderer
-  pathInstance.render()
-
-};
 
 /*********************************
  * A very simple asset loader. It checks all
@@ -621,7 +740,8 @@ var assetsToLoad = [
   {
     exposed: 'document.registerElement',
     type: 'script',
-    url: '//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.5.2/CustomElements.min.js',
+    url: '//cdnjs.cloudflare.com/ajax/libs/' +
+        'webcomponentsjs/0.5.2/CustomElements.min.js',
     loaded: (function() {
       return !!document.registerElement;
     })()

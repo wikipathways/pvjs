@@ -2,11 +2,14 @@
 
 .pathvisiojs-container {
   position: relative;
-  width: 100%;
-  height: 100%;
+  min-width: 400px;
+  width: inherit;
+  min-height: 200px;
+  height: inherit;
   overflow: hidden;
   background-color: white;
   font-family: Helvetica, sans-serif, Arial;
+  resize: both;
 }
 
 .pathvisiojs-container.loading {
