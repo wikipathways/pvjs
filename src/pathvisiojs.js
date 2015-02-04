@@ -22,6 +22,12 @@ var css = [
 function initPathvisiojs(window, $) {
   'use strict';
 
+  // TODO should we check for whether the user requested the highlighter
+  // before loading it?
+  if (window.hasOwnProperty('initPathvisiojsHighlighter')) {
+    window.initPathvisiojsHighlighter(window, $);
+  }
+
   DiagramRenderer = DiagramRenderer();
   css.map(insertCss);
 
@@ -371,6 +377,7 @@ function initPathvisiojs(window, $) {
   // TODO re-enable the jQuery entry point. I removed it to make pathvisiojs
   // work with the wikipathways-pathvisiojs custom element, but it would be
   // good to re-enable it.
+  // It might still be working, actually. I haven't tested it. --AR
   if ($) {
     /**
      * jQuery plugin entry point. Only if jQuery is defined.
@@ -436,6 +443,10 @@ function initPathvisiojs(window, $) {
       return data.getPublicInstance();
     });
   };
+
+  if (!!$) {
+    $(window).trigger('pathvisiojsReady');
+  }
 };
 
 /**
@@ -528,8 +539,6 @@ function registerWikiPathwaysPathvisiojsElement() {
 
       var diagramContainerElement = pathvisiojsContainerElement.querySelector(
           '.diagram-container');
-      console.log('diagramContainerElement first');
-      console.log(diagramContainerElement);
       var svgElement = diagramContainerElement.querySelector(
         '#pvjs-diagram-' + pathInstance.instanceId);
 
@@ -568,7 +577,6 @@ function registerWikiPathwaysPathvisiojsElement() {
         windowResizeListener.fork()
         .debounce(refreshInterval)
         .each(function() {
-          console.log('window resized');
           /* TODO make this work correctly
           diagramContainerElement.setAttribute('style',
             'width: ' + element.clientWidth + 'px; ' +
@@ -637,9 +645,9 @@ function registerWikiPathwaysPathvisiojsElement() {
           pathInstance.resizeDiagram();
         });
 
-      // TODO check for whether this needs to be loaded
-      // before doing it.
-      window.initPathvisiojsHighlighter(window, window.jQuery || window.Zepto);
+      /*// TODO read the URL query parameters and also the
+        // highlight="[{}, {}]" attribute to get these values
+
       // Initialize Highlighter plugin
       var hi = pathvisiojsHighlighter(pathInstance);
       // TODO don't use hi in global namespace
@@ -663,6 +671,7 @@ function registerWikiPathwaysPathvisiojsElement() {
         borderWidth: 1,
         borderOpacity: 0.7
       });
+      //*/
 
     });
 
