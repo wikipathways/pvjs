@@ -3,7 +3,7 @@
 		image-rendering: auto;
 		shape-rendering: auto;
 		vector-effect: non-scaling-stroke;
-                background: white;
+    background: white;
 	/* removed fill and stroke since they override marker specs */
 	/*	fill: white;
     		stroke: black; */

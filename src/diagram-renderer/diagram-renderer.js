@@ -144,8 +144,12 @@ module.exports = function renderer() {
         });
       }
 
-      var documentElement = document.documentElement;
-      var pvjsViewerElement = document.querySelector('#pathvisiojs-viewer');
+      // TODO refactor this to make sure it works multi-instance
+      var pathvisiojsContainerElement =
+          document.querySelector('.pathvisiojs-container');
+      var diagramContainerElement = pathvisiojsContainerElement.querySelector(
+          '.diagram-container');
+
       // Svg-pan-zoom
       // Should come last as it is fitting and centering viewport
       var svgSelection = d3.select('#' + 'pvjs-diagram-' + pvjs.instanceId);
@@ -195,58 +199,15 @@ module.exports = function renderer() {
       pvjs.panZoom = svgPanZoom;
 
       // Make SVG resizable
-      var createEventListenerStream = function(type, eventTarget) {
-        var addEventListenerCurried =
-            highland.ncurry(2, eventTarget.addEventListener, type);
+      pvjs.panZoom.resizeDiagram = function() {
+        svgElement.setAttribute('width', diagramContainerElement.clientWidth)
+        svgElement.setAttribute('height', diagramContainerElement.clientHeight)
 
-        var addEventListenerFlipped = highland.flip(addEventListenerCurried);
-
-        var createStream = highland.wrapCallback(addEventListenerFlipped);
-
-        var stream = createStream(type)
-        .errors(function(err, push) {
-          // The callback is not a Node.js-style callback
-          // with err as the first argument, so we need
-          // to push it along if it's an event, not an error.
-          // TODO is this a cross-browser compatible
-          // for detecting an event?
-          if (err.hasOwnProperty('bubbles')) {
-            return push(null, err);
-          }
-
-          throw err;
-        });
-
-        return stream;
-      }
-
-      var createWindowResizeListener = function() {
-        // corresponds to ~60Hz
-        var refreshInterval = 16;
-
-        var windowResizeListener = createEventListenerStream('resize', window);
-
-        windowResizeListener.fork()
-        .debounce(refreshInterval)
-        .each(function() {
-          svgElement.setAttribute('width', pvjsViewerElement.clientWidth)
-          svgElement.setAttribute('height', pvjsViewerElement.clientHeight)
-
-          svgPanZoom.updateBBox();
-          svgPanZoom.resize();
-          svgPanZoom.fit();
-          svgPanZoom.center();
-        });
-
-        // TODO This seems kludgey.
-        windowResizeListener.fork()
-        .last()
-        .each(function() {
-          createWindowResizeListener();
-        });
+        svgPanZoom.updateBBox();
+        svgPanZoom.resize();
+        svgPanZoom.fit();
+        svgPanZoom.center();
       };
-
-      createWindowResizeListener();
 
       pvjs.trigger('rendered.renderer')
     }
