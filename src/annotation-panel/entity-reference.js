@@ -12,7 +12,7 @@ module.exports = function(){
     var xrefs = args.xrefs;
     var metadata = args.metadata;
     // TODO bumbu hardcoded
-    var diagramLoadingIconUri = 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif'
+    var diagramLoadingIconUri = 'http://upload.wikimedia.org/wikipedia/commons/2/28/InternetSlowdown_Day.gif'
     var preloadedData = {
       'header': metadata.label,
       'description': metadata.description,
