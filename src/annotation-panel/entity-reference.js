@@ -11,12 +11,11 @@ module.exports = function(){
   function render(pvjs, args) {
     var xrefs = args.xrefs;
     var metadata = args.metadata;
-    // TODO bumbu hardcoded
-    var diagramLoadingIconUri = 'http://upload.wikimedia.org/wikipedia/commons/2/28/InternetSlowdown_Day.gif'
     var preloadedData = {
       'header': metadata.label,
       'description': metadata.description,
-      'listItems':[diagramLoadingIconUri]
+      // TODO there's probably a better way to do this.
+      'listItems':[null]
     };
     Annotation.render(pvjs, preloadedData);
 

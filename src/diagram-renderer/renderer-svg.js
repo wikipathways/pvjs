@@ -25,9 +25,21 @@ RendererSvg.init = function(pvjs) {
    */
   this._elementsHash = {}
 
-  var containerBoundingClientRect = pvjs.$element[0][0].getBoundingClientRect()
-    , containerWidth = containerBoundingClientRect.width
-    , containerHeight = containerBoundingClientRect.height
+  console.log('pvjs');
+  console.log(pvjs);
+  var containerBoundingClientRect = pvjs.$element[0][0].getBoundingClientRect();
+  // TODO pvjs.$element is a d3 selection with the overall pathvisiojs-container.
+  // We should instead be working with the diagram container in here, but it isn't
+  // full size when created, so the following code doesn't work:
+  /*
+  var containerBoundingClientRect = pvjs.$element
+    .select('.diagram-container')[0][0].getBoundingClientRect()
+  //*/
+  var containerWidth = containerBoundingClientRect.width;
+  // TODO this is kludgy to have the 200 specified here.
+  // We need to make the diagram container leave room for
+  // the bottom toolbar, but there's a better way to do it.
+  var containerHeight = containerBoundingClientRect.height - 200;
 
   this.crossPlatformShapesInstance = crossPlatformShapes.getInstance({
       targetSelector: '#' + pvjs.$element.attr('id') + ' .diagram-container'

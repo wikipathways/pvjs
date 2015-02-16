@@ -133,6 +133,8 @@
     "insert-css": "~0.2.0",
     "highland": "~2.3.0",
     "promisescript": "~1.1.0",
-    "element-resize-detector": "~0.1.4"
+    "element-resize-detector": "~0.1.4",
+    "spin.js": "~2.0.2",
+    "mithril": "~0.1.30"
   }
 }

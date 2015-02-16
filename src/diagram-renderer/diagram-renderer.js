@@ -201,7 +201,8 @@ module.exports = function renderer() {
       // Make SVG resizable
       pvjs.panZoom.resizeDiagram = function() {
         svgElement.setAttribute('width', diagramContainerElement.clientWidth)
-        svgElement.setAttribute('height', diagramContainerElement.clientHeight)
+        svgElement.setAttribute('height',
+            diagramContainerElement.clientHeight)
 
         svgPanZoom.updateBBox();
         svgPanZoom.resize();
