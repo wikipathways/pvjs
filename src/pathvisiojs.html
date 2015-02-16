@@ -1,5 +1,90 @@
-<!-- Diagram Container -->
-<div class="diagram-container"></div>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+  <!-- Select2 theme -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+
+  <!--
+    Selectize theme
+    Less versions are available at https://github.com/brianreavis/selectize.js/tree/master/dist/less
+  -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+  <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.bootstrap2.css"> -->
+  <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.bootstrap3.css"> -->
+
+  <style>
+    body {
+      padding: 15px;
+    }
+    .select2 > .select2-choice.ui-select-match {
+      /* Because of the inclusion of Bootstrap */
+      height: 29px;
+    }
+    .selectize-control > .selectize-dropdown {
+      top: 36px;
+    }
+  </style>
+
+  <div class="well well-sm col-sm-12">
+    <span title="Search mode" class="glyphicon glyphicon-bold"></span>
+    <span title="Search mode" class="glyphicon glyphicon-italic"></span>
+    <span title="Search mode" class="glyphicon glyphicon-align-left"></span>
+    <span title="Search mode" class="glyphicon glyphicon-align-center"></span>
+    <span title="Search mode" class="glyphicon glyphicon-align-right"></span>
+  </div>
+
+  <div class="well well-sm col-sm-12">
+    <!-- Diagram Container -->
+    <div class="diagram-container"></div>
+  </div>
+        <p ng-show = "success" class="text-center text-success">Changes Saved!</p>
+
+  <div class="col-lg-12">
+    <div class="well well-sm col-sm-3">
+      <form class = "form-search">
+        <div class = "input-group">
+          <input ng-blur="loadOptions(requestedAttribute)" ng-model="requestedAttribute" type="text" class="form-control" placeholder="Search by name">
+            <span class="input-group-btn">
+             <button type="submit" class="btn btn-success" ng-click="open('lg')">
+             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              </button>
+            </span>
+        </div>
+      </form>
+    </div>
+    
+    <div class="well well-sm col-sm-9">
+       <form class = "form-inline" role="form">
+          <!--<div ng-show="xref">Selection from a modal: {{ xref }}</div>-->
+      <select ng-model="xref.gpmlType" class="col-lg-2 form-control" ng-click="isEdited = true">
+        <option>Type</option>
+        <option value="GeneProduct">Gene Product</option>
+        <option>Metabolite</option>
+        <option>Pathway</option>
+        <option>Protein</option>
+        <option>Unknown</option>
+      </select>
+  
+      <select ng-model="xref.db" class="col-lg-2 form-control" ng-click="isEdited = true">
+        <option>Database</option>
+        <option ng-repeat="dataset in datasets">{{dataset._displayName}}</option>
+      </select>
+  
+      <span ng-hide = "isEdited">
+        <button class = "btn pull-right" type="button">
+         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </span>
+
+      <span ng-show = "isEdited">
+        <button type="button" class="btn btn-link pull-right" ng-click = "isEdited = false">Cancel</button>
+        <button type="button" ng-click="success = true; isEdited = false" class="btn btn-success pull-right">OK</button>
+      </span>
+
+      <input type="text" ng-model="xref.identifier" class="form-control" placeholder="ID" ng-click="isEdited = true">
+      <input type="text" ng-model="xref.displayName" class="form-control" placeholder="Display name" ng-click="isEdited = true">
+      </form>
+    </div>
+  </div>
 
 <!-- Details Frame -->
 <div class="annotation ui-draggable">

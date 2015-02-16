@@ -15,7 +15,7 @@
     <div id="wikipathways-pathvisiojs-1" style="width: 800px; height: 570px; border: 1px solid #ccc;">
       <img alt="WP525 Biological Pathway"
         src="http://test2.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP525">
-  </div>
+    </div>
 
     <h1>Pathvisiojs Diagram Instance 2: WP1</h1>
     <div id="wikipathways-pathvisiojs-2" style="width: 700px; height: 200px; border: 1px solid #ccc;">
@@ -31,6 +31,8 @@
   /* *******************/
   $(window).on('pathvisiojsReady', function() {
     console.log('pathvisiojsReady');
+    console.log('highlighter loaded');
+    console.log(!!window.pathvisiojsHighlighter);
     $(function() {
       $('#wikipathways-pathvisiojs-1').pathvisiojs({
         fitToContainer: true,
@@ -45,11 +47,11 @@
             fileType:'gpml' // generally will correspond to filename extension
           },
           {
-            uri:'http://test2.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+            uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
             fileType:'biopax'
           },
           {
-            uri:'http://test2.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+            uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
             fileType:'png'
           }
         ]
@@ -99,11 +101,11 @@
         sourceData: [
           // at least one item required
           {
-            uri:'http://test2.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+            uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
             fileType:'biopax'
           },
           {
-            uri:'http://test2.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+            uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
             fileType:'png'
           },
           {

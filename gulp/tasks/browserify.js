@@ -59,12 +59,16 @@ gulp.task('browserify', function() {
     // stream gulp compatible. Specify the
     // desired output filename here.
     .pipe(source(getBundleName() + '.js'))
-    //.pipe(source('pathvisiojs.bundle.min.js'))
+    /*
+    // TODO re-enable these tasks so they work when
+    // not watching. They are too slow to enable
+    // when watching during development.
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
     // Add transformation tasks to the pipeline here.
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
+    //*/
     // Specify the output destination
     .pipe(gulp.dest('./dist/'))
     // Log when bundling completes!

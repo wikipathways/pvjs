@@ -1,12 +1,14 @@
 var _ = require('lodash');
 var ElementResizeDetector = require('element-resize-detector');
 var fs = require('fs');
+var Editor = require('./editor/editor');
 var insertCss = require('insert-css');
 var highland = require('highland');
 var promisescript = require('promisescript');
 var Utils = require('./utils');
 var DiagramRenderer = require('./diagram-renderer/diagram-renderer');
 var FormatConverter = require('./format-converter/format-converter');
+var Spinner = require('spin.js');
 
 var css = [
   fs.readFileSync(__dirname + '/pathvisiojs.css')
@@ -28,7 +30,7 @@ function initPathvisiojs(window, $) {
     window.initPathvisiojsHighlighter(window, $);
   }
 
-  DiagramRenderer = DiagramRenderer();
+  DiagramRenderer = DiagramRenderer(this);
   css.map(insertCss);
 
   /**
@@ -57,6 +59,27 @@ function initPathvisiojs(window, $) {
   Pathvisiojs.prototype.init = function(element, options) {
     this.$element = d3.select(element).html(''); // select and empty the element
 
+    var spinnerOptions = {
+      lines: 13, // The number of lines to draw
+      length: 20, // The length of each line
+      width: 10, // The line thickness
+      radius: 30, // The radius of the inner circle
+      corners: 1, // Corner roundness (0..1)
+      rotate: 0, // The rotation offset
+      direction: 1, // 1: clockwise, -1: counterclockwise
+      color: '#000', // #rgb or #rrggbb or array of colors
+      speed: 1, // Rounds per second
+      trail: 60, // Afterglow percentage
+      shadow: false, // Whether to render a shadow
+      hwaccel: false, // Whether to use hardware acceleration
+      className: 'spinner', // The CSS class to assign to the spinner
+      zIndex: 2e9, // The z-index (defaults to 2000000000)
+      top: '50%', // Top position relative to parent
+      left: '50%' // Left position relative to parent
+    };
+
+    var spinner = new Spinner(spinnerOptions).spin(element);
+
     // Clone and fill options
     this.options = _.clone(optionsDefault, true);
     this.options = _.assign(this.options, options);
@@ -68,10 +91,11 @@ function initPathvisiojs(window, $) {
     this.events = {};
 
     this.initContainer();
+    Editor.open();
 
     // Check if render should be called now or it will be done later manually
     if (!this.options.manualRender) {
-      this.render();
+      this.render(this);
     }
   };
 
@@ -108,10 +132,10 @@ function initPathvisiojs(window, $) {
     var boundingRect = this.$element[0][0].getBoundingClientRect();
 
     // TODO take in account paddings, margins and border
-    this.element_width = +boundingRect.width;
+    this.elementWidth = +boundingRect.width;
 
     // TODO take in account paddings, margins and border
-    this.element_height = +boundingRect.height;
+    this.elementHeight = +boundingRect.height;
   };
 
   /**
@@ -245,14 +269,15 @@ function initPathvisiojs(window, $) {
         getSourceData: function() {
         // return _.clone(that.sourceData, true);
         return {
-          sourceIndex: that.sourceData.sourceIndex,
-          uri: that.sourceData.uri,
-          fileType: that.sourceData.fileType,
-          pvjson: _.clone(that.sourceData.pvjson, true),
-          selector: that.sourceData.selector.getClone(),
-          rendererEngine: that.sourceData.rendererEngine
-        };
-      }
+            //editor: new Editor(that),
+            sourceIndex: that.sourceData.sourceIndex,
+            uri: that.sourceData.uri,
+            fileType: that.sourceData.fileType,
+            pvjson: _.clone(that.sourceData.pvjson, true),
+            selector: that.sourceData.selector.getClone(),
+            rendererEngine: that.sourceData.rendererEngine
+          };
+        }
       };
     }
 
@@ -374,10 +399,6 @@ function initPathvisiojs(window, $) {
   /**
    *
    */
-  // TODO re-enable the jQuery entry point. I removed it to make pathvisiojs
-  // work with the wikipathways-pathvisiojs custom element, but it would be
-  // good to re-enable it.
-  // It might still be working, actually. I haven't tested it. --AR
   if ($) {
     /**
      * jQuery plugin entry point. Only if jQuery is defined.
@@ -447,7 +468,7 @@ function initPathvisiojs(window, $) {
   if (!!$) {
     $(window).trigger('pathvisiojsReady');
   }
-};
+}
 
 /**
  * Enable the wikipathways-pathvisiojs custom element
@@ -495,11 +516,13 @@ function registerWikiPathwaysPathvisiojsElement() {
       vm.attributeChangedCallback('fit-to-container', null, fitToContainer);
     }
 
+    /* TODO should this be enabled? It doesn't seem needed for the web-component.
     var manualRender = args.manualRender =
         Boolean(vm.getAttribute('manual-render'));
     if (!!manualRender) {
       vm.attributeChangedCallback('manual-render', null, manualRender);
     }
+    //*/
 
     var src = vm.getAttribute('src');
     if (!!src) {
@@ -539,6 +562,16 @@ function registerWikiPathwaysPathvisiojsElement() {
 
       var diagramContainerElement = pathvisiojsContainerElement.querySelector(
           '.diagram-container');
+
+      /*
+      // TODO set this correctly the first time
+      var testingHeight = diagramContainerElement.clientHeight;
+      diagramContainerElement.setAttribute('style',
+        'padding: 3px 6px 30px 3px; ' +
+        'height: ' + (testingHeight - 200) + 'px; ');
+      pathInstance.resizeDiagram();
+      //*/
+
       var svgElement = diagramContainerElement.querySelector(
         '#pvjs-diagram-' + pathInstance.instanceId);
 
@@ -618,7 +651,7 @@ function registerWikiPathwaysPathvisiojsElement() {
             return next();
           });
         });
-      };
+      }
 
       // TODO avoid multiple resize event listeners. One should work fine.
       // But right now, it doesn't.
@@ -638,7 +671,7 @@ function registerWikiPathwaysPathvisiojsElement() {
           if (_.isElement(element)) {
             diagramContainerElement.setAttribute('style',
               'width: ' + element.clientWidth + 'px; ' +
-              'height: ' + element.clientHeight + 'px; ')
+              'height: ' + (element.clientHeight - 300) + 'px; ')
             svgElement.setAttribute('width', '100%')
             svgElement.setAttribute('height', '100%')
           }
@@ -674,9 +707,6 @@ function registerWikiPathwaysPathvisiojsElement() {
       //*/
 
     });
-
-    // Call renderer
-    pathInstance.render();
   };
 
   // Public: WikiPathwaysPathvisiojsPrototype constructor.
