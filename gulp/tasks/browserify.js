@@ -64,6 +64,8 @@ gulp.task('browserify', function() {
     // not watching. They are too slow to enable
     // when watching during development.
     .pipe(buffer())
+    // TODO watch this issue:
+    // https://github.com/floridoo/gulp-sourcemaps/issues/73
     .pipe(sourcemaps.init({loadMaps: true}))
     // Add transformation tasks to the pipeline here.
     .pipe(uglify())
