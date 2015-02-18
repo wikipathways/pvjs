@@ -1,4 +1,4 @@
-pathvisiojs (v2.1.3)
+pathvisiojs (v2.2.0)
 ====================
 
 JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pathvisiojs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pathvisiojs.
@@ -10,43 +10,62 @@ Demo
 
 How To Add It To Your Site
 ===================
-It's as simple as referencing the pathvisiojs JavaScript bundle and its dependencies in your HTML document:
+You can loading it with either one of the two options below: HTML Element or Script.
+It's as simple as referencing the pathvisiojs JavaScript bundle in your HTML document:
+
+## Load Using HTML Element
+
 ```HTML
-<script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/pathvisiojs-2.1.3.bundle.min.js"></script>
+<div is="wikipathways-pathvisiojs"
+    class="wikipathways-pathvisiojs"
+    alt="WP525 Biological Pathway"
+    src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525"
+    display-errors="true"
+    display-warnings="true"
+    fit-to-container="true">
+</div>
+
+<script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/pathvisiojs-2.2.0.bundle.min.js"></script>
 ```
 
-To add the dependencies, you can copy [this example](https://github.com/wikipathways/pathvisiojs/blob/gh-pages/index.html).
+## Load Using Script
 
-If you have jQuery than you may do
+First reference the pathvisiojs JavaScript bundle in your HTML document:
+
+```HTML
+<script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/pathvisiojs-2.2.0.bundle.min.js"></script>
+```
+
+If you have jQuery, then you may do:
 
 ```js
 $('#pathvisiojs-container').pathvisiojs({
   sourceData: [
     // at least one item required
     {
-      uri:'http://localhost/pathvisiojs/dist_new/data/wp1.xml',
+      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525',
       fileType:'gpml' // generally will correspond to filename extension
     }
   , {
-      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP525',
       fileType:'png'
     }
   ]
 })
 ```
 
-If you have no jQuery and do not want to add it then you may call `pathvisiojs` directly and pass two argumets: container selector and options object.
+If you don't have jQuery and do not want to add it, then you may call `pathvisiojs` directly and pass two arguments: container selector and options object.
 
 ```js
 pathvisiojs('#pathvisiojs-container', {
   sourceData: [
     // at least one item required
     {
-      uri:'http://localhost/pathvisiojs/dist_new/data/wp1.xml',
+      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525',
       fileType:'gpml' // generally will correspond to filename extension
     }
   , {
-      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP525',
       fileType:'png'
     }
   ]
