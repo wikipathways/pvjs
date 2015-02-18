@@ -1,7 +1,7 @@
 var Annotation = require('./annotation-panel.js');
 var BridgeDb = require('bridgedb');
 //var BridgeDb = require('../../../bridgedbjs/index.js');
-var formatter = require('./format');
+var formatter = require('./formatter');
 var highland = require('highland');
 var jsonld = require('jsonld');
 
@@ -28,8 +28,7 @@ module.exports = function() {
 
       var bridgeDb = new BridgeDb({
         baseIri: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb.php/',
-        //datasetsMetadataIri: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php',
-        datasetsMetadataIri: 'http://localhost:3000/demo-mithril/datasources.txt',
+        datasetsMetadataIri: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php',
         organism: 'Homo sapiens'
       });
 
