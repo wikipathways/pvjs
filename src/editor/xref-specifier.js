@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var BridgeDb = require('bridgedb');
-//var BridgeDb = require('../../../bridgedbjs/index.js');
+//var BridgeDb = require('bridgedb');
+var BridgeDb = require('../../../bridgedbjs/index.js');
 var DatasetSelector = require('./dataset-selector');
 var displayNameInput = require('./display-name-input');
 var editorUtils = require('./editor-utils');
@@ -130,6 +130,20 @@ var editor = (function() {
     var promisifiedPrimaryFreeSearch = highland.compose(
         promisify, primaryFreeSearch);
 
+    /*
+    promisifiedPrimaryFreeSearch({attribute: 'Nfkb1'})
+      .then(function(result) {
+        console.log('result');
+        console.log(result);
+      });
+
+    primaryFreeSearch({attribute: 'Nfkb1'})
+      .each(function(result) {
+        console.log('result');
+        console.log(result);
+      });
+    //*/
+
     /******************************
     * simpleModal
     *****************************/
@@ -217,8 +231,8 @@ var editor = (function() {
     };
 
     /******************************
-     * search by name input
-     *****************************/
+      * search by name input
+      *****************************/
 
     //module for bridgeDbXrefSearch
     //for simplicity, we use this module to namespace the model classes
@@ -268,7 +282,7 @@ var editor = (function() {
         //and clears the query field for user convenience
         vm.search = function() {
           if (vm.query()) {
-            vm.modalList.push(new bridgeDbXrefSearch.XrefList(vm.query()));
+            promisifiedPrimaryFreeSearch({attribute: vm.query()});
             vm.query('');
           }
         };
@@ -285,7 +299,7 @@ var editor = (function() {
     //here's the view
     bridgeDbXrefSearch.view = function() {
       return m('div.well.well-sm.col-sm-3', [
-        m('div.form-search', [
+        m('form.form-search', [
           m('div.input-group', [
             m('input[placeholder="Search by name"][type="text"].form-control', {
               onchange: m.withAttr('value', bridgeDbXrefSearch.vm.query),
@@ -302,6 +316,9 @@ var editor = (function() {
         ]),
       ]);
     };
+
+    //initialize the application
+    //m.module(document.body, bridgeDbXrefSearch);
 
     /***********************************
      * bridgeDbXrefSpecifier
@@ -334,7 +351,7 @@ var editor = (function() {
 
     bridgeDbXrefSpecifier.view = function() {
       return m('div.well.well-sm.col-sm-12', [
-        m('div.form-inline', [
+        m('form[role="form"].form-inline', [
           bridgeDbXrefSearch.view(),
           gpmlDataNodeTypeSelector.view(),
           datasetSelector.view(),

@@ -1,6 +1,6 @@
 var _ = require('lodash');
-var BridgeDb = require('bridgedb');
-//var BridgeDb = require('../../../bridgedbjs/index.js');
+//var BridgeDb = require('bridgedb');
+var BridgeDb = require('../../../bridgedbjs/index.js');
 var DatasetSelector = require('./dataset-selector');
 var displayNameInput = require('./display-name-input');
 var editorUtils = require('./editor-utils');
@@ -217,8 +217,8 @@ var editor = (function() {
     };
 
     /******************************
-     * search by name input
-     *****************************/
+      * search by name input
+      *****************************/
 
     //module for bridgeDbXrefSearch
     //for simplicity, we use this module to namespace the model classes
@@ -252,8 +252,6 @@ var editor = (function() {
           dataset.id = m.prop(dataset['@id']);
           dataset.name = m.prop(dataset._displayName);
           datasetSelector.vm.currentDataset = dataset;
-          identifierInput.vm.identifier = m.prop(xref.identifier);
-          displayNameInput.vm.displayName = m.prop(xref.displayName);
           console.log('xref');
           console.log(xref);
           /*
@@ -264,8 +262,8 @@ var editor = (function() {
           //*/
         };
 
-        //searches for xrefs, which are added to the list,
-        //and clears the query field for user convenience
+        //searches for xrefs, which are added to the list, and
+        //clears the query field for user convenience
         vm.search = function() {
           if (vm.query()) {
             vm.modalList.push(new bridgeDbXrefSearch.XrefList(vm.query()));
@@ -285,20 +283,18 @@ var editor = (function() {
     //here's the view
     bridgeDbXrefSearch.view = function() {
       return m('div.well.well-sm.col-sm-3', [
-        m('div.form-search', [
-          m('div.input-group', [
-            m('input[placeholder="Search by name"][type="text"].form-control', {
-              onchange: m.withAttr('value', bridgeDbXrefSearch.vm.query),
-              value: bridgeDbXrefSearch.vm.query()
-            }),
-            m('span.input-group-btn', {onclick: bridgeDbXrefSearch.vm.search},
-              m('button[type="submit"].btn.btn-success', [
-                m('span[aria-hidden="true"].glyphicon.glyphicon-search')
-              ])),
-            bridgeDbXrefSearch.vm.modalList.map(function(xrefList, index) {
-              return simpleModalComponent.view(xrefList);
-            })
-          ]),
+        m('div.input-group', [
+          m('input[placeholder="Search by name"][type="text"].form-control', {
+            onchange: m.withAttr('value', bridgeDbXrefSearch.vm.query),
+            value: bridgeDbXrefSearch.vm.query()
+          }),
+          m('span.input-group-btn', {onclick: bridgeDbXrefSearch.vm.search},
+            m('button[type="submit"].btn.btn-success', [
+              m('span[aria-hidden="true"].glyphicon.glyphicon-search')
+            ])),
+          bridgeDbXrefSearch.vm.modalList.map(function(xrefList, index) {
+            return simpleModalComponent.view(xrefList);
+          })
         ]),
       ]);
     };
@@ -332,6 +328,33 @@ var editor = (function() {
       bridgeDbXrefSpecifier.vm.init();
     }
 
+    /*
+    bridgeDbXrefSpecifier.view = function() {
+      return m('div.well.well-sm.col-sm-12', [
+        bridgeDbXrefSearch.view(),
+        gpmlDataNodeTypeSelector.view(),
+        datasetSelector.view(),
+        identifierInput.view(),
+        displayNameInput.view()
+      ]);
+    }
+    //*/
+
+    /*
+    bridgeDbXrefSpecifier.view = function() {
+      return m('div.well.well-sm.col-sm-12', [
+        m('form[role="form"].form-inline', [
+          bridgeDbXrefSearch.view(),
+          gpmlDataNodeTypeSelector.view(),
+          datasetSelector.view(),
+          identifierInput.view(),
+          displayNameInput.view()
+        ])
+      ]);
+    }
+    //*/
+
+    //*
     bridgeDbXrefSpecifier.view = function() {
       return m('div.well.well-sm.col-sm-12', [
         m('div.form-inline', [
@@ -343,6 +366,7 @@ var editor = (function() {
         ])
       ]);
     }
+    //*/
 
     m.module(document.querySelector('.pathvisiojs-editor-xref-selector'), bridgeDbXrefSpecifier);
   }
@@ -353,3 +377,4 @@ var editor = (function() {
 })();
 
 module.exports = editor;
+

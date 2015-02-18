@@ -121,7 +121,7 @@
     "gulp-build-branch": "~0.1.4"
   },
   "dependencies": {
-    "bridgedb": "~1.0.3",
+    "bridgedb": "~4.1.0",
     "cross-platform-shapes": "git://github.com/ariutta/cross-platform-shapes.git",
     "jsonld": "~0.2.17",
     "svg-pan-zoom": "git://github.com/ariutta/svg-pan-zoom.git",
@@ -135,6 +135,7 @@
     "promisescript": "~1.1.0",
     "element-resize-detector": "~0.1.4",
     "spin.js": "~2.0.2",
-    "mithril": "~0.1.30"
+    "mithril": "~0.1.30",
+    "iconv-lite": "~0.4.7"
   }
 }
