@@ -39,7 +39,8 @@ RendererSvg.init = function(pvjs) {
   // TODO this is kludgy to have the 200 specified here.
   // We need to make the diagram container leave room for
   // the bottom toolbar, but there's a better way to do it.
-  var containerHeight = containerBoundingClientRect.height - 200;
+  //var containerHeight = containerBoundingClientRect.height - 200;
+  var containerHeight = containerBoundingClientRect.height;
 
   this.crossPlatformShapesInstance = crossPlatformShapes.getInstance({
       targetSelector: '#' + pvjs.$element.attr('id') + ' .diagram-container'

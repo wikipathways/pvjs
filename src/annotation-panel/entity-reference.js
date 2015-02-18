@@ -1,9 +1,11 @@
-var Annotation = require('./annotation-panel.js')
-  , Bridgedb = require('bridgedbjs')
-  , jsonld = require('jsonld')
-  ;
+var Annotation = require('./annotation-panel.js');
+var BridgeDb = require('bridgedb');
+//var BridgeDb = require('../../../bridgedbjs/index.js');
+var formatter = require('./format');
+var highland = require('highland');
+var jsonld = require('jsonld');
 
-module.exports = function(){
+module.exports = function() {
   'use strict';
 
   var pathwaySearchUriStub = '/index.php?title=Special:SearchPathways&doSearch=1&query=';
@@ -23,16 +25,41 @@ module.exports = function(){
       // dereference the BridgeDB IRI to get multiple xrefs
       var bridgedbArgs = metadata;
       bridgedbArgs.bridgedbUri = xrefs.id;
-      var xRefData = Bridgedb.getXrefsNestedForDisplay(bridgedbArgs, function(err, bridgedbData) {
-        //*
-        var searchAtWikiPathwaysListItem = {key:'WikiPathways', values:[ { text: 'Search for ' + metadata.label, uri: pathwaySearchUriStub + metadata.label }]};
-        bridgedbData.listItems.unshift(searchAtWikiPathwaysListItem);
-        //*/
 
-        Annotation.render(pvjs, bridgedbData);
+      var bridgeDb = new BridgeDb({
+        baseIri: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb.php/',
+        //datasetsMetadataIri: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php',
+        datasetsMetadataIri: 'http://localhost:3000/demo-mithril/datasources.txt',
+        organism: 'Homo sapiens'
       });
+
+      var xRefData = bridgeDb.xref.get(bridgedbArgs)
+        .collect()
+        .flatMap(function(xrefs) {
+          return formatter.formatListForDisplay({
+            inputStream: highland(xrefs),
+            primaryResource: xrefs[0],
+            label: metadata.label,
+            description: metadata.description
+          });
+        })
+        .each(function(annotationData) {
+          annotationData.listItems = annotationData.listItems[0];
+          var searchAtWikiPathwaysListItem = {
+            key:'WikiPathways',
+            values:[{
+              text: 'Search for ' + metadata.label,
+              uri: pathwaySearchUriStub + metadata.label
+            }]};
+          annotationData.listItems.unshift(searchAtWikiPathwaysListItem);
+
+          Annotation.render(pvjs, annotationData);
+        });
     } else {
-      var xrefWithContext = {'@context':pvjs.sourceData.pvjson['@context'], '@graph':{entityReference:xrefs.id}}
+      var xrefWithContext = {
+        '@context': pvjs.sourceData.pvjson['@context'],
+        '@graph':{entityReference:xrefs.id}
+      }
       jsonld.expand(xrefWithContext, function(err, expandedXref) {
         console.log('err');
         console.log(err);
@@ -44,21 +71,28 @@ module.exports = function(){
           directLinkData = {
             'header': metadata.label,
             'description': metadata.description,
-            'listItems':[{key:'WikiPathways', values:[ { text: wikipathwaysId, uri: xrefIri }]}]
+            'listItems':[{key:'WikiPathways', values:[{text: wikipathwaysId, uri: xrefIri}]}]
           };
-        } else if (xrefIri.search(/GO:\d{7}$/) > -1) { // because this is none of the types that BridgeDB handles, I'm only expecting GO Cell Ontology terms here
+        } else if (xrefIri.search(/GO:\d{7}$/) > -1) {
+          // because this is none of the types that BridgeDB handles,
+          // I'm only expecting GO Cell Ontology terms here
           var goId = xrefIri.match(/GO:\d{7}$/)[0];
           directLinkData = {
             'header': xrefs.id,
             'description': '',
-            'listItems':[{key:'GO Cellular Component Ontology', values:[ { text: goId, uri: xrefIri }]}]
+            'listItems':[{
+              key:'GO Cellular Component Ontology',
+              values:[{text: goId, uri: xrefIri}]
+            }]
           };
         } else {
           // TODO use data-sources.txt and identifiers.org to make this prettier
           directLinkData = {
             'header': metadata.label,
             'description': metadata.description,
-            'listItems':[{key:'More Information', values:[ { text: xrefIri, uri: xrefIri }]}]
+            'listItems':[{
+              key:'More Information',
+              values:[{text: xrefIri, uri: xrefIri}]}]
           };
         }
 

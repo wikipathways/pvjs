@@ -1,9 +1,9 @@
 var _ = require('lodash');
+//var Editor = require('./editor/editor');
 var ElementResizeDetector = require('element-resize-detector');
 var fs = require('fs');
-var Editor = require('./editor/editor');
-var insertCss = require('insert-css');
 var highland = require('highland');
+var insertCss = require('insert-css');
 var promisescript = require('promisescript');
 var Utils = require('./utils');
 var DiagramRenderer = require('./diagram-renderer/diagram-renderer');
@@ -91,7 +91,7 @@ function initPathvisiojs(window, $) {
     this.events = {};
 
     this.initContainer();
-    Editor.open();
+    //Editor.open(this);
 
     // Check if render should be called now or it will be done later manually
     if (!this.options.manualRender) {
@@ -269,7 +269,6 @@ function initPathvisiojs(window, $) {
         getSourceData: function() {
         // return _.clone(that.sourceData, true);
         return {
-            //editor: new Editor(that),
             sourceIndex: that.sourceData.sourceIndex,
             uri: that.sourceData.uri,
             fileType: that.sourceData.fileType,
@@ -671,7 +670,9 @@ function registerWikiPathwaysPathvisiojsElement() {
           if (_.isElement(element)) {
             diagramContainerElement.setAttribute('style',
               'width: ' + element.clientWidth + 'px; ' +
-              'height: ' + (element.clientHeight - 300) + 'px; ')
+              'height: ' + element.clientHeight + 'px; ')
+              // TODO make this change when going into edit mode
+              //'height: ' + (element.clientHeight - 300) + 'px; ')
             svgElement.setAttribute('width', '100%')
             svgElement.setAttribute('height', '100%')
           }
