@@ -1,5 +1,5 @@
 var _ = require('lodash');
-//var Editor = require('./editor/editor');
+var Editor = require('./editor/editor');
 var ElementResizeDetector = require('element-resize-detector');
 var fs = require('fs');
 var highland = require('highland');
@@ -92,6 +92,7 @@ function initPathvisiojs(window, $) {
 
     this.initContainer();
     //Editor.open(this);
+    Editor(this);
 
     // Check if render should be called now or it will be done later manually
     if (!this.options.manualRender) {
@@ -267,8 +268,8 @@ function initPathvisiojs(window, $) {
         getZoom: function() {return that.panZoom.getZoom();},
         getOptions: function() {return _.clone(that.options, true);},
         getSourceData: function() {
-        // return _.clone(that.sourceData, true);
-        return {
+          // return _.clone(that.sourceData, true);
+          return {
             sourceIndex: that.sourceData.sourceIndex,
             uri: that.sourceData.uri,
             fileType: that.sourceData.fileType,

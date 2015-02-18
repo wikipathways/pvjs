@@ -18,9 +18,10 @@ bridgeDbIdentifierInput.vm = (function() {
     vm.identifier = m.prop('');
 
     // react to user updating identifier value
-    vm.updateIdentifier = function() {
-      if (vm.identifier()) {
-        console.log('identifier:');
+    vm.update = function(newIdentifier) {
+      if (!!newIdentifier) {
+        vm.identifier = m.prop(newIdentifier);
+        console.log('identifier is now:');
         console.log(vm.identifier());
       }
     };
@@ -39,7 +40,7 @@ bridgeDbIdentifierInput.view = function() {
   return [
     m('input[placeholder="Identifier"].form-control.col-sm-1', {
       onchange: m.withAttr('value',
-                  bridgeDbIdentifierInput.vm.updateIdentifier),
+                  bridgeDbIdentifierInput.vm.update),
       value: bridgeDbIdentifierInput.vm.identifier()
     })
   ];

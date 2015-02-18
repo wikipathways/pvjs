@@ -16,9 +16,116 @@ var simpleModal = global.simpleModal = require('simple-modal');
 var css = [
 ];
 
-var editor = (function() {
+var editor = function(pvjs) {
+
+  var currentGpmlNodeId;
+
+  function updateGpml(datasetName, identifier) {
+    datasetName = datasetSelector.vm.currentDataset.name();
+    identifier = identifierInput.vm.identifier();
+
+    if (!datasetName || !identifier) {
+      return 'Missing arg(s)';
+    }
+
+    var gpmlDoc = pvjs.sourceData.original;
+
+    var dataNode = gpmlDoc
+      .find('DataNode[GraphId="' + currentGpmlNodeId + '"]')
+      .find('Xref');
+    console.log('dataNode');
+    console.log(dataNode);
+
+    dataNode.attr('Database', datasetName);
+    dataNode.attr('ID', identifier);
+    console.log('Updated GPML string:');
+    console.log(gpmlDoc.html());
+
+    console.log('datasetName');
+    console.log(datasetName);
+
+    console.log('identifier');
+    console.log(identifier);
+  }
+
+  function updateXref(xref) {
+    var gpmlNodeTypes = [{
+      '@id': 'http://example.org/',
+      name: 'Type'
+    }, {
+      '@id': 'gpml:GeneProduct',
+      name: 'Gene Product'
+    }, {
+      '@id': 'gpml:Metabolite',
+      name: 'Metabolite'
+    }, {
+      '@id': 'biopax:Pathway',
+      name: 'Pathway'
+    }, {
+      '@id': 'biopax:ProteinReference',
+      name: 'Protein'
+    }, {
+      '@id': 'gpml:Unknown',
+      name: 'Unknown'
+    }];
+
+    var gpmlDataNodeTypeId;
+
+    // TODO make the way we specify xref types consistent
+    if (!!xref.type) {
+      var gpmlDataNodeTypeBiopaxId = xref.type;
+      var biopaxToHybridMappings = {
+        'DnaReference': 'gpml:GeneProduct',
+        'ProteinReference': 'biopax:ProteinReference',
+        'SmallMoleculeReference': 'gpml:Metabolite',
+        'PhysicalEntity': 'gpml:Unknown',
+        'Pathway': 'biopax:Pathway'
+      };
+
+      gpmlDataNodeTypeId = biopaxToHybridMappings[gpmlDataNodeTypeBiopaxId];
+    } else {
+      var candidateMatchIds = gpmlNodeTypes.map(function(gpmlNodeType) {
+        return gpmlNodeType['@id'];
+      });
+
+      gpmlDataNodeTypeId = _.intersection(candidateMatchIds, xref['@type'])[0];
+    }
+
+    gpmlDataNodeTypeSelector.vm.changeGpmlNodeType(gpmlDataNodeTypeId);
+
+    var dataset = xref.isDataItemIn;
+    dataset.id = m.prop(dataset['@id']);
+    dataset.name = m.prop(dataset['bridgedb:_displayName']);
+    datasetSelector.vm.currentDataset = dataset;
+
+    identifierInput.vm.identifier = m.prop(xref.identifier);
+    displayNameInput.vm.displayName = m.prop(xref.displayName);
+  }
+
+  var xrefSpecifierToolbarElement = document.querySelector('.pathvisiojs-editor-xref-selector');
 
   var datasetSelector;
+
+  var editorToggleButton = document.querySelector('.edit-trigger').querySelector('button');
+
+  $('.edit-trigger').on('click', function(event) {
+    var containerElement = pvjs.$element[0][0];
+    var diagramContainerElement = containerElement.querySelector('.diagram-container');
+    var editorToggleButtonText = editorToggleButton.textContent;
+    if (editorToggleButtonText === 'Edit') {
+      diagramContainerElement.setAttribute(
+          'style', 'height: ' + (pvjs.elementHeight - 100) + 'px;');
+      pvjs.panZoom.resizeDiagram();
+      open(pvjs);
+      editorToggleButton.textContent = 'Done';
+    } else {
+      xrefSpecifierToolbarElement.innerHTML = '';
+      diagramContainerElement.setAttribute(
+          'style', 'height: ' + pvjs.elementHeight + 'px;');
+      pvjs.panZoom.resizeDiagram();
+      editorToggleButton.textContent = 'Edit';
+    }
+  });
 
   function open(pvjs) {
     if (!_.isEmpty(css)) {
@@ -32,17 +139,11 @@ var editor = (function() {
      **********************************************/
 
     $('.diagram-container').on('click', function(event) {
-      console.log('event.target');
-      console.log(event.target);
-      var targetId = event.target.id;
-      console.log('pvjs');
-      console.log(pvjs);
+      currentGpmlNodeId = event.target.id;
       var element = pvjs.sourceData.pvjson.elements.filter(function(element) {
-        return element.id === targetId;
+        return element.id === currentGpmlNodeId;
       })
       .map(function(element) {
-        console.log('element');
-        console.log(element);
         return element;
       })[0];
 
@@ -59,7 +160,6 @@ var editor = (function() {
       var preferredPrefix = iriPathComponents[1];
       var identifier = iriPathComponents[2];
 
-      //var datasetId = 'http://identifiers.org/' + entityReference.dbName;
       var datasetId = 'http://identifiers.org/' + preferredPrefix;
       var datasetMithril = _.find(datasetSelector.vm.datasetList(),
           function(datasetItem) {
@@ -67,16 +167,13 @@ var editor = (function() {
           });
 
       var dataset = {};
-      //dataset['@id'] = 'http://identifiers.org/' + entityReference.dbName;
       dataset['@id'] = datasetMithril.id();
-      //dataset._displayName = entityReference.dbName;
       dataset['bridgedb:_displayName'] = datasetMithril.name();
 
-      //var entityReference = {};
       entityReference.isDataItemIn = dataset;
       entityReference.identifier = identifier;
 
-      bridgeDbXrefSearch.vm.selectXref(entityReference);
+      updateXref(entityReference);
 
       m.endComputation();
     });
@@ -108,14 +205,11 @@ var editor = (function() {
       return deferred.promise;
     }
 
-    //*
     var bridgeDb = new BridgeDb({
       baseIri: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb.php/',
       datasetsMetadataIri: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php',
       organism: 'Homo sapiens'
     });
-    //*/
-    //var bridgeDb = {};
 
     var promisifiedProp = highland.compose(m.prop, promisify);
 
@@ -153,7 +247,6 @@ var editor = (function() {
         if (!isInitialized) {
           m.startComputation();
           el = simpleModal({content: 'modal content'});
-          //el.opts.content = 'updated modal content';
           window.setTimeout(function() {
             deferred.resolve();
             //the service is done, tell Mithril that it may redraw
@@ -246,15 +339,8 @@ var editor = (function() {
 
         //react to the user selecting an xref in the modal
         vm.selectXref = function(xref) {
-          // TODO keep working here
-          var dataset = xref.isDataItemIn;
-          dataset.id = m.prop(dataset['@id']);
-          dataset.name = m.prop(dataset._displayName);
-          datasetSelector.vm.currentDataset = dataset;
-          identifierInput.vm.identifier = m.prop(xref.identifier);
-          displayNameInput.vm.displayName = m.prop(xref.displayName);
-          console.log('xref');
-          console.log(xref);
+          updateXref(xref);
+
           /*
           if (vm.query()) {
             vm.modalList.push(new bridgeDbXrefSearch.XrefList(vm.query()));
@@ -338,17 +424,20 @@ var editor = (function() {
           gpmlDataNodeTypeSelector.view(),
           datasetSelector.view(),
           identifierInput.view(),
-          displayNameInput.view()
+          displayNameInput.view(),
+          m('button[type="submit"].btn.btn-success', {onclick: updateGpml}, [
+            m('span.glyphicon.glyphicon-floppy-save')
+          ])
         ])
       ]);
     }
 
-    m.module(document.querySelector('.pathvisiojs-editor-xref-selector'), bridgeDbXrefSpecifier);
+    m.module(xrefSpecifierToolbarElement, bridgeDbXrefSpecifier);
   }
 
   return {
     open: open
   }
-})();
+};
 
 module.exports = editor;
