@@ -1,11 +1,17 @@
 <!--
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 <style>
   .diagram-container {
     width: inherit;
     height: 100%;
+  }
+  .edit-trigger {
+    position: absolute;
+    z-index: 3; /* put .edit-trigger above diagram-container */
+    left: 5px;
+    bottom: 5px;
   }
 </style>
 
@@ -22,9 +28,11 @@
 <!-- Diagram Container -->
 <div class="diagram-container"></div>
 
-<!--
 <div class="pathvisiojs-editor-xref-selector"></div>
--->
+
+<div class="edit-trigger">
+  <button>Edit</button>
+</div>
 
 <!-- Details Frame -->
 <div class="annotation ui-draggable">

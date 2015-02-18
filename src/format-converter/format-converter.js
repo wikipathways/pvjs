@@ -1,6 +1,5 @@
-var Utils = require('./../utils.js')
-  , Gpml = require('gpml2json')
-  ;
+var Utils = require('./../utils.js');
+var Gpml = require('gpml2json');
 
 module.exports = {
   /**
@@ -9,9 +8,8 @@ module.exports = {
    * @param  {Function} callback
    */
   loadAndConvert: function(pvjs, callback) {
-    var sourceData = pvjs.sourceData
-      , pathwayMetadata = {}
-      ;
+    var sourceData = pvjs.sourceData;
+    var pathwayMetadata = {};
 
     // Check for uri
     if (!pvjs.sourceData.uri) {
@@ -24,6 +22,8 @@ module.exports = {
       pathwayMetadata.idVersion = sourceData.idVersion || 0;
       // Load xml
       Utils.loadXmlFromUri(pvjs.sourceData.uri, function(xml) {
+        pvjs.sourceData.original = xml;
+        window.myxml = xml;
         Gpml.toPvjson(xml, pathwayMetadata, function(err, pvjson) {
           return callback(err, pvjson);
         });

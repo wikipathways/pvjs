@@ -6,17 +6,18 @@
    of browserify for faster bundling using caching.
 */
 
-var browserify   = require('browserify');
+var brfs = require('gulp-brfs');
+var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
-var watchify     = require('watchify');
 var bundleLogger = require('../util/bundleLogger');
 var fs = require('fs');
-var gulp         = require('gulp');
-var brfs = require('gulp-brfs');
+var gulp = require('gulp');
 var handleErrors = require('../util/handleErrors');
-var source       = require('vinyl-source-stream');
+var highland = require('highland');
+var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
+var watchify = require('watchify');
 
 gulp.task('browserify', function() {
 
@@ -25,10 +26,12 @@ gulp.task('browserify', function() {
   var getBundleName = function() {
     var package = JSON.parse(fs.readFileSync('package.json'));
     var version = package.version;
-    console.log('version for browserify');
-    console.log(version);
     var name = package.name;
-    return name + '-' + version + '.bundle.min';
+    if (global.isWatching) {
+      return name + '-dev.bundle';
+    } else {
+      return name + '-' + version + '.bundle.min';
+    }
   };
 
   var bundler = bundleMethod({
@@ -59,18 +62,26 @@ gulp.task('browserify', function() {
     // stream gulp compatible. Specify the
     // desired output filename here.
     .pipe(source(getBundleName() + '.js'))
-    //*
-    // TODO re-enable these tasks so they work when
-    // not watching. They are too slow to enable
-    // when watching during development.
-    .pipe(buffer())
-    // TODO watch this issue:
-    // https://github.com/floridoo/gulp-sourcemaps/issues/73
-    .pipe(sourcemaps.init({loadMaps: true}))
-    // Add transformation tasks to the pipeline here.
-    .pipe(uglify())
-    .pipe(sourcemaps.write('./'))
-    //*/
+    .pipe(highland.pipeline(function(stream) {
+      if (global.isWatching) {
+        return stream;
+      }
+
+      return stream
+        // These steps are only enabled when
+        // a watch is not set.
+        // They are too slow to enable
+        // during development.
+        .pipe(buffer())
+        // TODO keep an eye on this issue:
+        // https://github.com/floridoo/gulp-sourcemaps/issues/73
+        // It's the reason we're using v1.1.0 of gulp-sourcemaps,
+        // not the latest version.
+        .pipe(sourcemaps.init({loadMaps: true}))
+        // Add transformation tasks to the pipeline here.
+        .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
+    }))
     // Specify the output destination
     .pipe(gulp.dest('./dist/'))
     // Log when bundling completes!

@@ -79,7 +79,7 @@ gpmlDataNodeTypeSelector.view = function() {
   return m('select.col-sm-2.form-control',
   {
     onchange: m.withAttr('value', gpmlDataNodeTypeSelector.vm.changeGpmlNodeType),
-    //value: gpmlDataNodeTypeSelector.vm.currentGpmlNodeType
+    value: gpmlDataNodeTypeSelector.vm.currentGpmlNodeType.id()
   },
   [
     gpmlDataNodeTypeSelector.vm.gpmlNodeTypeList().map(
