@@ -59,7 +59,7 @@ gulp.task('browserify', function() {
     // stream gulp compatible. Specify the
     // desired output filename here.
     .pipe(source(getBundleName() + '.js'))
-    /*
+    //*
     // TODO re-enable these tasks so they work when
     // not watching. They are too slow to enable
     // when watching during development.

@@ -1,4 +1,3 @@
-
 var fs = require('fs');
 var git = require('gulp-git');
 var gitStreaming = require('../util/gitStreaming.js');
