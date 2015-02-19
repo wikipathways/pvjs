@@ -8,7 +8,7 @@
 
     <style type="text/css">
       html, body{width: 100%;height: 100%;margin: 0;}
-      .wikipathways-pathvisiojs{width: 850px;height: 500px;margin: 0;}
+      .wikipathways-pathvisiojs{min-width: 872px;height: 500px;margin: 0;}
       #pathvisiojs-header{background-color: gray;}
       #pathvisiojs-inner-modal{width: 100%;height: 100%;margin: 10;border: 10;background-color: white;}
       #pathvisiojs-section{width: 100%;height: 80%;margin: 0;}
@@ -16,20 +16,38 @@
     </style>
 
   </head>
-  <body>
+  <body style="background-color: gray;">
 
-    <div is="wikipathways-pathvisiojs"
-        class="wikipathways-pathvisiojs"
-        alt="wp525 biological pathway"
-        src="data/wp525_73040.gpml"
-        display-errors="true"
-        display-warnings="true"
-        manual-render="true"
-        fit-to-container="true">
-      
-      <img alt="wp525 biological pathway"
-        src="http://www.wikipathways.org//wpi/wpi.php?action=downloadfile&type=png&pwtitle=pathway:wp525">
+  <div style="width: 1024px; height: 120px; background-color: #87CEEB;">
+    Header
+    <br style="clear: left;" />
+  </div>
+  <div style="width: 1024; height: 540px;">
+    <div style="float: left; width: 152px; height: inherit; background-color: #87CEEB;">Left Column</div>
+    <div style="float: left; max-width: 872px;">
+      <div is="wikipathways-pathvisiojs"
+          class="wikipathways-pathvisiojs"
+          alt="wp525 biological pathway"
+          src="data/wp525_73040.gpml"
+          display-errors="true"
+          display-warnings="true"
+          manual-render="true"
+          fit-to-container="true">
+        
+        <img alt="wp525 biological pathway"
+          src="http://www.wikipathways.org//wpi/wpi.php?action=downloadfile&type=png&pwtitle=pathway:wp525">
+      </div>
     </div>
+    <!--
+    <div style="float: left; width: 200px; height: inherit; background-color: #87CEEB;">Right Column</div>
+    -->
+    <br style="clear: left;" />
+  </div>
+  <div style="width: 1024px; background-color: #87CEEB;">
+    Other content must start here to be visible above the fold...
+  </div>
+
+
 
     <!--
     <script src="./lib/pathvisiojs/pathvisiojs-2.2.0.bundle.min.js"></script>

@@ -37,7 +37,7 @@ bridgeDbDisplayNameInput.controller = function() {
 //here's the view
 bridgeDbDisplayNameInput.view = function() {
   return [
-    m('input[placeholder="Display name"].form-control.col-sm-1', {
+    m('input[placeholder="Display name"].form-control.input.input-sm', {
       onchange: m.withAttr('value',
                   bridgeDbDisplayNameInput.vm.updateDisplayName),
       value: bridgeDbDisplayNameInput.vm.displayName()

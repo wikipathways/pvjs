@@ -18,9 +18,16 @@ var css = [
 
 var editor = function(pvjs) {
 
+  /***********************************************
+   * Temporary solution for handling updates
+   * to GPML DataNode Xrefs.
+   * The long-term solution will be to convert
+   * the pvjson to GPML.
+   **********************************************/
+
   var currentGpmlNodeId;
 
-  function updateGpml(datasetName, identifier) {
+  function updateGpmlXref(datasetName, identifier) {
     datasetName = datasetSelector.vm.currentDataset.name();
     identifier = identifierInput.vm.identifier();
 
@@ -369,9 +376,10 @@ var editor = function(pvjs) {
 
     //here's the view
     bridgeDbXrefSearch.view = function() {
-      return m('div.well.well-sm.col-sm-3', [
+      return m('div.well.well-sm', [
         m('div.form-search', [
-          m('div.input-group', [
+          //m('div.input-group.input-group-sm', [
+          m('div.input-group.input-group-sm', [
             m('input[placeholder="Search by name"][type="text"].form-control', {
               onchange: m.withAttr('value', bridgeDbXrefSearch.vm.query),
               value: bridgeDbXrefSearch.vm.query()
@@ -418,15 +426,26 @@ var editor = function(pvjs) {
     }
 
     bridgeDbXrefSpecifier.view = function() {
-      return m('div.well.well-sm.col-sm-12', [
-        m('div.form-inline', [
-          bridgeDbXrefSearch.view(),
-          gpmlDataNodeTypeSelector.view(),
-          datasetSelector.view(),
-          identifierInput.view(),
-          displayNameInput.view(),
-          m('button[type="submit"].btn.btn-success', {onclick: updateGpml}, [
-            m('span.glyphicon.glyphicon-floppy-save')
+      return m('nav.navbar.navbar-default.navbar-form.well.well-sm', [
+        m('div.form-inline.form-inline-sm', [
+          m('div.form-group.navbar-left', [
+            bridgeDbXrefSearch.view(),
+          ]),
+          m('div.form-group.well.well-sm', [
+            gpmlDataNodeTypeSelector.view(),
+            datasetSelector.view(),
+            identifierInput.view(),
+            displayNameInput.view(),
+          ]),
+          m('div.navbar-right.well.well-sm', [
+            m('div.btn-group.btn-group-sm', [
+              m('button[type="submit"].btn.btn-success', {onclick: updateGpmlXref}, [
+                m('span.glyphicon.glyphicon-floppy-save')
+              ]),
+              m('button[type="submit"].btn', {onclick: updateGpmlXref}, [
+                m('span.glyphicon.glyphicon-remove')
+              ])
+            ])
           ])
         ])
       ]);
