@@ -140,7 +140,7 @@ function DatasetSelector () {
   }
 
   datasetSelector.view = function() {
-    return m('select.col-sm-2.form-control', {
+    return m('select.form-control.input.input-sm[style="max-width:100px"]', {
       value: datasetSelector.vm.currentDataset.id()
     }, [
       datasetSelector.vm.datasetList()
@@ -150,10 +150,9 @@ function DatasetSelector () {
             gpmlDataNodeTypeSelector.vm.currentGpmlNodeType.id() === 'gpml:Unknown' ||
             dataset.subject().indexOf(gpmlDataNodeTypeSelector.vm.currentGpmlNodeType.id()) > -1;
         })
-      .map(
-        function(dataset, index) {
+        .map(function(dataset, index) {
           return m('option[value=' + dataset.id() + ']',
-              dataset.name());
+            dataset.name());
         })
     ]);
   }

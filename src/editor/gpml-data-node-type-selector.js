@@ -76,7 +76,7 @@ gpmlDataNodeTypeSelector.controller = function() {
 }
 
 gpmlDataNodeTypeSelector.view = function() {
-  return m('select.col-sm-2.form-control',
+  return m('select.form-control.input.input-sm',
   {
     onchange: m.withAttr('value', gpmlDataNodeTypeSelector.vm.changeGpmlNodeType),
     value: gpmlDataNodeTypeSelector.vm.currentGpmlNodeType.id()

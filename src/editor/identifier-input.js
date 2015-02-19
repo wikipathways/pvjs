@@ -38,7 +38,7 @@ bridgeDbIdentifierInput.controller = function() {
 //here's the view
 bridgeDbIdentifierInput.view = function() {
   return [
-    m('input[placeholder="Identifier"].form-control.col-sm-1', {
+    m('input[placeholder="Identifier"].form-control.input.input-sm', {
       onchange: m.withAttr('value',
                   bridgeDbIdentifierInput.vm.update),
       value: bridgeDbIdentifierInput.vm.identifier()
