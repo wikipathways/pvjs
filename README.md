@@ -16,7 +16,7 @@ It's as simple as referencing the pathvisiojs JavaScript bundle in your HTML doc
 ## Load Using HTML Element
 
 ```HTML
-<div is="wikipathways-pathvisiojs"
+<div id="wikipathways-pathvisiojs"
     class="wikipathways-pathvisiojs"
     alt="WP525 Biological Pathway"
     src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525"
