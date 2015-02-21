@@ -1,18 +1,18 @@
+/******************************
+  * identifier control
+  *****************************/
+
 var _ = require('lodash');
 var editorUtils = require('./editor-utils');
 var highland = require('highland');
 var m = require('mithril');
 
-/******************************
-  * identifier input
-  *****************************/
-
-//module for bridgeDbIdentifierInput
+//module for identifierControl
 //for simplicity, we use this module to namespace the model classes
-var bridgeDbIdentifierInput = {};
+var identifierControl = {};
 
 //the view-model,
-bridgeDbIdentifierInput.vm = (function() {
+identifierControl.vm = (function() {
   var vm = {}
   vm.init = function() {
     vm.identifier = m.prop('');
@@ -21,8 +21,6 @@ bridgeDbIdentifierInput.vm = (function() {
     vm.update = function(newIdentifier) {
       if (!!newIdentifier) {
         vm.identifier = m.prop(newIdentifier);
-        console.log('identifier is now:');
-        console.log(vm.identifier());
       }
     };
   }
@@ -31,22 +29,19 @@ bridgeDbIdentifierInput.vm = (function() {
 
 //the controller defines what part of the model is relevant for the current page
 //in our case, there's only one view-model that handles everything
-bridgeDbIdentifierInput.controller = function() {
-  bridgeDbIdentifierInput.vm.init();
+identifierControl.controller = function() {
+  identifierControl.vm.init();
 }
 
 //here's the view
-bridgeDbIdentifierInput.view = function() {
+identifierControl.view = function() {
   return [
     m('input[placeholder="Identifier"].form-control.input.input-sm', {
       onchange: m.withAttr('value',
-                  bridgeDbIdentifierInput.vm.update),
-      value: bridgeDbIdentifierInput.vm.identifier()
+                  identifierControl.vm.update),
+      value: identifierControl.vm.identifier()
     })
   ];
 };
 
-//initialize the application
-//m.module(document.body, bridgeDbIdentifierInput);
-
-module.exports = bridgeDbIdentifierInput;
+module.exports = identifierControl;
