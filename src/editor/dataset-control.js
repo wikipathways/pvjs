@@ -110,7 +110,7 @@ datasetControl.vm = (function() {
 
         // We show all Datasets when GPML DataNode Type is not selected or is "gpml:Unknown"
         var alwaysPassGpmlNodeTypeIds = [
-          'http://example.org/',
+          '',
           'gpml:Unknown'
         ];
         if (alwaysPassGpmlNodeTypeIds.indexOf(xrefType) === -1) {
@@ -139,17 +139,20 @@ datasetControl.vm = (function() {
 
         return pass;
       }));
+      vm.changeDataset(vm.currentDataset.id());
     }
 
-    vm.changeDataset = function(datasetId) {
+    vm.changeDataset = function(input) {
+      input = input || '';
       vm.currentDataset = propifyArray(vm.datasetListFull().filter(function(vmDataset) {
-        return datasetId === vmDataset.id;
+        return vmDataset.id === input;
       }))()[0];
     };
 
-    vm.onChange = function(datasetId) {
+    vm.onChange = function(input) {
       // do something
-    };
+    }
+
   }
   return vm;
 
@@ -161,12 +164,14 @@ datasetControl.controller = function() {
 
 datasetControl.view = function() {
   return m('select.form-control.input.input-sm[style="max-width:100px"][required]', {
-    onchange: m.withAttr('value', datasetControl.vm.onChange),
+    onchange: m.withAttr('value', datasetControl.vm.changeDataset),
     value: datasetControl.vm.currentDataset.id()
   }, [
     datasetControl.vm.datasetList()
       .map(function(dataset, index) {
-        return m('option', {value : dataset.id(), innerHTML : dataset.name()})
+        var selectedString = dataset.id() !== datasetControl.vm.currentDataset.id() ?
+          '' : '[selected]';
+        return m('option' + selectedString, {value : dataset.id(), innerHTML : dataset.name()})
         /*
         return m('option[value=' + dataset.id() + ']',
           dataset.name());
