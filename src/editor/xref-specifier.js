@@ -163,6 +163,9 @@ function updateXrefsInGpml(pvjs, selectedElementId, xrefType,
 
   var gpmlDoc = pvjs.sourceData.original;
 
+  var textLabelElement = pvjs.$element.select('#text-for-' + selectedElementId)
+    .select('text').text(displayName);
+
   var dataNodeElement = gpmlDoc.find('DataNode[GraphId="' + selectedElementId + '"]');
   var xrefElement = dataNodeElement.find('Xref');
 
