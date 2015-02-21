@@ -15,20 +15,20 @@ var mithrilUtils = require('../mithril-utils');
 
 var xrefTypeControl = {};
 
-xrefTypeControl.GpmlNodeTypeList = Array;
+xrefTypeControl.XrefTypeList = Array;
 
-//a gpmlNodeType
-xrefTypeControl.GpmlNodeType = function(gpmlNodeType) {
-  this.id = m.prop(gpmlNodeType['@id']);
-  this.name = m.prop(gpmlNodeType.name);
+//a xrefType
+xrefTypeControl.XrefType = function(xrefType) {
+  this.id = m.prop(xrefType['@id']);
+  this.name = m.prop(xrefType.name);
 }
 
 xrefTypeControl.vm = (function() {
   var vm = {};
   vm.init = function() {
 
-    var gpmlNodeTypes = [{
-      '@id': 'http://example.org/',
+    var xrefTypes = [{
+      '@id': '',
       name: 'Type'
     }, {
       '@id': 'gpml:GeneProduct',
@@ -49,35 +49,31 @@ xrefTypeControl.vm = (function() {
 
     var propify = function(highlandStream) {
       return highlandStream.map(function(item) {
-        return new xrefTypeControl.GpmlNodeType(item);
+        return new xrefTypeControl.XrefType(item);
       });
     }
 
-    var promisifiedGetGpmlNodeTypes = highland.compose(
+    var promisifiedGetXrefTypes = highland.compose(
         mithrilUtils.promisify, propify, function(items) {
           return highland(items);
         });
 
-    vm.gpmlNodeTypeList = promisifiedGetGpmlNodeTypes(gpmlNodeTypes);
+    vm.xrefTypeList = promisifiedGetXrefTypes(xrefTypes);
 
     //specify initial selection
-    vm.currentGpmlNodeType = {
-      id: m.prop('http://example.org/'),
+    vm.currentXrefType = {
+      id: m.prop(''),
       'name': m.prop('Type')
     };
 
-    vm.changeGpmlNodeType = function(gpmlNodeTypeId) {
-      vm.currentGpmlNodeType = vm.gpmlNodeTypeList()
-        .filter(function(gpmlNodeType) {
-          return gpmlNodeTypeId === gpmlNodeType.id();
+    vm.changeXrefType = function(xrefTypeId) {
+      vm.currentXrefType = vm.xrefTypeList()
+        .filter(function(xrefType) {
+          return xrefTypeId === xrefType.id();
         })[0];
+      datasetControl.vm.filterDatasetListByXrefType(xrefTypeId);
     };
 
-    vm.onChange = function(gpmlNodeTypeId) {
-      console.log('currentGpmlNodeType id');
-      console.log(gpmlNodeTypeId);
-      datasetControl.vm.filterDatasetListByXrefType(gpmlNodeTypeId);
-    };
   }
   return vm;
 })();
@@ -89,13 +85,17 @@ xrefTypeControl.controller = function() {
 xrefTypeControl.view = function() {
   return m('select.form-control.input.input-sm',
   {
-    onchange: m.withAttr('value', xrefTypeControl.vm.onChange),
-    value: xrefTypeControl.vm.currentGpmlNodeType.id()
+    onchange: m.withAttr('value', xrefTypeControl.vm.changeXrefType),
+    value: xrefTypeControl.vm.currentXrefType.id()
   },
   [
-    xrefTypeControl.vm.gpmlNodeTypeList().map(
-      function(gpmlNodeType, index) {
-        return m('option', {value : gpmlNodeType.id(), innerHTML : gpmlNodeType.name()})
+    xrefTypeControl.vm.xrefTypeList().map(
+      function(xrefType, index) {
+        var selectedString = xrefType.id() !== xrefTypeControl.vm.currentXrefType.id() ?
+          '' : '[selected]';
+        return m('option' + selectedString, {
+          value : xrefType.id(), innerHTML : xrefType.name()
+        })
       })
   ]);
 }

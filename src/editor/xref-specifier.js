@@ -8,7 +8,7 @@ var displayNameControl = require('./display-name-control');
 var editorUtils = require('./editor-utils');
 var fs = require('fs');
 var XrefSearch = require('./xref-search');
-var entityTypeControl = require('./xref-type-control');
+var xrefTypeControl = require('./xref-type-control');
 var highland = require('highland');
 var identifierControl = require('./identifier-control');
 var m = require('mithril');
@@ -72,13 +72,23 @@ xrefSpecifier.vm = (function() {
     });
 
     vm.save = function() {
+      var xrefType = xrefTypeControl.vm.currentXrefType.name();
       var datasetName = datasetControl.vm.currentDataset.name();
       var identifier = identifierControl.vm.identifier();
-      updateXrefsInGpml(pvjs, selectedElementId, datasetName, identifier);
+      var displayName = displayNameControl.vm.displayName();
+      updateXrefsInGpml(pvjs, selectedElementId, xrefType, datasetName, identifier, displayName);
+    }
+
+    vm.cancel = function() {
+      xrefTypeControl.vm.currentXrefType.id = m.prop('');
+      datasetControl.vm.currentDataset.id = m.prop('');
+      identifierControl.vm.identifier = m.prop('');
+      displayNameControl.vm.displayName = m.prop('');
+      selectedElementId = null;
     }
 
     xrefSearch.vm.init();
-    entityTypeControl.vm.init();
+    xrefTypeControl.vm.init();
     datasetControl.vm.init();
     identifierControl.vm.init();
     displayNameControl.vm.init();
@@ -100,7 +110,7 @@ xrefSpecifier.vm = (function() {
    * @return
    */
   vm.updateControlValues = function(entity) {
-    entityTypeControl.vm.changeGpmlNodeType(entity.type);
+    xrefTypeControl.vm.changeXrefType(entity.type);
     datasetControl.vm.changeDataset(entity.isDataItemIn.id);
     identifierControl.vm.identifier = m.prop(entity.identifier);
     displayNameControl.vm.displayName = m.prop(entity.displayName);
@@ -115,29 +125,27 @@ xrefSpecifier.controller = function() {
 
 xrefSpecifier.view = function() {
   return m('nav.navbar.navbar-default.navbar-form.well.well-sm', [
-    m('div.form-inline.form-inline-sm', [
+    //m('div.form-inline.form-inline-sm', [
       m('div.form-group.navbar-left', [
         xrefSearch.view(),
       ]),
-      m('div.form-group.well.well-sm', [
-        entityTypeControl.view(),
+      m('div.form-group.well.well-sm.navbar-left', [
+        xrefTypeControl.view(),
         datasetControl.view(),
         identifierControl.view(),
         displayNameControl.view(),
       ]),
-      m('div.navbar-right.well.well-sm', [
-        m('div.btn-group.btn-group-sm', [
-          m('button[type="submit"].btn.btn-success', {
-            onclick: xrefSpecifier.vm.save
-          }, [
-            m('span.glyphicon.glyphicon-floppy-save')
-          ]),
-          m('button[type="submit"].btn', {onclick: xrefSpecifier.vm.save}, [
-            m('span.glyphicon.glyphicon-remove')
-          ])
-        ])
-      ])
-    ])
+      m('div.form-group.well.well-sm.navbar-left', [
+        m('button[type="submit"].btn.btn-sm.btn-success', {
+          onclick: xrefSpecifier.vm.save
+        }, [
+          m('span.glyphicon.glyphicon-floppy-disk')
+        ]),
+      ]),
+      m('span.glyphicon.glyphicon-remove.navbar-right[style="color: #aaa;"]', {
+        onclick: xrefSpecifier.vm.cancel
+      })
+    //])
   ]);
 }
 
@@ -147,29 +155,44 @@ xrefSpecifier.view = function() {
  * The long-term solution will be to convert
  * the pvjson to GPML.
  **********************************************/
-function updateXrefsInGpml(pvjs, selectedElementId, datasetName, identifier) {
+function updateXrefsInGpml(pvjs, selectedElementId, xrefType,
+    datasetName, identifier, displayName) {
   if (!datasetName || !identifier) {
     throw new Error('Missing datasetName and/or identifier for updateXrefsInGpml');
   }
 
   var gpmlDoc = pvjs.sourceData.original;
 
-  var dataNode = gpmlDoc
-    .find('DataNode[GraphId="' + selectedElementId + '"]')
-    .find('Xref');
-  console.log('dataNode');
-  console.log(dataNode);
+  var dataNodeElement = gpmlDoc.find('DataNode[GraphId="' + selectedElementId + '"]');
+  var xrefElement = dataNodeElement.find('Xref');
 
-  dataNode.attr('Database', datasetName);
-  dataNode.attr('ID', identifier);
-  console.log('Updated GPML string:');
+  dataNodeElement.attr('Type', xrefType);
+  dataNodeElement.attr('TextLabel', displayName);
+
+  xrefElement.attr('Database', datasetName);
+  xrefElement.attr('ID', identifier);
+
+  console.log('');
+  console.log('');
+  console.log('');
+  console.log('*********************************************************************');
+  console.log('*********************************************************************');
+  console.log('');
+  console.log('Updated GPML file as string:');
+  console.log('');
   console.log(gpmlDoc.html());
+  console.log('');
+  console.log('*********************************************************************');
+  console.log('*********************************************************************');
+  console.log('');
 
-  console.log('datasetName');
-  console.log(datasetName);
-
-  console.log('identifier');
-  console.log(identifier);
+  console.log('You successfully performed a local update for a GPML DataNode.')
+  console.log('It now has the following values:');
+  console.log('GraphId: ' + selectedElementId);
+  console.log('TextLabel: ' + displayName);
+  console.log('Type: ' + xrefType);
+  console.log('Database: ' + datasetName);
+  console.log('ID: ' + identifier);
 }
 
 module.exports = xrefSpecifier;

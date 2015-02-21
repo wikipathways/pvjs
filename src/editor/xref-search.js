@@ -70,7 +70,7 @@ module.exports = function(xrefSpecifier) {
 
     if (!xrefSelectionModal) {
       xrefSelectionModal = simpleModal({
-        title: 'Click a row to select xref',
+        title: 'Click a row to select an xref',
         content: 'modal content',
         buttons: []
       });
