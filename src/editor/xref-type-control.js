@@ -1,23 +1,29 @@
+/***********************************
+ * Entity Type Control
+ **********************************/
+
+/**
+ * Module dependencies.
+ */
+
 var _ = require('lodash');
+var datasetControl = require('./dataset-control');
 var editorUtils = require('./editor-utils');
 var highland = require('highland');
 var m = require('mithril');
+var mithrilUtils = require('../mithril-utils');
 
-/***********************************
- * GPML DataNode Type Selector
- **********************************/
+var xrefTypeControl = {};
 
-var gpmlDataNodeTypeSelector = {};
-
-gpmlDataNodeTypeSelector.GpmlNodeTypeList = Array;
+xrefTypeControl.GpmlNodeTypeList = Array;
 
 //a gpmlNodeType
-gpmlDataNodeTypeSelector.GpmlNodeType = function(gpmlNodeType) {
+xrefTypeControl.GpmlNodeType = function(gpmlNodeType) {
   this.id = m.prop(gpmlNodeType['@id']);
   this.name = m.prop(gpmlNodeType.name);
 }
 
-gpmlDataNodeTypeSelector.vm = (function() {
+xrefTypeControl.vm = (function() {
   var vm = {};
   vm.init = function() {
 
@@ -43,50 +49,55 @@ gpmlDataNodeTypeSelector.vm = (function() {
 
     var propify = function(highlandStream) {
       return highlandStream.map(function(item) {
-        return new gpmlDataNodeTypeSelector.GpmlNodeType(item);
+        return new xrefTypeControl.GpmlNodeType(item);
       });
     }
 
     var promisifiedGetGpmlNodeTypes = highland.compose(
-        editorUtils.promisify, propify, function(items) {
+        mithrilUtils.promisify, propify, function(items) {
           return highland(items);
         });
 
     vm.gpmlNodeTypeList = promisifiedGetGpmlNodeTypes(gpmlNodeTypes);
 
     //specify initial selection
-    //vm.currentGpmlNodeType = vm.gpmlNodeTypeList()[0];
     vm.currentGpmlNodeType = {
       id: m.prop('http://example.org/'),
       'name': m.prop('Type')
     };
 
-    vm.changeGpmlNodeType = function(id) {
+    vm.changeGpmlNodeType = function(gpmlNodeTypeId) {
       vm.currentGpmlNodeType = vm.gpmlNodeTypeList()
         .filter(function(gpmlNodeType) {
-          return id == gpmlNodeType.id();
+          return gpmlNodeTypeId === gpmlNodeType.id();
         })[0];
+    };
+
+    vm.onChange = function(gpmlNodeTypeId) {
+      console.log('currentGpmlNodeType id');
+      console.log(gpmlNodeTypeId);
+      datasetControl.vm.filterDatasetListByXrefType(gpmlNodeTypeId);
     };
   }
   return vm;
 })();
 
-gpmlDataNodeTypeSelector.controller = function() {
-  gpmlDataNodeTypeSelector.vm.init();
+xrefTypeControl.controller = function() {
+  xrefTypeControl.vm.init();
 }
 
-gpmlDataNodeTypeSelector.view = function() {
+xrefTypeControl.view = function() {
   return m('select.form-control.input.input-sm',
   {
-    onchange: m.withAttr('value', gpmlDataNodeTypeSelector.vm.changeGpmlNodeType),
-    value: gpmlDataNodeTypeSelector.vm.currentGpmlNodeType.id()
+    onchange: m.withAttr('value', xrefTypeControl.vm.onChange),
+    value: xrefTypeControl.vm.currentGpmlNodeType.id()
   },
   [
-    gpmlDataNodeTypeSelector.vm.gpmlNodeTypeList().map(
+    xrefTypeControl.vm.gpmlNodeTypeList().map(
       function(gpmlNodeType, index) {
-        return m('option[value="' + gpmlNodeType.id() + '"]', gpmlNodeType.name());
+        return m('option', {value : gpmlNodeType.id(), innerHTML : gpmlNodeType.name()})
       })
   ]);
 }
 
-module.exports = gpmlDataNodeTypeSelector;
+module.exports = xrefTypeControl;

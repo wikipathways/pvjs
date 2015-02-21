@@ -136,6 +136,7 @@
     "element-resize-detector": "~0.1.4",
     "spin.js": "~2.0.2",
     "mithril": "~0.1.30",
-    "iconv-lite": "~0.4.7"
+    "iconv-lite": "~0.4.7",
+    "select2": "~3.5.2-browserify"
   }
 }
