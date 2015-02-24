@@ -163,7 +163,7 @@ datasetControl.controller = function() {
 }
 
 datasetControl.view = function() {
-  return m('select.form-control.input.input-sm[style="max-width:100px"][required]', {
+  return m('select.pathvisiojs-editor-dataset.form-control.input.input-sm[style="max-width:100px"][required]', {
     onchange: m.withAttr('value', datasetControl.vm.changeDataset),
     value: datasetControl.vm.currentDataset.id()
   }, [

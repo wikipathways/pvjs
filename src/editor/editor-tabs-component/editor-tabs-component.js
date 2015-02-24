@@ -69,24 +69,22 @@ module.exports = function(pvjs) {
   //here's the view
   editorTabsComponent.view = function() {
     return [
-      m('section.pathvisiojs-editor-tabs', {}, [
-        m('ul.nav.nav-tabs', {}, [
-          editorTabsComponent.vm.tabs.map(function(tab) {
-            var title = tab().title;
-            var currentTitle = editorTabsComponent.vm.currentTab().title;
-            var activeString = title === currentTitle ?
-                '.active' : '';
-            return m('li' + activeString + '[role="presentation"]', {}, [
-              m('a[href="#"]', {
-                onclick: m.withAttr('value',
-                            editorTabsComponent.vm.changeTab),
-                value: tab().title
-              }, tab().title)
-            ])
-          })
-        ]),
-        editorTabsComponent.vm.currentTab().view()
-      ])
+      m('ul.nav.nav-tabs', {}, [
+        editorTabsComponent.vm.tabs.map(function(tab) {
+          var title = tab().title;
+          var currentTitle = editorTabsComponent.vm.currentTab().title;
+          var activeString = title === currentTitle ?
+              '.active' : '';
+          return m('li' + activeString + '[role="presentation"]', {}, [
+            m('a[href="#"]', {
+              onclick: m.withAttr('value',
+                          editorTabsComponent.vm.changeTab),
+              value: tab().title
+            }, tab().title)
+          ])
+        })
+      ]),
+      editorTabsComponent.vm.currentTab().view()
     ];
   };
 
