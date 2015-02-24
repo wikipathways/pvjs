@@ -4,7 +4,7 @@
 
 var _ = require('lodash');
 var datasetControl = require('./dataset-control');
-var displayNameControl = require('./display-name-control');
+var displayNameControl = require('../../../sub-components/display-name-control');
 var editorUtils = require('../../../editor-utils');
 var fs = require('fs');
 var XrefSearch = require('./xref-search');

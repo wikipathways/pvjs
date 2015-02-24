@@ -1,12 +1,7 @@
 var _ = require('lodash');
 var annotationTab = require('./tabs/annotation-tab/annotation-tab');
 var propertiesTab = require('./tabs/properties-tab/properties-tab');
-var insertCss = require('insert-css');
 var m = require('mithril');
-
-var css = [
-  './editor-tabs-component.css'
-];
 
 module.exports = function(pvjs) {
 
@@ -50,10 +45,6 @@ module.exports = function(pvjs) {
     });
 
     vm.init = function() {
-      if (!_.isEmpty(css)) {
-        css.map(insertCss);
-      }
-
       vm.currentTab = vm.tabs[0];
 
       annotationTab.vm.init(pvjs);
