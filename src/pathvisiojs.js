@@ -30,7 +30,7 @@ function initPathvisiojs(window, $) {
     window.initPathvisiojsHighlighter(window, $);
   }
 
-  DiagramRenderer = DiagramRenderer(this);
+  var diagramRenderer = new DiagramRenderer();
   css.map(insertCss);
 
   /**
@@ -47,7 +47,9 @@ function initPathvisiojs(window, $) {
   var optionsDefault = {
     fitToContainer: true,
     sourceData: [],
-    manualRender: false
+    manualRender: false,
+    //editor: 'open'
+    editor: 'closed'
   };
 
   /**
@@ -91,8 +93,12 @@ function initPathvisiojs(window, $) {
     this.events = {};
 
     this.initContainer();
-    //Editor.open(this);
-    Editor(this);
+    if (this.options.editor !== 'disabled') {
+      this.editor = new Editor(this);
+      if (this.options.editor === 'open') {
+        this.editor.open();
+      }
+    }
 
     // Check if render should be called now or it will be done later manually
     if (!this.options.manualRender) {
@@ -159,7 +165,7 @@ function initPathvisiojs(window, $) {
 
     // Listen for renderer errors
     this.on('error.renderer', function() {
-      DiagramRenderer.destroyRender(pvjs, pvjs.sourceData);
+      diagramRenderer.destroyRender(pvjs, pvjs.sourceData);
       pvjs.checkAndRenderNextSource();
     });
   };
@@ -182,19 +188,19 @@ function initPathvisiojs(window, $) {
     this.sourceData.fileType = this.options.sourceData[
       this.sourceData.sourceIndex].fileType;
 
-    if (DiagramRenderer.canRender(this.sourceData)) {
-      if (DiagramRenderer.needDataConverted(this.sourceData)) {
+    if (diagramRenderer.canRender(this.sourceData)) {
+      if (diagramRenderer.needDataConverted(this.sourceData)) {
         FormatConverter.loadAndConvert(pvjs, function(error, pvjson) {
           if (error) {
             pvjs.trigger('error.pvjson', {message: error});
             pvjs.checkAndRenderNextSource();
           } else {
             pvjs.sourceData.pvjson = pvjson;
-            DiagramRenderer.render(pvjs);
+            diagramRenderer.render(pvjs);
           }
         });
       } else {
-        DiagramRenderer.render(pvjs);
+        diagramRenderer.render(pvjs);
       }
     } else {
       // try next source
@@ -208,7 +214,7 @@ function initPathvisiojs(window, $) {
         'destroy.pvjs', {message: 'User requested pvjs destroy'}, false)
 
     // Destroy renderer
-    DiagramRenderer.destroyRender(this, this.sourceData)
+    diagramRenderer.destroyRender(this, this.sourceData)
 
     // Off all events
     for (var e in this.events) {
@@ -655,7 +661,7 @@ function registerWikiPathwaysPathvisiojsElement() {
 
       // TODO avoid multiple resize event listeners. One should work fine.
       // But right now, it doesn't.
-      var elementResizeDetectorInstance = ElementResizeDetector({
+      var elementResizeDetectorInstance = new ElementResizeDetector({
         allowMultipleListeners: true
       });
       var createElementResizeListener = function(element) {

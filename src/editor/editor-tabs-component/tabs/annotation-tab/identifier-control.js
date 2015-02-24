@@ -3,7 +3,7 @@
   *****************************/
 
 var _ = require('lodash');
-var editorUtils = require('./editor-utils');
+var editorUtils = require('../../../editor-utils');
 var highland = require('highland');
 var m = require('mithril');
 

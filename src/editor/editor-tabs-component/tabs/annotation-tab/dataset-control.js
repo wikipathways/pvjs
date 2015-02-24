@@ -8,10 +8,10 @@
 
 var _ = require('lodash');
 var BridgeDb = require('bridgedb');
-var editorUtils = require('./editor-utils');
+var editorUtils = require('../../../editor-utils');
 var highland = require('highland');
 var m = require('mithril');
-var mithrilUtils = require('../mithril-utils');
+var mithrilUtils = require('../../../../mithril-utils');
 
 /**
  * Module variables.

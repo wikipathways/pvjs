@@ -5,14 +5,14 @@
 var _ = require('lodash');
 var datasetControl = require('./dataset-control');
 var displayNameControl = require('./display-name-control');
-var editorUtils = require('./editor-utils');
+var editorUtils = require('../../../editor-utils');
 var fs = require('fs');
 var XrefSearch = require('./xref-search');
 var xrefTypeControl = require('./xref-type-control');
 var highland = require('highland');
 var identifierControl = require('./identifier-control');
 var m = require('mithril');
-var mithrilUtils = require('../mithril-utils');
+var mithrilUtils = require('../../../../mithril-utils');
 
 var xrefSpecifier = {};
 var xrefSearch;
