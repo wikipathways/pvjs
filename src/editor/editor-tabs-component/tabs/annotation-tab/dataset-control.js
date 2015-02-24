@@ -54,33 +54,13 @@ datasetControl.vm = (function() {
 
     var datasetPlaceholder = {
       'id': '',
-      'displayName': 'Select db'
+      'displayName': 'Select dataset'
     };
 
     //specify placeholder selection
     vm.currentDataset = new datasetControl.Dataset(datasetPlaceholder);
 
-    vm.datasetListFull = highland.compose(
-        mithrilUtils.promisify,
-        function(filteredStream) {
-          return highland([datasetPlaceholder]).concat(filteredStream)
-        },
-        filterDatasetsForPrimaryDataNodes,
-        standardizeDataset,
-        function(expandedStream) {
-          return expandedStream.flatMap(function(value) {
-            return editorUtils.createJsonldCompactStream(value, editorUtils.context);
-          });
-        },
-        function(inputStream) {
-          return inputStream.flatMap(function(value) {
-            return editorUtils.createJsonldExpandStream(value, null);
-          });
-        },
-        bridgeDb.dataset.query)();
-
-    var promisifiedGetDatasets = highland.compose(
-        mithrilUtils.promisify, propify,
+    var getPrimaryDatasets = highland.compose(
         function(filteredStream) {
           return highland([datasetPlaceholder]).concat(filteredStream)
         },
@@ -98,7 +78,20 @@ datasetControl.vm = (function() {
         },
         bridgeDb.dataset.query);
 
-    vm.datasetList = promisifiedGetDatasets();
+    vm.datasetList = propifyArray([datasetPlaceholder]);
+
+    // short timeout to allow the editor-tabs toolbar to
+    // open before getting the dataset list from bridgedb.
+    setTimeout(function() {
+      // TODO don't run getPrimaryDatasets twice
+      vm.datasetListFull = highland.compose(
+          mithrilUtils.promisify,
+          getPrimaryDatasets)();
+
+      vm.datasetList = highland.compose(
+          mithrilUtils.promisify, propify,
+          getPrimaryDatasets)();
+    }, 50);
 
     vm.filterDatasetListByXrefType = function(xrefType) {
       vm.datasetList = propifyArray(vm.datasetListFull().filter(function(dataset) {

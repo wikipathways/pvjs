@@ -26,41 +26,25 @@ xrefSpecifier.Item = function(item) {
 
 xrefSpecifier.vm = (function() {
 
-  var selectedPvjsElement;
   var selectedXref;
 
   var vm = {};
+
   vm.init = function(pvjs) {
+
     xrefSpecifier.vm.saveButtonClass = 'btn-default';
 
     xrefSearch = new XrefSearch(xrefSpecifier);
 
-    /***********************************************
-     * DataNode onclick event handler
-     **********************************************/
+    vm.cancel = function() {
+      vm.reset();
+      pvjs.editor.cancel();
+    }
 
-    var diagramContainer = document.querySelector('.diagram-container');
-    diagramContainer.addEventListener('click', editorOnClickDiagramContainer, false);
-
-    function editorOnClickDiagramContainer(event) {
-      m.startComputation();
+    vm.onClickDiagramContainer = function(selectedPvjsElement) {
 
       // TODO this is a kludge. refactor.
       xrefSpecifier.vm.saveButtonClass = 'btn-success';
-
-      var selectedElementId = event.target.id;
-
-      selectedPvjsElement = pvjs.sourceData.pvjson.elements.filter(function(pvjsElement) {
-        return pvjsElement.id === selectedElementId;
-      })
-      .map(function(pvjsElement) {
-        return pvjsElement;
-      })[0];
-
-      if (!selectedPvjsElement) {
-        m.endComputation();
-        return;
-      }
 
       selectedXref = _.find(pvjs.sourceData.pvjson.elements,
           function(pvjsElement) {
@@ -68,17 +52,8 @@ xrefSpecifier.vm = (function() {
           });
 
       if (!selectedXref) {
-        m.endComputation();
         return;
       }
-
-      // TODO next section is a kludge. refactor to not display annotation panel in edit mode.
-      event.preventDefault();
-      document.querySelector('.annotation').style.display = 'none';
-      window.setTimeout(function() {
-        document.querySelector('.annotation').style.visibility = 'hidden';
-        document.querySelector('.annotation').style.display = null;
-      }, 2000);
 
       var iri = selectedPvjsElement.entityReference;
       var iriComponents = iri.split('identifiers.org');
@@ -94,11 +69,19 @@ xrefSpecifier.vm = (function() {
 
       var entity = editorUtils.convertXrefToPvjsEntity(selectedXref);
       xrefSpecifier.vm.updateControlValues(entity);
-
-      m.endComputation();
     }
 
-    vm.save = function() {
+    vm.reset = function() {
+      xrefSpecifier.vm.saveButtonClass = 'btn-default';
+      xrefTypeControl.vm.init();
+      datasetControl.vm.currentDataset.id = m.prop('');
+      identifierControl.vm.identifier = m.prop('');
+      displayNameControl.vm.displayName = m.prop('');
+
+      pvjs.editor.clearSelection();
+    }
+
+    vm.save = function(selectedPvjsElement) {
       xrefSpecifier.vm.saveButtonClass = 'btn-default';
       var xrefType = xrefTypeControl.vm.currentXrefType.name();
       var datasetName = datasetControl.vm.currentDataset.name();
@@ -118,17 +101,8 @@ xrefSpecifier.vm = (function() {
 
       updateXrefsInGpml(
           pvjs, selectedPvjsElement.id, xrefType, datasetName, identifier, displayName);
-    }
 
-    vm.cancel = function() {
-      xrefSpecifier.vm.saveButtonClass = 'btn-default';
-      xrefTypeControl.vm.currentXrefType.id = m.prop('');
-      datasetControl.vm.currentDataset.id = m.prop('');
-      identifierControl.vm.identifier = m.prop('');
-      displayNameControl.vm.displayName = m.prop('');
-      selectedPvjsElement = null;
-      pvjs.editor.close();
-      diagramContainer.removeEventListener('click', editorOnClickDiagramContainer);
+      vm.reset();
     }
 
     xrefSearch.vm.init();

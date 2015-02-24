@@ -9,6 +9,10 @@ module.exports = function(pvjs) {
   var editorTabsComponentContainerElement = containerElement.querySelector(
       '.pathvisiojs-editor-tabs');
 
+  function onClickDiagramContainer(selectedPvjsElement) {
+    annotationTab.vm.onClickDiagramContainer(selectedPvjsElement);
+  }
+
   function open() {
     m.module(editorTabsComponentContainerElement, editorTabsComponent);
   }
@@ -89,6 +93,7 @@ module.exports = function(pvjs) {
   };
 
   return {
+    onClickDiagramContainer: onClickDiagramContainer,
     open: open,
     close: close
   };

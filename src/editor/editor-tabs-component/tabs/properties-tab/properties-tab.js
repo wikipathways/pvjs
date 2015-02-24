@@ -34,53 +34,26 @@ propertiesTab.vm = (function() {
 
     propertiesTab.vm.saveButtonClass = 'btn-default';
 
-    /***********************************************
-     * DataNode onclick event handler
-     **********************************************/
-
-    var diagramContainer = document.querySelector('.diagram-container');
-    diagramContainer.addEventListener('click', editorOnClickDiagramContainer, false);
-
-    function editorOnClickDiagramContainer(event) {
-      m.startComputation();
+    function onClickDiagramContainer(selectedPvjsElement) {
 
       // TODO this is a kludge. refactor.
       propertiesTab.vm.saveButtonClass = 'btn-success';
-
-      var selectedElementId = event.target.id;
-
-      selectedPvjsElement = pvjs.sourceData.pvjson.elements.filter(function(pvjsElement) {
-        return pvjsElement.id === selectedElementId;
-      })
-      .map(function(pvjsElement) {
-        return pvjsElement;
-      })[0];
-
-      if (!selectedPvjsElement) {
-        m.endComputation();
-        return;
-      }
-
-      // TODO next section is a kludge. refactor to not display annotation panel in edit mode.
-      event.preventDefault();
-      document.querySelector('.annotation').style.display = 'none';
-      window.setTimeout(function() {
-        document.querySelector('.annotation').style.visibility = 'hidden';
-        document.querySelector('.annotation').style.display = null;
-      }, 2000);
-
-      m.endComputation();
-    }
-
-    vm.save = function() {
-      propertiesTab.vm.saveButtonClass = 'btn-default';
-
-      updateGraphicsInGpml(pvjs, selectedPvjsElement.id, propertiesTab.vm.color());
     }
 
     vm.cancel = function() {
       propertiesTab.vm.saveButtonClass = 'btn-default';
-      diagramContainer.removeEventListener('click', editorOnClickDiagramContainer);
+      pvjs.editor.cancel();
+    }
+
+    vm.reset = function() {
+      vm.color = m.prop('');
+      pvjs.editor.clearSelection();
+    }
+
+    vm.save = function(selectedPvjsElement) {
+      propertiesTab.vm.saveButtonClass = 'btn-default';
+      updateGraphicsInGpml(pvjs, selectedPvjsElement.id, propertiesTab.vm.color());
+      vm.reset();
     }
   }
 

@@ -686,6 +686,9 @@ function registerWikiPathwaysPathvisiojsElement() {
           pathInstance.resizeDiagram();
         });
 
+      // Initialize Highlighter plugin
+      pathInstance.highlighter = pathvisiojsHighlighter(pathInstance);
+
       /*// TODO read the URL query parameters and also the
         // highlight="[{}, {}]" attribute to get these values
 
