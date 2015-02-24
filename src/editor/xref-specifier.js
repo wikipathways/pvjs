@@ -26,10 +26,12 @@ xrefSpecifier.Item = function(item) {
 
 xrefSpecifier.vm = (function() {
 
-  var selectedElementId;
+  var selectedPvjsElement;
+  var selectedXref;
 
   var vm = {};
   vm.init = function(pvjs) {
+    xrefSpecifier.vm.saveButtonClass = 'btn-default';
 
     xrefSearch = new XrefSearch(xrefSpecifier);
 
@@ -37,23 +39,48 @@ xrefSpecifier.vm = (function() {
      * DataNode onclick event handler
      **********************************************/
 
-    $('.diagram-container').on('click', function(event) {
+    var diagramContainer = document.querySelector('.diagram-container');
+    diagramContainer.addEventListener('click', editorOnClickDiagramContainer, false);
+
+    function editorOnClickDiagramContainer(event) {
       m.startComputation();
 
-      selectedElementId = event.target.id;
-      var element = pvjs.sourceData.pvjson.elements.filter(function(element) {
-        return element.id === selectedElementId;
+      // TODO this is a kludge. refactor.
+      xrefSpecifier.vm.saveButtonClass = 'btn-success';
+
+      var selectedElementId = event.target.id;
+
+      selectedPvjsElement = pvjs.sourceData.pvjson.elements.filter(function(pvjsElement) {
+        return pvjsElement.id === selectedElementId;
       })
-      .map(function(element) {
-        return element;
+      .map(function(pvjsElement) {
+        return pvjsElement;
       })[0];
 
-      var xref = _.find(pvjs.sourceData.pvjson.elements,
-          function(elementItem) {
-            return elementItem.id === element.entityReference;
+      if (!selectedPvjsElement) {
+        m.endComputation();
+        return;
+      }
+
+      selectedXref = _.find(pvjs.sourceData.pvjson.elements,
+          function(pvjsElement) {
+            return pvjsElement.id === selectedPvjsElement.entityReference;
           });
 
-      var iri = element.entityReference;
+      if (!selectedXref) {
+        m.endComputation();
+        return;
+      }
+
+      // TODO next section is a kludge. refactor to not display annotation panel in edit mode.
+      event.preventDefault();
+      document.querySelector('.annotation').style.display = 'none';
+      window.setTimeout(function() {
+        document.querySelector('.annotation').style.visibility = 'hidden';
+        document.querySelector('.annotation').style.display = null;
+      }, 2000);
+
+      var iri = selectedPvjsElement.entityReference;
       var iriComponents = iri.split('identifiers.org');
       var iriPath = iriComponents[iriComponents.length - 1];
       var iriPathComponents = iriPath.split('/');
@@ -61,30 +88,47 @@ xrefSpecifier.vm = (function() {
       var identifier = iriPathComponents[2];
 
       var datasetId = 'http://identifiers.org/' + preferredPrefix;
-      xref.isDataItemIn = {id: datasetId};
+      selectedXref.isDataItemIn = {id: datasetId};
 
-      xref.identifier = identifier;
+      selectedXref.identifier = identifier;
 
-      var entity = editorUtils.convertXrefToPvjsEntity(xref);
+      var entity = editorUtils.convertXrefToPvjsEntity(selectedXref);
       xrefSpecifier.vm.updateControlValues(entity);
 
       m.endComputation();
-    });
+    }
 
     vm.save = function() {
+      xrefSpecifier.vm.saveButtonClass = 'btn-default';
       var xrefType = xrefTypeControl.vm.currentXrefType.name();
       var datasetName = datasetControl.vm.currentDataset.name();
       var identifier = identifierControl.vm.identifier();
       var displayName = displayNameControl.vm.displayName();
-      updateXrefsInGpml(pvjs, selectedElementId, xrefType, datasetName, identifier, displayName);
+
+      // TODO this isn't exactly matching the current pvjson model
+      selectedPvjsElement['gpml:Type'] = 'gpml:' + xrefType;
+      selectedPvjsElement.textContent = displayName;
+
+      // TODO If the actual entity reference is changed, update
+      // the link to the new entity reference, adding it if it
+      // doesn't already exist.
+      selectedXref.dbName = datasetName;
+      selectedXref.dbId = identifier;
+      selectedXref.displayName = displayName;
+
+      updateXrefsInGpml(
+          pvjs, selectedPvjsElement.id, xrefType, datasetName, identifier, displayName);
     }
 
     vm.cancel = function() {
+      xrefSpecifier.vm.saveButtonClass = 'btn-default';
       xrefTypeControl.vm.currentXrefType.id = m.prop('');
       datasetControl.vm.currentDataset.id = m.prop('');
       identifierControl.vm.identifier = m.prop('');
       displayNameControl.vm.displayName = m.prop('');
-      selectedElementId = null;
+      selectedPvjsElement = null;
+      pvjs.editor.close();
+      diagramContainer.removeEventListener('click', editorOnClickDiagramContainer);
     }
 
     xrefSearch.vm.init();
@@ -125,27 +169,25 @@ xrefSpecifier.controller = function() {
 
 xrefSpecifier.view = function() {
   return m('nav.navbar.navbar-default.navbar-form.well.well-sm', [
-    //m('div.form-inline.form-inline-sm', [
-      m('div.form-group.navbar-left', [
-        xrefSearch.view(),
+    m('div.form-group.navbar-left', [
+      xrefSearch.view(),
+    ]),
+    m('div.form-group.well.well-sm.navbar-left', [
+      xrefTypeControl.view(),
+      datasetControl.view(),
+      identifierControl.view(),
+      displayNameControl.view(),
+    ]),
+    m('div.form-group.well.well-sm.navbar-left', [
+      m('button[type="submit"].btn.btn-sm.' + xrefSpecifier.vm.saveButtonClass, {
+        onclick: xrefSpecifier.vm.save
+      }, [
+        m('span.glyphicon.glyphicon-ok')
       ]),
-      m('div.form-group.well.well-sm.navbar-left', [
-        xrefTypeControl.view(),
-        datasetControl.view(),
-        identifierControl.view(),
-        displayNameControl.view(),
-      ]),
-      m('div.form-group.well.well-sm.navbar-left', [
-        m('button[type="submit"].btn.btn-sm.btn-success', {
-          onclick: xrefSpecifier.vm.save
-        }, [
-          m('span.glyphicon.glyphicon-floppy-disk')
-        ]),
-      ]),
-      m('span.glyphicon.glyphicon-remove.navbar-right[style="color: #aaa;"]', {
-        onclick: xrefSpecifier.vm.cancel
-      })
-    //])
+    ]),
+    m('span.glyphicon.glyphicon-remove.navbar-right[style="color: #aaa;"]', {
+      onclick: xrefSpecifier.vm.cancel
+    })
   ]);
 }
 
