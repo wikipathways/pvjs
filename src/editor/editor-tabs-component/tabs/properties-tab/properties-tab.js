@@ -63,10 +63,10 @@ propertiesTab.vm = (function() {
 
       // TODO next section is a kludge. refactor to not display annotation panel in edit mode.
       event.preventDefault();
-      document.querySelector('.annotation').properties.display = 'none';
+      document.querySelector('.annotation').style.display = 'none';
       window.setTimeout(function() {
-        document.querySelector('.annotation').properties.visibility = 'hidden';
-        document.querySelector('.annotation').properties.display = null;
+        document.querySelector('.annotation').style.visibility = 'hidden';
+        document.querySelector('.annotation').style.display = null;
       }, 2000);
 
       m.endComputation();
