@@ -54,7 +54,7 @@ datasetControl.vm = (function() {
 
     var datasetPlaceholder = {
       'id': '',
-      'displayName': 'Database'
+      'displayName': 'Select db'
     };
 
     //specify placeholder selection

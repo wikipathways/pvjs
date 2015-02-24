@@ -27,10 +27,25 @@ xrefTypeControl.vm = (function() {
   var vm = {};
   vm.init = function() {
 
-    var xrefTypes = [{
+    var propify = function(highlandStream) {
+      return highlandStream.map(function(item) {
+        return new xrefTypeControl.XrefType(item);
+      });
+    }
+
+    var promisifiedGetXrefTypes = highland.compose(
+        mithrilUtils.promisify, propify, function(items) {
+          return highland(items);
+        });
+
+    //specify initial selection
+    var xrefTypePlaceholder = {
       '@id': '',
-      name: 'Type'
-    }, {
+      'name': 'Select type'
+    };
+    vm.currentXrefType = new xrefTypeControl.XrefType(xrefTypePlaceholder);
+
+    var xrefTypes = [xrefTypePlaceholder].concat([{
       '@id': 'gpml:GeneProduct',
       name: 'Gene Product'
     }, {
@@ -45,26 +60,9 @@ xrefTypeControl.vm = (function() {
     }, {
       '@id': 'gpml:Unknown',
       name: 'Unknown'
-    }];
-
-    var propify = function(highlandStream) {
-      return highlandStream.map(function(item) {
-        return new xrefTypeControl.XrefType(item);
-      });
-    }
-
-    var promisifiedGetXrefTypes = highland.compose(
-        mithrilUtils.promisify, propify, function(items) {
-          return highland(items);
-        });
+    }]);
 
     vm.xrefTypeList = promisifiedGetXrefTypes(xrefTypes);
-
-    //specify initial selection
-    vm.currentXrefType = {
-      id: m.prop(''),
-      'name': m.prop('Type')
-    };
 
     vm.changeXrefType = function(xrefTypeId) {
       vm.currentXrefType = vm.xrefTypeList()
