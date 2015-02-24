@@ -72,7 +72,10 @@ module.exports = function(xrefSpecifier) {
       xrefSelectionModal = simpleModal({
         title: 'Click a row to select an xref',
         content: 'modal content',
-        buttons: []
+        buttons: [{
+          text:'Cancel',
+          closeOnClick: true
+        }]
       });
     }
 
