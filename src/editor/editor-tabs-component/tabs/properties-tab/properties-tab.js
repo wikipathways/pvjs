@@ -93,7 +93,7 @@ propertiesTab.controller = function() {
 
 //here's the view
 propertiesTab.view = function() {
-  return m('nav.navbar.navbar-default.navbar-form.well.well-sm', [
+  return m('nav.pathvisiojs-editor-properties.navbar.navbar-default.navbar-form.well.well-sm', [
     m('div.form-group.well.well-sm.navbar-left', [
       m('input[placeholder="Color"].form-control.input.input-sm', {
         onchange: m.withAttr('value',

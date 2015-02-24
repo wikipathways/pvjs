@@ -168,7 +168,7 @@ xrefSpecifier.controller = function() {
 }
 
 xrefSpecifier.view = function() {
-  return m('nav.navbar.navbar-default.navbar-form.well.well-sm', [
+  return m('nav.pathvisiojs-editor-annotation.navbar.navbar-default.navbar-form.well.well-sm', [
     m('div.form-group.navbar-left', [
       xrefSearch.view(),
     ]),
