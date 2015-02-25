@@ -4,6 +4,7 @@ var ElementResizeDetector = require('element-resize-detector');
 var fs = require('fs');
 var highland = require('highland');
 var insertCss = require('insert-css');
+var PathvisiojsHighlighter = require('./highlighter/highlighter.js');
 var promisescript = require('promisescript');
 var Utils = require('./utils');
 var DiagramRenderer = require('./diagram-renderer/diagram-renderer');
@@ -133,6 +134,9 @@ function initPathvisiojs(window, $) {
     // Remove loading state after pathvisiojs is loaded
     this.on('rendered', function() {
       Utils.removeClassForD3(pvjs.$element, 'loading');
+
+      // Initialize Highlighter plugin
+      pvjs.publicInstance.highlighter = new PathvisiojsHighlighter(pvjs.publicInstance);
     });
 
     // Get container sizes
@@ -554,8 +558,6 @@ function registerWikiPathwaysPathvisiojsElement() {
 
     // Get first element from array of instances
     var pathInstance = $(pathvisiojsContainerElement).pathvisiojs('get').pop()
-    // TODO remove this from the global namespace
-    window.pathInstance = pathInstance
 
     // Load notification plugin
     pathvisiojsNotifications(pathInstance, {
@@ -686,9 +688,6 @@ function registerWikiPathwaysPathvisiojsElement() {
           pathInstance.resizeDiagram();
         });
 
-      // Initialize Highlighter plugin
-      pathInstance.highlighter = pathvisiojsHighlighter(pathInstance);
-
       /*// TODO read the URL query parameters and also the
         // highlight="[{}, {}]" attribute to get these values
 
@@ -780,20 +779,30 @@ var assetsToLoad = [
     })()
   },
   {
-    exposed: 'Modernizr',
-    type: 'script',
-    url: '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js',
-    loaded: (function() {
-      return !!window.Modernizr;
-    })()
-  },
-  {
     exposed: 'document.registerElement',
     type: 'script',
     url: '//cdnjs.cloudflare.com/ajax/libs/' +
         'webcomponentsjs/0.5.2/CustomElements.min.js',
     loaded: (function() {
       return !!document.registerElement;
+    })()
+  },
+  {
+    exposed: 'Modernizr.inputtypes.color',
+    type: 'script',
+    url: '//cdnjs.cloudflare.com/ajax/libs/' +
+        'spectrum/1.6.1/spectrum.min.js',
+    loaded: (function() {
+      return !!window.Modernizr.inputtypes.color;
+    })()
+  },
+  {
+    exposed: 'Modernizr.inputtypes.color',
+    type: 'style',
+    url: '//cdnjs.cloudflare.com/ajax/libs/' +
+        'spectrum/1.6.1/spectrum.min.css',
+    loaded: (function() {
+      return !!window.Modernizr.inputtypes.color;
     })()
   }
 ];

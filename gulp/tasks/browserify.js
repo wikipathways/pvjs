@@ -21,6 +21,24 @@ var watchify = require('watchify');
 
 gulp.task('browserify', function() {
 
+  // TODO move this into its own file
+  var modernizr = require('modernizr');
+
+  modernizr.build({
+    'feature-detects': [
+      'inputtypes',
+      'svg',
+      'svg/asimg',
+      'svg/clippaths',
+      'svg/filters',
+      'svg/foreignobject',
+      'svg/inline',
+      'svg/smil'
+    ]
+  }, function(result) {
+    fs.writeFileSync('./tmp/modernizr-custom.js', result);
+  });
+
   var bundleMethod = global.isWatching ? watchify : browserify;
 
   var getBundleName = function() {
@@ -36,8 +54,8 @@ gulp.task('browserify', function() {
 
   var bundler = bundleMethod({
     // Specify the entry point of your app
-    entries: ['./src/pathvisiojs.js',
-      './src/highlighter/highlighter.js',
+    entries: ['./tmp/modernizr-custom.js',
+      './src/pathvisiojs.js',
       './src/notifications/notifications.js',
       './src/diff-viewer/diff-viewer.js']
   })

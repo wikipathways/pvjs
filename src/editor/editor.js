@@ -13,7 +13,6 @@ module.exports = function(pvjs) {
   var containerElement = pvjs.$element[0][0];
   var diagramContainerElement = containerElement.querySelector('.diagram-container');
   var editorTriggerButton = containerElement.querySelector('.edit-trigger');
-  var selectedPvjsElement;
 
   editorTriggerButton.addEventListener('click', function(event) {
     open();
@@ -30,29 +29,29 @@ module.exports = function(pvjs) {
 
     pvjs.publicInstance.highlighter.highlight('#' + selectedElementId);
 
-    selectedPvjsElement = pvjs.sourceData.pvjson.elements.filter(function(pvjsElement) {
+    pvjs.editor.selectedPvjsElement = pvjs.sourceData.pvjson.elements.filter(function(pvjsElement) {
       return pvjsElement.id === selectedElementId;
     })
     .map(function(pvjsElement) {
       return pvjsElement;
     })[0];
 
-    if (!selectedPvjsElement) {
+    if (!pvjs.editor.selectedPvjsElement) {
       m.endComputation();
       return;
     }
 
-    editorTabsComponent.onClickDiagramContainer(selectedPvjsElement);
+    editorTabsComponent.onClickDiagramContainer(pvjs.editor.selectedPvjsElement);
 
     m.endComputation();
   }
 
   function clearSelection() {
-    if (selectedPvjsElement) {
-      pvjs.publicInstance.highlighter.attenuate('#' + selectedPvjsElement.id);
+    if (pvjs.editor.selectedPvjsElement) {
+      pvjs.publicInstance.highlighter.attenuate('#' + pvjs.editor.selectedPvjsElement.id);
     }
 
-    selectedPvjsElement = null;
+    pvjs.editor.selectedPvjsElement = null;
   }
 
   function cancel() {
@@ -77,9 +76,7 @@ module.exports = function(pvjs) {
   function close() {
     diagramContainer.removeEventListener('click', onClickDiagramContainer);
 
-    if (selectedPvjsElement) {
-      pvjs.publicInstance.highlighter.attenuate('#' + selectedPvjsElement.id);
-    }
+    clearSelection();
 
     // TODO this is a kludge. refactor how we avoid displaying annotation panel in edit mode.
     document.querySelector('.annotation').style.display = null;

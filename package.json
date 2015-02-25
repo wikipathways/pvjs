@@ -118,7 +118,8 @@
     "JSONStream": "~0.10.0",
     "gulp-bump": "~0.1.11",
     "gulp-regex-replace": "~0.2.3",
-    "gulp-build-branch": "~0.1.4"
+    "gulp-build-branch": "~0.1.4",
+    "modernizr": "~3.0.0-alpha"
   },
   "dependencies": {
     "bridgedb": "~4.1.0",
@@ -129,7 +130,6 @@
     "gpml2json": "git://github.com/wikipathways/gpml2json.git",
     "blueimp-load-image": "~1.13.0",
     "cross-platform-text": "git://github.com/ariutta/cross-platform-text.git",
-    "modernizr": "~3.0.0-pre",
     "insert-css": "~0.2.0",
     "highland": "~2.3.0",
     "promisescript": "~1.1.0",
@@ -137,6 +137,7 @@
     "spin.js": "~2.0.2",
     "mithril": "~0.1.30",
     "iconv-lite": "~0.4.7",
-    "select2": "~3.5.2-browserify"
+    "select2": "~3.5.2-browserify",
+    "spectrum-colorpicker": "~1.6.1"
   }
 }
