@@ -50,7 +50,8 @@ propertiesTab.vm = (function() {
       pvjs.editor.clearSelection();
     }
 
-    vm.save = function(selectedPvjsElement) {
+    vm.save = function() {
+      var selectedPvjsElement = pvjs.editor.selectedPvjsElement;
       propertiesTab.vm.saveButtonClass = 'btn-default';
       updateGraphicsInGpml(pvjs, selectedPvjsElement.id, propertiesTab.vm.color());
       vm.reset();
@@ -64,15 +65,22 @@ propertiesTab.controller = function() {
   propertiesTab.vm.init();
 }
 
+/*
+<input type='color' name='color2' value='#3355cc' />
+//*/
+
 //here's the view
 propertiesTab.view = function() {
   return m('nav.pathvisiojs-editor-properties.navbar.navbar-default.navbar-form.well.well-sm', [
     m('div.form-group.well.well-sm.navbar-left', [
-      m('input[placeholder="Color"].form-control.input.input-sm', {
-        onchange: m.withAttr('value',
-                    propertiesTab.vm.updateColor),
-        value: propertiesTab.vm.color()
-      })
+      m('div.input-group.input-group-sm', [
+        m('span.input-group-addon', {}, 'Color'),
+        m('input[type="color"][value="#3355cc"][style="width: 50px;"]', {
+          onchange: m.withAttr('value',
+                      propertiesTab.vm.updateColor),
+          value: propertiesTab.vm.color()
+        })
+      ]),
     ]),
     m('div.form-group.well.well-sm.navbar-left', [
       m('button[type="submit"].btn.btn-sm.' + propertiesTab.vm.saveButtonClass, {

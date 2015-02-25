@@ -81,7 +81,8 @@ xrefSpecifier.vm = (function() {
       pvjs.editor.clearSelection();
     }
 
-    vm.save = function(selectedPvjsElement) {
+    vm.save = function() {
+      var selectedPvjsElement = pvjs.editor.selectedPvjsElement;
       xrefSpecifier.vm.saveButtonClass = 'btn-default';
       var xrefType = xrefTypeControl.vm.currentXrefType.name();
       var datasetName = datasetControl.vm.currentDataset.name();
