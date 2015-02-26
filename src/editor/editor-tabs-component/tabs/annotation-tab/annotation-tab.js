@@ -194,31 +194,14 @@ function updateXrefsInGpml(pvjs, selectedElementId, xrefType,
   xrefElement.attr('Database', datasetName);
   xrefElement.attr('ID', identifier);
 
-  var gpmlString = gpmlDoc.html();
-
-  console.log('');
-  console.log('');
-  console.log('');
-  console.log('*********************************************************************');
-  console.log('*********************************************************************');
-  console.log('');
-  console.log('Updated GPML file as string:');
-  console.log('');
-  console.log(gpmlString);
-  console.log('');
-  console.log('*********************************************************************');
-  console.log('*********************************************************************');
-  console.log('');
-
-  console.log('You successfully performed a local update for a GPML DataNode.')
-  console.log('It now has the following values:');
+  console.log('Updated values:');
   console.log('GraphId: ' + selectedElementId);
   console.log('TextLabel: ' + displayName);
   console.log('Type: ' + xrefType);
   console.log('Database: ' + datasetName);
   console.log('ID: ' + identifier);
 
-  pvjs.editor.save(gpmlString);
+  pvjs.editor.save(gpmlDoc);
 }
 
 module.exports = annotationTab;

@@ -111,27 +111,13 @@ function updateGraphicsInGpml(pvjs, selectedElementId, color) {
   var dataNodeElement = gpmlDoc.find('DataNode[GraphId="' + selectedElementId + '"]');
   var graphicsElement = dataNodeElement.find('Graphics');
 
-  graphicsElement.attr('Color', color.replace('#', '').toUpperCase());
+  var gpmlColor = color.replace('#', '').toUpperCase();
+  graphicsElement.attr('Color', gpmlColor);
 
-  var gpmlString = gpmlDoc.html();
+  console.log('Updated values:');
+  console.log('Color: ' + gpmlColor);
 
-  console.log('');
-  console.log('');
-  console.log('');
-  console.log('*********************************************************************');
-  console.log('*********************************************************************');
-  console.log('');
-  console.log('Updated GPML file as string:');
-  console.log('');
-  console.log(gpmlString);
-  console.log('');
-  console.log('*********************************************************************');
-  console.log('*********************************************************************');
-  console.log('');
-
-  console.log('You successfully performed a local update for a GPML DataNode.')
-
-  pvjs.editor.save(gpmlString);
+  pvjs.editor.save(gpmlDoc);
 }
 
 module.exports = propertiesTab;

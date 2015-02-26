@@ -97,7 +97,26 @@ module.exports = function(pvjs) {
     editorTabsComponent.close();
   }
 
-  function save(gpmlString) {
+  function save(gpmlDoc) {
+    var serializerInstance = new XMLSerializer();
+    var gpmlString = serializerInstance.serializeToString(gpmlDoc[0]);
+
+    console.log('');
+    console.log('');
+    console.log('');
+    console.log('*********************************************************************');
+    console.log('*********************************************************************');
+    console.log('');
+    console.log('Updated GPML file as string:');
+    console.log('');
+    console.log(gpmlString);
+    console.log('');
+    console.log('*********************************************************************');
+    console.log('*********************************************************************');
+    console.log('');
+
+    console.log('You successfully performed a local update for a GPML DataNode.')
+
     wikipathwaysApiClient.updatePathway({
         identifier: 'WP4',
         description: 'Test update',
