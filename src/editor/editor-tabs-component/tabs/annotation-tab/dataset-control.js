@@ -164,7 +164,7 @@ datasetControl.view = function() {
       .map(function(dataset, index) {
         var selectedString = dataset.id() !== datasetControl.vm.currentDataset.id() ?
           '' : '[selected]';
-        return m('option' + selectedString, {value : dataset.id(), innerHTML : dataset.name()})
+        return m('option.form-control' + selectedString, {value : dataset.id(), innerHTML : dataset.name()})
         /*
         return m('option[value=' + dataset.id() + ']',
           dataset.name());

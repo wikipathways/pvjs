@@ -144,23 +144,25 @@ annotationTab.controller = function() {
 
 annotationTab.view = function() {
   return m('nav.pathvisiojs-editor-annotation.navbar.navbar-default.navbar-form.well.well-sm', [
-    m('div.form-group.navbar-left', [
+    m('div.navbar-left', [
       xrefSearch.view(),
     ]),
-    m('div.form-group.well.well-sm.navbar-left', [
-      xrefTypeControl.view(),
-      datasetControl.view(),
-      identifierControl.view(),
-      displayNameControl.view(),
+    m('div.form-group.navbar-left', [
+      m('div.form-control[style="height: 44px;"]', [
+        xrefTypeControl.view(),
+        datasetControl.view(),
+        identifierControl.view(),
+        displayNameControl.view(),
+      ]),
     ]),
-    m('div.form-group.well.well-sm.navbar-left', [
-      m('button[type="submit"].btn.btn-sm.' + annotationTab.vm.saveButtonClass, {
+    m('div.form-group.navbar-left', [
+      m('button[type="submit"][style="height: 44px;"].btn.form-control.' + annotationTab.vm.saveButtonClass, {
         onclick: annotationTab.vm.save
       }, [
         m('span.glyphicon.glyphicon-ok')
       ]),
     ]),
-    m('span.glyphicon.glyphicon-remove.navbar-right[style="color: #aaa;"]', {
+    m('span.glyphicon.glyphicon-remove.btn.navbar-right[style="color: #aaa; transform: translateY(-10px);"]', {
       onclick: annotationTab.vm.cancel
     })
   ]);
