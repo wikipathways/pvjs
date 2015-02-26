@@ -2,8 +2,8 @@ var _ = require('lodash');
 var insertCss = require('insert-css');
 var EditorTabsComponent = require('./editor-tabs-component/editor-tabs-component');
 var m = require('mithril');
-//var wikipathwaysApiClient = require('wikipathways-api-client');
-var wikipathwaysApiClient = require('../../../wikipathways-api-client-js/wikipathways-api-client');
+var wikipathwaysApiClient = require('wikipathways-api-client');
+//var wikipathwaysApiClient = require('../../../wikipathways-api-client-js/wikipathways-api-client');
 
 var css = [
   './editor.css'

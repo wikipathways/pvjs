@@ -16,7 +16,7 @@ colorPickerControl config factory. The params in this doc refer to properties
 */
 colorPickerControl.config = function(ctrl) {
   return function(element, isInitialized) {
-    var el = $(element).find('input[type="color"]');
+    var el = $(element);
 
     if (!Modernizr.inputtypes.color && !isInitialized) {
       // Polyfill for browsers that don't natively
@@ -68,13 +68,11 @@ colorPickerControl.controller = function() {
 //this view implements a color-picker input for both
 //browers that support it natively and those that don't
 colorPickerControl.view = function(ctrl) {
-  return m('div.input-group.input-group-sm', {config: colorPickerControl.config(ctrl)}, [
-    m('span.input-group-addon', {}, 'Color'),
-    m('input[type="color"][value="#3355cc"][style="width: 50px; height: 30px;"]', {
-      onchange: m.withAttr('value', colorPickerControl.vm.updateColor),
-      value: colorPickerControl.vm.color()
-    })
-  ]);
+  return m('input[type="color"][style="width: 30px; height: 30px; transform: translateY(1px);"]', {
+    config: colorPickerControl.config(ctrl),
+    onchange: m.withAttr('value', colorPickerControl.vm.updateColor),
+    value: colorPickerControl.vm.color()
+  })
 }
 
 module.exports = colorPickerControl;

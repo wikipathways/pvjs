@@ -187,22 +187,20 @@ module.exports = function(xrefSpecifier) {
 
   //here's the view
   xrefSearch.view = function() {
-    return m('div.well.well-sm', [
-      m('div.form-search', [
-        m('div.input-group.input-group-sm', [
-          m('input[placeholder="Search by name"][type="text"].form-control', {
-            onchange: m.withAttr('value', xrefSearch.vm.query),
-            value: xrefSearch.vm.query()
-          }),
-          m('span.input-group-btn', {onclick: xrefSearch.vm.search},
-            m('button[type="submit"].btn.btn-success', [
-              m('span[aria-hidden="true"].glyphicon.glyphicon-search')
-            ])),
-          xrefSearch.vm.modalList.map(function(xrefList, index) {
-            return simpleModalComponent.view(xrefList);
-          })
-        ]),
-      ]),
+    return m('div.form-search.form-group', [
+      m('div.input-group.input-group-sm.form-control', [
+        m('input[placeholder="Search by name"][type="text"].form-control', {
+          onchange: m.withAttr('value', xrefSearch.vm.query),
+          value: xrefSearch.vm.query()
+        }),
+        m('span.input-group-btn', {onclick: xrefSearch.vm.search},
+          m('button[type="submit"].btn.btn-success', [
+            m('span[aria-hidden="true"].glyphicon.glyphicon-search')
+          ])),
+        xrefSearch.vm.modalList.map(function(xrefList, index) {
+          return simpleModalComponent.view(xrefList);
+        })
+      ])
     ]);
   };
 

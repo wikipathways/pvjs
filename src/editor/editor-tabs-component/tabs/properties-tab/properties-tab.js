@@ -68,22 +68,32 @@ propertiesTab.controller = function() {
 //here's the view
 propertiesTab.view = function() {
   return m('nav.pathvisiojs-editor-properties.navbar.navbar-default.navbar-form.well.well-sm', [
-    m('div.form-group.well.well-sm.navbar-left', [
-      colorPickerControl.view(),
+    m('div.form-group.navbar-left', [
+      m('div.input-group.input-group-sm.form-control', {}, [
+        m('span.glyphicon.glyphicon-text-color.input-group-addon', {}),
+        colorPickerControl.view()
+      ]),
     ]),
+    /* TODO this displays the same value as the text color input
     m('div.form-group.well.well-sm.navbar-left', [
-      m('button[type="submit"].btn.btn-sm.' + propertiesTab.vm.saveButtonClass, {
+      m('div.input-group.input-group-sm', {}, [
+        m('span.glyphicon.glyphicon-text-background.input-group-addon', {}),
+        colorPickerControl.view()
+      ])
+    ]),
+    //*/
+    m('div.form-group.navbar-left', [
+      m('button[type="submit"][style="height: 44px;"].btn.form-control.' + propertiesTab.vm.saveButtonClass, {
         onclick: propertiesTab.vm.save
       }, [
         m('span.glyphicon.glyphicon-ok')
       ]),
     ]),
-    m('span.glyphicon.glyphicon-remove.navbar-right[style="color: #aaa;"]', {
+    m('span.glyphicon.glyphicon-remove.btn.navbar-right[style="color: #aaa; transform: translateY(-10px);"]', {
       onclick: propertiesTab.vm.cancel
     })
   ]);
 }
-
 /***********************************************
  * Temporary solution for handling updates
  * to GPML DataNode Graphics.
