@@ -3,6 +3,7 @@
  **********************************/
 
 var _ = require('lodash');
+var colorPickerControl = require('../../../sub-components/color-picker-control');
 var editorUtils = require('../../../editor-utils');
 var fs = require('fs');
 var highland = require('highland');
@@ -23,18 +24,12 @@ propertiesTab.vm = (function() {
   var vm = {};
   vm.init = function(pvjs) {
 
-    vm.color = m.prop('');
-
-    // react to user updating color value
-    vm.updateColor = function(newColor) {
-      if (!!newColor) {
-        vm.color = m.prop(newColor);
-      }
-    };
+    colorPickerControl.vm.init();
 
     propertiesTab.vm.saveButtonClass = 'btn-default';
 
-    function onClickDiagramContainer(selectedPvjsElement) {
+    vm.onClickDiagramContainer = function(selectedPvjsElement) {
+      colorPickerControl.vm.color(selectedPvjsElement.color);
 
       // TODO this is a kludge. refactor.
       propertiesTab.vm.saveButtonClass = 'btn-success';
@@ -46,16 +41,17 @@ propertiesTab.vm = (function() {
     }
 
     vm.reset = function() {
-      vm.color = m.prop('');
+      colorPickerControl.vm.color('');
       pvjs.editor.clearSelection();
     }
 
     vm.save = function() {
       var selectedPvjsElement = pvjs.editor.selectedPvjsElement;
       propertiesTab.vm.saveButtonClass = 'btn-default';
-      updateGraphicsInGpml(pvjs, selectedPvjsElement.id, propertiesTab.vm.color());
+      updateGraphicsInGpml(pvjs, selectedPvjsElement.id, colorPickerControl.vm.color());
       vm.reset();
     }
+
   }
 
   return vm;
@@ -73,14 +69,7 @@ propertiesTab.controller = function() {
 propertiesTab.view = function() {
   return m('nav.pathvisiojs-editor-properties.navbar.navbar-default.navbar-form.well.well-sm', [
     m('div.form-group.well.well-sm.navbar-left', [
-      m('div.input-group.input-group-sm', [
-        m('span.input-group-addon', {}, 'Color'),
-        m('input[type="color"][value="#3355cc"][style="width: 50px;"]', {
-          onchange: m.withAttr('value',
-                      propertiesTab.vm.updateColor),
-          value: propertiesTab.vm.color()
-        })
-      ]),
+      colorPickerControl.view(),
     ]),
     m('div.form-group.well.well-sm.navbar-left', [
       m('button[type="submit"].btn.btn-sm.' + propertiesTab.vm.saveButtonClass, {
@@ -104,10 +93,17 @@ propertiesTab.view = function() {
 function updateGraphicsInGpml(pvjs, selectedElementId, color) {
   var gpmlDoc = pvjs.sourceData.original;
 
+  pvjs.$element.select('#' + selectedElementId)
+    .style('stroke', color);
+  pvjs.$element.select('#text-for-' + selectedElementId)
+    .style('fill', color);
+
   var dataNodeElement = gpmlDoc.find('DataNode[GraphId="' + selectedElementId + '"]');
   var graphicsElement = dataNodeElement.find('Graphics');
 
-  graphicsElement.attr('Color', color);
+  graphicsElement.attr('Color', color.replace('#', '').toUpperCase());
+
+  var gpmlString = gpmlDoc.html();
 
   console.log('');
   console.log('');
@@ -117,13 +113,15 @@ function updateGraphicsInGpml(pvjs, selectedElementId, color) {
   console.log('');
   console.log('Updated GPML file as string:');
   console.log('');
-  console.log(gpmlDoc.html());
+  console.log(gpmlString);
   console.log('');
   console.log('*********************************************************************');
   console.log('*********************************************************************');
   console.log('');
 
   console.log('You successfully performed a local update for a GPML DataNode.')
+
+  pvjs.editor.save(gpmlString);
 }
 
 module.exports = propertiesTab;

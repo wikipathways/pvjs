@@ -59,6 +59,8 @@ gulp.task('browserify', function() {
       './src/notifications/notifications.js',
       './src/diff-viewer/diff-viewer.js']
   })
+  .ignore('commander')
+  .ignore('cheerio')
   // enable fs.readFileSync() in browser
   .transform('brfs')
   .transform('deglobalify');

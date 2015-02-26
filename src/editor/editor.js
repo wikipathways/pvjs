@@ -2,13 +2,14 @@ var _ = require('lodash');
 var insertCss = require('insert-css');
 var EditorTabsComponent = require('./editor-tabs-component/editor-tabs-component');
 var m = require('mithril');
+//var wikipathwaysApiClient = require('wikipathways-api-client');
+var wikipathwaysApiClient = require('../../../wikipathways-api-client-js/wikipathways-api-client');
 
 var css = [
   './editor.css'
 ];
 
 module.exports = function(pvjs) {
-
   var editorTabsComponent = new EditorTabsComponent(pvjs);
   var containerElement = pvjs.$element[0][0];
   var diagramContainerElement = containerElement.querySelector('.diagram-container');
@@ -27,7 +28,13 @@ module.exports = function(pvjs) {
 
     var selectedElementId = event.target.id;
 
-    pvjs.publicInstance.highlighter.highlight('#' + selectedElementId);
+    if (!!pvjs.editor.selectedPvjsElement) {
+      pvjs.publicInstance.highlighter.attenuate('#' + pvjs.editor.selectedPvjsElement.id);
+    }
+
+    pvjs.publicInstance.highlighter.highlight('#' + selectedElementId, null, {
+      backgroundColor: 'white', borderColor: 'green'
+    });
 
     pvjs.editor.selectedPvjsElement = pvjs.sourceData.pvjson.elements.filter(function(pvjsElement) {
       return pvjsElement.id === selectedElementId;
@@ -90,11 +97,25 @@ module.exports = function(pvjs) {
     editorTabsComponent.close();
   }
 
+  function save(gpmlString) {
+    wikipathwaysApiClient.updatePathway({
+        identifier: 'WP4',
+        description: 'Test update',
+        gpml: gpmlString,
+        fileFormat: 'application/gpml+xml'
+      },
+      function(err, response) {
+        console.log('Response:');
+        console.log(response);
+      });
+  }
+
   return {
     open: open,
     close: close,
     cancel: cancel,
-    clearSelection: clearSelection
+    clearSelection: clearSelection,
+    save: save
   };
 
 };
