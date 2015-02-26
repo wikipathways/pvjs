@@ -1,5 +1,5 @@
 /***********************************
- * xrefSpecifier
+ * annotationTab
  **********************************/
 
 var _ = require('lodash');
@@ -14,17 +14,17 @@ var identifierControl = require('./identifier-control');
 var m = require('mithril');
 var mithrilUtils = require('../../../../mithril-utils');
 
-var xrefSpecifier = {};
+var annotationTab = {};
 var xrefSearch;
 
-xrefSpecifier.ItemList = Array;
+annotationTab.ItemList = Array;
 
-xrefSpecifier.Item = function(item) {
+annotationTab.Item = function(item) {
   this.id = m.prop(item.id);
   this.name = m.prop(item.name);
 }
 
-xrefSpecifier.vm = (function() {
+annotationTab.vm = (function() {
 
   var selectedXref;
 
@@ -32,9 +32,9 @@ xrefSpecifier.vm = (function() {
 
   vm.init = function(pvjs) {
 
-    xrefSpecifier.vm.saveButtonClass = 'btn-default';
+    annotationTab.vm.saveButtonClass = 'btn-default';
 
-    xrefSearch = new XrefSearch(xrefSpecifier);
+    xrefSearch = new XrefSearch(annotationTab);
 
     vm.cancel = function() {
       vm.reset();
@@ -44,7 +44,7 @@ xrefSpecifier.vm = (function() {
     vm.onClickDiagramContainer = function(selectedPvjsElement) {
 
       // TODO this is a kludge. refactor.
-      xrefSpecifier.vm.saveButtonClass = 'btn-success';
+      annotationTab.vm.saveButtonClass = 'btn-success';
 
       selectedXref = _.find(pvjs.sourceData.pvjson.elements,
           function(pvjsElement) {
@@ -68,11 +68,11 @@ xrefSpecifier.vm = (function() {
       selectedXref.identifier = identifier;
 
       var entity = editorUtils.convertXrefToPvjsEntity(selectedXref);
-      xrefSpecifier.vm.updateControlValues(entity);
+      annotationTab.vm.updateControlValues(entity);
     }
 
     vm.reset = function() {
-      xrefSpecifier.vm.saveButtonClass = 'btn-default';
+      annotationTab.vm.saveButtonClass = 'btn-default';
       xrefTypeControl.vm.init();
       datasetControl.vm.currentDataset.id = m.prop('');
       identifierControl.vm.identifier = m.prop('');
@@ -83,7 +83,7 @@ xrefSpecifier.vm = (function() {
 
     vm.save = function() {
       var selectedPvjsElement = pvjs.editor.selectedPvjsElement;
-      xrefSpecifier.vm.saveButtonClass = 'btn-default';
+      annotationTab.vm.saveButtonClass = 'btn-default';
       var xrefType = xrefTypeControl.vm.currentXrefType.name();
       var datasetName = datasetControl.vm.currentDataset.name();
       var identifier = identifierControl.vm.identifier();
@@ -138,11 +138,11 @@ xrefSpecifier.vm = (function() {
   return vm;
 })();
 
-xrefSpecifier.controller = function() {
-  xrefSpecifier.vm.init();
+annotationTab.controller = function() {
+  annotationTab.vm.init();
 }
 
-xrefSpecifier.view = function() {
+annotationTab.view = function() {
   return m('nav.pathvisiojs-editor-annotation.navbar.navbar-default.navbar-form.well.well-sm', [
     m('div.form-group.navbar-left', [
       xrefSearch.view(),
@@ -154,14 +154,14 @@ xrefSpecifier.view = function() {
       displayNameControl.view(),
     ]),
     m('div.form-group.well.well-sm.navbar-left', [
-      m('button[type="submit"].btn.btn-sm.' + xrefSpecifier.vm.saveButtonClass, {
-        onclick: xrefSpecifier.vm.save
+      m('button[type="submit"].btn.btn-sm.' + annotationTab.vm.saveButtonClass, {
+        onclick: annotationTab.vm.save
       }, [
         m('span.glyphicon.glyphicon-ok')
       ]),
     ]),
     m('span.glyphicon.glyphicon-remove.navbar-right[style="color: #aaa;"]', {
-      onclick: xrefSpecifier.vm.cancel
+      onclick: annotationTab.vm.cancel
     })
   ]);
 }
@@ -192,6 +192,8 @@ function updateXrefsInGpml(pvjs, selectedElementId, xrefType,
   xrefElement.attr('Database', datasetName);
   xrefElement.attr('ID', identifier);
 
+  var gpmlString = gpmlDoc.html();
+
   console.log('');
   console.log('');
   console.log('');
@@ -200,7 +202,7 @@ function updateXrefsInGpml(pvjs, selectedElementId, xrefType,
   console.log('');
   console.log('Updated GPML file as string:');
   console.log('');
-  console.log(gpmlDoc.html());
+  console.log(gpmlString);
   console.log('');
   console.log('*********************************************************************');
   console.log('*********************************************************************');
@@ -213,6 +215,8 @@ function updateXrefsInGpml(pvjs, selectedElementId, xrefType,
   console.log('Type: ' + xrefType);
   console.log('Database: ' + datasetName);
   console.log('ID: ' + identifier);
+
+  pvjs.editor.save(gpmlString);
 }
 
-module.exports = xrefSpecifier;
+module.exports = annotationTab;
