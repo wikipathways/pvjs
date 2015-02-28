@@ -4,10 +4,7 @@
 ## Note: changed ul to .nav>ul to avoid conflict 
 
 ## Possible conflicts with tables...
-table {
-border-spacing: 0;
-border-collapse: collapse;
-}
+html{}body{}table{border-spacing:0;border-collapse:collapse}
 
 .nav-tabs {
 border-bottom: 1px solid #ddd;
