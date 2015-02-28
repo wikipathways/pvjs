@@ -90,7 +90,6 @@ border-bottom: 1px solid transparent;
 box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 1px 0 rgba(255,255,255,.1);
 }
 
-@media (min-width: 768px)
 .navbar-form .form-group {
 display: inline-block;
 margin-bottom: 0;
@@ -101,16 +100,8 @@ vertical-align: middle;
 margin-bottom: 15px;
 }
 
-@media (min-width: 768px)
 .navbar-form .input-group {
 display: inline-table;
-vertical-align: middle;
-}
-
-@media (min-width: 768px)
-.navbar-form .form-control {
-display: inline-block;
-width: auto;
 vertical-align: middle;
 }
 
@@ -139,12 +130,10 @@ box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
-@media (min-width: 768px)
 .navbar-form .input-group>.form-control {
 width: 100%;
 }
 
-@media (min-width: 768px)
 .navbar-form .input-group .form-control, .navbar-form .input-group .input-group-addon, .navbar-form .input-group .input-group-btn {
 width: auto;
 }
@@ -154,7 +143,6 @@ border-top-right-radius: 0;
 border-bottom-right-radius: 0;
 }
 
-@media (min-width: 768px)
 .navbar-form .form-control {
 display: inline-block;
 width: auto;
@@ -312,7 +300,6 @@ margin-bottom: 20px;
 border: 1px solid transparent;
 }
 
-@media (min-width: 768px)
 .navbar-left {
 float: left!important;
 }
@@ -322,7 +309,7 @@ position: relative;
 display: block;
 }
 
-.nav>ul {
+.pathvisiojs-editor-tabs>ul {
 margin-top: 0;
 margin-bottom: 10px;
 }
