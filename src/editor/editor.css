@@ -49,6 +49,11 @@ display: block;
 padding: 10px 15px;
 }
 
+.nav>li>a:hover{
+  text-decoration:none;
+  background-color:#eee;
+}
+
 .well-sm {
 padding: 9px;
 border-radius: 3px;
