@@ -33,6 +33,7 @@ cursor: default;
 background-color: #fff;
 border: 1px solid #ddd;
 border-bottom-color: transparent;
+text-decoration: none;
 }
 
 .nav-tabs>li>a {
@@ -82,7 +83,7 @@ box-shadow: none;
 }
 
 .navbar-form {
-padding: 10px 15px;
+padding: 10px 20px;
 margin-top: 8px;
 margin-right: -15px;
 margin-bottom: 8px;
