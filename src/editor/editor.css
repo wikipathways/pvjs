@@ -11,6 +11,7 @@ html{}body{}table{border-spacing:0;border-collapse:collapse}
 .glyphicon-search:before{content:"\e003"}
 .glyphicon-ok:before{content:"\e013"}
 .glyphicon-remove:before{content:"\e014"}
+.glyphicon-chevron-up:before{content:"\e113"}
 
 .nav-tabs {
 border-bottom: 1px solid #ddd;
