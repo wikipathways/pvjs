@@ -11,6 +11,9 @@ var DiagramRenderer = require('./diagram-renderer/diagram-renderer');
 var FormatConverter = require('./format-converter/format-converter');
 var Spinner = require('spin.js');
 
+// Make IE work with the CustomEvent interface standard
+require('custom-event-polyfill');
+
 var css = [
   fs.readFileSync(__dirname + '/pathvisiojs.css')
 ];

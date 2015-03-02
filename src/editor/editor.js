@@ -120,6 +120,17 @@ module.exports = function(pvjs) {
 
     console.log('You successfully performed a local update for a GPML DataNode.')
 
+    window.mypvjs = pvjs;
+    window.mygpmlString = gpmlString;
+
+    var pathvisiojsdatachangeEvent = new CustomEvent('pathvisiojsdatachange', {
+      'detail': {
+        'gpml': gpmlString
+      }
+    });
+    containerElement.parentNode.dispatchEvent(pathvisiojsdatachangeEvent);
+
+    /*
     var wikipathwaysApiClientInstance = new WikipathwaysApiClient({
       //baseIri: 'http://webservice.wikipathways.org/'
       baseIri: 'http://pvjs.wikipathways.org/wpi/webservicetest/'
@@ -137,6 +148,7 @@ module.exports = function(pvjs) {
         console.log('Response:');
         console.log(response);
       });
+    //*/
   }
 
   return {
