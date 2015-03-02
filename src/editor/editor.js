@@ -3,8 +3,6 @@ var insertCss = require('insert-css');
 var fs = require('fs');
 var EditorTabsComponent = require('./editor-tabs-component/editor-tabs-component');
 var m = require('mithril');
-//var WikipathwaysApiClient = require('wikipathways-api-client');
-var WikipathwaysApiClient = require('../../../wikipathways-api-client-js/wikipathways-api-client');
 
 var css = [
   fs.readFileSync(__dirname + '/editor.css')
@@ -118,37 +116,16 @@ module.exports = function(pvjs) {
     console.log('*********************************************************************');
     console.log('');
 
-    console.log('You successfully performed a local update for a GPML DataNode.')
-
-    window.mypvjs = pvjs;
-    window.mygpmlString = gpmlString;
+    console.log('You have successfully updated a GPML DataNode.');
+    console.log('This change took effect in your browser memory only.');
 
     var pathvisiojsdatachangeEvent = new CustomEvent('pathvisiojsdatachange', {
-      'detail': {
-        'gpml': gpmlString
+      detail: {
+        pvjson: pvjs.sourceData.pvjson,
+        gpml: gpmlString
       }
     });
     containerElement.parentNode.dispatchEvent(pathvisiojsdatachangeEvent);
-
-    /*
-    var wikipathwaysApiClientInstance = new WikipathwaysApiClient({
-      //baseIri: 'http://webservice.wikipathways.org/'
-      baseIri: 'http://pvjs.wikipathways.org/wpi/webservicetest/'
-    });
-
-    wikipathwaysApiClientInstance.updatePathway({
-        identifier: 'WP4',
-        description: 'Test update from wikipathways-api-client-js',
-        gpml: gpmlString,
-        fileFormat: 'application/gpml+xml'
-      },
-      function(err, response) {
-        console.log('err:');
-        console.log(err);
-        console.log('Response:');
-        console.log(response);
-      });
-    //*/
   }
 
   return {
