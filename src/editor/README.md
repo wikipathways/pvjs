@@ -1,9 +1,9 @@
 # Editor
 
-It will emit an event from the container element of the pathvisiojs instance (the one you specified). You can listen for ```change.pvjson``` like this:
+It will emit an event from the container element of the pathvisiojs instance (the one you specified). You can listen for ```pvjsdatachange``` like this:
 
 ```js
-document.querySelector('#your-container-element').addEventListener('change.pvjson', function (e) {
+document.querySelector('#your-container-element').addEventListener('pvjsdatachange', function (e) {
   console.log(e.detail);
 }, false);
 ```
