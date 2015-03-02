@@ -170,10 +170,17 @@ List of available events through application (custom events may be added at any 
 * panned.renderer
 * warning.renderer
 
+Editor Plugin
+-------------
+
+Allows for updating the pvjson data.
+
+[Documentation](https://github.com/wikipathways/pathvisiojs/tree/master/src/editor)
+
 Notifications Plugin
 --------------------
 
-Notifications plugin listenes for warning and error messages and displays them as alert boxes.
+Notifications plugin listens for warning and error messages and displays them as alert boxes.
 
 ### Usage
 
