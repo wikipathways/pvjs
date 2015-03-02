@@ -139,6 +139,7 @@
     "iconv-lite": "~0.4.7",
     "select2": "~3.5.2-browserify",
     "spectrum-colorpicker": "~1.6.1",
-    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git"
+    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git",
+    "custom-event-polyfill": "~0.1.2"
   }
 }
