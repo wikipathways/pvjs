@@ -117,15 +117,16 @@ module.exports = function(pvjs) {
     console.log('');
 
     console.log('You have successfully updated a GPML DataNode.');
-    console.log('This change took effect in your browser memory only.');
+    console.warn('This change applies to your browser only.');
+    console.warn('You still need to save it to the backend.');
 
-    var pathvisiojsdatachangeEvent = new CustomEvent('pathvisiojsdatachange', {
+    var pathvisiojsdatachangeEvent = new CustomEvent('pvjsdatachange', {
       detail: {
         pvjson: pvjs.sourceData.pvjson,
         gpml: gpmlString
       }
     });
-    containerElement.parentNode.dispatchEvent(pathvisiojsdatachangeEvent);
+    containerElement.dispatchEvent(pathvisiojsdatachangeEvent);
   }
 
   return {

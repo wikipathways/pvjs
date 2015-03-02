@@ -552,15 +552,12 @@ function registerWikiPathwaysPathvisiojsElement() {
       }
     ];
 
-    vm.innerHTML = '<div class="pathvisiojs-container"></div>';
+    vm.innerHTML = '';
 
-    var pathvisiojsContainerElement =
-        vm.querySelector('.pathvisiojs-container');
-
-    $(pathvisiojsContainerElement).pathvisiojs(args);
+    $(vm).pathvisiojs(args);
 
     // Get first element from array of instances
-    var pathInstance = $(pathvisiojsContainerElement).pathvisiojs('get').pop()
+    var pathInstance = $(vm).pathvisiojs('get').pop()
 
     // Load notification plugin
     pathvisiojsNotifications(pathInstance, {
@@ -571,7 +568,7 @@ function registerWikiPathwaysPathvisiojsElement() {
     // Call after render
     pathInstance.on('rendered', function() {
 
-      var diagramContainerElement = pathvisiojsContainerElement.querySelector(
+      var diagramContainerElement = vm.querySelector(
           '.diagram-container');
 
       /*
@@ -675,7 +672,7 @@ function registerWikiPathwaysPathvisiojsElement() {
         return wrapCallbackUnending(curried);
       };
 
-      createElementResizeListener(pathvisiojsContainerElement)
+      createElementResizeListener(vm)
         .debounce(refreshInterval)
         .each(function(element) {
           console.log('element resized');
