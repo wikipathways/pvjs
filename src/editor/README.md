@@ -3,8 +3,8 @@
 It will emit an event from the container element of the pathvisiojs instance (the one you specified). You can listen for ```pathvisiojsdatachange``` like this:
 
 ```js
-document.querySelector('#your-container-element').addEventListener('pathvisiojsdatachange', function (event) {
-  console.log(event.detail);
+document.querySelector('#your-container-element').addEventListener('pathvisiojsdatachange', function (e) {
+  console.log(e.detail);
 }, false);
 ```
 
