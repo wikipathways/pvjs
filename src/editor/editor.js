@@ -1,15 +1,18 @@
 var _ = require('lodash');
 var insertCss = require('insert-css');
+var fs = require('fs');
 var EditorTabsComponent = require('./editor-tabs-component/editor-tabs-component');
 var m = require('mithril');
 //var WikipathwaysApiClient = require('wikipathways-api-client');
 var WikipathwaysApiClient = require('../../../wikipathways-api-client-js/wikipathways-api-client');
 
 var css = [
-  './editor.css'
+  fs.readFileSync(__dirname + '/editor.css')
 ];
 
 module.exports = function(pvjs) {
+  css.map(insertCss);
+
   var editorTabsComponent = new EditorTabsComponent(pvjs);
   var containerElement = pvjs.$element[0][0];
   var diagramContainerElement = containerElement.querySelector('.diagram-container');
