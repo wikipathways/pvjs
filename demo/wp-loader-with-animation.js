@@ -140,7 +140,7 @@ $(window).ready(function() {
 
 	var queryStringParameters = getQueryStringAsObject();
 	if (Modernizr.inlinesvg) {
-		$(window).on('pathvisiojsReady', function() {
+		$(window).on('pvjsReady', function() {
 		  $(function(){
 
 		    var colors;
@@ -176,18 +176,18 @@ $(window).ready(function() {
 		      labelIndex += 1;
 		    });
 
-		    $('#pwImage_pvjs').pathvisiojs({
+		    $('#pwImage_pvjs').pvjs({
 		      fitToContainer: true,
 		      manualRender: true,
 		      sourceData: [{uri:gpmlFilePath, fileType:'gpml'},{uri:pngFilePath, fileType:'png'}]
 		    });
 
-		    var pathInstance = $('#pwImage_pvjs').pathvisiojs('get').pop();
+		    var pathInstance = $('#pwImage_pvjs').pvjs('get').pop();
 
-		    pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: false});
+		    pvjsNotifications(pathInstance, {displayErrors: true, displayWarnings: false});
 
 		    pathInstance.on('rendered', function(){
-		      var hi = pathvisiojsHighlighter(pathInstance);
+		      var hi = pvjsHighlighter(pathInstance);
 
 		      if (!!labelHighlights && labelHighlights.length > 0) {
 			labelHighlights.forEach(function(labelHighlight) {

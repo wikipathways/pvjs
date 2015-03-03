@@ -203,7 +203,7 @@ Selector.prototype.cloneElement = function() {
     selector.addElement(pvjsonElement)
 
     // TODO later refactor this to use markers clones
-    // https://github.com/wikipathways/pathvisiojs/blob/2bd230a8241374e12086524d9fd39f48e6cef71d/dist/plugins/pathvisiojs-highlighter/pathvisiojs-highlighter.js#L441
+    // https://github.com/wikipathways/pvjs/blob/2bd230a8241374e12086524d9fd39f48e6cef71d/dist/plugins/pvjs-highlighter/pvjs-highlighter.js#L441
     selector.removeMarkers()
   }
 

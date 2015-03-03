@@ -36,7 +36,7 @@ identifierControl.controller = function() {
 //here's the view
 identifierControl.view = function() {
   return [
-    m('input[placeholder="Identifier"].pathvisiojs-editor-identifier.form-control.input.input-sm', {
+    m('input[placeholder="Identifier"].pvjs-editor-identifier.form-control.input.input-sm', {
       onchange: m.withAttr('value',
                   identifierControl.vm.update),
       value: identifierControl.vm.identifier()

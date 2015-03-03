@@ -1,4 +1,4 @@
-// Note: the view (HTML) for this annotation panel is in pathvisiojs.html
+// Note: the view (HTML) for this annotation panel is in pvjs.html
 var fs = require('fs');
 var insertCss = require('insert-css');
 var Spinner = require('spin.js');

@@ -25,10 +25,8 @@ RendererSvg.init = function(pvjs) {
    */
   this._elementsHash = {}
 
-  console.log('pvjs');
-  console.log(pvjs);
   var containerBoundingClientRect = pvjs.$element[0][0].getBoundingClientRect();
-  // TODO pvjs.$element is a d3 selection with the overall pathvisiojs-container.
+  // TODO pvjs.$element is a d3 selection with the overall pvjs-container.
   // We should instead be working with the diagram container in here, but it isn't
   // full size when created, so the following code doesn't work:
   /*

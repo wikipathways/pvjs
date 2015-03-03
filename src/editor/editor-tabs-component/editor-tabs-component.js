@@ -8,7 +8,7 @@ module.exports = function(pvjs) {
 
   var containerElement = pvjs.$element[0][0];
   var editorTabsComponentContainerElement = containerElement.querySelector(
-      '.pathvisiojs-editor-tabs');
+      '.pvjs-editor-tabs');
 
   function onClickDiagramContainer(selectedPvjsElement) {
     annotationTab.vm.onClickDiagramContainer(selectedPvjsElement);

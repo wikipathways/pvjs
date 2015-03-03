@@ -23,13 +23,13 @@ var optionsDefault = {
 /**
  * Init plugin
  *
- * @param {pathvisiojs instance} pvjs
+ * @param {pvjs instance} pvjs
  * @param {objects} options
  */
 function init(pvjs, options) {
   // Create new instance if it does not exist
   if (!instancesMap.hasOwnProperty(pvjs.instanceId)) {
-    instancesMap[pvjs.instanceId] = new PathvisiojsHighlighter(pvjs, options);
+    instancesMap[pvjs.instanceId] = new PvjsHighlighter(pvjs, options);
   }
 
   return instancesMap[pvjs.instanceId].getPublicInstance();
@@ -40,7 +40,7 @@ function init(pvjs, options) {
  *
  * @param {Object} pvjs
  */
-var PathvisiojsHighlighter = function(pvjs, options) {
+var PvjsHighlighter = function(pvjs, options) {
   this.options = $.extend({}, optionsDefault, options);
 
   this.pvjs = pvjs;
@@ -70,7 +70,7 @@ var PathvisiojsHighlighter = function(pvjs, options) {
  *
  * @return {object} public instance
  */
-PathvisiojsHighlighter.prototype.getPublicInstance = function() {
+PvjsHighlighter.prototype.getPublicInstance = function() {
   if (this.publicInstance === undefined) {
     this.publicInstance = {
       highlight: $.proxy(this.highlightPublic, this)
@@ -93,7 +93,7 @@ PathvisiojsHighlighter.prototype.getPublicInstance = function() {
  * @param  {object} styles Styles
  * @return {Boolean} if anything found
  */
-PathvisiojsHighlighter.prototype.highlightPublic = function(stringSelector, group, styles) {
+PvjsHighlighter.prototype.highlightPublic = function(stringSelector, group, styles) {
   if (!this.isInitiated) {return}
 
   var selector = this.selectByString(stringSelector)
@@ -117,7 +117,7 @@ PathvisiojsHighlighter.prototype.highlightPublic = function(stringSelector, grou
  * @param  {string} stringSelector  String selector
  * @param  {string} group   Group name
  */
-PathvisiojsHighlighter.prototype.attenuatePublic = function(stringSelector, group) {
+PvjsHighlighter.prototype.attenuatePublic = function(stringSelector, group) {
   if (!this.isInitiated) {return}
 
   if (stringSelector === null) {
@@ -138,7 +138,7 @@ PathvisiojsHighlighter.prototype.attenuatePublic = function(stringSelector, grou
  * @param  {string} stringSelector
  * @return {object}                selector
  */
-PathvisiojsHighlighter.prototype.selectByString = function(stringSelector) {
+PvjsHighlighter.prototype.selectByString = function(stringSelector) {
   var selector = []
 
   if (stringSelector[0] === '#') {
@@ -167,7 +167,7 @@ PathvisiojsHighlighter.prototype.selectByString = function(stringSelector) {
  * @param  {object} element   pvjsonElement or svgElement
  * @param  {object} styles Styles
  */
-PathvisiojsHighlighter.prototype.highlight = function(group, element, styles) {
+PvjsHighlighter.prototype.highlight = function(group, element, styles) {
   styles = $.extend({}, this.options.styles, styles)
 
   // Create group if it does not exist
@@ -247,7 +247,7 @@ PathvisiojsHighlighter.prototype.highlight = function(group, element, styles) {
  * @param  {string} group  Group name
  * @param  {object} [element]   pvjsonElement or svgElement
  */
-PathvisiojsHighlighter.prototype.attenuate = function(group, element) {
+PvjsHighlighter.prototype.attenuate = function(group, element) {
   // If not such group or it is empty
   if (this.groups[group] === undefined || !this.groups[group].length) {
     return;
@@ -273,7 +273,7 @@ PathvisiojsHighlighter.prototype.attenuate = function(group, element) {
  *
  * @param  {selector Object} element
  */
-PathvisiojsHighlighter.prototype.removeElementFromGroups = function(element) {
+PvjsHighlighter.prototype.removeElementFromGroups = function(element) {
   var g, _group, l
 
   for (g in this.groups) {
@@ -293,7 +293,7 @@ PathvisiojsHighlighter.prototype.removeElementFromGroups = function(element) {
  *
  * @private
  */
-PathvisiojsHighlighter.prototype.initInputField = function() {
+PvjsHighlighter.prototype.initInputField = function() {
   var that = this;
 
   // Currently works only with svg renderer
@@ -302,7 +302,7 @@ PathvisiojsHighlighter.prototype.initInputField = function() {
   }
 
   // Init dom elements
-  this.$element = $('<div class="pathvisiojs-highlighter"/>').appendTo(this.$pvjsElement);
+  this.$element = $('<div class="pvjs-highlighter"/>').appendTo(this.$pvjsElement);
   this.$input = $('<input type="text"/>').appendTo(this.$element)
     .attr('placeholder', 'Enter node name to highlight')
     .attr('class', 'highlighter-input');
@@ -347,7 +347,7 @@ PathvisiojsHighlighter.prototype.initInputField = function() {
   })
 }
 
-PathvisiojsHighlighter.prototype.updateTypeaheadHighlight = function (differentColor) {
+PvjsHighlighter.prototype.updateTypeaheadHighlight = function (differentColor) {
   differentColor = differentColor || false;
   var styles = differentColor ? {fill: 'blue'} : {};
 
@@ -441,13 +441,13 @@ function generateStyleString(styles, except) {
 
 /**
  * Expose plugin, as module if in CommonJS and as
- * pathvisiojsHighlighter (globally) if in browser
+ * pvjsHighlighter (globally) if in browser
  */
 
 (function() {
   if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     //in browser environment
-    window.pathvisiojsHighlighter = init;
+    window.pvjsHighlighter = init;
   }
 
   if (!!module && !!module.exports) {

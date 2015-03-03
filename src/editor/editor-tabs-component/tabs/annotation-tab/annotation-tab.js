@@ -143,7 +143,7 @@ annotationTab.controller = function() {
 }
 
 annotationTab.view = function() {
-  return m('nav.pathvisiojs-editor-annotation.navbar.navbar-default.navbar-form.well.well-sm', [
+  return m('nav.pvjs-editor-annotation.navbar.navbar-default.navbar-form.well.well-sm', [
     m('div.navbar-left', [
       xrefSearch.view(),
     ]),

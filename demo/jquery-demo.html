@@ -4,36 +4,36 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-    <title>Pathvisiojs Simple Built Production Example</title>
+    <title>Pvjs Simple Built Production Example</title>
 
     <style type="text/css">
       html, body{width: 100%;height: 100%;margin: 0;}
     </style>
   </head>
   <body>
-    <h1>Pathvisiojs Diagram Instance 1: WP525</h1>
-    <div id="wikipathways-pathvisiojs-1" style="width: 800px; height: 570px; border: 1px solid #ccc;">
+    <h1>Pvjs Diagram Instance 1: WP525</h1>
+    <div id="wikipathways-pvjs-1" style="width: 800px; height: 570px; border: 1px solid #ccc;">
       <img alt="WP525 Biological Pathway"
         src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP525">
     </div>
 
-    <h1>Pathvisiojs Diagram Instance 2: WP1</h1>
-    <div id="wikipathways-pathvisiojs-2" style="width: 700px; height: 200px; border: 1px solid #ccc;">
+    <h1>Pvjs Diagram Instance 2: WP1</h1>
+    <div id="wikipathways-pvjs-2" style="width: 700px; height: 200px; border: 1px solid #ccc;">
       <img alt="WP1 Biological Pathway"
         src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1">
     </div>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="./lib/pathvisiojs/pathvisiojs-dev.bundle.js"></script>
+  <script src="./lib/pvjs/pvjs-dev.bundle.js"></script>
   <script>
   /* *******************
-  /* Load pathvisiojs
+  /* Load pvjs
   /* *******************/
-  $(window).on('pathvisiojsReady', function() {
-    console.log('pathvisiojsReady');
+  $(window).on('pvjsReady', function() {
+    console.log('pvjsReady');
     console.log('highlighter loaded');
-    console.log(!!window.pathvisiojsHighlighter);
-    $('#wikipathways-pathvisiojs-1').pathvisiojs({
+    console.log(!!window.pvjsHighlighter);
+    $('#wikipathways-pvjs-1').pvjs({
       fitToContainer: true,
       manualRender: true,
       sourceData: [
@@ -57,15 +57,15 @@
     });
 
     // Get first element from array of instances
-    var pathInstance1 = $('#wikipathways-pathvisiojs-1').pathvisiojs('get').pop();
+    var pathInstance1 = $('#wikipathways-pvjs-1').pvjs('get').pop();
 
     // Load notification plugin
-    pathvisiojsNotifications(pathInstance1, {displayErrors: true, displayWarnings: true});
+    pvjsNotifications(pathInstance1, {displayErrors: true, displayWarnings: true});
 
     // Call after render
     pathInstance1.on('rendered', function(){
       // Initialize Highlighter plugin
-      var hi = pathvisiojsHighlighter(pathInstance1);
+      var hi = pvjsHighlighter(pathInstance1);
 
       // Highlight by ID
       hi.highlight('#eb5');
@@ -93,8 +93,7 @@
     // Call renderer
     pathInstance1.render();
 
-
-    $('#wikipathways-pathvisiojs-2').pathvisiojs({
+    $('#wikipathways-pvjs-2').pvjs({
       fitToContainer: false,
       manualRender: true,
       sourceData: [
@@ -108,17 +107,17 @@
           fileType:'png'
         },
         {
-          uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
+          uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP1',
           fileType:'gpml' // generally will correspond to filename extension
         }
       ]
     });
 
     // Get first element from array of instances
-    var pathInstance2 = $('#wikipathways-pathvisiojs-2').pathvisiojs('get').pop();
+    var pathInstance2 = $('#wikipathways-pvjs-2').pvjs('get').pop();
 
     // Load plugins
-    pathvisiojsNotifications(pathInstance2, {displayErrors: true, displayWarnings: true});
+    pvjsNotifications(pathInstance2, {displayErrors: true, displayWarnings: true});
 
     // Call renderer
     pathInstance2.render();
@@ -128,7 +127,7 @@
   /*
   window.setTimeout(function(){
     $(function() {
-      $('#wikipathways-pathvisiojs-1').pathvisiojs({
+      $('#wikipathways-pvjs-1').pvjs({
         fitToContainer: true,
         manualRender: true,
         sourceData: [
@@ -152,15 +151,15 @@
       });
 
       // Get first element from array of instances
-      var pathInstance1 = $('#wikipathways-pathvisiojs-1').pathvisiojs('get').pop();
+      var pathInstance1 = $('#wikipathways-pvjs-1').pvjs('get').pop();
 
       // Load notification plugin
-      pathvisiojsNotifications(pathInstance1, {displayErrors: true, displayWarnings: true});
+      pvjsNotifications(pathInstance1, {displayErrors: true, displayWarnings: true});
 
       // Call after render
       pathInstance1.on('rendered', function(){
         // Initialize Highlighter plugin
-        var hi = pathvisiojsHighlighter(pathInstance1);
+        var hi = pvjsHighlighter(pathInstance1);
 
         // Highlight by ID
         hi.highlight('#eb5');
@@ -189,7 +188,7 @@
       pathInstance1.render();
 
 
-      $('#wikipathways-pathvisiojs-2').pathvisiojs({
+      $('#wikipathways-pvjs-2').pvjs({
         fitToContainer: false,
         manualRender: true,
         sourceData: [
@@ -210,10 +209,10 @@
       });
 
       // Get first element from array of instances
-      var pathInstance2 = $('#wikipathways-pathvisiojs-2').pathvisiojs('get').pop();
+      var pathInstance2 = $('#wikipathways-pvjs-2').pvjs('get').pop();
 
       // Load plugins
-      pathvisiojsNotifications(pathInstance2, {displayErrors: true, displayWarnings: true});
+      pvjsNotifications(pathInstance2, {displayErrors: true, displayWarnings: true});
 
       // Call renderer
       pathInstance2.render();

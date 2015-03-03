@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>pathvisiojs editor demo</title>
+    <title>pvjs editor demo</title>
 
     <style type="text/css">
       html, body {width: 100%; height: 100%;margin: 0;}
-      .wikipathways-pathvisiojs {min-width: 872px;height: 540px;margin: 0;}
+      .wikipathways-pvjs {min-width: 872px;height: 540px;margin: 0;}
       #wikipathways-header {width: 1024px; height: 120px; background-color: #87CEEB;}
       #wikipathways-body {width: 1024px; height: 540px;}
       #wikipathways-left-column {float: left; width: 152px; height: inherit; background-color: #87CEEB;}
@@ -27,9 +27,8 @@
   <div id="wikipathways-body">
     <div id="wikipathways-left-column">Left Column</div>
     <div id="wikipathways-main-content">
-      <div id="pathvisiojs-container"
-          is="wikipathways-pathvisiojs"
-          class="wikipathways-pathvisiojs"
+      <wikipathways-pvjs id="pvjs-container"
+          class="wikipathways-pvjs"
           alt="WP525 Biological Pathway"
           src="data/WP525_73040.gpml"
           display-errors="true"
@@ -39,7 +38,7 @@
         
         <img alt="WP525 Biological Pathway"
           src="http://www.wikipathways.org//wpi/wpi.php?action=downloadfile&type=png&pwtitle=pathway:WP525">
-      </div>
+      </wikipathways-pvjs>
     </div>
     <!--
     <div style="float: left; width: 200px; height: inherit; background-color: #87CEEB;">Right Column</div>
@@ -51,8 +50,8 @@
   </div>
 
     <!--
-    <script src="./lib/pathvisiojs/pathvisiojs-2.2.0.bundle.min.js"></script>
+    <script src="./lib/pvjs/pvjs-2.2.0.bundle.min.js"></script>
     -->
-    <script src="./lib/pathvisiojs/pathvisiojs-dev.bundle.js"></script>
+    <script src="./lib/pvjs/pvjs-dev.bundle.js"></script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 @import url("//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css");
 
-.pathvisiojs-container {
+.pvjs-container {
   position: relative;
   min-width: 400px;
   width: inherit;
@@ -10,13 +10,14 @@
   background-color: white;
   font-family: Helvetica, sans-serif, Arial;
   resize: both;
+  display: block;
 }
 
-.pathvisiojs-container.loading {
+.pvjs-container.loading {
   opacity: 0.7;
 }
 
-.pathvisiojs-container.loading:after {
+.pvjs-container.loading:after {
   content: '';
   position: absolute;
   left: 50%;
@@ -27,7 +28,7 @@
 }
 
 /* Centering image */
-.pathvisiojs-container .pathvisiojs-img {
+.pvjs-container .pvjs-img {
   position: absolute;
   margin: auto;
   top: 0;

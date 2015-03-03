@@ -3,7 +3,7 @@ This folder holds two parts of our shape library: markers (arrowheads) and shape
 For shapes that scale non-uniformly (e.g., the arc-like corner of a rounded
 rectangle if the corner must keep a constant radius, regardless of the size of the shape), please
 see the JavaScript code. For SVG, these shapes are currently rendered on-demand by JavaScript as SVG path elements, 
-with their attributes being set in the files in the [path shape directory](../js/pathvisiojs/view/pathway-diagram/svg/node/path-shape).
+with their attributes being set in the files in the [path shape directory](../js/pvjs/view/pathway-diagram/svg/node/path-shape).
 
 We may also be able to define shapes that scale uniformly in all ways except that they keep their original
 stroke width (line thickness).regardless of the zoom level of the diagram. In SVG, doing this would depend
@@ -26,13 +26,13 @@ JavaScript.
 
 This folder will probably eventually be replaced with a database. 
 
-When we build the pathvisio.min.js file, we take the SVG content of for each of our preferred selection of shapes
+When we build the pvjs.min.js file, we take the SVG content of for each of our preferred selection of shapes
 and markers and insert it into a template SVG file. Then we stringify the template SVG file and add it to our
-concatenated, minified JS file pathvisio.min.js. 
+concatenated, minified JS file pvjs.min.js. 
 
 The template SVG file file serves as our template for standardized GPML pathway visual representations.
-It can be used for many purposes outside of pathvisiojs, including allowing
-other projects to work better with GPML. For purposes of pathvisiojs, this file will
+It can be used for many purposes outside of pvjs, including allowing
+other projects to work better with GPML. For purposes of pvjs, this file will
 be the starting point for our JavaScript rendering of pathways. Every time we want to
 render a GPML file on the browser, we will read a copy of this file into D3.js and
 modify the copy by adding "use" statements, cloning markers, etc. in order to create
@@ -48,7 +48,7 @@ JS all inside this document.
 Doctypes are not needed for SVG, and jwatt discourages their use:
 https://jwatt.org/svg/authoring/.
 
-Style guides can be arbitrary, but for consistency of SVG markup for the pathvisiojs project,
+Style guides can be arbitrary, but for consistency of SVG markup for the pvjs project,
 	I suggest using JS Watt's SVG authoring advice and Google's HTML and JavaScript Guides:
 	https://jwatt.org/svg/authoring/
 	http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml

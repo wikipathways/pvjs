@@ -27,7 +27,7 @@ module.exports = {
 
     /*
     if (data.hasOwnProperty('PublicationXref')) {
-      pathvisiojs.renderer.publicationXref.getPublicationXrefString(data, data.PublicationXref, function(publicationXrefString) {
+      pvjs.renderer.publicationXref.getPublicationXrefString(data, data.PublicationXref, function(publicationXrefString) {
         infoBoxData.push({'key':'Citation(s)', 'value':publicationXrefString});
       })
     }

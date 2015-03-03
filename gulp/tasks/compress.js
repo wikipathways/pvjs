@@ -14,13 +14,13 @@ gulp.task('compress', function() {
     return name + '-' + version + '.bundle.min';
   };
 
-  gulp.src(['tmp/pathvisiojs-' + version + '.bundle.js'])
+  gulp.src(['tmp/pvjs-' + version + '.bundle.js'])
     //*
     .pipe(sourcemaps.init({loadMaps: true}))
       .pipe(uglify({
         'source_map': true,
         'source_map_options': {
-          file : 'pathvisiojs-' + version + '.bundle.min.js', // the compressed file name
+          file : 'pvjs-' + version + '.bundle.min.js', // the compressed file name
           root : null, // the root URL to the original sources
           orig : null, // the input source map
         }
