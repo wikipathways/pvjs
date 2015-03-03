@@ -120,13 +120,13 @@ module.exports = function(pvjs) {
     console.warn('This change applies to your browser only.');
     console.warn('You still need to save it to the backend.');
 
-    var pathvisiojsdatachangeEvent = new CustomEvent('pvjsdatachange', {
+    var pvjsdatachangeEvent = new CustomEvent('pvjsdatachange', {
       detail: {
         pvjson: pvjs.sourceData.pvjson,
         gpml: gpmlString
       }
     });
-    containerElement.dispatchEvent(pathvisiojsdatachangeEvent);
+    containerElement.dispatchEvent(pvjsdatachangeEvent);
   }
 
   return {

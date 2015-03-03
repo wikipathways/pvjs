@@ -154,7 +154,7 @@ module.exports = {
           //*/
 
         } else {
-          throw new Error('Pathvisiojs cannot render a citation for targets of this type: ' + networkType);
+          throw new Error('Pvjs cannot render a citation for targets of this type: ' + networkType);
         }
       }
     });

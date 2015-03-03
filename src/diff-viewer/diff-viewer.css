@@ -1,32 +1,32 @@
-.pathvisiojs-diffviewer {
+.pvjs-diffviewer {
   position: relative;
   height: 500px;
   border: 1px solid #000;
 }
 
-.pathvisiojs-diffviewer .pane {
+.pvjs-diffviewer .pane {
   float: left;
   overflow: hidden;
   width: 50%;
   height: 100%;
 }
 
-.pathvisiojs-diffviewer .pane.pane-left {
+.pvjs-diffviewer .pane.pane-left {
 }
 
-.pathvisiojs-diffviewer .pane.pane-left .pane-inner {
+.pvjs-diffviewer .pane.pane-left .pane-inner {
   margin-right: 120px;
 }
 
 
-.pathvisiojs-diffviewer .pane.pane-right {
+.pvjs-diffviewer .pane.pane-right {
 }
 
-.pathvisiojs-diffviewer .pane.pane-right .pane-inner {
+.pvjs-diffviewer .pane.pane-right .pane-inner {
   margin-left: 120px;
 }
 
-.pathvisiojs-diffviewer .pane.pane-center {
+.pvjs-diffviewer .pane.pane-center {
   position: absolute;
   top: 0;
   left: 50%;
@@ -36,7 +36,7 @@
   overflow-y: auto;
 }
 
-.pathvisiojs-diffviewer .pane-inner {
+.pvjs-diffviewer .pane-inner {
   height: 100%;
 }
 
@@ -44,7 +44,7 @@
   Overlay
  **************/
 
-.pathvisiojs-diffviewer > .overlay {
+.pvjs-diffviewer > .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -53,32 +53,32 @@
   background: #fff;
 }
 
-.pathvisiojs-diffviewer > .overlay .alert{
+.pvjs-diffviewer > .overlay .alert{
   padding: 9px 15px;
   margin: 4px;
   border: 1px solid transparent;
   border-radius: 4px;
 }
 
-.pathvisiojs-diffviewer > .overlay .alert.alert-success{
+.pvjs-diffviewer > .overlay .alert.alert-success{
   background-color: #dff0d8;
   border-color: #d6e9c6;
   color: #3c763d;
 }
 
-.pathvisiojs-diffviewer > .overlay .alert.alert-info{
+.pvjs-diffviewer > .overlay .alert.alert-info{
   background-color: #d9edf7;
   border-color: #bce8f1;
   color: #31708f;
 }
 
-.pathvisiojs-diffviewer > .overlay .alert.alert-warning{
+.pvjs-diffviewer > .overlay .alert.alert-warning{
   background-color: #fcf8e3;
   border-color: #faebcc;
   color: #8a6d3b;
 }
 
-.pathvisiojs-diffviewer > .overlay .alert.alert-danger{
+.pvjs-diffviewer > .overlay .alert.alert-danger{
   background-color: #f2dede;
   border-color: #ebccd1;
   color: #a94442;

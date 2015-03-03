@@ -1,9 +1,9 @@
 {
-  "author": "Pathvisiojs team",
-  "name": "pathvisiojs",
+  "author": "Pvjs team",
+  "name": "pvjs",
   "description": "Diagram viewer and editor for biological pathways",
   "version": "2.2.0",
-  "homepage": "http://wikipathways.github.io/pathvisiojs/",
+  "homepage": "http://wikipathways.github.io/pvjs/",
   "dependencies": {
     "aight": "~1.2.2",
     "blueimp-load-image": "~1.11.0",
@@ -17,7 +17,7 @@
     "node-uuid": "~1.4.1"
   },
   "main": [
-    "./dist/lib/pathvisiojs/js/pathvisiojs.bundle.min.js"
+    "./dist/lib/pvjs/js/pvjs.bundle.min.js"
   ],
   "defaultSave": true
 }

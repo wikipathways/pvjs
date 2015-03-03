@@ -7,7 +7,7 @@
 		<!-- BASICS -->
         <meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Pathvisiojs - Create and Edit Diagrams Online</title>
+        <title>Pvjs - Create and Edit Diagrams Online</title>
         <meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />
@@ -29,7 +29,7 @@
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="fa fa-bars color-white"></span>
 					</button>
-					<h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">		Pathvisiojs Diagrammer
+					<h1><a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">		Pvjs Diagrammer
 					</a></h1>
 				</div>
 				<div class="navbar-collapse collapse">
@@ -49,10 +49,10 @@
 
 						<div class="align-center">
 							<i class="fa fa-flask fa-5x mar-bot20"></i>
-							<h2 class="slogan">Pathvisiojs Diagrammer</h2>
+							<h2 class="slogan">Pvjs Diagrammer</h2>
 							<h3 class="slogan">Create and Edit Diagrams Online</h3>
 							<p>
-							Install pathvisiojs on your site to create, view and edit diagrams in your browser. We use it for biological pathways,
+							Install pvjs on your site to create, view and edit diagrams in your browser. We use it for biological pathways,
               but you can use it for any type of diagram, from flowcharts to electrical circuits.
 							</p>
 						</div>
@@ -88,8 +88,8 @@
 						<i class="fa fa-question fa-5x mar-bot20"></i>
 						<h4 class="text-bold">Get Help</h4>
             <p><a href="./doc/">Documentation</a></p>
-            <p><a href="https://github.com/wikipathways/pathvisiojs/blob/master/demo/load_WP1_with_highlights.html">Code Example</a> | <a href="./load_WP1_with_highlights.html">Live Demo</a></p>
-            <p><a href="https://github.com/wikipathways/pathvisiojs/blob/master/demo/">More Examples</a></p>
+            <p><a href="https://github.com/wikipathways/pvjs/blob/master/demo/load_WP1_with_highlights.html">Code Example</a> | <a href="./load_WP1_with_highlights.html">Live Demo</a></p>
+            <p><a href="https://github.com/wikipathways/pvjs/blob/master/demo/">More Examples</a></p>
 					</div>
 				</div>
 
@@ -105,7 +105,7 @@
 					<div class="col-lg-12">
 							<div class="align-center">
 										<div class="pad-top40 pad-bot40 clearfix">
-                      <div id="pathvisiojs-container" style="width: 800px; height: 800px; border: 1px solid #ccc;"></div>
+                      <div id="pvjs-container" style="width: 800px; height: 800px; border: 1px solid #ccc;"></div>
 											<h5>
                         Click the diagram to enable pan/zoom. Drag to pan or scroll in/out to zoom.
 											</h5>
@@ -305,15 +305,15 @@
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.2/typeahead.bundle.min.js"></script>
-  <script src="./lib/pathvisiojs/pathvisiojs-2.1.3.bundle.min.js"></script>
+  <script src="./lib/pvjs/pvjs-2.1.3.bundle.min.js"></script>
 
   <script>
   /* *******************
-  /* Load pathvisiojs
+  /* Load pvjs
   /* *******************/
 
   $(function(){
-    $('#pathvisiojs-container').pathvisiojs({
+    $('#pvjs-container').pvjs({
       fitToContainer: true
     , manualRender: true
     , sourceData: [
@@ -335,15 +335,15 @@
     })
 
     // Get first element from array of instances
-    var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+    var pathInstance = $('#pvjs-container').pvjs('get').pop()
 
     // Load notification plugin
-    pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
+    pvjsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
 
     // Call after render
     pathInstance.on('rendered', function(){
       // Initialize Highlighter plugin
-      var hi = pathvisiojsHighlighter(pathInstance)
+      var hi = pvjsHighlighter(pathInstance)
 
       // Highlight by ID
       hi.highlight('#e6e')

@@ -67,7 +67,7 @@ propertiesTab.controller = function() {
 
 //here's the view
 propertiesTab.view = function() {
-  return m('nav.pathvisiojs-editor-properties.navbar.navbar-default.navbar-form.well.well-sm', [
+  return m('nav.pvjs-editor-properties.navbar.navbar-default.navbar-form.well.well-sm', [
     m('div.form-group.navbar-left', [
       m('div.input-group.input-group-sm.form-control', {}, [
         m('span.glyphicon.glyphicon-text-color.input-group-addon', {}),

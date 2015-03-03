@@ -1,11 +1,11 @@
 /**
  * JS code to hook into mediawiki divs already in place to
- * generate main pathvisiojs app.
+ * generate main pvjs app.
  * It retains the existing toolbar for log in, edit,
  * and download.
  * This code does everything right up to the point where pvjs is
- * integrated, including the creation of the pathvisiojs-container
- * div that pathvisiojs targets.
+ * integrated, including the creation of the pvjs-container
+ * div that pvjs targets.
  */
 
 // master variable for height of pvjs viewer container divs
@@ -18,7 +18,7 @@ var viewerMaxWidth = '100%';
  *  When page is ready:
  *   1. Grab pwImage div; clean up <a>; remove <img>
  *   2. Prepare new divs inside thumbinner
- *   3. Initialize pathvisiojs app
+ *   3. Initialize pvjs app
  */
 $(window).ready(function() {
   var pathwayPagePathwayImageContainer = $('#pwImage');
@@ -38,8 +38,8 @@ $(window).ready(function() {
     oldParent.remove();
   }
 
-  var pathvisiojsContainer = $('<div />')
-  .attr('id', 'pathvisiojs-container')
+  var pvjsContainer = $('<div />')
+  .attr('id', 'pvjs-container')
   .css({
     width: viewerWidth,
     'min-width': viewerMinWidth,
@@ -51,7 +51,7 @@ $(window).ready(function() {
   // Make thumbinner larger.
   // TODO this should probably be in the PHP, not the JS.
   var parent = img.parent();
-  img.after(pathvisiojsContainer);
+  img.after(pvjsContainer);
   img.remove();
   parent.css({
     width: '100%',
@@ -60,7 +60,7 @@ $(window).ready(function() {
 
   var queryStringParameters = window.getQueryStringAsObject();
   if (Modernizr.inlinesvg) {
-    $(window).on('pathvisiojsReady', function() {
+    $(window).on('pvjsReady', function() {
       $(function() {
         var colors;
         if (!!queryStringParameters.colors) {
@@ -95,7 +95,7 @@ $(window).ready(function() {
           labelIndex += 1;
         });
 
-        pathvisiojsContainer.pathvisiojs({
+        pvjsContainer.pvjs({
           fitToContainer: true,
           manualRender: true,
           sourceData: [{
@@ -104,14 +104,14 @@ $(window).ready(function() {
           }]
         });
 
-        var pathInstance = pathvisiojsContainer.pathvisiojs('get').pop();
+        var pathInstance = pvjsContainer.pvjs('get').pop();
 
-        pathvisiojsNotifications(pathInstance, {
+        pvjsNotifications(pathInstance, {
           displayErrors: true, displayWarnings: false
         });
 
         pathInstance.on('rendered', function() {
-          var hi = pathvisiojsHighlighter(pathInstance);
+          var hi = pvjsHighlighter(pathInstance);
 
           if (!!labelHighlights && labelHighlights.length > 0) {
             labelHighlights.forEach(function(labelHighlight) {

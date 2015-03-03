@@ -1,45 +1,44 @@
-pathvisiojs (v2.2.0)
+pvjs (v2.2.0)
 ====================
 
-JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pathvisiojs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pathvisiojs.
+JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pvjs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pvjs.
 
 Demo
 ====
 
-* [gh-pages](http://wikipathways.github.io/pathvisiojs/)
+* [gh-pages](http://wikipathways.github.io/pvjs/)
 
 How To Add It To Your Site
 ===================
 You can loading it with either one of the two options below: HTML Element or Script.
-It's as simple as referencing the pathvisiojs JavaScript bundle in your HTML document:
+It's as simple as referencing the pvjs JavaScript bundle in your HTML document:
 
-## Load Using HTML Element
+## Load Using [Custom HTML Element](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/)
 
 ```HTML
-<div is="wikipathways-pathvisiojs"
-    class="wikipathways-pathvisiojs"
+<wikipathways-pvjs
     alt="WP525 Biological Pathway"
     src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525"
     display-errors="true"
     display-warnings="true"
     fit-to-container="true">
-</div>
+</wikipathways-pvjs>
 
-<script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/pathvisiojs-2.2.0.bundle.min.js"></script>
+<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.2.0.bundle.min.js"></script>
 ```
 
 ## Load Using Script
 
-First reference the pathvisiojs JavaScript bundle in your HTML document:
+First reference the pvjs JavaScript bundle in your HTML document:
 
 ```HTML
-<script src="http://wikipathways.github.io/pathvisiojs/lib/pathvisiojs/pathvisiojs-2.2.0.bundle.min.js"></script>
+<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.2.0.bundle.min.js"></script>
 ```
 
 If you have jQuery, then you may do:
 
 ```js
-$('#pathvisiojs-container').pathvisiojs({
+$('#pvjs-container').pvjs({
   sourceData: [
     // at least one item required
     {
@@ -54,10 +53,10 @@ $('#pathvisiojs-container').pathvisiojs({
 })
 ```
 
-If you don't have jQuery and do not want to add it, then you may call `pathvisiojs` directly and pass two arguments: container selector and options object.
+If you don't have jQuery and do not want to add it, then you may call `pvjs` directly and pass two arguments: container selector and options object.
 
 ```js
-pathvisiojs('#pathvisiojs-container', {
+pvjs('#pvjs-container', {
   sourceData: [
     // at least one item required
     {
@@ -75,24 +74,24 @@ pathvisiojs('#pathvisiojs-container', {
 How To Get Involved
 ===================
 
-A. Fork and clone pathvisiojs. If you've already done this, skip ahead to Step B. Otherwise:
+A. Fork and clone pvjs. If you've already done this, skip ahead to Step B. Otherwise:
 
-Fork the [WikiPathways repo for pathvisiojs](https://github.com/wikipathways/pathvisiojs/fork) by clicking the "Fork" button on the upper right. Github will create a fork of pathvisiojs for you and take you to your newly created fork. On your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
+Fork the [WikiPathways repo for pvjs](https://github.com/wikipathways/pvjs/fork) by clicking the "Fork" button on the upper right. Github will create a fork of pvjs for you and take you to your newly created fork. On your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
 
 ```
 $ cd ~/Sites/ #or another directory of your choice
-$ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pathvisiojs.git #replace with the HTTPS clone URL you copied
-$ cd pathvisiojs
+$ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pvjs.git #replace with the HTTPS clone URL you copied
+$ cd pvjs
 ```
 
-B. Add the wikipathways pathvisiojs repo as a remote named "wikipathways," if you have not already done so:
+B. Add the wikipathways pvjs repo as a remote named "wikipathways," if you have not already done so:
 
 ```
-$ cd ~/Sites/pathvisiojs/ #use the location where the pathvisiojs directory is actually located on your computer
-$ git remote add wikipathways https://github.com/wikipathways/pathvisiojs.git
+$ cd ~/Sites/pvjs/ #use the location where the pvjs directory is actually located on your computer
+$ git remote add wikipathways https://github.com/wikipathways/pvjs.git
 ```
 
-Pull latest code from wikipathways master branch of pathvisiojs:
+Pull latest code from wikipathways master branch of pvjs:
 
 ```
 $ git pull wikipathways master
@@ -115,26 +114,26 @@ bower install
 
 D. Make Updates
 
-You can edit any of the files in the [src directory](https://github.com/wikipathways/pathvisiojs/tree/master/src):
+You can edit any of the files in the [src directory](https://github.com/wikipathways/pvjs/tree/master/src):
 
 ```
-$ cd ~/Sites/pathvisiojs/src/ #update this to where the pathvisiojs directory is actually located on your computer
+$ cd ~/Sites/pvjs/src/ #update this to where the pvjs directory is actually located on your computer
 ```
 
 To view your changes as you edit you have to run `grunt dev` in console and navigate your browser to [http://localhost:3000/test/](http://localhost:3000/test/):
 
 ```
-$ cd ~/Sites/pathvisiojs/src/test/ #update this to where the pathvisiojs directory is actually located on your computer
+$ cd ~/Sites/pvjs/src/test/ #update this to where the pvjs directory is actually located on your computer
 ```
 
-The [README](https://github.com/wikipathways/pathvisiojs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
+The [README](https://github.com/wikipathways/pvjs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
 
 E. Send Us a Pull Request
 
 * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests
-* Commit your changes and push them to your github fork of pathvisiojs
-* Create a pull request to the wikipathways fork of pathvisiojs:
+* Commit your changes and push them to your github fork of pvjs
+* Create a pull request to the wikipathways fork of pvjs:
 ```
 wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
 ```
@@ -175,7 +174,7 @@ Editor Plugin
 
 Allows for updating the pvjson data.
 
-[Documentation](https://github.com/wikipathways/pathvisiojs/tree/master/src/editor)
+[Documentation](https://github.com/wikipathways/pvjs/tree/master/src/editor)
 
 Notifications Plugin
 --------------------
@@ -186,11 +185,11 @@ Notifications plugin listens for warning and error messages and displays them as
 
 In order to add notifications to pvjs do:
 
-1. Reference plugin's _JS_ and _CSS_ files or use bundle version of pathvisiojs
-2. Activate notifications for a given pathvisiojs:
+1. Reference plugin's _JS_ and _CSS_ files or use bundle version of pvjs
+2. Activate notifications for a given pvjs:
 
     ```js
-    pathvisiojsNotifications(pvjsInstance, {displayErrors: true, displayWarnings: true})
+    pvjsNotifications(pvjsInstance, {displayErrors: true, displayWarnings: true})
     ```
 
 Highlighter Plugin
@@ -200,13 +199,13 @@ Highlighter plugin allows to highlight pathway nodes, interactions, groups and o
 
 ### Usage
 
-First reference plugin's _JS_ and _CSS_ files or use bundle version of pathvisiojs.
+First reference plugin's _JS_ and _CSS_ files or use bundle version of pvjs.
 
 Highlighter should be instantiated before PathvisioJS was rendered:
 
 ```js
-// Init pathvisiojs
-$('#pathvisiojs-container').pathvisiojs({
+// Init pvjs
+$('#pvjs-container').pvjs({
   manualRender: true // force pvjs not to render automatically
 , sourceData: [{
     uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
@@ -215,11 +214,11 @@ $('#pathvisiojs-container').pathvisiojs({
 })
 
 // Get first element from array of instances
-var pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+var pathInstance = $('#pvjs-container').pvjs('get').pop()
 
 // Load highlighter after render
 pathInstance.on('rendered', function(){
-  var hi = pathvisiojsHighlighter(pathInstance)
+  var hi = pvjsHighlighter(pathInstance)
 })
 
 // Call renderer
@@ -245,7 +244,7 @@ var hi = pathvisoijsHighlighter(pathInstance, {
 To highlight or attenuate call corresponding API methods:
 
 ```js
-var hi = pathvisiojsHighlighter(pathInstance)
+var hi = pvjsHighlighter(pathInstance)
 
 // Highlight by ID
 hi.highlight('#e6e')
@@ -261,7 +260,7 @@ hi.attenuate('#e6e')
 You can create highlight groups. This is useful if you want to namespace highlighters for easier attenuation.
 
 ```js
-var hi = pathvisiojsHighlighter(pathInstance)
+var hi = pvjsHighlighter(pathInstance)
 
 // Default group
 hi.highlight('#e6e')
@@ -284,7 +283,7 @@ hi.attenuate(null, 'g1')
 You may provide a custom style to your highlighting
 
 ```js
-var hi = pathvisiojsHighlighter(pathInstance)
+var hi = pvjsHighlighter(pathInstance)
 
 // Red fill, blue stroke
 hi.highlight('#e6e', null, {fill: 'red', stroke: 'blue'})
@@ -297,12 +296,12 @@ DiffViewer pulgin allows to compare difference between 2 different versions of a
 
 ### Usage
 
-First reference plugin's _JS_ and _CSS_ files or use bundle version of pathvisiojs.
+First reference plugin's _JS_ and _CSS_ files or use bundle version of pvjs.
 
 Highlighter should be instantiated before PathvisioJS was rendered:
 
 ```js
-$('#pathvisiojs-container').pathvisiojs({
+$('#pvjs-container').pvjs({
   fitToContainer: true
 , manualRender: true
 , sourceData: [
@@ -314,10 +313,10 @@ $('#pathvisiojs-container').pathvisiojs({
 })
 
 // Get first element from array of instances
-pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+pathInstance = $('#pvjs-container').pvjs('get').pop()
 
 // Init difference viewer
-pathvisiojsDiffviewer(pathInstance, {
+pvjsDiffviewer(pathInstance, {
   sourceData: [
     {
       uri: 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP2806',

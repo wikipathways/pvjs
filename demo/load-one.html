@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-    <title>Pathvisiojs Template</title>
+    <title>Pvjs Template</title>
 
     <style type="text/css">
       html, body, x-layout{width: 100%;height: 100%;margin: 0;}
-      #pathvisiojs-header{background-color: gray;}
-      #pathvisiojs-inner-modal{width: 100%;height: 100%;margin: 10;border: 10;background-color: white;}
-      #pathvisiojs-section{width: 100%;height: 80%;margin: 0;}
-      #pathvisiojs-footer{background-color: gray;}
+      #pvjs-header{background-color: gray;}
+      #pvjs-inner-modal{width: 100%;height: 100%;margin: 10;border: 10;background-color: white;}
+      #pvjs-section{width: 100%;height: 80%;margin: 0;}
+      #pvjs-footer{background-color: gray;}
     </style>
 
     <!-- Required by Highlight Plugin -->
@@ -28,21 +28,21 @@
     <script src="https://rawgit.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.contentWindow.min.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <script src="./lib/pathvisiojs/pathvisiojs-2.1.3.bundle.min.js"></script>
+    <script src="./lib/pvjs/pvjs-2.1.3.bundle.min.js"></script>
 
   </head>
   <body>
 
-  <x-layout id="pathvisiojs-container" class="pathvisiojs-container">
-    <header id="pathvisiojs-header">
+  <x-layout id="pvjs-container" class="pvjs-container">
+    <header id="pvjs-header">
       I'm the header!<br>
       I'm the header!<br>
       I'm the header!<br>
     </header>
-    <section id="pathvisiojs-section">
-      <div id="pathvisiojs-viewer">
+    <section id="pvjs-section">
+      <div id="pvjs-viewer">
     </section>
-    <footer id="pathvisiojs-footer">
+    <footer id="pvjs-footer">
 
       <style type="text/css">
         html, body, x-layout{width: 100%;height: 100%;margin: 0;}
@@ -58,7 +58,7 @@
     <!-- We can put the x-modal just before the closing x-layout tag to cover up
           the entire x-layout-->
     <!--
-    <x-modal id="pathvisiojs-inner-modal" escape-hide>
+    <x-modal id="pvjs-inner-modal" escape-hide>
       Place content markup here<br>
       Place content markup here<br>
       Place content markup here<br>
@@ -129,7 +129,7 @@
           messageCallback: function(response) {
             console.log('bridgedb-xref-search sends message');
             console.log(response.message);
-            //document.querySelector('#pathvisiojs-inner-modal').innerHTML = response.message;
+            //document.querySelector('#pvjs-inner-modal').innerHTML = response.message;
           },
           resizedCallback: function() {
             console.log('bridgedb-xref-search parent says resized');
@@ -142,10 +142,10 @@
   //*/
 
   /* *******************
-  /* Load pathvisiojs
+  /* Load pvjs
   /* *******************/
   $(function() {
-    $('#pathvisiojs-viewer').pathvisiojs({
+    $('#pvjs-viewer').pvjs({
       fitToContainer: true
     , manualRender: true
     , sourceData: [
@@ -175,20 +175,20 @@
     //*/
 
     // Get first element from array of instances
-    var pathInstance = $('#pathvisiojs-viewer').pathvisiojs('get').pop();
+    var pathInstance = $('#pvjs-viewer').pvjs('get').pop();
     window.pathInstance = pathInstance;
 
-    highland('click', $('#pathvisiojs-viewer')).each(function() {
+    highland('click', $('#pvjs-viewer')).each(function() {
       console.log('click');
     });
 
     // Load notification plugin
-    pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true});
+    pvjsNotifications(pathInstance, {displayErrors: true, displayWarnings: true});
 
     // Call after render
     pathInstance.on('rendered', function() {
       // Initialize Highlighter plugin
-      var hi = pathvisiojsHighlighter(pathInstance);
+      var hi = pvjsHighlighter(pathInstance);
       window.hi = hi;
 
       // Highlight by ID

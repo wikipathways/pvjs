@@ -145,9 +145,9 @@ module.exports = function renderer() {
       }
 
       // TODO refactor this to make sure it works multi-instance
-      var pathvisiojsContainerElement =
-          document.querySelector('.pathvisiojs-container');
-      var diagramContainerElement = pathvisiojsContainerElement.querySelector(
+      var pvjsContainerElement =
+          document.querySelector('.pvjs-container');
+      var diagramContainerElement = pvjsContainerElement.querySelector(
           '.diagram-container');
 
       // Svg-pan-zoom

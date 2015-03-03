@@ -28,10 +28,10 @@ function render(renderer, element) {
         })
       } else {
         var $img = pvjs.$element.append(function(){return img})
-        Utils.addClassForD3($img, 'pathvisiojs-img')
+        Utils.addClassForD3($img, 'pvjs-img')
 
         // Set unique id
-        $img.attr('id', 'pathvisiojs-render-' + pvjs.instanceId)
+        $img.attr('id', 'pvjs-render-' + pvjs.instanceId)
 
         // Cache element
         renderer.$element = $img

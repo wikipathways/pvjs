@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <title>Pathvisiojs Simple Built Production Example</title>
+    <title>Pvjs Simple Built Production Example</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   </head>
@@ -11,7 +11,7 @@
     <!--
     <iframe id="pathway1" src="./template.html" style="width: 800px; height: 570px; border: 1px solid #ccc;"></iframe>
     -->
-    <wikipathways-pathvisiojs></wikipathways-pathvisiojs>
+    <wikipathways-pvjs></wikipathways-pvjs>
 
     <!-- Required by Highlight Plugin -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.backbone.js"></script>
@@ -23,24 +23,24 @@
     <script src="http://www.x-tags.org/js/x-tag-components.js"></script>
 
     <script src="https://bridgedb.github.io/bridgedbjs/dist/bridgedb-4.0.0.min.js"></script>
-    <script src="./lib/pathvisiojs/pathvisiojs-2.1.3.bundle.min.js"></script>
+    <script src="./lib/pvjs/pvjs-2.1.3.bundle.min.js"></script>
 
     <script>
 
       //*
-      xtag.register('wikipathways-pathvisiojs', {
+      xtag.register('wikipathways-pvjs', {
         // TODO extends isn't working
         //extends: 'div',
         lifecycle: {
           created: function() {
             // TODO compile the template and insert it as a string, using the script tag method of including another page in this one
-            xtag.innerHTML(this, '<iframe id="pathvisiojs-frame" src="./load-one.html" style="width:inherit; height:inherit; margin:0px; border: 0px; " />');
+            xtag.innerHTML(this, '<iframe id="pvjs-frame" src="./load-one.html" style="width:inherit; height:inherit; margin:0px; border: 0px; " />');
             iFrameResize({
               enablePublicMethods: true,
               resizedCallback: function() {
                 console.log('parent says resized');
               }
-            },'#pathvisiojs-frame');
+            },'#pvjs-frame');
           }
         }
       });
@@ -59,7 +59,7 @@
         }
       });
 
-      xtag.register('wikipathways-pathvisiojs', {
+      xtag.register('wikipathways-pvjs', {
         lifecycle: {
           created: function() {
             // Since we use xtag.innerHTML, x-foo will be available immediately

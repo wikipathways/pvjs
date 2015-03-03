@@ -1,3 +1,12 @@
+  .diagram-container {
+    width: inherit;
+    height: 100%;
+    text-align: center;
+    /* To avoid covering up the resize handle (grab area) */
+    border-bottom-right-radius: 2em 2em;
+    overflow: hidden;
+  }
+
 	svg {
 		color-interpolation: auto;
 		image-rendering: auto;

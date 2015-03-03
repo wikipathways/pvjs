@@ -56,8 +56,8 @@ gulp.task('bumpVersionNumberInFiles',
             './test/*.html'
           ])
           .pipe(replace({
-            regex: 'pathvisiojs-' + version.old,
-            replace: 'pathvisiojs-' + version.new
+            regex: 'pvjs-' + version.old,
+            replace: 'pvjs-' + version.new
           }))
           .pipe(gulp.dest('./test/'))
         )
@@ -66,8 +66,8 @@ gulp.task('bumpVersionNumberInFiles',
             './demo/*.html'
           ])
           .pipe(replace({
-            regex: 'pathvisiojs-' + version.old,
-            replace: 'pathvisiojs-' + version.new
+            regex: 'pvjs-' + version.old,
+            replace: 'pvjs-' + version.new
           }))
           .pipe(gulp.dest('./demo/'))
         );

@@ -14,14 +14,14 @@ var css = fs.readFileSync(
 
   /**
    * Init plugin
-   * @param {pathvisiojs instance} pvjs
+   * @param {pvjs instance} pvjs
    * @param {object} options
-   * @return {object} PathvisiojsNotifications instance
+   * @return {object} PvjsNotifications instance
    */
   function init(pvjs, options) {
     // Create new instance if it does not exist
     if (!instancesMap.hasOwnProperty(pvjs.instanceId)) {
-      instancesMap[pvjs.instanceId] = new PathvisiojsNotifications(pvjs, options)
+      instancesMap[pvjs.instanceId] = new PvjsNotifications(pvjs, options)
     }
 
     return instancesMap[pvjs.instanceId]
@@ -29,11 +29,11 @@ var css = fs.readFileSync(
 
   /**
    * Plugin constructor
-   * @param {pathvisiojs instance} pvjs
+   * @param {pvjs instance} pvjs
    * @param {objects} options
    */
-  function PathvisiojsNotifications(pvjs, options) {
-    var $notifications = $('<div class="pathvisiojs-notifications">').appendTo($(pvjs.$element[0][0]))
+  function PvjsNotifications(pvjs, options) {
+    var $notifications = $('<div class="pvjs-notifications">').appendTo($(pvjs.$element[0][0]))
       , options = options || {}
       , notifications = []
       , lastNotification = {type: null, message: '', counter: 0, $element: null}
@@ -47,13 +47,13 @@ var css = fs.readFileSync(
 
     if (options.displayErrors) {
       pvjs.on('error', function(data){
-        addPathvisiojsNotification($notifications, 'danger', '<strong>Error!</strong> ' + data.message, notifications)
+        addPvjsNotification($notifications, 'danger', '<strong>Error!</strong> ' + data.message, notifications)
       })
     }
 
     if (options.displayWarnings) {
       pvjs.on('warning', function(data){
-        addPathvisiojsNotification($notifications, 'warning', '<strong>Warning!</strong> ' + data.message, notifications)
+        addPvjsNotification($notifications, 'warning', '<strong>Warning!</strong> ' + data.message, notifications)
       })
     }
   }
@@ -94,7 +94,7 @@ var css = fs.readFileSync(
    * @param {string} type. danger, warning, success, info
    * @param {string} message
    */
-  function addPathvisiojsNotification($container, type, message, notifications){
+  function addPvjsNotification($container, type, message, notifications){
     var notification = getNotification(type, message, notifications)
 
     if (notification !== null) {
@@ -134,5 +134,5 @@ var css = fs.readFileSync(
   /**
    * Expose plugin globally
    */
-  window.pathvisiojsNotifications = init
+  window.pvjsNotifications = init
 })(window)

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-    <title>Pathvisiojs Difference Viewer Example</title>
+    <title>Pvjs Difference Viewer Example</title>
 
     <style type="text/css">
       html, body{width: 100%;height: 100%;margin: 0;}
@@ -19,11 +19,11 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <script src="./lib/pathvisiojs/pathvisiojs-2.1.3.bundle.min.js"></script>
+    <script src="./lib/pvjs/pvjs-2.1.3.bundle.min.js"></script>
 
   </head>
   <body>
-    <div id="pathvisiojs-container"></div>
+    <div id="pvjs-container"></div>
     <div style="border: 1px solid blue;height: 30px;">
       <div style="height: 30px; float: left; width: 40%;"><input type="text" id="pathwayUri" value="WP525 73040" style="display: inline-block; width: 90%;" /></div>
       <div style="height: 30px; float: left; width: 40%;"><input type="text" id="pathwayUri2" value="WP525 74871" style="display: inline-block; width: 90%;"/></div>
@@ -46,7 +46,7 @@
   <script>
   GLOBAL_alternative_navigation = false;
   /* *******************
-  /* Load pathvisiojs
+  /* Load pvjs
   /* *******************/
   $(function(){
     var pathInstance = null
@@ -65,7 +65,7 @@
           }
         }
       , loadPvjses = function(){
-          $('#pathvisiojs-container').pathvisiojs({
+          $('#pvjs-container').pvjs({
             fitToContainer: true
           , manualRender: true
           , sourceData: [
@@ -77,13 +77,13 @@
           })
 
           // Get first element from array of instances
-          pathInstance = $('#pathvisiojs-container').pathvisiojs('get').pop()
+          pathInstance = $('#pvjs-container').pvjs('get').pop()
 
           // Expose pathInstance for debug
           window.pathInstance = pathInstance
 
           // Load difference viewer plugin
-          pathvisiojsDiffviewer(pathInstance, {
+          pvjsDiffviewer(pathInstance, {
             sourceData: [
               {
                 uri: getUrl($('#pathwayUri2').val()),
