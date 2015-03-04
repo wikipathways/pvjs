@@ -156,7 +156,7 @@ datasetControl.controller = function() {
 }
 
 datasetControl.view = function() {
-  return m('select.pvjs-editor-dataset.form-control.input.input-sm[style="max-width:125px"][required]', {
+  return m('select.pvjs-editor-dataset.form-control.input.input-sm[style="max-width:135px"][required]', {
     onchange: m.withAttr('value', datasetControl.vm.changeDataset),
     value: datasetControl.vm.currentDataset.id()
   }, [
