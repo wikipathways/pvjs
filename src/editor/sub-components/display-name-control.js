@@ -2,9 +2,6 @@
   * Display name control
   *****************************/
 
-var _ = require('lodash');
-var editorUtils = require('../editor-utils');
-var highland = require('highland');
 var m = require('mithril');
 
 //module for displayNameControl

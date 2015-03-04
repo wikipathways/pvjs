@@ -7,8 +7,6 @@
   "trailing": true,
   "undef": true,
   "unused": false,
-  "laxcomma": true,
-  "asi": true,
   "-W097": false,
 
   "globals": {
