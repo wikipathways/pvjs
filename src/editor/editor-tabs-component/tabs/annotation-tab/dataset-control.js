@@ -1,5 +1,5 @@
 /***********************************
- * Dataset Control
+ * Datasource Control
  **********************************/
 
 /**
@@ -54,7 +54,7 @@ datasetControl.vm = (function() {
 
     var datasetPlaceholder = {
       'id': '',
-      'displayName': 'Select dataset'
+      'displayName': 'Select datasource'
     };
 
     //specify placeholder selection
@@ -156,7 +156,7 @@ datasetControl.controller = function() {
 }
 
 datasetControl.view = function() {
-  return m('select.pvjs-editor-dataset.form-control.input.input-sm[style="max-width:100px"][required]', {
+  return m('select.pvjs-editor-dataset.form-control.input.input-sm[style="max-width:125px"][required]', {
     onchange: m.withAttr('value', datasetControl.vm.changeDataset),
     value: datasetControl.vm.currentDataset.id()
   }, [
