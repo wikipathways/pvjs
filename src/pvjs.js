@@ -1,10 +1,12 @@
 var _ = require('lodash');
 var customElement = require('./custom-element');
+var DiagramComponent = require('./diagram-renderer/diagram-component');
 var Editor = require('./editor/editor');
 var ElementResizeDetector = require('element-resize-detector');
 var fs = require('fs');
 var highland = require('highland');
 var insertCss = require('insert-css');
+var m = require('mithril');
 var PvjsHighlighter = require('./highlighter/highlighter.js');
 var promisescript = require('promisescript');
 var Utils = require('./utils');
@@ -53,8 +55,9 @@ function initPvjs(window, $) {
     fitToContainer: true,
     sourceData: [],
     manualRender: false,
-    //editor: 'open'
-    editor: 'closed'
+    editor: 'open'
+    //editor: 'closed'
+    //editor: 'disabled'
   };
 
   /**
@@ -98,17 +101,22 @@ function initPvjs(window, $) {
     this.events = {};
 
     this.initContainer();
+
+    /*
     if (this.options.editor !== 'disabled') {
       this.editor = new Editor(this);
       if (this.options.editor === 'open') {
         this.editor.open();
       }
     }
+    //*/
 
     // Check if render should be called now or it will be done later manually
+    /*
     if (!this.options.manualRender) {
       this.render(this);
     }
+    //*/
   };
 
   /**
@@ -121,8 +129,73 @@ function initPvjs(window, $) {
     var containerContents = fs.readFileSync(
         __dirname + '/pvjs.html').toString();
 
-    // Add default container elements
-    this.$element.html(containerContents);
+    var containerElement = this.$element[0][0];
+    pvjs.editor = new Editor(pvjs);
+    var diagramComponent = new DiagramComponent(pvjs);
+
+    var pvjsComponent = {
+      controller: function() {
+        this.onunload = function() {
+          console.log('unloading pvjsComponent module');
+          //diagramComponent.vm.onunload();
+          pvjs.editor.vm.onunload();
+        };
+        pvjs.editor.vm.init(pvjs);
+      },
+      view: function(controller) {
+        return [
+          //m('div.diagram-container'),
+          diagramComponent.view(),
+          pvjs.editor.view(pvjs),
+          m('div.annotation.ui-draggable', {}, [
+            m('header.annotation-header', {}, [
+              m('span.annotation-header-move', {}, [
+                m('i.icon-move'),
+              ]),
+              m('span.annotation-header-close', {}, [
+                m('i.icon-remove'),
+              ]),
+              m('span.annotation-header-text', 'Header'),
+              m('div.annotation-description', {}, [
+                m('h2', {}, 'description'),
+              ]),
+            ]),
+            m('span.annotation-items-container', {}, [
+              /*
+                 List items inside this ul element are generated automatically by JavaScript.
+                 Each item will be composed of a title and text. The text can be set to be an href.
+                 You can edit the styling of the title by editing CSS class "annotation-item-title"
+                 and the styling of the text by editing CSS class "annotation-item-text.
+              //*/
+              m('ul.annotation-items-container-list'),
+            ]),
+          ]),
+        ];
+      }
+    };
+
+    //setup routes to start w/ the `#` symbol
+    m.route.mode = 'hash';
+
+    //*
+    //define a route
+    m.route(containerElement, '/editor/closed', {
+      '/editor/:editorState': pvjsComponent,
+      '/test': pvjsComponent
+    });
+    //*/
+
+    /*
+    m.route(containerElement, '/', {
+      '/': home,
+      '/login': login,
+      '/editor': editorComponent
+    });
+    //*/
+
+    //m.module(containerElement, pvjsComponent);
+
+    //m.route('/editor/' + pvjs.options.editor);
 
     // Set ID to $element if it has no ID
     this.$element.attr('id', this.$element.attr('id') ||
@@ -141,9 +214,6 @@ function initPvjs(window, $) {
 
       // Initialize Highlighter plugin
       pvjs.publicInstance.highlighter = new PvjsHighlighter(pvjs.publicInstance);
-
-
-
 
       var vm = pvjs.$element[0][0];
       var diagramContainerElement = vm.querySelector(
@@ -184,7 +254,7 @@ function initPvjs(window, $) {
         });
 
         return stream;
-      }
+      };
 
       // corresponds to ~60Hz
       var refreshInterval = 16;
@@ -257,11 +327,11 @@ function initPvjs(window, $) {
           if (_.isElement(element)) {
             diagramContainerElement.setAttribute('style',
               'width: ' + element.clientWidth + 'px; ' +
-              'height: ' + element.clientHeight + 'px; ')
+              'height: ' + element.clientHeight + 'px; ');
               // TODO make this change when going into edit mode
               //'height: ' + (element.clientHeight - 300) + 'px; ')
-            svgElement.setAttribute('width', '100%')
-            svgElement.setAttribute('height', '100%')
+            svgElement.setAttribute('width', '100%');
+            svgElement.setAttribute('height', '100%');
           }
           pvjs.publicInstance.resizeDiagram();
         });
@@ -293,26 +363,6 @@ function initPvjs(window, $) {
         borderOpacity: 0.7
       });
       //*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     });
 
@@ -392,28 +442,27 @@ function initPvjs(window, $) {
   Pvjs.prototype.destroy = function() {
     // Send destroy message
     this.trigger(
-        'destroy.pvjs', {message: 'User requested pvjs destroy'}, false)
+        'destroy.pvjs', {message: 'User requested pvjs destroy'}, false);
 
     // Destroy renderer
-    diagramRenderer.destroyRender(this, this.sourceData)
+    diagramRenderer.destroyRender(this, this.sourceData);
 
     // Off all events
     for (var e in this.events) {
-      this.off(e)
+      this.off(e);
     }
 
     // Clean data
-    this.$element[0][0].data = undefined
+    this.$element[0][0].data = undefined;
 
     if ($) {
-      $(this.$element[0][0]).removeData('pvjs')
+      $(this.$element[0][0]).removeData('pvjs');
     }
 
     // Clean HTML
     // jQuery
-    $(this.$element[0][0]).empty()
-
-  }
+    $(this.$element[0][0]).empty();
+  };
 
   /**
    * Returns an instance for public usage

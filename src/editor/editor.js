@@ -9,21 +9,125 @@ var css = [
 ];
 
 module.exports = function(pvjs) {
+  var containerElement = pvjs.$element[0][0];
+  var diagramContainerElement;
+  var editorTabsComponentContainerElement;
+  var annotationPanelContainer;
+  var editorTriggerButton;
+
   css.map(insertCss);
 
   var editorTabsComponent = new EditorTabsComponent(pvjs);
-  var containerElement = pvjs.$element[0][0];
-  var diagramContainerElement = containerElement.querySelector('.diagram-container');
-  var editorTriggerButton = containerElement.querySelector('.edit-trigger');
 
-  editorTriggerButton.addEventListener('click', function(event) {
-    open();
-  }, false);
+  //module for editorComponent
+  //for simplicity, we use this module to namespace the model classes
+  var editorComponent = {};
+
+  //the view-model,
+  editorComponent.vm = (function() {
+    var vm = {};
+
+    vm.init = function(pvjs) {
+      vm.editorState = m.route.param('editorState');
+
+      vm.onunload = function() {
+        console.log('unloading editor module');
+        vm[m.route.param('editorState')]();
+      };
+
+      vm.tester = m.prop('');
+
+      // react to user updating tester value
+      vm.updateTester = function(newTester) {
+        if (!!newTester) {
+          vm.tester = m.prop(newTester);
+        }
+      };
+
+      vm.open = function() {
+        diagramContainerElement = containerElement.querySelector('.diagram-container');
+        editorTabsComponentContainerElement = containerElement.querySelector(
+        '.pvjs-editor-tabs');
+        annotationPanelContainer = containerElement.querySelector('.annotation');
+        editorTriggerButton = containerElement.querySelector('.edit-trigger');
+
+        diagramContainerElement.addEventListener('click', onClickDiagramContainer, false);
+
+        editorTriggerButton.style.visibility = 'hidden';
+
+        // TODO this is a kludge. refactor how we avoid displaying annotation panel in edit mode.
+        annotationPanelContainer.style.display = 'none';
+        annotationPanelContainer.style.visibility = 'hidden';
+
+        editorTabsComponent.vm.init(pvjs);
+      };
+
+      vm.close = function() {
+        clearSelection();
+
+        // TODO this is a kludge. refactor how we avoid displaying annotation panel in edit mode.
+        annotationPanelContainer.style.display = null;
+        annotationPanelContainer.style.visibility = 'hidden';
+
+        diagramContainerElement.setAttribute(
+            'style', 'height: ' + pvjs.elementHeight + 'px;');
+        pvjs.panZoom.resizeDiagram();
+        editorTriggerButton.style.visibility = 'visible';
+
+        editorTabsComponent.close();
+      };
+
+    };
+    return vm;
+  }());
+
+  //the controller defines what part of the model is relevant for the current page
+  //in our case, there's only one view-model that handles everything
+  editorComponent.controller = function() {
+    editorComponent.vm.init();
+  };
+
+  //here's the view
+  editorComponent.view = function() {
+    console.log('editorState');
+    console.log(editorComponent.vm.editorState);
+    if (editorComponent.vm.editorState === 'disabled') {
+      return;
+    } else if (editorComponent.vm.editorState === 'closed') {
+      return m('div.edit-trigger.label.label-default', {}, [
+        m('a[href="/editor/open"]', {
+          config: m.route,
+          /*
+          onclick: m.withAttr('value', editorComponent.vm.open),
+          value: editorComponent.vm.tester()
+          //*/
+        }, [
+          m('span.glyphicon.glyphicon-chevron-up[aria-hidden="true"]', {}, 'Quick Edit'),
+        ])
+      ]);
+      /*
+      return m('div.edit-trigger.label.label-default', {}, [
+        m('span.glyphicon.glyphicon-chevron-up[aria-hidden="true"]', {
+          onclick: m.withAttr('value', editorComponent.vm.open),
+          value: editorComponent.vm.tester()
+        }, 'Quick Edit'),
+      ]);
+      //*/
+    } else if (editorComponent.vm.editorState === 'open') {
+      return [
+        m('div.pvjs-editor-tabs', {
+          onchange: m.withAttr('value',
+                      editorComponent.vm.updateTester),
+          value: editorComponent.vm.tester()
+        }),
+        editorTabsComponent.view()
+      ];
+    }
+  };
 
   /***********************************************
    * DataNode onclick event handler
    **********************************************/
-  var diagramContainer = document.querySelector('.diagram-container');
   function onClickDiagramContainer(event) {
     m.startComputation();
 
@@ -67,37 +171,6 @@ module.exports = function(pvjs) {
     close();
   }
 
-  function open() {
-    diagramContainer.addEventListener('click', onClickDiagramContainer, false);
-
-    // TODO this is a kludge. refactor how we avoid displaying annotation panel in edit mode.
-    document.querySelector('.annotation').style.display = 'none';
-    document.querySelector('.annotation').style.visibility = 'hidden';
-
-    diagramContainerElement.setAttribute(
-        'style', 'height: ' + (pvjs.elementHeight - 120) + 'px;');
-    pvjs.panZoom.resizeDiagram();
-    editorTriggerButton.style.visibility = 'hidden';
-    editorTabsComponent.open();
-  }
-
-  function close() {
-    diagramContainer.removeEventListener('click', onClickDiagramContainer);
-
-    clearSelection();
-
-    // TODO this is a kludge. refactor how we avoid displaying annotation panel in edit mode.
-    document.querySelector('.annotation').style.display = null;
-    document.querySelector('.annotation').style.visibility = 'hidden';
-
-    diagramContainerElement.setAttribute(
-        'style', 'height: ' + pvjs.elementHeight + 'px;');
-    pvjs.panZoom.resizeDiagram();
-    editorTriggerButton.style.visibility = 'visible';
-
-    editorTabsComponent.close();
-  }
-
   function save(gpmlDoc) {
     var serializerInstance = new XMLSerializer();
     var gpmlString = serializerInstance.serializeToString(gpmlDoc[0]);
@@ -129,12 +202,17 @@ module.exports = function(pvjs) {
     containerElement.dispatchEvent(pvjsdatachangeEvent);
   }
 
+  return editorComponent;
+
+  /*
   return {
+    init: editorComponent.vm.init,
     open: open,
     close: close,
     cancel: cancel,
     clearSelection: clearSelection,
     save: save
   };
+  //*/
 
 };
