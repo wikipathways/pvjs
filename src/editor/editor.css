@@ -54,8 +54,7 @@ font-size:130%;
 
 .table-hover>tbody>tr:hover{background-color:#f5f5f5}
 
-
-.edit-trigger {
+.editor-open-control {
   position: absolute;
   z-index: 3; /* put .edit-trigger above diagram-container */
   bottom: 0px;
@@ -63,6 +62,16 @@ font-size:130%;
   margin: 0 auto;
   cursor: pointer;
 }
+
+.editor-open-control.editor-open {
+  visibility: hidden;
+}
+
+.editor-close-control {
+  color: #aaa;
+  transform: translateY(-10px);
+}
+
 
 @font-face{font-family:'Glyphicons Halflings';src:url(http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.eot);src:url(http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'),url(http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.ttf) format('truetype')}
 .glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:400;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
