@@ -15,7 +15,7 @@ var propertiesTab = {};
 propertiesTab.Item = function(item) {
   this.id = m.prop(item.id);
   this.name = m.prop(item.name);
-}
+};
 
 propertiesTab.vm = (function() {
 
@@ -33,33 +33,32 @@ propertiesTab.vm = (function() {
 
       // TODO this is a kludge. refactor.
       propertiesTab.vm.saveButtonClass = 'btn-success';
-    }
+    };
 
     vm.cancel = function() {
       propertiesTab.vm.saveButtonClass = 'btn-default';
       pvjs.editor.cancel();
-    }
+    };
 
     vm.reset = function() {
       colorPickerControl.vm.color('');
       pvjs.editor.clearSelection();
-    }
+    };
 
     vm.save = function() {
       var selectedPvjsElement = pvjs.editor.selectedPvjsElement;
       propertiesTab.vm.saveButtonClass = 'btn-default';
       updateGraphicsInGpml(pvjs, selectedPvjsElement.id, colorPickerControl.vm.color());
       vm.reset();
-    }
-
-  }
+    };
+  };
 
   return vm;
 })();
 
 propertiesTab.controller = function() {
   propertiesTab.vm.init();
-}
+};
 
 /*
 <input type='color' name='color2' value='#3355cc' />
@@ -82,17 +81,16 @@ propertiesTab.view = function() {
     ]),
     //*/
     m('div.form-group.navbar-left', [
-      m('button[type="submit"][style="height: 44px;"].btn.form-control.' + propertiesTab.vm.saveButtonClass, {
+      m('button[type="submit"][style="height: 44px;"].btn.form-control.' +
+          propertiesTab.vm.saveButtonClass, {
         onclick: propertiesTab.vm.save
       }, [
         m('span.glyphicon.glyphicon-ok')
       ]),
     ]),
-    m('span.glyphicon.glyphicon-remove.btn.navbar-right[style="color: #aaa; transform: translateY(-10px);"]', {
-      onclick: propertiesTab.vm.cancel
-    })
   ]);
-}
+};
+
 /***********************************************
  * Temporary solution for handling updates
  * to GPML DataNode Graphics.

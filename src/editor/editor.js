@@ -12,9 +12,6 @@ module.exports = function(pvjs) {
   var containerElement = pvjs.$element[0][0];
   var diagramContainerElement;
   var editorTabsComponentContainerElement;
-  var annotationPanelContainer;
-  var editorTriggerButton;
-
   css.map(insertCss);
 
   var editorTabsComponent = new EditorTabsComponent(pvjs);
@@ -47,34 +44,41 @@ module.exports = function(pvjs) {
       vm.open = function() {
         diagramContainerElement = containerElement.querySelector('.diagram-container');
         editorTabsComponentContainerElement = containerElement.querySelector(
-        '.pvjs-editor-tabs');
-        annotationPanelContainer = containerElement.querySelector('.annotation');
-        editorTriggerButton = containerElement.querySelector('.edit-trigger');
+            '.pvjs-editor-tabs');
 
-        diagramContainerElement.addEventListener('click', onClickDiagramContainer, false);
-
-        editorTriggerButton.style.visibility = 'hidden';
-
-        // TODO this is a kludge. refactor how we avoid displaying annotation panel in edit mode.
-        annotationPanelContainer.style.display = 'none';
-        annotationPanelContainer.style.visibility = 'hidden';
+        /*
+        m.startComputation();
+        diagramContainerElement.addEventListener('click', function(e) {
+          console.log(e);
+        }, false);
+        m.endComputation();
+        //*/
+        window.setTimeout(function() {
+          document.querySelector('.diagram-container').addEventListener(
+              'click', onClickDiagramContainer, false);
+          /*
+          document.querySelector('.diagram-container').addEventListener('click', function(e) {
+            console.log(e);
+          }, false);
+          diagramContainerElement.addEventListener('click', function(e) {
+            console.log(e);
+          }, false);
+          diagramContainerElement.addEventListener('click', onClickDiagramContainer, false);
+          //*/
+        }, 1000);
 
         editorTabsComponent.vm.init(pvjs);
       };
 
-      vm.close = function() {
+      vm.closed = function() {
+        diagramContainerElement.removeEventListener('click');
         clearSelection();
-
-        // TODO this is a kludge. refactor how we avoid displaying annotation panel in edit mode.
-        annotationPanelContainer.style.display = null;
-        annotationPanelContainer.style.visibility = 'hidden';
 
         diagramContainerElement.setAttribute(
             'style', 'height: ' + pvjs.elementHeight + 'px;');
         pvjs.panZoom.resizeDiagram();
-        editorTriggerButton.style.visibility = 'visible';
 
-        editorTabsComponent.close();
+        editorTabsComponent.vm.close();
       };
 
     };
@@ -94,7 +98,8 @@ module.exports = function(pvjs) {
     if (editorComponent.vm.editorState === 'disabled') {
       return;
     } else if (editorComponent.vm.editorState === 'closed') {
-      return m('div.edit-trigger.label.label-default', {}, [
+      return m('div.editor-open-control.editor-' + editorComponent.vm.editorState +
+          '.label.label-default', {}, [
         m('a[href="/editor/open"]', {
           config: m.route,
           /*
@@ -105,14 +110,6 @@ module.exports = function(pvjs) {
           m('span.glyphicon.glyphicon-chevron-up[aria-hidden="true"]', {}, 'Quick Edit'),
         ])
       ]);
-      /*
-      return m('div.edit-trigger.label.label-default', {}, [
-        m('span.glyphicon.glyphicon-chevron-up[aria-hidden="true"]', {
-          onclick: m.withAttr('value', editorComponent.vm.open),
-          value: editorComponent.vm.tester()
-        }, 'Quick Edit'),
-      ]);
-      //*/
     } else if (editorComponent.vm.editorState === 'open') {
       return [
         m('div.pvjs-editor-tabs', {
@@ -153,7 +150,7 @@ module.exports = function(pvjs) {
       return;
     }
 
-    editorTabsComponent.onClickDiagramContainer(pvjs.editor.selectedPvjsElement);
+    editorTabsComponent.vm.onClickDiagramContainer(pvjs.editor.selectedPvjsElement);
 
     m.endComputation();
   }

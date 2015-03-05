@@ -10,19 +10,6 @@ module.exports = function(pvjs) {
   var editorTabsComponentContainerElement = containerElement.querySelector(
       '.pvjs-editor-tabs');
 
-  function onClickDiagramContainer(selectedPvjsElement) {
-    annotationTab.vm.onClickDiagramContainer(selectedPvjsElement);
-    propertiesTab.vm.onClickDiagramContainer(selectedPvjsElement);
-  }
-
-  function open() {
-    m.module(editorTabsComponentContainerElement, editorTabsComponent);
-  }
-
-  function close() {
-    editorTabsComponentContainerElement.innerHTML = '';
-  }
-
   //module for editorTabsComponent
   //for simplicity, we use this module to namespace the model classes
   var editorTabsComponent = {};
@@ -58,6 +45,19 @@ module.exports = function(pvjs) {
   //the view-model,
   editorTabsComponent.vm = (function() {
     var vm = {};
+
+    vm.onClickDiagramContainer = function(selectedPvjsElement) {
+      annotationTab.vm.onClickDiagramContainer(selectedPvjsElement);
+      propertiesTab.vm.onClickDiagramContainer(selectedPvjsElement);
+    }
+
+    // TODO is this needed?
+    vm.open = function() {
+    };
+
+    vm.close = function() {
+      //editorTabsComponentContainerElement.innerHTML = '';
+    };
 
     vm.tabList = new editorTabsComponent.TabList();
     vm.currentTab = m.prop(vm.tabList[0]);
@@ -98,29 +98,24 @@ module.exports = function(pvjs) {
           ]);
         })
       ]),
-      editorTabsComponent.vm.currentTab().view()
       /*
-      m('div', {}, [
-        editorTabsComponent.vm.tabList.filter(function(tab) {
-          return tab.title() === editorTabsComponent.vm.currentTab().title();
-        })
-        .map(function(tab) {
-          return tab.view();
-        })
-      ])
+      m('span.glyphicon.glyphicon-remove.btn.navbar-right[style="color: #aaa; transform: translateY(-10px);"]', {
+        onclick: annotationTab.vm.cancel
+      }),
       //*/
-      //m(editorTabsComponent.vm.currentTab().view(), {})
+      m('a[href="/editor/closed"]', {
+        config: m.route,
+        /*
+        onclick: m.withAttr('value', editorComponent.vm.open),
+        value: editorComponent.vm.tester()
+        //*/
+      }, [
+        m('span.editor-close-control.glyphicon.glyphicon-remove.btn.navbar-right')
+      ]),
+      editorTabsComponent.vm.currentTab().view()
     ];
   };
 
   return editorTabsComponent;
-
-  /*
-  return {
-    onClickDiagramContainer: onClickDiagramContainer,
-    open: open,
-    close: close
-  };
-  //*/
 
 };

@@ -13,6 +13,13 @@ function DiagramComponent(pvjs) {
 
       vm.color = m.prop('');
 
+      vm.onClickHandler = function(el) {
+        if (!!el) {
+          console.log('el');
+          console.log(el);
+        }
+      };
+
       // react to user updating color value
       vm.updateColor = function(newColor) {
         if (!!newColor) {
@@ -51,7 +58,8 @@ function DiagramComponent(pvjs) {
             m.endComputation();
           });
         }
-      }
+      },
+      //onclick: diagramComponent.vm.onClickHandler,
       //config: diagramComponent.config(ctrl),
       /*
       onchange: m.withAttr('value', diagramComponent.vm.updateColor),
