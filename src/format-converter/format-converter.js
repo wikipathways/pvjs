@@ -1,5 +1,7 @@
 var Utils = require('./../utils.js');
-var Gpml = require('gpml2json');
+//var Gpml = require('gpml2json');
+//var Gpml = require('../../../gpml2pvjson-js/lib/index');
+var Gpml = require('../../../gpml2pvjson-js/src/gpml');
 
 module.exports = {
   /**
@@ -32,4 +34,4 @@ module.exports = {
       return callback('Cannot get pvjson from the specified input.', {});
     }
   }
-}
+};

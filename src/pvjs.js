@@ -54,7 +54,8 @@ function initPvjs(window, $) {
   var optionsDefault = {
     fitToContainer: true,
     sourceData: [],
-    manualRender: false,
+    //manualRender: false,
+    manualRender: true,
     editor: 'open'
     //editor: 'closed'
     //editor: 'disabled'
@@ -147,7 +148,7 @@ function initPvjs(window, $) {
           //m('div.diagram-container'),
           diagramComponent.view(),
           pvjs.editor.view(pvjs),
-          m('div.annotation.ui-draggable', {}, [
+          m('div.annotation.ui-draggable.editor-' + m.route.param('editorState'), {}, [
             m('header.annotation-header', {}, [
               m('span.annotation-header-move', {}, [
                 m('i.icon-move'),

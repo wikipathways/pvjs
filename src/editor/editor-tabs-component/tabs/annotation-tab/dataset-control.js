@@ -35,7 +35,8 @@ datasetControl.vm = (function() {
   vm.init = function() {
 
     var bridgeDb = new BridgeDb({
-      baseIri: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb.php/',
+      baseIri: 'http://webservice.bridgedb.org/',
+      //baseIri: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb.php/',
       datasetsMetadataIri: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php',
       organism: 'Homo sapiens'
     });

@@ -22,7 +22,7 @@ annotationTab.ItemList = Array;
 annotationTab.Item = function(item) {
   this.id = m.prop(item.id);
   this.name = m.prop(item.name);
-}
+};
 
 annotationTab.vm = (function() {
 
@@ -39,7 +39,7 @@ annotationTab.vm = (function() {
     vm.cancel = function() {
       vm.reset();
       pvjs.editor.cancel();
-    }
+    };
 
     vm.onClickDiagramContainer = function(selectedPvjsElement) {
 
@@ -69,7 +69,7 @@ annotationTab.vm = (function() {
 
       var entity = editorUtils.convertXrefToPvjsEntity(selectedXref);
       annotationTab.vm.updateControlValues(entity);
-    }
+    };
 
     vm.reset = function() {
       annotationTab.vm.saveButtonClass = 'btn-default';
@@ -79,7 +79,7 @@ annotationTab.vm = (function() {
       displayNameControl.vm.displayName = m.prop('');
 
       pvjs.editor.clearSelection();
-    }
+    };
 
     vm.save = function() {
       var selectedPvjsElement = pvjs.editor.selectedPvjsElement;
@@ -104,14 +104,14 @@ annotationTab.vm = (function() {
           pvjs, selectedPvjsElement.id, xrefType, datasetName, identifier, displayName);
 
       vm.reset();
-    }
+    };
 
     xrefSearch.vm.init();
     xrefTypeControl.vm.init();
     datasetControl.vm.init();
     identifierControl.vm.init();
     displayNameControl.vm.init();
-  }
+  };
 
   /**
    * update the dropdowns and input boxes that
@@ -133,14 +133,14 @@ annotationTab.vm = (function() {
     datasetControl.vm.changeDataset(entity.isDataItemIn.id);
     identifierControl.vm.identifier = m.prop(entity.identifier);
     displayNameControl.vm.displayName = m.prop(entity.displayName);
-  }
+  };
 
   return vm;
 })();
 
 annotationTab.controller = function() {
   annotationTab.vm.init();
-}
+};
 
 annotationTab.view = function() {
   return m('nav.pvjs-editor-annotation.navbar.navbar-default.navbar-form.well.well-sm', [
@@ -163,11 +163,14 @@ annotationTab.view = function() {
         m('span.glyphicon.glyphicon-ok')
       ]),
     ]),
-    m('span.glyphicon.glyphicon-remove.btn.navbar-right[style="color: #aaa; transform: translateY(-10px);"]', {
+    /*
+    m('span.glyphicon.glyphicon-remove.btn.navbar-right' +
+        '[style="color: #aaa; transform: translateY(-10px);"]', {
       onclick: annotationTab.vm.cancel
     })
+    //*/
   ]);
-}
+};
 
 /***********************************************
  * Temporary solution for handling updates

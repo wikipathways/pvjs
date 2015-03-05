@@ -8,12 +8,10 @@
   }
 
   .diagram-container.editor-open {
-    width: inherit;
     height: 75%;
-    text-align: center;
-    /* To avoid covering up the resize handle (grab area) */
-    border-bottom-right-radius: 1em 1em;
-    overflow: hidden;
+    /* try this
+    height: auto;
+    */
   }
 
 	svg {
