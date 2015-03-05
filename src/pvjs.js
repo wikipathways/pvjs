@@ -113,7 +113,7 @@ function initPvjs(window, $) {
     //*/
 
     // Check if render should be called now or it will be done later manually
-    /*
+    //*
     if (!this.options.manualRender) {
       this.render(this);
     }
@@ -127,8 +127,7 @@ function initPvjs(window, $) {
    */
   Pvjs.prototype.initContainer = function() {
     var pvjs = this;
-    var containerContents = fs.readFileSync(
-        __dirname + '/pvjs.html').toString();
+    pvjs.diagramRendererInstance = diagramRenderer;
 
     var containerElement = this.$element[0][0];
     pvjs.editor = new Editor(pvjs);
@@ -147,7 +146,7 @@ function initPvjs(window, $) {
         return [
           //m('div.diagram-container'),
           diagramComponent.view(),
-          pvjs.editor.view(pvjs),
+          pvjs.editor.view(),
           m('div.annotation.ui-draggable.editor-' + m.route.param('editorState'), {}, [
             m('header.annotation-header', {}, [
               m('span.annotation-header-move', {}, [

@@ -5,6 +5,7 @@
 var m = require('mithril');
 
 function DiagramComponent(pvjs) {
+  var isInitializedHere = false;
   var diagramComponent = {};
 
   diagramComponent.vm = (function() {
@@ -49,16 +50,44 @@ function DiagramComponent(pvjs) {
   //browers that support it natively and those that don't
   diagramComponent.view = function(ctrl) {
     return m('div.diagram-container.editor-' + m.route.param('editorState'), {
+      //*
       config: function(el, isInitialized) {
-        if (!isInitialized) {
+        if (!isInitializedHere && !isInitialized) {
+          //isInitializedHere = true;
           //integrate with the auto-redrawing system...
+          //*
           m.startComputation();
-          pvjs.render(pvjs);
+          //pvjs.diagramRendererInstance.render(pvjs);
+          pvjs.render();
           pvjs.on('rendered', function() {
             m.endComputation();
           });
+          //*/
+        } else if (!isInitialized) {
+          /*
+          m.startComputation();
+          pvjs.diagramRendererInstance.render(pvjs);
+          m.endComputation();
+          //*/
         }
+
+        /*
+        if (!isInitialized) {
+          //integrate with the auto-redrawing system...
+          m.startComputation();
+          //pvjs.diagramRendererInstance.render(pvjs);
+          pvjs.render();
+          pvjs.on('rendered', function() {
+            m.endComputation();
+          });
+        } else {
+          m.startComputation();
+          pvjs.diagramRendererInstance.render(pvjs);
+          m.endComputation();
+        }
+        //*/
       },
+      //*/
       //onclick: diagramComponent.vm.onClickHandler,
       //config: diagramComponent.config(ctrl),
       /*
