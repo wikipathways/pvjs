@@ -142,9 +142,6 @@ function initPvjs(window, $) {
       // Initialize Highlighter plugin
       pvjs.publicInstance.highlighter = new PvjsHighlighter(pvjs.publicInstance);
 
-
-
-
       var vm = pvjs.$element[0][0];
       var diagramContainerElement = vm.querySelector(
           '.diagram-container');
@@ -196,13 +193,6 @@ function initPvjs(window, $) {
         windowResizeListener.fork()
         .debounce(refreshInterval)
         .each(function() {
-          /* TODO make this work correctly
-          diagramContainerElement.setAttribute('style',
-            'width: ' + element.clientWidth + 'px; ' +
-            'height: ' + element.clientHeight + 'px; ')
-          svgElement.setAttribute('width', '100%')
-          svgElement.setAttribute('height', '100%')
-          /*/
           pvjs.publicInstance.resizeDiagram();
         });
 
@@ -254,15 +244,18 @@ function initPvjs(window, $) {
         .debounce(refreshInterval)
         .each(function(element) {
           console.log('element resized');
+          /* We probably can get rid of the code commented out here
           if (_.isElement(element)) {
             diagramContainerElement.setAttribute('style',
               'width: ' + element.clientWidth + 'px; ' +
               'height: ' + element.clientHeight + 'px; ')
-              // TODO make this change when going into edit mode
-              //'height: ' + (element.clientHeight - 300) + 'px; ')
+            diagramContainerElement.setAttribute('style',
+              'width: ' + element.clientWidth + 'px; ' +
+              'height: ' + element.clientHeight + 'px; ')
             svgElement.setAttribute('width', '100%')
             svgElement.setAttribute('height', '100%')
           }
+          //*/
           pvjs.publicInstance.resizeDiagram();
         });
 
@@ -293,27 +286,6 @@ function initPvjs(window, $) {
         borderOpacity: 0.7
       });
       //*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     });
 
     // Get container sizes

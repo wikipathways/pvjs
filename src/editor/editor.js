@@ -82,7 +82,7 @@ module.exports = function(pvjs) {
     diagramContainerElement.setAttribute(
         'style', 'height: ' + (pvjs.elementHeight - 120) + 'px;');
     //*/
-    //pvjs.panZoom.resizeDiagram();
+    pvjs.panZoom.resizeDiagram();
 
     var editorOpenControlClassString = editorOpenControl.getAttribute('class');
     editorOpenControl.setAttribute('class', editorOpenControlClassString + ' editor-open');
@@ -108,7 +108,7 @@ module.exports = function(pvjs) {
     diagramContainerElement.setAttribute(
         'style', 'height: ' + pvjs.elementHeight + 'px;');
     //*/
-    //pvjs.panZoom.resizeDiagram();
+    pvjs.panZoom.resizeDiagram();
 
     var editorOpenControlClassString = editorOpenControl.getAttribute('class');
     editorOpenControl.setAttribute('class',
