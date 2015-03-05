@@ -156,15 +156,13 @@ annotationTab.view = function() {
       ]),
     ]),
     m('div.form-group.navbar-left', [
-      m('button[type="submit"][style="height: 44px;"].btn.form-control.' + annotationTab.vm.saveButtonClass, {
+      m('button[type="submit"][style="height: 44px;"].btn.form-control.' +
+          annotationTab.vm.saveButtonClass, {
         onclick: annotationTab.vm.save
       }, [
         m('span.glyphicon.glyphicon-ok')
-      ]),
-    ]),
-    m('span.glyphicon.glyphicon-remove.btn.navbar-right[style="color: #aaa; transform: translateY(-10px);"]', {
-      onclick: annotationTab.vm.cancel
-    })
+      ])
+    ])
   ]);
 }
 

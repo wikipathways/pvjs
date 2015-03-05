@@ -98,6 +98,9 @@ module.exports = function(pvjs) {
           ])
         })
       ]),
+      m('span.glyphicon.glyphicon-remove.btn.btn-sm.editor-close-control', {
+        onclick: annotationTab.vm.cancel
+      }),
       editorTabsComponent.vm.currentTab().view()
       /*
       m('div', {}, [

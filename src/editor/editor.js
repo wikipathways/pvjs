@@ -14,16 +14,15 @@ module.exports = function(pvjs) {
   var editorTabsComponent = new EditorTabsComponent(pvjs);
   var containerElement = pvjs.$element[0][0];
   var diagramContainerElement = containerElement.querySelector('.diagram-container');
-  var editorTriggerButton = containerElement.querySelector('.edit-trigger');
+  var editorOpenControl = containerElement.querySelector('.editor-open-control');
 
-  editorTriggerButton.addEventListener('click', function(event) {
+  editorOpenControl.addEventListener('click', function(event) {
     open();
   }, false);
 
   /***********************************************
    * DataNode onclick event handler
    **********************************************/
-  var diagramContainer = document.querySelector('.diagram-container');
   function onClickDiagramContainer(event) {
     m.startComputation();
 
@@ -68,32 +67,52 @@ module.exports = function(pvjs) {
   }
 
   function open() {
-    diagramContainer.addEventListener('click', onClickDiagramContainer, false);
+    diagramContainerElement.addEventListener('click', onClickDiagramContainer, false);
 
+    var annotationDetailsPanel = document.querySelector('.annotation');
+    annotationDetailsPanel.setAttribute('class', 'annotation ui-draggable editor-open');
+    /*
     // TODO this is a kludge. refactor how we avoid displaying annotation panel in edit mode.
     document.querySelector('.annotation').style.display = 'none';
     document.querySelector('.annotation').style.visibility = 'hidden';
+    //*/
 
+    diagramContainerElement.setAttribute('class', 'diagram-container editor-open');
+    /*
     diagramContainerElement.setAttribute(
         'style', 'height: ' + (pvjs.elementHeight - 120) + 'px;');
-    pvjs.panZoom.resizeDiagram();
-    editorTriggerButton.style.visibility = 'hidden';
+    //*/
+    //pvjs.panZoom.resizeDiagram();
+
+    var editorOpenControlClassString = editorOpenControl.getAttribute('class');
+    editorOpenControl.setAttribute('class', editorOpenControlClassString + ' editor-open');
+
     editorTabsComponent.open();
   }
 
   function close() {
-    diagramContainer.removeEventListener('click', onClickDiagramContainer);
+    diagramContainerElement.removeEventListener('click', onClickDiagramContainer);
 
     clearSelection();
 
+    var annotationDetailsPanel = document.querySelector('.annotation');
+    annotationDetailsPanel.setAttribute('class', 'annotation ui-draggable');
+    /*
     // TODO this is a kludge. refactor how we avoid displaying annotation panel in edit mode.
     document.querySelector('.annotation').style.display = null;
     document.querySelector('.annotation').style.visibility = 'hidden';
+    //*/
 
+    diagramContainerElement.setAttribute('class', 'diagram-container editor-closed');
+    /*
     diagramContainerElement.setAttribute(
         'style', 'height: ' + pvjs.elementHeight + 'px;');
-    pvjs.panZoom.resizeDiagram();
-    editorTriggerButton.style.visibility = 'visible';
+    //*/
+    //pvjs.panZoom.resizeDiagram();
+
+    var editorOpenControlClassString = editorOpenControl.getAttribute('class');
+    editorOpenControl.setAttribute('class',
+        editorOpenControlClassString.replace(' editor-open', ''));
 
     editorTabsComponent.close();
   }

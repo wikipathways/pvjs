@@ -3,8 +3,15 @@
     height: 100%;
     text-align: center;
     /* To avoid covering up the resize handle (grab area) */
-    border-bottom-right-radius: 2em 2em;
+    border-bottom-right-radius: 1em 1em;
     overflow: hidden;
+  }
+
+  .diagram-container.editor-open {
+    height: 75%;
+    /* try this
+    height: auto;
+    */
   }
 
 	svg {
