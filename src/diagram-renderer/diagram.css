@@ -1,6 +1,6 @@
   .diagram-container {
     width: inherit;
-    height: 100%;
+    height: 99%;
     text-align: center;
     /* To avoid covering up the resize handle (grab area) */
     border-bottom-right-radius: 1em 1em;
