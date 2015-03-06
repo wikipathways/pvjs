@@ -68,8 +68,10 @@ font-size:130%;
 }
 
 .editor-close-control {
-  color: #aaa;
-  transform: translateY(-10px);
+color: #aaa;
+transform: translateX(5px);
+float: right;
+z-index: 50;
 }
 
 
