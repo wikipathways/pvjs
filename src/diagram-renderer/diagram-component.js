@@ -64,6 +64,8 @@ function DiagramComponent(pvjs) {
           });
           //*/
         } else if (!isInitialized) {
+          pvjs.render();
+          //pvjs.diagramRendererInstance.render(pvjs);
           /*
           m.startComputation();
           pvjs.diagramRendererInstance.render(pvjs);
