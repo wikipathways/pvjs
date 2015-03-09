@@ -71,21 +71,8 @@ function registerWikiPathwaysPvjsElement() {
 
     vm.innerHTML = '';
 
-    $(vm).pvjs(args);
-
-    // Get first element from array of instances
-    var pathInstance = $(vm).pvjs('get').pop()
-
-    // Load notification plugin
-    pvjsNotifications(pathInstance, {
-      displayErrors: displayErrors,
-      displayWarnings: displayWarnings
-    });
-
-    // Call after render
-    pathInstance.on('rendered', function() {
-
-    });
+    var pvjs = new Pvjs();
+    pvjs.init(vm, args);
   };
 
   // Public: WikiPathwaysPvjsPrototype constructor.

@@ -53,19 +53,13 @@ module.exports = function(pvjs) {
         }, false);
         m.endComputation();
         //*/
+
+        //*
         window.setTimeout(function() {
           document.querySelector('.diagram-container').addEventListener(
               'click', onClickDiagramContainer, false);
-          /*
-          document.querySelector('.diagram-container').addEventListener('click', function(e) {
-            console.log(e);
-          }, false);
-          diagramContainerElement.addEventListener('click', function(e) {
-            console.log(e);
-          }, false);
-          diagramContainerElement.addEventListener('click', onClickDiagramContainer, false);
-          //*/
         }, 1000);
+        //*/
 
         editorTabsComponent.vm.init(pvjs);
       };
