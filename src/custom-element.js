@@ -5,7 +5,7 @@ var highland = require('highland');
  *
  * @return
  */
-function registerWikiPathwaysPvjsElement() {
+function registerWikiPathwaysPvjsElement(Pvjs) {
   'use strict';
 
   var DivPrototype = Object.create(window.HTMLDivElement.prototype);
@@ -71,8 +71,8 @@ function registerWikiPathwaysPvjsElement() {
 
     vm.innerHTML = '';
 
-    var pvjs = new Pvjs();
-    pvjs.init(vm, args);
+    var pvjs = new Pvjs(vm, args);
+    pvjs.render();
   };
 
   // Public: WikiPathwaysPvjsPrototype constructor.
@@ -87,4 +87,4 @@ function registerWikiPathwaysPvjsElement() {
 
 module.exports = {
   registerElement: registerWikiPathwaysPvjsElement
-}
+};

@@ -119,7 +119,8 @@
     "gulp-bump": "~0.1.11",
     "gulp-regex-replace": "~0.2.3",
     "gulp-build-branch": "~0.1.4",
-    "modernizr": "~3.0.0-alpha"
+    "modernizr": "~3.0.0-alpha",
+    "es6ify": "~1.6.0"
   },
   "dependencies": {
     "bridgedb": "~4.1.0",

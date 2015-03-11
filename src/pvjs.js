@@ -1,20 +1,13 @@
 var _ = require('lodash');
 var customElement = require('./custom-element');
-var DiagramComponent = require('./diagram-renderer/diagram-component');
-var Editor = require('./editor/editor');
-var ElementResizeDetector = require('element-resize-detector');
 var fs = require('fs');
 var highland = require('highland');
 var insertCss = require('insert-css');
-var m = require('mithril');
-var PvjsHighlighter = require('./highlighter/highlighter.js');
 var promisescript = require('promisescript');
-var Utils = require('./utils');
 var DiagramRenderer = require('./diagram-renderer/diagram-renderer');
 var FormatConverter = require('./format-converter/format-converter');
-var Spinner = require('spin.js');
 
-var Kaavio = require('../../kaavio/src/pvjs.js');
+var Kaavio = require('../../kaavio/index.js');
 
 // Make IE work with the CustomEvent interface standard
 require('custom-event-polyfill');
@@ -23,7 +16,16 @@ var css = [
   fs.readFileSync(__dirname + '/pvjs.css')
 ];
 
-console.log('hey');
+var instanceCounter = 0;
+var optionsDefault = {
+  fitToContainer: true,
+  sourceData: [],
+  //manualRender: false,
+  manualRender: true,
+  //editor: 'open'
+  editor: 'closed'
+  //editor: 'disabled'
+};
 
 /**
  * Pvjs
@@ -32,10 +34,21 @@ console.log('hey');
  * @param {object} args
  * @return
  */
-function Pvjs() {
-  'use strict';
+function Pvjs(selector, options) {
+  var that = this;
+  this.selector = selector;
 
-  var instance = this;
+  // Clone and fill options
+  this.options = _.clone(optionsDefault, true);
+  this.options = _.assign(this.options, options);
+
+  // Make this instance unique
+  this.instanceId = ++instanceCounter;
+
+  // Init events object
+  this.events = {};
+
+  this.diagramRenderer = new DiagramRenderer();
 
   // TODO make this work
   //var kaavio = new Kaavio();
@@ -43,11 +56,11 @@ function Pvjs() {
   /**
    * Init and render
    */
-  instance.render = function(selector, args) {
-    var pvjs = this;
+  this.render = function() {
+    var privateInstance = this;
 
     // Init sourceData object
-    this.sourceData = {
+    privateInstance.sourceData = {
       sourceIndex: -1,
       uri: null, // resource uri
       fileType: '',
@@ -56,58 +69,173 @@ function Pvjs() {
       rendererEngine: null // renderer engine name
     };
 
-    return kaavio('#pvjs-container', args);
-
-    this.checkAndRenderNextSource();
+    that.loadNextSource();
 
     // Listen for renderer errors
-    this.on('error.renderer', function() {
-      diagramRenderer.destroyRender(pvjs, pvjs.sourceData);
-      pvjs.checkAndRenderNextSource();
+    privateInstance.on('error.renderer', function() {
+      privateInstance.diagramRenderer.destroyRender(privateInstance, privateInstance.sourceData);
+      privateInstance.loadNextSource();
     });
   };
 
-  instance.checkAndRenderNextSource = function() {
-    var pvjs = this;
+  this.loadNextSource = function() {
+    var privateInstance = this;
 
-    this.sourceData.sourceIndex += 1;
+    privateInstance.sourceData.sourceIndex += 1;
 
     // Check if any sources left
-    if (this.options.sourceData.length < this.sourceData.sourceIndex + 1) {
-      this.trigger('error.sourceData', {
+    if (privateInstance.options.sourceData.length < privateInstance.sourceData.sourceIndex + 1) {
+      privateInstance.trigger('error.sourceData', {
         message: 'No more renderable sources'
       });
       return;
     }
 
-    this.sourceData.uri = this.options.sourceData[
-      this.sourceData.sourceIndex].uri;
-    this.sourceData.fileType = this.options.sourceData[
-      this.sourceData.sourceIndex].fileType;
+    privateInstance.sourceData.uri = privateInstance.options.sourceData[
+      privateInstance.sourceData.sourceIndex].uri;
+    privateInstance.sourceData.fileType = privateInstance.options.sourceData[
+      privateInstance.sourceData.sourceIndex].fileType;
 
-    if (diagramRenderer.canRender(this.sourceData)) {
-      if (diagramRenderer.needDataConverted(this.sourceData)) {
-        FormatConverter.loadAndConvert(pvjs, function(error, pvjson) {
-          if (error) {
-            pvjs.trigger('error.pvjson', {message: error});
-            pvjs.checkAndRenderNextSource();
-          } else {
-            pvjs.sourceData.pvjson = pvjson;
-            diagramRenderer.render(pvjs);
+    if (privateInstance.diagramRenderer.canRender(privateInstance.sourceData)) {
+      if (privateInstance.diagramRenderer.needDataConverted(privateInstance.sourceData)) {
+        FormatConverter.loadAndConvert(privateInstance, function(error, pvjson) {
+          if (!!error) {
+            privateInstance.trigger('error.pvjson', {message: error});
+            privateInstance.loadNextSource();
+            return;
           }
+
+          privateInstance.sourceData.pvjson = pvjson;
+          return window.kaavio(privateInstance.selector, privateInstance);
         });
       } else {
-        diagramRenderer.render(pvjs);
+        return window.kaavio(privateInstance.selector, privateInstance);
       }
     } else {
       // try next source
-      this.checkAndRenderNextSource();
+      privateInstance.loadNextSource();
     }
   };
 
-}
+  /**
+   * Register an event listener
+   *
+   * @param  {string}   topic
+   * @param  {Function} callback
+   */
+  this.on = function(topic, callback) {
+    var privateInstance = this;
 
-window.Pvjs = Pvjs;
+    var namespace = null;
+    var eventName = topic;
+
+    if (topic.indexOf('.') !== -1) {
+      var pieces = topic.split('.');
+      eventName = pieces[0];
+      namespace = pieces[1];
+    }
+
+    if (!privateInstance.events.hasOwnProperty(eventName)) {
+      privateInstance.events[eventName] = [];
+    }
+
+    privateInstance.events[eventName].push({
+      callback: callback,
+      namespace: namespace
+    });
+  };
+
+  /**
+   * Removes an event listener
+   * Returns true if listener was removed
+   *
+   * @param  {string}   topic
+   * @param  {Function} callback
+   * @return {bool}
+   */
+  this.off = function(topic, callback) {
+    var privateInstance = this;
+
+    var namespace = null;
+    var eventName = topic;
+    var flagRemove = true;
+    callback = callback || null;
+
+    if (topic.indexOf('.') !== -1) {
+      var pieces = topic.split('.');
+      eventName = pieces[0];
+      namespace = pieces[1];
+    }
+
+    // Check if such an event is registered
+    if (!privateInstance.events.hasOwnProperty(eventName)) {return false;}
+    var queue = privateInstance.events[topic];
+
+    for (var i = queue.length - 1; i >= 0; i--) {
+      flagRemove = true;
+
+      if (namespace && queue[i].namespace !== namespace) {flagRemove = false;}
+      if (callback && queue[i].callback !== callback) {flagRemove = false;}
+
+      if (flagRemove) {queue.splice(i, 1);}
+    }
+
+    return true;
+  };
+
+  /**
+   * Triggers an event. Async by default.
+   * Returns true if there is at least one listener
+   *
+   * @param  {string} topic
+   * @param  {object} message
+   * @param  {bool} async By default true
+   * @return {bool}
+   */
+  this.trigger = function(topic, message, async) {
+    var privateInstance = this;
+
+    var namespace = null;
+    var eventName = topic;
+
+    if (topic.indexOf('.') !== -1) {
+      var pieces = topic.split('.');
+      eventName = pieces[0];
+      namespace = pieces[1];
+    }
+
+    if (!privateInstance.events.hasOwnProperty(eventName)) {return false;}
+
+    var queue = privateInstance.events[eventName];
+    if (queue.length === 0) {return false;}
+
+    if (async === undefined) {
+      async = true;
+    }
+
+    // Use a function as i may change meanwhile
+    var callAsync = function(i) {
+      setTimeout(function() {
+        queue[i].callback(message);
+      }, 0);
+    };
+
+    for (var i = 0; i < queue.length; i++) {
+      if (namespace && queue[i].namespace && namespace !== queue[i].namespace) {
+        continue;
+      }
+
+      if (async) {
+        // freeze i
+        callAsync(i);
+      } else {
+        queue[i].callback(message);
+      }
+    }
+    return true;
+  };
+
+}
 
 /*********************************
  * A very simple asset loader. It checks all
@@ -165,22 +293,7 @@ highland(assetsToLoad)
   .flatMap(loadAssetsStreaming)
   .collect()
   .each(function(result) {
-    console.log('loaded assets y');
-
-    setTimeout(function() {
-      console.log('timeout');
-      //Pvjs(window, window.jQuery || null);
-      var pvjs = new Pvjs();
-      customElement.registerElement();
-    }, 3000);
-
-    /*
-    highland('kaavioready', $(document.body)).each(function() {
-      console.log('kaavioready');
-      Pvjs(window, window.jQuery || null);
-      customElement.registerElement();
-    });
-    //*/
-
-    console.log('loaded assets e');
+    window.addEventListener('kaavioready', function(e) {
+      customElement.registerElement(Pvjs);
+    }, false);
   });

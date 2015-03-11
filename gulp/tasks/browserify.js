@@ -100,7 +100,7 @@ gulp.task('browserify', function() {
         .pipe(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
         .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
+        .pipe(sourcemaps.write('./'));
     }))
     // Specify the output destination
     .pipe(gulp.dest('./dist/'))
