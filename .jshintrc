@@ -2,6 +2,7 @@
   "browser": true,
   "curly": true,
   "eqeqeq": false,
+  "esnext": true,
   "loopfunc": false,
   "noarg": true,
   "trailing": true,
