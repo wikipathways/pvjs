@@ -105,11 +105,13 @@ function Pvjs(selector, options) {
             return;
           }
 
+          console.log('pvjson');
+          console.log(pvjson);
           privateInstance.sourceData.pvjson = pvjson;
-          return window.kaavio(privateInstance.selector, privateInstance);
+          return window.kaavio(privateInstance.selector, privateInstance.sourceData);
         });
       } else {
-        return window.kaavio(privateInstance.selector, privateInstance);
+        return window.kaavio(privateInstance.selector, privateInstance.sourceData);
       }
     } else {
       // try next source
@@ -293,7 +295,11 @@ highland(assetsToLoad)
   .flatMap(loadAssetsStreaming)
   .collect()
   .each(function(result) {
-    window.addEventListener('kaavioready', function(e) {
+    if (!!window.kaavio) {
       customElement.registerElement(Pvjs);
-    }, false);
+    } else {
+      window.addEventListener('kaavioready', function(e) {
+        customElement.registerElement(Pvjs);
+      }, false);
+    }
   });
