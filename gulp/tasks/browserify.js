@@ -55,9 +55,7 @@ gulp.task('browserify', function() {
   var bundler = bundleMethod({
     // Specify the entry point of your app
     entries: ['./tmp/modernizr-custom.js',
-      './src/pvjs.js',
-      './src/notifications/notifications.js',
-      './src/diff-viewer/diff-viewer.js']
+      './src/pvjs.js']
   })
   .ignore('commander')
   .ignore('cheerio')
