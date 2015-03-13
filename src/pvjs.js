@@ -4,8 +4,7 @@ var fs = require('fs');
 var highland = require('highland');
 var insertCss = require('insert-css');
 var promisescript = require('promisescript');
-var DiagramRenderer = require('./diagram-renderer/diagram-renderer');
-var FormatConverter = require('./format-converter/format-converter');
+var DiagramLoader = require('./diagram-loader/diagram-loader');
 
 var Kaavio = require('../../kaavio/index.js');
 
@@ -48,7 +47,7 @@ function Pvjs(selector, options) {
   // Init events object
   this.events = {};
 
-  this.diagramRenderer = new DiagramRenderer();
+  this.diagramLoader = new DiagramLoader();
 
   // TODO make this work
   //var kaavio = new Kaavio();
@@ -73,7 +72,7 @@ function Pvjs(selector, options) {
 
     // Listen for renderer errors
     privateInstance.on('error.renderer', function() {
-      privateInstance.diagramRenderer.destroyRender(privateInstance, privateInstance.sourceData);
+      privateInstance.diagramLoader.destroyRender(privateInstance, privateInstance.sourceData);
       privateInstance.loadNextSource();
     });
   };
@@ -96,9 +95,9 @@ function Pvjs(selector, options) {
     privateInstance.sourceData.fileType = privateInstance.options.sourceData[
       privateInstance.sourceData.sourceIndex].fileType;
 
-    if (privateInstance.diagramRenderer.canRender(privateInstance.sourceData)) {
-      if (privateInstance.diagramRenderer.needDataConverted(privateInstance.sourceData)) {
-        FormatConverter.loadAndConvert(privateInstance, function(error, pvjson) {
+    if (privateInstance.diagramLoader.canRender(privateInstance.sourceData)) {
+      if (privateInstance.diagramLoader.needDataConverted(privateInstance.sourceData)) {
+        privateInstance.diagramLoader.loadAndConvert(privateInstance, function(error, pvjson) {
           if (!!error) {
             privateInstance.trigger('error.pvjson', {message: error});
             privateInstance.loadNextSource();
