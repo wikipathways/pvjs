@@ -108,10 +108,12 @@ function Pvjs(selector, options) {
           console.log('pvjson');
           console.log(pvjson);
           privateInstance.sourceData.pvjson = pvjson;
-          return new Kaavio(privateInstance.selector, privateInstance.sourceData);
+          privateInstance.kaavio = new Kaavio(privateInstance.selector, privateInstance.sourceData);
+          return;
         });
       } else {
-        return new Kaavio(privateInstance.selector, privateInstance.sourceData);
+        privateInstance.kaavio = new Kaavio(privateInstance.selector, privateInstance.sourceData);
+        return;
       }
     } else {
       // try next source
