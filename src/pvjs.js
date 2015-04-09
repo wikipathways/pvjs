@@ -7,6 +7,7 @@ var promisescript = require('promisescript');
 var DiagramLoader = require('./diagram-loader/diagram-loader');
 
 var Kaavio = require('../../kaavio/index.js');
+//var wikipathwaysKaavioElement = require('../../kaavio/lib/wikipathways-kaavio-element.js');
 
 // Make IE work with the CustomEvent interface standard
 require('custom-event-polyfill');
@@ -19,8 +20,8 @@ var instanceCounter = 0;
 var optionsDefault = {
   fitToContainer: true,
   sourceData: [],
-  //manualRender: false,
-  manualRender: true,
+  manualRender: false,
+  //manualRender: true,
   //editor: 'open'
   editor: 'closed'
   //editor: 'disabled'
@@ -107,10 +108,10 @@ function Pvjs(selector, options) {
           console.log('pvjson');
           console.log(pvjson);
           privateInstance.sourceData.pvjson = pvjson;
-          return window.kaavio(privateInstance.selector, privateInstance.sourceData);
+          return new Kaavio(privateInstance.selector, privateInstance.sourceData);
         });
       } else {
-        return window.kaavio(privateInstance.selector, privateInstance.sourceData);
+        return new Kaavio(privateInstance.selector, privateInstance.sourceData);
       }
     } else {
       // try next source
@@ -238,67 +239,10 @@ function Pvjs(selector, options) {
 
 }
 
-/*********************************
- * A very simple asset loader. It checks all
- * assets that could be loaded already. If they
- * are loaded already, great. Otherwise, it
- * loads them.
- *
- * It would be nice to use an
- * open-source library for this
- * to ensure it works x-browser.
- * Why did Modernizr/yepnope deprecate this
- * type of strategy?
- * ******************************/
-var assetsToLoad = [
-  {
-    exposed: 'jQuery',
-    type: 'script',
-    url: '//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js',
-    loaded: (function() {
-      return !!window.jQuery;
-    })()
-  },
-  {
-    exposed: 'document.registerElement',
-    type: 'script',
-    url: '//cdnjs.cloudflare.com/ajax/libs/' +
-        'webcomponentsjs/0.5.2/CustomElements.min.js',
-    loaded: (function() {
-      return !!document.registerElement;
-    })()
-  }
-];
-
-/**
- * Streaming version of promisescript
- * https://www.npmjs.com/package/promisescript
- *
- * @param {object} args
- * @param {string} args.exposed
- * @param {string} args.type script or style
- * @param {string} args.url
- * @return {stream}
- */
-function loadAssetsStreaming(args) {
-  return highland(promisescript(args));
+if (!!window.Kaavio) {
+  customElement.registerElement(Pvjs);
+} else {
+  window.addEventListener('kaavioready', function(e) {
+    customElement.registerElement(Pvjs);
+  }, false);
 }
-
-highland(assetsToLoad)
-  .filter(function(asset) {
-    return !asset.loaded;
-  })
-  .errors(function(err, push) {
-    push(err);
-  })
-  .flatMap(loadAssetsStreaming)
-  .collect()
-  .each(function(result) {
-    if (!!window.kaavio) {
-      customElement.registerElement(Pvjs);
-    } else {
-      window.addEventListener('kaavioready', function(e) {
-        customElement.registerElement(Pvjs);
-      }, false);
-    }
-  });
