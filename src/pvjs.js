@@ -1,11 +1,14 @@
 var _ = require('lodash');
 var customElement = require('./custom-element');
+var Editor = require('./editor/editor.js');
 var fs = require('fs');
 var highland = require('highland');
 var insertCss = require('insert-css');
+var m = require('mithril');
 var promisescript = require('promisescript');
 var DiagramLoader = require('./diagram-loader/diagram-loader');
 
+//var Kaavio = require('../../required-mithril-component/index.js');
 var Kaavio = require('../../kaavio/index.js');
 //var wikipathwaysKaavioElement = require('../../kaavio/lib/wikipathways-kaavio-element.js');
 
@@ -37,6 +40,7 @@ var optionsDefault = {
 function Pvjs(selector, options) {
   var that = this;
   this.selector = selector;
+  this.editor = new Editor(this);
 
   // Clone and fill options
   this.options = _.clone(optionsDefault, true);
@@ -81,6 +85,8 @@ function Pvjs(selector, options) {
   this.loadNextSource = function() {
     var privateInstance = this;
 
+    var pvjsonOriginal;
+
     privateInstance.sourceData.sourceIndex += 1;
 
     // Check if any sources left
@@ -90,6 +96,16 @@ function Pvjs(selector, options) {
       });
       return;
     }
+
+    // TODO why is this event happening twice when it should happen once?
+    selector.addEventListener('kaaviodatachange', function(e) {
+      console.log('kaaviodatachange in pvjs.js');
+      console.log(e);
+      privateInstance.editor.save({
+        pvjson: e.detail.pvjson,
+        pvjsonOriginal: pvjsonOriginal
+      });
+    }, false);
 
     privateInstance.sourceData.uri = privateInstance.options.sourceData[
       privateInstance.sourceData.sourceIndex].uri;
@@ -108,6 +124,7 @@ function Pvjs(selector, options) {
           console.log('pvjson');
           console.log(pvjson);
           privateInstance.sourceData.pvjson = pvjson;
+          pvjsonOriginal = window.pvjsonOriginal = JSON.parse(JSON.stringify(pvjson));
           privateInstance.kaavio = new Kaavio(privateInstance.selector, privateInstance.sourceData);
           return;
         });

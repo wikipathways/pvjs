@@ -142,6 +142,7 @@
     "spectrum-colorpicker": "~1.6.1",
     "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git",
     "custom-event-polyfill": "~0.1.2",
-    "machina": "~1.0.0-1"
+    "machina": "~1.0.0-1",
+    "jsondiffpatch": "~0.1.31"
   }
 }
