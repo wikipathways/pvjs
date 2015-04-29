@@ -1,7 +1,7 @@
 pvjs (v2.2.0)
 ====================
 
-JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pvjs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pvjs.
+JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. It uses SVG and HTML for rendering, the [Mithril](http://lhorie.github.io/mithril/) framework for code organization and [BridgeDb](http://bridgedb.org/) for biological entity reference queries.
 
 Demo
 ====
@@ -328,6 +328,10 @@ pvjsDiffviewer(pathInstance, {
 // Call renderer
 pathInstance.render()
 ```
+
+Related
+=======
+This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pvjs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pvjs.
 
 License
 =======
