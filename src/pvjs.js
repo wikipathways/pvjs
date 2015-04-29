@@ -5,7 +5,9 @@ var Editor = require('./editor/editor.js');
 var fs = require('fs');
 var highland = require('highland');
 var insertCss = require('insert-css');
-var Kaavio = require('kaavio');
+// TODO use the one at github
+var Kaavio = require('../../kaavio/index.js');
+//var Kaavio = require('kaavio');
 var m = require('mithril');
 var promisescript = require('promisescript');
 
