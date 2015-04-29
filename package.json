@@ -132,7 +132,7 @@
     "mithril": "~0.1.30",
     "iconv-lite": "~0.4.7",
     "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git",
-    "kaavio": "~2.2.4",
+    "kaavio": "git://github.com/wikipathways/kaavio.git#2.2.4",
     "jsondiffpatch": "~0.1.31"
   }
 }
