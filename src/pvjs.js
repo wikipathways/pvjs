@@ -1,19 +1,19 @@
 var _ = require('lodash');
-var customElement = require('./custom-element');
+var pvjsCustomElement = require('./custom-element');
+var DiagramLoader = require('./diagram-loader/diagram-loader');
 var Editor = require('./editor/editor.js');
 var fs = require('fs');
 var highland = require('highland');
 var insertCss = require('insert-css');
+var Kaavio = require('kaavio');
 var m = require('mithril');
 var promisescript = require('promisescript');
-var DiagramLoader = require('./diagram-loader/diagram-loader');
 
-//var Kaavio = require('../../required-mithril-component/index.js');
-var Kaavio = require('../../kaavio/index.js');
-//var wikipathwaysKaavioElement = require('../../kaavio/lib/wikipathways-kaavio-element.js');
-
+/* TODO make sure this still works. We shouldn't require it,
+ * because it's a polyfill.
 // Make IE work with the CustomEvent interface standard
 require('custom-event-polyfill');
+//*/
 
 var css = [
   fs.readFileSync(__dirname + '/pvjs.css')
@@ -26,8 +26,8 @@ var optionsDefault = {
   manualRender: false,
   //manualRender: true,
   //editor: 'open'
-  editor: 'closed'
-  //editor: 'disabled'
+  //editor: 'closed'
+  editor: 'disabled'
 };
 
 /**
@@ -61,37 +61,38 @@ function Pvjs(selector, options) {
    * Init and render
    */
   this.render = function() {
-    var privateInstance = this;
+    var pvjs = this;
 
     // Init sourceData object
-    privateInstance.sourceData = {
+    pvjs.sourceData = {
       sourceIndex: -1,
       uri: null, // resource uri
       fileType: '',
       pvjson: null, // pvjson object
       selector: null, // selector instance
-      rendererEngine: null // renderer engine name
+      rendererEngine: null, // renderer engine name
+      editor: pvjs.options.editor // initial editor state
     };
 
     that.loadNextSource();
 
     // Listen for renderer errors
-    privateInstance.on('error.renderer', function() {
-      privateInstance.diagramLoader.destroyRender(privateInstance, privateInstance.sourceData);
-      privateInstance.loadNextSource();
+    pvjs.on('error.renderer', function() {
+      pvjs.diagramLoader.destroyRender(pvjs, pvjs.sourceData);
+      pvjs.loadNextSource();
     });
   };
 
   this.loadNextSource = function() {
-    var privateInstance = this;
+    var pvjs = this;
 
     var pvjsonOriginal;
 
-    privateInstance.sourceData.sourceIndex += 1;
+    pvjs.sourceData.sourceIndex += 1;
 
     // Check if any sources left
-    if (privateInstance.options.sourceData.length < privateInstance.sourceData.sourceIndex + 1) {
-      privateInstance.trigger('error.sourceData', {
+    if (pvjs.options.sourceData.length < pvjs.sourceData.sourceIndex + 1) {
+      pvjs.trigger('error.sourceData', {
         message: 'No more renderable sources'
       });
       return;
@@ -99,42 +100,39 @@ function Pvjs(selector, options) {
 
     // TODO why is this event happening twice when it should happen once?
     selector.addEventListener('kaaviodatachange', function(e) {
-      console.log('kaaviodatachange in pvjs.js');
-      console.log(e);
-      privateInstance.editor.save({
+      console.log('kaaviodatachange event received in pvjs.js');
+      pvjs.editor.save({
         pvjson: e.detail.pvjson,
         pvjsonOriginal: pvjsonOriginal
       });
     }, false);
 
-    privateInstance.sourceData.uri = privateInstance.options.sourceData[
-      privateInstance.sourceData.sourceIndex].uri;
-    privateInstance.sourceData.fileType = privateInstance.options.sourceData[
-      privateInstance.sourceData.sourceIndex].fileType;
+    pvjs.sourceData.uri = pvjs.options.sourceData[
+      pvjs.sourceData.sourceIndex].uri;
+    pvjs.sourceData.fileType = pvjs.options.sourceData[
+      pvjs.sourceData.sourceIndex].fileType;
 
-    if (privateInstance.diagramLoader.canRender(privateInstance.sourceData)) {
-      if (privateInstance.diagramLoader.needDataConverted(privateInstance.sourceData)) {
-        privateInstance.diagramLoader.loadAndConvert(privateInstance, function(error, pvjson) {
+    if (pvjs.diagramLoader.canRender(pvjs.sourceData)) {
+      if (pvjs.diagramLoader.needDataConverted(pvjs.sourceData)) {
+        pvjs.diagramLoader.loadAndConvert(pvjs, function(error, pvjson) {
           if (!!error) {
-            privateInstance.trigger('error.pvjson', {message: error});
-            privateInstance.loadNextSource();
+            pvjs.trigger('error.pvjson', {message: error});
+            pvjs.loadNextSource();
             return;
           }
 
-          console.log('pvjson');
-          console.log(pvjson);
-          privateInstance.sourceData.pvjson = pvjson;
+          pvjs.sourceData.pvjson = pvjson;
           pvjsonOriginal = window.pvjsonOriginal = JSON.parse(JSON.stringify(pvjson));
-          privateInstance.kaavio = new Kaavio(privateInstance.selector, privateInstance.sourceData);
+          pvjs.kaavio = new Kaavio(pvjs.selector, pvjs.sourceData);
           return;
         });
       } else {
-        privateInstance.kaavio = new Kaavio(privateInstance.selector, privateInstance.sourceData);
+        pvjs.kaavio = new Kaavio(pvjs.selector, pvjs.sourceData);
         return;
       }
     } else {
       // try next source
-      privateInstance.loadNextSource();
+      pvjs.loadNextSource();
     }
   };
 
@@ -145,7 +143,7 @@ function Pvjs(selector, options) {
    * @param  {Function} callback
    */
   this.on = function(topic, callback) {
-    var privateInstance = this;
+    var pvjs = this;
 
     var namespace = null;
     var eventName = topic;
@@ -156,11 +154,11 @@ function Pvjs(selector, options) {
       namespace = pieces[1];
     }
 
-    if (!privateInstance.events.hasOwnProperty(eventName)) {
-      privateInstance.events[eventName] = [];
+    if (!pvjs.events.hasOwnProperty(eventName)) {
+      pvjs.events[eventName] = [];
     }
 
-    privateInstance.events[eventName].push({
+    pvjs.events[eventName].push({
       callback: callback,
       namespace: namespace
     });
@@ -175,7 +173,7 @@ function Pvjs(selector, options) {
    * @return {bool}
    */
   this.off = function(topic, callback) {
-    var privateInstance = this;
+    var pvjs = this;
 
     var namespace = null;
     var eventName = topic;
@@ -189,8 +187,8 @@ function Pvjs(selector, options) {
     }
 
     // Check if such an event is registered
-    if (!privateInstance.events.hasOwnProperty(eventName)) {return false;}
-    var queue = privateInstance.events[topic];
+    if (!pvjs.events.hasOwnProperty(eventName)) {return false;}
+    var queue = pvjs.events[topic];
 
     for (var i = queue.length - 1; i >= 0; i--) {
       flagRemove = true;
@@ -214,7 +212,7 @@ function Pvjs(selector, options) {
    * @return {bool}
    */
   this.trigger = function(topic, message, async) {
-    var privateInstance = this;
+    var pvjs = this;
 
     var namespace = null;
     var eventName = topic;
@@ -225,9 +223,9 @@ function Pvjs(selector, options) {
       namespace = pieces[1];
     }
 
-    if (!privateInstance.events.hasOwnProperty(eventName)) {return false;}
+    if (!pvjs.events.hasOwnProperty(eventName)) {return false;}
 
-    var queue = privateInstance.events[eventName];
+    var queue = pvjs.events[eventName];
     if (queue.length === 0) {return false;}
 
     if (async === undefined) {
@@ -259,9 +257,9 @@ function Pvjs(selector, options) {
 }
 
 if (!!window.Kaavio) {
-  customElement.registerElement(Pvjs);
+  pvjsCustomElement.registerElement(Pvjs);
 } else {
   window.addEventListener('kaavioready', function(e) {
-    customElement.registerElement(Pvjs);
+    pvjsCustomElement.registerElement(Pvjs);
   }, false);
 }
