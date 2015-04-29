@@ -96,15 +96,11 @@ gulp.task('browserify', function() {
         // a watch is not set.
         // They are too slow to enable
         // during development.
-        .pipe(buffer())
-        // TODO keep an eye on this issue:
-        // https://github.com/floridoo/gulp-sourcemaps/issues/73
-        // It's the reason we're using v1.1.0 of gulp-sourcemaps,
-        // not the latest version.
-        .pipe(sourcemaps.init({loadMaps: true}))
+        .through(buffer())
+        .through(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'));
+        .through(uglify())
+        .through(sourcemaps.write('./'));
     }))
     // Specify the output destination
     .pipe(gulp.dest('./dist/'))

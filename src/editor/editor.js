@@ -81,21 +81,12 @@ module.exports = function(pvjs) {
         graphicsElement.setAttribute('FontWeight', gpmlFontWeight);
       }
 
-      //* TODO remove these. They are just for demo'ing the GPML change.
-      window.setTimeout(function() {
-        var dataNodeElementString = serializerInstance.serializeToString(dataNodeElement)
-          .replace(' xmlns="http://pathvisio.org/GPML/2013a"', '');
-        console.log('Updated DataNode:');
-        console.log(dataNodeElementString);
-        console.log('');
-      }, 500);
-      //*/
       //pvjs.editor.save(gpmlDocJquery);
     });
 
     /***********************************************
      * Temporary solution for handling updates
-     * to GPML DataNode Graphics.
+     * to GPML DataNode entity reference Xref.
      * The long-term solution will be to convert
      * the pvjson to GPML.
      **********************************************/
@@ -151,17 +142,6 @@ module.exports = function(pvjs) {
 
       xrefElement.attr('Database', datasetName);
       xrefElement.attr('ID', identifier);
-
-      //* TODO remove these. They are just for demo'ing the GPML change.
-      window.setTimeout(function() {
-        var dataNodeElementJqueryString = serializerInstance.serializeToString(
-            dataNodeElementJquery[0])
-          .replace(' xmlns="http://pathvisio.org/GPML/2013a"', '');
-        console.log('Updated DataNode:');
-        console.log(dataNodeElementJqueryString);
-        console.log('');
-      }, 500);
-      //*/
     });
 
     //*

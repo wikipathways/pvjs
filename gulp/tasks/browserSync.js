@@ -1,6 +1,7 @@
 // see setup guide for using with gulp: http://www.browsersync.io/docs/gulp/
 var browserSync = require('browser-sync');
 var gulp        = require('gulp');
+var reload      = browserSync.reload;
 var evt = browserSync.emitter;
 
 evt.on('rs', function() {
@@ -9,7 +10,7 @@ evt.on('rs', function() {
 
 gulp.task('browserSync', ['build'], function() {
   //browserSync.init(['./lib/**/*.js'], {
-  browserSync.init(['./demo/lib/**/*.js'], {
+  browserSync(['./demo/lib/**/*.js'], {
 		server: {
 			baseDir: './'
 		},
@@ -19,4 +20,6 @@ gulp.task('browserSync', ['build'], function() {
     //startPath: './test/'
     startPath: './demo/editor-polyfilled.html#/editor/open'
 	});
+
+  gulp.watch(['./demo/lib/**/*.js']).on('change', reload);
 });
