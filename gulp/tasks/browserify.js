@@ -14,6 +14,7 @@ var fs = require('fs');
 var gulp = require('gulp');
 var handleErrors = require('../util/handleErrors');
 var highland = require('highland');
+var mkdirp = require('mkdirp');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
@@ -36,7 +37,9 @@ gulp.task('browserify', function() {
       'svg/smil'
     ]
   }, function(result) {
-    fs.writeFileSync('./tmp/modernizr-custom.js', result);
+    mkdirp('./tmp', function(err) {
+      fs.writeFileSync('./tmp/modernizr-custom.js', result);
+    });
   });
 
   var bundleMethod = global.isWatching ? watchify : browserify;
