@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var Gpml = require('gpml2json');
+var gpml2pvjson = require('gpml2pvjson');
 var Utils = require('./../utils.js');
 
 module.exports = function renderer() {
@@ -97,46 +97,34 @@ module.exports = function renderer() {
 
   /**
    * Loads data and converts to pvjson data format
-   * @param  {object}   privateInstance private pvjs instance
-   * @param  {Function} callback
+   * @param {object} pvjs instance
+   * @param {Function} callback
    */
-  function loadAndConvert(privateInstance, callback) {
-    var sourceData = privateInstance.sourceData;
+  function loadAndConvert(pvjs, callback) {
+    var sourceData = pvjs.sourceData;
     var pathwayMetadata = {};
 
     // Check for uri
-    if (!privateInstance.sourceData.uri) {
+    if (!pvjs.sourceData.uri) {
       return callback('No uri specified', {});
     }
 
-    if (privateInstance.sourceData.fileType === 'gpml') {
+    if (pvjs.sourceData.fileType === 'gpml') {
       pathwayMetadata.dbName = sourceData.db || 'wikipathways';
       pathwayMetadata.dbId = sourceData.dbId || 'WP0';
       pathwayMetadata.idVersion = sourceData.idVersion || 0;
       // Load xml
-      Utils.loadXmlFromUri(privateInstance.sourceData.uri, function(xml) {
-        privateInstance.sourceData.original = xml;
+      Utils.loadXmlFromUri(pvjs.sourceData.uri, function(xml) {
+        // we don't want the original to change, so we clone it.
+        pvjs.sourceData.original = xml.clone();
         window.myxml = xml;
-        Gpml.toPvjson(xml, pathwayMetadata, function(err, pvjson) {
+        gpml2pvjson.toPvjson(xml, pathwayMetadata, function(err, pvjson) {
           var pvjsonString = JSON.stringify(pvjson, null, '  ');
-          console.log('***************************************');
-          console.log('');
-          console.log('');
-          console.log('');
-          console.log('pvjsonString');
-          console.log('');
-          console.log(pvjsonString);
-          console.log('');
-          console.log('');
-          console.log('');
-          console.log('**************************************');
           return callback(err, pvjson);
         });
       });
-    } else if (privateInstance.sourceData.fileType === 'pvjson') {
-      d3.json(privateInstance.sourceData.uri, function(err, pvjson) {
-        console.log('pvjson');
-        console.log(pvjson);
+    } else if (pvjs.sourceData.fileType === 'pvjson') {
+      d3.json(pvjs.sourceData.uri, function(err, pvjson) {
         if (err) {
           console.warn(err);
           return callback(err);

@@ -46,6 +46,17 @@ function registerWikiPathwaysPvjsElement(Pvjs) {
       vm.attributeChangedCallback('fit-to-container', null, fitToContainer);
     }
 
+    var hashEditorStateComponents = window.location.hash.match('editor\/(.*)$');
+    var hashEditorState;
+    if (!!hashEditorStateComponents && !!hashEditorStateComponents.length) {
+      hashEditorState = hashEditorStateComponents[1];
+    }
+    var editor = args.editor = hashEditorState ||
+        vm.getAttribute('editor');
+    if (!!editor) {
+      vm.attributeChangedCallback('editor', null, editor);
+    }
+
     /* TODO should this be enabled? It doesn't seem needed for the web-component.
     var manualRender = args.manualRender =
         Boolean(vm.getAttribute('manual-render'));

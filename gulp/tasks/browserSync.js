@@ -8,13 +8,15 @@ evt.on('rs', function() {
 });
 
 gulp.task('browserSync', ['build'], function() {
-  browserSync.init(['./src/**/*.js'], {
+  //browserSync.init(['./lib/**/*.js'], {
+  browserSync.init(['./demo/lib/**/*.js'], {
 		server: {
 			baseDir: './'
 		},
     port: 3000,
     // Don't show any notifications in the browser.
     notify: false,
-    startPath: './test/'
+    //startPath: './test/'
+    startPath: './demo/editor-polyfilled.html#/editor/open'
 	});
 });

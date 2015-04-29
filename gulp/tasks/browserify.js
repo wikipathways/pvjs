@@ -55,10 +55,13 @@ gulp.task('browserify', function() {
   var bundler = bundleMethod({
     // Specify the entry point of your app
     entries: ['./tmp/modernizr-custom.js',
+      // TODO figure out how to package polyfills
+      //'./demo/lib/pvjs/pvjs-dev-polyfills.bundle.js',
       './src/pvjs.js']
   })
   .ignore('commander')
   .ignore('cheerio')
+  .ignore('d3')
   // enable fs.readFileSync() in browser
   .transform('brfs')
   .transform('deglobalify');

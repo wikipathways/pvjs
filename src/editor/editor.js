@@ -24,10 +24,10 @@ var diffpatcher = jsondiffpatch.create({
 module.exports = function(pvjs) {
   function save(args) {
 
-    var gpmlDoc = pvjs.sourceData.original;
+    var serializerInstance = new XMLSerializer();
 
-    console.log('args');
-    console.log(args);
+    var gpmlDocJquery = pvjs.sourceData.original;
+    var gpmlDoc = gpmlDocJquery[0];
 
     var delta = diffpatcher.diff(
       args.pvjson.elements,
@@ -42,28 +42,55 @@ module.exports = function(pvjs) {
      **********************************************/
     _.pairs(delta)
     .filter(function(pair) {
-      return pair[1].hasOwnProperty('color');
+      var value = pair[1];
+      return value.hasOwnProperty('color') || value.hasOwnProperty('fontStyle') ||
+          value.hasOwnProperty('fontWeight');
     })
     .map(function(pair) {
       var index = pair[0];
       var selectedElement = args.pvjson.elements[index];
-      console.log('selectedElement for color');
-      console.log(selectedElement);
       return selectedElement;
     })
     .map(function(element) {
       var selectedElementId = element.id;
       var color = element.color;
+      var fontStyle = element.fontStyle;
+      var fontWeight = element.fontWeight;
 
-      var dataNodeElement = gpmlDoc.find('DataNode[GraphId="' + selectedElementId + '"]');
-      var graphicsElement = dataNodeElement.find('Graphics');
+      var dataNodeElement = gpmlDoc.querySelector('DataNode[GraphId="' + selectedElementId + '"]');
+      var graphicsElement = dataNodeElement.querySelector('Graphics');
 
-      var gpmlColor = color.replace('#', '').toUpperCase();
-      graphicsElement.attr('Color', gpmlColor);
+      if (!color) {
+        graphicsElement.removeAttribute('Color');
+      } else {
+        var gpmlColor = color.replace('#', '').toLowerCase();
+        graphicsElement.setAttribute('Color', gpmlColor);
+      }
 
-      console.log('Updated values:');
-      console.log('Color: ' + gpmlColor);
-      //pvjs.editor.save(gpmlDoc);
+      if (!fontStyle || fontStyle === 'normal') {
+        graphicsElement.removeAttribute('FontStyle');
+      } else {
+        var gpmlFontStyle = fontStyle.replace('italic', 'Italic');
+        graphicsElement.setAttribute('FontStyle', gpmlFontStyle);
+      }
+
+      if (!fontWeight || fontWeight === 'normal') {
+        graphicsElement.removeAttribute('FontWeight');
+      } else {
+        var gpmlFontWeight = fontWeight.replace('bold', 'Bold');
+        graphicsElement.setAttribute('FontWeight', gpmlFontWeight);
+      }
+
+      //* TODO remove these. They are just for demo'ing the GPML change.
+      window.setTimeout(function() {
+        var dataNodeElementString = serializerInstance.serializeToString(dataNodeElement)
+          .replace(' xmlns="http://pathvisio.org/GPML/2013a"', '');
+        console.log('Updated DataNode:');
+        console.log(dataNodeElementString);
+        console.log('');
+      }, 500);
+      //*/
+      //pvjs.editor.save(gpmlDocJquery);
     });
 
     /***********************************************
@@ -81,8 +108,6 @@ module.exports = function(pvjs) {
     .map(function(pair) {
       var index = pair[0];
       var selectedElement = args.pvjson.elements[index];
-      console.log('selectedElement for annotation');
-      console.log(selectedElement);
       return selectedElement;
     })
     .map(function(selectedPvjsElement) {
@@ -117,45 +142,52 @@ module.exports = function(pvjs) {
         //*/
       }
 
-      var dataNodeElement = gpmlDoc.find('DataNode[GraphId="' + selectedElementId + '"]');
-      var xrefElement = dataNodeElement.find('Xref');
+      var dataNodeElementJquery = gpmlDocJquery.find(
+          'DataNode[GraphId="' + selectedElementId + '"]');
+      var xrefElement = dataNodeElementJquery.find('Xref');
 
-      dataNodeElement.attr('Type', xrefType);
-      dataNodeElement.attr('TextLabel', textContent);
+      dataNodeElementJquery.attr('Type', xrefType);
+      dataNodeElementJquery.attr('TextLabel', textContent);
 
       xrefElement.attr('Database', datasetName);
       xrefElement.attr('ID', identifier);
 
-      console.log('Updated values:');
-      console.log('GraphId: ' + selectedElementId);
-      console.log('TextLabel: ' + textContent);
-      console.log('Type: ' + xrefType);
-      console.log('Database: ' + datasetName);
-      console.log('ID: ' + identifier);
+      //* TODO remove these. They are just for demo'ing the GPML change.
+      window.setTimeout(function() {
+        var dataNodeElementJqueryString = serializerInstance.serializeToString(
+            dataNodeElementJquery[0])
+          .replace(' xmlns="http://pathvisio.org/GPML/2013a"', '');
+        console.log('Updated DataNode:');
+        console.log(dataNodeElementJqueryString);
+        console.log('');
+      }, 500);
       //*/
     });
 
     //*
-    var serializerInstance = new XMLSerializer();
-    var gpmlString = serializerInstance.serializeToString(gpmlDoc[0]);
+    var gpmlString = serializerInstance.serializeToString(gpmlDocJquery[0]);
 
+    //*
     console.log('');
     console.log('');
     console.log('');
     console.log('*********************************************************************');
     console.log('*********************************************************************');
     console.log('');
-    console.log('Updated GPML file as string:');
+    console.log('Updated GPML as string:');
     console.log('');
     console.log(gpmlString);
     console.log('');
     console.log('*********************************************************************');
     console.log('*********************************************************************');
     console.log('');
+    //*/
 
-    console.log('You have successfully updated a GPML DataNode.');
-    console.warn('This change applies to your browser only.');
-    console.warn('You still need to save it to the backend.');
+    console.log('You have successfully updated the pathway.');
+    console.log('');
+    console.warn('This change was only in your browser. ' +
+        'You still need to save it to the backend.');
+    console.log('');
 
     var pvjsdatachangeEvent = new CustomEvent('pvjsdatachange', {
       detail: {
