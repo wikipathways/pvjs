@@ -135,7 +135,7 @@
   },
   "dependencies": {
     "blueimp-load-image": "~1.13.0",
-    "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-js.git#0.0.12",
+    "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-js.git#1.0.0",
     "gulp-sourcemaps": "~1.5.2",
     "highland": "~2.3.0",
     "hyperquest": "^1.2.0",
@@ -143,10 +143,10 @@
     "insert-css": "~0.2.0",
     "jsondiffpatch": "~0.1.31",
     "jsonld": "^0.3.22",
-    "kaavio": "git://github.com/wikipathways/kaavio.git#2.2.4",
+    "kaavio": "git://github.com/wikipathways/kaavio.git#2.2.5",
     "mithril": "~0.1.30",
     "promisescript": "~1.1.0",
     "tower-strcase": "~0.5.0",
-    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git"
+    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#0.0.2"
   }
 }

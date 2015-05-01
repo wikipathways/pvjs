@@ -5,11 +5,10 @@ var Editor = require('./editor/editor.js');
 var fs = require('fs');
 var highland = require('highland');
 var insertCss = require('insert-css');
-var RDFa = require('../node_modules/jsonld/js/rdfa.js');
 var jsonld = require('jsonld');
 // TODO use the one at github
-var Kaavio = require('../../kaavio/index.js');
-//var Kaavio = require('kaavio');
+//var Kaavio = require('../../kaavio/index.js');
+var Kaavio = require('kaavio');
 var m = require('mithril');
 var promisescript = require('promisescript');
 
@@ -31,7 +30,8 @@ var optionsDefault = {
   //manualRender: true,
   //editor: 'open'
   //editor: 'closed'
-  editor: 'disabled'
+  editor: 'disabled',
+  version: 0
 };
 
 /**
@@ -42,22 +42,6 @@ var optionsDefault = {
  * @return
  */
 function Pvjs(selector, options) {
-
-  if (typeof document !== 'undefined') {
-    RDFa.attach(document);
-    window.myRDFa = RDFa;
-    //document.data.RDFa.setMapping('http://identifiers.org/wikipathways', document.location);
-    jsonld.fromRDF(document.data,
-                    {format: 'rdfa-api'}, function(err, response) {
-      if (!!err) {
-        throw err;
-      }
-
-      console.log('response');
-      console.log(JSON.stringify(response, null, '  '));
-    });
-
-  }
 
   var that = this;
   this.selector = selector;
@@ -92,7 +76,9 @@ function Pvjs(selector, options) {
       pvjson: null, // pvjson object
       selector: null, // selector instance
       rendererEngine: null, // renderer engine name
-      editor: pvjs.options.editor // initial editor state
+      editor: pvjs.options.editor, // initial editor state
+      resource: pvjs.options.resource, // IRI like http://identifiers.org/wikipathways/WP4
+      version: pvjs.options.version // WikiPathways pathway version #
     };
 
     that.loadNextSource();

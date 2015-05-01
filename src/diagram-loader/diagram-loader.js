@@ -1,4 +1,6 @@
 var _ = require('lodash');
+// TODO use remote, not local repo
+//var gpml2pvjson = require('../../../gpml2pvjson-js/index.js');
 var gpml2pvjson = require('gpml2pvjson');
 var Utils = require('./../utils.js');
 
@@ -103,16 +105,27 @@ module.exports = function renderer() {
   function loadAndConvert(pvjs, callback) {
     var sourceData = pvjs.sourceData;
     var pathwayMetadata = {};
+    pathwayMetadata.version = sourceData.version;
 
     // Check for uri
     if (!pvjs.sourceData.uri) {
       return callback('No uri specified', {});
     }
 
+    var resource = sourceData.resource || '';
+    if (!_.isEmpty(resource)) {
+      pathwayMetadata['@id'] = resource;
+    }
+    var identifierMatch = resource.match(/http:\/\/identifiers.org\/wikipathways\/(WP\d+)/) ||
+        sourceData.uri.match(/(WP\d+)/);
+    pathwayMetadata.identifier = identifierMatch ? identifierMatch[1] : null;
+    if (!pathwayMetadata['@id'] && !!pathwayMetadata.identifier) {
+      pathwayMetadata['@id'] = 'http://identifiers.org/wikipathways/' + pathwayMetadata.identifier;
+    }
+
+    pathwayMetadata.dbName = sourceData.db || 'wikipathways';
+
     if (pvjs.sourceData.fileType === 'gpml') {
-      pathwayMetadata.dbName = sourceData.db || 'wikipathways';
-      pathwayMetadata.dbId = sourceData.dbId || 'WP0';
-      pathwayMetadata.idVersion = sourceData.idVersion || 0;
       // Load xml
       Utils.loadXmlFromUri(pvjs.sourceData.uri, function(xml) {
         // we don't want the original to change, so we clone it.

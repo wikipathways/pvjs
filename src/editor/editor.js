@@ -1,8 +1,8 @@
 var _ = require('lodash');
 var jsondiffpatch = require('jsondiffpatch');
 // TODO use the remote, not local
-//var WikipathwaysApiClient = require('wikipathways-api-client');
-var WikipathwaysApiClient = require('../../../wikipathways-api-client-js/index.js');
+var WikipathwaysApiClient = require('wikipathways-api-client');
+//var WikipathwaysApiClient = require('../../../wikipathways-api-client-js/index.js');
 
 var diffpatcher = jsondiffpatch.create({
   // used to match objects when diffing arrays,
@@ -167,14 +167,45 @@ module.exports = function(pvjs) {
     console.log('');
     //*/
 
-    window.mypvjson = pvjs.sourceData.pvjson;
+    var pvjson = pvjs.sourceData.pvjson;
+    // TODO remove this when done testing
+    window.mypvjson = pvjson;
 
+    if (!document.baseURI.match(/wikipathways\.org/)) {
+      throw new Error('Cannot save on a non-WikiPathways server.');
+    }
+
+    var baseIri = 'http://webservice.wikipathways.org/';
+    if (!document.baseURI.match(/http:\/\/(www\.)?wikipathways\.org\//)) {
+      // if at a test server like pvjs.wikipathways.org
+      baseIri = window.location.origin + '/webservice/';
+    }
+
+    var wikipathwaysApiClientInstance = WikipathwaysApiClient({
+      baseIri: baseIri
+    });
+
+    wikipathwaysApiClientInstance.updatePathway({
+      identifier: pvjson.identifier,
+      version: pvjson.version,
+      gpml: gpmlString,
+      // TODO have the user enter this
+      description: 'Update from pvjs quick editor'
+    })
+    .each(function(response) {
+      console.log('response');
+      console.log(response);
+    });
+
+    /*
     console.log('You have successfully updated the pathway.');
     console.log('');
     console.warn('This change was only in your browser. ' +
         'You still need to save it to the backend.');
     console.log('');
+    //*/
 
+    /*
     var pvjsdatachangeEvent = new CustomEvent('pvjsdatachange', {
       detail: {
         pvjson: pvjs.sourceData.pvjson,
