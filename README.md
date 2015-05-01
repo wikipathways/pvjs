@@ -1,4 +1,4 @@
-pvjs (v2.2.2)
+pvjs (v2.2.3)
 ====================
 
 JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. It uses SVG and HTML for rendering, the [Mithril](http://lhorie.github.io/mithril/) framework for code organization and [BridgeDb](http://bridgedb.org/) for biological entity reference queries.
@@ -24,7 +24,7 @@ It's as simple as referencing the pvjs JavaScript bundle in your HTML document:
     fit-to-container="true">
 </wikipathways-pvjs>
 
-<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.2.2.bundle.min.js"></script>
+<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.2.3.bundle.min.js"></script>
 ```
 
 ## Load Using Script
@@ -32,7 +32,7 @@ It's as simple as referencing the pvjs JavaScript bundle in your HTML document:
 First reference the pvjs JavaScript bundle in your HTML document:
 
 ```HTML
-<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.2.2.bundle.min.js"></script>
+<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.2.3.bundle.min.js"></script>
 ```
 
 If you have jQuery, then you may do:
