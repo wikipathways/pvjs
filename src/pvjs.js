@@ -5,6 +5,8 @@ var Editor = require('./editor/editor.js');
 var fs = require('fs');
 var highland = require('highland');
 var insertCss = require('insert-css');
+var RDFa = require('../node_modules/jsonld/js/rdfa.js');
+var jsonld = require('jsonld');
 // TODO use the one at github
 var Kaavio = require('../../kaavio/index.js');
 //var Kaavio = require('kaavio');
@@ -40,6 +42,23 @@ var optionsDefault = {
  * @return
  */
 function Pvjs(selector, options) {
+
+  if (typeof document !== 'undefined') {
+    RDFa.attach(document);
+    window.myRDFa = RDFa;
+    //document.data.RDFa.setMapping('http://identifiers.org/wikipathways', document.location);
+    jsonld.fromRDF(document.data,
+                    {format: 'rdfa-api'}, function(err, response) {
+      if (!!err) {
+        throw err;
+      }
+
+      console.log('response');
+      console.log(JSON.stringify(response, null, '  '));
+    });
+
+  }
+
   var that = this;
   this.selector = selector;
   this.editor = new Editor(this);

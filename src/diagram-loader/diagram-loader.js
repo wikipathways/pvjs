@@ -124,6 +124,7 @@ module.exports = function renderer() {
         });
       });
     } else if (pvjs.sourceData.fileType === 'pvjson') {
+      // TODO use hyperquest and possibly JSONStream here instead of d3
       d3.json(pvjs.sourceData.uri, function(err, pvjson) {
         if (err) {
           console.warn(err);
