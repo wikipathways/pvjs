@@ -2,7 +2,7 @@
   "author": "Pvjs team",
   "name": "pvjs",
   "description": "Diagram viewer and editor for biological pathways",
-  "version": "2.2.0",
+  "version": "2.2.2",
   "homepage": "http://wikipathways.github.io/pvjs/",
   "dependencies": {
     "aight": "~1.2.2",
