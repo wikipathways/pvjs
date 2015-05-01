@@ -114,7 +114,6 @@
     "mockserver": "~1.1.0",
     "modernizr": "~3.0.0-alpha",
     "node-notifier": "~4.0.3",
-    "phash": "0.0.5",
     "pretty-data": "~0.40.0",
     "pretty-hrtime": "~0.2.1",
     "prompt": "~0.2.13",
