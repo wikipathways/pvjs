@@ -18,7 +18,7 @@ gulp.task('browserSync', ['build'], function() {
     // Don't show any notifications in the browser.
     notify: false,
     //startPath: './test/'
-    startPath: './demo/editor-polyfilled.html#/editor/open'
+    startPath: './demo/editor.html#/editor/open'
 	});
 
   gulp.watch(['./demo/lib/**/*.js']).on('change', reload);
