@@ -1,5 +1,9 @@
 var _ = require('lodash');
 var jsondiffpatch = require('jsondiffpatch');
+// TODO use the remote, not local
+//var WikipathwaysApiClient = require('wikipathways-api-client');
+var WikipathwaysApiClient = require('../../../wikipathways-api-client-js/index.js');
+
 var diffpatcher = jsondiffpatch.create({
   // used to match objects when diffing arrays,
   // by default only === operator is used
@@ -162,6 +166,8 @@ module.exports = function(pvjs) {
     console.log('*********************************************************************');
     console.log('');
     //*/
+
+    window.mypvjson = pvjs.sourceData.pvjson;
 
     console.log('You have successfully updated the pathway.');
     console.log('');

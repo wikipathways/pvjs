@@ -61,13 +61,7 @@ gulp.task('browserify', function() {
       // TODO figure out how to package polyfills
       //'./demo/lib/pvjs/pvjs-dev-polyfills.bundle.js',
       './src/pvjs.js']
-  })
-  .ignore('commander')
-  .ignore('cheerio')
-  .ignore('d3')
-  // enable fs.readFileSync() in browser
-  .transform('brfs')
-  .transform('deglobalify');
+  });
 
   var bundle = function() {
     // Log when bundling starts
@@ -76,7 +70,6 @@ gulp.task('browserify', function() {
     return bundler
     .bundle({
       insertGlobals : true,
-      exclude: 'cheerio',
       // Enable source maps!
       debug: true
     })

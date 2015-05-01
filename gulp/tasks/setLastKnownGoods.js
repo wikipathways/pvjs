@@ -6,7 +6,10 @@ var gulp = require('gulp')
   , imagemagick = require('imagemagick-native')
   , os   = require('os')
   , path = require('path')
-  , pHash = require('phash')
+  // TODO update when this is done:
+  // https://github.com/aaronm67/node-phash/issues/17
+  //, pHash = require('phash')
+  , pHash = {}
   , through = require('through')
   ;
 
