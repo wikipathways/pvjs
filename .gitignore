@@ -4,4 +4,5 @@ tmp/
 gh-pages
 gh-pages/*
 lib/*
-dist/lib/
+dist/lib/pvjs-dev*
+demo/lib/pvjs/pvjs-dev*
