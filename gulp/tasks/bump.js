@@ -15,8 +15,10 @@ var gulpSequence = require('gulp-sequence');
 gulp.task('bump', gulpSequence(
     'verifyGitStatus',
     'bumpVersionNumberInFiles',
-    'build',
+    'build'
     // TODO build docs
     //['build', 'build-docs'],
-    'bumpGitTag'
+    // TODO the order of events is
+    // wrong in bumpGitTag
+    //'bumpGitTag'
 ));

@@ -57,6 +57,16 @@ function registerWikiPathwaysPvjsElement(Pvjs) {
       vm.attributeChangedCallback('editor', null, editor);
     }
 
+    var resource = args.resource = vm.getAttribute('resource');
+    if (!!resource) {
+      vm.attributeChangedCallback('resource', null, resource);
+    }
+
+    var version = args.version = parseFloat(vm.getAttribute('version'));
+    if (!!version) {
+      vm.attributeChangedCallback('version', null, version);
+    }
+
     /* TODO should this be enabled? It doesn't seem needed for the web-component.
     var manualRender = args.manualRender =
         Boolean(vm.getAttribute('manual-render'));
