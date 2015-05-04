@@ -10,7 +10,8 @@ evt.on('rs', function() {
 
 gulp.task('browserSync', ['build'], function() {
   //browserSync.init(['./lib/**/*.js'], {
-  browserSync(['./demo/lib/**/*.js'], {
+  //browserSync(['./demo/lib/**/*.js'], {
+  browserSync(['./demo/lib/pvjs/pvjs-dev.bundle.js'], {
 		server: {
 			baseDir: './'
 		},

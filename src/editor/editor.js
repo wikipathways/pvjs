@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var jsondiffpatch = require('jsondiffpatch');
-// TODO use the remote, not local
 var WikipathwaysApiClient = require('wikipathways-api-client');
+// TODO use the remote, not local
 //var WikipathwaysApiClient = require('../../../wikipathways-api-client-js/index.js');
 
 var diffpatcher = jsondiffpatch.create({
@@ -182,7 +182,7 @@ module.exports = function(pvjs) {
     }
 
     var wikipathwaysApiClientInstance = WikipathwaysApiClient({
-      baseIri: baseIri
+      //baseIri: baseIri
     });
 
     wikipathwaysApiClientInstance.updatePathway({
