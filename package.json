@@ -146,6 +146,6 @@
     "mithril": "~0.1.30",
     "promisescript": "~1.1.0",
     "tower-strcase": "~0.5.0",
-    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#0.0.2"
+    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#0.0.3"
   }
 }
