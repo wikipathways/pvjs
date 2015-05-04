@@ -1,6 +1,6 @@
 {
   "name": "pvjs",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "./index.js",
   "engines": {
@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "JSONStream": "~0.10.0",
+    "argv": "0.0.2",
     "async": "~0.7.0",
     "bdd-with-opts": "0.0.4",
     "bower": "latest",
@@ -89,6 +90,7 @@
     "gulp-bump": "~0.1.11",
     "gulp-changed": "~0.3.0",
     "gulp-git": "~0.5.6",
+    "gulp-jsdoc": "^0.1.4",
     "gulp-mocha": "~0.5.1",
     "gulp-notify": "~2.1.0",
     "gulp-open": "~0.2.8",
@@ -122,7 +124,9 @@
     "spawn-mocha-parallel": "~1.0.0",
     "through": "~2.3.4",
     "uglify": "~0.1.1",
+    "vinyl": "^0.4.6",
     "vinyl-buffer": "~1.0.0",
+    "vinyl-fs": "^1.0.0",
     "vinyl-source-stream": "~0.1.1",
     "watchify": "~0.10.1",
     "wd": "~0.3.11",
