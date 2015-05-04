@@ -42,34 +42,40 @@ gulp.task('bumpVersionNumberInFiles',
         console.log('version');
         console.log(version);
 
+        function replaceVersionedName() {
+          return replace({
+            regex: 'pvjs-' + version.old,
+            replace: 'pvjs-' + version.new
+          });
+        }
+
         return highland(gulp.src([
           'README.md'
         ])
-        .pipe(replace({
-          regex: version.old,
-          replace: version.new
-        }))
+        .pipe(replaceVersionedName())
         .pipe(gulp.dest('./'))
         )
         .concat(
           gulp.src([
             './test/*.html'
           ])
-          .pipe(replace({
-            regex: 'pvjs-' + version.old,
-            replace: 'pvjs-' + version.new
-          }))
+          .pipe(replaceVersionedName())
           .pipe(gulp.dest('./test/'))
         )
         .concat(
           gulp.src([
             './demo/*.html'
           ])
-          .pipe(replace({
-            regex: 'pvjs-' + version.old,
-            replace: 'pvjs-' + version.new
-          }))
+          .pipe(replaceVersionedName())
           .pipe(gulp.dest('./demo/'))
+        )
+        .concat(
+          gulp.src([
+            // gulp-bump does not update the dist file name
+            'bower.json',
+          ])
+          .pipe(replaceVersionedName())
+          .pipe(gulp.dest('./'))
         );
       })
       .last()
