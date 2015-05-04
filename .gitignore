@@ -3,6 +3,5 @@ tmp/
 .idea/
 gh-pages
 gh-pages/*
-lib/*
 dist/lib/pvjs-dev*
 demo/lib/pvjs/pvjs-dev*
