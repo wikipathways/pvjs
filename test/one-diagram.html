@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
-    <title>Pathvisiojs Simple Built Production Example</title>
+    <title>Pvjs Simple Built Production Example</title>
 
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
 
@@ -12,8 +12,8 @@
     <script>
 
       // pvjs won't run on IE8 and earlier
-      var pathvisiojs = {};
-      pathvisiojs.init = {};
+      var pvjs = {};
+      pvjs.init = {};
 
       // IE8 only allows console.log when Developer Tools is open. This will prevent errors
       // from showing up if I use console.log without DevTools being open.
@@ -51,7 +51,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.2/typeahead.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.1/modernizr.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-    <script src="../dist/pathvisiojs-2.1.3.bundle.min.js"></script>
+    <script src="../dist/pvjs-2.1.3.bundle.min.js"></script>
 
     <script src="./load.js"></script>
 
@@ -62,15 +62,15 @@
         developmentLoader.parseUriParams(function(parsedInputData) {
 
           /* *******************
-          /* Load pathvisiojs
+          /* Load pvjs
           /* *******************/
           $(function(){
-            $('#production-container').pathvisiojs({
+            $('#production-container').pvjs({
               fitToContainer: true
               , manualRender: true
               , sourceData: parsedInputData.sourceData
               //, cssUri: srcDirectoryUri + 'css/pathway-diagram.css'
-              //, cssUri: '../src/css/pathway-diagram.css'
+              //, cssUri: '../lib/css/pathway-diagram.css'
               //, customMarkers: customMarkers
               //, customSymbols: customSymbols
               , bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/' // optional
@@ -87,15 +87,15 @@
             })
 
             // Get first element from array of instances
-            var pathInstance = $('#production-container').pathvisiojs('get').pop()
+            var pathInstance = $('#production-container').pvjs('get').pop()
 
             // Load plugins
-            pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
+            pvjsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
 
             // Call after render
             pathInstance.on('rendered', function(){
               // Initialize Highlighter plugin
-              var hi = pathvisiojsHighlighter(pathInstance)
+              var hi = pvjsHighlighter(pathInstance)
 
               /*
               // Highlight by Label

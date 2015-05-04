@@ -320,7 +320,7 @@ var developmentLoader = function() {
   function generateHtmlTemplate(callback) {
     d3.html(srcDirectoryUri + 'pathvisiojs.html', function(docfrag) {
       var html = docfrag.firstChild;
-      pathvisioNS['src/pathvisiojs.html'] = serializeXmlToString(html);
+      pathvisioNS['lib/pathvisiojs.html'] = serializeXmlToString(html);
       callback();
     });
   }
@@ -333,7 +333,7 @@ var developmentLoader = function() {
     currentUri = document.location;
     var pathname = document.location.pathname;
     var pathvisiojsRootDirectoryUri = pathname.split('test/one-diagram.html')[0];
-    srcDirectoryUri = (pathvisiojsRootDirectoryUri + 'src/');
+    srcDirectoryUri = (pathvisiojsRootDirectoryUri + 'lib/');
 
     parseUriParams(function (parsedInputData) {
       if (parsedInputData.svgDisabled) {

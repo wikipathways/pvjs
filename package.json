@@ -2,7 +2,7 @@
   "name": "pvjs",
   "version": "2.2.3",
   "description": "Diagram viewer and editor for biological pathways.",
-  "main": "./src/js/pvjs.js",
+  "main": "./index.js",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -32,10 +32,6 @@
   "homepage": "http://wikipathways.github.io/pvjs",
   "gitHead": "044be6618ee72b932fcb90f4369eb61706f3cfb9",
   "readmeFilename": "README.md",
-  "style": [
-    "./src/css/*.css",
-    "./src/components/**/*.css"
-  ],
   "browserify": {
     "transform": [
       "brfs",

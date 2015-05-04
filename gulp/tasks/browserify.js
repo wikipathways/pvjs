@@ -60,7 +60,7 @@ gulp.task('browserify', function() {
     entries: ['./tmp/modernizr-custom.js',
       // TODO figure out how to package polyfills
       //'./demo/lib/pvjs/pvjs-dev-polyfills.bundle.js',
-      './src/pvjs.js']
+      './index.js']
   });
 
   var bundle = function() {

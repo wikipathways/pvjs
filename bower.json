@@ -17,7 +17,7 @@
     "node-uuid": "~1.4.1"
   },
   "main": [
-    "./dist/lib/pvjs/js/pvjs.bundle.min.js"
+    "./dist/pvjs-2.2.3.bundle.min.js"
   ],
   "defaultSave": true
 }

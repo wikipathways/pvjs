@@ -10,8 +10,7 @@ evt.on('rs', function() {
 
 gulp.task('browserSync', ['build'], function() {
   //browserSync.init(['./lib/**/*.js'], {
-  //browserSync(['./demo/lib/**/*.js'], {
-  browserSync(['./demo/lib/pvjs/pvjs-dev.bundle.js'], {
+  browserSync(['./index.js'], {
 		server: {
 			baseDir: './'
 		},
@@ -22,5 +21,5 @@ gulp.task('browserSync', ['build'], function() {
     startPath: './demo/editor.html#/editor/open'
 	});
 
-  gulp.watch(['./demo/lib/**/*.js']).on('change', reload);
+  gulp.watch(['./demo/lib/pvjs/pvjs-dev.bundle.js']).on('change', reload);
 });
