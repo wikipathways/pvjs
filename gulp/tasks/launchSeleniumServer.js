@@ -40,7 +40,7 @@ var freeport = require('freeport');
 var gulp = require('gulp');
 var highland = require('highland');
 var http = require('http');
-var isPortInUse = require('../util/isPortInUse.js')
+var isPortInUse = require('../util/is-port-in-use.js');
 var selenium = require('selenium-standalone');
 var wd = require('wd');
 
@@ -54,7 +54,7 @@ function getFreePort(preferredPort) {
     if (isInUse) {
       return highland(createFreePortStream());
     } else {
-      return highland([preferredPort])
+      return highland([preferredPort]);
     }
   });
 }
@@ -119,7 +119,7 @@ function launch(preferredPort) {
     });
     //*/
 
-    return seleniumServerStream.fork()
+    return seleniumServerStream.fork();
   });
 }
 

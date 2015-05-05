@@ -1,10 +1,12 @@
-var git = require('gulp-git');
-var gulp = require('gulp');
+var exec = require('child_process').exec;
 var highland = require('highland');
-var killStream = require('../util/killStream');
+var git = require('gulp-git');
+var gitStreaming = require('../util/git-streaming.js');
+var gulp = require('gulp');
+var killStream = require('../util/kill-stream.js');
 
 // verify git is ready
-gulp.task('verifyGitStatus', function verifyGitStatus(callback) {
+gulp.task('verify-git-status', function verifyGitStatus(callback) {
   var desiredBranch = 'master';
 
   highland([{}])

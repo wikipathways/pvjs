@@ -1,18 +1,14 @@
 var bump = require('gulp-bump');
-var getVersionType = require('../util/getVersionType');
+var getVersionType = require('../util/get-version-type.js');
 var gulp = require('gulp');
 var highland = require('highland');
 var JSONStream = require('JSONStream');
+var metadataFiles = require('../util/metadata-file-paths.json');
 var oldPackageJson = require('../../package.json');
-var metadataFiles = [
-  './bower.json',
-  './component.json',
-  './package.json'
-];
 var replace = require('gulp-regex-replace');
 
 // Update bower, component, npm all at once:
-gulp.task('bumpVersionNumberInFiles',
+gulp.task('bump-version-number-in-files',
     function bumpVersionNumberInFiles(callback) {
   getVersionType.each(function(versionType) {
     console.log('versionType');
@@ -36,40 +32,49 @@ gulp.task('bumpVersionNumberInFiles',
       // This is needed to turn the stream into a highland stream
       .pipe(highland.pipeline())
       .flatMap(function(newPackageJson) {
+
+        // TODO do we need to pollute the global namespace?
+        global.newPackageJson = newPackageJson;
+
         var version = {};
         version.old = oldPackageJson.version;
         version.new = newPackageJson.version;
-        console.log('version');
-        console.log(version);
+        console.log('files bumping from ' + version.old + ' to ' + version.new);
 
+        function replaceVersionedName() {
+          return replace({
+            regex: oldPackageJson.name + '-\\d+\\.\\d+\\.\\d+',
+            replace: oldPackageJson.name + '-' + version.new
+          });
+        }
+
+        // TODO how can we use a dest that just matches where
+        // the file was found?
         return highland(gulp.src([
           'README.md'
         ])
-        .pipe(replace({
-          regex: version.old,
-          replace: version.new
-        }))
+        .pipe(replaceVersionedName())
         .pipe(gulp.dest('./'))
         )
         .concat(
           gulp.src([
             './test/*.html'
           ])
-          .pipe(replace({
-            regex: 'pvjs-' + version.old,
-            replace: 'pvjs-' + version.new
-          }))
+          .pipe(replaceVersionedName())
           .pipe(gulp.dest('./test/'))
         )
         .concat(
           gulp.src([
             './demo/*.html'
           ])
-          .pipe(replace({
-            regex: 'pvjs-' + version.old,
-            replace: 'pvjs-' + version.new
-          }))
+          .pipe(replaceVersionedName())
           .pipe(gulp.dest('./demo/'))
+        )
+        .concat(
+          // gulp-bump does not update the dist file name
+          gulp.src(metadataFiles)
+          .pipe(replaceVersionedName())
+          .pipe(gulp.dest('./'))
         );
       })
       .last()
