@@ -8,22 +8,15 @@ var gulpSequence = require('gulp-sequence');
  *  - Bump metadata files version
  *  - Sync README with current version
  *  - Build docs / Browserify
+ *  - Copy built files to demo directory
  *  - Commit again with message "Bumped to version X.Y.Z. Built"
  *  - Create tag with new version
  * Publish
  */
 
 gulp.task('build', gulpSequence('verify-git-status',
-      'bump-metadata-files',
-      //['browserify', 'build-docs'],
-      ['browserify'],
-      'copy'
-      //'sync-git-version'
-      ));
-
-/*
-gulp.task('build', gulpSequence(
-    'browserify',
-    'copy'
-));
-//*/
+      'bump-version-number-in-files',
+      ['browserify', 'build-docs'],
+      'copy',
+      'commit-after-build',
+      'sync-tag-version'));

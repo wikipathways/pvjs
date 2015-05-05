@@ -2,7 +2,7 @@ var freeport = require('freeport');
 var gulp = require('gulp');
 var highland = require('highland');
 var http = require('http');
-var isPortInUse = require('../util/isPortInUse.js')
+var isPortInUse = require('../util/is-port-in-use.js');
 var ecstatic = require('ecstatic')({
   root: __dirname + '/../../',
   showDir: true,
@@ -32,7 +32,7 @@ gulp.task('launchLocalServer', function(done) {
   .each(function(port) {
     process.env.LOCALSERVER_PORT = port;
     var server = http.createServer(ecstatic);
-    server.listen(port)
+    server.listen(port);
     console.log('Started local server at http://localhost:' +
       port + '/test');
     console.log('CTRL-C stops server.');

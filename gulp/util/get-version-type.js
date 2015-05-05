@@ -1,10 +1,8 @@
 var _ = require('lodash');
 var highland = require('highland');
-var inquirer = require('inquirer');
+var utils = require('../util/utils.js');
 
-var createPromptStream = highland.wrapCallback(inquirer.prompt);
-
-module.exports = highland(createPromptStream({
+module.exports = highland(utils.createPromptStream({
   type: 'list',
   name: 'versionType',
   message: 'Choose a version type below.',

@@ -1,6 +1,6 @@
 {
   "name": "pvjs",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "./index.js",
   "engines": {
@@ -104,6 +104,7 @@
     "image-diff": "~1.0.1",
     "imagemagick-native": "^1.7.0",
     "inquirer": "~0.8.0",
+    "jaguarjs-jsdoc": "0.0.1",
     "lodash": "~2.4.1",
     "matchdep": "~0.1.2",
     "minimize": "~0.7.6",
