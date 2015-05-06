@@ -8,7 +8,7 @@ evt.on('rs', function() {
   console.log('You want to reload BrowserSync!');
 });
 
-gulp.task('browserSync', ['build'], function() {
+gulp.task('browserSync', ['browserify'], function() {
   //browserSync.init(['./lib/**/*.js'], {
   browserSync(['./index.js'], {
 		server: {
@@ -18,7 +18,9 @@ gulp.task('browserSync', ['build'], function() {
     // Don't show any notifications in the browser.
     notify: false,
     //startPath: './test/'
-    startPath: './demo/editor.html#/editor/open'
+    //startPath: './demo/'
+    startPath: './demo/jquery-demo.html'
+    //startPath: './demo/editor.html#/editor/open'
 	});
 
   gulp.watch(['./demo/lib/pvjs/pvjs-dev.bundle.js']).on('change', reload);

@@ -44,13 +44,13 @@ $('#pvjs-container').pvjs({
     {
       uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525',
       fileType:'gpml' // generally will correspond to filename extension
-    }
-  , {
+    },
+    {
       uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP525',
       fileType:'png'
     }
   ]
-})
+});
 ```
 
 If you don't have jQuery and do not want to add it, then you may call `pvjs` directly and pass two arguments: container selector and options object.
@@ -62,13 +62,13 @@ pvjs('#pvjs-container', {
     {
       uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525',
       fileType:'gpml' // generally will correspond to filename extension
-    }
-  , {
+    },
+    {
       uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP525',
       fileType:'png'
     }
   ]
-})
+});
 ```
 
 How To Get Involved
@@ -195,40 +195,40 @@ In order to add notifications to pvjs do:
 Highlighter Plugin
 ------------------
 
-Highlighter plugin allows to highlight pathway nodes, interactions, groups and other entities. It allows to select data nodes using autocomplete text input.
+Highlighter plugin allows for highlighting pathway nodes, interactions, groups and other entities. It allows for selecting data nodes using autocomplete text input.
 
 ### Usage
-
-First reference plugin's _JS_ and _CSS_ files or use bundle version of pvjs.
-
-Highlighter should be instantiated before PathvisioJS was rendered:
 
 ```js
 // Init pvjs
 $('#pvjs-container').pvjs({
-  manualRender: true // force pvjs not to render automatically
-, sourceData: [{
+  manualRender: true, // force pvjs not to render automatically
+  sourceData: [{
     uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
     fileType:'gpml' // generally will correspond to filename extension
   }]
-})
+});
 
 // Get first element from array of instances
-var pathInstance = $('#pvjs-container').pvjs('get').pop()
+var pathInstance = $('#pvjs-container').pvjs('get').pop();
 
 // Load highlighter after render
 pathInstance.on('rendered', function(){
-  var hi = pvjsHighlighter(pathInstance)
-})
+  pathInstance.highlight('ATFS-1', null, {
+    backgroundColor: 'yellow',
+    borderColor: 'orange',
+  });
+});
 
 // Call renderer
 pathInstance.render()
 ```
 
+<!---
 To customize Highlighter pass arguments to its constructor:
 
 ```js
-var hi = pathvisoijsHighlighter(pathInstance, {
+var hi = pvjsHighlighter(pathInstance, {
   displayInputField: true
 , autocompleteLimit: 10
 , styles: {
@@ -240,80 +240,75 @@ var hi = pathvisoijsHighlighter(pathInstance, {
   }
 })
 ```
+-->
 
 To highlight or attenuate call corresponding API methods:
 
 ```js
-var hi = pvjsHighlighter(pathInstance)
-
 // Highlight by ID
-hi.highlight('#e6e')
+pathInstance.highlight('#e6e')
 // Highlight by text label
-hi.highlight('Cholesterol')
+pathInstance.highlight('Cholesterol')
 // Highlight by xref
-hi.highlight('xref:12345')
+pathInstance.highlight('xref:12345')
 
 // Attenuate by ID
-hi.attenuate('#e6e')
+pathInstance.attenuate('#e6e')
 ```
 
 You can create highlight groups. This is useful if you want to namespace highlighters for easier attenuation.
 
 ```js
-var hi = pvjsHighlighter(pathInstance)
-
 // Default group
-hi.highlight('#e6e')
+pathInstance.highlight('#e6e')
 
 // Group g1
-hi.highlight('#e7e', 'g1')
-hi.highlight('#e8b', 'g1')
-hi.highlight('#e9c', 'g1')
+pathInstance.highlight('#e7e', 'g1')
+pathInstance.highlight('#e8b', 'g1')
+pathInstance.highlight('#e9c', 'g1')
 
 // One highlighting can be part of more groups
-hi.highlight('#e7e', 'g2')
+pathInstance.highlight('#e7e', 'g2')
 
 // Attenuate #e7e only if it is in group g2
-hi.attenuate('#e7e', 'g2')
+pathInstance.attenuate('#e7e', 'g2')
 
 // Attenuate all elements from group g1
-hi.attenuate(null, 'g1')
+pathInstance.attenuate(null, 'g1')
 ```
 
 You may provide a custom style to your highlighting
 
 ```js
-var hi = pvjsHighlighter(pathInstance)
-
 // Red fill, blue stroke
-hi.highlight('#e6e', null, {fill: 'red', stroke: 'blue'})
+pathInstance.highlight('#e6e', null, {fill: 'red', stroke: 'blue'})
 ```
 
 Difference Viewer Plugin (DiffViewer)
 -------------------------------------
 
-DiffViewer pulgin allows to compare difference between 2 different versions of a pathway.
+DiffViewer plugin allows to compare difference between 2 different versions of a pathway.
 
 ### Usage
 
 First reference plugin's _JS_ and _CSS_ files or use bundle version of pvjs.
 
-Highlighter should be instantiated before PathvisioJS was rendered:
+Highlighter should be instantiated before pvjs was rendered:
 
 ```js
 $('#pvjs-container').pvjs({
-  fitToContainer: true
-, manualRender: true
-, sourceData: [
+  fitToContainer: true,
+  manualRender: true,
+  sourceData: [
     {
       uri: 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP2806&rev=75308',
       fileType:'gpml'
     }
   ]
-})
+});
 
 // Get first element from array of instances
-pathInstance = $('#pvjs-container').pvjs('get').pop()
+pathInstance = $('#pvjs-container').pvjs('get').pop();
 
 // Init difference viewer
 pvjsDiffviewer(pathInstance, {
@@ -323,10 +318,10 @@ pvjsDiffviewer(pathInstance, {
       fileType:'gpml'
     }
   ]
-})
+});
 
 // Call renderer
-pathInstance.render()
+pathInstance.render();
 ```
 
 Related
