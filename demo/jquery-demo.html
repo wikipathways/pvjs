@@ -63,25 +63,23 @@
     // Get first element from array of instances
     var pathInstance1 = $('#wikipathways-pvjs-1').pvjs('get').pop();
 
-    // Load notification plugin
-
     // Call after render
     pathInstance1.on('rendered', function(){
 
       // Highlight by ID
-      pathInstance1.highlight('#eb5');
-      pathInstance1.highlight('id:d25e1');
+      pathInstance1.highlighter.highlight('#eb5');
+      pathInstance1.highlighter.highlight('id:d25e1');
 
       // Highlight by Text
-      pathInstance1.highlight('Mitochondrion', null, {backgroundColor: 'gray'});
+      pathInstance1.highlighter.highlight('Mitochondrion', null, {backgroundColor: 'gray'});
 
       // Highlight by xref
-      pathInstance1.highlight('xref:id:http://identifiers.org/wormbase/ZK1193.5', null, {
+      pathInstance1.highlighter.highlight('xref:id:http://identifiers.org/wormbase/ZK1193.5', null, {
         backgroundColor: 'magenta',
         borderColor: 'black'
       });
 
-      pathInstance1.highlight('xref:GCN-2', null, {
+      pathInstance1.highlighter.highlight('xref:GCN-2', null, {
         backgroundColor: 'blue',
         backgroundOpacity: 0.5,
         borderColor: 'red',
@@ -114,11 +112,13 @@
       ]
     });
 
+    /*
     // Get first element from array of instances
     var pathInstance2 = $('#wikipathways-pvjs-2').pvjs('get').pop();
 
     // Call renderer
     pathInstance2.render();
+    //*/
 
 
     /*
@@ -159,19 +159,19 @@
           var hi = pvjsHighlighter(pathInstance1);
 
           // Highlight by ID
-          hi.highlight('#eb5');
-          hi.highlight('id:d25e1');
+          hi.highlighter.highlight('#eb5');
+          hi.highlighter.highlight('id:d25e1');
 
           // Highlight by Text
-          hi.highlight('Mitochondrion', null, {backgroundColor: 'gray'});
+          hi.highlighter.highlight('Mitochondrion', null, {backgroundColor: 'gray'});
 
           // Highlight by xref
-          hi.highlight('xref:id:http://identifiers.org/wormbase/ZK1193.5', null, {
+          hi.highlighter.highlight('xref:id:http://identifiers.org/wormbase/ZK1193.5', null, {
             backgroundColor: 'magenta',
             borderColor: 'black'
           });
 
-          hi.highlight('xref:GCN-2', null, {
+          hi.highlighter.highlight('xref:GCN-2', null, {
             backgroundColor: 'blue',
             backgroundOpacity: 0.5,
             borderColor: 'red',
