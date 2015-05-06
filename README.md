@@ -1,4 +1,4 @@
-pvjs (v2.2.5)
+pvjs-2.3.0
 ====================
 
 JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. It uses SVG and HTML for rendering, the [Mithril](http://lhorie.github.io/mithril/) framework for code organization and [BridgeDb](http://bridgedb.org/) for biological entity reference queries.
