@@ -7,11 +7,11 @@ var gulpSequence = require('gulp-sequence');
  *  - Check git status for no changes
  *  - Bump metadata files version
  *  - Sync README with current version
- *  - Build docs / Browserify
+ *  - Build docs & browserify
  *  - Copy built files to demo directory
  *  - Commit again with message "Bumped to version X.Y.Z. Built"
  *  - Create tag with new version
- * Publish
+ * When this task finishes, you can run ``gulp publish``
  */
 
 gulp.task('build', gulpSequence('verify-git-status',
