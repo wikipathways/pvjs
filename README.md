@@ -24,7 +24,7 @@ It's as simple as referencing the pvjs JavaScript bundle in your HTML document:
     fit-to-container="true">
 </wikipathways-pvjs>
 
-<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.3.0.bundle.min.js"></script>
+<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.3.1.bundle.min.js"></script>
 ```
 
 ## Load Using Script
@@ -32,7 +32,7 @@ It's as simple as referencing the pvjs JavaScript bundle in your HTML document:
 First reference the pvjs JavaScript bundle in your HTML document:
 
 ```HTML
-<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.3.0.bundle.min.js"></script>
+<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.3.1.bundle.min.js"></script>
 ```
 
 If you have jQuery, then you may do:
