@@ -17,11 +17,11 @@ gulp.task('browserSync', ['browserify'], function() {
     port: 3000,
     // Don't show any notifications in the browser.
     notify: false,
-    //startPath: './test/'
-    startPath: './demo/'
+    startPath: './test/'
+    //startPath: './demo/'
     //startPath: './demo/jquery-demo.html'
     //startPath: './demo/editor.html#/editor/open'
 	});
 
-  gulp.watch(['./demo/lib/pvjs/pvjs-dev.bundle.js']).on('change', reload);
+  gulp.watch(['./test/lib/pvjs/pvjs-dev.bundle.js']).on('change', reload);
 });

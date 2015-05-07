@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html style="margin: 0; width: 100%; height: 100%; ">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>Pvjs jQuery Plugin Example - Simple</title>
+
+    <style type="text/css">
+      html, body{width: 100%;height: 100%;margin: 0;}
+    </style>
+  </head>
+  <body>
+    <h1>Pvjs jQuery Plugin Example - Simple</h1>
+    <h2>Pvjs Diagram Instance 1: WP525</h2>
+    <div id="wikipathways-pvjs-1" style="width: 800px; height: 570px; border: 1px solid #ccc;">
+      <img alt="WP525 Biological Pathway"
+        src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP525">
+    </div>
+
+    <script src="../lib/pvjs/pvjs-dev-polyfills.bundle.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../lib/pvjs/pvjs-dev.bundle.js"></script>
+    <script>
+      /* *******************
+      /* Load pvjs
+      /* *******************/
+      $('#wikipathways-pvjs-1').pvjs({
+        fitToContainer: true,
+        sourceData: [
+          // at least one item required
+          {
+            uri: '../input-data/WP525_73040.gpml',
+            fileType: 'gpml' // generally will correspond to filename extension
+          }
+        ],
+        displayErrors: true,
+        displayWarnings: true
+      });
+    </script>
+
+</body>
+</html>
