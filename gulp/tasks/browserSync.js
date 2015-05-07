@@ -18,8 +18,8 @@ gulp.task('browserSync', ['browserify'], function() {
     // Don't show any notifications in the browser.
     notify: false,
     //startPath: './test/'
-    //startPath: './demo/'
-    startPath: './demo/jquery-demo.html'
+    startPath: './demo/'
+    //startPath: './demo/jquery-demo.html'
     //startPath: './demo/editor.html#/editor/open'
 	});
 
