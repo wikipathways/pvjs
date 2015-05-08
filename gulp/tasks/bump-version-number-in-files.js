@@ -48,6 +48,13 @@ gulp.task('bump-version-number-in-files',
           });
         }
 
+        function replacePolyfillVersionedName() {
+          return replace({
+            regex: oldPackageJson.name + '-polyfills-\\d+\\.\\d+\\.\\d+',
+            replace: oldPackageJson.name + '-polyfills-' + version.new
+          });
+        }
+
         // TODO how can we use a dest that just matches where
         // the file was found?
         return highland(gulp.src([
@@ -67,6 +74,7 @@ gulp.task('bump-version-number-in-files',
           gulp.src([
             './demo/*.html'
           ])
+          .pipe(replacePolyfillVersionedName())
           .pipe(replaceVersionedName())
           .pipe(gulp.dest('./demo/'))
         )
