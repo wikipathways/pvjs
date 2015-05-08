@@ -83,9 +83,7 @@ gulp.task('browserify-polyfills', function browserifyPolyfills() {
     .pipe(source(getBundleName() + '.js'))
     .pipe(highland.pipeline(function(stream) {
       if (global.isWatching) {
-        return stream
-        // Specify the output destination
-        .pipe(gulp.dest('./test/lib/' + packageJson.name + '/'));
+        return stream;
       }
 
       return stream
@@ -105,6 +103,8 @@ gulp.task('browserify-polyfills', function browserifyPolyfills() {
         .through(gulp.dest('./dist/'))
         .through(gulp.dest('./demo/lib/' + packageJson.name + '/'));
     }))
+    // Specify the output destination
+    .pipe(gulp.dest('./test/lib/' + packageJson.name + '/'))
     // Log when bundling completes!
     .on('end', bundleLogger.end);
   };
