@@ -21,7 +21,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
-gulp.task('browserify', function() {
+gulp.task('browserify-polyfills', function browserifyPolyfills() {
 
   // TODO move this into its own file
   var modernizr = require('modernizr');
@@ -38,9 +38,7 @@ gulp.task('browserify', function() {
       'svg/smil'
     ]
   }, function(result) {
-    mkdirp('./tmp', function(err) {
-      fs.writeFileSync('./tmp/modernizr-custom.js', result);
-    });
+    fs.writeFileSync('./tmp/modernizr-custom.js', result);
   });
 
   var bundleMethod = global.isWatching ? watchify : browserify;
@@ -51,18 +49,20 @@ gulp.task('browserify', function() {
     packageJson = JSON.parse(fs.readFileSync('package.json'));
     var version = packageJson.version;
     var name = packageJson.name;
-    return name + '-dev.bundle';
+    return name + '-polyfills-dev.bundle';
   };
 
   var bundler = bundleMethod({
     // Specify the entry point of your app
     entries: ['./tmp/modernizr-custom.js',
-      // TODO figure out how to package polyfills
-      //'./demo/lib/pvjs/pvjs-dev-polyfills.bundle.js',
-      //'./index.js',
-      './lib/jquery-plugin.js'
-    ]
-  });
+      //'./lib/polyfills.js'
+      './node_modules/kaavio/lib/polyfills.js']
+  })
+  .ignore('commander')
+  .ignore('cheerio')
+  // enable fs.readFileSync() in browser
+  .transform('brfs')
+  .transform('deglobalify');
 
   var bundle = function() {
     // Log when bundling starts
@@ -71,6 +71,7 @@ gulp.task('browserify', function() {
     return bundler
     .bundle({
       insertGlobals : true,
+      exclude: 'cheerio',
       // Enable source maps!
       debug: true
     })
@@ -106,11 +107,6 @@ gulp.task('browserify', function() {
     // Log when bundling completes!
     .on('end', bundleLogger.end);
   };
-
-  if (global.isWatching) {
-    // Rebundle with watchify on changes.
-    bundler.on('update', bundle);
-  }
 
   return bundle();
 });
