@@ -200,28 +200,38 @@ Highlighter plugin allows for highlighting pathway nodes, interactions, groups a
 ### Usage
 
 ```js
-// Init pvjs
-$('#pvjs-container').pvjs({
-  manualRender: true, // force pvjs not to render automatically
-  sourceData: [{
-    uri:'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP1',
-    fileType:'gpml' // generally will correspond to filename extension
-  }]
-});
-
-// Get first element from array of instances
-var pathInstance = $('#pvjs-container').pvjs('get').pop();
-
-// Load highlighter after render
-pathInstance.on('rendered', function(){
-  pathInstance.highlight('ATFS-1', null, {
-    backgroundColor: 'yellow',
-    borderColor: 'orange',
-  });
-});
-
-// Call renderer
-pathInstance.render()
+    $('#wikipathways-pvjs-1').pvjs({
+      fitToContainer: true,
+      sourceData: [
+        // at least one item required
+        {
+          uri: '../input-data/WP525_73040.gpml',
+          fileType: 'gpml' // generally will correspond to filename extension
+        },
+        {
+          uri: 'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType: 'biopax'
+        },
+        {
+          uri: 'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+          fileType: 'png'
+        }
+      ],
+      displayErrors: true,
+      displayWarnings: true,
+      highlights: [
+        {
+          selector: 'ATFS-1',
+          backgroundColor: 'yellow',
+          borderColor: 'blue',
+        },
+        {
+          selector: 'PHB-2',
+          backgroundColor: 'white',
+          borderColor: 'red',
+        }
+      ]
+    });
 ```
 
 <!---
