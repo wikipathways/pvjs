@@ -82,7 +82,8 @@ gulp.task('browserify', function() {
     .pipe(source(getBundleName() + '.js'))
     .pipe(highland.pipeline(function(stream) {
       if (global.isWatching) {
-        return stream;
+        return stream
+        .pipe(gulp.dest('./test/lib/' + packageJson.name + '/'));
       }
 
       return stream
@@ -92,7 +93,8 @@ gulp.task('browserify', function() {
         // during development.
         .through(buffer())
         .through(rename(function(path) {
-          path.basename = path.basename.replace('-dev', '-' + packageJson.version + '.min');
+          path.basename = path.basename.replace(
+              '-dev.bundle', '-' + packageJson.version + '.bundle.min');
         }))
         .through(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
@@ -101,8 +103,6 @@ gulp.task('browserify', function() {
         .through(gulp.dest('./dist/'))
         .through(gulp.dest('./demo/lib/' + packageJson.name + '/'));
     }))
-    // Specify the output destination
-    .pipe(gulp.dest('./test/lib/' + packageJson.name + '/'))
     // Log when bundling completes!
     .on('end', bundleLogger.end);
   };
