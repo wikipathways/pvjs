@@ -9,8 +9,7 @@ gulp.task('create-demos-from-tests', function(done) {
   var packageJson = JSON.parse(fs.readFileSync(
       'package.json', 'utf8'));
 
-  return gulp.src(['./test/lib/pvjs/**',
-                   './test/web-component-demos/**',
+  return gulp.src(['./test/web-component-demos/**',
                    './test/jquery-demos/**'],
                    {base: './test'})
 
