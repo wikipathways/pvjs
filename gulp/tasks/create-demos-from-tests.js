@@ -16,7 +16,7 @@ gulp.task('create-demos-from-tests', function(done) {
 
     .pipe(replace({
             regex: packageJson.name + '-dev',
-            replace: packageJson.name + '-' + packageJson.version
+            replace: packageJson.name + '-' + packageJson.version + '.min'
           }))
 		.pipe(gulp.dest('./demo'));
     /*
