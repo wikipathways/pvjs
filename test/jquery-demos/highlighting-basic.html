@@ -24,40 +24,43 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="../lib/pvjs/pvjs-dev.bundle.js"></script>
     <script>
-    /* *******************
-    /* Load pvjs
-    /* *******************/
-    $('#wikipathways-pvjs-1').pvjs({
-      fitToContainer: true,
-      sourceData: [
-        // at least one item required
-        {
-          uri: '../input-data/WP525_73040.gpml',
-          fileType: 'gpml' // generally will correspond to filename extension
-        },
-        {
-          uri: 'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
-          fileType: 'biopax'
-        },
-        {
-          uri: 'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
-          fileType: 'png'
-        }
-      ],
-      displayErrors: true,
-      displayWarnings: true,
-      highlights: [
-        {
-          selector: 'ATFS-1',
-          backgroundColor: 'yellow',
-          borderColor: 'blue',
-        },
-        {
-          selector: 'PHB-2',
-          backgroundColor: 'white',
-          borderColor: 'red',
-        }
-      ]
+    window.addEventListener('load', function load(event) {
+      window.removeEventListener('load', load, false); //remove listener, no longer needed
+      /* *******************
+      /* Load pvjs
+      /* *******************/
+      $('#wikipathways-pvjs-1').pvjs({
+        fitToContainer: true,
+        sourceData: [
+          // at least one item required
+          {
+            uri: '../input-data/WP525_73040.gpml',
+            fileType: 'gpml' // generally will correspond to filename extension
+          },
+          {
+            uri: 'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+            fileType: 'biopax'
+          },
+          {
+            uri: 'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
+            fileType: 'png'
+          }
+        ],
+        displayErrors: true,
+        displayWarnings: true,
+        highlights: [
+          {
+            selector: 'ATFS-1',
+            backgroundColor: 'yellow',
+            borderColor: 'blue',
+          },
+          {
+            selector: 'PHB-2',
+            backgroundColor: 'white',
+            borderColor: 'red',
+          }
+        ]
+      });
     });
     </script>
 
