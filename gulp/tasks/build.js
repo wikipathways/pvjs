@@ -17,7 +17,7 @@ var gulpSequence = require('gulp-sequence');
 gulp.task('build', gulpSequence('verify-git-status',
       'bump-version-number-in-files',
       ['browserify', 'build-docs'],
-      'copy',
-      'copy-test-to-demo',
+      'update-dev-bundle',
+      'create-demos-from-tests',
       'commit-after-build',
       'sync-tag-version'));

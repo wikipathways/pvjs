@@ -11,6 +11,7 @@ gulp.task('commit-after-build', function commitAfterBuild(callback) {
 
   gulp.src(['./dist/',
             './docs/',
+            './test/',
             './demo/',
             'README.md']
             .concat(metadataFilePaths)
