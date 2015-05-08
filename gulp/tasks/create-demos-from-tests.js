@@ -3,11 +3,11 @@ var gulp = require('gulp');
 var highland = require('highland');
 var replace = require('gulp-regex-replace');
 
-gulp.task('copy-test-to-demo', function(done) {
+gulp.task('create-demos-from-tests', function(done) {
   // Reading it here (instead of using require) because
   // the version may have been bumped since require ran.
   var packageJson = JSON.parse(fs.readFileSync(
-      '../../package.json', 'utf8'));
+      'package.json', 'utf8'));
 
   return gulp.src(['./test/lib/pvjs/**',
                    './test/web-component-demos/**',
