@@ -11,7 +11,7 @@ Demo
 How To Add It To Your Site
 ===================
 You can loading it with either one of the two options below: HTML Element or Script.
-It's as simple as referencing the pvjs JavaScript bundle in your HTML document:
+It's as simple as referencing the pvjs JavaScript bundle and its dependencies in your HTML document:
 
 ## Load Using [Custom HTML Element](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/)
 
@@ -24,15 +24,21 @@ It's as simple as referencing the pvjs JavaScript bundle in your HTML document:
     fit-to-container="true">
 </wikipathways-pvjs>
 
-<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.3.5.bundle.min.js"></script>
+<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-polyfills-2.3.5.bundle.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.3.5.bundle.min.js"></script>
 ```
 
 ## Load Using Script
 
-First reference the pvjs JavaScript bundle in your HTML document:
+First reference the pvjs JavaScript bundle and its dependencies in your HTML document:
 
 ```HTML
-<script src="http://wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.3.5.bundle.min.js"></script>
+<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-polyfills-2.3.5.bundle.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.3.5.bundle.min.js"></script>
 ```
 
 If you have jQuery, then you may do:
