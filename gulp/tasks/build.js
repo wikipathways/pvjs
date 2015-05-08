@@ -18,5 +18,6 @@ gulp.task('build', gulpSequence('verify-git-status',
       'bump-version-number-in-files',
       ['browserify', 'build-docs'],
       'copy',
+      'copy-test-to-demo',
       'commit-after-build',
       'sync-tag-version'));
