@@ -14,13 +14,14 @@ gulp.task('create-demos-from-tests', function(done) {
                    './test/jquery-demos/**'],
                    {base: './test'})
 
+    //<script src="../lib/pvjs/pvjs-polyfills-dev.bundle.js"></script>
+    .pipe(replace({
+      regex: packageJson.name + '-polyfills-dev.bundle',
+      replace: packageJson.name + '-polyfills-' + packageJson.version + '.bundle.min'
+    }))
     .pipe(replace({
       regex: packageJson.name + '-dev.bundle',
       replace: packageJson.name + '-' + packageJson.version + '.bundle.min'
-    }))
-    .pipe(replace({
-      regex: packageJson.name + '-dev-polyfills.bundle',
-      replace: packageJson.name + '-' + packageJson.version + '-polyfills.bundle.min'
     }))
 		.pipe(gulp.dest('./demo'));
     /*

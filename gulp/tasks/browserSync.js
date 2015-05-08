@@ -8,9 +8,9 @@ evt.on('rs', function() {
   console.log('You want to reload BrowserSync!');
 });
 
-gulp.task('browserSync', ['browserify'], function() {
+gulp.task('browserSync', ['browserify', 'browserify-polyfills'], function() {
   //browserSync.init(['./lib/**/*.js'], {
-  browserSync(['./index.js'], {
+  browserSync(['./index.js', './lib/polyfills.js'], {
 		server: {
 			baseDir: './'
 		},
