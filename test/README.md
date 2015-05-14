@@ -10,17 +10,16 @@ A. Install required software:
 B. When software is installed, open a terminal and enter the following commands:
 
 ```
-$ git clone git@github.com:wikipathways/pathvisiojs.git #gets pathvisiojs source code
-$ cd pathvisiojs/
-$ npm update && npm install #uses npm (the node package manager) to install pathvisiojs dependencies
-$ bower update && bower install #installs non-npm JS dependencies
+$ git clone git@github.com:wikipathways/pvjs.git #gets pvjs source code
+$ cd pvjs/
+$ npm update && npm install #uses npm (the node package manager) to install pvjs dependencies
 $ gulp launchSelenium #starts Selenium server for running tests
 ```
 
-C. Leave the [Selenium](http://docs.seleniumhq.org/) server terminal window open and running. Selenium is a web browser automation platform that tests the pathvisiojs code to ensure it works. Open a second terminal window and enter the following command:
+C. Leave the [Selenium](http://docs.seleniumhq.org/) server terminal window open and running. Selenium is a web browser automation platform that tests the pvjs code to ensure it works. Open a second terminal window and enter the following command:
 
 ```
-$ gulp watch #starts local web server and watches for your changes to the source files. Opens a browser to the pathvisiojs test page. Runs a quick test whenever you change a source file.
+$ gulp #starts local web server and watches for your changes to the source files. Opens a browser to the pvjs test page. Runs a quick test whenever you change a source file.
 ```
 
 # How To Run Local End-To-End Test Protocol
