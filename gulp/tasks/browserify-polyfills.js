@@ -13,6 +13,7 @@ var bundleLogger = require('../util/bundle-logger.js');
 var config = require('../config.json');
 var fs = require('fs');
 var gulp = require('gulp');
+var modernizr = require('gulp-modernizr');
 var handleErrors = require('../util/handle-errors.js');
 var highland = require('highland');
 var mkdirp = require('mkdirp');
@@ -22,7 +23,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
-gulp.task('browserify-polyfills', ['build-custom-modernizr'], function() {
+//gulp.task('browserify-polyfills', ['build-custom-modernizr'], function() {
+gulp.task('browserify-polyfills', function() {
 
   var packageJson;
 
@@ -37,7 +39,7 @@ gulp.task('browserify-polyfills', ['build-custom-modernizr'], function() {
 
   var bundler = bundleMethod({
     // Specify the entry point of your app
-    entries: ['./tmp/modernizr-custom.js',
+    entries: ['./tmp/modernizr.js',
       //'./lib/polyfills.js'
       './node_modules/kaavio/lib/polyfills.js']
   })
@@ -89,6 +91,8 @@ gulp.task('browserify-polyfills', ['build-custom-modernizr'], function() {
         .through(gulp.dest('./demo/lib/' + packageJson.name + '/'));
     }))
     // Specify the output destination
+    .pipe(gulp.dest('./test/lib/' + packageJson.name + '/'))
+    .pipe(modernizr())
     .pipe(gulp.dest('./test/lib/' + packageJson.name + '/'))
     // Log when bundling completes!
     .on('end', bundleLogger.end);
