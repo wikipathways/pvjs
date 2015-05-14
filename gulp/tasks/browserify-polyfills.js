@@ -22,17 +22,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
-gulp.task('browserify-polyfills', function() {
-
-  var modernizr = require('modernizr');
-
-  modernizr.build({
-    'feature-detects': config.modernizrFeatureDetects,
-  }, function(result) {
-    mkdirp('./tmp', function(err) {
-      fs.writeFileSync('./tmp/modernizr-custom.js', result);
-    });
-  });
+gulp.task('browserify-polyfills', ['build-custom-modernizr'], function() {
 
   var packageJson;
 
