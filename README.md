@@ -77,64 +77,10 @@ pvjs('#pvjs-container', {
 });
 ```
 
-How To Get Involved
-===================
-
-A. Fork and clone pvjs. If you've already done this, skip ahead to Step B. Otherwise:
-
-Fork the [WikiPathways repo for pvjs](https://github.com/wikipathways/pvjs/fork) by clicking the "Fork" button on the upper right. Github will create a fork of pvjs for you and take you to your newly created fork. On your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
-
-```
-$ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pvjs.git #replace with the HTTPS clone URL you copied
-$ cd pvjs
-```
-
-B. Add the wikipathways pvjs repo as a remote named "wikipathways," if you have not already done so:
-
-```
-$ git remote add wikipathways https://github.com/wikipathways/pvjs.git
-```
-
-Pull latest code from wikipathways master branch of pvjs:
-
-```
-$ git pull wikipathways master
-```
-
-C. Install Node.js and all necessary plugin and modules
-
-First install [Node.js](http://nodejs.org/).
-
-The automatic tests perform an image diff to compare the present rendering of a test pathway with the last known good version. This image diff requires you to install [ImageMagick](http://www.imagemagick.org/).
-
-Install [Phash dependencies](https://github.com/aaronm67/node-phash) depending on your system.
-
-Than in console `cd` into project folder and install all necessary plugins:
-
-```
-npm install
-```
-
-D. Make Updates
-
-You can edit any of the files in the [lib directory](https://github.com/wikipathways/pvjs/tree/master/lib):
-
-To view your changes as you edit you have to run `gulp` in console. This task will open a browser window to the test page, where you can select to view any of the listed pathways.
-
-The [README](https://github.com/wikipathways/pvjs/tree/master/test/README.md) in the test directory includes information on how to view diagrams during development and how to run tests.
-
-E. Send Us a Pull Request
-
-* Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
-* Run the tests
-* Commit your changes and push them to your github fork of pvjs
-* Create a pull request to the wikipathways fork of pvjs:
-```
-wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
-```
-
 For developers
 ==============
+
+If it's your first time working on pvjs, check out the [Getting Started Guide](https://github.com/wikipathways/pvjs/tree/master/test).
 
 Components
 ----------
@@ -168,8 +114,6 @@ Editor Plugin
 -------------
 
 Allows for updating the pvjson data.
-
-[Documentation](https://github.com/wikipathways/pvjs/tree/master/src/editor)
 
 Notifications Plugin
 --------------------
