@@ -7,7 +7,7 @@ var mkdirp = require('mkdirp');
 var modernizr = require('gulp-modernizr');
 
 gulp.task('modernizr', function() {
-  gulp.src('./test/lib/pvjs/pvjs-dev.bundle.js')
+  return gulp.src('./test/lib/pvjs/pvjs-dev.bundle.js')
     .pipe(modernizr())
     .pipe(gulp.dest('tmp/'));
 });

@@ -23,7 +23,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
-//gulp.task('browserify-polyfills', ['build-custom-modernizr'], function() {
+//gulp.task('browserify-polyfills', ['modernizr'], function() {
 gulp.task('browserify-polyfills', function() {
 
   var packageJson;
@@ -91,8 +91,6 @@ gulp.task('browserify-polyfills', function() {
         .through(gulp.dest('./demo/lib/' + packageJson.name + '/'));
     }))
     // Specify the output destination
-    .pipe(gulp.dest('./test/lib/' + packageJson.name + '/'))
-    .pipe(modernizr())
     .pipe(gulp.dest('./test/lib/' + packageJson.name + '/'))
     // Log when bundling completes!
     .on('end', bundleLogger.end);
