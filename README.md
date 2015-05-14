@@ -85,7 +85,6 @@ A. Fork and clone pvjs. If you've already done this, skip ahead to Step B. Other
 Fork the [WikiPathways repo for pvjs](https://github.com/wikipathways/pvjs/fork) by clicking the "Fork" button on the upper right. Github will create a fork of pvjs for you and take you to your newly created fork. On your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
 
 ```
-$ cd ~/Sites/ #or another directory of your choice
 $ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pvjs.git #replace with the HTTPS clone URL you copied
 $ cd pvjs
 ```
@@ -93,7 +92,6 @@ $ cd pvjs
 B. Add the wikipathways pvjs repo as a remote named "wikipathways," if you have not already done so:
 
 ```
-$ cd ~/Sites/pvjs/ #use the location where the pvjs directory is actually located on your computer
 $ git remote add wikipathways https://github.com/wikipathways/pvjs.git
 ```
 
@@ -107,7 +105,7 @@ C. Install Node.js and all necessary plugin and modules
 
 First install [Node.js](http://nodejs.org/).
 
-Install grunt and bower `npm install -g grunt-cli bower`. The automatic tests perform an image diff to compare the present rendering of a test pathway with the last known good version. This image diff requires you to install [ImageMagick](http://www.imagemagick.org/).
+The automatic tests perform an image diff to compare the present rendering of a test pathway with the last known good version. This image diff requires you to install [ImageMagick](http://www.imagemagick.org/).
 
 Install [Phash dependencies](https://github.com/aaronm67/node-phash) depending on your system.
 
@@ -115,24 +113,15 @@ Than in console `cd` into project folder and install all necessary plugins:
 
 ```
 npm install
-bower install
 ```
 
 D. Make Updates
 
-You can edit any of the files in the [src directory](https://github.com/wikipathways/pvjs/tree/master/src):
+You can edit any of the files in the [lib directory](https://github.com/wikipathways/pvjs/tree/master/lib):
 
-```
-$ cd ~/Sites/pvjs/src/ #update this to where the pvjs directory is actually located on your computer
-```
+To view your changes as you edit you have to run `gulp` in console. This task will open a browser window to the test page, where you can select to view any of the listed pathways.
 
-To view your changes as you edit you have to run `grunt dev` in console and navigate your browser to [http://localhost:3000/test/](http://localhost:3000/test/):
-
-```
-$ cd ~/Sites/pvjs/src/test/ #update this to where the pvjs directory is actually located on your computer
-```
-
-The [README](https://github.com/wikipathways/pvjs/tree/master/test/README.md) in this directory includes information on how to view diagrams during development and how to run tests.
+The [README](https://github.com/wikipathways/pvjs/tree/master/test/README.md) in the test directory includes information on how to view diagrams during development and how to run tests.
 
 E. Send Us a Pull Request
 
