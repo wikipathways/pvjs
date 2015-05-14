@@ -10,7 +10,8 @@ gulp.task('create-demos-from-tests', function(done) {
       'package.json', 'utf8'));
 
   return gulp.src(['./test/web-component-demos/**',
-                   './test/jquery-demos/**'],
+                   './test/jquery-demos/**',
+                   './test/other-demos/**'],
                    {base: './test'})
 
     //<script src="../lib/pvjs/pvjs-polyfills-dev.bundle.js"></script>

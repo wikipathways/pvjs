@@ -60,7 +60,8 @@ gulp.task('browserify', function() {
       // TODO figure out how to package polyfills
       //'./demo/lib/pvjs/pvjs-dev-polyfills.bundle.js',
       //'./index.js',
-      './lib/jquery-plugin.js'
+      './lib/jquery-plugin.js',
+      './lib/diff-viewer/diff-viewer.js'
     ]
   });
 
