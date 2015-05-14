@@ -35,6 +35,9 @@
       /* Load pvjs
       /* *******************/
       $('#wikipathways-pvjs-1').pvjs({
+        displayErrors: true,
+        displayWarnings: false,
+        editor: 'closed',
         fitToContainer: true,
         manualRender: true,
         sourceData: [
@@ -52,9 +55,6 @@
             fileType: 'png'
           }
         ],
-        displayErrors: true,
-        displayWarnings: true,
-        editor: 'closed',
         highlights: [
           {
             selector: 'ATFS-1',
@@ -98,6 +98,8 @@
 
       //*
       $('#wikipathways-pvjs-2').pvjs({
+        displayErrors: true,
+        displayWarnings: false,
         fitToContainer: false,
         manualRender: true,
         sourceData: [

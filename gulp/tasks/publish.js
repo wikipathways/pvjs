@@ -13,10 +13,9 @@ gulp.task('publish', ['sync-tag-version', 'github-pages'], function publish(call
   .flatMap(gitStreaming.push('origin', packageJson.version))
   .errors(killStream)
   .flatMap(gitStreaming.checkout('gh-pages'))
-  //.flatMap(gitStreaming.merge('master'))
   .flatMap(gitStreaming.push('origin', 'gh-pages'))
   .flatMap(gitStreaming.checkout('master'))
-  /*
+  /* TODO enable this if this package is on npm
   .flatMap(function() {
     return utils.createExecStream('npm publish');
   })

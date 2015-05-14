@@ -21,27 +21,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
-gulp.task('browserify', function() {
-
-  // TODO move this into its own file
-  var modernizr = require('modernizr');
-
-  modernizr.build({
-    'feature-detects': [
-      'inputtypes',
-      'svg',
-      'svg/asimg',
-      'svg/clippaths',
-      'svg/filters',
-      'svg/foreignobject',
-      'svg/inline',
-      'svg/smil'
-    ]
-  }, function(result) {
-    mkdirp('./tmp', function(err) {
-      fs.writeFileSync('./tmp/modernizr-custom.js', result);
-    });
-  });
+gulp.task('browserify', ['browserify-polyfills'], function() {
 
   var bundleMethod = global.isWatching ? watchify : browserify;
 
@@ -56,10 +36,7 @@ gulp.task('browserify', function() {
 
   var bundler = bundleMethod({
     // Specify the entry point of your app
-    entries: ['./tmp/modernizr-custom.js',
-      // TODO figure out how to package polyfills
-      //'./demo/lib/pvjs/pvjs-dev-polyfills.bundle.js',
-      //'./index.js',
+    entries: [//'./index.js',
       './lib/jquery-plugin.js',
       './lib/diff-viewer/diff-viewer.js'
     ]
