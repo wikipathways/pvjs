@@ -5,9 +5,12 @@ var handleErrors = require('../util/handle-errors.js');
 var highland = require('highland');
 var mkdirp = require('mkdirp');
 var modernizr = require('gulp-modernizr');
+var utils = require('../util/utils');
 
 gulp.task('modernizr', function() {
-  return gulp.src('./test/lib/pvjs/pvjs-dev.bundle.js')
-    .pipe(modernizr())
-    .pipe(gulp.dest('tmp/'));
+  utils.createExecStream('touch ./tmp/modernizr-custom.js').concat(
+    gulp.src('./test/lib/pvjs/pvjs-dev.bundle.js')
+      .pipe(modernizr('modernizr-custom.js'))
+      .pipe(gulp.dest('tmp/'))
+  );
 });

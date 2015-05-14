@@ -39,7 +39,7 @@ gulp.task('browserify-polyfills', function() {
 
   var bundler = bundleMethod({
     // Specify the entry point of your app
-    entries: ['./tmp/modernizr.js',
+    entries: ['./tmp/modernizr-custom.js',
       //'./lib/polyfills.js'
       './node_modules/kaavio/lib/polyfills.js']
   })
