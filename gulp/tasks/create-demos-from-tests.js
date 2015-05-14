@@ -14,7 +14,6 @@ gulp.task('create-demos-from-tests', function(done) {
                    './test/other-demos/**'],
                    {base: './test'})
 
-    //<script src="../lib/pvjs/pvjs-polyfills-dev.bundle.js"></script>
     .pipe(replace({
       regex: packageJson.name + '-polyfills-dev.bundle',
       replace: packageJson.name + '-polyfills-' + packageJson.version + '.bundle.min'
@@ -24,11 +23,4 @@ gulp.task('create-demos-from-tests', function(done) {
       replace: packageJson.name + '-' + packageJson.version + '.bundle.min'
     }))
 		.pipe(gulp.dest('./demo'));
-    /*
-    .concat(
-      gulp.src('./dist/**')
-        .pipe(highland.pipeline())
-        .pipe(gulp.dest('./demo/lib/pvjs'));
-    )
-    //*/
 });

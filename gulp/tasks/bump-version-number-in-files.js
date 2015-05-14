@@ -1,9 +1,10 @@
 var bump = require('gulp-bump');
+var config = require('../config.json');
 var getVersionType = require('../util/get-version-type.js');
 var gulp = require('gulp');
 var highland = require('highland');
 var JSONStream = require('JSONStream');
-var metadataFiles = require('../util/metadata-file-paths.json');
+var metadataFilePaths = config.metadataFilePaths;
 var oldPackageJson = require('../../package.json');
 var replace = require('gulp-regex-replace');
 
@@ -17,7 +18,7 @@ gulp.task('bump-version-number-in-files',
       return callback(null, 'none');
     }
 
-    gulp.src(metadataFiles)
+    gulp.src(metadataFilePaths)
     .pipe(bump({type: versionType}))
     .pipe(gulp.dest('./'))
     .pipe(highland.pipeline(function(s) {
@@ -80,7 +81,7 @@ gulp.task('bump-version-number-in-files',
         )
         .concat(
           // gulp-bump does not update the dist file name
-          gulp.src(metadataFiles)
+          gulp.src(metadataFilePaths)
           .pipe(replaceVersionedName())
           .pipe(gulp.dest('./'))
         );

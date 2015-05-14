@@ -1,4 +1,4 @@
-/* browserify task
+/* browserify task for polyfills
    ---------------
    Bundle javascripty things with browserify!
 
@@ -10,6 +10,7 @@ var brfs = require('gulp-brfs');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var bundleLogger = require('../util/bundle-logger.js');
+var config = require('../config.json');
 var fs = require('fs');
 var gulp = require('gulp');
 var handleErrors = require('../util/handle-errors.js');
@@ -21,29 +22,21 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
-gulp.task('browserify-polyfills', function browserifyPolyfills() {
+gulp.task('browserify-polyfills', function() {
 
-  // TODO move this into its own file
   var modernizr = require('modernizr');
 
   modernizr.build({
-    'feature-detects': [
-      'inputtypes',
-      'svg',
-      'svg/asimg',
-      'svg/clippaths',
-      'svg/filters',
-      'svg/foreignobject',
-      'svg/inline',
-      'svg/smil'
-    ]
+    'feature-detects': config.modernizrFeatureDetects,
   }, function(result) {
-    fs.writeFileSync('./tmp/modernizr-custom.js', result);
+    mkdirp('./tmp', function(err) {
+      fs.writeFileSync('./tmp/modernizr-custom.js', result);
+    });
   });
 
-  var bundleMethod = global.isWatching ? watchify : browserify;
-
   var packageJson;
+
+  var bundleMethod = global.isWatching ? watchify : browserify;
 
   var getBundleName = function() {
     packageJson = JSON.parse(fs.readFileSync('package.json'));
@@ -101,6 +94,8 @@ gulp.task('browserify-polyfills', function browserifyPolyfills() {
         .through(uglify())
         .through(sourcemaps.write('./'))
         .through(gulp.dest('./dist/'))
+        // No need to copy to test dir,
+        // because we copy from dist to test.
         .through(gulp.dest('./demo/lib/' + packageJson.name + '/'));
     }))
     // Specify the output destination
