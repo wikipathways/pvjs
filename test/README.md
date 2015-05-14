@@ -32,6 +32,7 @@ Then in console `cd` into the `pvjs` directory, if you're not already there, and
 
 ```
 $ npm update && npm install #uses npm (the node package manager) to install pvjs dependencies
+$ gulp modernizr #builds a custom version of the Modernizr feature detector library
 ```
 
 D. Make Updates
