@@ -48,7 +48,9 @@ $ gulp modernizr
 
 D. Make Updates
 
-You can edit any of the files in the [lib directory](https://github.com/wikipathways/pvjs/tree/master/lib):
+You can edit any of the files in the [lib directory](https://github.com/wikipathways/pvjs/tree/master/lib).
+
+Before making updates, you'll usually always want to pull from the wikipathways repo to get the latest version of the code, as described in Step B. Then you can start up the test server:
 
 ```
 $ gulp launchSelenium #starts Selenium server for running tests
