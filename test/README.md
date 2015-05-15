@@ -28,11 +28,22 @@ C. Install Node.js and all necessary plugin and modules
 3. [Node.js](http://nodejs.org/download/)
 4. [Phash dependencies](https://github.com/aaronm67/node-phash) depending on your system
 
-Then in console `cd` into the `pvjs` directory, if you're not already there, and install the Node.js dependencies:
+Then in the console, `cd` into the `pvjs` directory, if you're not already there, and install the Node.js dependencies:
 
 ```
 $ npm update && npm install #uses npm (the node package manager) to install pvjs dependencies
-$ gulp modernizr #builds a custom version of the Modernizr feature detector library
+```
+
+Install `gulp` globally (if you get an error about permissions or sudo, check out [this article](http://competa.com/blog/2014/12/how-to-run-npm-without-sudo/)):
+
+```
+$ npm install -g gulp
+```
+
+Then generate a custom build of the Modernizr feature detector library:
+
+```
+$ gulp modernizr
 ```
 
 D. Make Updates
