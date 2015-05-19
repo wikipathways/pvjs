@@ -1,4 +1,4 @@
-pvjs-2.4.1
+pvjs-2.4.2
 ====================
 
 JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. It uses SVG and HTML for rendering, the [Mithril](http://lhorie.github.io/mithril/) framework for code organization and [BridgeDb](http://bridgedb.org/) for biological entity reference queries.
@@ -27,7 +27,7 @@ It's as simple as referencing the pvjs JavaScript bundle and its dependencies in
 <script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-polyfills-2.3.5.bundle.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.1.bundle.min.js"></script>
+<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.2.bundle.min.js"></script>
 ```
 
 ## Load Using Script
@@ -38,7 +38,7 @@ First reference the pvjs JavaScript bundle and its dependencies in your HTML doc
 <script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-polyfills-2.3.5.bundle.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.1.bundle.min.js"></script>
+<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.2.bundle.min.js"></script>
 ```
 
 If you have jQuery, then you may do:
