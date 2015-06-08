@@ -43,6 +43,21 @@
     "commander": false,
     "d3": false
   },
+  "dependencies": {
+    "blueimp-load-image": "~1.13.0",
+    "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-js.git#1.0.0",
+    "highland": "~2.3.0",
+    "hyperquest": "^1.2.0",
+    "iconv-lite": "~0.4.7",
+    "insert-css": "~0.2.0",
+    "jsondiffpatch": "~0.1.31",
+    "jsonld": "^0.3.22",
+    "kaavio": "git://github.com/wikipathways/kaavio.git#2.3.6",
+    "mithril": "~0.1.30",
+    "promisescript": "~1.1.0",
+    "tower-strcase": "~0.5.0",
+    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#1.0.5"
+  },
   "devDependencies": {
     "JSONStream": "~0.10.0",
     "argv": "0.0.2",
@@ -50,10 +65,9 @@
     "bdd-with-opts": "0.0.4",
     "bower": "latest",
     "brfs": "~1.0.2",
-    "browser-sync": "~1.9.2",
-    "browserify": "~4.1.10",
-    "browserify-shim": "~3.6.0",
-    "chai": "latest",
+    "browser-sync": "~2.5.3",
+    "browserify": "~10.2.3",
+    "chai": "~2.1.2",
     "chai-as-promised": "latest",
     "chromedriver": "~2.10.0-1",
     "colors": "~0.6.2",
@@ -109,23 +123,8 @@
     "vinyl-buffer": "~1.0.0",
     "vinyl-fs": "^1.0.0",
     "vinyl-source-stream": "~0.1.1",
-    "watchify": "~0.10.1",
+    "watchify": "~3.2.1",
     "wd": "~0.3.11",
     "yargs": "~1.2.6"
-  },
-  "dependencies": {
-    "blueimp-load-image": "~1.13.0",
-    "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-js.git#1.0.0",
-    "highland": "~2.3.0",
-    "hyperquest": "^1.2.0",
-    "iconv-lite": "~0.4.7",
-    "insert-css": "~0.2.0",
-    "jsondiffpatch": "~0.1.31",
-    "jsonld": "^0.3.22",
-    "kaavio": "git://github.com/wikipathways/kaavio.git#2.3.4",
-    "mithril": "~0.1.30",
-    "promisescript": "~1.1.0",
-    "tower-strcase": "~0.5.0",
-    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#0.0.3"
   }
 }
