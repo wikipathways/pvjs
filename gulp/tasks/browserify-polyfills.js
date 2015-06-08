@@ -28,8 +28,6 @@ gulp.task('browserify-polyfills', function() {
 
   var packageJson;
 
-  var bundleMethod = global.isWatching ? watchify : browserify;
-
   var getBundleName = function() {
     packageJson = JSON.parse(fs.readFileSync('package.json'));
     var version = packageJson.version;
@@ -37,11 +35,18 @@ gulp.task('browserify-polyfills', function() {
     return name + '-polyfills-dev.bundle';
   };
 
-  var bundler = bundleMethod({
+  var bundler = browserify({
+    // Required watchify args
+    cache: {}, packageCache: {}, fullPaths: true,
+    // Browserify Options
     // Specify the entry point of your app
     entries: ['./tmp/modernizr-custom.js',
       //'./lib/polyfills.js'
-      './node_modules/kaavio/lib/polyfills.js']
+      './node_modules/kaavio/lib/polyfills.js'],
+    // Enable source maps!
+    debug: true,
+    //insertGlobals : true,
+    //exclude: 'cheerio'
   })
   .ignore('commander')
   .ignore('cheerio')
@@ -54,12 +59,7 @@ gulp.task('browserify-polyfills', function() {
     bundleLogger.start();
 
     return bundler
-    .bundle({
-      insertGlobals : true,
-      exclude: 'cheerio',
-      // Enable source maps!
-      debug: true
-    })
+    .bundle()
     // Report compile errors
     .on('error', handleErrors)
     // Use vinyl-source-stream to make the

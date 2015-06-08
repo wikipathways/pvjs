@@ -23,8 +23,6 @@ var watchify = require('watchify');
 
 gulp.task('browserify', function() {
 
-  var bundleMethod = global.isWatching ? watchify : browserify;
-
   var packageJson;
 
   var getBundleName = function() {
@@ -34,24 +32,32 @@ gulp.task('browserify', function() {
     return name + '-dev.bundle';
   };
 
-  var bundler = bundleMethod({
-    // Specify the entry point of your app
+  var bundler = browserify({
+    // Required watchify args
+    cache: {}, packageCache: {}, fullPaths: true,
+    // Browserify Options
+    // specify entry point of app
     entries: [//'./index.js',
       './lib/jquery-plugin.js',
       './lib/diff-viewer/diff-viewer.js'
-    ]
-  });
+    ],
+    // Enable source maps!
+    debug: true,
+    //insertGlobals : true,
+    //exclude: 'cheerio'
+  })
+  .ignore('commander')
+  .ignore('cheerio')
+  // enable fs.readFileSync() in browser
+  .transform('brfs')
+  .transform('deglobalify');
 
   var bundle = function() {
     // Log when bundling starts
     bundleLogger.start();
 
     return bundler
-    .bundle({
-      insertGlobals : true,
-      // Enable source maps!
-      debug: true
-    })
+    .bundle()
     // Report compile errors
     .on('error', handleErrors)
     // Use vinyl-source-stream to make the
@@ -88,6 +94,7 @@ gulp.task('browserify', function() {
 
   if (global.isWatching) {
     // Rebundle with watchify on changes.
+    bundler = watchify(bundler);
     bundler.on('update', bundle);
   }
 
