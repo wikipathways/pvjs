@@ -31,8 +31,7 @@ gulp.task('browserify-polyfills', function() {
   var getBundleName = function() {
     packageJson = JSON.parse(fs.readFileSync('package.json'));
     var version = packageJson.version;
-    var name = packageJson.name;
-    return name + '-polyfills-dev.bundle';
+    return 'polyfills.bundle';
   };
 
   var bundler = browserify({
@@ -68,7 +67,8 @@ gulp.task('browserify-polyfills', function() {
     .pipe(source(getBundleName() + '.js'))
     .pipe(highland.pipeline(function(stream) {
       if (global.isWatching) {
-        return stream;
+        return stream
+          .pipe(gulp.dest('./test/lib/' + packageJson.name + '/' + packageJson.version + '/'));
       }
 
       return stream
@@ -78,20 +78,16 @@ gulp.task('browserify-polyfills', function() {
         // during development.
         .through(buffer())
         .through(rename(function(path) {
-          path.basename = path.basename.replace(
-              '-dev.bundle', '-' + packageJson.version + '.bundle.min');
+          path.extname = '.min.js';
         }))
         .through(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
         .through(uglify())
         .through(sourcemaps.write('./'))
-        .through(gulp.dest('./dist/'))
-        // No need to copy to test dir,
-        // because we copy from dist to test.
-        .through(gulp.dest('./demo/lib/' + packageJson.name + '/'));
+        .through(gulp.dest('./dist/' + packageJson.version + '/'))
+        .through(gulp.dest('./test/lib/' + packageJson.name + '/' + packageJson.version + '/'))
+        .pipe(gulp.dest('./demo/lib/' + packageJson.name + '/' + packageJson.version + '/'));
     }))
-    // Specify the output destination
-    .pipe(gulp.dest('./test/lib/' + packageJson.name + '/'))
     // Log when bundling completes!
     .on('end', bundleLogger.end);
   };
