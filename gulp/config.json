@@ -1,6 +1,6 @@
 {
   "entries": [
-    "./lib/wikipathways-pvjs-element.js",
+    "./lib/custom-element.js",
     "./lib/jquery-plugin.js",
     "./lib/editor/editor.js",
     "./lib/diff-viewer/diff-viewer.js"
