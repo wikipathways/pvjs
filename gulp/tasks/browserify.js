@@ -36,11 +36,14 @@ gulp.task('browserify', function() {
   var process = function(subsection) {
     return highland.pipeline(function(stream) {
 
+      var unminifiedFileName = name + '.' + subsection + '.js';
+      var minifiedFileName = name + '.' + subsection + '.min.js';
+
       var vinylifiedStream = stream
         // Use vinyl-source-stream to make the
         // stream gulp compatible. Specify the
         // desired output filename here.
-        .through(source(name + '.' + subsection + '.js'));
+        .through(source(unminifiedFileName));
 
       if (global.isWatching) {
         vinylifiedStream
@@ -54,8 +57,7 @@ gulp.task('browserify', function() {
         // during development.
         .through(buffer())
         .through(rename(function(path) {
-          path.basename = path.basename.replace(
-              '.js', '.min.js');
+          path.extname = '.min.js';
         }))
         .through(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
