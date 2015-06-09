@@ -6,6 +6,8 @@
    of browserify for faster bundling using caching.
 */
 
+var applySourceMap = require('vinyl-sourcemaps-apply');
+var autopolyfiller = require('autopolyfiller');
 var brfs = require('gulp-brfs');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
@@ -15,10 +17,12 @@ var fs = require('fs');
 var gulp = require('gulp');
 var handleErrors = require('../util/handle-errors.js');
 var highland = require('highland');
+var map = require('vinyl-map');
 var mkdirp = require('mkdirp');
 var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
+var through = require('through');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
@@ -32,6 +36,129 @@ gulp.task('browserify', function() {
   mkdirp.sync('./demo/lib/' + name + '/' + version + '/');
   mkdirp.sync('./test/lib/' + name + '/' + version + '/');
   mkdirp.sync('./test/lib/' + name + '/dev/');
+
+  // TODO download polyfills, if browser requires them.
+  function polyfillsLoader(polyfillsServiceIri, callback) {
+    console.log(polyfillsServiceIri.toString());
+    window.setTimeout(function() {
+      return callback(null);
+    }, 200);
+  }
+
+  function polyfill() {
+    return highland.pipeline(function(stream) {
+      return stream.flatMap(function(file) {
+        /*
+        // generate source maps if plugin source-map present
+        if (file.sourceMap) {
+          options.makeSourceMaps = true;
+        }
+        //*/
+
+        if (file.isNull()) {
+          return file;
+        }
+
+        return highland(file.contents).reduce('', function(codeString, code) {
+          codeString += code.toString();
+          return codeString;
+        })
+        .map(function(codeString) {
+          var polyfillFeatures = autopolyfiller()
+            .add(codeString)
+            .polyfills;
+
+          file.polyfills = file.polyfills || {};
+          file.polyfills.features = (file.polyfills.features || []).concat(polyfillFeatures);
+
+          var polyfillsServiceIri = 'http://cdn.polyfill.io/v1/polyfill.min.js?features=' +
+            polyfillFeatures.join(',');
+
+          var polyfillsLoaderCallback = 'function(err) {' + codeString + '}';
+
+          var newContent = 'var polyfillsServiceIri = "' + polyfillsServiceIri + '";' +
+            // NOTE: removed linebreaks in order to not mess up sourcemaps.
+            polyfillsLoader.toString().replace(/[\n\r]/g, '') +
+            'polyfillsLoader(polyfillsServiceIri, ' + polyfillsLoaderCallback + ');';
+
+          var newContentBuffer = new Buffer(newContent);
+          file.contents = newContentBuffer;
+
+          /*
+          // apply source map to the chain
+          if (file.sourceMap) {
+            applySourceMap(file, {
+              version : 3,
+              file: 'out.js',
+              sourceRoot : '',
+              sources: ['foo.js', 'bar.js'],
+              names: ['src', 'maps', 'are', 'fun'],
+              mappings: 'AAgBC,SAAQ,CAAEA'
+            });
+          }
+          //*/
+
+          return file;
+        });
+      });
+    });
+  }
+
+  function inspect() {
+    return highland.pipeline(function(stream) {
+      return stream.map(function(file) {
+        if (file.isNull()) {
+          return file;
+        }
+
+        console.log('fileafter1');
+        console.log(file);
+
+        console.log('file.contents inspect');
+        console.log(file.contents.toString());
+
+        return file;
+
+        /*
+        return highland(file.contents).through(
+          highland.pipeline(function(fileContentStream) {
+            return fileContentStream.reduce('', function(codeString, code) {
+              codeString += code.toString();
+
+              console.log('fileafter');
+              console.log(file);
+
+              console.log('codeString');
+              console.log(codeString);
+
+              return codeString;
+            })
+            .map(function(codeString) {
+              return file;
+            });
+          })
+        );
+        //*/
+
+        /*
+        return highland(file.contents).reduce('', function(codeString, code) {
+          codeString += code.toString();
+
+          console.log('fileafter');
+          console.log(file);
+
+          console.log('codeString');
+          console.log(codeString);
+
+          return codeString;
+        })
+        .map(function(codeString) {
+          return file;
+        });
+        //*/
+      });
+    });
+  }
 
   var process = function(subsection) {
     return highland.pipeline(function(stream) {
@@ -55,15 +182,30 @@ gulp.task('browserify', function() {
         // a watch is not set.
         // They are too slow to enable
         // during development.
+        .through(polyfill())
         .through(buffer())
         .through(rename(function(path) {
           path.extname = '.min.js';
         }))
+        .through(inspect())
         .through(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
-        .through(uglify())
+        .through(uglify({
+          'global_defs': {
+            DEBUG: false
+          }
+        }))
         // locate sourcemaps in same dir as source file
         .through(sourcemaps.write('./'))
+        /*
+        .map(function(data) {
+          var fileString = data.contents;
+          console.log('fileString');
+          console.log(fileString);
+          return data;
+        })
+        //*/
+        .through(gulp.dest('./test/lib/' + name + '/dev/'))
         .through(gulp.dest('./test/lib/' + name + '/' + version + '/'))
         .through(gulp.dest('./dist/' + version + '/'))
         .pipe(gulp.dest('./demo/lib/' + name + '/' + version + '/'));

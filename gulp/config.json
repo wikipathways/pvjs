@@ -2,7 +2,6 @@
   "entries": [
     "./lib/custom-element.js",
     "./lib/jquery-plugin.js",
-    "./lib/editor/editor.js",
     "./lib/diff-viewer/diff-viewer.js"
   ],
   "metadataFilePaths": [

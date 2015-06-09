@@ -42,7 +42,7 @@ gulp.task('browserify-polyfills', function() {
     entries: [
       './tmp/modernizr-custom.js',
       //'./lib/polyfills.js'
-      './node_modules/kaavio/lib/polyfills.js'
+      //'./node_modules/kaavio/lib/polyfills.js'
     ],
     // Enable source maps!
     debug: true,
