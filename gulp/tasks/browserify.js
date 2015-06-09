@@ -11,7 +11,6 @@ var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var bundleLogger = require('../util/bundle-logger.js');
 var config = require('../config.json');
-var concat = require('concat-stream');
 var fs = require('fs');
 var gulp = require('gulp');
 var handleErrors = require('../util/handle-errors.js');
