@@ -68,6 +68,7 @@ gulp.task('browserify', function() {
           return codeString;
         })
         .map(function(codeString) {
+          // TODO provide browser requirements.
           var polyfillFeatures = autopolyfiller()
             .add(codeString)
             .polyfills;
@@ -87,7 +88,7 @@ gulp.task('browserify', function() {
           var loadString = semi.add(load.toString());
           var polyfillLoaderString = semi.add(polyfillLoader.toString());
 
-          // NOTE: removed linebreaks in order to not mess up sourcemaps.
+          // NOTE: removed linebreaks in order to not mess up line numbering for sourcemaps.
           var newContent = loadString.replace(/[\n\r]/g, '') + ' ' +
             polyfillLoaderString.toString().replace(/[\n\r]/g, '') + ' ' +
             'polyfillLoader("' + polyfillServiceIri + '", ' +
