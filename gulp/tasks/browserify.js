@@ -17,9 +17,11 @@ var fs = require('fs');
 var gulp = require('gulp');
 var handleErrors = require('../util/handle-errors.js');
 var highland = require('highland');
+var load = require('scriptloader');
 var map = require('vinyl-map');
 var mkdirp = require('mkdirp');
 var rename = require('gulp-rename');
+var semi = require('semi');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
 var through = require('through');
@@ -37,17 +39,19 @@ gulp.task('browserify', function() {
   mkdirp.sync('./test/lib/' + name + '/' + version + '/');
   mkdirp.sync('./test/lib/' + name + '/dev/');
 
-  // TODO download polyfills, if browser requires them.
-  function polyfillsLoader(polyfillsServiceIri, callback) {
-    console.log(polyfillsServiceIri.toString());
-    window.setTimeout(function() {
+  // TODO Handle polyfills that the FT polyfill service does not.
+  function polyfillLoader(polyfillServiceIri, polyfillServiceCallbackName, callback) {
+    window[polyfillServiceCallbackName] = function() {
       return callback(null);
-    }, 200);
+    };
+    var newScriptTag = load(polyfillServiceIri);
   }
 
-  function polyfill() {
+  function polyfill(namespace) {
     return highland.pipeline(function(stream) {
       return stream.flatMap(function(file) {
+        // NOTE: we don't appear to need to do this
+        // if we keep the added code all on one line.
         /*
         // generate source maps if plugin source-map present
         if (file.sourceMap) {
@@ -71,15 +75,24 @@ gulp.task('browserify', function() {
           file.polyfills = file.polyfills || {};
           file.polyfills.features = (file.polyfills.features || []).concat(polyfillFeatures);
 
-          var polyfillsServiceIri = 'http://cdn.polyfill.io/v1/polyfill.min.js?features=' +
-            polyfillFeatures.join(',');
+          var polyfillServiceCallbackName = ('polyfillServiceCallback' + namespace)
+            .replace(/[^\w]/g, '');
 
-          var polyfillsLoaderCallback = 'function(err) {' + codeString + '}';
+          var polyfillServiceIri = '//cdn.polyfill.io/v1/polyfill.min.js?features=' +
+            polyfillFeatures.join(',') +
+            '&callback=' + polyfillServiceCallbackName;
 
-          var newContent = 'var polyfillsServiceIri = "' + polyfillsServiceIri + '";' +
-            // NOTE: removed linebreaks in order to not mess up sourcemaps.
-            polyfillsLoader.toString().replace(/[\n\r]/g, '') +
-            'polyfillsLoader(polyfillsServiceIri, ' + polyfillsLoaderCallback + ');';
+          var polyfillLoaderCallback = 'function(err) {' + codeString + '}';
+
+          var loadString = semi.add(load.toString());
+          var polyfillLoaderString = semi.add(polyfillLoader.toString());
+
+          // NOTE: removed linebreaks in order to not mess up sourcemaps.
+          var newContent = loadString.replace(/[\n\r]/g, '') + ' ' +
+            polyfillLoaderString.toString().replace(/[\n\r]/g, '') + ' ' +
+            'polyfillLoader("' + polyfillServiceIri + '", ' +
+                '"' + polyfillServiceCallbackName + '", ' +
+                polyfillLoaderCallback + ');';
 
           var newContentBuffer = new Buffer(newContent);
           file.contents = newContentBuffer;
@@ -182,7 +195,7 @@ gulp.task('browserify', function() {
         // a watch is not set.
         // They are too slow to enable
         // during development.
-        .through(polyfill())
+        .through(polyfill(name + subsection))
         .through(buffer())
         .through(rename(function(path) {
           path.extname = '.min.js';
