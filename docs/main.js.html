@@ -81,10 +81,12 @@ var instanceCounter = 0;
  * @param {object} args
  * @return
  */
-function Pvjs(selector, options) {
-  var that = this;
+function Pvjs(selector, pvjsOptions) {
+  var pvjs = this;
 
-  var optionsDefault = {
+  // NOTE pvjsOptions can have multiple sources of data, such as pvjson, GPML and a PNG.
+  // kaavioOptions can only have one source of data, which is always pvjson.
+  var pvjsOptionsDefault = {
     fitToContainer: true,
     sourceData: [],
     manualRender: false,
@@ -92,78 +94,77 @@ function Pvjs(selector, options) {
     version: 0
   };
 
-  // Fill empty options with defaults
-  var optionsDefaultClone = _.clone(optionsDefault, true);
-  this.options = _.defaults(_.omit(options, function(optionValue) {
+  // Fill empty pvjsOptions with defaults
+  var pvjsOptionsDefaultClone = _.clone(pvjsOptionsDefault, true);
+  pvjs.pvjsOptions = _.defaults(_.omit(pvjsOptions, function(optionValue) {
     return typeof optionValue === 'undefined' || optionValue === null;
-  }), optionsDefaultClone);
+  }), pvjsOptionsDefaultClone);
 
   // Make this instance unique
-  this.instanceId = ++instanceCounter;
+  pvjs.instanceId = ++instanceCounter;
 
   // Init events object
-  this.events = {};
+  pvjs.events = {};
 
-  this.selector = selector;
-  this.diagramLoader = new DiagramLoader();
+  pvjs.selector = selector;
+  pvjs.diagramLoader = new DiagramLoader();
 
   /**
    * Init and render
    */
-  this.render = function() {
-    var pvjs = this;
+  pvjs.render = function() {
 
-    // Init sourceData object
-    pvjs.sourceData = {
+    // Init kaavioOptions object
+    pvjs.kaavioOptions = {
       sourceIndex: -1,
       uri: null, // resource uri
       fileType: '',
       pvjson: null, // pvjson object
       rendererEngine: null, // renderer engine name
-      selector: that.selector,
-      highlights: pvjs.options.highlights, // preset highlighting of element(s)
-      displayErrors: pvjs.options.displayErrors,
-      displayWarnings: pvjs.options.displayWarnings,
-      manualRender: pvjs.options.manualRender,
-      editor: pvjs.options.editor, // initial editor state
-      resource: pvjs.options.resource, // IRI like http://identifiers.org/wikipathways/WP4
-      version: pvjs.options.version // WikiPathways pathway version number
+      selector: pvjs.selector,
+      highlights: pvjs.pvjsOptions.highlights, // preset highlighting of element(s)
+      displayErrors: pvjs.pvjsOptions.displayErrors,
+      displaySuccess: pvjs.pvjsOptions.displaySuccess,
+      displayWarnings: pvjs.pvjsOptions.displayWarnings,
+      manualRender: pvjs.pvjsOptions.manualRender,
+      editor: pvjs.pvjsOptions.editor, // initial editor state
+      resource: pvjs.pvjsOptions.resource, // IRI like http://identifiers.org/wikipathways/WP4
+      version: pvjs.pvjsOptions.version // WikiPathways pathway version number
     };
 
-    that.loadNextSource();
+    pvjs.loadNextSource();
 
     // Listen for renderer errors
     pvjs.on('error.renderer', function() {
-      pvjs.diagramLoader.destroyRender(pvjs, pvjs.sourceData);
+      pvjs.diagramLoader.destroyRender(pvjs, pvjs.kaavioOptions);
       pvjs.loadNextSource();
     });
   };
 
-  this.loadNextSource = function() {
-    var pvjs = this;
+  pvjs.loadNextSource = function() {
 
     var pvjsonOriginal;
 
-    pvjs.sourceData.sourceIndex += 1;
+    pvjs.kaavioOptions.sourceIndex += 1;
 
     // Check if any sources left
-    if (pvjs.options.sourceData.length &lt; pvjs.sourceData.sourceIndex + 1) {
+    if (pvjs.pvjsOptions.sourceData.length &lt; pvjs.kaavioOptions.sourceIndex + 1) {
       pvjs.trigger('error.sourceData', {
         message: 'No more renderable sources'
       });
       return;
     }
 
-    pvjs.sourceData.uri = pvjs.options.sourceData[
-      pvjs.sourceData.sourceIndex].uri;
-    pvjs.sourceData.fileType = pvjs.options.sourceData[
-      pvjs.sourceData.sourceIndex].fileType;
+    pvjs.kaavioOptions.uri = pvjs.pvjsOptions.sourceData[
+      pvjs.kaavioOptions.sourceIndex].uri;
+    pvjs.kaavioOptions.fileType = pvjs.pvjsOptions.sourceData[
+      pvjs.kaavioOptions.sourceIndex].fileType;
     // TODO remove this when possible, as mentioned above
-    pvjs.sourceData.original = pvjs.options.sourceData[
-      pvjs.sourceData.sourceIndex].original;
+    pvjs.kaavioOptions.original = pvjs.pvjsOptions.sourceData[
+      pvjs.kaavioOptions.sourceIndex].original;
 
-    if (pvjs.diagramLoader.canRender(pvjs.sourceData)) {
-      if (pvjs.diagramLoader.needDataConverted(pvjs.sourceData)) {
+    if (pvjs.diagramLoader.canRender(pvjs.kaavioOptions)) {
+      if (pvjs.diagramLoader.needDataConverted(pvjs.kaavioOptions)) {
         pvjs.diagramLoader.loadAndConvert(pvjs, function(error, pvjson) {
           if (!!error) {
             pvjs.trigger('error.pvjson', {message: error});
@@ -171,11 +172,11 @@ function Pvjs(selector, options) {
             return;
           }
 
-          pvjs.sourceData.pvjson = pvjson;
+          pvjs.kaavioOptions.pvjson = pvjson;
           pvjsonOriginal = JSON.parse(JSON.stringify(pvjson));
 
           // TODO don't repeat the code below. DRY it up.
-          if (pvjs.options.editor &amp;&amp; pvjs.options.editor !== 'disabled') {
+          if (pvjs.pvjsOptions.editor &amp;&amp; pvjs.pvjsOptions.editor !== 'disabled') {
             var Editor = require('./editor/editor.js').bind(pvjs);
             pvjs.editor = new Editor(pvjs);
 
@@ -185,18 +186,18 @@ function Pvjs(selector, options) {
               pvjs.editor.save({
                 pvjson: e.detail.pvjson,
                 pvjsonOriginal: pvjsonOriginal,
-                gpmlDocJquery: pvjs.options.original,
-                identifier: pvjs.options.resource.match(/WP\d+/)[0],
-                version: pvjs.options.version
+                gpmlDocJquery: pvjs.kaavioOptions.original,
+                identifier: pvjs.kaavioOptions.resource.match(/WP\d+/)[0],
+                version: pvjs.kaavioOptions.version
               });
             }, false);
           }
-          Kaavio.call(pvjs, pvjs.selector, pvjs.sourceData);
+          Kaavio.call(pvjs, pvjs.selector, pvjs.kaavioOptions);
           return;
         });
       } else {
         // TODO don't repeat the code below. DRY it up.
-        if (pvjs.options.editor &amp;&amp; pvjs.options.editor !== 'disabled') {
+        if (pvjs.pvjsOptions.editor &amp;&amp; pvjs.pvjsOptions.editor !== 'disabled') {
           var Editor = require('./editor/editor.js');
           Editor.prototype.save.bind(pvjs);
           pvjs.editor = new Editor(pvjs).bind(pvjs);
@@ -207,13 +208,13 @@ function Pvjs(selector, options) {
             pvjs.editor.save({
               pvjson: e.detail.pvjson,
               pvjsonOriginal: pvjsonOriginal,
-              gpmlDocJquery: pvjs.options.original,
-              identifier: pvjs.options.resource.match(/WP\d+/)[0],
-              version: pvjs.options.version
+              gpmlDocJquery: pvjs.pvjsOptions.original,
+              identifier: pvjs.pvjsOptions.resource.match(/WP\d+/)[0],
+              version: pvjs.pvjsOptions.version
             });
           }, false);
         }
-        Kaavio.call(pvjs, pvjs.selector, pvjs.sourceData);
+        Kaavio.call(pvjs, pvjs.selector, pvjs.kaavioOptions);
         return;
       }
     } else {
@@ -222,8 +223,8 @@ function Pvjs(selector, options) {
     }
   };
 
-  if (!this.options.manualRender) {
-    this.render();
+  if (!pvjs.pvjsOptions.manualRender) {
+    pvjs.render();
   }
 }
 
@@ -250,7 +251,7 @@ module.exports = Pvjs;
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Thu Jun 11 2015 17:52:36 GMT-0700 (PDT)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Fri Jun 12 2015 13:14:08 GMT-0700 (PDT)
         </footer>
     </div>
 </div>
