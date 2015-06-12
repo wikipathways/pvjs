@@ -54,23 +54,19 @@
     <section>
         <article>
             <pre class="prettyprint source "><code>var _ = require('lodash');
-var pvjsCustomElement = require('./custom-element');
 var DiagramLoader = require('./diagram-loader/diagram-loader');
-var Editor = require('./editor/editor.js');
 var fs = require('fs');
 var highland = require('highland');
 var insertCss = require('insert-css');
 var jsonld = require('jsonld');
 // TODO use the one at github
-//var Kaavio = require('../../kaavio/index.js');
-var Kaavio = require('kaavio');
+var Kaavio = require('../../kaavio/index.js');
+//var Kaavio = require('kaavio');
 var m = require('mithril');
-var promisescript = require('promisescript');
 
-/* TODO make sure this still works. We shouldn't require it,
- * because it's a polyfill.
-// Make IE work with the CustomEvent interface standard
-require('custom-event-polyfill');
+/*
+_.assign(Kaavio.Editor.prototype, Object.create(Editor.prototype));
+Kaavio.Editor.prototype.constructor = Kaavio.Editor;
 //*/
 
 var css = [
@@ -78,19 +74,6 @@ var css = [
 ];
 
 var instanceCounter = 0;
-var optionsDefault = {
-  fitToContainer: true,
-  sourceData: [],
-  manualRender: false,
-  displayErrors: true,
-  displayWarnings: true,
-  //manualRender: true,
-  //editor: 'open'
-  //editor: 'closed'
-  editor: 'disabled',
-  version: 0
-};
-
 /**
  * Pvjs
  *
@@ -99,14 +82,21 @@ var optionsDefault = {
  * @return
  */
 function Pvjs(selector, options) {
-
   var that = this;
-  this.selector = selector;
-  this.editor = new Editor(this);
 
-  // Clone and fill options
-  this.options = _.clone(optionsDefault, true);
-  this.options = _.assign(this.options, options);
+  var optionsDefault = {
+    fitToContainer: true,
+    sourceData: [],
+    manualRender: false,
+    editor: 'disabled',
+    version: 0
+  };
+
+  // Fill empty options with defaults
+  var optionsDefaultClone = _.clone(optionsDefault, true);
+  this.options = _.defaults(_.omit(options, function(optionValue) {
+    return typeof optionValue === 'undefined' || optionValue === null;
+  }), optionsDefaultClone);
 
   // Make this instance unique
   this.instanceId = ++instanceCounter;
@@ -114,6 +104,7 @@ function Pvjs(selector, options) {
   // Init events object
   this.events = {};
 
+  this.selector = selector;
   this.diagramLoader = new DiagramLoader();
 
   /**
@@ -133,9 +124,10 @@ function Pvjs(selector, options) {
       highlights: pvjs.options.highlights, // preset highlighting of element(s)
       displayErrors: pvjs.options.displayErrors,
       displayWarnings: pvjs.options.displayWarnings,
+      manualRender: pvjs.options.manualRender,
       editor: pvjs.options.editor, // initial editor state
       resource: pvjs.options.resource, // IRI like http://identifiers.org/wikipathways/WP4
-      version: pvjs.options.version // WikiPathways pathway version #
+      version: pvjs.options.version // WikiPathways pathway version number
     };
 
     that.loadNextSource();
@@ -162,19 +154,13 @@ function Pvjs(selector, options) {
       return;
     }
 
-    // TODO why is this event happening twice when it should happen once?
-    selector.addEventListener('kaaviodatachange', function(e) {
-      console.log('kaaviodatachange event received in pvjs.js');
-      pvjs.editor.save({
-        pvjson: e.detail.pvjson,
-        pvjsonOriginal: pvjsonOriginal
-      });
-    }, false);
-
     pvjs.sourceData.uri = pvjs.options.sourceData[
       pvjs.sourceData.sourceIndex].uri;
     pvjs.sourceData.fileType = pvjs.options.sourceData[
       pvjs.sourceData.sourceIndex].fileType;
+    // TODO remove this when possible, as mentioned above
+    pvjs.sourceData.original = pvjs.options.sourceData[
+      pvjs.sourceData.sourceIndex].original;
 
     if (pvjs.diagramLoader.canRender(pvjs.sourceData)) {
       if (pvjs.diagramLoader.needDataConverted(pvjs.sourceData)) {
@@ -186,13 +172,47 @@ function Pvjs(selector, options) {
           }
 
           pvjs.sourceData.pvjson = pvjson;
-          pvjsonOriginal = window.pvjsonOriginal = JSON.parse(JSON.stringify(pvjson));
-          var kaavio = new Kaavio(pvjs.sourceData);
-          _.extend(pvjs, kaavio);
+          pvjsonOriginal = JSON.parse(JSON.stringify(pvjson));
+
+          // TODO don't repeat the code below. DRY it up.
+          if (pvjs.options.editor &amp;&amp; pvjs.options.editor !== 'disabled') {
+            var Editor = require('./editor/editor.js');
+            pvjs.editor = new Editor(pvjs);
+
+            // TODO why is this event happening twice when it should happen once?
+            selector.addEventListener('kaaviodatachange', function(e) {
+              console.log('kaaviodatachange event received in pvjs.js');
+              pvjs.editor.save({
+                pvjson: e.detail.pvjson,
+                pvjsonOriginal: pvjsonOriginal,
+                gpmlDocJquery: pvjs.options.original,
+                identifier: pvjs.options.resource.match(/WP\d+/)[0],
+                version: pvjs.options.version
+              });
+            }, false);
+          }
+          Kaavio.call(pvjs, pvjs.selector, pvjs.sourceData);
           return;
         });
       } else {
-        pvjs.kaavio = new Kaavio(pvjs.sourceData);
+        // TODO don't repeat the code below. DRY it up.
+        if (pvjs.options.editor &amp;&amp; pvjs.options.editor !== 'disabled') {
+          var Editor = require('./editor/editor.js');
+          pvjs.editor = new Editor(pvjs);
+
+          // TODO why is this event happening twice when it should happen once?
+          selector.addEventListener('kaaviodatachange', function(e) {
+            console.log('kaaviodatachange event received in pvjs.js');
+            pvjs.editor.save({
+              pvjson: e.detail.pvjson,
+              pvjsonOriginal: pvjsonOriginal,
+              gpmlDocJquery: pvjs.options.original,
+              identifier: pvjs.options.resource.match(/WP\d+/)[0],
+              version: pvjs.options.version
+            });
+          }, false);
+        }
+        Kaavio.call(pvjs, pvjs.selector, pvjs.sourceData);
         return;
       }
     } else {
@@ -201,134 +221,15 @@ function Pvjs(selector, options) {
     }
   };
 
-  /**
-   * Register an event listener
-   *
-   * @param  {string}   topic
-   * @param  {Function} callback
-   */
-  this.on = function(topic, callback) {
-    var pvjs = this;
-
-    var namespace = null;
-    var eventName = topic;
-
-    if (topic.indexOf('.') !== -1) {
-      var pieces = topic.split('.');
-      eventName = pieces[0];
-      namespace = pieces[1];
-    }
-
-    if (!pvjs.events.hasOwnProperty(eventName)) {
-      pvjs.events[eventName] = [];
-    }
-
-    pvjs.events[eventName].push({
-      callback: callback,
-      namespace: namespace
-    });
-  };
-
-  /**
-   * Removes an event listener
-   * Returns true if listener was removed
-   *
-   * @param  {string}   topic
-   * @param  {Function} callback
-   * @return {bool}
-   */
-  this.off = function(topic, callback) {
-    var pvjs = this;
-
-    var namespace = null;
-    var eventName = topic;
-    var flagRemove = true;
-    callback = callback || null;
-
-    if (topic.indexOf('.') !== -1) {
-      var pieces = topic.split('.');
-      eventName = pieces[0];
-      namespace = pieces[1];
-    }
-
-    // Check if such an event is registered
-    if (!pvjs.events.hasOwnProperty(eventName)) {return false;}
-    var queue = pvjs.events[topic];
-
-    for (var i = queue.length - 1; i >= 0; i--) {
-      flagRemove = true;
-
-      if (namespace &amp;&amp; queue[i].namespace !== namespace) {flagRemove = false;}
-      if (callback &amp;&amp; queue[i].callback !== callback) {flagRemove = false;}
-
-      if (flagRemove) {queue.splice(i, 1);}
-    }
-
-    return true;
-  };
-
-  /**
-   * Triggers an event. Async by default.
-   * Returns true if there is at least one listener
-   *
-   * @param  {string} topic
-   * @param  {object} message
-   * @param  {bool} async By default true
-   * @return {bool}
-   */
-  this.trigger = function(topic, message, async) {
-    var pvjs = this;
-
-    var namespace = null;
-    var eventName = topic;
-
-    if (topic.indexOf('.') !== -1) {
-      var pieces = topic.split('.');
-      eventName = pieces[0];
-      namespace = pieces[1];
-    }
-
-    if (!pvjs.events.hasOwnProperty(eventName)) {return false;}
-
-    var queue = pvjs.events[eventName];
-    if (queue.length === 0) {return false;}
-
-    if (async === undefined) {
-      async = true;
-    }
-
-    // Use a function as i may change meanwhile
-    var callAsync = function(i) {
-      setTimeout(function() {
-        queue[i].callback(message);
-      }, 0);
-    };
-
-    for (var i = 0; i &lt; queue.length; i++) {
-      if (namespace &amp;&amp; queue[i].namespace &amp;&amp; namespace !== queue[i].namespace) {
-        continue;
-      }
-
-      if (async) {
-        // freeze i
-        callAsync(i);
-      } else {
-        queue[i].callback(message);
-      }
-    }
-    return true;
-  };
-
+  if (!this.options.manualRender) {
+    this.render();
+  }
 }
 
-if (!!window.Kaavio) {
-  pvjsCustomElement.registerElement(Pvjs);
-} else {
-  window.addEventListener('kaavioready', function(e) {
-    pvjsCustomElement.registerElement(Pvjs);
-  }, false);
-}
+Pvjs.prototype = Object.create(Kaavio.prototype);
+Pvjs.prototype.constructor = Pvjs;
 
+window.Pvjs = Pvjs;
 module.exports = Pvjs;
 </code></pre>
         </article>
@@ -348,7 +249,7 @@ module.exports = Pvjs;
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Tue May 05 2015 21:05:22 GMT-0700 (PDT)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha9</a> on Thu Jun 11 2015 13:00:43 GMT-0700 (PDT)
         </footer>
     </div>
 </div>
