@@ -6,7 +6,7 @@ JavaScript-based diagram viewer (implemented) and editor (in-progress) intended 
 Demo
 ====
 
-* [gh-pages](http://wikipathways.github.io/pvjs/)
+* [WikiPathways - Sandbox Pathway](http://wikipathways.org/index.php/Pathway:WP4)
 
 How To Add It To Your Site
 ===================
