@@ -26,10 +26,8 @@ var watchify = require('watchify');
 //gulp.task('browserify-polyfills', ['modernizr'], function() {
 gulp.task('browserify-polyfills', function() {
 
-  var packageJson;
-
+  var packageJson = JSON.parse(fs.readFileSync('package.json'));
   var getBundleName = function() {
-    packageJson = JSON.parse(fs.readFileSync('package.json'));
     var version = packageJson.version;
     return 'polyfills.bundle';
   };

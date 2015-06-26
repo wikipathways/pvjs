@@ -37,6 +37,7 @@ gulp.task('browserify', function() {
   var packageJson = JSON.parse(fs.readFileSync('package.json'));
   var version = packageJson.version;
   var name = packageJson.name;
+  var polyfillsCache = {};
 
   mkdirp.sync('./dist/' + version + '/');
   mkdirp.sync('./demo/lib/' + name + '/' + version + '/');
@@ -145,40 +146,59 @@ gulp.task('browserify', function() {
           return codeString;
         })
         .map(function(codeString) {
-          console.log('in polyfills');
           /*
           console.log('polyfillServiceList');
           console.log(polyfillServiceList);
           //*/
-          // TODO provide our preferred browser requirements.
-          var polyfillFeatures = _.intersection(polyfillServiceList,
-              autopolyfiller()
-                .add(codeString)
-                .polyfills);
-
-          /*
-          console.log('polyfillFeaturesIntersection');
-          console.log(polyfillFeatures);
-          //*/
-
-          file.polyfills = file.polyfills || {};
-          file.polyfills.features = (file.polyfills.features || []).concat(polyfillFeatures);
 
           var polyfillServiceCallbackName = ('polyfillServiceCallback' + namespace)
             .replace(/[^\w]/g, '');
 
-          var polyfillServiceIri = '//cdn.polyfill.io/v1/polyfill.min.js?features=' +
-            polyfillFeatures.join(',') +
-            '&callback=' + polyfillServiceCallbackName;
+          var polyfillServiceIri;
+          var polyfillLoaderStringified;
+          var polyfillLoaderCallback;
+          // NOTE Only generating the polyfills the first time through.
+          // Building during dev is too slow otherwise.
+          if (!!polyfillsCache[namespace]) {
+            polyfillServiceIri = polyfillsCache[namespace].polyfillServiceIri;
+            polyfillLoaderStringified = polyfillsCache[namespace].polyfillLoaderStringified;
+            polyfillLoaderCallback = 'function(err) {' + codeString + '}';
+          } else {
+            console.log('Generating polyfills once for ' + namespace + '.');
+            console.log('Restart gulp if you need to update polyfills.');
+            // TODO provide our preferred browser requirements.
 
-          var polyfillLoaderCallback = 'function(err) {' + codeString + '}';
+            polyfillsCache[namespace] = {};
 
-          var loadString = oneLinifyJs(load);
-          var polyfillLoaderString = oneLinifyJs(polyfillLoader);
+            var polyfillFeatures = _.intersection(polyfillServiceList,
+                autopolyfiller()
+                  .add(codeString)
+                  .polyfills);
+
+            /*
+            console.log('polyfillFeaturesIntersection');
+            console.log(polyfillFeatures);
+            //*/
+
+            file.polyfills = file.polyfills || {};
+            file.polyfills.features = (file.polyfills.features || []).concat(polyfillFeatures);
+
+            polyfillServiceIri = '//cdn.polyfill.io/v1/polyfill.min.js?features=' +
+              polyfillFeatures.join(',') +
+              '&callback=' + polyfillServiceCallbackName;
+            polyfillsCache[namespace].polyfillServiceIri = polyfillServiceIri;
+
+            polyfillLoaderCallback = 'function(err) {' + codeString + '}';
+
+            // The script loader function, stringified with linebreaks removed.
+            var scriptLoaderStringified = oneLinifyJs(load);
+            polyfillsCache[namespace].scriptLoaderStringified = scriptLoaderStringified;
+            polyfillLoaderStringified = scriptLoaderStringified + ' ' + oneLinifyJs(polyfillLoader);
+            polyfillsCache[namespace].polyfillLoaderStringified = polyfillLoaderStringified;
+          }
 
           // NOTE: removed linebreaks in order to not mess up line numbering for sourcemaps.
-          var newContent = loadString + ' ' +
-            polyfillLoaderString + ' ' +
+          var newContent = polyfillLoaderStringified + ' ' +
             'polyfillLoader("' + polyfillServiceIri + '", ' +
                 '"' + polyfillServiceCallbackName + '", ' +
                 polyfillLoaderCallback + ');';
