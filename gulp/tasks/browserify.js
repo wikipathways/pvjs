@@ -146,6 +146,8 @@ gulp.task('browserify', function() {
           return codeString;
         })
         .map(function(codeString) {
+          var sourceMappingLine = codeString.match(/\n\/\/# sourceMappingURL=.*\n/);
+          codeString = codeString.replace(sourceMappingLine, '');
           /*
           console.log('polyfillServiceList');
           console.log(polyfillServiceList);
@@ -201,7 +203,7 @@ gulp.task('browserify', function() {
           var newContent = polyfillLoaderStringified + ' ' +
             'polyfillLoader("' + polyfillServiceIri + '", ' +
                 '"' + polyfillServiceCallbackName + '", ' +
-                polyfillLoaderCallback + ');';
+                polyfillLoaderCallback + ');' + sourceMappingLine;
 
           var newContentBuffer = new Buffer(newContent);
           file.contents = newContentBuffer;
@@ -311,8 +313,6 @@ gulp.task('browserify', function() {
     .pipe(process('core'))
     .toArray(function(result) {
       bundleLogger.end();
-      console.log('result');
-      console.log(result);
     });
   };
 

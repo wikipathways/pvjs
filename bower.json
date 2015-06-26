@@ -2,7 +2,7 @@
   "author": "Pvjs team",
   "name": "pvjs",
   "description": "Diagram viewer and editor for biological pathways",
-  "version": "2.4.22",
+  "version": "2.4.23",
   "homepage": "http://wikipathways.github.io/pvjs/",
   "dependencies": {
     "aight": "~1.2.2",
@@ -17,7 +17,7 @@
     "node-uuid": "~1.4.1"
   },
   "main": [
-    "./dist/pvjs-2.4.22.bundle.min.js"
+    "./dist/pvjs-2.4.23.bundle.min.js"
   ],
   "defaultSave": true
 }
