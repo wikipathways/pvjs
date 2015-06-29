@@ -1,6 +1,8 @@
 node_modules/
 tmp/
 .idea/
+test/*
+demo/*
 gh-pages
 gh-pages/*
 dist/lib/pvjs-dev*
