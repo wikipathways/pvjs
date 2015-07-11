@@ -13,6 +13,7 @@ var brfs = require('gulp-brfs');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var bundleLogger = require('../util/bundle-logger.js');
+var colors = require('colors');
 var config = require('../config.json');
 var fs = require('fs');
 var gulp = require('gulp');
@@ -24,6 +25,8 @@ var modernizr = require('gulp-modernizr');
 var mkdirp = require('mkdirp');
 var polyfillService = require('polyfill-service');
 var rename = require('gulp-rename');
+var Rx = require('rx');
+var RxNode = require('rx-node');
 var semi = require('semi');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
@@ -31,7 +34,9 @@ var through = require('through');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
-gulp.task('browserify', function() {
+gulp.task('browserify', function(callback) {
+
+  var isInitialized = false;
 
   var polyfillServiceList = polyfillService.getAllPolyfills();
   var packageJson = JSON.parse(fs.readFileSync('package.json'));
@@ -50,11 +55,13 @@ gulp.task('browserify', function() {
           return file;
         }
 
+        /*
         console.log('fileafter1');
         console.log(file);
 
         console.log('file.contents inspect');
         console.log(file.contents.toString());
+        //*/
 
         return file;
       });
@@ -67,25 +74,31 @@ gulp.task('browserify', function() {
   function modernize(namespace) {
     return highland.pipeline(function(stream) {
       return stream.flatMap(function(file) {
+        /*
         console.log('file145');
         console.log(file.contents.toString());
+        //*/
 
         return highland([file])
           // TODO make the stream gulp-compatible
           //.through(source(namespace + '.js'))
           .through(modernizr('modernizr.' + namespace + '.min.js'))
           .map(function(customModernizr) {
+            /*
             console.log('customModernizr77');
             console.log(customModernizr);
 
             console.log('customModernizr.contents132');
             console.log(customModernizr.contents.toString());
+            //*/
 
             var customModernizrString = oneLinifyJs(customModernizr.contents.toString());
 
+            /*
             console.log('customModernizrString137');
             console.log(customModernizrString.length);
             console.log(customModernizrString);
+            //*/
 
             return file;
           });
@@ -127,6 +140,7 @@ gulp.task('browserify', function() {
 
   function polyfill(namespace) {
     return highland.pipeline(function(stream) {
+      bundleLogger.start(namespace + ' - wrap with polyfills');
       return stream.flatMap(function(file) {
         // NOTE: we don't appear to need to do this
         // if we keep the added code all on one line.
@@ -166,8 +180,8 @@ gulp.task('browserify', function() {
             polyfillLoaderStringified = polyfillsCache[namespace].polyfillLoaderStringified;
             polyfillLoaderCallback = 'function(err) {' + codeString + '}';
           } else {
-            console.log('Generating polyfills once for ' + namespace + '.');
-            console.log('Restart gulp if you need to update polyfills.');
+            bundleLogger.start(namespace + ' - generate polyfills');
+            console.log('           Restart gulp to update polyfills.');
             // TODO provide our preferred browser requirements.
 
             polyfillsCache[namespace] = {};
@@ -197,6 +211,7 @@ gulp.task('browserify', function() {
             polyfillsCache[namespace].scriptLoaderStringified = scriptLoaderStringified;
             polyfillLoaderStringified = scriptLoaderStringified + ' ' + oneLinifyJs(polyfillLoader);
             polyfillsCache[namespace].polyfillLoaderStringified = polyfillLoaderStringified;
+            bundleLogger.end(namespace + ' - generate polyfills');
           }
 
           // NOTE: removed linebreaks in order to not mess up line numbering for sourcemaps.
@@ -208,6 +223,7 @@ gulp.task('browserify', function() {
           var newContentBuffer = new Buffer(newContent);
           file.contents = newContentBuffer;
 
+          bundleLogger.end(namespace + ' - wrap with polyfills');
           /*
           // apply source map to the chain
           if (file.sourceMap) {
@@ -228,24 +244,35 @@ gulp.task('browserify', function() {
     });
   }
 
-  var process = function(subsection) {
+  var build = function(subsection) {
     return highland.pipeline(function(stream) {
 
+      bundleLogger.start(subsection + ' build');
+
       var unminifiedFileName = name + '.' + subsection + '.js';
+
+      function finishStream(value) {
+        return highland.pipeline(function(stream) {
+          return stream.map(function(value) {
+            bundleLogger.end(subsection + ' build');
+            return value;
+          });
+        });
+      }
 
       var vinylifiedStream = stream
         // Use vinyl-source-stream to make the
         // stream gulp compatible. Specify the
         // desired output filename here.
         .through(source(unminifiedFileName))
-        .through(polyfill(name + subsection))
+        //.through(polyfill(name + subsection))
         .through(gulp.dest('./test/lib/' + name + '/dev/'));
 
       if (global.isWatching) {
-        return vinylifiedStream;
+        return vinylifiedStream.pipe(finishStream());
       }
 
-      console.log('isnotwatching');
+      console.log('One-time build process - no watch set.');
 
       return vinylifiedStream
         // These steps are only enabled when
@@ -268,7 +295,8 @@ gulp.task('browserify', function() {
         // locate sourcemaps in same dir as source file
         .through(sourcemaps.write('./'))
         .through(gulp.dest('./dist/' + version + '/'))
-        .through(gulp.dest('./demo/lib/' + name + '/' + version + '/'));
+        .through(gulp.dest('./demo/lib/' + name + '/' + version + '/'))
+        .pipe(finishStream());
         /*
         .through(gulp.dest('./demo/lib/' + name + '/' + version + '/'))
         .pipe(modernizr('modernizr-custom1.js'))
@@ -277,6 +305,13 @@ gulp.task('browserify', function() {
     });
   };
 
+  /* These values override the real
+   * values for testing the build process.
+  config.entries = [
+    './lib/main1.js',
+    './lib/sub1.js'
+  ];
+  //*/
   var bundler = browserify(config.entries, {
     // Required watchify args
     cache: {}, packageCache: {}, fullPaths: true,
@@ -293,33 +328,102 @@ gulp.task('browserify', function() {
   .transform('deglobalify');
 
   var bundle = function() {
+    // Log when bundling starts
+    bundleLogger.start('bundle');
+
+    var streams = [];
+
+    function factorBuild(subsection) {
+      var factorStream = build(subsection)
+        .pipe(highland.pipeline(function(stream) {
+          return stream.last();
+        }));
+      streams.push(factorStream);
+      return factorStream;
+    }
 
     bundler.plugin('factor-bundle', {
       outputs: config.entries.map(function(entry) {
         return entry.split('/').pop().replace('.js', '');
       })
-      .map(process)
+      .map(function(subsection) {
+        return factorBuild(subsection);
+      })
     });
 
-    // Log when bundling starts
-    bundleLogger.start();
+    var core = bundler.bundle()
+      .pipe(build('core'));
 
-    return bundler
-    .bundle()
-    // Report compile errors
-    .on('error', handleErrors)
-    // Log when bundling completes!
-    //.on('end', bundleLogger.end)
-    .pipe(process('core'))
-    .toArray(function(result) {
-      bundleLogger.end();
-    });
+    streams.push(core);
+
+    return highland(streams)
+      .errors(function(err, push) {
+        // Report compile errors
+        handleErrors(err);
+      })
+      .merge()
+      .last()
+      .filter(function(value) {
+        return value;
+      })
+      .map(function(value) {
+        // Log when bundling completes!
+        bundleLogger.end('bundle');
+        return value;
+      });
   };
 
   if (global.isWatching) {
-    // Rebundle with watchify on changes.
+    // Rebundle with watchify on changes or user request.
     bundler = watchify(bundler);
-    bundler.on('update', bundle);
+
+    // Detect when the user types the rebundleTrigger
+    // based on code from
+    // https://github.com/remy/nodemon/blob/master/lib/nodemon.js
+    var rebundleTrigger = 'rs';
+    process.stdin.resume();
+    process.stdin.setEncoding('utf8');
+    var rebundleRequestSource = Rx.Observable.fromEvent(process.stdin, 'data')
+      .map(function(data) {
+        return (data + '').trim().toLowerCase();
+      })
+      .filter(function(data) {
+        // do the keys entered match the rebundable value?
+        return data === rebundleTrigger;
+      })
+      .map(function(data) {
+        console.log('Rebundling...'.green);
+        return data;
+      });
+
+    var updateSource = Rx.Observable.fromEvent(bundler, 'update');
+
+    return Rx.Observable.merge(
+        // Run the initial time
+        Rx.Observable.return(true),
+        // Rebundle
+        updateSource,
+        rebundleRequestSource
+      )
+      .flatMap(function(value) {
+        return RxNode.fromReadableStream(bundle());
+      })
+      .subscribe(function(file) {
+        if (file && file.path) {
+          console.log('Bundle Success'.green);
+        } else {
+          console.log('Unexpected result when bundling'.red);
+        }
+
+        if (!isInitialized) {
+          isInitialized = true;
+          return callback();
+        }
+      }, function(err) {
+        console.error(err);
+      }, function() {
+        console.log('bundler ended');
+      });
   }
 
   return bundle();

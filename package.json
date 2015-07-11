@@ -1,6 +1,6 @@
 {
   "name": "pvjs",
-  "version": "2.4.38",
+  "version": "2.4.39",
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "./index.js",
   "engines": {
@@ -55,7 +55,6 @@
     "kaavio": "git://github.com/wikipathways/kaavio.git#2.3.10",
     "mithril": "^0.2.0",
     "promisescript": "~1.1.0",
-    "rx-node": "^1.0.1",
     "tower-strcase": "~0.5.0",
     "transducers-js": "^0.4.174",
     "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#1.0.5"
@@ -121,6 +120,8 @@
     "reload": "~0.1.0",
     "rsyncwrapper": "~0.4.1",
     "run-sequence": "~0.3.6",
+    "rx": "^2.5.3",
+    "rx-node": "^1.0.1",
     "scriptloader": "^1.1.1",
     "selenium-launcher": "git://github.com/ariutta/nodejs-selenium-launcher",
     "selenium-standalone": "~2.44.0-7",
