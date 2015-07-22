@@ -19,6 +19,7 @@ var fs = require('fs');
 var gulp = require('gulp');
 var handleErrors = require('../util/handle-errors.js');
 var highland = require('highland');
+var jshint = require('gulp-jshint');
 var load = require('scriptloader');
 var map = require('vinyl-map');
 var modernizr = require('gulp-modernizr');
@@ -342,6 +343,11 @@ gulp.task('browserify', function(callback) {
       return factorStream;
     }
 
+    // see this issue on memory leak:
+    // https://github.com/substack/factor-bundle/issues/64
+    // currently just changing the factor-bundle module like this:
+    // from b.on('reset', addHooks);
+    // to b.once('reset', addHooks);
     bundler.plugin('factor-bundle', {
       outputs: config.entries.map(function(entry) {
         return entry.split('/').pop().replace('.js', '');
@@ -356,7 +362,7 @@ gulp.task('browserify', function(callback) {
 
     streams.push(core);
 
-    return highland(streams)
+    var browserifyStreams = highland(streams)
       .errors(function(err, push) {
         // Report compile errors
         handleErrors(err);
@@ -370,6 +376,14 @@ gulp.task('browserify', function(callback) {
         // Log when bundling completes!
         bundleLogger.end('bundle');
         return value;
+      });
+
+    return highland(gulp.src('./lib/**/*.js')
+      .pipe(jshint())
+      .pipe(jshint.reporter('default')))
+      .last()
+      .flatMap(function(value) {
+        return browserifyStreams;
       });
   };
 
@@ -402,8 +416,11 @@ gulp.task('browserify', function(callback) {
         // Run the initial time
         Rx.Observable.return(true),
         // Rebundle
-        updateSource,
-        rebundleRequestSource
+        Rx.Observable.merge(
+            updateSource,
+            rebundleRequestSource
+        )
+        .debounce(1500 /* ms */)
       )
       .flatMap(function(value) {
         return RxNode.fromReadableStream(bundle());
