@@ -175,6 +175,7 @@ var developmentLoader = function() {
           idVersion: 'unspecified'
         });
 
+        console.log('parsedInputData');
         console.log(parsedInputData);
         return callback(parsedInputData);
       } else {
@@ -355,6 +356,7 @@ var developmentLoader = function() {
   //*/
 
   function loadFrames(inputData, callback) {
+    console.log('inputData');
     console.log(inputData);
     window.setTimeout(function() {
       inputData.forEach(function(inputDataElement) {

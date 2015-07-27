@@ -1,7 +1,9 @@
 var colors = require('colors');
 var gulp = require('gulp');
+var highland = require('highland');
 var jshint = require('gulp-jshint');
 var path = require('path');
+var tmp = require('tmp');
 
 var changeTypeToColorMappings = {
   'added': 'green',
@@ -44,6 +46,15 @@ gulp.task('watch', ['set-watch', 'browser-sync'], function() {
         gulp.src(srcPath)
           .pipe(jshint())
           .pipe(jshint.reporter('default'))
+          .pipe(highland.pipeline(function(stream) {
+            return stream.map(function(file) {
+              if (!file.jshint.success) {
+                console.log('jshint failed');
+                destTarget = tmp.dirSync({unsafeCleanup: true});
+              }
+              return file;
+            });
+          }))
           .pipe(gulp.dest(destTarget));
       }
     });
@@ -101,6 +112,15 @@ gulp.task('watch', ['set-watch', 'browser-sync'], function() {
         gulp.src(srcPath)
           .pipe(jshint())
           .pipe(jshint.reporter('default'))
+          .pipe(highland.pipeline(function(stream) {
+            return stream.map(function(file) {
+              if (!file.jshint.success) {
+                console.log('jshint failed');
+                localDestTarget = childDestTarget = tmp.dirSync({unsafeCleanup: true});
+              }
+              return file;
+            });
+          }))
           .pipe(gulp.dest(localDestTarget))
           .pipe(gulp.dest(childDestTarget));
       }

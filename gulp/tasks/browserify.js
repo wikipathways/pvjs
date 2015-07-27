@@ -266,6 +266,10 @@ gulp.task('browserify', function(callback) {
         // stream gulp compatible. Specify the
         // desired output filename here.
         .through(source(unminifiedFileName))
+        /*
+        .through(jshint())
+        .through(jshint.reporter('default'))
+        //*/
         //.through(polyfill(name + subsection))
         .through(gulp.dest('./test/lib/' + name + '/dev/'));
 
@@ -335,17 +339,19 @@ gulp.task('browserify', function(callback) {
     var streams = [];
 
     function factorBuild(subsection) {
-      var factorStream = build(subsection)
+      var factorStream = build(subsection);
+        /*
         .pipe(highland.pipeline(function(stream) {
           return stream.last();
         }));
+        //*/
       streams.push(factorStream);
       return factorStream;
     }
 
     // see this issue on memory leak:
     // https://github.com/substack/factor-bundle/issues/64
-    // currently just changing the factor-bundle module like this:
+    // We have currently patched the local version of the factor-bundle module like this:
     // from b.on('reset', addHooks);
     // to b.once('reset', addHooks);
     bundler.plugin('factor-bundle', {
@@ -362,29 +368,36 @@ gulp.task('browserify', function(callback) {
 
     streams.push(core);
 
+    // Streams responsible for bundling and building
     var browserifyStreams = highland(streams)
       .errors(function(err, push) {
         // Report compile errors
         handleErrors(err);
       })
       .merge()
-      .last()
-      .filter(function(value) {
-        return value;
-      })
-      .map(function(value) {
-        // Log when bundling completes!
-        bundleLogger.end('bundle');
-        return value;
-      });
+      .otherwise(
+        highland([])
+          .map(function(value) {
+            // Log when bundling completes!
+            bundleLogger.end('bundle');
+            return value;
+          })
+      );
 
-    return highland(gulp.src('./lib/**/*.js')
+    return browserifyStreams;
+
+    //return highland(gulp.src('./lib/**/*.js')
+    /*
       .pipe(jshint())
       .pipe(jshint.reporter('default')))
-      .last()
-      .flatMap(function(value) {
+      .flatMap(function(file) {
+        if (!file.jshint.success) {
+          console.log('Skipping browserify process - jshint failed.');
+          return highland();
+        }
         return browserifyStreams;
       });
+    //*/
   };
 
   if (global.isWatching) {
@@ -420,6 +433,7 @@ gulp.task('browserify', function(callback) {
             updateSource,
             rebundleRequestSource
         )
+        // Run just once if multiple files are changed at the same time.
         .debounce(1500 /* ms */)
       )
       .flatMap(function(value) {
@@ -429,7 +443,8 @@ gulp.task('browserify', function(callback) {
         if (file && file.path) {
           console.log('Bundle Success'.green);
         } else {
-          console.log('Unexpected result when bundling'.red);
+          //console.log('Unexpected result when bundling'.red);
+          throw new Error('Unexpected result when bundling');
         }
 
         if (!isInitialized) {
