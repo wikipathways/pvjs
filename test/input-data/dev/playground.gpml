@@ -2,7 +2,7 @@
 <Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Endoderm Differentiation" Organism="Homo sapiens">
   <Comment Source="WikiPathways-description">Model depicting endoderm specification based on the literature and highly enriched gene expression profiles via comparison across dozens of independent induced and embryonic pluripotent stem cell lines, following differentiation to multiple lineages (ectoderm, mesoderm, endoderm, embryoid body). The underlying genomic data can be obtained from: 
 https://www.synapse.org/#!Synapse:syn1773109</Comment>
-  <Graphics BoardWidth="572.7563395810364" BoardHeight="297.0" />
+  <Graphics BoardWidth="1019.0" BoardHeight="717.0" />
   <DataNode TextLabel="Metabolite" GraphId="ef05f">
     <Graphics CenterX="270.0" CenterY="115.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="" ID="" />
@@ -10,6 +10,14 @@ https://www.synapse.org/#!Synapse:syn1773109</Comment>
   <DataNode TextLabel="Calcium" GraphId="df7be" Type="Metabolite">
     <Graphics CenterX="502.75633958103634" CenterY="67.25468577728776" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
     <Xref Database="HMDB" ID="HMDB00464" />
+  </DataNode>
+  <DataNode TextLabel="Pathway" GraphId="a1912" Type="Pathway">
+    <Graphics CenterX="46.0" CenterY="677.0" Width="80.0" Height="20.0" ZOrder="32768" FontWeight="Bold" FontSize="12" Valign="Middle" ShapeType="None" Color="14961e" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <DataNode TextLabel="Rna" GraphId="ca4b3" Type="Rna">
+    <Graphics CenterX="613.0" CenterY="353.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
   </DataNode>
   <DataNode TextLabel="PAX9" GraphId="f31e9" Type="Protein">
     <Graphics CenterX="485.50545698542817" CenterY="184.46243741125534" Width="60.0" Height="20.0" ZOrder="33898" FontSize="10" Valign="Middle" />

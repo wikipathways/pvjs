@@ -310,8 +310,9 @@ gulp.task('browserify', function(callback) {
     });
   };
 
-  /* These values override the real
-   * values for testing the build process.
+  /*
+  //These values override the real
+  // values for testing the build process.
   config.entries = [
     './lib/main1.js',
     './lib/sub1.js'
@@ -440,6 +441,8 @@ gulp.task('browserify', function(callback) {
         return RxNode.fromReadableStream(bundle());
       })
       .subscribe(function(file) {
+        console.log('file');
+        console.log(file);
         if (file && file.path) {
           console.log('Bundle Success'.green);
         } else {
