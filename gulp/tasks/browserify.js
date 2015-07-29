@@ -405,6 +405,7 @@ gulp.task('browserify', function(callback) {
     //*/
   };
 
+  var bundlerSource;
   if (global.isWatching) {
     // Rebundle with watchify on changes or user request.
     bundler = watchify(bundler);
@@ -430,7 +431,7 @@ gulp.task('browserify', function(callback) {
 
     var updateSource = Rx.Observable.fromEvent(bundler, 'update');
 
-    return Rx.Observable.merge(
+    bundlerSource = Rx.Observable.merge(
         // Run the initial time
         Rx.Observable.return(true),
         // Rebundle
@@ -443,7 +444,12 @@ gulp.task('browserify', function(callback) {
       )
       .flatMap(function(value) {
         return RxNode.fromReadableStream(bundle());
-      })
+      });
+  } else {
+    bundlerSource = RxNode.fromReadableStream(bundle());
+  }
+
+  return bundlerSource
       .subscribe(function(file) {
         console.log('file');
         console.log(file);
@@ -463,7 +469,4 @@ gulp.task('browserify', function(callback) {
       }, function() {
         console.log('bundler ended');
       });
-  }
-
-  return bundle();
 });
