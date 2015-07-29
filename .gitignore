@@ -12,5 +12,4 @@ demo/doc/
 demo/lib/
 gh-pages
 gh-pages/*
-dist/lib/pvjs-dev*
-demo/lib/pvjs/pvjs-dev*
+dist/
