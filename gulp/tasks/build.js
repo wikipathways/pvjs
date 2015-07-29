@@ -20,5 +20,7 @@ gulp.task('build', gulpSequence('verify-git-status',
       'modernizr',
       'browserify-polyfills',
       'create-demos-from-tests',
+
+      // for some reason, this isn't taking effect
       'commit-after-build',
       'sync-tag-version'));
