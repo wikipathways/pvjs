@@ -23,6 +23,7 @@ gulp.task('commit-after-build', function commitAfterBuild(callback) {
     throw err;
   })
   .each(function() {
+    console.log('Completed commitAfterBuild');
     return callback();
   });
 });
