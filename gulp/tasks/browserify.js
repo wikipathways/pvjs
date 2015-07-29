@@ -37,8 +37,6 @@ var watchify = require('watchify');
 
 gulp.task('browserify', function(callback) {
 
-  var isInitialized = false;
-
   var polyfillServiceList = polyfillService.getAllPolyfills();
   var packageJson = JSON.parse(fs.readFileSync('package.json'));
   var version = packageJson.version;
@@ -459,14 +457,10 @@ gulp.task('browserify', function(callback) {
           //console.log('Unexpected result when bundling'.red);
           throw new Error('Unexpected result when bundling');
         }
-
-        if (!isInitialized) {
-          isInitialized = true;
-          return callback();
-        }
       }, function(err) {
         console.error(err);
       }, function() {
         console.log('bundler ended');
+        return callback();
       });
 });
