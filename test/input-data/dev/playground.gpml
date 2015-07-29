@@ -4,10 +4,15 @@
 Testing.</Comment>
   <Comment Source="BotTest">20150501000003</Comment>
   <Graphics BoardWidth="768.6990077177508" BoardHeight="540.0" />
-  <DataNode TextLabel="" GraphId="a489f" Type="Metabolite">
+  <DataNode TextLabel="" GraphId="a489f" Type="Metabolite" GroupRef="cdc9b">
     <Graphics CenterX="81.88250118128843" CenterY="126.6562713288181" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff" />
     <Xref Database="NCI Pathway Interaction Database" ID="asddsf" />
   </DataNode>
+  <DataNode TextLabel="Rna" GraphId="e3884" Type="Rna" GroupRef="cdc9b">
+    <Graphics CenterX="607.0" CenterY="133.0" Width="80.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" />
+    <Xref Database="" ID="" />
+  </DataNode>
+  <Group GroupId="cdc9b" Style="Complex" />
   <InfoBox CenterX="0.0" CenterY="0.0" />
   <Biopax>
     <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
