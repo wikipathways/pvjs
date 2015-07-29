@@ -379,7 +379,7 @@ gulp.task('browserify', function(callback) {
           .map(function(value) {
             // Log when bundling completes!
             bundleLogger.end('bundle');
-            return value;
+            return highland.nil;
           })
       );
 
