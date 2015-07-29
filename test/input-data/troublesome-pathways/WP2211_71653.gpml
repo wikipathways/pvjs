@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="Geranylgeranyldiphosphate biosynthesis II (plastidic)" Data-Source="RiceCyc" Version="20110915" Organism="Oryza sativa" Last-Modified="10/17/2013">
+  <Comment Source="WikiPathways-category">Metabolic Process</Comment>
+  <Comment Source="WikiPathways-description">In plants the geranyl-geranyl diphosphate (GGPP) as a precursor molecule that feeds in the biosynthesis of essential compounds such as chlorophylls, carotenoids, plastoquinones, growth hormone gibberellin and other secondary metabolites. Occurs in plastids.</Comment>
+  <BiopaxRef>b1a</BiopaxRef>
+  <BiopaxRef>a22</BiopaxRef>
+  <BiopaxRef>f44</BiopaxRef>
+  <BiopaxRef>bdb</BiopaxRef>
+  <BiopaxRef>acd</BiopaxRef>
+  <BiopaxRef>d3e</BiopaxRef>
+  <BiopaxRef>d01</BiopaxRef>
+  <Graphics BoardWidth="1021.5571635209417" BoardHeight="965.4425607010502"/>
+  <DataNode TextLabel="Delta3-isopentenyl-PP" GraphId="d120d" Type="Metabolite">
+    <Graphics CenterX="501.5" CenterY="72.10648585782997" Width="149.0" Height="20.0" ZOrder="32768" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="KEGG Compound" ID="C00129"/>
+  </DataNode>
+  <DataNode TextLabel="Geranyl-PP" GraphId="bc11b" Type="Metabolite">
+    <Graphics CenterX="501.7375865285658" CenterY="396.2077846481381" Width="80.0" Height="20.0" ZOrder="32768" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="KEGG Compound" ID="C00341"/>
+  </DataNode>
+  <DataNode TextLabel="EC:2.5.1.1 (Geranyl-diphosphate synthase)" GraphId="a45cf" Type="GeneProduct">
+    <Graphics CenterX="667.1109936575651" CenterY="233.9420316163951" Width="251.3067378915166" Height="19.996739289128186" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Enzyme Nomenclature" ID="2.5.1.1"/>
+  </DataNode>
+  <DataNode TextLabel="trans, trans-farnesyl diphosphate" GraphId="ddf5c" Type="Metabolite">
+    <Graphics CenterX="501.3687932642829" CenterY="680.9924047776798" Width="184.73758652856577" Height="20.0" ZOrder="32768" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="13058-04-3"/>
+  </DataNode>
+  <DataNode TextLabel="EC:2.5.1.10 (Farnesyl pyrophosphate synthetase)" GraphId="e8e55" Type="GeneProduct">
+    <Graphics CenterX="677.5618429429942" CenterY="538.0842992270278" Width="268.0233551252387" Height="20.21787917688985" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Enzyme Nomenclature" ID="2.5.1.10"/>
+  </DataNode>
+  <DataNode TextLabel="Geranylgeranyl diphosphate" GraphId="b9fc8" Type="Metabolite">
+    <Graphics CenterX="501.73758652856577" CenterY="925.4425607010502" Width="168.0" Height="20.0" ZOrder="32768" FontSize="10" Valign="Middle" Color="0000ff"/>
+    <Xref Database="ChEBI" ID="15831"/>
+  </DataNode>
+  <DataNode TextLabel="EC:2.5.1.29 (Geranylgeranyl pyrophosphate synthase)" GraphId="ac174" Type="GeneProduct">
+    <Graphics CenterX="683.0108545429134" CenterY="819.1639580023904" Width="298.76702330853914" Height="20.0" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Enzyme Nomenclature" ID="2.5.1.29"/>
+  </DataNode>
+  <DataNode TextLabel="Diphosphate" GraphId="c0317" Type="Metabolite">
+    <Graphics CenterX="397.0224445695248" CenterY="602.1125863451811" Width="80.0" Height="20.0" ZOrder="32768" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="2466-09-3"/>
+  </DataNode>
+  <DataNode TextLabel="Dimethylallyl-PP" GraphId="b77de" Type="Metabolite">
+    <Graphics CenterX="397.1830985915493" CenterY="188.96263634108848" Width="95.77464788732395" Height="30.525431543175145" ZOrder="32768" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="358-71-4"/>
+  </DataNode>
+  <DataNode TextLabel="Methylerythritol phosphate pathway" GraphId="f0fdd" Type="Pathway">
+    <Graphics CenterX="161.2891099110305" CenterY="255.98031060381635" Width="260.52037172723476" Height="28.884449214902588" ZOrder="32768" FontWeight="Bold" FontSize="14" Valign="Middle" ShapeType="None" Color="14961e"/>
+    <Xref Database="WikiPathways" ID="WP2212"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os12g17320" GraphId="bf01c" Type="GeneProduct" GroupRef="f76fa">
+    <Comment>polyprenyl synthetase, putative, expressed</Comment>
+    <Graphics CenterX="913.9759803820787" CenterY="245.58932172618202" Width="142.89710289710294" Height="19.999999999999986" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os12g17320"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os08g09370" GraphId="aceee" Type="GeneProduct" GroupRef="f76fa">
+    <Comment>polyprenyl synthetase, putative, expressed</Comment>
+    <Graphics CenterX="913.9759803820788" CenterY="217.27826461804216" Width="142.89710289710294" Height="19.999999999999986" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os08g09370"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os06g46450" GraphId="e4cf8" Type="GeneProduct" GroupRef="f76fa">
+    <Comment>polyprenyl synthetase, putative, expressed</Comment>
+    <Graphics CenterX="913.9759803820787" CenterY="192.41799730333952" Width="142.89710289710294" Height="19.999999999999986" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os06g46450"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os05g50550" GraphId="e8b8e" Type="GeneProduct" GroupRef="f76fa">
+    <Comment>polyprenyl synthetase, putative, expressed</Comment>
+    <Graphics CenterX="913.9759803820787" CenterY="272.05347725473763" Width="142.89710289710294" Height="19.999999999999986" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os05g50550"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os09g33930" GraphId="bb3cb" Type="GeneProduct" GroupRef="fb9da">
+    <Comment>farnesyltransferase/geranylgeranyltransferase type-1 subunitalpha, putative, expressed//farnesyltranstransferase</Comment>
+    <Graphics CenterX="919.6892147196315" CenterY="859.6249709045146" Width="126.0440713536198" Height="19.999999999999943" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os09g33930"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os01g53600" GraphId="f11ad" Type="GeneProduct" GroupRef="fb9da">
+    <Comment>farnesyltransferase subunit beta, putative, expressed//farnesyltranstransferase//protein farnesyltransferase</Comment>
+    <Graphics CenterX="919.6892147196313" CenterY="839.4330652124545" Width="126.0440713536198" Height="19.999999999999943" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os01g53600"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os07g39270" GraphId="de7e8" Type="GeneProduct" GroupRef="fb9da">
+    <Comment>polyprenyl synthetase, putative, expressed//isoprenoid biosynthetic process//diterpene phytoalexin metabolic process//farnesyltranstransferase</Comment>
+    <Graphics CenterX="919.6892147196315" CenterY="819.4330652124547" Width="126.0440713536198" Height="19.999999999999943" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os07g39270"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os02g44780" GraphId="fcdd2" Type="GeneProduct" GroupRef="fb9da">
+    <Comment>polyprenyl synthetase, putative, expressed//isoprenoid biosynthetic process//diterpene phytoalexin metabolic process//farnesyltranstransferase</Comment>
+    <Graphics CenterX="919.689214719619" CenterY="799.4330652124562" Width="126.04407135361987" Height="20.0" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os02g44780"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_OS01G14630" GraphId="f8ee9" Type="GeneProduct" GroupRef="fb9da">
+    <Comment>polyprenyl synthetase, putative, expressed//diterpene phytoalexin metabolic process</Comment>
+    <Graphics CenterX="919.6892147196313" CenterY="779.4330652124546" Width="126.0440713536198" Height="19.999999999999943" ZOrder="32768" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_OS01G14630"/>
+  </DataNode>
+  <DataNode TextLabel="Delta3-isopentenyl-PP" GraphId="f7d12" Type="Metabolite">
+    <Graphics CenterX="382.4374724514299" CenterY="456.5178500441604" Width="130.87494490285985" Height="19.999999999999986" ZOrder="32769" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="KEGG Compound" ID="C00129"/>
+  </DataNode>
+  <DataNode TextLabel="Diphosphate" GraphId="b62ef" Type="Metabolite">
+    <Graphics CenterX="384.22345061821323" CenterY="885.2934231910757" Width="80.0" Height="20.0" ZOrder="32772" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="2466-09-3"/>
+  </DataNode>
+  <DataNode TextLabel="Delta3-isopentenyl-PP" GraphId="eb4a5" Type="Metabolite">
+    <Graphics CenterX="370.7136066702674" CenterY="753.1492197710415" Width="125.42721334053476" Height="20.0" ZOrder="32773" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="KEGG Compound" ID="C00129"/>
+  </DataNode>
+  <DataNode TextLabel="Diphosphate" GraphId="aa664" Type="Metabolite">
+    <Graphics CenterX="405.92068295247265" CenterY="309.4529790664672" Width="80.00000000000003" Height="19.999999999999986" ZOrder="32775" FontSize="12" Valign="Middle" Color="0000ff"/>
+    <Xref Database="CAS" ID="2466-09-3"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os04g56230" GraphId="baeec" Type="GeneProduct" GroupRef="d85f9">
+    <Comment>TRAF-type zinc finger family protein</Comment>
+    <Graphics CenterX="920.1086120723902" CenterY="573.5928671688508" Width="142.8971028971029" Height="19.999999999999943" ZOrder="32783" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os04g56230"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os01g50760 (FPPS)" GraphId="dcd6a" Type="GeneProduct" GroupRef="d85f9">
+    <Comment>polyprenyl synthetase, putative, expressed</Comment>
+    <BiopaxRef>d01</BiopaxRef>
+    <Graphics CenterX="920.1086120723902" CenterY="502.7525310343967" Width="142.8971028971029" Height="20.000000000000004" ZOrder="32784" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os01g50760"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os04g56210" GraphId="ce9a2" Type="GeneProduct" GroupRef="d85f9">
+    <Comment>polyprenyl synthetase, putative, expressed</Comment>
+    <Graphics CenterX="920.1086120723902" CenterY="550.0634554041316" Width="142.8971028971029" Height="19.999999999999943" ZOrder="32786" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os04g56210"/>
+  </DataNode>
+  <DataNode TextLabel="LOC_Os01g50050" GraphId="a0a07" Type="GeneProduct" GroupRef="d85f9">
+    <Comment>polyprenyl synthetase, putative, expressed</Comment>
+    <Graphics CenterX="920.1086120723901" CenterY="527.5004301940446" Width="142.8971028971029" Height="19.999999999999943" ZOrder="32789" FontSize="12" Valign="Middle"/>
+    <Xref Database="Gramene Rice" ID="LOC_Os01g50050"/>
+  </DataNode>
+  <Interaction GraphId="idb3e022e0">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="501.73758652856577" Y="406.2077846481381" GraphRef="bc11b" RelX="0.0" RelY="1.0"/>
+      <Point X="501.3687932642829" Y="670.9924047776798" GraphRef="ddf5c" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.5" Shape="None" GraphId="b91da"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id206ac4ab">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="543.5501653803749" Y="538.0842992270277" GraphRef="e8e55" RelX="-1.0" RelY="0.0"/>
+      <Point X="501.5531898964243" Y="538.6000947129089" GraphRef="b91da" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="ida3507e27">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="501.3687932642829" Y="690.9924047776798" GraphRef="ddf5c" RelX="0.0" RelY="1.0"/>
+      <Point X="501.73758652856577" Y="915.4425607010502" GraphRef="b9fc8" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.5672174806337065" Shape="None" GraphId="ce68b"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id471f45d8">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="533.6273428886439" Y="819.1639580023904" GraphRef="ac174" RelX="-1.0" RelY="0.0"/>
+      <Point X="501.5779792505241" Y="818.3044567483765" GraphRef="ce68b" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idb12262c">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="447.87494490285985" Y="456.5178500441604" GraphRef="f7d12" RelX="1.0" RelY="0.0"/>
+      <Point X="502.81690140845075" Y="497.5589723785347"/>
+      <Point X="501.5531898964243" Y="538.6000947129089" GraphRef="b91da" RelX="0.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id1e219796">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="501.5531898964243" Y="538.6000947129089" GraphRef="b91da" RelX="0.0" RelY="0.0"/>
+      <Point X="502.81690140845075" Y="570.3563405290449"/>
+      <Point X="437.0224445695248" Y="602.1125863451811" GraphRef="c0317" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id14ee7ceb">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="445.07042253521126" Y="181.33127845529467" GraphRef="b77de" RelX="1.0" RelY="-0.5"/>
+      <Point X="498.59154929577466" Y="207.74420685413935"/>
+      <Point X="501.6187932642829" Y="234.15713525298403" GraphRef="f34f8" RelX="0.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id15a83c9f">
+    <Graphics ConnectorType="Curved" ZOrder="12288" LineThickness="1.0">
+      <Point X="427.0" Y="72.10648585782997" GraphRef="d120d" RelX="-1.0" RelY="0.0"/>
+      <Point X="161.2891099110305" Y="241.53808599636506" GraphRef="f0fdd" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idd5d26da">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="834.5274289335271" Y="232.23573727903857" GraphRef="d9dea" RelX="-1.0" RelY="0.0"/>
+      <Point X="792.7643626033234" Y="233.9420316163951" GraphRef="a45cf" RelX="1.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="id1f159e35">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="840.6600606238385" Y="538.1726991016237" GraphRef="ea2e7" RelX="-1.0" RelY="0.0"/>
+      <Point X="811.5735205056135" Y="538.0842992270277" GraphRef="e8e55" RelX="1.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="idf1083275">
+    <Graphics ZOrder="12288" LineThickness="1.0">
+      <Point X="848.667179042809" Y="819.5290180584846" GraphRef="aa588" RelX="-1.0" RelY="0.0"/>
+      <Point X="832.394366197183" Y="819.1639580023904" GraphRef="ac174" RelX="1.0" RelY="0.0"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d0763">
+    <Graphics ConnectorType="Curved" ZOrder="32770" LineThickness="1.0">
+      <Point X="433.42721334053476" Y="753.1492197710415" GraphRef="eb4a5" RelX="1.0" RelY="0.0"/>
+      <Point X="500.0" Y="785.726838259709"/>
+      <Point X="501.5779792505241" Y="818.3044567483765" GraphRef="ce68b" RelX="0.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c8ee2">
+    <Graphics ConnectorType="Curved" ZOrder="32771" LineThickness="1.0">
+      <Point X="501.5779792505241" Y="818.3044567483765" GraphRef="ce68b" RelX="0.0" RelY="0.0"/>
+      <Point X="501.4084507042254" Y="851.7989399697261"/>
+      <Point X="424.22345061821323" Y="885.2934231910757" GraphRef="b62ef" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="c9038">
+    <Graphics ConnectorType="Curved" ZOrder="32774" LineThickness="1.0">
+      <Point X="501.6187932642829" Y="234.15713525298403" GraphRef="f34f8" RelX="0.0" RelY="0.0"/>
+      <Point X="502.81690140845075" Y="271.8050571597256"/>
+      <Point X="445.9206829524727" Y="309.4529790664672" GraphRef="aa664" RelX="1.0" RelY="0.0" ArrowHead="Arrow"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="d039a">
+    <Graphics ZOrder="32787" LineThickness="1.0">
+      <Point X="501.5" Y="82.10648585782997" GraphRef="d120d" RelX="0.0" RelY="1.0"/>
+      <Point X="501.73758652856577" Y="386.2077846481381" GraphRef="bc11b" RelX="0.0" RelY="-1.0" ArrowHead="Arrow"/>
+      <Anchor Position="0.5" Shape="None" GraphId="f34f8"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Interaction GraphId="de6d5">
+    <Graphics ZOrder="32788" LineThickness="1.0">
+      <Point X="541.4576247118068" Y="233.9420316163951" GraphRef="a45cf" RelX="-1.0" RelY="0.0"/>
+      <Point X="501.6187932642829" Y="234.15713525298403" GraphRef="f34f8" RelX="0.0" RelY="0.0" ArrowHead="mim-catalysis"/>
+    </Graphics>
+    <Xref Database="" ID=""/>
+  </Interaction>
+  <Group GroupId="fb9da" GraphId="aa588" Style="Group"/>
+  <Group GroupId="d85f9" GraphId="ea2e7" Style="Group"/>
+  <Group GroupId="f76fa" GraphId="d9dea" Style="Group"/>
+  <InfoBox CenterX="0.0" CenterY="0.0"/>
+  <Biopax>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="d3e">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10353221</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Localization of farnesyl diphosphate synthase in chloroplasts.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Plant Cell Physiol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1999</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sanmiya K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ueno O</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Matsuoka M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yamamoto N</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="bdb">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11522913</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Partial characterization of farnesyl and geranylgeranyl diphosphatases induced in rice seedlings by UV-C irradiation.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Plant Cell Physiol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2001</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nah J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Song SJ</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Back K</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">plant cell</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CL:0000610</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell Type</bp:Ontology>
+    </bp:openControlledVocabulary>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="acd">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16501255</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Functional characterization of OsPPT1, which encodes p-hydroxybenzoate polyprenyltransferase involved in ubiquinone biosynthesis in Oryza sativa.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Plant Cell Physiol</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2006</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ohara K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yamamoto K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hamamoto M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sasaki K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yazaki K</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="f44">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1536568</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biosynthesis of rice phytoalexins: identification of putative diterpene hydrocarbon precursors.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arch Biochem Biophys</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1992</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wickham KA</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">West CA</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="a22">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">17872948</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identification of a biosynthetic gene cluster in rice for momilactones.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J Biol Chem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2007</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shimura K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Okada A</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Okada K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jikumaru Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ko KW</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Toyomasu T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sassa T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hasegawa M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kodama O</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shibuya N</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Koga J</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nojiri H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yamane H</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="b1a">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18256497</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Comparison of the enzymatic properties of ent-copalyl diphosphate synthases in the biosynthesis of phytoalexins and gibberellins in rice.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biosci Biotechnol Biochem</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2008</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hayashi Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Toyomasu T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hirose Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Onodera Y</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitsuhashi W</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yamane H</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sassa T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dairi T</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:PublicationXref xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#" rdf:id="d01">
+      <bp:ID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9061016</bp:ID>
+      <bp:DB rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PubMed</bp:DB>
+      <bp:TITLE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cloning of a cDNA that encodes farnesyl diphosphate synthase and the blue-light-induced expression of the corresponding gene in the leaves of rice plants.</bp:TITLE>
+      <bp:SOURCE rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biochim Biophys Acta</bp:SOURCE>
+      <bp:YEAR rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1997</bp:YEAR>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sanmiya K</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Iwasaki T</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Matsuoka M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Miyao M</bp:AUTHORS>
+      <bp:AUTHORS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yamamoto N</bp:AUTHORS>
+    </bp:PublicationXref>
+    <bp:openControlledVocabulary xmlns:bp="http://www.biopax.org/release/biopax-level3.owl#">
+      <bp:TERM xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">diterpenoid biosynthetic pathway</bp:TERM>
+      <bp:ID xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PW:0000251</bp:ID>
+      <bp:Ontology xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pathway Ontology</bp:Ontology>
+    </bp:openControlledVocabulary>
+  </Biopax>
+</Pathway>

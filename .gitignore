@@ -1,8 +1,15 @@
 node_modules/
 tmp/
 .idea/
-test/*
-demo/*
+test/lib/
+test/reports/
+test/last-known-goods/
+test/logs/
+demo/jquery-demos/
+demo/web-component-demos/
+demo/input-data/
+demo/doc/
+demo/lib/
 gh-pages
 gh-pages/*
 dist/lib/pvjs-dev*
