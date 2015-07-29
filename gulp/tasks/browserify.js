@@ -385,7 +385,11 @@ gulp.task('browserify', function(callback) {
           })
       );
 
-    return browserifyStreams;
+    return browserifyStreams.map(function(value) {
+      console.log('value');
+      console.log(value);
+      return value;
+    });
 
     //return highland(gulp.src('./lib/**/*.js')
     /*
