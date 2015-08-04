@@ -294,6 +294,7 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
         }))
         // locate sourcemaps in same dir as source file
         .through(sourcemaps.write('./'))
+        .through(buffer())
         .through(gulp.dest('./dist/' + version + '/'))
         .through(gulp.dest('./demo/lib/' + name + '/' + version + '/'))
         .pipe(finishStream());
