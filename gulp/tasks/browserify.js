@@ -398,11 +398,14 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
         // Rx subscription near line 492), meaning it never
         // calls the gulpTaskCompleteCallback.
         if (!isInitialized) {
+          console.log('not initialized');
           i += 1;
           if (i >= streamsLength) {
             isInitialized = true;
             gulpTaskCompleteCallback();
           }
+        } else {
+          console.log('isInitialized');
         }
         return value;
       });
