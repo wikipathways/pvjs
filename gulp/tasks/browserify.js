@@ -35,7 +35,9 @@ var through = require('through');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
-gulp.task('browserify', function(callback) {
+gulp.task('browserify', function(gulpTaskCompleteCallback) {
+
+  var isInitialized = false;
 
   var polyfillServiceList = polyfillService.getAllPolyfills();
   var packageJson = JSON.parse(fs.readFileSync('package.json'));
@@ -53,15 +55,6 @@ gulp.task('browserify', function(callback) {
         if (file.isNull()) {
           return file;
         }
-
-        /*
-        console.log('fileafter1');
-        console.log(file);
-
-        console.log('file.contents inspect');
-        console.log(file.contents.toString());
-        //*/
-
         return file;
       });
     });
@@ -73,10 +66,6 @@ gulp.task('browserify', function(callback) {
   function modernize(namespace) {
     return highland.pipeline(function(stream) {
       return stream.flatMap(function(file) {
-        /*
-        console.log('file145');
-        console.log(file.contents.toString());
-        //*/
 
         return highland([file])
           // TODO make the stream gulp-compatible
@@ -185,10 +174,18 @@ gulp.task('browserify', function(callback) {
 
             polyfillsCache[namespace] = {};
 
-            var polyfillFeatures = _.intersection(polyfillServiceList,
-                autopolyfiller()
-                  .add(codeString)
-                  .polyfills);
+            var requiredPolyfills = autopolyfiller()
+              .add(codeString)
+              .polyfills;
+            //*
+            console.log('requiredPolyfills');
+            console.log(requiredPolyfills);
+            //*/
+
+            var polyfillFeatures = _.intersection(
+                polyfillServiceList,
+                requiredPolyfills
+            );
 
             /*
             console.log('polyfillFeaturesIntersection');
@@ -260,15 +257,15 @@ gulp.task('browserify', function(callback) {
       }
 
       var vinylifiedStream = stream
-        // Use vinyl-source-stream to make the
-        // stream gulp compatible. Specify the
-        // desired output filename here.
+        // Using vinyl-source-stream (source) to make the
+        // stream gulp compatible.
+        // Specifying the desired output filename here.
         .through(source(unminifiedFileName))
         /*
         .through(jshint())
         .through(jshint.reporter('default'))
         //*/
-        //.through(polyfill(name + subsection))
+        .through(polyfill(name + subsection))
         .through(gulp.dest('./test/lib/' + name + '/dev/'));
 
       if (global.isWatching) {
@@ -366,6 +363,9 @@ gulp.task('browserify', function(callback) {
       .pipe(build('core'));
 
     streams.push(core);
+    // TODO tried this when running through the streams with sequence(),
+    // but it didn't end the stream, at least with watchify
+    //streams.push(highland([highland.nil]));
 
     // Streams responsible for bundling and building
     var browserifyStreams = highland(streams)
@@ -373,21 +373,39 @@ gulp.task('browserify', function(callback) {
         // Report compile errors
         handleErrors(err);
       })
-      .merge()
+      .parallel(10);
+      /* TODO tried this, but it didn't end the stream, at least with watchify
       .otherwise(
-        highland([])
+        highland([highland.nil])
           .map(function(value) {
+            console.log('value390');
+            console.log(value);
             // Log when bundling completes!
             bundleLogger.end('bundle');
-            return highland.nil;
+            return value;
           })
       );
+      //*/
 
-    return browserifyStreams.map(function(value) {
-      console.log('value');
-      console.log(value);
-      return value;
-    });
+    var streamsLength = streams.length;
+    var i = 0;
+    return browserifyStreams
+      .map(function(value) {
+        // TODO this seems like the wrong way to trigger
+        // the gulpTaskCompleteCallback, but when using watchify,
+        // the stream appears to never end. That means it
+        // never triggers the onComplete function (in the
+        // Rx subscription near line 492), meaning it never
+        // calls the gulpTaskCompleteCallback.
+        if (!isInitialized) {
+          i += 1;
+          if (i >= streamsLength) {
+            isInitialized = true;
+            gulpTaskCompleteCallback();
+          }
+        }
+        return value;
+      });
 
     //return highland(gulp.src('./lib/**/*.js')
     /*
@@ -449,8 +467,6 @@ gulp.task('browserify', function(callback) {
 
   return bundlerSource
       .subscribe(function(file) {
-        console.log('file');
-        console.log(file);
         if (file && file.path) {
           console.log('Bundle Success'.green);
         } else {
@@ -461,6 +477,10 @@ gulp.task('browserify', function(callback) {
         console.error(err);
       }, function() {
         console.log('bundler ended');
-        return callback();
+        if (!isInitialized) {
+          isInitialized = true;
+          // TODO see comment about the counter near line 402.
+          return gulpTaskCompleteCallback();
+        }
       });
 });

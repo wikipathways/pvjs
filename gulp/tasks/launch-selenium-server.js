@@ -68,6 +68,9 @@ function getActiveSeleniumPort() {
     port: port
   });
 
+  console.log('browser');
+  console.log(browser);
+
   return highland.wrapCallback(getStatus)(browser)
   .errors(function(err, push) {
     if (err.code === 'ECONNREFUSED') {
@@ -91,6 +94,8 @@ function getPort(callback) {
 }
 
 function getStatus(browser, callback) {
+  console.log('browser');
+  console.log(browser);
   browser.status(function(err, status) {
     return callback(err, status);
   });
@@ -132,7 +137,8 @@ function notify(port, done) {
   });
 }
 
-gulp.task('launchSeleniumServer', function(done) {
+gulp.task('launch-selenium-server', function(done) {
+  /*
   return getActiveSeleniumPort()
   .flatMap(function(port) {
     if (!port) {
@@ -140,6 +146,8 @@ gulp.task('launchSeleniumServer', function(done) {
     }
     return highland([port]);
   })
+  //*/
+  return launch(defaultPort)
   .map(function(port) {
     return port;
   })

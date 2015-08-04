@@ -1,6 +1,6 @@
 {
   "name": "pvjs",
-  "version": "2.4.56",
+  "version": "2.4.57",
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "./index.js",
   "engines": {
@@ -51,7 +51,6 @@
     "iconv-lite": "~0.4.7",
     "insert-css": "~0.2.0",
     "jsondiffpatch": "~0.1.31",
-    "jsonld": "^0.3.22",
     "kaavio": "git://github.com/wikipathways/kaavio.git#2.3.10",
     "mithril": "^0.2.0",
     "promisescript": "~1.1.0",
@@ -66,6 +65,7 @@
     "bdd-with-opts": "0.0.4",
     "bower": "latest",
     "brfs": "~1.0.2",
+    "browser-launcher": "^1.0.0",
     "browser-sync": "~2.7.7",
     "browserify": "~10.2.3",
     "chai": "~2.1.2",
@@ -92,7 +92,7 @@
     "gulp-jshint": "^1.11.2",
     "gulp-mocha": "~0.5.1",
     "gulp-modernizr": "^1.0.0-alpha",
-    "gulp-notify": "~2.1.0",
+    "gulp-notify": "^2.2.0",
     "gulp-open": "~0.2.8",
     "gulp-polyfill-service": "0.0.2",
     "gulp-regex-replace": "~0.2.3",
@@ -111,7 +111,8 @@
     "mkdirp": "~0.5.0",
     "mocha": "~1.18.2",
     "mockserver": "~1.1.0",
-    "node-notifier": "~4.0.3",
+    "node-notifier": "^4.2.3",
+    "perceptualdiff": "^1.4.0",
     "polyfill-service": "^1.4.0",
     "pretty-data": "~0.40.0",
     "pretty-hrtime": "~0.2.1",
@@ -137,7 +138,7 @@
     "vinyl-source-stream": "~0.1.1",
     "vinyl-sourcemaps-apply": "^0.1.4",
     "watchify": "~3.2.2",
-    "wd": "~0.3.11",
+    "wd": "^0.3.12",
     "yargs": "~1.2.6"
   }
 }
