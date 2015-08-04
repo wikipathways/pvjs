@@ -373,8 +373,8 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
         // Report compile errors
         handleErrors(err);
       })
-      .parallel(10);
-      /* TODO tried this, but it didn't end the stream, at least with watchify
+      .parallel(10)
+      //* TODO tried this, but it didn't end the stream, at least with watchify
       .otherwise(
         highland([highland.nil])
           .map(function(value) {
