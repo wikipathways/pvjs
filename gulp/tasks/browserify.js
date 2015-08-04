@@ -294,7 +294,9 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
         }))
         // locate sourcemaps in same dir as source file
         .through(sourcemaps.write('./'))
-        .through(buffer())
+        // TODO this doesn't seem to be it, but we need to figure out
+        // how to make the stream finish when not doing watchify
+        //.through(buffer())
         .through(gulp.dest('./dist/' + version + '/'))
         .through(gulp.dest('./demo/lib/' + name + '/' + version + '/'))
         .pipe(finishStream());
@@ -374,8 +376,8 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
         // Report compile errors
         handleErrors(err);
       })
-      .parallel(10)
-      //* TODO tried this, but it didn't end the stream, at least with watchify
+      .parallel(10);
+      /* TODO tried this, but it didn't end the stream, at least with watchify
       .otherwise(
         highland([highland.nil])
           .map(function(value) {
