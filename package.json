@@ -1,6 +1,6 @@
 {
   "name": "pvjs",
-  "version": "2.4.61",
+  "version": "2.4.62",
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "./index.js",
   "engines": {
@@ -44,6 +44,8 @@
     "d3": false
   },
   "dependencies": {
+    "JSONStream": "^1.0.4",
+    "base-url": "^1.0.0",
     "blueimp-load-image": "~1.13.0",
     "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-js.git#1.0.0",
     "highland": "~2.3.0",
@@ -54,7 +56,10 @@
     "kaavio": "git://github.com/wikipathways/kaavio.git#2.3.10",
     "mithril": "^0.2.0",
     "promisescript": "~1.1.0",
+    "rx": "^3.0.0",
+    "rx-node": "^1.0.1",
     "tower-strcase": "~0.5.0",
+    "url": "^0.10.3",
     "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#1.0.5"
   },
   "devDependencies": {
