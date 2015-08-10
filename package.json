@@ -1,6 +1,6 @@
 {
   "name": "pvjs",
-  "version": "2.4.64",
+  "version": "2.4.65",
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "./index.js",
   "engines": {
@@ -63,7 +63,6 @@
     "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#1.0.5"
   },
   "devDependencies": {
-    "JSONStream": "~0.10.0",
     "argv": "0.0.2",
     "async": "~0.7.0",
     "autopolyfiller": "^1.6.1",
