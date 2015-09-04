@@ -16,10 +16,11 @@
 
     <!-- Required by Highlight Plugin -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <script src="../lib/pvjs/pvjs-dev.bundle.js"></script>
+    <script src="../lib/pvjs/pvjs-polyfills-dev.bundle.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script src="../lib/pvjs/dev/pvjs.core.js"></script>
+    <script src="../lib/pvjs/dev/pvjs.jquery-plugin.js"></script>
+    <script src="../lib/pvjs/dev/pvjs.diff-viewer.js"></script>
 
   </head>
   <body>
@@ -44,109 +45,112 @@
     </div>
 
   <script>
-  var $ = window.$;
-  window.GLOBAL_alternative_navigation = false;
-  /* *******************
-  /* Load pvjs
-  /* *******************/
-  $(function(){
-    var pathInstance = null;
-    var getUrl = function(str) {
-      var base = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=';
+    window.addEventListener('load', function load(event) {
+      window.removeEventListener('load', load, false); //remove listener, no longer needed
+      var $ = window.$;
+      window.GLOBAL_alternative_navigation = false;
+      /* *******************
+      /* Load pvjs
+      /* *******************/
+      $(function(){
+        var pathInstance = null;
+        var getUrl = function(str) {
+          var base = 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=';
 
-      // Return local scripts for faster debugging
-      if (str === 'WP525 74871') {
-        return '../input-data/WP525_74871.gpml';
-      }
-      if (str === 'WP525 73040') {
-        return '../input-data/WP525_73040.gpml';
-      }
+          // Return local scripts for faster debugging
+          if (str === 'WP525 74871') {
+            return '../input-data/WP525_74871.gpml';
+          }
+          if (str === 'WP525 73040') {
+            return '../input-data/WP525_73040.gpml';
+          }
 
-      if (str.trim().indexOf(' ') !== -1) {
-        var pieces = str.trim().split(' ');
-        return base + pieces[0] + '&rev=' + pieces[1];
-      } else {
-        return base + str.trim();
-      }
-    };
-    var loadPvjses = function() {
-      // Load difference viewer plugin
-      var pvjsDiffViewer  = new window.PvjsDiffViewer('#pvjs-container', [{
-        fitToContainer: true,
-        manualRender: true,
-        sourceData: [
-          {
-            uri: getUrl($('#pathwayUri').val()),
-            fileType:'gpml'
+          if (str.trim().indexOf(' ') !== -1) {
+            var pieces = str.trim().split(' ');
+            return base + pieces[0] + '&rev=' + pieces[1];
+          } else {
+            return base + str.trim();
           }
-        ]
-      }, {
-        sourceData: [
-          {
-            uri: getUrl($('#pathwayUri2').val()),
-            fileType:'gpml'
-          }
-        ]
-      }]);
+        };
+        var loadPvjses = function() {
+          // Load difference viewer plugin
+          var pvjsDiffViewer  = new window.PvjsDiffViewer('#pvjs-container', [{
+            fitToContainer: true,
+            manualRender: true,
+            sourceData: [
+              {
+                uri: getUrl($('#pathwayUri').val()),
+                fileType:'gpml'
+              }
+            ]
+          }, {
+            sourceData: [
+              {
+                uri: getUrl($('#pathwayUri2').val()),
+                fileType:'gpml'
+              }
+            ]
+          }]);
 
-      /*
-      $('#pvjs-container').pvjs({
-        fitToContainer: true,
-        manualRender: true,
-        sourceData: [
-          {
-            uri: getUrl($('#pathwayUri').val()),
-            fileType:'gpml'
+          /*
+          $('#pvjs-container').pvjs({
+            fitToContainer: true,
+            manualRender: true,
+            sourceData: [
+              {
+                uri: getUrl($('#pathwayUri').val()),
+                fileType:'gpml'
+              }
+            ]
+          });
+
+          // Get first element from array of instances
+          var pathInstance = $('#pvjs-container').pvjs('get').pop();
+
+          // Expose pathInstance for debug
+          window.pathInstance = pathInstance;
+
+          // Load difference viewer plugin
+          window.pvjsDiffviewer(pathInstance, {
+            sourceData: [
+              {
+                uri: getUrl($('#pathwayUri2').val()),
+                fileType:'gpml'
+              }
+            ]
+          });
+
+          // Call renderer
+          pathInstance.render();
+          //*/
+        };
+
+        $('#pathwayUriSubmit').on('click', function(ev) {
+          ev.preventDefault();
+
+          if (pathInstance !== null) {
+            pathInstance.destroy();
           }
-        ]
+
+          loadPvjses();
+        });
+        $('#pathwayUriSubmit').click();
+
+        $('.presets').on('click', 'a', function(ev) {
+          ev.preventDefault();
+          var $this = $(this);
+
+          $('#pathwayUri').val($this.data('diffLeft'));
+          $('#pathwayUri2').val($this.data('diffRight'));
+
+          if (pathInstance !== null) {
+            pathInstance.destroy();
+          }
+
+          loadPvjses();
+        });
       });
-
-      // Get first element from array of instances
-      var pathInstance = $('#pvjs-container').pvjs('get').pop();
-
-      // Expose pathInstance for debug
-      window.pathInstance = pathInstance;
-
-      // Load difference viewer plugin
-      window.pvjsDiffviewer(pathInstance, {
-        sourceData: [
-          {
-            uri: getUrl($('#pathwayUri2').val()),
-            fileType:'gpml'
-          }
-        ]
-      });
-
-      // Call renderer
-      pathInstance.render();
-      //*/
-    };
-
-    $('#pathwayUriSubmit').on('click', function(ev) {
-      ev.preventDefault();
-
-      if (pathInstance !== null) {
-        pathInstance.destroy();
-      }
-
-      loadPvjses();
     });
-    $('#pathwayUriSubmit').click();
-
-    $('.presets').on('click', 'a', function(ev) {
-      ev.preventDefault();
-      var $this = $(this);
-
-      $('#pathwayUri').val($this.data('diffLeft'));
-      $('#pathwayUri2').val($this.data('diffRight'));
-
-      if (pathInstance !== null) {
-        pathInstance.destroy();
-      }
-
-      loadPvjses();
-    });
-  });
   </script>
 </body>
 </html>
