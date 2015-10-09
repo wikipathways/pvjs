@@ -1,10 +1,11 @@
 
 var gulp = require('gulp');
-var gulpPolyfillService = require('gulp-polyfill-service');
+//var gulpPolyfillService = require('gulp-polyfill-service');
 
 gulp.task('polyfill', function() {
   //gulp.src('./lib/**/*.js')
   gulp.src('./test/lib/pvjs/pvjs-dev.bundle.js')
+    /* TODO the following module doesn't install and it was removed from github.
     .pipe(gulpPolyfillService({
       // Or false if not need transform files to next pipe, exclude generated polyfills
       transformFile: true,
@@ -15,18 +16,8 @@ gulp.task('polyfill', function() {
           'Safari/537.36',
       filename: './polyfills.js', // Filename
       features: {}
-      /*
-      // Or empty object for generated all polyfills
-      features: {
-          'Array.isArray': {
-              flags: [
-                  'always',
-                  'gated'
-              ]
-          }
-      }
-      //*/
       //exclude: [] // For exclude polyfills by name
     }))
+    //*/
     .pipe(gulp.dest('./dist/'));
 });

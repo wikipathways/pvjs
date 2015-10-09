@@ -374,6 +374,7 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
     var browserifyStreams = highland(streams)
       .errors(function(err, push) {
         // Report compile errors
+        console.log(err.stack);
         handleErrors(err);
       })
       .parallel(10);
@@ -480,7 +481,7 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
           throw new Error('Unexpected result when bundling');
         }
       }, function(err) {
-        console.error(err);
+        console.error(err.stack);
       }, function() {
         console.log('bundler ended');
         if (!isInitialized) {

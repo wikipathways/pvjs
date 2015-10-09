@@ -1,50 +1,87 @@
-.kaavio-diffviewer {
-  position: relative;
-  height: 500px;
-  border: 1px solid #000;
-}
+.pvjs-diffviewer {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    min-height: 500px;
+    border: 1px solid #000;
+    }
 
-.kaavio-diffviewer .pane {
+.pvjs-diffviewer .pane {
+  height: inherit;
+  width: inherit;
+  /*
   float: left;
   overflow: hidden;
   width: 50%;
-  height: 100%;
+  */
 }
 
-.kaavio-diffviewer .pane.pane-left {
+.pvjs-diffviewer .pane-inner {
+  height: inherit;
+  width: inherit;
 }
 
-.kaavio-diffviewer .pane.pane-left .pane-inner {
-  margin-right: 120px;
-}
+.pvjs-diffviewer .pane.pane-left {
+    -webkit-order: -1;
+    -ms-flex-order: -1;
+    order: -1;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 1 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    }
 
+.pvjs-diffviewer .pane.pane-center {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    }
 
-.kaavio-diffviewer .pane.pane-right {
-}
+.pvjs-diffviewer .pane.pane-right {
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 1 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    }
 
-.kaavio-diffviewer .pane.pane-right .pane-inner {
-  margin-left: 120px;
-}
-
-.kaavio-diffviewer .pane.pane-center {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 240px;
-  margin: 0 0 0 -120px;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-.kaavio-diffviewer .pane-inner {
-  height: 100%;
-}
+.diagram-container {
+  /* a kludge to address the problem where the height is too small */
+  min-height: 500px;
+  }
 
 /**************
   Overlay
  **************/
 
-.kaavio-diffviewer > .overlay {
+.pvjs-diffviewer > .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -53,32 +90,32 @@
   background: #fff;
 }
 
-.kaavio-diffviewer > .overlay .alert{
+.pvjs-diffviewer > .overlay .alert{
   padding: 9px 15px;
   margin: 4px;
   border: 1px solid transparent;
   border-radius: 4px;
 }
 
-.kaavio-diffviewer > .overlay .alert.alert-success{
+.pvjs-diffviewer > .overlay .alert.alert-success{
   background-color: #dff0d8;
   border-color: #d6e9c6;
   color: #3c763d;
 }
 
-.kaavio-diffviewer > .overlay .alert.alert-info{
+.pvjs-diffviewer > .overlay .alert.alert-info{
   background-color: #d9edf7;
   border-color: #bce8f1;
   color: #31708f;
 }
 
-.kaavio-diffviewer > .overlay .alert.alert-warning{
+.pvjs-diffviewer > .overlay .alert.alert-warning{
   background-color: #fcf8e3;
   border-color: #faebcc;
   color: #8a6d3b;
 }
 
-.kaavio-diffviewer > .overlay .alert.alert-danger{
+.pvjs-diffviewer > .overlay .alert.alert-danger{
   background-color: #f2dede;
   border-color: #ebccd1;
   color: #a94442;
