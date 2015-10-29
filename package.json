@@ -25,7 +25,7 @@
     "diagram"
   ],
   "author": "Pvjs team",
-  "license": "Apache 2",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/wikipathways/pvjs/issues"
   },
@@ -47,7 +47,7 @@
     "JSONStream": "^1.0.4",
     "base-url": "^1.0.0",
     "blueimp-load-image": "~1.13.0",
-    "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-js.git#1.0.0",
+    "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-js.git#1.0.2",
     "he": "^0.5.0",
     "highland": "~2.3.0",
     "hyperquest": "^1.2.0",
