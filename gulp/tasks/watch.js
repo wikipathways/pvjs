@@ -60,6 +60,7 @@ gulp.task('watch', ['set-watch', 'browser-sync'], function() {
     });
   });
 
+  /* TODO: verify that "npm link" is handling this. If so, remove the code below.
   // grandchild dependencies
   [
     {
@@ -90,10 +91,12 @@ gulp.task('watch', ['set-watch', 'browser-sync'], function() {
     var childPackageName = getPackNameFromDirName(childDirName);
     var grandchildPackageName = getPackNameFromDirName(grandchildDirName);
     var remoteBase = path.resolve(path.join('..', grandchildDirName, 'lib'));
-    var watchTargetJs = path.join(remoteBase, '**/*.js');
-    var watchTargetJson = path.join(remoteBase, '**/*.json');
-    var watchTargetCss = path.join(remoteBase, '**/*.css');
-    var watchTargetHtml = path.join(remoteBase, '**/*.html');
+    //*/
+    //var watchTargetJs = path.join(remoteBase, '**/*.js');
+    //var watchTargetJson = path.join(remoteBase, '**/*.json');
+    //var watchTargetCss = path.join(remoteBase, '**/*.css');
+    //var watchTargetHtml = path.join(remoteBase, '**/*.html');
+    /*
     gulp.watch([watchTargetJs, watchTargetJson, watchTargetCss, watchTargetHtml], function(event) {
       var type = event.type;
       console.log(type[changeTypeToColorMappings[type]] + ': ' +
@@ -126,4 +129,5 @@ gulp.task('watch', ['set-watch', 'browser-sync'], function() {
       }
     });
   });
+  //*/
 });
