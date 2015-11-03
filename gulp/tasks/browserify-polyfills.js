@@ -66,7 +66,7 @@ gulp.task('browserify-polyfills', ['modernizr'], function() {
     .pipe(highland.pipeline(function(stream) {
       if (global.isWatching) {
         return stream
-          .pipe(gulp.dest('./test/lib/dev/'));
+          .pipe(gulp.dest('./test/lib/pvjs/dev/'));
       }
 
       return stream
@@ -84,7 +84,7 @@ gulp.task('browserify-polyfills', ['modernizr'], function() {
         .through(sourcemaps.write('./'))
         .through(gulp.dest('./dist/' + packageJson.version + '/'))
         .through(gulp.dest('./test/lib/' + packageJson.name + '/' + packageJson.version + '/'))
-        .through(gulp.dest('./test/lib/dev/'))
+        .through(gulp.dest('./test/lib/pvjs/dev/'))
         .pipe(gulp.dest('./demo/lib/' + packageJson.name + '/' + packageJson.version + '/'));
     }))
     // Log when bundling completes!
