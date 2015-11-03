@@ -61,7 +61,7 @@ $ gulp
 ```
 This command starts local web server and watches for your changes to the source files, opens a browser to the pvjs test page and runs a quick test whenever you change a source file.
 
-If you've never done it before, open a new tab and build the polyfills:
+If you've never done it before, open a new terminal window and build the polyfills:
 
 ```
 $ gulp browserify-polyfills
