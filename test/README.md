@@ -1,15 +1,19 @@
 # How To Set Up Environment for Development
 
-A. Fork and clone pvjs. If you've already done this, skip ahead to Step B. Otherwise:
+## A. Fork and clone pvjs
+
+If you've already done this, skip ahead to Step B. Otherwise:
 
 Fork the [WikiPathways repo for pvjs](https://github.com/wikipathways/pvjs/fork) by clicking the "Fork" button on the upper right. Github will create a fork of pvjs for you and take you to your newly created fork. On your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
 
 ```
-$ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pvjs.git #replace with the HTTPS clone URL you copied
+$ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pvjs.git # replace with the HTTPS clone URL you copied
 $ cd pvjs
 ```
 
-B. Add the wikipathways pvjs repo as a remote named "wikipathways," if you have not already done so:
+## B. Add the wikipathways pvjs repo as a remote named "wikipathways"
+
+Skip this step if you have already done it before.
 
 ```
 $ git remote add wikipathways https://github.com/wikipathways/pvjs.git
@@ -21,7 +25,7 @@ Pull latest code from wikipathways master branch of pvjs:
 $ git pull wikipathways master
 ```
 
-C. Install Node.js and all necessary plugin and modules
+## C. Install Node.js and all necessary plugin and modules
 
 1. [PhantomJS](http://phantomjs.org/) headless web browser for testing. If you use ```sudo apt-get install``` or ```brew install```, be sure the resulting version installed is >=1.9.7. Older versions may not include the GhostDriver Remote WebDriver required for working with Selenium.
 2. [ImageMagick](http://www.imagemagick.org/) for comparing screenshots during development against last known good screenshots for testing.
@@ -31,7 +35,7 @@ C. Install Node.js and all necessary plugin and modules
 Then in the console, `cd` into the `pvjs` directory, if you're not already there, and install the Node.js dependencies:
 
 ```
-$ npm update && npm install #uses npm (the node package manager) to install pvjs dependencies
+$ npm update && npm install # uses npm (the node package manager) to install pvjs dependencies
 ```
 
 Install `gulp` globally (if you get an error about permissions or sudo, check out [this article](http://competa.com/blog/2014/12/how-to-run-npm-without-sudo/)):
@@ -40,31 +44,32 @@ Install `gulp` globally (if you get an error about permissions or sudo, check ou
 $ npm install -g gulp
 ```
 
-Then generate a custom build of the Modernizr feature detector library:
-
-```
-$ gulp modernizr
-```
-
-D. Make Updates
+## D. Make Updates
 
 You can edit any of the files in the [lib directory](https://github.com/wikipathways/pvjs/tree/master/lib).
 
 Before making updates, you'll always want to pull from the wikipathways repo to get the latest version of the code, as described in Step B. Then you can start up the test server:
 
 ```
-$ gulp launch-selenium-server #starts Selenium server for running tests
+$ gulp launch-selenium-server # starts Selenium server for running tests
 ```
 
 Leave the [Selenium](http://docs.seleniumhq.org/) server terminal window open and running. Selenium is a web browser automation platform that tests the pvjs code to ensure it works. Open a second terminal window and enter the following command:
 
 ```
-$ gulp #starts local web server and watches for your changes to the source files. Opens a browser to the pvjs test page. Runs a quick test whenever you change a source file.
+$ gulp
+```
+This command starts local web server and watches for your changes to the source files, opens a browser to the pvjs test page and runs a quick test whenever you change a source file.
+
+If you've never done it yet, build the polyfills in a new tab:
+
+```
+$ gulp browserify-polyfills
 ```
 
 View the test page(s) appropriate for your edits. When you change and save a file in the `lib` directory, the page will automatically reload.
 
-E. Send Us a Pull Request
+## E. Send Us a Pull Request
 
 * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests
