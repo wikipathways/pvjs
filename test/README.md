@@ -13,7 +13,7 @@ $ cd pvjs
 
 ## B. Add the wikipathways pvjs repo as a remote named "wikipathways"
 
-Skip this step if you have already done it before.
+If you've already done this, skip ahead to Step C. Otherwise:
 
 ```
 $ git remote add wikipathways https://github.com/wikipathways/pvjs.git
@@ -27,12 +27,15 @@ $ git pull wikipathways master
 
 ## C. Install Node.js and all necessary plugin and modules
 
+If you've already done this, skip ahead to Step D. Otherwise:
+
+Install these programs using whatever method you prefer. For OS/X, many people like using `brew` and `brew cask`.
 1. [PhantomJS](http://phantomjs.org/) headless web browser for testing. If you use ```sudo apt-get install``` or ```brew install```, be sure the resulting version installed is >=1.9.7. Older versions may not include the GhostDriver Remote WebDriver required for working with Selenium.
 2. [ImageMagick](http://www.imagemagick.org/) for comparing screenshots during development against last known good screenshots for testing.
 3. [Node.js](http://nodejs.org/download/)
 4. [Phash dependencies](https://github.com/aaronm67/node-phash) depending on your system
 
-Then in the console, `cd` into the `pvjs` directory, if you're not already there, and install the Node.js dependencies:
+When the programs are installed, return to the terminal window and `cd` into the `pvjs` directory, if you're not already there, and install the Node.js dependencies:
 
 ```
 $ npm update && npm install # uses npm (the node package manager) to install pvjs dependencies
@@ -44,9 +47,7 @@ Install `gulp` globally (if you get an error about permissions or sudo, check ou
 $ npm install -g gulp
 ```
 
-## D. Make Updates
-
-You can edit any of the files in the [lib directory](https://github.com/wikipathways/pvjs/tree/master/lib).
+## D. Start Development Server
 
 Before making updates, you'll always want to pull from the wikipathways repo to get the latest version of the code, as described in Step B. Then you can start up the test server:
 
@@ -59,7 +60,7 @@ Leave the [Selenium](http://docs.seleniumhq.org/) server terminal window open an
 ```
 $ gulp
 ```
-This command starts local web server and watches for your changes to the source files, opens a browser to the pvjs test page and runs a quick test whenever you change a source file.
+This command starts a local web server and watches for your changes to the source files, opens a browser to the pvjs test page and runs a quick test whenever you change a source file.
 
 If you've never done it before, open a new terminal window and build the polyfills:
 
@@ -67,9 +68,11 @@ If you've never done it before, open a new terminal window and build the polyfil
 $ gulp browserify-polyfills
 ```
 
-View the test page(s) appropriate for your edits. When you change and save a file in the `lib` directory, the page will automatically reload.
+## E. Make Updates
 
-## E. Send Us a Pull Request
+View the test page(s) appropriate for your edits. When you change and save a file in the `lib` directory, the page will automatically reload. You can edit any of the files in the [lib directory](https://github.com/wikipathways/pvjs/tree/master/lib).
+
+## F. Send Us a Pull Request
 
 * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests
