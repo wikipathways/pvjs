@@ -25,7 +25,7 @@ Pull latest code from wikipathways master branch of pvjs:
 $ git pull wikipathways master
 ```
 
-## C. Install Node.js and all necessary plugin and modules
+## C. Install Node.js and all necessary plugins and modules
 
 If you've already done this, skip ahead to Step D. Otherwise:
 
