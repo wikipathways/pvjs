@@ -62,7 +62,7 @@
     "rx-node": "^1.0.1",
     "tower-strcase": "~0.5.0",
     "url": "^0.10.3",
-    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#1.0.5"
+    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#1.0.6"
   },
   "devDependencies": {
     "argv": "0.0.2",
