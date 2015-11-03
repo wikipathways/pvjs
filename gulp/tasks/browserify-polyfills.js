@@ -23,9 +23,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
-//gulp.task('browserify-polyfills', ['modernizr'], function() {
-gulp.task('browserify-polyfills', function() {
-
+gulp.task('browserify-polyfills', ['modernizr'], function() {
   var packageJson = JSON.parse(fs.readFileSync('package.json'));
   var getBundleName = function() {
     var version = packageJson.version;
@@ -39,7 +37,7 @@ gulp.task('browserify-polyfills', function() {
     // Specify the entry point of your app
     entries: [
       './tmp/modernizr-custom.js',
-      //'./lib/polyfills.js'
+      './lib/polyfills.js'
       //'./node_modules/kaavio/lib/polyfills.js'
     ],
     // Enable source maps!
@@ -68,7 +66,7 @@ gulp.task('browserify-polyfills', function() {
     .pipe(highland.pipeline(function(stream) {
       if (global.isWatching) {
         return stream
-          .pipe(gulp.dest('./test/lib/' + packageJson.name + '/' + packageJson.version + '/'));
+          .pipe(gulp.dest('./test/lib/dev/'));
       }
 
       return stream
@@ -86,6 +84,7 @@ gulp.task('browserify-polyfills', function() {
         .through(sourcemaps.write('./'))
         .through(gulp.dest('./dist/' + packageJson.version + '/'))
         .through(gulp.dest('./test/lib/' + packageJson.name + '/' + packageJson.version + '/'))
+        .through(gulp.dest('./test/lib/dev/'))
         .pipe(gulp.dest('./demo/lib/' + packageJson.name + '/' + packageJson.version + '/'));
     }))
     // Log when bundling completes!
