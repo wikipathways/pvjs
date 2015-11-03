@@ -7,10 +7,16 @@ var mkdirp = require('mkdirp');
 var modernizr = require('gulp-modernizr');
 var utils = require('../util/utils');
 
-gulp.task('modernizr', function() {
-  utils.createExecStream('touch ./tmp/modernizr-custom.js').concat(
-    gulp.src('./test/lib/pvjs/pvjs-dev.bundle.js')
+mkdirp('tmp');
+
+gulp.task('modernizr', function(callback) {
+  utils.createExecStream('touch ./tmp/modernizr-custom.js')
+  .concat(
+    gulp.src('./test/lib/pvjs/dev/*.js')
       .pipe(modernizr('modernizr-custom.js'))
       .pipe(gulp.dest('tmp/'))
-  );
+  )
+  .toArray(function() {
+    return callback();
+  });
 });
