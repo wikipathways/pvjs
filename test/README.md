@@ -30,6 +30,7 @@ $ git pull wikipathways master
 If you've already done this, skip ahead to Step D. Otherwise:
 
 Install these programs using whatever method you prefer. For OS/X, many people like using `brew` and `brew cask`.
+
 1. [PhantomJS](http://phantomjs.org/) headless web browser for testing. If you use ```sudo apt-get install``` or ```brew install```, be sure the resulting version installed is >=1.9.7. Older versions may not include the GhostDriver Remote WebDriver required for working with Selenium.
 2. [ImageMagick](http://www.imagemagick.org/) for comparing screenshots during development against last known good screenshots for testing.
 3. [Node.js](http://nodejs.org/download/)
