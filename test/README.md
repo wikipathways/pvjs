@@ -39,7 +39,7 @@ Install these programs using whatever method you prefer. For OS/X, many people l
 When the programs are installed, return to the terminal window and `cd` into the `pvjs` directory, if you're not already there, and install the Node.js dependencies:
 
 ```
-$ npm update && npm install # uses npm (the node package manager) to install pvjs dependencies
+$ npm update && npm install # uses the node package manager to install pvjs dependencies; may take a while
 ```
 
 Install `gulp` globally (if you get an error about permissions or sudo, check out [this article](http://competa.com/blog/2014/12/how-to-run-npm-without-sudo/)):
