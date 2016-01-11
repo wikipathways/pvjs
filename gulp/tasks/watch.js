@@ -17,48 +17,49 @@ gulp.task('watch', ['set-watch', 'browser-sync'], function() {
   //gulp.watch('./dist/**', ['update-dev-bundle']);
 	//gulp.watch('./lib/**', ['testDev']);
 
-  function getPackNameFromDirName(dirName) {
-    return dirName.replace(/-js$/, '').replace(/\.js$/, '').replace(/js$/, '');
-  }
-
-  // child dependencies
-  [
-    'kaavio',
-    'kaavio-editor',
-    'gpml2pvjson-js',
-    'wikipathways-api-client-js',
-  ]
-  .forEach(function(dirName) {
-    var packageName = getPackNameFromDirName(dirName);
-    var remoteBase = path.resolve(path.join('..', dirName, 'lib'));
-    var watchTargetJs = path.join(remoteBase, '**/*.js');
-    var watchTargetJson = path.join(remoteBase, '**/*.json');
-    var watchTargetCss = path.join(remoteBase, '**/*.css');
-    var watchTargetHtml = path.join(remoteBase, '**/*.html');
-    gulp.watch([watchTargetJs, watchTargetJson, watchTargetCss, watchTargetHtml], function(event) {
-      var type = event.type;
-      console.log(type[changeTypeToColorMappings[type]] + ': ' +
-          event.path.replace(packageName, packageName.inverse));
-      if (['changed', 'added'].indexOf(type) > -1) {
-        var srcPath = event.path;
-        var localBase = path.resolve(path.join('.', 'node_modules', packageName, 'lib'));
-        var destTarget = path.dirname(srcPath.replace(remoteBase, localBase));
-        gulp.src(srcPath)
-          .pipe(jshint())
-          .pipe(jshint.reporter('default'))
-          .pipe(highland.pipeline(function(stream) {
-            return stream.map(function(file) {
-              if (!file.jshint.success) {
-                console.log('jshint failed');
-                destTarget = tmp.dirSync({unsafeCleanup: true});
-              }
-              return file;
-            });
-          }))
-          .pipe(gulp.dest(destTarget));
-      }
-    });
-  });
+//  function getPackNameFromDirName(dirName) {
+//    return dirName.replace(/-js$/, '').replace(/\.js$/, '').replace(/js$/, '');
+//  }
+//
+//  // child dependencies
+//  [
+//    'kaavio',
+//    'kaavio-editor',
+//    'gpml2pvjson-js',
+//    'wikipathways-api-client-js',
+//  ]
+//  .forEach(function(dirName) {
+//    var packageName = getPackNameFromDirName(dirName);
+//    var remoteBase = path.resolve(path.join('..', dirName, 'lib'));
+//    var watchTargetJs = path.join(remoteBase, '**/*.js');
+//    var watchTargetJson = path.join(remoteBase, '**/*.json');
+//    var watchTargetCss = path.join(remoteBase, '**/*.css');
+//    var watchTargetHtml = path.join(remoteBase, '**/*.html');
+//    gulp.watch([
+//    watchTargetJs, watchTargetJson, watchTargetCss, watchTargetHtml], function(event) {
+//      var type = event.type;
+//      console.log(type[changeTypeToColorMappings[type]] + ': ' +
+//          event.path.replace(packageName, packageName.inverse));
+//      if (['changed', 'added'].indexOf(type) > -1) {
+//        var srcPath = event.path;
+//        var localBase = path.resolve(path.join('.', 'node_modules', packageName, 'lib'));
+//        var destTarget = path.dirname(srcPath.replace(remoteBase, localBase));
+//        gulp.src(srcPath)
+//          .pipe(jshint())
+//          .pipe(jshint.reporter('default'))
+//          .pipe(highland.pipeline(function(stream) {
+//            return stream.map(function(file) {
+//              if (!file.jshint.success) {
+//                console.log('jshint failed');
+//                destTarget = tmp.dirSync({unsafeCleanup: true});
+//              }
+//              return file;
+//            });
+//          }))
+//          .pipe(gulp.dest(destTarget));
+//      }
+//    });
+//  });
 
   /* TODO: verify that "npm link" is handling this. If so, remove the code below.
   // grandchild dependencies

@@ -1,29 +1,35 @@
-var gulp = require('gulp')
-  , _ = require('lodash')
-  , args   = require('yargs').argv
-  , fs   = require('fs')
-  , highland = require('highland')
-  , imagemagick = require('imagemagick-native')
-  , os   = require('os')
-  , path = require('path')
+var gulp = require('gulp');
+var _ = require('lodash');
+var args   = require('yargs').argv;
+var fs   = require('fs');
+var highland = require('highland');
+var os   = require('os');
+var path = require('path');
   // TODO update when this is done:
   // https://github.com/aaronm67/node-phash/issues/17
-  //, pHash = require('phash')
-  , pHash = {}
-  , through = require('through')
-  ;
+  //var pHash = require('phash');
+var pHash = {};
+var through = require('through');
 
-/* 
+// TODO watch for when imagemagick supports Node.js v5
+// and then re-enable it.
+//var imagemagick = require('imagemagick-native');
+var imagemagick = {};
+
+/*
  * Warning! Only run this task after manually viewing every PNG
  * in the protocolTestResultsDirectory and verifying each one
  * is a correct rendering of the corresponding pathway.
  */
 
-gulp.task('setLastKnownGoods', function () {
-  var protocolTestResultsDirectory = 'tmp/protocol/'
-    , protocolTestLastKnownGoodsDirectory = 'test/last-known-goods/protocol/'
-    , screenshotHashesFilePath = 'test/last-known-goods/protocol/screenshot-hashes.json'
-    ;
+gulp.task('setLastKnownGoods', function() {
+  if (typeof imagemagick !== 'function') {
+    return;
+  }
+
+  var protocolTestResultsDirectory = 'tmp/protocol/';
+  var protocolTestLastKnownGoodsDirectory = 'test/last-known-goods/protocol/';
+  var screenshotHashesFilePath = 'test/last-known-goods/protocol/screenshot-hashes.json';
 
   var existingScreenshotHashes = JSON.parse(fs.readFileSync(screenshotHashesFilePath));
 
@@ -34,7 +40,7 @@ gulp.task('setLastKnownGoods', function () {
 
   var testScreenshotTagStream = testScreenshotFileNameStream.fork();
   var screenshotHashStream = testScreenshotFileNameStream.fork();
-  
+
   // TODO figure out how to do this properly without redefining the variable
   var screenshotHashStream2 = screenshotHashStream.map(function(testScreenshotFileName) {
     var screenshotSourcePath = protocolTestResultsDirectory + testScreenshotFileName;
@@ -63,8 +69,9 @@ gulp.task('setLastKnownGoods', function () {
 
     if (testScreenshotFileName.indexOf('chrome') > -1) {
       var screenshotBufferStream = highland(fs.ReadStream(screenshotSourcePath));
-      var screenshotDestinationPath = protocolTestLastKnownGoodsDirectory + testScreenshotFileName.replace('chrome-test', 'lkg');
-      var dest = fs.createWriteStream(screenshotDestinationPath)
+      var screenshotDestinationPath = protocolTestLastKnownGoodsDirectory +
+        testScreenshotFileName.replace('chrome-test', 'lkg');
+      var dest = fs.createWriteStream(screenshotDestinationPath);
       screenshotBufferStream.fork().pipe(dest);
     }
 
@@ -74,14 +81,16 @@ gulp.task('setLastKnownGoods', function () {
     return screenshotHash;
   });
 
-  var screenshotHashesDestination = fs.createWriteStream(protocolTestLastKnownGoodsDirectory + 'screenshot-hashes.json')
+  var screenshotHashesDestination = fs.createWriteStream(
+    protocolTestLastKnownGoodsDirectory + 'screenshot-hashes.json');
 
   testScreenshotTagStream.map(function(testScreenshotFileName) {
     var testScreenshotFileNameComponents = testScreenshotFileName.split('-');
     var testScreenshotFileNameComponentsLength = testScreenshotFileNameComponents.length;
 
     var browser = testScreenshotFileNameComponents[testScreenshotFileNameComponentsLength - 2];
-    var type = testScreenshotFileNameComponents[testScreenshotFileNameComponentsLength - 1].replace('.png', '');
+    var type = testScreenshotFileNameComponents[testScreenshotFileNameComponentsLength - 1]
+      .replace('.png', '');
     var name = testScreenshotFileName.split('-' + browser)[0];
 
     var result = {
@@ -110,8 +119,7 @@ gulp.task('setLastKnownGoods', function () {
     return screenshotHashes;
   })
   .map(function(screenshotHashes) {
-    return JSON.stringify(screenshotHashes, null, '\t')
+    return JSON.stringify(screenshotHashes, null, '\t');
   })
   .pipe(screenshotHashesDestination);
 });
-

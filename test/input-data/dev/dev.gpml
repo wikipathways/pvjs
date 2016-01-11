@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="one of each - test pathway for development" Version="20140211" Organism="Anopheles gambiae">
+<Pathway xmlns="http://pathvisio.org/GPML/2013a" Name="one of each - test pathway for development" Version="20140211" Organism="Homo sapiens">
   <BiopaxRef>bed</BiopaxRef>
   <BiopaxRef>af5</BiopaxRef>
   <BiopaxRef>bc1</BiopaxRef>
