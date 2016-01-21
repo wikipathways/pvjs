@@ -1,4 +1,4 @@
-pvjs-2.4.75
+pvjs-2.4.76
 ====================
 
 JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. It uses SVG and HTML for rendering, the [Mithril](http://lhorie.github.io/mithril/) framework for code organization and [BridgeDb](http://bridgedb.org/) for biological entity reference queries.
@@ -27,7 +27,7 @@ It's as simple as referencing the pvjs JavaScript bundle and its dependencies in
 <script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-polyfills-2.3.5.bundle.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.75.bundle.min.js"></script>
+<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.76.bundle.min.js"></script>
 ```
 
 ## Load Using Script
@@ -38,7 +38,7 @@ First reference the pvjs JavaScript bundle and its dependencies in your HTML doc
 <script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-polyfills-2.3.5.bundle.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.75.bundle.min.js"></script>
+<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.76.bundle.min.js"></script>
 ```
 
 If you have jQuery, then you may do:
@@ -77,201 +77,11 @@ pvjs('#pvjs-container', {
 });
 ```
 
-For developers
+For Developers
 ==============
+If it's your first time working on pvjs, check out the [Getting Started Guide](https://github.com/wikipathways/pvjs/tree/master/test) for tips on testing and contributing to the codebase.
 
-If it's your first time working on pvjs, check out the [Getting Started Guide](https://github.com/wikipathways/pvjs/tree/master/test).
-
-Components
-----------
-* Viewer
-  - Notifications Plugin
-  - Highlighter Plugin
-  - DiffViewer Plugin
-  - Annotations Panel
-* Editor
-* bridgedbjs
-
-Available event messages
-------------------------
-
-Event messages are namespaced and may be called with namespace or without. Namespace is defined by a dot: `click.renderer`.
-Triggering events without specifying a namespace will run both events with and without namespace (ex. trigger('click') will run both on('click') and on('click.renderer')).
-Listening on events without a namespace will run hooks event if an event with namespace was triggered (ex. on('click') will run on both trigger('click') and trigger('click.renderer')).
-In order to prevent running unwanted hooks it is better to namespace all events triggers and listeners.
-
-List of available events through application (custom events may be added at any time):
-* destroy.pvjs
-* error.sourceData
-* error.pvjson
-* error.renderer
-* rendered.renderer
-* zoomed.renderer
-* panned.renderer
-* warning.renderer
-
-Editor Plugin
--------------
-
-Allows for updating the pvjson data.
-
-Notifications Plugin
---------------------
-
-Notifications plugin listens for warning and error messages and displays them as alert boxes.
-
-### Usage
-
-In order to add notifications to pvjs do:
-
-1. Reference plugin's _JS_ and _CSS_ files or use bundle version of pvjs
-2. Activate notifications for a given pvjs:
-
-    ```js
-    pvjsNotifications(pvjsInstance, {displayErrors: true, displayWarnings: true})
-    ```
-
-Highlighter Plugin
-------------------
-
-Highlighter plugin allows for highlighting pathway nodes, interactions, groups and other entities. It allows for selecting data nodes using autocomplete text input.
-
-### Usage
-
-```js
-    $('#wikipathways-pvjs-1').pvjs({
-      fitToContainer: true,
-      sourceData: [
-        // at least one item required
-        {
-          uri: '../input-data/WP525_73040.gpml',
-          fileType: 'gpml' // generally will correspond to filename extension
-        },
-        {
-          uri: 'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
-          fileType: 'biopax'
-        },
-        {
-          uri: 'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP1',
-          fileType: 'png'
-        }
-      ],
-      displayErrors: true,
-      displayWarnings: true,
-      highlights: [
-        {
-          selector: 'ATFS-1',
-          backgroundColor: 'yellow',
-          borderColor: 'blue',
-        },
-        {
-          selector: 'PHB-2',
-          backgroundColor: 'white',
-          borderColor: 'red',
-        }
-      ]
-    });
-```
-
-<!---
-To customize Highlighter pass arguments to its constructor:
-
-```js
-var hi = pvjsHighlighter(pathInstance, {
-  displayInputField: true
-, autocompleteLimit: 10
-, styles: {
-    fill: 'yellow'
-  , 'fill-opacity': 0.2
-  , stroke: 'orange'
-  , 'stroke-width': '3px'
-  , 'stroke-opacity': 1
-  }
-})
-```
--->
-
-To highlight or attenuate call corresponding API methods:
-
-```js
-// Highlight by ID
-pathInstance.highlight('#e6e')
-// Highlight by text label
-pathInstance.highlight('Cholesterol')
-// Highlight by xref
-pathInstance.highlight('xref:12345')
-
-// Attenuate by ID
-pathInstance.attenuate('#e6e')
-```
-
-You can create highlight groups. This is useful if you want to namespace highlighters for easier attenuation.
-
-```js
-// Default group
-pathInstance.highlight('#e6e')
-
-// Group g1
-pathInstance.highlight('#e7e', 'g1')
-pathInstance.highlight('#e8b', 'g1')
-pathInstance.highlight('#e9c', 'g1')
-
-// One highlighting can be part of more groups
-pathInstance.highlight('#e7e', 'g2')
-
-// Attenuate #e7e only if it is in group g2
-pathInstance.attenuate('#e7e', 'g2')
-
-// Attenuate all elements from group g1
-pathInstance.attenuate(null, 'g1')
-```
-
-You may provide a custom style to your highlighting
-
-```js
-// Red fill, blue stroke
-pathInstance.highlight('#e6e', null, {fill: 'red', stroke: 'blue'})
-```
-
-Difference Viewer Plugin (DiffViewer)
--------------------------------------
-
-DiffViewer plugin allows to compare difference between 2 different versions of a pathway.
-
-### Usage
-
-First reference plugin's _JS_ and _CSS_ files or use bundle version of pvjs.
-
-Highlighter should be instantiated before pvjs was rendered:
-
-```js
-$('#pvjs-container').pvjs({
-  fitToContainer: true,
-  manualRender: true,
-  sourceData: [
-    {
-      uri: 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP2806&rev=75308',
-      fileType:'gpml'
-    }
-  ]
-});
-
-// Get first element from array of instances
-pathInstance = $('#pvjs-container').pvjs('get').pop();
-
-// Init difference viewer
-pvjsDiffviewer(pathInstance, {
-  sourceData: [
-    {
-      uri: 'http://pointer.ucsf.edu/d3/r/data-sources/gpml.php?id=WP2806',
-      fileType:'gpml'
-    }
-  ]
-});
-
-// Call renderer
-pathInstance.render();
-```
+See [./lib/README.md](https://github.com/wikipathways/pvjs/blob/master/lib/README.md) for descriptions and locations of the pvjs components, plugins, event messages and options.
 
 Related
 =======
