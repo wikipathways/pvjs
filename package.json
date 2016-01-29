@@ -1,6 +1,6 @@
 {
   "name": "pvjs",
-  "version": "2.4.80",
+  "version": "2.4.81",
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "./index.js",
   "engines": {
