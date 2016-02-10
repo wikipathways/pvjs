@@ -1,3 +1,7 @@
+# Resources
+
+[Release management of pvjs](https://docs.google.com/a/gladstone.ucsf.edu/document/d/1F_byBNbX--BAduMOUPiHauith7NJ5kBzzIdSDt9q2gM/edit?usp=sharing)
+
 # How To Set Up Environment for Development
 
 ## A. Fork and clone pvjs
