@@ -16,3 +16,10 @@ gh-pages/*
 dist/
 jspm_packages/
 logs/
+localhost.*
+config.js
+index.html
+lib/bootstrap.ts
+lib/main1.ts
+typings/
+demo/TODO_index.html
