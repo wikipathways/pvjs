@@ -24,10 +24,11 @@ var load = require('scriptloader');
 var map = require('vinyl-map');
 var modernizr = require('gulp-modernizr');
 var mkdirp = require('mkdirp');
+var path = require('path');
 var polyfillService = require('polyfill-service');
 var rename = require('gulp-rename');
-var Rx = require('rx');
-var RxNode = require('rx-node');
+var Rx = require('rx-extra');
+var RxNode = Rx.RxNode;
 var semi = require('semi');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
@@ -205,7 +206,8 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
             // The script loader function, stringified with linebreaks removed.
             var scriptLoaderStringified = oneLinifyJs(load);
             polyfillsCache[namespace].scriptLoaderStringified = scriptLoaderStringified;
-            polyfillLoaderStringified = scriptLoaderStringified + ' ' + oneLinifyJs(polyfillLoader);
+            polyfillLoaderStringified = scriptLoaderStringified + ' ' +
+              oneLinifyJs(polyfillLoader);
             polyfillsCache[namespace].polyfillLoaderStringified = polyfillLoaderStringified;
             bundleLogger.end(namespace + ' - generate polyfills');
           }
@@ -240,7 +242,7 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
     });
   }
 
-  var build = function(subsection) {
+  function build(subsection) {
     return highland.pipeline(function(stream) {
 
       bundleLogger.start(subsection + ' build');
@@ -265,7 +267,12 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
         .through(jshint())
         .through(jshint.reporter('default'))
         //*/
-        .through(polyfill(name + subsection))
+        //  TODO polyfill is super slow. Can we speed it up?
+        //  Also, does it work?
+        //  How is it related to the polyfills bundle?
+        //  Should we get rid of it once the polyfills bundle
+        //  generation is working?
+        //.through(polyfill(name + subsection))
         .through(gulp.dest('./test/lib/' + name + '/dev/'));
 
       if (global.isWatching) {
@@ -306,47 +313,20 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
         .pipe(gulp.dest('tmp/'));
         //*/
     });
-  };
+  }
 
-  /*
-  //These values override the real
-  // values for testing the build process.
-  config.entries = [
-    './lib/main1.js',
-    './lib/sub1.js'
-  ];
-  //*/
-  var bundler = browserify(config.entries, {
-    // Required watchify args
-    cache: {}, packageCache: {}, fullPaths: true,
-    // Browserify Options
-    // Enable source maps!
-    debug: true,
-    //insertGlobals : true,
-    //exclude: 'cheerio'
-  })
-  .ignore('commander')
-  .ignore('cheerio')
-  // enable fs.readFileSync() in browser
-  .transform('brfs')
-  .transform('deglobalify');
-
-  var bundle = function() {
+  /**
+   * startBundling
+   *
+   * @param {Object} config
+   * @param {string} config.entries the file(s) that serve as entry points for this project
+   * @return {Observable}
+   */
+  function startBundling(bundler, currentConfig) {
     // Log when bundling starts
-    bundleLogger.start('bundle');
+    bundleLogger.start('bundling');
 
-    var streams = [];
-
-    function factorBuild(subsection) {
-      var factorStream = build(subsection);
-        /*
-        .pipe(highland.pipeline(function(stream) {
-          return stream.last();
-        }));
-        //*/
-      streams.push(factorStream);
-      return factorStream;
-    }
+    var browserifySources = [];
 
     // see this issue on memory leak:
     // https://github.com/substack/factor-bundle/issues/64
@@ -354,140 +334,271 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
     // from b.on('reset', addHooks);
     // to b.once('reset', addHooks);
     bundler.plugin('factor-bundle', {
-      outputs: config.entries.map(function(entry) {
+      outputs: currentConfig.entries.map(function(entry) {
         return entry.split('/').pop().replace('.js', '');
       })
       .map(function(subsection) {
-        return factorBuild(subsection);
+        var factorStream = build(subsection);
+        browserifySources.push(
+          RxNode.fromStream(factorStream, 'end')
+        );
+        return factorStream;
       })
     });
 
-    var core = bundler.bundle()
-      .pipe(build('core'));
+    browserifySources.push(
+      RxNode.fromStream(
+          bundler.bundle()
+          .pipe(build('core')),
+          'end'
+      )
+    );
 
-    streams.push(core);
-    // TODO tried this when running through the streams with sequence(),
-    // but it didn't end the stream, at least with watchify
-    //streams.push(highland([highland.nil]));
+    return Rx.Observable.from(browserifySources)
+    .mergeAll()
+    .flatMap(function(file) {
+      if (file && file.path) {
+        console.log('...'.green);
+        return Rx.Observable.return(file);
+      } else {
+        return Rx.Observable.throw(new Error('Unexpected result when bundling'));
+      }
+    })
+    .doOnCompleted(function() {
+      bundleLogger.end('bundling');
+    });
+  }
 
-    // Streams responsible for bundling and building
-    var browserifyStreams = highland(streams)
-      .errors(function(err, push) {
-        // Report compile errors
-        console.log(err.stack);
-        handleErrors(err);
-      })
-      .parallel(10);
-      /* TODO tried this, but it didn't end the stream, at least with watchify
-      .otherwise(
-        highland([highland.nil])
-          .map(function(value) {
-            console.log('value390');
-            console.log(value);
-            // Log when bundling completes!
-            bundleLogger.end('bundle');
-            return value;
-          })
-      );
-      //*/
+  /************************************************
+  * Settings and Execution
+  *************************************************/
 
-    var streamsLength = streams.length;
-    var i = 0;
-    return browserifyStreams
-      .map(function(value) {
-        // TODO this seems like the wrong way to trigger
-        // the gulpTaskCompleteCallback, but when using watchify,
-        // the stream appears to never end. That means it
-        // never triggers the onComplete function (in the
-        // Rx subscription near line 492), meaning it never
-        // calls the gulpTaskCompleteCallback.
-        if (!isInitialized) {
-          console.log('not initialized');
-          i += 1;
-          if (i >= streamsLength) {
-            isInitialized = true;
-            gulpTaskCompleteCallback();
-          }
-        } else {
-          console.log('isInitialized');
-        }
-        return value;
-      });
+  console.log('Quit by typing "q" and then hitting "Enter"');
+  console.log('Rebundle by typing "rs" and then hitting "Enter"');
 
-    //return highland(gulp.src('./lib/**/*.js')
+  var builtinNames = _.keys(require('browserify/lib/builtins.js'));
+  var topLevelDirPath = __dirname + '/../..';
+  var externalBundlePath = topLevelDirPath + '/dist/external-bundle.js';
+  var externalBundleStream;
+
+  function resolveRelToTopLevel(item) {
+    var abs;
+    try {
+      abs = require.resolve(item);
+    } catch (e) {
+      abs = item;
+    }
+
+    return path.relative(topLevelDirPath, abs);
+  }
+
+  var internalPackages = [
+    'gpml2pvjson',
+    'kaavio',
+    'kaavio-editor',
+    'rx',
+    'rx-extra',
+    'wikipathways-api-client',
+  ];
+
+  var internalEntries = internalPackages.map(resolveRelToTopLevel);
+
+  var externalEntries = _.difference(
+      _.keys(packageJson.dependencies),
+      internalPackages,
+      builtinNames
+  )
+  .concat([
     /*
-      .pipe(jshint())
-      .pipe(jshint.reporter('default')))
-      .flatMap(function(file) {
-        if (!file.jshint.success) {
-          console.log('Skipping browserify process - jshint failed.');
-          return highland();
-        }
-        return browserifyStreams;
-      });
+    'jsonld',
+    'hyperquest',
+    'lodash',
+    'csv-streamify',
+    'mithril-simple-modal',
+    'jsonld-rx-extra',
+    'jsonstream',
+    'bridgedb',
     //*/
-  };
+  ])
+  .filter(function(externalPackage) {
+    // TODO why does resolve.require fail for this? It's in node_modules.
+    return externalPackage !== 'blueimp-load-image';
+  })
+  .map(resolveRelToTopLevel);
 
-  var bundlerSource;
+  // These values override the real values.
+  // This is for quick testing of the build process.
+  config.entries = [
+    './lib/main1.js',
+    './lib/sing.js',
+  ];
+
+  //*
+  externalEntries = [
+    './lib/sub1.js'
+  ]
+  .concat([
+    'd3',
+    'jsonld',
+    //'rx',
+    //'rx-extra',
+  ])
+  .filter(function(externalPackage) {
+    // TODO why does resolve.require fail for this? It's in node_modules.
+    return externalPackage !== 'blueimp-load-image';
+  })
+  .map(resolveRelToTopLevel);
+  //*/
+
+  function fileExists(filePath) {
+    try {
+      return fs.statSync(filePath).isFile();
+    } catch (err) {
+      return false;
+    }
+  }
+
+  if (fileExists(externalBundlePath)) {
+    console.log('Using cached bundle for the following external entries:');
+    console.log(externalEntries);
+    externalBundleStream = highland(fs.createReadStream(externalBundlePath));
+  } else {
+    console.log('Creating cache bundle for the following external entries:');
+    console.log(externalEntries);
+    externalBundleStream = highland(
+      browserify(externalEntries, {
+        basedir: __dirname + '/../../',
+        // Required watchify args
+        cache: {}, packageCache: {}, fullPaths: true,
+        // Browserify Options
+        // Enable source maps!
+        debug: true,
+        //exclude: 'cheerio'
+      })
+      .ignore('cheerio')
+      .ignore('commander')
+      .ignore('jquery')
+      // enable fs.readFileSync() in browser
+      .transform('brfs')
+      .transform('deglobalify')
+      .bundle()
+    );
+
+    //*
+    externalBundleStream
+    .fork()
+    .pipe(build('external'));
+    //.pipe(fs.createWriteStream(externalBundlePath));
+    //*/
+
+    /*
+    startBundling(externalBundler, {})
+    .subscribe(console.log, console.error, function() {
+      console.log('Completed external bundle.');
+    });
+    //*/
+  }
+
+  var internalBundler = browserify(config.entries, {
+    basedir: __dirname + '/../../',
+    // Required watchify args
+    cache: {}, packageCache: {}, fullPaths: true,
+    // Browserify Options
+    // Enable source maps
+    debug: true,
+    require: [
+      externalBundleStream.fork()
+    ],
+    bundleExternal: false
+  })
+  .external(externalEntries)
+  .ignore('cheerio')
+  .ignore('commander')
+  .ignore('jquery')
+  // enable fs.readFileSync() in browser
+  .transform('brfs')
+  .transform('deglobalify');
+
+  /*
+  var internalBundlerStream = highland(
+      internalBundler
+      .bundle()
+  );
+
+  internalBundlerStream
+  .fork()
+  .pipe(fs.createWriteStream(__dirname + '/../../dist/simple-bundle.js'));
+
+  internalBundlerStream.on('end', function() {
+    console.log('completed');
+  });
+  //*/
+
+  /*
+  var internalBundlerSource = RxNode.fromUnpauseableStream(
+      internalBundlerStream.fork(),
+      'end'
+  )
+  //*/
+  // Run the initial time
+  var internalBundlerSource = startBundling(internalBundler, config)
+  .doOnCompleted(gulpTaskCompleteCallback);
+
   if (global.isWatching) {
-    // Rebundle with watchify on changes or user request.
-    bundler = watchify(bundler);
+    // Rebundle with watchify on changes and on user request.
+    internalBundler = watchify(internalBundler);
 
     // Detect when the user types the rebundleTrigger
     // based on code from
     // https://github.com/remy/nodemon/blob/master/lib/nodemon.js
-    var rebundleTrigger = 'rs';
     process.stdin.resume();
     process.stdin.setEncoding('utf8');
-    var rebundleRequestSource = Rx.Observable.fromEvent(process.stdin, 'data')
-      .map(function(data) {
-        return (data + '').trim().toLowerCase();
-      })
-      .filter(function(data) {
-        // do the keys entered match the rebundable value?
-        return data === rebundleTrigger;
-      })
-      .map(function(data) {
-        console.log('Rebundling...'.green);
-        return data;
-      });
 
-    var updateSource = Rx.Observable.fromEvent(bundler, 'update');
+    var userInputSource = Rx.Observable.fromEvent(process.stdin, 'data')
+    .map(function(data) {
+      return (data + '').trim().toLowerCase();
+    });
 
-    bundlerSource = Rx.Observable.merge(
-        // Run the initial time
-        Rx.Observable.return(true),
-        // Rebundle
-        Rx.Observable.merge(
-            updateSource,
-            rebundleRequestSource
-        )
-        // Run just once if multiple files are changed at the same time.
-        .debounce(1500 /* ms */)
+    var quitSource = userInputSource
+    .filter(function(data) {
+      // TODO right now, we need to type "q" and then hit "Enter".
+      // Make Ctrl/Cmd c or just "q" quit this.
+      return ['q'].indexOf(data) > -1;
+    })
+    .subscribe(function(data) {
+      console.log('Quitting...'.green);
+      process.exit(1);
+    }, console.error);
+
+    var rebundleRequestSource = userInputSource
+    .filter(function(data) {
+      // do the keys entered match the rebundable value?
+      return data === 'rs';
+    });
+
+    var updateSource = Rx.Observable.fromEvent(internalBundler, 'update');
+
+    internalBundlerSource = internalBundlerSource.concat(
+      // Rebundle
+      Rx.Observable.merge(
+          updateSource,
+          rebundleRequestSource
       )
+      // Run at most once per second.
+      // This is to handle cases such as multiple files being changed at the same time.
+      .debounce(1000 /* ms */)
+      .doOnNext(function(data) {
+        console.log('Rebundling...'.green);
+      })
       .flatMap(function(value) {
-        return RxNode.fromReadableStream(bundle());
-      });
-  } else {
-    bundlerSource = RxNode.fromReadableStream(bundle());
+        return startBundling(internalBundler, config);
+      })
+    );
   }
 
-  return bundlerSource
-      .subscribe(function(file) {
-        if (file && file.path) {
-          console.log('Bundle Success'.green);
-        } else {
-          //console.log('Unexpected result when bundling'.red);
-          throw new Error('Unexpected result when bundling');
-        }
-      }, function(err) {
-        console.error(err.stack);
-      }, function() {
-        console.log('bundler ended');
-        if (!isInitialized) {
-          isInitialized = true;
-          // TODO see comment about the counter near line 402.
-          return gulpTaskCompleteCallback();
-        }
-      });
+  return internalBundlerSource
+  .subscribeOnError(function(err) {
+    err.message = (err.message || '') + ' in browserify gulp task.';
+    throw err;
+  });
 });
