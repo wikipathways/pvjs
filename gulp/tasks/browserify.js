@@ -378,7 +378,7 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
 
   var builtinNames = _.keys(require('browserify/lib/builtins.js'));
   var topLevelDirPath = __dirname + '/../..';
-  var externalBundlePath = topLevelDirPath + '/dist/external-bundle.js';
+  var externalBundlePath = topLevelDirPath + '/test/lib/pvjs/dev/pvjs.external.js';
   var externalBundleStream;
 
   function resolveRelToTopLevel(item) {
@@ -409,7 +409,7 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
       builtinNames
   )
   .concat([
-    /*
+    //*
     'jsonld',
     'hyperquest',
     'lodash',
@@ -426,6 +426,12 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
   })
   .map(resolveRelToTopLevel);
 
+  var noParse = [
+    'd3',
+    'jsonld',
+  ];
+
+  /*
   // These values override the real values.
   // This is for quick testing of the build process.
   config.entries = [
@@ -433,14 +439,13 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
     './lib/sing.js',
   ];
 
-  //*
   externalEntries = [
     './lib/sub1.js'
   ]
   .concat([
     'd3',
-    'jsonld',
-    //'rx',
+    //'jsonld',
+    'rx',
     //'rx-extra',
   ])
   .filter(function(externalPackage) {
@@ -473,7 +478,8 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
         // Browserify Options
         // Enable source maps!
         debug: true,
-        //exclude: 'cheerio'
+        //exclude: 'cheerio',
+        noParse: noParse,
       })
       .ignore('cheerio')
       .ignore('commander')
@@ -484,19 +490,9 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
       .bundle()
     );
 
-    //*
     externalBundleStream
     .fork()
     .pipe(build('external'));
-    //.pipe(fs.createWriteStream(externalBundlePath));
-    //*/
-
-    /*
-    startBundling(externalBundler, {})
-    .subscribe(console.log, console.error, function() {
-      console.log('Completed external bundle.');
-    });
-    //*/
   }
 
   var internalBundler = browserify(config.entries, {
@@ -509,7 +505,8 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
     require: [
       externalBundleStream.fork()
     ],
-    bundleExternal: false
+    //bundleExternal: false,
+    noParse: noParse,
   })
   .external(externalEntries)
   .ignore('cheerio')
@@ -519,27 +516,6 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
   .transform('brfs')
   .transform('deglobalify');
 
-  /*
-  var internalBundlerStream = highland(
-      internalBundler
-      .bundle()
-  );
-
-  internalBundlerStream
-  .fork()
-  .pipe(fs.createWriteStream(__dirname + '/../../dist/simple-bundle.js'));
-
-  internalBundlerStream.on('end', function() {
-    console.log('completed');
-  });
-  //*/
-
-  /*
-  var internalBundlerSource = RxNode.fromUnpauseableStream(
-      internalBundlerStream.fork(),
-      'end'
-  )
-  //*/
   // Run the initial time
   var internalBundlerSource = startBundling(internalBundler, config)
   .doOnCompleted(gulpTaskCompleteCallback);
