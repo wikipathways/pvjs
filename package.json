@@ -11,7 +11,8 @@
     "packages": "jspm_packages"
   },
   "scripts": {
-    "test": "gulp testLocalhost",
+    "test": "npm run test:unit",
+    "test:integration": "gulp testLocalhost",
     "test:unit": "mocha ./test/spec/api.js --timeout=10000"
   },
   "repository": {
@@ -38,30 +39,35 @@
     "transform": [
       "brfs",
       "deglobalify"
+    ],
+    "ignore": [
+      "jquery"
     ]
   },
   "browser": {
     "cheerio": false,
     "commander": false,
-    "d3": false
+    "d3": false,
+    "jquery": false
   },
   "dependencies": {
     "JSONStream": "^1.0.4",
     "base-url": "^1.0.0",
     "blueimp-load-image": "^1.13.0",
     "d3": "^3.5.16",
-    "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-js.git#76baf650127f10e7c17a8610a265126733607db7",
+    "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-js.git#0d6419c077dfb1edb156c411dfdbc1098d12ac34",
     "he": "^0.5.0",
     "highland": "^2.6.0",
     "hyperquest": "^1.2.0",
     "iconv-lite": "^0.4.7",
     "insert-css": "^0.2.0",
     "jsondiffpatch": "^0.1.31",
-    "kaavio": "git://github.com/wikipathways/kaavio.git#e8febf334355e9757aa298247d82e2b0efa0f061",
-    "kaavio-editor": "git://github.com/wikipathways/kaavio-editor.git#7f689cf6e805797a8e5f86e27b8fb78d8364961a",
+    "kaavio": "git://github.com/wikipathways/kaavio.git#f7402a26ad252f4756cc370cf5ceab36fb4078fb",
+    "kaavio-editor": "git://github.com/wikipathways/kaavio-editor.git#f05f8c608f7d537337e566a1fa2fae0e79b2a548",
     "mithril": "^0.2.0",
     "promisescript": "^1.1.0",
-    "rx-extra": "git://github.com/ariutta/rx-extra.git#9a562eed117c96ff62f75981bd334f075af51dfc",
+    "rx": "^2.5.3",
+    "rx-extra": "git://github.com/ariutta/rx-extra.git#a60b9c5929864aa49667d446800275825f2615ca",
     "rx-node": "^1.0.1",
     "tower-strcase": "^0.5.0",
     "url": "^0.10.3",
