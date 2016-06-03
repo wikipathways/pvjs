@@ -1,7 +1,7 @@
 var freeport = require('freeport');
 var http    =  require('http');
 var mockserver  =  require('mockserver');
-var Rx = require('rx');
+var Rx = require('rx-extra');
 
 function getPort() {
   return Rx.Observable.fromNodeCallback(function getPort(callback) {
