@@ -18,7 +18,7 @@ var config = require('../config.json');
 var fs = require('fs');
 var gulp = require('gulp');
 var handleErrors = require('../util/handle-errors.js');
-var highland = require('highland');
+//var highland = require('highland');
 var jshint = require('gulp-jshint');
 var load = require('scriptloader');
 var map = require('vinyl-map');
@@ -50,50 +50,50 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
   mkdirp.sync('./demo/lib/' + name + '/' + version + '/');
   mkdirp.sync('./test/lib/' + name + '/dev/');
 
-  function inspect() {
-    return highland.pipeline(function(stream) {
-      return stream.map(function(file) {
-        if (file.isNull()) {
-          return file;
-        }
-        return file;
-      });
-    });
-  }
+//  function inspect() {
+//    return highland.pipeline(function(stream) {
+//      return stream.map(function(file) {
+//        if (file.isNull()) {
+//          return file;
+//        }
+//        return file;
+//      });
+//    });
+//  }
 
   // TODO this doesn't work yet. It does get the custom modernizr build
   // for each section, but it doesn't merge them, add them to the file or
   // load the polyfills. It also produces a stream error.
-  function modernize(namespace) {
-    return highland.pipeline(function(stream) {
-      return stream.flatMap(function(file) {
-
-        return highland([file])
-          // TODO make the stream gulp-compatible
-          //.through(source(namespace + '.js'))
-          .through(modernizr('modernizr.' + namespace + '.min.js'))
-          .map(function(customModernizr) {
-            /*
-            console.log('customModernizr77');
-            console.log(customModernizr);
-
-            console.log('customModernizr.contents132');
-            console.log(customModernizr.contents.toString());
-            //*/
-
-            var customModernizrString = oneLinifyJs(customModernizr.contents.toString());
-
-            /*
-            console.log('customModernizrString137');
-            console.log(customModernizrString.length);
-            console.log(customModernizrString);
-            //*/
-
-            return file;
-          });
-      });
-    });
-  }
+//  function modernize(namespace) {
+//    return highland.pipeline(function(stream) {
+//      return stream.flatMap(function(file) {
+//
+//        return highland([file])
+//          // TODO make the stream gulp-compatible
+//          //.through(source(namespace + '.js'))
+//          .through(modernizr('modernizr.' + namespace + '.min.js'))
+//          .map(function(customModernizr) {
+//            /*
+//            console.log('customModernizr77');
+//            console.log(customModernizr);
+//
+//            console.log('customModernizr.contents132');
+//            console.log(customModernizr.contents.toString());
+//            //*/
+//
+//            var customModernizrString = oneLinifyJs(customModernizr.contents.toString());
+//
+//            /*
+//            console.log('customModernizrString137');
+//            console.log(customModernizrString.length);
+//            console.log(customModernizrString);
+//            //*/
+//
+//            return file;
+//          });
+//      });
+//    });
+//  }
 
   function oneLinifyJs(code) {
     var codeString = typeof code === 'function' ? code.toString() : code;
@@ -127,192 +127,307 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
     }
   }
 
-  function polyfill(namespace) {
-    return highland.pipeline(function(stream) {
-      bundleLogger.start(namespace + ' - wrap with polyfills');
-      return stream.flatMap(function(file) {
-        // NOTE: we don't appear to need to do this
-        // if we keep the added code all on one line.
-        /*
-        // generate source maps if plugin source-map present
-        if (file.sourceMap) {
-          options.makeSourceMaps = true;
-        }
-        //*/
+//  function polyfill(namespace) {
+//    return highland.pipeline(function(stream) {
+//      bundleLogger.start(namespace + ' - wrap with polyfills');
+//      return stream.flatMap(function(file) {
+//        // NOTE: we don't appear to need to do this
+//        // if we keep the added code all on one line.
+//        /*
+//        // generate source maps if plugin source-map present
+//        if (file.sourceMap) {
+//          options.makeSourceMaps = true;
+//        }
+//        //*/
+//
+//        if (file.isNull()) {
+//          return file;
+//        }
+//
+//        return highland(file.contents).reduce('', function(codeString, code) {
+//          codeString += code.toString();
+//          return codeString;
+//        })
+//        .map(function(codeString) {
+//          var sourceMappingLine = codeString.match(/\n\/\/# sourceMappingURL=.*\n/);
+//          codeString = codeString.replace(sourceMappingLine, '');
+//          /*
+//          console.log('polyfillServiceList');
+//          console.log(polyfillServiceList);
+//          //*/
+//
+//          var polyfillServiceCallbackName = ('polyfillServiceCallback' + namespace)
+//            .replace(/[^\w]/g, '');
+//
+//          var polyfillServiceIri;
+//          var polyfillLoaderStringified;
+//          var polyfillLoaderCallback;
+//          // NOTE Only generating the polyfills the first time through.
+//          // Building during dev is too slow otherwise.
+//          if (!!polyfillsCache[namespace]) {
+//            polyfillServiceIri = polyfillsCache[namespace].polyfillServiceIri;
+//            polyfillLoaderStringified = polyfillsCache[namespace].polyfillLoaderStringified;
+//            polyfillLoaderCallback = 'function(err) {' + codeString + '}';
+//          } else {
+//            bundleLogger.start(namespace + ' - generate polyfills');
+//            console.log('           Restart gulp to update polyfills.');
+//            // TODO provide our preferred browser requirements.
+//
+//            polyfillsCache[namespace] = {};
+//
+//            var requiredPolyfills = autopolyfiller()
+//              .add(codeString)
+//              .polyfills;
+//            //*
+//            console.log('requiredPolyfills');
+//            console.log(requiredPolyfills);
+//            //*/
+//
+//            var polyfillFeatures = _.intersection(
+//                polyfillServiceList,
+//                requiredPolyfills
+//            );
+//
+//            /*
+//            console.log('polyfillFeaturesIntersection');
+//            console.log(polyfillFeatures);
+//            //*/
+//
+//            file.polyfills = file.polyfills || {};
+//            file.polyfills.features = (file.polyfills.features || []).concat(polyfillFeatures);
+//
+//            polyfillServiceIri = '//cdn.polyfill.io/v1/polyfill.min.js?features=' +
+//              polyfillFeatures.join(',') +
+//              '&callback=' + polyfillServiceCallbackName;
+//            polyfillsCache[namespace].polyfillServiceIri = polyfillServiceIri;
+//
+//            polyfillLoaderCallback = 'function(err) {' + codeString + '}';
+//
+//            // The script loader function, stringified with linebreaks removed.
+//            var scriptLoaderStringified = oneLinifyJs(load);
+//            polyfillsCache[namespace].scriptLoaderStringified = scriptLoaderStringified;
+//            polyfillLoaderStringified = scriptLoaderStringified + ' ' +
+//              oneLinifyJs(polyfillLoader);
+//            polyfillsCache[namespace].polyfillLoaderStringified = polyfillLoaderStringified;
+//            bundleLogger.end(namespace + ' - generate polyfills');
+//          }
+//
+//          // NOTE: removed linebreaks in order to not mess up line numbering for sourcemaps.
+//          var newContent = polyfillLoaderStringified + ' ' +
+//            'polyfillLoader("' + polyfillServiceIri + '", ' +
+//                '"' + polyfillServiceCallbackName + '", ' +
+//                polyfillLoaderCallback + ');' + sourceMappingLine;
+//
+//          var newContentBuffer = new Buffer(newContent);
+//          file.contents = newContentBuffer;
+//
+//          bundleLogger.end(namespace + ' - wrap with polyfills');
+//          /*
+//          // apply source map to the chain
+//          if (file.sourceMap) {
+//            applySourceMap(file, {
+//              version : 3,
+//              file: 'out.js',
+//              sourceRoot : '',
+//              sources: ['foo.js', 'bar.js'],
+//              names: ['src', 'maps', 'are', 'fun'],
+//              mappings: 'AAgBC,SAAQ,CAAEA'
+//            });
+//          }
+//          //*/
+//
+//          return file;
+//        });
+//      });
+//    });
+//  }
 
-        if (file.isNull()) {
-          return file;
-        }
-
-        return highland(file.contents).reduce('', function(codeString, code) {
-          codeString += code.toString();
-          return codeString;
-        })
-        .map(function(codeString) {
-          var sourceMappingLine = codeString.match(/\n\/\/# sourceMappingURL=.*\n/);
-          codeString = codeString.replace(sourceMappingLine, '');
-          /*
-          console.log('polyfillServiceList');
-          console.log(polyfillServiceList);
-          //*/
-
-          var polyfillServiceCallbackName = ('polyfillServiceCallback' + namespace)
-            .replace(/[^\w]/g, '');
-
-          var polyfillServiceIri;
-          var polyfillLoaderStringified;
-          var polyfillLoaderCallback;
-          // NOTE Only generating the polyfills the first time through.
-          // Building during dev is too slow otherwise.
-          if (!!polyfillsCache[namespace]) {
-            polyfillServiceIri = polyfillsCache[namespace].polyfillServiceIri;
-            polyfillLoaderStringified = polyfillsCache[namespace].polyfillLoaderStringified;
-            polyfillLoaderCallback = 'function(err) {' + codeString + '}';
-          } else {
-            bundleLogger.start(namespace + ' - generate polyfills');
-            console.log('           Restart gulp to update polyfills.');
-            // TODO provide our preferred browser requirements.
-
-            polyfillsCache[namespace] = {};
-
-            var requiredPolyfills = autopolyfiller()
-              .add(codeString)
-              .polyfills;
-            //*
-            console.log('requiredPolyfills');
-            console.log(requiredPolyfills);
-            //*/
-
-            var polyfillFeatures = _.intersection(
-                polyfillServiceList,
-                requiredPolyfills
-            );
-
-            /*
-            console.log('polyfillFeaturesIntersection');
-            console.log(polyfillFeatures);
-            //*/
-
-            file.polyfills = file.polyfills || {};
-            file.polyfills.features = (file.polyfills.features || []).concat(polyfillFeatures);
-
-            polyfillServiceIri = '//cdn.polyfill.io/v1/polyfill.min.js?features=' +
-              polyfillFeatures.join(',') +
-              '&callback=' + polyfillServiceCallbackName;
-            polyfillsCache[namespace].polyfillServiceIri = polyfillServiceIri;
-
-            polyfillLoaderCallback = 'function(err) {' + codeString + '}';
-
-            // The script loader function, stringified with linebreaks removed.
-            var scriptLoaderStringified = oneLinifyJs(load);
-            polyfillsCache[namespace].scriptLoaderStringified = scriptLoaderStringified;
-            polyfillLoaderStringified = scriptLoaderStringified + ' ' +
-              oneLinifyJs(polyfillLoader);
-            polyfillsCache[namespace].polyfillLoaderStringified = polyfillLoaderStringified;
-            bundleLogger.end(namespace + ' - generate polyfills');
-          }
-
-          // NOTE: removed linebreaks in order to not mess up line numbering for sourcemaps.
-          var newContent = polyfillLoaderStringified + ' ' +
-            'polyfillLoader("' + polyfillServiceIri + '", ' +
-                '"' + polyfillServiceCallbackName + '", ' +
-                polyfillLoaderCallback + ');' + sourceMappingLine;
-
-          var newContentBuffer = new Buffer(newContent);
-          file.contents = newContentBuffer;
-
-          bundleLogger.end(namespace + ' - wrap with polyfills');
-          /*
-          // apply source map to the chain
-          if (file.sourceMap) {
-            applySourceMap(file, {
-              version : 3,
-              file: 'out.js',
-              sourceRoot : '',
-              sources: ['foo.js', 'bar.js'],
-              names: ['src', 'maps', 'are', 'fun'],
-              mappings: 'AAgBC,SAAQ,CAAEA'
-            });
-          }
-          //*/
-
-          return file;
-        });
-      });
-    });
-  }
+//  function buildH(subsection) {
+//    return highland.pipeline(function(stream) {
+//
+//      bundleLogger.start(subsection + ' build');
+//
+//      var unminifiedFileName = name + '.' + subsection + '.js';
+//
+//      function finishStream(value) {
+//        return highland.pipeline(function(stream) {
+//          console.log('stream254');
+//          return stream
+//          .errors(function(err, push) {
+//            console.log('errorinstream!');
+//            push(err);
+//          })
+//          .map(function(value) {
+//            console.log('value257');
+//            console.log(value);
+//            bundleLogger.end(subsection + ' build');
+//            return value;
+//          });
+//        });
+//      }
+//
+//      var vinylifiedStream = stream
+//        // Using vinyl-source-stream (source) to make the
+//        // stream gulp compatible.
+//        // Specifying the desired output filename here.
+//        .through(source(unminifiedFileName))
+//        .errors(function(err, push) {
+//          console.log('errorinstream!');
+//          push(err);
+//        })
+//        /*
+//        .through(jshint())
+//        .through(jshint.reporter('default'))
+//        //*/
+//        //  TODO polyfill is super slow. Can we speed it up?
+//        //  Also, does it work?
+//        //  How is it related to the polyfills bundle?
+//        //  Should we get rid of it once the polyfills bundle
+//        //  generation is working?
+//        //.through(polyfill(name + subsection))
+//        .pipe(gulp.dest('./test/lib/' + name + '/dev/'));
+//
+//      console.log('global.isWatching');
+//      console.log(global.isWatching);
+//      if (global.isWatching) {
+//        return vinylifiedStream;
+//        //return vinylifiedStream.pipe(finishStream());
+//      }
+//
+//      console.log('One-time build process - no watch set.');
+//
+//      return vinylifiedStream
+//      .errors(function(err, push) {
+//        throw err;
+//      })
+//      // These steps are only enabled when
+//      // a watch is not set.
+//      // They are too slow to enable
+//      // during development.
+//      //.through(modernize(name + subsection))
+//      .through(buffer())
+//      .errors(function(err, push) {
+//        throw err;
+//      })
+//      .through(rename(function(path) {
+//        path.extname = '.min.js';
+//      }))
+//      .errors(function(err, push) {
+//        throw err;
+//      })
+//      //.through(inspect())
+//      .errors(function(err, push) {
+//        throw err;
+//      })
+//      .through(sourcemaps.init({loadMaps: true}))
+//      .errors(function(err, push) {
+//        throw err;
+//      })
+//      // Add transformation tasks to the pipeline here.
+//      .through(uglify({
+//        'global_defs': {
+//          DEBUG: false
+//        }
+//      }))
+//      .errors(function(err, push) {
+//        throw err;
+//      })
+//      // locate sourcemaps in same dir as source file
+//      .through(sourcemaps.write('./'))
+//      .errors(function(err, push) {
+//        throw err;
+//      })
+//      // TODO this doesn't seem to be it, but we need to figure out
+//      // how to make the stream finish when not doing watchify
+//      //.through(buffer())
+//      .through(gulp.dest('./dist/' + version + '/'))
+//      .errors(function(err, push) {
+//        throw err;
+//      })
+//      .through(gulp.dest('./demo/lib/' + name + '/' + version + '/'))
+//      .errors(function(err, push) {
+//        throw err;
+//      });
+////      .pipe(finishStream())
+////      .errors(function(err, push) {
+////        throw err;
+////      });
+//      /*
+//      .through(gulp.dest('./demo/lib/' + name + '/' + version + '/'))
+//      .pipe(modernizr('modernizr-custom1.js'))
+//      .pipe(gulp.dest('tmp/'));
+//      //*/
+//    });
+//  }
 
   function build(subsection) {
-    return highland.pipeline(function(stream) {
+    bundleLogger.start(subsection + ' build');
+    var unminifiedFileName = name + '.' + subsection + '.js';
 
-      bundleLogger.start(subsection + ' build');
+    return RxNode.fromStream(
+        source(unminifiedFileName)
+        .pipe(gulp.dest('./test/lib/' + name + '/dev/')),
+        'end'
+    );
 
-      var unminifiedFileName = name + '.' + subsection + '.js';
+    // Using vinyl-source-stream (source) to make the
+    // stream gulp compatible.
+    // Specifying the desired output filename here.
+    var vinylifiedStream = source(unminifiedFileName)
+    /*
+    .through(jshint())
+    .through(jshint.reporter('default'))
+    //*/
+    //  TODO polyfill is super slow. Can we speed it up?
+    //  Also, does it work?
+    //  How is it related to the polyfills bundle?
+    //  Should we get rid of it once the polyfills bundle
+    //  generation is working?
+    //.through(polyfill(name + subsection))
 
-      function finishStream(value) {
-        return highland.pipeline(function(stream) {
-          return stream.map(function(value) {
-            bundleLogger.end(subsection + ' build');
-            return value;
-          });
-        });
-      }
-
-      var vinylifiedStream = stream
-        // Using vinyl-source-stream (source) to make the
-        // stream gulp compatible.
-        // Specifying the desired output filename here.
-        .through(source(unminifiedFileName))
-        /*
-        .through(jshint())
-        .through(jshint.reporter('default'))
-        //*/
-        //  TODO polyfill is super slow. Can we speed it up?
-        //  Also, does it work?
-        //  How is it related to the polyfills bundle?
-        //  Should we get rid of it once the polyfills bundle
-        //  generation is working?
-        //.through(polyfill(name + subsection))
-        .through(gulp.dest('./test/lib/' + name + '/dev/'));
-
-      if (global.isWatching) {
-        return vinylifiedStream.pipe(finishStream());
-      }
-
+    if (global.isWatching) {
+      console.log('watching...');
+      return RxNode.fromStream(vinylifiedStream, 'end');
+      //return vinylifiedStream.pipe(finishStream());
+    } else {
       console.log('One-time build process - no watch set.');
+      vinylifiedStream = vinylifiedStream
+      // These steps are only enabled when
+      // a watch is not set.
+      // They are too slow to enable
+      // during development.
+      //.through(modernize(name + subsection))
+      .pipe(buffer())
+      .pipe(rename(function(path) {
+        path.extname = '.min.js';
+      }))
+      //.through(inspect())
+      .pipe(sourcemaps.init({loadMaps: true}))
+      // Add transformation tasks to the pipeline here.
+      .pipe(uglify({
+        'global_defs': {
+          DEBUG: false
+        }
+      }))
+      // locate sourcemaps in same dir as source file
+      .pipe(sourcemaps.write('./'))
+      // TODO this doesn't seem to be it, but we need to figure out
+      // how to make the stream finish when not doing watchify
+      //.through(buffer())
+      .pipe(gulp.dest('./dist/' + version + '/'))
+      .pipe(gulp.dest('./demo/lib/' + name + '/' + version + '/'));
+    }
 
-      return vinylifiedStream
-        // These steps are only enabled when
-        // a watch is not set.
-        // They are too slow to enable
-        // during development.
-        //.through(modernize(name + subsection))
-        .through(buffer())
-        .through(rename(function(path) {
-          path.extname = '.min.js';
-        }))
-        .through(inspect())
-        .through(sourcemaps.init({loadMaps: true}))
-        // Add transformation tasks to the pipeline here.
-        .through(uglify({
-          'global_defs': {
-            DEBUG: false
-          }
-        }))
-        // locate sourcemaps in same dir as source file
-        .through(sourcemaps.write('./'))
-        // TODO this doesn't seem to be it, but we need to figure out
-        // how to make the stream finish when not doing watchify
-        //.through(buffer())
-        .through(gulp.dest('./dist/' + version + '/'))
-        .through(gulp.dest('./demo/lib/' + name + '/' + version + '/'))
-        .pipe(finishStream());
-        /*
-        .through(gulp.dest('./demo/lib/' + name + '/' + version + '/'))
-        .pipe(modernizr('modernizr-custom1.js'))
-        .pipe(gulp.dest('tmp/'));
-        //*/
-    });
+    return RxNode.fromStream(vinylifiedStream, 'end');
+//      .pipe(finishStream())
+//      .errors(function(err, push) {
+//        throw err;
+//      });
+    /*
+    .through(gulp.dest('./demo/lib/' + name + '/' + version + '/'))
+    .pipe(modernizr('modernizr-custom1.js'))
+    .pipe(gulp.dest('tmp/'));
+    //*/
   }
 
   /**
@@ -333,29 +448,82 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
     // We have currently patched the local version of the factor-bundle module like this:
     // from b.on('reset', addHooks);
     // to b.once('reset', addHooks);
-    bundler.plugin('factor-bundle', {
-      outputs: currentConfig.entries.map(function(entry) {
-        return entry.split('/').pop().replace('.js', '');
-      })
-      .map(function(subsection) {
-        var factorStream = build(subsection);
-        browserifySources.push(
-          RxNode.fromStream(factorStream, 'end')
-        );
-        return factorStream;
-      })
-    });
+//    bundler.plugin('factor-bundle', {
+//      outputs: currentConfig.entries
+//      .map(function(entry) {
+//        return entry
+//        .split('/')
+//        .pop()
+//        .replace('.js', '');
+//      })
+//      .map(function(subsection) {
+//        console.log('subsection');
+//        console.log(subsection);
+//        var factorStream = build(subsection);
+//        browserifySources.push(
+//            RxNode.fromStream(factorStream, 'end')
+//            .doOnError(function(err) {
+//              var message = err.message || '';
+//              message += ' observed at 356';
+//              console.error(message);
+//              throw err;
+//            })
+//        );
+//        return factorStream;
+//      })
+//    });
 
-    browserifySources.push(
-      RxNode.fromStream(
-          bundler.bundle()
-          .pipe(build('core')),
-          'end'
-      )
-    );
+//    browserifySources.push(
+//      RxNode.fromStream(
+//          bundler
+//          .bundle()
+//          .pipe(build('core')),
+//          'end'
+//      )
+//      .doOnError(function(err) {
+//        var message = err.message || '';
+//        message += ' observed at 374';
+//        console.error(message);
+//        throw err;
+//      })
+//    );
 
-    return Rx.Observable.from(browserifySources)
-    .mergeAll()
+    return RxNode.fromStream(
+        bundler
+        .bundle(),
+        'end'
+    )
+    .doOnError(function(err) {
+      var message = err.message || '';
+      message += ' observed after bundling';
+      console.error(message);
+      throw err;
+    })
+    .flatMap(function(x) {
+      console.log('x497');
+      console.log(x);
+      return build('core');
+    })
+    .doOnError(function(err) {
+      var message = err.message || '';
+      message += ' observed after building';
+      console.error(message);
+      throw err;
+    })
+//    return Rx.Observable.from(browserifySources)
+//    .doOnError(function(err) {
+//      var message = err.message || '';
+//      message += ' observed at 384';
+//      console.error(message);
+//      throw err;
+//    })
+//    .doOnNext(function(x) {
+//      console.log('x370');
+//    })
+    //.mergeAll()
+    .doOnNext(function(x) {
+      console.log('x422');
+    })
     .flatMap(function(file) {
       if (file && file.path) {
         console.log('...'.green);
@@ -414,7 +582,7 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
     'hyperquest',
     'lodash',
     'csv-streamify',
-    'mithril-simple-modal',
+    //'mithril-simple-modal',
     'jsonld-rx-extra',
     'jsonstream',
     'bridgedb',
@@ -466,32 +634,33 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
   if (fileExists(externalBundlePath)) {
     console.log('Using cached bundle for the following external entries:');
     console.log(externalEntries);
-    externalBundleStream = highland(fs.createReadStream(externalBundlePath));
+    externalBundleStream = fs.createReadStream(externalBundlePath);
   } else {
     console.log('Creating cache bundle for the following external entries:');
     console.log(externalEntries);
-    externalBundleStream = highland(
-      browserify(externalEntries, {
-        basedir: __dirname + '/../../',
-        // Required watchify args
-        cache: {}, packageCache: {}, fullPaths: true,
-        // Browserify Options
-        // Enable source maps!
-        debug: true,
-        //exclude: 'cheerio',
-        noParse: noParse,
-      })
-      .ignore('cheerio')
-      .ignore('commander')
-      .ignore('jquery')
-      // enable fs.readFileSync() in browser
-      .transform('brfs')
-      .transform('deglobalify')
-      .bundle()
-    );
+    externalBundleStream = browserify(
+        externalEntries,
+        {
+          basedir: __dirname + '/../../',
+          // Required watchify args
+          cache: {}, packageCache: {}, fullPaths: true,
+          // Browserify Options
+          // Enable source maps!
+          debug: true,
+          //exclude: 'cheerio',
+          noParse: noParse,
+        }
+    )
+    .ignore('cheerio')
+    .ignore('commander')
+    .ignore('jquery')
+    // enable fs.readFileSync() in browser
+    .transform('brfs')
+    .transform('deglobalify')
+    .bundle();
 
     externalBundleStream
-    .fork()
+    //.fork()
     .pipe(build('external'));
   }
 
@@ -503,7 +672,8 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
     // Enable source maps
     debug: true,
     require: [
-      externalBundleStream.fork()
+      externalBundleStream
+      //.fork()
     ],
     //bundleExternal: false,
     noParse: noParse,
@@ -557,8 +727,20 @@ gulp.task('browserify', function(gulpTaskCompleteCallback) {
     internalBundlerSource = internalBundlerSource.concat(
       // Rebundle
       Rx.Observable.merge(
-          updateSource,
+          updateSource
+          .doOnError(function(err) {
+            var message = err.message || '';
+            message += ' observed at 599';
+            console.error(message);
+            throw err;
+          }),
           rebundleRequestSource
+          .doOnError(function(err) {
+            var message = err.message || '';
+            message += ' observed at 606';
+            console.error(message);
+            throw err;
+          })
       )
       // Run at most once per second.
       // This is to handle cases such as multiple files being changed at the same time.
