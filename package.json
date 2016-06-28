@@ -11,7 +11,7 @@
     "packages": "jspm_packages"
   },
   "scripts": {
-    "build": "browserify ./lib/custom-element.js -o ./test/lib/pvjs/dev/pvjs.core.js -t brfs --ignore=jquery",
+    "build": "browserify ./lib/custom-element.js -o ./test/lib/pvjs/dev/pvjs.core.js -d -t brfs --ignore=jquery",
     "build:min": "browserify ./lib/custom-element.js -o ./test/lib/pvjs/dev/pvjs.core.min.js -d -t brfs -t deglobalify --ignore=jquery",
     "build:watch": "watch --filter=watch-filter.js --ignoreDotFile --ignoreUnreadable --wait=2 'npm run build' .",
     "start-broken": "npm-run-all build --parallel start:server build:watch",
@@ -60,7 +60,7 @@
     "JSONStream": "^1.0.4",
     "base-url": "^1.0.0",
     "blueimp-load-image": "^1.13.0",
-    "bridgedb": "git://github.com/bridgedb/bridgedbjs.git#50280531ebd64bb97f15c8a60550c1ab366eb903",
+    "bridgedb": "git://github.com/bridgedb/bridgedbjs.git#dee39daa077c6adc926fcd7f9d253cba37897f30",
     "d3": "^3.5.16",
     "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-js.git#aa3723a18eefcf3810c77b9f636604b3e788ca69",
     "he": "^0.5.0",
@@ -70,14 +70,14 @@
     "insert-css": "^0.2.0",
     "jsondiffpatch": "^0.1.31",
     "jsonld-rx-extra": "git://github.com/ariutta/jsonld-rx-extra.git#961f6543aa160e0595b6e91d6261a90b27dfa67b",
-    "kaavio": "git://github.com/wikipathways/kaavio.git#a0f0bd293996235d99d2325413ba461fe243af8f",
-    "kaavio-editor": "git://github.com/wikipathways/kaavio-editor.git#67d4194021bd48eff146d07fc607597b7d8fdf7f",
+    "kaavio": "git://github.com/wikipathways/kaavio.git#7f5eb4df250daba32b75722c5d01a936271fa6be",
     "mithril": "^0.2.0",
     "promisescript": "^1.1.0",
     "rx-extra": "git://github.com/ariutta/rx-extra.git#117359e7101c328187c648637c38c69aa60751d2",
     "tower-strcase": "^0.5.0",
     "url": "^0.10.3",
-    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#949f52b43acd0bc94d99659feedb30fefcf0a41c"
+    "wikipathways-api-client": "git://github.com/wikipathways/wikipathways-api-client-js.git#949f52b43acd0bc94d99659feedb30fefcf0a41c",
+    "yolk": "~0.10.1"
   },
   "devDependencies": {
     "argv": "0.0.2",
