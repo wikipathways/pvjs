@@ -108,3 +108,5 @@ Funding
 * The National Institute for General Medical Sciences [R01-GM100039](http://www.nigms.nih.gov/)
 * The BioRange program of the Netherlands [Bioinformatics Centre](http://www.nbic.nl/)
 * [University Maastricht](http://www.unimaas.nl/default.asp?taal=en): Broad Research Strategy Program Part 2 (BOS2)
+
+NOTE: manually changed yolk.js dependency to rely on rx-extra instead of plain rx.

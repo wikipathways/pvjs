@@ -41,6 +41,13 @@
   "homepage": "http://wikipathways.github.io/pvjs",
   "gitHead": "044be6618ee72b932fcb90f4369eb61706f3cfb9",
   "readmeFilename": "README.md",
+  "browser": {
+    "cheerio": false,
+    "commander": false,
+    "d3": false,
+    "jquery": false,
+    "rx": "rx-extra"
+  },
   "browserify": {
     "transform": [
       "brfs",
@@ -49,12 +56,6 @@
     "ignore": [
       "jquery"
     ]
-  },
-  "browser": {
-    "cheerio": false,
-    "commander": false,
-    "d3": false,
-    "jquery": false
   },
   "dependencies": {
     "JSONStream": "^1.0.4",
