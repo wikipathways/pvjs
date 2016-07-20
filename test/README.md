@@ -4,7 +4,9 @@
 
 # How To Set Up Environment for Development
 
-## A. Get a local copy of the code (if you've already done this, skip ahead to next step)
+## A. Get a local copy of the code
+
+  If you've already done this, skip ahead to next step.
 
   1. If you have write access to this repo
 
@@ -28,13 +30,13 @@
     $ git remote add wikipathways https://github.com/wikipathways/pvjs.git
     ```
 
-## B. Install system-level dependencies (if you've already done this, skip ahead to next step)
+## B. Install system-level dependencies
 
-  Install these programs using whatever method you prefer. For OS/X, many people like using `brew` and `brew cask`.
+  If you've already done this, skip ahead to next step.
 
-  1. [Node.js](http://nodejs.org/download/)
+  Install [Node.js](http://nodejs.org/download/)
 
-## B. Sync with latest version of the code
+## C. Sync with latest version of the code
 
   To keep your work in sync with everyone else's, regularly pull the latest changes from the wikipathways master branch of pvjs:
 
@@ -42,10 +44,10 @@
   $ git pull wikipathways master
   ```
 
-  Install/update pvjs-specific dependencies:
+  Install/update pvjs-specific dependencies (this command uses the node package manager to install/update pvjs dependencies; may take a long time):
 
   ```
-  $ npm update && npm install # uses the node package manager to install/update pvjs dependencies; may take some time
+  $ npm update && npm install
   ```
 
 ## D. Start Development Server
