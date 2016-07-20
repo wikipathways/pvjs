@@ -4,98 +4,75 @@
 
 # How To Set Up Environment for Development
 
-## A. Fork and clone pvjs
+## A. Get a local copy of the code (if you've already done this, skip ahead to next step)
 
-If you've already done this, skip ahead to Step B. Otherwise:
+  1. If you have write access to this repo
 
-Fork the [WikiPathways repo for pvjs](https://github.com/wikipathways/pvjs/fork) by clicking the "Fork" button on the upper right. Github will create a fork of pvjs for you and take you to your newly created fork. On your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
+    ```
+    $ git clone git@github.com:wikipathways/pvjs.git
+    $ cd pvjs
+    ```
 
-```
-$ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pvjs.git # replace with the HTTPS clone URL you copied
-$ cd pvjs
-```
+  2. If you DON'T have write access to this repo
 
-## B. Add the wikipathways pvjs repo as a remote named "wikipathways"
+    Fork the [WikiPathways repo for pvjs](https://github.com/wikipathways/pvjs/fork) by clicking the "Fork" button on the upper right. Github will create a fork of pvjs for you and take you to your newly created fork. On your newly created fork, find the "HTTPS clone URL," copy it, open a terminal on your dev machine and enter the following command:
 
-If you've already done this, skip ahead to Step C. Otherwise:
+    ```
+    $ git clone https://github.com/YOUR-GITHUB-ACCOUNT/pvjs.git # replace with the HTTPS clone URL you copied
+    $ cd pvjs
+    ```
 
-```
-$ git remote add wikipathways https://github.com/wikipathways/pvjs.git
-```
+    Add the wikipathways pvjs repo as a remote named "wikipathways"
 
-Pull latest code from wikipathways master branch of pvjs:
+    ```
+    $ git remote add wikipathways https://github.com/wikipathways/pvjs.git
+    ```
 
-```
-$ git pull wikipathways master
-```
+## B. Install system-level dependencies (if you've already done this, skip ahead to next step)
 
-## C. Install Node.js and all necessary plugins and modules
+  Install these programs using whatever method you prefer. For OS/X, many people like using `brew` and `brew cask`.
 
-If you've already done this, skip ahead to Step D. Otherwise:
+  1. [Node.js](http://nodejs.org/download/)
 
-Install these programs using whatever method you prefer. For OS/X, many people like using `brew` and `brew cask`.
+## B. Sync with latest version of the code
 
-1. [PhantomJS](http://phantomjs.org/) headless web browser for testing. If you use ```sudo apt-get install``` or ```brew install```, be sure the resulting version installed is >=1.9.7. Older versions may not include the GhostDriver Remote WebDriver required for working with Selenium.
-2. [ImageMagick](http://www.imagemagick.org/) for comparing screenshots during development against last known good screenshots for testing.
-3. [Node.js](http://nodejs.org/download/)
-4. [Phash dependencies](https://github.com/aaronm67/node-phash) depending on your system
+  To keep your work in sync with everyone else's, regularly pull the latest changes from the wikipathways master branch of pvjs:
 
-When the programs are installed, return to the terminal window and `cd` into the `pvjs` directory, if you're not already there, and install the Node.js dependencies:
+  ```
+  $ git pull wikipathways master
+  ```
 
-```
-$ npm update && npm install # uses the node package manager to install pvjs dependencies; may take a while
-```
+  Install/update pvjs-specific dependencies:
 
-Install `gulp` globally (if you get an error about permissions or sudo, check out [this article](http://competa.com/blog/2014/12/how-to-run-npm-without-sudo/)):
-
-```
-$ npm install -g gulp
-```
+  ```
+  $ npm update && npm install # uses the node package manager to install/update pvjs dependencies; may take some time
+  ```
 
 ## D. Start Development Server
 
-Before making updates, you'll always want to pull from the wikipathways repo to get the latest version of the code, as described in Step B. Then you can start up the test server:
+  In a first terminal tab or window:
 
-```
-$ gulp launch-selenium-server # starts Selenium server for running tests
-```
+  ```
+  $ npm run start:server
+  ```
 
-Leave the [Selenium](http://docs.seleniumhq.org/) server terminal window open and running. Selenium is a web browser automation platform that tests the pvjs code to ensure it works. Open a second terminal window and enter the following command:
+  In a second terminal tab or window:
 
-```
-$ gulp
-```
-This command starts a local web server and watches for your changes to the source files, opens a browser to the pvjs test page and runs a quick test whenever you change a source file.
+  ```
+  $ npm run build:watch
+  ```
 
-If you've never done it before, open a new terminal window and build the polyfills:
-
-```
-$ gulp browserify-polyfills
-```
+  Now visit http://localhost:8080/test/
 
 ## E. Make Updates
 
-View the test page(s) appropriate for your edits. When you change and save a file in the `lib` directory, the page will automatically reload. You can edit any of the files in the [lib directory](https://github.com/wikipathways/pvjs/tree/master/lib).
+View the test page(s) appropriate for your edits. When you change and save a file in the `lib` directory, the page will automatically reload (not sure whether auto reload is currently working -- you may need to do this manually). You can edit any of the files in the [lib directory](https://github.com/wikipathways/pvjs/tree/master/lib).
 
-## F. Send Us a Pull Request
+## F. Test
 
 * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
 * Run the tests
-* Commit your changes and push them to your github fork of pvjs
-* Create a pull request to the wikipathways fork of pvjs:
-```
-wikipathways:master ... YOUR-GITHUB-ACCOUNT:master
-```
 
-# How To Run Local End-To-End Test Protocol
-
-The dev tests will run automatically. To run the more extensive local end-to-end test protocol, follow these steps:
-
-A. Install the Chromedriver and other browser plugins for [Selenium WebDriver](http://docs.seleniumhq.org/projects/webdriver/) (if you haven't already done so).
-B. Open the terminal and enter:
-
-```
-$ gulp testLocalhost
-```
-
-Once the tests finish running, you will see the results in the terminal window. Each test should pass (green).
+  ```
+  $ npm test
+  ```
