@@ -11,7 +11,7 @@
     "packages": "jspm_packages"
   },
   "scripts": {
-    "build": "browserify ./lib/custom-element.js -o ./test/lib/pvjs/dev/pvjs.core.js -d -t brfs --ignore=jquery",
+    "build": "browserify ./lib/custom-element.js -o ./test/lib/pvjs/dev/pvjs.core.js -d -t brfs --ignore=jquery && echo 'Build complete...'",
     "build:min": "browserify ./lib/custom-element.js -o ./test/lib/pvjs/dev/pvjs.core.min.js -d -t brfs -t deglobalify --ignore=jquery",
     "build:watch": "watch --filter=watch-filter.js --ignoreDotFile --ignoreUnreadable --wait=2 'npm run build' .",
     "start-broken": "npm-run-all build --parallel start:server build:watch",

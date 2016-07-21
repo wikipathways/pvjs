@@ -1,0 +1,14 @@
+@import url("//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css");
+
+.bridgedb {
+  position: relative;
+  min-width: 320px;
+  width: inherit;
+  min-height: 200px;
+  height: inherit;
+  background-color: white;
+  font-family: Helvetica, sans-serif, Arial;
+  resize: both;
+  overflow: hidden;
+  display: block;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/css" href="../../css/pathway-diagram.css"?>
+
+<svg id="rectangle"
+	version="1.1"
+	baseProfile="full"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	width="100"
+	height="50"
+	preserveAspectRatio="none"
+        class="board-fill-color board-stroke-color node shape">
+
+	<clipPath id="rectangle-clip-path">
+		<rect x="0" y="0" width="100" height="50"></rect>
+	</clipPath>
+
+	<desc>Rectangle</desc>
+	<rect x="0" y="0" width="100" height="50" style="clip-path: url(#rectangle-clip-path); "></rect>
+
+</svg>

@@ -12,14 +12,19 @@ Components
 
 Modules
 -------
-This project is composed of many small modules in order to [manage complexity](http://dailyjs.com/2015/07/02/small-modules-complexity-over-size/). In addition to the many third-party modules, we have created several modules that are key to this project:
+
+### Update 2016-07-21
+Some of the code is using [yolk v0.10.1](https://github.com/garbles/yolk/tree/v0.10.1), which has issues with [npm link](https://docs.npmjs.com/cli/link) ([possibly related?](https://github.com/garbles/yolk/issues/80)). Without `npm link`, it's impossible to work with many small modules, so until the issue with yolk is resolved, I've moved many of the modules (bridgedb, kaavio, kaavio-editor, gpml2pvjson, jsonld-rx-extra) into the lib directory for easier development. Once we can use `npm link` again, I'll have to move them back out and merge any changes to those modules with their external repos.
+
+
+~~This project is composed of many small modules in order to [manage complexity](http://dailyjs.com/2015/07/02/small-modules-complexity-over-size/). In addition to the many third-party modules, we have created several modules that are key to this project:
 
 * [**pvjs**](https://github.com/wikipathways/pvjs): code relating to WikiPathways and to pathways in general
 * [**kaavio**](https://github.com/wikipathways/kaavio): code capturing just the diagram **viewer** functionality -- should not contain any pathway-specific code
 * [**kaavio-editor**](https://github.com/wikipathways/kaavio-editor): code capturing just the diagram **editor** functionality -- should not contain any pathway-specific code
 * [**bridgedbjs**](https://github.com/bridgedb/bridgedbjs): wrapper for BridgeDb API, plus helper utils
 
-Note that the code could use some work to make it actually reflect the organization above. There is currently (2015-11-09) pathway-specific code sprinkled around various parts of the codebase. Much of this code should be moved out of **kaavio** and **kaavio-editor** into **pvjs** in order to make it easier to troubleshoot any bugs coming from the diagram viewer or editor.
+Note that the code could use some work to make it actually reflect the organization above. There is currently (2015-11-09) pathway-specific code sprinkled around various parts of the codebase. Much of this code should be moved out of **kaavio** and **kaavio-editor** into **pvjs** in order to make it easier to troubleshoot any bugs coming from the diagram viewer or editor.~~
 
 The editor code is currently a little confusing. Here's how the editor is currently (2015-11-09) initialized:
 

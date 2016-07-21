@@ -1,6 +1,7 @@
 # Resources
 
-[Release management of pvjs](https://docs.google.com/a/gladstone.ucsf.edu/document/d/1F_byBNbX--BAduMOUPiHauith7NJ5kBzzIdSDt9q2gM/edit?usp=sharing)
+* [Release management of pvjs](https://docs.google.com/a/gladstone.ucsf.edu/document/d/1F_byBNbX--BAduMOUPiHauith7NJ5kBzzIdSDt9q2gM/edit?usp=sharing)
+* [pvjs code architecture/structure](../lib/README.md)
 
 # How To Set Up Environment for Development
 
@@ -68,13 +69,13 @@
 
 ## E. Make Updates
 
-View the test page(s) appropriate for your edits. When you change and save a file in the `lib` directory, the page will automatically reload (not sure whether auto reload is currently working -- you may need to do this manually). You can edit any of the files in the [lib directory](https://github.com/wikipathways/pvjs/tree/master/lib).
+  View the test page(s) appropriate for your edits. When you change and save a file in the `lib` directory, the bundle will be automatically compiled. (Ideally the page would also automatically reload, but the auto-reload feature is not working at present. You'll need to manually reload the page.) You can edit any of the files in the [lib directory](https://github.com/wikipathways/pvjs/tree/master/lib).
 
 ## F. Test
 
-* Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
-* Run the tests
+  * Visually inspect each of the test pathways from the test page, comparing your version with the current version to ensure your code produces the correct visual result in terms of styling, etc.
+  * Run the tests
 
-  ```
-  $ npm test
-  ```
+    ```
+    $ npm test
+    ```
