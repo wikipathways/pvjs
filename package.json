@@ -89,7 +89,7 @@
     "gulp-regex-replace": "~0.2.3",
     "gulp-rename": "~1.2.0",
     "gulp-sequence": "~0.3.1",
-    "gulp-sourcemaps": "~1.1.0",
+    "gulp-sourcemaps": "~2.4.1",
     "gulp-uglify": "~1.0.2",
     "gulp-util": "~2.2.14",
     "image-diff": "~1.0.1",
