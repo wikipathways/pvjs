@@ -1,0 +1,5520 @@
+{
+  "@context": [
+    "http://test2.wikipathways.org/v2/contexts/biopax.jsonld",
+    "http://test2.wikipathways.org/v2/contexts/organism.jsonld",
+    "http://test2.wikipathways.org/v2/contexts/cellular-location.jsonld",
+    "http://test2.wikipathways.org/v2/contexts/display.jsonld",
+    {
+      "@base": "http://identifiers.org/wikipathways/WP525/"
+    }
+  ],
+  "type": "Pathway",
+  "id": "http://identifiers.org/wikipathways/WP525",
+  "idVersion": 0,
+  "xrefs": [
+    "http://identifiers.org/pubmed/18068368",
+    "http://identifiers.org/pubmed/21048161",
+    "http://identifiers.org/pubmed/22445420"
+  ],
+  "elements": [
+    {
+      "type": "PublicationXref",
+      "id": "http://identifiers.org/pubmed/15280428",
+      "dbName": "pubmed",
+      "dbId": "15280428",
+      "title": "Compartment-specific perturbation of protein handling activates genes encoding mitochondrial chaperones.",
+      "source": "J Cell Sci",
+      "year": "2004",
+      "author": "Yoneda T",
+      "displayName": 1
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "da649",
+      "type": "CellularComponent",
+      "entityReference": "Nucleus",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "zIndex": -4,
+      "fontWeight": "bold",
+      "fontSize": "18",
+      "shape": "ellipse-double",
+      "backgroundColor": "transparent",
+      "color": "#c0c0c0",
+      "borderWidth": 3,
+      "width": 502.3558349422626,
+      "height": 476.57218944920874,
+      "x": 657.6374131032244,
+      "y": 212.9164388379271
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "ec2e7",
+      "type": "CellularComponent",
+      "entityReference": "Mitochondria",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 89.75962983913409,
+      "zIndex": -2,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "mitochondria",
+      "backgroundColor": "transparent",
+      "color": "#c0c0c0",
+      "borderWidth": 3,
+      "width": 743.7106957002437,
+      "height": 440.20398085288264,
+      "x": -124.67702014184823,
+      "y": 230.78968710534053
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "gpml:Style": "gpml:Group",
+      "id": "a2eb7",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "8",
+      "strokeDasharray": "5,3",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "type": "Dna",
+          "gpml:element": "gpml:DataNode",
+          "id": "a23",
+          "isPartOf": "a2eb7",
+          "textContent": "hsp-60",
+          "gpml:Type": "gpml:GeneProduct",
+          "verticalAlign": "middle",
+          "textAlign": "center",
+          "zIndex": 32768,
+          "fontSize": "10",
+          "padding": "0.5em",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 53.26104916671695,
+          "height": 21,
+          "x": 827.6464698418928,
+          "y": 518.7527925145719,
+          "entityReference": "http://identifiers.org/wormbase/Y22D7AL.5"
+        },
+        {
+          "gpml:element": "gpml:Interaction",
+          "id": "id9f9dc3d",
+          "isPartOf": "a2eb7",
+          "zIndex": 12288,
+          "shape": "line-straight",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "markerEnd": "mimTranscriptionTranslation",
+          "points": [
+            {
+              "x": 1070.639449809774,
+              "y": 519.1904158563369
+            },
+            {
+              "x": 862.283449443945,
+              "y": 519.1904158563369
+            }
+          ],
+          "type": "Interaction"
+        }
+      ],
+      "x": 818.6464698418928,
+      "y": 509.75279251457187,
+      "width": 260.9929799678813,
+      "height": 39,
+      "zIndex": 12287.9
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "gpml:Style": "gpml:Group",
+      "id": "idf5257ddb",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "8",
+      "strokeDasharray": "5,3",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "type": "Dna",
+          "gpml:element": "gpml:DataNode",
+          "id": "d3c",
+          "isPartOf": "idf5257ddb",
+          "textContent": "ubl-5",
+          "gpml:Type": "gpml:GeneProduct",
+          "verticalAlign": "middle",
+          "textAlign": "center",
+          "zIndex": 32768,
+          "fontSize": "10",
+          "padding": "0.5em",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 47.777208046775044,
+          "height": 21,
+          "x": 817.099918000908,
+          "y": 302.99430262539096,
+          "entityReference": "http://identifiers.org/wormbase/F46F11.4"
+        },
+        {
+          "gpml:element": "gpml:Interaction",
+          "id": "id4215ce8c",
+          "isPartOf": "idf5257ddb",
+          "zIndex": 12288,
+          "shape": "line-straight",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "markerEnd": "mimTranscriptionTranslation",
+          "points": [
+            {
+              "x": 974.4855967078189,
+              "y": 303.52108931539897
+            },
+            {
+              "x": 846.0481929755969,
+              "y": 303.52108931539897
+            }
+          ],
+          "type": "Interaction"
+        }
+      ],
+      "x": 808.099918000908,
+      "y": 293.99430262539096,
+      "width": 175.38567870691088,
+      "height": 39,
+      "zIndex": 12287.9
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "gpml:Style": "gpml:Group",
+      "id": "e897e",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "8",
+      "strokeDasharray": "5,3",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "type": "Dna",
+          "gpml:element": "gpml:DataNode",
+          "id": "eb5",
+          "isPartOf": "e897e",
+          "textContent": "hsp-6",
+          "gpml:Type": "gpml:GeneProduct",
+          "verticalAlign": "middle",
+          "textAlign": "center",
+          "zIndex": 32768,
+          "fontSize": "10",
+          "padding": "0.5em",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 51.22338762521073,
+          "height": 21,
+          "x": 833.8781319249053,
+          "y": 412.91895222975285,
+          "entityReference": "http://identifiers.org/wormbase/C37H5.8"
+        },
+        {
+          "gpml:element": "gpml:Interaction",
+          "id": "id2858d413",
+          "isPartOf": "e897e",
+          "zIndex": 12288,
+          "shape": "line-straight",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "markerEnd": "mimTranscriptionTranslation",
+          "points": [
+            {
+              "x": 1070.362473347548,
+              "y": 413.7605035615968
+            },
+            {
+              "x": 866.8855466609112,
+              "y": 413.7605035615968
+            }
+          ],
+          "type": "Interaction"
+        }
+      ],
+      "x": 824.8781319249053,
+      "y": 403.91895222975285,
+      "width": 254.48434142264273,
+      "height": 39,
+      "zIndex": 12287.9
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/22700657"
+      ],
+      "id": "idf5257dd6",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "isAttachedTo": "adc80",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 731.5766295899566,
+          "y": 457.9668296988528
+        },
+        {
+          "isAttachedTo": "c6a6c",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 829.0376746209249,
+          "y": 610.3966093996004
+        }
+      ],
+      "controller": "adc80",
+      "controlled": "c6a6c",
+      "interactionType": [
+        "SBO:0000170"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/22700657"
+      ],
+      "id": "idf5257dd5",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimCatalysis",
+      "points": [
+        {
+          "isAttachedTo": "ffdce",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 339.6716713413639,
+          "y": 703.4020788648736
+        },
+        {
+          "anchor": [
+            "0.6709135506054816",
+            0
+          ],
+          "isAttachedTo": "id1c7c0397",
+          "x": 404.95886530687716,
+          "y": 589.1658530465828
+        }
+      ],
+      "controller": "ffdce",
+      "controlled": "id1c7c0397",
+      "interactionType": [
+        "SBO:0000172"
+      ],
+      "type": "Catalysis"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/22700657"
+      ],
+      "id": "idf5257dd4",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimCatalysis",
+      "points": [
+        {
+          "isAttachedTo": "a7261",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 412.0450420722648,
+          "y": 694.0686355386897
+        },
+        {
+          "anchor": [
+            "0.48717181361176737",
+            0
+          ],
+          "isAttachedTo": "id1c7c0397",
+          "x": 447.6030056923668,
+          "y": 573.5966840967743
+        }
+      ],
+      "controller": "a7261",
+      "controlled": "id1c7c0397",
+      "interactionType": [
+        "SBO:0000172"
+      ],
+      "type": "Catalysis"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/20188671"
+      ],
+      "id": "id52299414",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimCatalysis",
+      "points": [
+        {
+          "isAttachedTo": "f1fc4",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 308.17537072856203,
+          "y": 190.84461637653055
+        },
+        {
+          "anchor": [
+            "0.5",
+            0
+          ],
+          "isAttachedTo": "id4ff173f9",
+          "x": 227.52038153407864,
+          "y": 290.96549353793574
+        }
+      ],
+      "controller": "f1fc4",
+      "controlled": "id4ff173f9",
+      "interactionType": [
+        "SBO:0000172"
+      ],
+      "type": "Catalysis"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/20188671"
+      ],
+      "id": "idaaff883",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimCatalysis",
+      "points": [
+        {
+          "isAttachedTo": "db832",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 246.92456479690568,
+          "y": 173.43649258542848
+        },
+        {
+          "anchor": [
+            "0.5",
+            0
+          ],
+          "isAttachedTo": "id4ff173f9",
+          "x": 227.52038153407864,
+          "y": 290.96549353793574
+        }
+      ],
+      "controller": "db832",
+      "controlled": "id4ff173f9",
+      "interactionType": [
+        "SBO:0000172"
+      ],
+      "type": "Catalysis"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/20188671",
+        "http://identifiers.org/pubmed/22719267",
+        "http://identifiers.org/pubmed/22700657"
+      ],
+      "id": "id5bc05c06",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "isAttachedTo": "adc80",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 731.5766295899566,
+          "y": 457.9668296988528
+        },
+        {
+          "isAttachedTo": "a23",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 828.1464698418928,
+          "y": 529.2527925145719
+        }
+      ],
+      "controller": "adc80",
+      "controlled": "a23",
+      "interactionType": [
+        "SBO:0000170"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/20188671"
+      ],
+      "id": "id8edf6779",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "isAttachedTo": "adc80",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 731.5766295899566,
+          "y": 457.9668296988528
+        },
+        {
+          "isAttachedTo": "eb5",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 834.3781319249053,
+          "y": 423.41895222975285
+        }
+      ],
+      "controller": "adc80",
+      "controlled": "eb5",
+      "interactionType": [
+        "SBO:0000170"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/20188671"
+      ],
+      "id": "id6ed404d5",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "dd906",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 356.5983823320734,
+          "y": 291.25789119875463
+        },
+        {
+          "isAttachedTo": "ab4ad",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 451.172692397334,
+          "y": 256.3189732231873
+        }
+      ],
+      "participants": [
+        "dd906",
+        "ab4ad"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id2ce27145",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimCatalysis",
+      "points": [
+        {
+          "isAttachedTo": "f4283",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 403.7826685589562,
+          "y": 311.85055732926986
+        },
+        {
+          "anchor": [
+            "0.5034789227165111",
+            0
+          ],
+          "isAttachedTo": "id6ed404d5",
+          "x": 404.2145540803881,
+          "y": 273.66688241553544
+        }
+      ],
+      "controller": "f4283",
+      "controlled": "id6ed404d5",
+      "interactionType": [
+        "SBO:0000172"
+      ],
+      "type": "Catalysis"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/20188671",
+        "http://identifiers.org/pubmed/22700657"
+      ],
+      "id": "id195dea3d",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "isAttachedTo": "f4283",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 425.4577415551118,
+          "y": 321.85055732926986
+        },
+        {
+          "anchor": [
+            "0.2658004790823296",
+            0
+          ],
+          "isAttachedTo": "id4f201825",
+          "x": 627.8203605138651,
+          "y": 512.5544517014071
+        }
+      ],
+      "controller": "f4283",
+      "controlled": "id4f201825",
+      "interactionType": [
+        "SBO:0000170"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/16816413"
+      ],
+      "id": "idf5257dd3",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "d1b",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 649.3452372492873,
+          "y": 316.3856648471835
+        },
+        {
+          "isAttachedTo": "f9008",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 926.3265304930526,
+          "y": 384.79131172934825
+        }
+      ],
+      "participants": [
+        "d1b",
+        "f9008"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/17925224"
+      ],
+      "id": "id30e4ca49",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "fde",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 650.0373737183513,
+          "y": 352.6119634051696
+        },
+        {
+          "isAttachedTo": "f94",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 937.097618196452,
+          "y": 509.00738735450386
+        }
+      ],
+      "participants": [
+        "fde",
+        "f94"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/22700657"
+      ],
+      "id": "id4ef39cae",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimInhibition",
+      "points": [
+        {
+          "isAttachedTo": "f4283",
+          "anchor": [
+            0.75,
+            1,
+            0,
+            1
+          ],
+          "x": 414.620205057034,
+          "y": 331.85055732926986
+        },
+        {
+          "anchor": [
+            "0.1285046801465345",
+            0
+          ],
+          "isAttachedTo": "id1c7c0397",
+          "x": 530.8451249919998,
+          "y": 543.2053898321797
+        }
+      ],
+      "controller": "f4283",
+      "controlled": "id1c7c0397",
+      "interactionType": [
+        "SBO:0000169"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/15280428"
+      ],
+      "id": "id87cffd7c",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimInhibition",
+      "points": [
+        {
+          "isAttachedTo": "bb481",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 109,
+          "y": 413
+        },
+        {
+          "isAttachedTo": "eebd0",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 140.51966831398494,
+          "y": 351.418025819054
+        }
+      ],
+      "controller": "bb481",
+      "controlled": "eebd0",
+      "interactionType": [
+        "SBO:0000169"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/15280428"
+      ],
+      "id": "idc5bdf17d",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "isAttachedTo": "cc60b",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 1166.0405117270786,
+          "y": 359.15707178393745
+        },
+        {
+          "isAttachedTo": "a2eb7",
+          "anchor": [
+            0.75,
+            0,
+            0,
+            -1
+          ],
+          "x": 1014.0162048178038,
+          "y": 511.190415856337
+        }
+      ],
+      "controller": "cc60b",
+      "controlled": "a2eb7",
+      "interactionType": [
+        "SBO:0000170"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/15280428"
+      ],
+      "id": "id457a1d82",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "isAttachedTo": "c0fa2",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 1083.5604157858982,
+          "y": 186.92696290960023
+        },
+        {
+          "isAttachedTo": "e897e",
+          "anchor": [
+            0.75,
+            0,
+            0,
+            -1
+          ],
+          "x": 1015.3663879918874,
+          "y": 405.41895222975285
+        }
+      ],
+      "controller": "c0fa2",
+      "controlled": "e897e",
+      "interactionType": [
+        "SBO:0000170"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/15280428"
+      ],
+      "id": "id5081356c",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimInhibition",
+      "points": [
+        {
+          "isAttachedTo": "c7c03",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 161.06060606060603,
+          "y": 393.53535353535347
+        },
+        {
+          "isAttachedTo": "a69ce",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 172.38323663996192,
+          "y": 362.6827069427664
+        }
+      ],
+      "controller": "c7c03",
+      "controlled": "a69ce",
+      "interactionType": [
+        "SBO:0000169"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/22719267"
+      ],
+      "id": "id2a13e278",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimCatalysis",
+      "points": [
+        {
+          "isAttachedTo": "f6117",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 601.424359683066,
+          "y": 135.36453534795157
+        },
+        {
+          "anchor": [
+            "0.5",
+            0
+          ],
+          "isAttachedTo": "id9fa977d2",
+          "x": 559.0899434080079,
+          "y": 138.22186670072853
+        }
+      ],
+      "controller": "f6117",
+      "controlled": "id9fa977d2",
+      "interactionType": [
+        "SBO:0000172"
+      ],
+      "type": "Catalysis"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id9fa977d2",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "cee06",
+          "anchor": [
+            0.75,
+            0,
+            0,
+            -1
+          ],
+          "x": 559.2185676555514,
+          "y": 162.77482642381227
+        },
+        {
+          "isAttachedTo": "fafac",
+          "anchor": [
+            0.75,
+            1,
+            0,
+            1
+          ],
+          "x": 558.9613191604643,
+          "y": 113.66890697764475
+        }
+      ],
+      "participants": [
+        "cee06",
+        "fafac"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "idb8a520d6",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimInhibition",
+      "points": [
+        {
+          "isAttachedTo": "cee06",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 575.0021497451037,
+          "y": 177.8494532894839
+        },
+        {
+          "isAttachedTo": "caa4a",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 637.2244832690652,
+          "y": 188.24784490797867
+        }
+      ],
+      "controller": "cee06",
+      "controlled": "caa4a",
+      "interactionType": [
+        "SBO:0000169"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/22719267"
+      ],
+      "id": "id693789d7",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimCatalysis",
+      "points": [
+        {
+          "isAttachedTo": "cb05a",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 489.7014660642798,
+          "y": 136.74951303005872
+        },
+        {
+          "anchor": [
+            "0.5",
+            0
+          ],
+          "isAttachedTo": "id468d5052",
+          "x": 527.5227792289036,
+          "y": 138.22186670072853
+        }
+      ],
+      "controller": "cb05a",
+      "controlled": "id468d5052",
+      "interactionType": [
+        "SBO:0000172"
+      ],
+      "type": "Catalysis"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id468d5052",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "fafac",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 527.39415498136,
+          "y": 113.66890697764475
+        },
+        {
+          "isAttachedTo": "cee06",
+          "anchor": [
+            0.25,
+            0,
+            0,
+            -1
+          ],
+          "x": 527.6514034764471,
+          "y": 162.77482642381227
+        }
+      ],
+      "participants": [
+        "fafac",
+        "cee06"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/22719267"
+      ],
+      "id": "id1978e1e1",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "isAttachedTo": "add1d",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 454.7863021775585,
+          "y": 177.96104887285952
+        },
+        {
+          "isAttachedTo": "cb05a",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 466.78875003844644,
+          "y": 146.74951303005872
+        }
+      ],
+      "controller": "add1d",
+      "controlled": "cb05a",
+      "interactionType": [
+        "SBO:0000170"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "b0cae",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "d3c",
+          "anchor": [
+            0.25,
+            0,
+            0,
+            -1
+          ],
+          "x": 829.2942200126017,
+          "y": 303.49430262539096
+        },
+        {
+          "isAttachedTo": "a46a8",
+          "anchor": [
+            0.75,
+            1,
+            0,
+            1
+          ],
+          "x": 699.2310553469475,
+          "y": 263.0686175877896
+        }
+      ],
+      "participants": [
+        "d3c",
+        "a46a8"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/17925224",
+        "http://identifiers.org/pubmed/16816413"
+      ],
+      "id": "idf0a63076",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "isAttachedTo": "ca01a",
+          "anchor": [
+            0,
+            0.75,
+            -1,
+            0
+          ],
+          "x": 924.9436790154873,
+          "y": 515.0073873545041
+        },
+        {
+          "isAttachedTo": "a23",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 880.4075190086097,
+          "y": 529.2527925145719
+        }
+      ],
+      "controller": "ca01a",
+      "controlled": "a23",
+      "interactionType": [
+        "SBO:0000170"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/15280428"
+      ],
+      "id": "ide9de8fb",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimInhibition",
+      "points": [
+        {
+          "isAttachedTo": "b040d",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 208.7037627411299,
+          "y": 427.45121551606024
+        },
+        {
+          "isAttachedTo": "d8170",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 199.25368130514062,
+          "y": 359.0283770365495
+        }
+      ],
+      "controller": "b040d",
+      "controlled": "d8170",
+      "interactionType": [
+        "SBO:0000169"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/15280428"
+      ],
+      "id": "id1af9b5c6",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimInhibition",
+      "points": [
+        {
+          "isAttachedTo": "c93bd",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 250.83899154585478,
+          "y": 396.52944070122055
+        },
+        {
+          "isAttachedTo": "d8170",
+          "anchor": [
+            1,
+            0.75,
+            1,
+            0
+          ],
+          "x": 223.9086577179263,
+          "y": 345.0624029176006
+        }
+      ],
+      "controller": "c93bd",
+      "controlled": "d8170",
+      "interactionType": [
+        "SBO:0000169"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/22700657"
+      ],
+      "id": "idb1d74a40",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimCatalysis",
+      "points": [
+        {
+          "isAttachedTo": "a3b8f",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 230.0259291270531,
+          "y": 725.1512532411408
+        },
+        {
+          "anchor": [
+            "0.4543230693809661",
+            0
+          ],
+          "isAttachedTo": "id482a1806",
+          "x": 242.53561672307222,
+          "y": 617.9962582071961
+        }
+      ],
+      "controller": "a3b8f",
+      "controlled": "id482a1806",
+      "interactionType": [
+        "SBO:0000172"
+      ],
+      "type": "Catalysis"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/22700657"
+      ],
+      "id": "id482a1806",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "dbab1",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 281.27709185630306,
+          "y": 617.0506581733088
+        },
+        {
+          "isAttachedTo": "a1652",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 196.00412699009522,
+          "y": 619.1319965371645
+        }
+      ],
+      "participants": [
+        "dbab1",
+        "a1652"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/22700657"
+      ],
+      "id": "id1c7c0397",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "e3f56",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 560.6694409586478,
+          "y": 532.3166766373603
+        },
+        {
+          "isAttachedTo": "dbab1",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 328.58204980184973,
+          "y": 617.0506581733088
+        }
+      ],
+      "participants": [
+        "e3f56",
+        "dbab1"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/20188671"
+      ],
+      "id": "idc1ee3682",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "x": 519.7773687379571,
+          "y": 316.3620393323938
+        },
+        {
+          "isAttachedTo": "f6a",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 576.4658294704132,
+          "y": 333.1255288539442
+        }
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id48fbf11a",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "ff2",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 574.7665498485441,
+          "y": 623.5938573197137
+        },
+        {
+          "isAttachedTo": "b040d",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 232.4588863019712,
+          "y": 437.45121551606024
+        }
+      ],
+      "participants": [
+        "ff2",
+        "b040d"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "idb54159a3",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "b6b",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 572.7324579382018,
+          "y": 595.9761855525338
+        },
+        {
+          "isAttachedTo": "c93bd",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 275.76626045829187,
+          "y": 406.52944070122055
+        }
+      ],
+      "participants": [
+        "b6b",
+        "c93bd"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id4f201825",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "e3f56",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 607.4796216058519,
+          "y": 532.3166766373603
+        },
+        {
+          "isAttachedTo": "adc80",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 684.0059656449566,
+          "y": 457.9668296988528
+        }
+      ],
+      "participants": [
+        "e3f56",
+        "adc80"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id9f9dc3d",
+      "isPartOf": "a2eb7",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimTranscriptionTranslation",
+      "points": [
+        {
+          "x": 1070.639449809774,
+          "y": 519.1904158563369
+        },
+        {
+          "x": 862.283449443945,
+          "y": 519.1904158563369
+        }
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id2858d413",
+      "isPartOf": "e897e",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimTranscriptionTranslation",
+      "points": [
+        {
+          "x": 1070.362473347548,
+          "y": 413.7605035615968
+        },
+        {
+          "x": 866.8855466609112,
+          "y": 413.7605035615968
+        }
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id4ff173f9",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "a67c9",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 195.8052434456924,
+          "y": 290.67309587711685
+        },
+        {
+          "isAttachedTo": "dd906",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 259.2355196224649,
+          "y": 291.25789119875463
+        }
+      ],
+      "participants": [
+        "a67c9",
+        "dd906"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/17925224",
+        "http://identifiers.org/pubmed/20188671"
+      ],
+      "id": "ida851659f",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimCatalysis",
+      "points": [
+        {
+          "isAttachedTo": "db0",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 188.25116978217193,
+          "y": 196.17334145639825
+        },
+        {
+          "anchor": [
+            "0.5",
+            0
+          ],
+          "isAttachedTo": "id4ff173f9",
+          "x": 227.52038153407864,
+          "y": 290.96549353793574
+        }
+      ],
+      "controller": "db0",
+      "controlled": "id4ff173f9",
+      "interactionType": [
+        "SBO:0000172"
+      ],
+      "type": "Catalysis"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "fb567",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "a46a8",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 659.2310553469475,
+          "y": 263.0686175877896
+        },
+        {
+          "isAttachedTo": "d1b",
+          "anchor": [
+            0.75,
+            0,
+            0,
+            -1
+          ],
+          "x": 638.6579745853041,
+          "y": 306.3856648471835
+        }
+      ],
+      "participants": [
+        "a46a8",
+        "d1b"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id4215ce8c",
+      "isPartOf": "idf5257ddb",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimTranscriptionTranslation",
+      "points": [
+        {
+          "x": 974.4855967078189,
+          "y": 303.52108931539897
+        },
+        {
+          "x": 846.0481929755969,
+          "y": 303.52108931539897
+        }
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id27f34ee4",
+      "zIndex": 12288,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "isAttachedTo": "c2106",
+          "anchor": [
+            1,
+            0.25,
+            1,
+            0
+          ],
+          "x": 351.1966260777209,
+          "y": 312.68303375778214
+        },
+        {
+          "isAttachedTo": "add1d",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 454.7863021775585,
+          "y": 206.79109058757774
+        }
+      ],
+      "controller": "c2106",
+      "controlled": "add1d",
+      "interactionType": [
+        "SBO:0000170"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "gpml:Style": "gpml:Group",
+      "id": "c2106",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "8",
+      "strokeDasharray": "5,3",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "c1590",
+          "isPartOf": "c2106",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 48.6135013914069,
+          "zIndex": 16384,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 260.1970617839916,
+          "y": 313.06054365851116
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "c445d",
+          "isPartOf": "c2106",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 297.85247422202696,
+          "zIndex": 32816,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 284.7046019132503,
+          "y": 315.0654342089207
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "f1167",
+          "isPartOf": "c2106",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 176.57124414315936,
+          "zIndex": 32817,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 268.3315467254308,
+          "y": 321.3737426897809
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "b2cb6",
+          "isPartOf": "c2106",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 100.61180248463023,
+          "zIndex": 32818,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 293.8871431755555,
+          "y": 310.62164251287834
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "a2d69",
+          "isPartOf": "c2106",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 48.6135013914069,
+          "zIndex": 32819,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 285.2716886496631,
+          "y": 332.1650212704513
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "c6446",
+          "isPartOf": "c2106",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 48.6135013914069,
+          "zIndex": 32820,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 309.4507931272752,
+          "y": 315.2993496286604
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "be14e",
+          "isPartOf": "c2106",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 302.20061714727365,
+          "zIndex": 32821,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 311.3199526953332,
+          "y": 330.42391225816914
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "c8544",
+          "isPartOf": "c2106",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 170.35842928411486,
+          "zIndex": 32822,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 13.977182094581917,
+          "x": 328.9117150946173,
+          "y": 305.9221204501803
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "a938e",
+          "isPartOf": "c2106",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 48.6135013914069,
+          "zIndex": 32823,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 320.04780805264824,
+          "y": 334.105319777914
+        }
+      ],
+      "x": 251.19706178399161,
+      "y": 296.9221204501803,
+      "width": 99.40868316137204,
+      "height": 60.369766491912856,
+      "zIndex": 16383.9
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "gpml:Style": "gpml:Group",
+      "id": "idf5257dd7",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "8",
+      "strokeDasharray": "5,3",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "dad",
+          "isPartOf": "idf5257dd7",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 51.08497499114143,
+          "zIndex": 16384,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 36.21784987087366,
+          "height": 15.378058615666834,
+          "x": 82.57803796976025,
+          "y": 313.8462625239727
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "b0a",
+          "isPartOf": "idf5257dd7",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 28.96488541383466,
+          "zIndex": 16384,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.351361497993286,
+          "height": 34.67366022646938,
+          "x": 99.64050891659349,
+          "y": 303.8500044830616
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "b27",
+          "isPartOf": "idf5257dd7",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 337.2239433753206,
+          "zIndex": 16384,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 10.205124289015242,
+          "height": 25.68323496507121,
+          "x": 100.90980536019907,
+          "y": 308.5678621221085
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "df8",
+          "isPartOf": "idf5257dd7",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 80.19288414297802,
+          "zIndex": 16384,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 28.556616533037577,
+          "height": 11.416245824855412,
+          "x": 88.26633100266898,
+          "y": 317.30941466142025
+        }
+      ],
+      "x": 73.57803796976025,
+      "y": 294.8500044830616,
+      "width": 54.21784987087365,
+      "height": 52.673660226469394,
+      "zIndex": 16383.9
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "b27",
+      "isPartOf": "idf5257dd7",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 337.2239433753206,
+      "zIndex": 16384,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 10.205124289015242,
+      "height": 25.68323496507121,
+      "x": 100.90980536019907,
+      "y": 308.5678621221085
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "df8",
+      "isPartOf": "idf5257dd7",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 80.19288414297802,
+      "zIndex": 16384,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 28.556616533037577,
+      "height": 11.416245824855412,
+      "x": 88.26633100266898,
+      "y": 317.30941466142025
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "c1590",
+      "isPartOf": "c2106",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 16384,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 260.1970617839916,
+      "y": 313.06054365851116
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "dad",
+      "isPartOf": "idf5257dd7",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 51.08497499114143,
+      "zIndex": 16384,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 36.21784987087366,
+      "height": 15.378058615666834,
+      "x": 82.57803796976025,
+      "y": 313.8462625239727
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "f6a",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 270.37439393928105,
+      "zIndex": 16384,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "brace",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 81.85281797234701,
+      "height": 31.794063416402246,
+      "x": 551.2002842062819,
+      "y": 317.2284971457431
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "b0a",
+      "isPartOf": "idf5257dd7",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 28.96488541383466,
+      "zIndex": 16384,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.351361497993286,
+      "height": 34.67366022646938,
+      "x": 99.64050891659349,
+      "y": 303.8500044830616
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "ce9",
+      "textContent": "Mitochondrion",
+      "fontSize": "18",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "verticalAlign": "middle",
+      "zIndex": 28672,
+      "fontWeight": "bold",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 150.94169048571206,
+      "height": 21,
+      "x": 173.67239767331998,
+      "y": 98.66214703737766
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "fd6",
+      "textContent": "Nucleus",
+      "fontSize": "18",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "verticalAlign": "middle",
+      "zIndex": 28672,
+      "fontWeight": "bold",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 94.93355730300411,
+      "height": 24.949702653543227,
+      "x": 860.8191948640522,
+      "y": 227.15927308758083
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "eb6",
+      "textContent": "Protein\nConformational Stress\n(Unfolded Proteins)",
+      "fontSize": "10",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "verticalAlign": "middle",
+      "zIndex": 28672,
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 113.3664509532538,
+      "height": 41,
+      "x": 71.16363289942018,
+      "y": 231.8951094621014
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "d25e1",
+      "textContent": "Mitochondrial \nChaperones",
+      "fontSize": "12",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "verticalAlign": "middle",
+      "zIndex": 28672,
+      "fontWeight": "bold",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 94.63456680733958,
+      "height": 36.79709777235894,
+      "x": 552.3153069577428,
+      "y": 645.3439270797505
+    },
+    {
+      "displayName": "GCN-2",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/Y81G3A.3",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/Y81G3A.3"
+      ]
+    },
+    {
+      "displayName": "HSP-6",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/C37H5.8",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/C37H5.8"
+      ]
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "xrefs": [
+        "http://identifiers.org/pubmed/17925224"
+      ],
+      "gpml:Style": "gpml:Complex",
+      "id": "ca01a",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "11",
+      "shape": "complex",
+      "backgroundColor": "#b4b464",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "type": "Dna",
+          "gpml:element": "gpml:DataNode",
+          "id": "f94",
+          "isPartOf": "ca01a",
+          "textContent": "DVE-1",
+          "gpml:Type": "gpml:GeneProduct",
+          "verticalAlign": "middle",
+          "textAlign": "center",
+          "zIndex": 32768,
+          "fontSize": "10",
+          "padding": "0.5em",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 47.87586566056127,
+          "height": 21,
+          "x": 936.5976181964521,
+          "y": 498.5073873545039,
+          "entityReference": "http://identifiers.org/wormbase/ZK1193.5"
+        },
+        {
+          "type": "Protein",
+          "gpml:element": "gpml:DataNode",
+          "id": "da0",
+          "isPartOf": "ca01a",
+          "textContent": "UBL-5",
+          "gpml:Type": "gpml:Protein",
+          "verticalAlign": "middle",
+          "textAlign": "center",
+          "zIndex": 32768,
+          "fontSize": "10",
+          "padding": "0.5em",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 48.248546269616675,
+          "height": 21,
+          "x": 936.4436790154874,
+          "y": 478.50738735450506,
+          "entityReference": "http://identifiers.org/wormbase/F46F11.4"
+        }
+      ],
+      "x": 924.4436790154874,
+      "y": 466.50738735450506,
+      "width": 72.24854626961667,
+      "height": 64.9999999999988,
+      "zIndex": 32767.9
+    },
+    {
+      "displayName": "Protein Fragments",
+      "type": "SmallMoleculeReference",
+      "id": "http://identifiers.org/chebi/CHEBI:16670",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/Ce/CHEBI:16670"
+      ]
+    },
+    {
+      "displayName": "DVE-1",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/ZK1193.5",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/ZK1193.5"
+      ]
+    },
+    {
+      "type": "PublicationXref",
+      "id": "http://identifiers.org/pubmed/18068368",
+      "dbName": "pubmed",
+      "dbId": "18068368",
+      "title": "Mitochondrial stress signaling: a pathway unfolds.",
+      "source": "Trends Cell Biol",
+      "year": "2008",
+      "author": "Broadley SA",
+      "displayName": 5
+    },
+    {
+      "displayName": "Lon Protease/\nC34B2.6",
+      "type": "DnaReference",
+      "id": "http://identifiers.org/wormbase/C34B2.6",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/C34B2.6"
+      ]
+    },
+    {
+      "displayName": "UBL-5",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/F46F11.4",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/F46F11.4"
+      ]
+    },
+    {
+      "type": "PublicationXref",
+      "id": "http://identifiers.org/pubmed/17925224",
+      "dbName": "pubmed",
+      "dbId": "17925224",
+      "title": "ClpP mediates activation of a mitochondrial unfolded protein response in C. elegans.",
+      "source": "Dev Cell",
+      "year": "2007",
+      "author": "Haynes CM",
+      "displayName": 6
+    },
+    {
+      "displayName": "eIF2-alpha\n(Y37E3.10)",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/Y37E3.10",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/Y37E3.10"
+      ]
+    },
+    {
+      "type": "PublicationXref",
+      "id": "http://identifiers.org/pubmed/22445420",
+      "dbName": "pubmed",
+      "dbId": "22445420",
+      "title": "Signaling the mitochondrial unfolded protein response.",
+      "source": "Biochim Biophys Acta",
+      "year": "2013",
+      "author": "Pellegrino MW",
+      "displayName": 7
+    },
+    {
+      "displayName": "GSP-1",
+      "type": "DnaReference",
+      "id": "http://identifiers.org/wormbase/F29F11.6",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/F29F11.6"
+      ]
+    },
+    {
+      "type": "PublicationXref",
+      "id": "http://identifiers.org/pubmed/22719267",
+      "dbName": "pubmed",
+      "dbId": "22719267",
+      "title": "Protective coupling of mitochondrial function and protein synthesis via the eIF2α kinase GCN-2.",
+      "source": "PLoS Genet",
+      "year": "2012",
+      "author": "Baker BM",
+      "displayName": 8
+    },
+    {
+      "displayName": "SPG-7",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/Y47G6A.10",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/Y47G6A.10"
+      ]
+    },
+    {
+      "type": "PublicationXref",
+      "id": "http://identifiers.org/pubmed/22700657",
+      "dbName": "pubmed",
+      "dbId": "22700657",
+      "title": "Mitochondrial import efficiency of ATFS-1 regulates mitochondrial UPR activation.",
+      "source": "Science",
+      "year": "2012",
+      "author": "Nargund AM",
+      "displayName": 9
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "gpml:Style": "gpml:Group",
+      "id": "fb005",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "8",
+      "strokeDasharray": "5,3",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "type": "Dna",
+          "gpml:element": "gpml:DataNode",
+          "id": "c6a6c",
+          "isPartOf": "fb005",
+          "textContent": "dnj-10",
+          "gpml:Type": "gpml:GeneProduct",
+          "verticalAlign": "middle",
+          "textAlign": "center",
+          "zIndex": 32768,
+          "fontSize": "10",
+          "padding": "0.5em",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 81,
+          "height": 21,
+          "x": 828.5376746209249,
+          "y": 599.8966093996004,
+          "entityReference": "http://identifiers.org/wormbase/F22B7.5"
+        },
+        {
+          "gpml:element": "gpml:Interaction",
+          "id": "f2233",
+          "isPartOf": "fb005",
+          "zIndex": 32862,
+          "shape": "line-straight",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "markerEnd": "mimTranscriptionTranslation",
+          "points": [
+            {
+              "x": 1019.3554081229935,
+              "y": 600.3882869502934
+            },
+            {
+              "x": 890.9180043907717,
+              "y": 600.3882869502934
+            }
+          ],
+          "type": "Interaction"
+        }
+      ],
+      "x": 819.5376746209249,
+      "y": 590.8966093996004,
+      "width": 208.81773350206856,
+      "height": 39,
+      "zIndex": 32767.9
+    },
+    {
+      "displayName": "Paraquat",
+      "type": "SmallMoleculeReference",
+      "id": "http://identifiers.org/hmdb/HMDB33120",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/Ch/HMDB33120"
+      ]
+    },
+    {
+      "displayName": "CLPP-1",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/ZK970.2",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/ZK970.2"
+      ]
+    },
+    {
+      "displayName": "PHB-2",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/T24H7.1",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/T24H7.1"
+      ]
+    },
+    {
+      "displayName": "HAF-1",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/C30H6.6",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/C30H6.6"
+      ]
+    },
+    {
+      "displayName": "ClpX-like\nProtease/\n(K07A3.3)",
+      "type": "DnaReference",
+      "id": "http://identifiers.org/ensembl/K07A3.3",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/En/K07A3.3",
+        "http://mygene.info/v2/gene/K07A3.3"
+      ]
+    },
+    {
+      "type": "PublicationXref",
+      "id": "http://identifiers.org/pubmed/16816413",
+      "dbName": "pubmed",
+      "dbId": "16816413",
+      "title": "Ubiquitin-like protein 5 positively regulates chaperone gene expression in the mitochondrial unfolded protein response.",
+      "source": "Genetics",
+      "year": "2006",
+      "author": "Benedetti C",
+      "displayName": 3
+    },
+    {
+      "displayName": "ClpX-like\nProtease/\n(D2030.2)",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/ensembl/D2030.2",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/En/D2030.2",
+        "http://mygene.info/v2/gene/D2030.2"
+      ]
+    },
+    {
+      "displayName": "ATFS-1",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/ZC376.7",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/ZC376.7"
+      ]
+    },
+    {
+      "displayName": "TOMM-40",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/C18E9.6",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/C18E9.6"
+      ]
+    },
+    {
+      "displayName": "HSP-60",
+      "type": "ProteinReference",
+      "id": "http://identifiers.org/wormbase/Y22D7AL.5",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/Y22D7AL.5"
+      ]
+    },
+    {
+      "displayName": "TIMM-23",
+      "type": "DnaReference",
+      "id": "http://identifiers.org/ncbigene/173041",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/L/173041",
+        "http://mygene.info/v2/gene/173041"
+      ]
+    },
+    {
+      "type": "PublicationXref",
+      "id": "http://identifiers.org/pubmed/21048161",
+      "dbName": "pubmed",
+      "dbId": "21048161",
+      "title": "The mitochondrial UPR - protecting organelle protein homeostasis.",
+      "source": "J Cell Sci",
+      "year": "2010",
+      "author": "Haynes CM",
+      "displayName": 4
+    },
+    {
+      "displayName": "dnj-10",
+      "type": "DnaReference",
+      "id": "http://identifiers.org/wormbase/F22B7.5",
+      "xrefs": [
+        "http://webservice.bridgedb.org/Caenorhabditis%20elegans/xrefs/W/F22B7.5"
+      ]
+    },
+    {
+      "type": "PublicationXref",
+      "id": "http://identifiers.org/pubmed/20188671",
+      "dbName": "pubmed",
+      "dbId": "20188671",
+      "title": "The matrix peptide exporter HAF-1 signals a mitochondrial UPR by activating the transcription factor ZC376.7 in C. elegans.",
+      "source": "Mol Cell",
+      "year": "2010",
+      "author": "Haynes CM",
+      "displayName": 2
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "da0",
+      "isPartOf": "ca01a",
+      "textContent": "UBL-5",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 48.248546269616675,
+      "height": 21,
+      "x": 936.4436790154874,
+      "y": 478.50738735450506,
+      "entityReference": "http://identifiers.org/wormbase/F46F11.4"
+    },
+    {
+      "type": "SmallMolecule",
+      "gpml:element": "gpml:DataNode",
+      "id": "dd906",
+      "textContent": "Protein Fragments",
+      "gpml:Type": "gpml:Metabolite",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#0000ff",
+      "borderWidth": 1,
+      "width": 98.36286270960854,
+      "height": 21,
+      "x": 258.7355196224649,
+      "y": 280.75789119875463,
+      "entityReference": "http://identifiers.org/chebi/CHEBI:16670"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "db0",
+      "textContent": "CLPP-1",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 50.89657332834807,
+      "height": 21,
+      "x": 162.8028831179979,
+      "y": 175.67334145639825,
+      "entityReference": "http://identifiers.org/wormbase/ZK970.2"
+    },
+    {
+      "type": "Dna",
+      "gpml:element": "gpml:DataNode",
+      "id": "ffdce",
+      "textContent": "TIMM-23",
+      "gpml:Type": "gpml:GeneProduct",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 53.539184952978076,
+      "height": 24.32288401253922,
+      "x": 286.6324863883858,
+      "y": 691.2406368586039,
+      "entityReference": "http://identifiers.org/ncbigene/173041"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "b6b",
+      "textContent": "HSP-60",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 50.8545378248742,
+      "height": 21,
+      "x": 572.2324579382018,
+      "y": 585.4761855525338,
+      "entityReference": "http://identifiers.org/wormbase/Y22D7AL.5"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "ff2",
+      "textContent": "HSP-6",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 48.510247121682596,
+      "height": 21,
+      "x": 574.2665498485441,
+      "y": 613.0938573197137,
+      "entityReference": "http://identifiers.org/wormbase/C37H5.8"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "fde",
+      "textContent": "DVE-1",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 43.87418440395335,
+      "height": 24.407359724358482,
+      "x": 606.6631893143981,
+      "y": 340.4082835429904,
+      "entityReference": "http://identifiers.org/wormbase/ZK1193.5"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "a7261",
+      "textContent": "TOMM-40",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 57.45768025078371,
+      "height": 21.188087774294576,
+      "x": 383.3162019468729,
+      "y": 673.3805477643951,
+      "entityReference": "http://identifiers.org/wormbase/C18E9.6"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "f1fc4",
+      "textContent": "ClpX-like\nProtease/\n(D2030.2)",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 56.47388781431326,
+      "height": 40.65828497743391,
+      "x": 279.93842682140536,
+      "y": 150.68633139909662,
+      "entityReference": "http://identifiers.org/ensembl/D2030.2"
+    },
+    {
+      "type": "Dna",
+      "gpml:element": "gpml:DataNode",
+      "id": "db832",
+      "textContent": "ClpX-like\nProtease/\n(K07A3.3)",
+      "gpml:Type": "gpml:GeneProduct",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 57.76337846550646,
+      "height": 40.65828497743384,
+      "x": 218.04287556415244,
+      "y": 133.27820760799466,
+      "entityReference": "http://identifiers.org/ensembl/K07A3.3"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "d1b",
+      "textContent": "UBL-5",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 43.74905065593269,
+      "height": 21,
+      "x": 606.0961865933546,
+      "y": 305.8856648471835,
+      "entityReference": "http://identifiers.org/wormbase/F46F11.4"
+    },
+    {
+      "type": "Dna",
+      "gpml:element": "gpml:DataNode",
+      "id": "f94",
+      "isPartOf": "ca01a",
+      "textContent": "DVE-1",
+      "gpml:Type": "gpml:GeneProduct",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 47.87586566056127,
+      "height": 21,
+      "x": 936.5976181964521,
+      "y": 498.5073873545039,
+      "entityReference": "http://identifiers.org/wormbase/ZK1193.5"
+    },
+    {
+      "type": "SmallMolecule",
+      "gpml:element": "gpml:DataNode",
+      "id": "c0fa2",
+      "textContent": "ethidium bromide",
+      "gpml:Type": "gpml:Metabolite",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#0000ff",
+      "borderWidth": 1,
+      "width": 97.57409435839192,
+      "height": 23.034519786388046,
+      "x": 1034.7733686067022,
+      "y": 164.3924431232122
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "c7c03",
+      "textContent": "SPG-7",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 45.54545454545451,
+      "height": 21.10101010101013,
+      "x": 138.28787878787878,
+      "y": 393.0353535353535,
+      "entityReference": "http://identifiers.org/wormbase/Y47G6A.10"
+    },
+    {
+      "type": "Dna",
+      "gpml:element": "gpml:DataNode",
+      "id": "f6117",
+      "textContent": "GSP-1",
+      "gpml:Type": "gpml:GeneProduct",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 48.31343283582101,
+      "height": 20.701492537313356,
+      "x": 600.924359683066,
+      "y": 125.0137890792949,
+      "entityReference": "http://identifiers.org/wormbase/F29F11.6"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "fafac",
+      "textContent": "eIF2-alpha\n(Y37E3.10)",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 64.13432835820879,
+      "height": 31.149253731343293,
+      "x": 511.11057289180775,
+      "y": 83.01965324630146,
+      "entityReference": "http://identifiers.org/wormbase/Y37E3.10"
+    },
+    {
+      "type": "PhysicalEntity",
+      "gpml:element": "gpml:DataNode",
+      "id": "add1d",
+      "textContent": "Reactive Oxygen \nSpecies??",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 88.55043605975199,
+      "height": 29.83004171471822,
+      "x": 410.51108414768254,
+      "y": 177.46104887285952
+    },
+    {
+      "type": "Dna",
+      "gpml:element": "gpml:DataNode",
+      "id": "c6a6c",
+      "isPartOf": "fb005",
+      "textContent": "dnj-10",
+      "gpml:Type": "gpml:GeneProduct",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 81,
+      "height": 21,
+      "x": 828.5376746209249,
+      "y": 599.8966093996004,
+      "entityReference": "http://identifiers.org/wormbase/F22B7.5"
+    },
+    {
+      "type": "Dna",
+      "gpml:element": "gpml:DataNode",
+      "id": "a23",
+      "isPartOf": "a2eb7",
+      "textContent": "hsp-60",
+      "gpml:Type": "gpml:GeneProduct",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 53.26104916671695,
+      "height": 21,
+      "x": 827.6464698418928,
+      "y": 518.7527925145719,
+      "entityReference": "http://identifiers.org/wormbase/Y22D7AL.5"
+    },
+    {
+      "type": "Dna",
+      "gpml:element": "gpml:DataNode",
+      "id": "eb5",
+      "isPartOf": "e897e",
+      "textContent": "hsp-6",
+      "gpml:Type": "gpml:GeneProduct",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 51.22338762521073,
+      "height": 21,
+      "x": 833.8781319249053,
+      "y": 412.91895222975285,
+      "entityReference": "http://identifiers.org/wormbase/C37H5.8"
+    },
+    {
+      "type": "Dna",
+      "gpml:element": "gpml:DataNode",
+      "id": "d3c",
+      "isPartOf": "idf5257ddb",
+      "textContent": "ubl-5",
+      "gpml:Type": "gpml:GeneProduct",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 47.777208046775044,
+      "height": 21,
+      "x": 817.099918000908,
+      "y": 302.99430262539096,
+      "entityReference": "http://identifiers.org/wormbase/F46F11.4"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "f4283",
+      "textContent": "HAF-1",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 44.35014599231124,
+      "height": 21,
+      "x": 381.60759556280055,
+      "y": 311.35055732926986,
+      "entityReference": "http://identifiers.org/wormbase/C30H6.6"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "e3f56",
+      "textContent": "ATFS-1",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 47.810180647204085,
+      "height": 22.694792792974795,
+      "x": 560.1694409586478,
+      "y": 520.9692802408729,
+      "entityReference": "http://identifiers.org/wormbase/ZC376.7"
+    },
+    {
+      "type": "Pathway",
+      "gpml:element": "gpml:DataNode",
+      "id": "a8dd1",
+      "textContent": "translation",
+      "gpml:Type": "gpml:Pathway",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "zIndex": 32768,
+      "fontWeight": "bold",
+      "fontSize": "12",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#14961e",
+      "borderWidth": 1,
+      "width": 81,
+      "height": 21,
+      "x": 656.9686026131482,
+      "y": 632.704938129718,
+      "entityReference": "http://identifiers.org/go/GO:0006412",
+      "organism": "Caenorhabditis elegans"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "cb05a",
+      "textContent": "GCN-2",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 46.82543205166678,
+      "height": 21,
+      "x": 443.37603401261305,
+      "y": 126.24951303005872,
+      "entityReference": "http://identifiers.org/wormbase/Y81G3A.3"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "a67c9",
+      "textContent": "Unfolded Proteins",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#0000ff",
+      "borderWidth": 1,
+      "width": 97.35349613213049,
+      "height": 21,
+      "x": 98.95174731356192,
+      "y": 280.17309587711685
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "xrefs": [
+        "http://identifiers.org/pubmed/15280428"
+      ],
+      "id": "bb481",
+      "textContent": "PHB-2",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 47,
+      "height": 23,
+      "x": 85.5,
+      "y": 412.5,
+      "entityReference": "http://identifiers.org/wormbase/T24H7.1"
+    },
+    {
+      "type": "SmallMolecule",
+      "gpml:element": "gpml:DataNode",
+      "id": "a1652",
+      "textContent": "ATFS-1 \nFragments",
+      "gpml:Type": "gpml:Metabolite",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#0000ff",
+      "borderWidth": 1,
+      "width": 65.49967104838822,
+      "height": 29.859376410944606,
+      "x": 131.004455941707,
+      "y": 604.2023083316922,
+      "entityReference": "http://identifiers.org/chebi/CHEBI:16670"
+    },
+    {
+      "type": "Dna",
+      "gpml:element": "gpml:DataNode",
+      "id": "a3b8f",
+      "textContent": "Lon Protease/\nC34B2.6",
+      "gpml:Type": "gpml:GeneProduct",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 76.81676750216118,
+      "height": 31.613656006915093,
+      "x": 191.6175453759725,
+      "y": 694.0375972342257,
+      "entityReference": "http://identifiers.org/wormbase/C34B2.6"
+    },
+    {
+      "type": "SmallMolecule",
+      "gpml:element": "gpml:DataNode",
+      "id": "cc60b",
+      "textContent": "Paraquat",
+      "gpml:Type": "gpml:Metabolite",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32768,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#0000ff",
+      "borderWidth": 1,
+      "width": 81,
+      "height": 21,
+      "x": 1165.5405117270786,
+      "y": 348.65707178393745,
+      "entityReference": "http://identifiers.org/hmdb/HMDB33120"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "c011d",
+      "zIndex": 32771,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "eb5",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 846.933978831208,
+          "y": 433.41895222975285
+        },
+        {
+          "isAttachedTo": "a8dd1",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 697.4686026131482,
+          "y": 633.204938129718
+        }
+      ],
+      "participants": [
+        "eb5",
+        "a8dd1"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "cd398",
+      "zIndex": 32772,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "a23",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 841.211732133572,
+          "y": 539.2527925145719
+        },
+        {
+          "isAttachedTo": "a8dd1",
+          "anchor": [
+            0.75,
+            0,
+            0,
+            -1
+          ],
+          "x": 717.4686026131482,
+          "y": 633.204938129718
+        }
+      ],
+      "participants": [
+        "a23",
+        "a8dd1"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "eb039",
+      "zIndex": 32773,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "a8dd1",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 677.4686026131482,
+          "y": 653.204938129718
+        },
+        {
+          "isAttachedTo": "ff2",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 622.2767969702267,
+          "y": 623.5938573197137
+        }
+      ],
+      "participants": [
+        "a8dd1",
+        "ff2"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "c917b",
+      "zIndex": 32774,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "a8dd1",
+          "anchor": [
+            0.25,
+            0,
+            0,
+            -1
+          ],
+          "x": 677.4686026131482,
+          "y": 633.204938129718
+        },
+        {
+          "isAttachedTo": "b6b",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 622.586995763076,
+          "y": 595.9761855525338
+        }
+      ],
+      "participants": [
+        "a8dd1",
+        "b6b"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/16816413",
+        "http://identifiers.org/pubmed/17925224"
+      ],
+      "id": "ed8dc",
+      "zIndex": 32780,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "isAttachedTo": "c9d5d",
+          "anchor": [
+            0,
+            0.75,
+            -1,
+            0
+          ],
+          "x": 914.3265304930526,
+          "y": 410.14308355303046
+        },
+        {
+          "isAttachedTo": "eb5",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 884.6015195501161,
+          "y": 423.41895222975285
+        }
+      ],
+      "controller": "c9d5d",
+      "controlled": "eb5",
+      "interactionType": [
+        "SBO:0000170"
+      ],
+      "type": "Control"
+    },
+    {
+      "type": "Pathway",
+      "gpml:element": "gpml:DataNode",
+      "id": "a46a8",
+      "textContent": "translation",
+      "gpml:Type": "gpml:Pathway",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "zIndex": 32796,
+      "fontWeight": "bold",
+      "fontSize": "12",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#14961e",
+      "borderWidth": 1,
+      "width": 81,
+      "height": 21,
+      "x": 638.7310553469475,
+      "y": 242.5686175877896,
+      "entityReference": "http://identifiers.org/go/GO:0006412",
+      "organism": "Caenorhabditis elegans"
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "gpml:Style": "gpml:Group",
+      "id": "f7d5f",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "8",
+      "strokeDasharray": "5,3",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "eebd0",
+          "isPartOf": "f7d5f",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 28.96488541383466,
+          "zIndex": 32798,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.351361497993286,
+          "height": 34.67366022646938,
+          "x": 134.3439875649883,
+          "y": 316.6017906295128
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "c68eb",
+          "isPartOf": "f7d5f",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 337.2239433753206,
+          "zIndex": 32799,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 10.205124289015242,
+          "height": 25.68323496507121,
+          "x": 135.61328400859387,
+          "y": 319.96555212773364
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "df943",
+          "isPartOf": "f7d5f",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 80.19288414297802,
+          "zIndex": 32800,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 28.556616533037577,
+          "height": 11.416245824855412,
+          "x": 122.96980965106388,
+          "y": 328.7071046670455
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "e8c12",
+          "isPartOf": "f7d5f",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 51.08497499114143,
+          "zIndex": 32801,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 36.21784987087366,
+          "height": 15.378058615666834,
+          "x": 117.28151661815518,
+          "y": 325.24395252959766
+        }
+      ],
+      "x": 108.28151661815518,
+      "y": 307.6017906295128,
+      "width": 54.21784987087365,
+      "height": 52.673660226469394,
+      "zIndex": 32797.9
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "eebd0",
+      "isPartOf": "f7d5f",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 28.96488541383466,
+      "zIndex": 32798,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.351361497993286,
+      "height": 34.67366022646938,
+      "x": 134.3439875649883,
+      "y": 316.6017906295128
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "c68eb",
+      "isPartOf": "f7d5f",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 337.2239433753206,
+      "zIndex": 32799,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 10.205124289015242,
+      "height": 25.68323496507121,
+      "x": 135.61328400859387,
+      "y": 319.96555212773364
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "df943",
+      "isPartOf": "f7d5f",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 80.19288414297802,
+      "zIndex": 32800,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 28.556616533037577,
+      "height": 11.416245824855412,
+      "x": 122.96980965106388,
+      "y": 328.7071046670455
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "e8c12",
+      "isPartOf": "f7d5f",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 51.08497499114143,
+      "zIndex": 32801,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 36.21784987087366,
+      "height": 15.378058615666834,
+      "x": 117.28151661815518,
+      "y": 325.24395252959766
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "adc80",
+      "textContent": "ATFS-1",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32802,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 48.57066394500008,
+      "height": 19.80211333313116,
+      "x": 683.5059656449565,
+      "y": 448.0657730322872,
+      "entityReference": "http://identifiers.org/wormbase/ZC376.7"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "dbab1",
+      "textContent": "ATFS-1",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32803,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 48.30495794554659,
+      "height": 21.173826197381445,
+      "x": 280.7770918563031,
+      "y": 606.463745074618,
+      "entityReference": "http://identifiers.org/wormbase/ZC376.7"
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "gpml:Style": "gpml:Group",
+      "id": "d8170",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "8",
+      "strokeDasharray": "5,3",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "ce485",
+          "isPartOf": "d8170",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 28.96488541383466,
+          "zIndex": 32805,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.351361497993286,
+          "height": 34.67366022646938,
+          "x": 192.61359855490818,
+          "y": 316.2121418470083
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "b2adf",
+          "isPartOf": "d8170",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 80.19288414297802,
+          "zIndex": 32806,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 28.556616533037577,
+          "height": 11.416245824855412,
+          "x": 181.23942064098367,
+          "y": 329.67155202536696
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "e778b",
+          "isPartOf": "d8170",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 337.2239433753206,
+          "zIndex": 32807,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 10.205124289015242,
+          "height": 25.68323496507121,
+          "x": 193.88289499851376,
+          "y": 320.92999948605524
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "a4a62",
+          "isPartOf": "d8170",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 51.08497499114143,
+          "zIndex": 32808,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 36.21784987087366,
+          "height": 15.378058615666834,
+          "x": 175.55112760807492,
+          "y": 326.2083998879194
+        }
+      ],
+      "x": 166.55112760807492,
+      "y": 307.2121418470083,
+      "width": 54.217849870873664,
+      "height": 52.673660226469394,
+      "zIndex": 32804.9
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "ce485",
+      "isPartOf": "d8170",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 28.96488541383466,
+      "zIndex": 32805,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.351361497993286,
+      "height": 34.67366022646938,
+      "x": 192.61359855490818,
+      "y": 316.2121418470083
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "b2adf",
+      "isPartOf": "d8170",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 80.19288414297802,
+      "zIndex": 32806,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 28.556616533037577,
+      "height": 11.416245824855412,
+      "x": 181.23942064098367,
+      "y": 329.67155202536696
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "e778b",
+      "isPartOf": "d8170",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 337.2239433753206,
+      "zIndex": 32807,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 10.205124289015242,
+      "height": 25.68323496507121,
+      "x": 193.88289499851376,
+      "y": 320.92999948605524
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "a4a62",
+      "isPartOf": "d8170",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 51.08497499114143,
+      "zIndex": 32808,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 36.21784987087366,
+      "height": 15.378058615666834,
+      "x": 175.55112760807492,
+      "y": 326.2083998879194
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "gpml:Style": "gpml:Group",
+      "id": "a69ce",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "8",
+      "strokeDasharray": "5,3",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "cea85",
+          "isPartOf": "a69ce",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 28.96488541383466,
+          "zIndex": 32810,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.351361497993286,
+          "height": 34.67366022646938,
+          "x": 165.74315388972946,
+          "y": 319.8664717532252
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "fa657",
+          "isPartOf": "a69ce",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 80.19288414297802,
+          "zIndex": 32811,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 28.556616533037577,
+          "height": 11.416245824855412,
+          "x": 154.36897597580494,
+          "y": 333.32588193158387
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "f5209",
+          "isPartOf": "a69ce",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 337.2239433753206,
+          "zIndex": 32812,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "ellipse",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 10.205124289015242,
+          "height": 25.68323496507121,
+          "x": 167.01245033333504,
+          "y": 324.58432939227214
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "f9365",
+          "isPartOf": "a69ce",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 51.08497499114143,
+          "zIndex": 32813,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 36.21784987087366,
+          "height": 15.378058615666834,
+          "x": 148.68068294289623,
+          "y": 329.8627297941363
+        }
+      ],
+      "x": 139.68068294289623,
+      "y": 310.8664717532252,
+      "width": 54.217849870873664,
+      "height": 52.673660226469394,
+      "zIndex": 32809.9
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "cea85",
+      "isPartOf": "a69ce",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 28.96488541383466,
+      "zIndex": 32810,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.351361497993286,
+      "height": 34.67366022646938,
+      "x": 165.74315388972946,
+      "y": 319.8664717532252
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "fa657",
+      "isPartOf": "a69ce",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 80.19288414297802,
+      "zIndex": 32811,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 28.556616533037577,
+      "height": 11.416245824855412,
+      "x": 154.36897597580494,
+      "y": 333.32588193158387
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "f5209",
+      "isPartOf": "a69ce",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 337.2239433753206,
+      "zIndex": 32812,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 10.205124289015242,
+      "height": 25.68323496507121,
+      "x": 167.01245033333504,
+      "y": 324.58432939227214
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "f9365",
+      "isPartOf": "a69ce",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 51.08497499114143,
+      "zIndex": 32813,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 36.21784987087366,
+      "height": 15.378058615666834,
+      "x": 148.68068294289623,
+      "y": 329.8627297941363
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "c93bd",
+      "textContent": "HSP-60",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32814,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 50.8545378248742,
+      "height": 21,
+      "x": 225.4117226334177,
+      "y": 396.02944070122055,
+      "entityReference": "http://identifiers.org/wormbase/Y22D7AL.5"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "b040d",
+      "textContent": "HSP-6",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32815,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 48.510247121682596,
+      "height": 21,
+      "x": 184.4486391802886,
+      "y": 426.95121551606024,
+      "entityReference": "http://identifiers.org/wormbase/C37H5.8"
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "c445d",
+      "isPartOf": "c2106",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 297.85247422202696,
+      "zIndex": 32816,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 284.7046019132503,
+      "y": 315.0654342089207
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "f1167",
+      "isPartOf": "c2106",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 176.57124414315936,
+      "zIndex": 32817,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 268.3315467254308,
+      "y": 321.3737426897809
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "b2cb6",
+      "isPartOf": "c2106",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 100.61180248463023,
+      "zIndex": 32818,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 293.8871431755555,
+      "y": 310.62164251287834
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "a2d69",
+      "isPartOf": "c2106",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32819,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 285.2716886496631,
+      "y": 332.1650212704513
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "c6446",
+      "isPartOf": "c2106",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32820,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 309.4507931272752,
+      "y": 315.2993496286604
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "be14e",
+      "isPartOf": "c2106",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 302.20061714727365,
+      "zIndex": 32821,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 311.3199526953332,
+      "y": 330.42391225816914
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "c8544",
+      "isPartOf": "c2106",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 170.35842928411486,
+      "zIndex": 32822,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 13.977182094581917,
+      "x": 328.9117150946173,
+      "y": 305.9221204501803
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "a938e",
+      "isPartOf": "c2106",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32823,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 320.04780805264824,
+      "y": 334.105319777914
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "gpml:Style": "gpml:Group",
+      "id": "idf5257ddf",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "8",
+      "strokeDasharray": "5,3",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "e45f6",
+          "isPartOf": "idf5257ddf",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 48.6135013914069,
+          "zIndex": 32825,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 122.70999409735948,
+          "y": 570.8217376883615
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "d63bb",
+          "isPartOf": "idf5257ddf",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 297.85247422202696,
+          "zIndex": 32826,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 147.21753422661817,
+          "y": 572.826628238771
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "d552f",
+          "isPartOf": "idf5257ddf",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 176.57124414315936,
+          "zIndex": 32827,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 130.84447903879868,
+          "y": 579.1349367196315
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "a3e3a",
+          "isPartOf": "idf5257ddf",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 100.61180248463023,
+          "zIndex": 32828,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 156.40007548892333,
+          "y": 568.3828365427287
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "e3c6d",
+          "isPartOf": "idf5257ddf",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 48.6135013914069,
+          "zIndex": 32829,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 147.78462096303093,
+          "y": 589.9262153003018
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "e569b",
+          "isPartOf": "idf5257ddf",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 48.6135013914069,
+          "zIndex": 32830,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 171.96372544064303,
+          "y": 573.0605436585108
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "bd6b4",
+          "isPartOf": "idf5257ddf",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 302.20061714727365,
+          "zIndex": 32831,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 173.832885008701,
+          "y": 588.1851062880196
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "a7a91",
+          "isPartOf": "idf5257ddf",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 170.35842928411486,
+          "zIndex": 32832,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 13.977182094581917,
+          "x": 191.42464740798522,
+          "y": 563.6833144800306
+        },
+        {
+          "gpml:element": "gpml:Shape",
+          "id": "fd25e",
+          "isPartOf": "idf5257ddf",
+          "textAlign": "center",
+          "padding": "0.5em",
+          "rotation": 48.6135013914069,
+          "zIndex": 32833,
+          "fontSize": "10",
+          "verticalAlign": "middle",
+          "shape": "arc",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 12.694029850746318,
+          "height": 14.186567164179081,
+          "x": 182.56074036601615,
+          "y": 591.8665138077646
+        }
+      ],
+      "x": 113.70999409735948,
+      "y": 554.6833144800306,
+      "width": 99.40868316137205,
+      "height": 60.36976649191308,
+      "zIndex": 32824.9
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "e45f6",
+      "isPartOf": "idf5257ddf",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32825,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 122.70999409735948,
+      "y": 570.8217376883615
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "d63bb",
+      "isPartOf": "idf5257ddf",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 297.85247422202696,
+      "zIndex": 32826,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 147.21753422661817,
+      "y": 572.826628238771
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "d552f",
+      "isPartOf": "idf5257ddf",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 176.57124414315936,
+      "zIndex": 32827,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 130.84447903879868,
+      "y": 579.1349367196315
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "a3e3a",
+      "isPartOf": "idf5257ddf",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 100.61180248463023,
+      "zIndex": 32828,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 156.40007548892333,
+      "y": 568.3828365427287
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "e3c6d",
+      "isPartOf": "idf5257ddf",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32829,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 147.78462096303093,
+      "y": 589.9262153003018
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "e569b",
+      "isPartOf": "idf5257ddf",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32830,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 171.96372544064303,
+      "y": 573.0605436585108
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "bd6b4",
+      "isPartOf": "idf5257ddf",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 302.20061714727365,
+      "zIndex": 32831,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 173.832885008701,
+      "y": 588.1851062880196
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "a7a91",
+      "isPartOf": "idf5257ddf",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 170.35842928411486,
+      "zIndex": 32832,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 13.977182094581917,
+      "x": 191.42464740798522,
+      "y": 563.6833144800306
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "fd25e",
+      "isPartOf": "idf5257ddf",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32833,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 182.56074036601615,
+      "y": 591.8665138077646
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "cee06",
+      "textContent": "eIF2-alpha\n(Y37E3.10)",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32834,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 64.13432835820879,
+      "height": 31.149253731343293,
+      "x": 511.36782138689483,
+      "y": 162.27482642381227,
+      "entityReference": "http://identifiers.org/wormbase/Y37E3.10"
+    },
+    {
+      "gpml:element": "gpml:State",
+      "id": "d1db6",
+      "isAttachedTo": "cee06",
+      "textContent": "",
+      "fontSize": "10",
+      "textAlign": "center",
+      "zIndex": 32834.2,
+      "padding": "0.5em",
+      "verticalAlign": "middle",
+      "shape": "ellipse",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 16,
+      "height": 16,
+      "relX": 1,
+      "x": 567.0021497451037,
+      "relY": 1,
+      "y": 184.92408015515554
+    },
+    {
+      "type": "Pathway",
+      "gpml:element": "gpml:DataNode",
+      "id": "caa4a",
+      "textContent": "translation",
+      "gpml:Type": "gpml:Pathway",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "zIndex": 32836,
+      "fontWeight": "bold",
+      "fontSize": "12",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#14961e",
+      "borderWidth": 1,
+      "width": 81,
+      "height": 21,
+      "x": 636.7244832690652,
+      "y": 177.74784490797867,
+      "entityReference": "http://identifiers.org/go/GO:0006412",
+      "organism": "Caenorhabditis elegans"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/15280428"
+      ],
+      "id": "cfe7f",
+      "zIndex": 32837,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimStimulation",
+      "points": [
+        {
+          "isAttachedTo": "c0fa2",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 1083.5604157858982,
+          "y": 186.92696290960023
+        },
+        {
+          "isAttachedTo": "a2eb7",
+          "anchor": [
+            0.75,
+            0,
+            0,
+            -1
+          ],
+          "x": 1014.0162048178038,
+          "y": 511.190415856337
+        }
+      ],
+      "controller": "c0fa2",
+      "controlled": "a2eb7",
+      "interactionType": [
+        "SBO:0000170"
+      ],
+      "type": "Control"
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "xrefs": [
+        "http://identifiers.org/pubmed/17925224"
+      ],
+      "gpml:Style": "gpml:Complex",
+      "id": "c9d5d",
+      "fontSize": "1",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "11",
+      "shape": "complex",
+      "backgroundColor": "#b4b464",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "type": "Dna",
+          "gpml:element": "gpml:DataNode",
+          "id": "fcdca",
+          "isPartOf": "c9d5d",
+          "textContent": "DVE-1",
+          "gpml:Type": "gpml:GeneProduct",
+          "verticalAlign": "middle",
+          "textAlign": "center",
+          "zIndex": 32839,
+          "fontSize": "10",
+          "padding": "0.5em",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 47.87586566056127,
+          "height": 21,
+          "x": 926.0128707975803,
+          "y": 393.42700749425785,
+          "entityReference": "http://identifiers.org/wormbase/ZK1193.5"
+        },
+        {
+          "type": "Protein",
+          "gpml:element": "gpml:DataNode",
+          "id": "f9008",
+          "isPartOf": "c9d5d",
+          "textContent": "UBL-5",
+          "gpml:Type": "gpml:Protein",
+          "verticalAlign": "middle",
+          "textAlign": "center",
+          "zIndex": 32840,
+          "fontSize": "10",
+          "padding": "0.5em",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 48.248546269616675,
+          "height": 21,
+          "x": 925.8265304930526,
+          "y": 374.29131172934825,
+          "entityReference": "http://identifiers.org/wormbase/F46F11.4"
+        }
+      ],
+      "x": 913.8265304930526,
+      "y": 362.29131172934825,
+      "width": 72.24854626961667,
+      "height": 64.1356957649096,
+      "zIndex": 32838.9
+    },
+    {
+      "type": "Dna",
+      "gpml:element": "gpml:DataNode",
+      "id": "fcdca",
+      "isPartOf": "c9d5d",
+      "textContent": "DVE-1",
+      "gpml:Type": "gpml:GeneProduct",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32839,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 47.87586566056127,
+      "height": 21,
+      "x": 926.0128707975803,
+      "y": 393.42700749425785,
+      "entityReference": "http://identifiers.org/wormbase/ZK1193.5"
+    },
+    {
+      "type": "Protein",
+      "gpml:element": "gpml:DataNode",
+      "id": "f9008",
+      "isPartOf": "c9d5d",
+      "textContent": "UBL-5",
+      "gpml:Type": "gpml:Protein",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32840,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 48.248546269616675,
+      "height": 21,
+      "x": 925.8265304930526,
+      "y": 374.29131172934825,
+      "entityReference": "http://identifiers.org/wormbase/F46F11.4"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/17925224"
+      ],
+      "id": "a17ed",
+      "zIndex": 32841,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "fde",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 650.0373737183513,
+          "y": 352.6119634051696
+        },
+        {
+          "isAttachedTo": "fcdca",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 926.5128707975803,
+          "y": 403.92700749425785
+        }
+      ],
+      "participants": [
+        "fde",
+        "fcdca"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "xrefs": [
+        "http://identifiers.org/pubmed/16816413"
+      ],
+      "id": "c4a6d",
+      "zIndex": 32842,
+      "shape": "line-straight",
+      "strokeDasharray": "5,3",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "d1b",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 649.3452372492873,
+          "y": 316.3856648471835
+        },
+        {
+          "isAttachedTo": "da0",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 936.9436790154873,
+          "y": 489.00738735450506
+        }
+      ],
+      "participants": [
+        "d1b",
+        "da0"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "e9b31",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32845,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 452.90735846811043,
+      "y": 275.8371579691565
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "c80e9",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 297.85247422202696,
+      "zIndex": 32846,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 477.41489859736913,
+      "y": 277.8420485195661
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "d7ea5",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 176.57124414315936,
+      "zIndex": 32847,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 461.04184340954964,
+      "y": 284.15035700042637
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "bdc05",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 100.61180248463023,
+      "zIndex": 32848,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 486.5974398596743,
+      "y": 273.39825682352375
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "aa85c",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32849,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 477.9819853337819,
+      "y": 294.94163558109676
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "bf6d8",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32850,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 502.1610898113938,
+      "y": 278.07596393930584
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "b0280",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 302.20061714727365,
+      "zIndex": 32851,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 504.03024937945196,
+      "y": 293.2005265688146
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "d96b5",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 170.35842928411486,
+      "zIndex": 32852,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 13.977182094581917,
+      "x": 521.6220117787361,
+      "y": 268.69873476082574
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "eeddf",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32853,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 512.758104736767,
+      "y": 296.8819340885595
+    },
+    {
+      "type": "SmallMolecule",
+      "gpml:element": "gpml:DataNode",
+      "id": "ab4ad",
+      "textContent": "Protein Fragments",
+      "gpml:Type": "gpml:Metabolite",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "zIndex": 32854,
+      "fontSize": "10",
+      "padding": "0.5em",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#0000ff",
+      "borderWidth": 1,
+      "width": 98.36286270960854,
+      "height": 21,
+      "x": 450.672692397334,
+      "y": 245.8189732231873,
+      "entityReference": "http://identifiers.org/chebi/CHEBI:16670"
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "cc050",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 48.6135013914069,
+      "zIndex": 32855,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 411.19315461824965,
+      "y": 290.98002999645473
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "dbc57",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 102.01917067602479,
+      "zIndex": 32856,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 421.8726323204651,
+      "y": 335.8239165963281
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "b081d",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 146.1180341368211,
+      "zIndex": 32857,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 401.92321573360147,
+      "y": 343.46843223119276
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "f1769",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 13.867329728512237,
+      "zIndex": 32858,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 425.3624273323321,
+      "y": 362.72540589795113
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "c75b0",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 224.9234270804549,
+      "zIndex": 32859,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 436.36298779945537,
+      "y": 313.22659328333316
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "b8270",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 224.90184848728208,
+      "zIndex": 32860,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 428.03662194506364,
+      "y": 284.83042475550786
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "cd350",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "rotation": 102.01917067602479,
+      "zIndex": 32861,
+      "fontSize": "10",
+      "verticalAlign": "middle",
+      "shape": "arc",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 12.694029850746318,
+      "height": 14.186567164179081,
+      "x": 440.0227195805003,
+      "y": 286.3474768057523
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "f2233",
+      "isPartOf": "fb005",
+      "zIndex": 32862,
+      "shape": "line-straight",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "mimTranscriptionTranslation",
+      "points": [
+        {
+          "x": 1019.3554081229935,
+          "y": 600.3882869502934
+        },
+        {
+          "x": 890.9180043907717,
+          "y": 600.3882869502934
+        }
+      ],
+      "type": "Interaction"
+    }
+  ],
+  "standardName": "Mitochondrial Unfolded-Protein Response",
+  "displayName": "Mitochondrial Unfolded-Protein Response",
+  "organism": "Caenorhabditis elegans",
+  "image": {
+    "@context": {
+      "@vocab": "http://schema.org/"
+    },
+    "width": 1276.0405117270786,
+    "height": 759.7353987178085
+  }
+}

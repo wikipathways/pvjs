@@ -1,0 +1,2327 @@
+{
+  "@context": [
+    "https://wikipathwayscontexts.firebaseio.com/biopax/.json",
+    "https://wikipathwayscontexts.firebaseio.com/organism/.json",
+    "https://wikipathwayscontexts.firebaseio.com/cellularLocation/.json",
+    "https://wikipathwayscontexts.firebaseio.com/display/.json",
+    "https://wikipathwayscontexts.firebaseio.com/bridgedb/.json"
+  ],
+  "id": "http://example.org/unknown",
+  "version": "63315",
+  "standardName": "Statin Pathway",
+  "displayName": "Statin Pathway",
+  "organism": "Mus musculus",
+  "image": {
+    "@context": {
+      "@vocab": "http://sch1ema.org/"
+    },
+    "width": 930.0000000000003,
+    "height": 745.1455026455017
+  },
+  "elements": [
+    {
+      "type": "PublicationXref",
+      "dbName": "pubmed",
+      "dbId": "10770267",
+      "title": "Direct effects of statins on cells primarily involved in atherosclerosis.",
+      "source": "Hypertens Res",
+      "year": "2000",
+      "author": "Chen H",
+      "displayName": 1
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "a0e3c",
+      "type": "CellularComponent",
+      "entityReference": "Nucleus",
+      "zIndex": -4,
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "shape": "ellipse-double",
+      "backgroundColor": "transparent",
+      "color": "#c0c0c0",
+      "borderWidth": 3,
+      "width": 291.6944444444449,
+      "height": 116.92592592592632,
+      "x": 145.32804232804216,
+      "y": 599.7195767195753
+    },
+    {
+      "gpml:element": "gpml:Shape",
+      "id": "e459e",
+      "type": "CellularComponent",
+      "entityReference": "Cell",
+      "zIndex": -2,
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "shape": "rounded-rectangle-double",
+      "backgroundColor": "transparent",
+      "color": "#c0c0c0",
+      "borderWidth": 3,
+      "width": 875.8809523809523,
+      "height": 252.52380952380952,
+      "x": 25.619047619048047,
+      "y": 82.30952380952357
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "ide0f0a17c",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "points": [
+        {
+          "isAttachedTo": "d57",
+          "anchor": [
+            0.75,
+            0,
+            0,
+            -1
+          ],
+          "x": 196.00000000000003,
+          "y": 373.8333333333333
+        },
+        {
+          "isAttachedTo": "d72",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 231.66666666666663,
+          "y": 340.3333333333333
+        }
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id54cd1002",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "da7",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 386.6666666666667,
+          "y": 164.4873208379272
+        },
+        {
+          "anchor": [
+            "0.5636799553164064",
+            0
+          ],
+          "isAttachedTo": "id5693288b",
+          "x": 346.4363200446836,
+          "y": 165.1225648258281
+        }
+      ],
+      "participant": [
+        "da7",
+        "id5693288b"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "idd98747a1",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "e6e",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 454.1904761904762,
+          "y": 209.4761904761904
+        },
+        {
+          "anchor": [
+            "0.4",
+            0
+          ],
+          "isAttachedTo": "id2d08a86c",
+          "x": 454.2,
+          "y": 236
+        }
+      ],
+      "participant": [
+        "e6e",
+        "id2d08a86c"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "ida73c84b7",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "points": [
+        {
+          "isAttachedTo": "d75",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 352.1904761904764,
+          "y": 581.0000000000001
+        },
+        {
+          "isAttachedTo": "afd21",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 285,
+          "y": 627
+        }
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "ida14b6441",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "f6a60",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 160.0771775082692,
+          "y": 236
+        },
+        {
+          "isAttachedTo": "ba3f8",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 285,
+          "y": 236
+        }
+      ],
+      "participant": [
+        "f6a60",
+        "ba3f8"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "idfd21ef1c",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "be0",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 659.376506134835,
+          "y": 132.73746377756174
+        },
+        {
+          "anchor": [
+            "0.4",
+            0
+          ],
+          "isAttachedTo": "id29bceef9",
+          "x": 632.4896407396504,
+          "y": 159.76748817956675
+        }
+      ],
+      "participant": [
+        "be0",
+        "id29bceef9"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "ide734686c",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "f8e",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 670.380952380953,
+          "y": 283.9523809523805
+        },
+        {
+          "anchor": [
+            "0.4",
+            0
+          ],
+          "isAttachedTo": "id1e7f7971",
+          "x": 646.3999999999995,
+          "y": 296.3999999999999
+        }
+      ],
+      "participant": [
+        "f8e",
+        "id1e7f7971"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id71c845e6",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#ff0000",
+      "borderWidth": 1,
+      "markerEnd": "tbar",
+      "points": [
+        {
+          "isAttachedTo": "e4e59",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 138.0771775082692,
+          "y": 164.4873208379272
+        },
+        {
+          "isAttachedTo": "e04",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 175.33333333333334,
+          "y": 164.4873208379272
+        }
+      ],
+      "participant": [
+        "e4e59",
+        "e04"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id7fb4b630",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "f82",
+          "anchor": [
+            0.75,
+            1,
+            0,
+            1
+          ],
+          "x": 392.1904761904765,
+          "y": 499.6190476190473
+        },
+        {
+          "anchor": [
+            "0.6822235766482981",
+            0
+          ],
+          "isAttachedTo": "id7808eadf",
+          "x": 437.1183927969269,
+          "y": 515.469697967972
+        }
+      ],
+      "participant": [
+        "f82",
+        "id7808eadf"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id5693288b",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "ba3f8",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 347,
+          "y": 226
+        },
+        {
+          "isAttachedTo": "ecd6d",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 346,
+          "y": 118
+        }
+      ],
+      "participant": [
+        "ba3f8",
+        "ecd6d"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id7b27d8",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "c4e",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 547.809523809524,
+          "y": 501.1904761904762
+        },
+        {
+          "anchor": [
+            "0.5400363708069501",
+            0
+          ],
+          "isAttachedTo": "iddc51ad2b",
+          "x": 524.3691362507187,
+          "y": 524.060977024626
+        }
+      ],
+      "participant": [
+        "c4e",
+        "iddc51ad2b"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id2d08a86c",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "ba3f8",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 409,
+          "y": 236
+        },
+        {
+          "isAttachedTo": "a24b2",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 522,
+          "y": 236.00000000000003
+        }
+      ],
+      "participant": [
+        "ba3f8",
+        "a24b2"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id6eef87c",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "b7b",
+          "anchor": [
+            0.75,
+            0,
+            0,
+            -1
+          ],
+          "x": 392.1904761904765,
+          "y": 452.2380952380956
+        },
+        {
+          "anchor": [
+            "0.4",
+            0
+          ],
+          "isAttachedTo": "idd2373b45",
+          "x": 418.8904761904764,
+          "y": 425.80476190476196
+        }
+      ],
+      "participant": [
+        "b7b",
+        "idd2373b45"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "idaf2a986",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "fa9",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 552.3160678994172,
+          "y": 134.22359141038902
+        },
+        {
+          "isAttachedTo": "a24b2",
+          "anchor": [
+            0.25,
+            0,
+            0,
+            -1
+          ],
+          "x": 553,
+          "y": 226.00000000000003
+        }
+      ],
+      "participant": [
+        "fa9",
+        "a24b2"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "idfb69689",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "c3e",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 474.3333333333335,
+          "y": 427.66666666666697
+        },
+        {
+          "anchor": [
+            "0.4916010108517932",
+            0
+          ],
+          "isAttachedTo": "idc6341a29",
+          "x": 474.2857142857143,
+          "y": 383.3333333333333
+        }
+      ],
+      "participant": [
+        "c3e",
+        "idc6341a29"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id29bceef9",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "fa9",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 584.482734566084,
+          "y": 124.72359141038902
+        },
+        {
+          "isAttachedTo": "c66",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 704.5,
+          "y": 212.33333333333334
+        }
+      ],
+      "participant": [
+        "fa9",
+        "c66"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "b008b",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#008040",
+      "borderWidth": 1,
+      "points": [
+        {
+          "isAttachedTo": "c83",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 377.1904761904765,
+          "y": 373.8333333333333
+        },
+        {
+          "isAttachedTo": "a36",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 377.1904761904765,
+          "y": 340.3333333333333
+        }
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "idad027bce",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "anchor": [
+            "0.6868078220200304",
+            0
+          ],
+          "isAttachedTo": "id29bceef9",
+          "x": 666.9115312435517,
+          "y": 184.89464744822337
+        },
+        {
+          "isAttachedTo": "d24",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 704.5,
+          "y": 180
+        }
+      ],
+      "participant": [
+        "id29bceef9",
+        "d24"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id1e7f7971",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "a24b2",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 584,
+          "y": 246.00000000000003
+        },
+        {
+          "isAttachedTo": "f90e3",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 739.9999999999987,
+          "y": 371.9999999999998
+        }
+      ],
+      "participant": [
+        "a24b2",
+        "f90e3"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id436f346c",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "a36",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 377.1904761904765,
+          "y": 320.3333333333333
+        },
+        {
+          "isAttachedTo": "ba3f8",
+          "anchor": [
+            0.75,
+            1,
+            0,
+            1
+          ],
+          "x": 378,
+          "y": 246
+        }
+      ],
+      "participant": [
+        "a36",
+        "ba3f8"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id6ca21b57",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "points": [
+        {
+          "isAttachedTo": "d57",
+          "anchor": [
+            0.25,
+            0,
+            0,
+            -1
+          ],
+          "x": 177.33333333333334,
+          "y": 373.8333333333333
+        },
+        {
+          "isAttachedTo": "c40",
+          "anchor": [
+            0.75,
+            1,
+            0,
+            1
+          ],
+          "x": 146,
+          "y": 340.3333333333333
+        }
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id1e5724f9",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "af7",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 255.5238095238094,
+          "y": 409.57142857142884
+        },
+        {
+          "anchor": [
+            "0.4",
+            0
+          ],
+          "isAttachedTo": "id8511f007",
+          "x": 267.80952380952397,
+          "y": 383.3333333333333
+        }
+      ],
+      "participant": [
+        "af7",
+        "id8511f007"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "ida9302f64",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "d72",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 231.66666666666663,
+          "y": 320.3333333333333
+        },
+        {
+          "isAttachedTo": "ba3f8",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 347,
+          "y": 246
+        }
+      ],
+      "participant": [
+        "d72",
+        "ba3f8"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id37ab2a8b",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "e04",
+          "anchor": [
+            0.5,
+            1,
+            0,
+            1
+          ],
+          "x": 205.33333333333334,
+          "y": 174.4873208379272
+        },
+        {
+          "anchor": [
+            "0.3602583682111401",
+            0
+          ],
+          "isAttachedTo": "ida14b6441",
+          "x": 205.08166969147004,
+          "y": 236
+        }
+      ],
+      "participant": [
+        "e04",
+        "ida14b6441"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id22e28379",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "c40",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 131,
+          "y": 320.3333333333333
+        },
+        {
+          "isAttachedTo": "ba3f8",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 316,
+          "y": 246
+        }
+      ],
+      "participant": [
+        "c40",
+        "ba3f8"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id8511f007",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "d57",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 205.33333333333337,
+          "y": 383.3333333333333
+        },
+        {
+          "isAttachedTo": "c83",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 361.52380952380986,
+          "y": 383.3333333333333
+        }
+      ],
+      "participant": [
+        "d57",
+        "c83"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "idc6341a29",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "fca",
+          "anchor": [
+            0,
+            0.5,
+            -1,
+            0
+          ],
+          "x": 553.0238095238099,
+          "y": 383.3333333333333
+        },
+        {
+          "isAttachedTo": "c83",
+          "anchor": [
+            1,
+            0.5,
+            1,
+            0
+          ],
+          "x": 392.8571428571431,
+          "y": 383.3333333333333
+        }
+      ],
+      "participant": [
+        "fca",
+        "c83"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "idd2373b45",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerStart": "arrow",
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "c83",
+          "anchor": [
+            0.75,
+            1,
+            0,
+            1
+          ],
+          "x": 385.0238095238098,
+          "y": 392.8333333333333
+        },
+        {
+          "isAttachedTo": "cdf",
+          "anchor": [
+            0.25,
+            0,
+            0,
+            -1
+          ],
+          "x": 469.6904761904763,
+          "y": 475.26190476190493
+        }
+      ],
+      "participant": [
+        "cdf",
+        "c83"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id9d3f4991",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerStart": "arrow",
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "fca",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 565.1071428571432,
+          "y": 392.8333333333333
+        },
+        {
+          "isAttachedTo": "cdf",
+          "anchor": [
+            0.75,
+            0,
+            0,
+            -1
+          ],
+          "x": 489.35714285714295,
+          "y": 475.26190476190493
+        }
+      ],
+      "participant": [
+        "cdf",
+        "fca"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id7808eadf",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "d75",
+          "anchor": [
+            0.5,
+            0,
+            0,
+            -1
+          ],
+          "x": 367.1904761904764,
+          "y": 561.0000000000001
+        },
+        {
+          "isAttachedTo": "cdf",
+          "anchor": [
+            0.25,
+            1,
+            0,
+            1
+          ],
+          "x": 469.6904761904763,
+          "y": 494.26190476190493
+        }
+      ],
+      "participant": [
+        "d75",
+        "cdf"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "iddc51ad2b",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "markerEnd": "arrow",
+      "points": [
+        {
+          "isAttachedTo": "b95",
+          "anchor": [
+            0.25,
+            0,
+            0,
+            -1
+          ],
+          "x": 565.4761904761907,
+          "y": 559.047619047619
+        },
+        {
+          "isAttachedTo": "cdf",
+          "anchor": [
+            0.75,
+            1,
+            0,
+            1
+          ],
+          "x": 489.35714285714295,
+          "y": 494.26190476190493
+        }
+      ],
+      "participant": [
+        "b95",
+        "cdf"
+      ],
+      "interactionType": [
+        "SBO:0000167",
+        "SBO:0000393",
+        "SBO:0000394"
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Interaction",
+      "id": "id5b3e22b6",
+      "shape": "line-straight",
+      "zIndex": 12288,
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "points": [
+        {
+          "anchor": [
+            "0.24223833833614508",
+            0
+          ],
+          "isAttachedTo": "iddc51ad2b",
+          "x": 547.0372388652227,
+          "y": 543.3540352711274
+        },
+        {
+          "isAttachedTo": "e58",
+          "anchor": [
+            0.75,
+            0,
+            0,
+            -1
+          ],
+          "x": 520.761904761905,
+          "y": 559.047619047619
+        }
+      ],
+      "type": "Interaction"
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "c83",
+      "textContent": "IDL",
+      "zIndex": 28672,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "12",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 32.33333333333333,
+      "height": 20,
+      "x": 361.02380952380986,
+      "y": 373.3333333333333
+    },
+    {
+      "type": "gpml:Metabolite",
+      "gpml:element": "gpml:DataNode",
+      "id": "fa9",
+      "textContent": "Free FA",
+      "gpml:Type": "gpml:Metabolite",
+      "zIndex": 28672,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "12",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 65.33333333333333,
+      "height": 20,
+      "x": 519.6494012327505,
+      "y": 114.72359141038902,
+      "data_source": "ChEBI",
+      "identifier": "CHEBI:35366"
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "fbb",
+      "textContent": "Plasma",
+      "zIndex": 28672,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "12",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 62.333333333333336,
+      "height": 20,
+      "x": 782.5370370370366,
+      "y": 441.70634920634876
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "f20",
+      "textContent": "Tissues",
+      "zIndex": 28672,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "12",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 66.33333333333333,
+      "height": 20,
+      "x": 327.8518518518517,
+      "y": 668.0092592592584
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "cdf",
+      "textContent": "HDL",
+      "zIndex": 28672,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "12",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 40.333333333333336,
+      "height": 20,
+      "x": 459.357142857143,
+      "y": 474.76190476190493
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "fca",
+      "textContent": "VLDL",
+      "zIndex": 28672,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "12",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 49.333333333333336,
+      "height": 20,
+      "x": 552.5238095238099,
+      "y": 373.3333333333333
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "e46",
+      "textContent": "Cell Membrane",
+      "zIndex": 28672,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 103.33333333333333,
+      "height": 17,
+      "x": 796.4285714285727,
+      "y": 59.595238095238145
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "d57",
+      "textContent": "LDL",
+      "zIndex": 28672,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "12",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 38.333333333333336,
+      "height": 20,
+      "x": 167.5,
+      "y": 373.3333333333333
+    },
+    {
+      "type": "gpml:Metabolite",
+      "gpml:element": "gpml:DataNode",
+      "id": "c66",
+      "textContent": "Triglycerides",
+      "gpml:Type": "gpml:Metabolite",
+      "zIndex": 28672,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "12",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 105.33333333333333,
+      "height": 20,
+      "x": 704,
+      "y": 202.33333333333334,
+      "data_source": "ChEBI",
+      "identifier": "CHEBI:17855"
+    },
+    {
+      "gpml:element": "gpml:Label",
+      "id": "b93",
+      "textContent": "Liver cell",
+      "zIndex": 28672,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "12",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 74.33333333333333,
+      "height": 20,
+      "x": 819.5,
+      "y": 310
+    },
+    {
+      "type": "gpml:Metabolite",
+      "gpml:element": "gpml:DataNode",
+      "id": "d24",
+      "textContent": "Phospholipid",
+      "gpml:Type": "gpml:Metabolite",
+      "zIndex": 28672,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "12",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 105.33333333333337,
+      "height": 20.000000000000014,
+      "x": 704,
+      "y": 170,
+      "data_source": "ChEBI",
+      "identifier": "CHEBI:16247"
+    },
+    {
+      "gpml:element": "gpml:Group",
+      "gpml:Style": "gpml:Group",
+      "id": "f90e3",
+      "textContent": "Group object",
+      "padding": "8",
+      "verticalAlign": "middle",
+      "textAlign": "center",
+      "fillOpacity": 0.1,
+      "fontWeight": "bold",
+      "fontSize": "1",
+      "strokeDasharray": "5,3",
+      "shape": "none",
+      "backgroundColor": "transparent",
+      "color": "#808080",
+      "borderWidth": 1,
+      "type": "gpml:Group",
+      "contains": [
+        {
+          "type": "gpml:GeneProduct",
+          "gpml:element": "gpml:DataNode",
+          "id": "f9d",
+          "isPartOf": "f90e3",
+          "textContent": "Apoc1",
+          "gpml:Type": "gpml:GeneProduct",
+          "zIndex": 32768,
+          "verticalAlign": "middle",
+          "padding": "0.5em",
+          "fontSize": "10",
+          "textAlign": "center",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 61,
+          "height": 21,
+          "x": 709.4999999999987,
+          "y": 399.4999999999998,
+          "data_source": "Entrez Gene",
+          "identifier": "11812"
+        },
+        {
+          "type": "gpml:GeneProduct",
+          "gpml:element": "gpml:DataNode",
+          "id": "fad",
+          "isPartOf": "f90e3",
+          "textContent": "Apoe",
+          "gpml:Type": "gpml:GeneProduct",
+          "zIndex": 32768,
+          "verticalAlign": "middle",
+          "padding": "0.5em",
+          "fontSize": "10",
+          "textAlign": "center",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 61,
+          "height": 21,
+          "x": 709.4999999999987,
+          "y": 419.4999999999998,
+          "data_source": "Entrez Gene",
+          "identifier": "11816"
+        },
+        {
+          "type": "gpml:GeneProduct",
+          "gpml:element": "gpml:DataNode",
+          "id": "a64",
+          "isPartOf": "f90e3",
+          "textContent": "Apoc2",
+          "gpml:Type": "gpml:GeneProduct",
+          "zIndex": 32768,
+          "verticalAlign": "middle",
+          "padding": "0.5em",
+          "fontSize": "10",
+          "textAlign": "center",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 61,
+          "height": 21,
+          "x": 709.4999999999987,
+          "y": 439.4999999999998,
+          "data_source": "Entrez Gene",
+          "identifier": "11813"
+        },
+        {
+          "type": "gpml:GeneProduct",
+          "gpml:element": "gpml:DataNode",
+          "id": "a5e",
+          "isPartOf": "f90e3",
+          "textContent": "Apoc3",
+          "gpml:Type": "gpml:GeneProduct",
+          "zIndex": 32768,
+          "verticalAlign": "middle",
+          "padding": "0.5em",
+          "fontSize": "10",
+          "textAlign": "center",
+          "shape": "rectangle",
+          "backgroundColor": "#ffffff",
+          "color": "#000000",
+          "borderWidth": 1,
+          "width": 61,
+          "height": 21,
+          "x": 709.4999999999987,
+          "y": 379.4999999999998,
+          "data_source": "Entrez Gene",
+          "identifier": "11814"
+        }
+      ],
+      "x": 700.4999999999987,
+      "y": 370.4999999999998,
+      "width": 79,
+      "height": 99,
+      "zIndex": 32767.9
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "f9d",
+      "isPartOf": "f90e3",
+      "textContent": "Apoc1",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 709.4999999999987,
+      "y": 399.4999999999998,
+      "data_source": "Entrez Gene",
+      "identifier": "11812"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "e6e",
+      "textContent": "Soat1",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 423.6904761904762,
+      "y": 188.9761904761904,
+      "data_source": "Entrez Gene",
+      "identifier": "20652"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "fad",
+      "isPartOf": "f90e3",
+      "textContent": "Apoe",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 709.4999999999987,
+      "y": 419.4999999999998,
+      "data_source": "Entrez Gene",
+      "identifier": "11816"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "af7",
+      "textContent": "Lipc",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 225.0238095238094,
+      "y": 409.07142857142884,
+      "data_source": "Entrez Gene",
+      "identifier": "15450"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "a64",
+      "isPartOf": "f90e3",
+      "textContent": "Apoc2",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 709.4999999999987,
+      "y": 439.4999999999998,
+      "data_source": "Entrez Gene",
+      "identifier": "11813"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "be0",
+      "textContent": "Dgat1",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 643.876506134835,
+      "y": 112.23746377756173,
+      "data_source": "Entrez Gene",
+      "identifier": "13350"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "a5e",
+      "isPartOf": "f90e3",
+      "textContent": "Apoc3",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 709.4999999999987,
+      "y": 379.4999999999998,
+      "data_source": "Entrez Gene",
+      "identifier": "11814"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "b7b",
+      "textContent": "Cetp",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 346.6904761904765,
+      "y": 451.7380952380956,
+      "data_source": "Entrez Gene",
+      "identifier": "1071"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "c40",
+      "textContent": "Scarb1",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 100.5,
+      "y": 319.8333333333333,
+      "data_source": "Entrez Gene",
+      "identifier": "20778"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "da7",
+      "textContent": "Cyp7a1",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 386.1666666666667,
+      "y": 153.9873208379272,
+      "data_source": "Entrez Gene",
+      "identifier": "13122"
+    },
+    {
+      "type": "gpml:Metabolite",
+      "gpml:element": "gpml:DataNode",
+      "id": "ecd6d",
+      "textContent": "Cholic acid",
+      "gpml:Type": "gpml:Metabolite",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#0000ff",
+      "borderWidth": 1,
+      "width": 125,
+      "height": 21,
+      "x": 283.5,
+      "y": 97.5,
+      "data_source": "HMDB",
+      "identifier": "HMDB00619"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "f82",
+      "textContent": "Lcat",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 346.6904761904765,
+      "y": 479.1190476190473,
+      "data_source": "Entrez Gene",
+      "identifier": "16816"
+    },
+    {
+      "type": "gpml:Metabolite",
+      "gpml:element": "gpml:DataNode",
+      "id": "f6a60",
+      "textContent": "Acetyl-CoA",
+      "gpml:Type": "gpml:Metabolite",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#0000ff",
+      "borderWidth": 1,
+      "width": 125,
+      "height": 21,
+      "x": 35.57717750826919,
+      "y": 225.5,
+      "data_source": "HMDB",
+      "identifier": "HMDB01206"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "d72",
+      "textContent": "Ldlr",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 201.16666666666666,
+      "y": 319.8333333333333,
+      "data_source": "Entrez Gene",
+      "identifier": "16835"
+    },
+    {
+      "type": "gpml:Metabolite",
+      "gpml:element": "gpml:DataNode",
+      "id": "ba3f8",
+      "textContent": "Cholesterol",
+      "gpml:Type": "gpml:Metabolite",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#0000ff",
+      "borderWidth": 1,
+      "width": 125,
+      "height": 21,
+      "x": 284.5,
+      "y": 225.5,
+      "data_source": "HMDB",
+      "identifier": "HMDB00067"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "d75",
+      "textContent": "Abca1",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 336.6904761904764,
+      "y": 560.5000000000001,
+      "data_source": "Entrez Gene",
+      "identifier": "11303"
+    },
+    {
+      "type": "gpml:Metabolite",
+      "gpml:element": "gpml:DataNode",
+      "id": "afd21",
+      "textContent": "Cholesterol",
+      "gpml:Type": "gpml:Metabolite",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#0000ff",
+      "borderWidth": 1,
+      "width": 81,
+      "height": 21,
+      "x": 244.5,
+      "y": 626.5,
+      "data_source": "HMDB",
+      "identifier": "HMDB00067"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "f8e",
+      "textContent": "Mttp",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 654.880952380953,
+      "y": 263.4523809523805,
+      "data_source": "Entrez Gene",
+      "identifier": "17777"
+    },
+    {
+      "type": "gpml:Metabolite",
+      "gpml:element": "gpml:DataNode",
+      "id": "a24b2",
+      "textContent": "Cholesterol Ester",
+      "gpml:Type": "gpml:Metabolite",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#0000ff",
+      "borderWidth": 1,
+      "width": 125,
+      "height": 21,
+      "x": 521.5,
+      "y": 225.50000000000003,
+      "data_source": "ChEBI",
+      "identifier": "CHEBI:17002"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "c4e",
+      "textContent": "Pltp",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 532.309523809524,
+      "y": 480.6904761904762,
+      "data_source": "Entrez Gene",
+      "identifier": "18830"
+    },
+    {
+      "type": "gpml:Metabolite",
+      "gpml:element": "gpml:DataNode",
+      "id": "e4e59",
+      "textContent": "Statin",
+      "gpml:Type": "gpml:Metabolite",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "fontWeight": "bold",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#ff0033",
+      "borderWidth": 1,
+      "width": 81,
+      "height": 21,
+      "x": 57.57717750826917,
+      "y": 153.9873208379272,
+      "data_source": "ChEBI",
+      "identifier": "35664"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "a36",
+      "textContent": "Lrp1",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 346.6904761904765,
+      "y": 319.8333333333333,
+      "data_source": "Entrez Gene",
+      "identifier": "16971"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "e58",
+      "textContent": "Apoa1",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 475.261904761905,
+      "y": 558.547619047619,
+      "data_source": "Entrez Gene",
+      "identifier": "11806"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "e04",
+      "textContent": "Hmgcr",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 174.83333333333334,
+      "y": 153.9873208379272,
+      "data_source": "Entrez Gene",
+      "identifier": "15357"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "b95",
+      "textContent": "Apoa4",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 549.9761904761907,
+      "y": 558.547619047619,
+      "data_source": "Entrez Gene",
+      "identifier": "11808"
+    },
+    {
+      "type": "gpml:GeneProduct",
+      "gpml:element": "gpml:DataNode",
+      "id": "c3e",
+      "textContent": "Lpl",
+      "gpml:Type": "gpml:GeneProduct",
+      "zIndex": 32768,
+      "verticalAlign": "middle",
+      "padding": "0.5em",
+      "fontSize": "10",
+      "textAlign": "center",
+      "shape": "rectangle",
+      "backgroundColor": "#ffffff",
+      "color": "#000000",
+      "borderWidth": 1,
+      "width": 61,
+      "height": 21,
+      "x": 443.8333333333335,
+      "y": 407.16666666666697,
+      "data_source": "Entrez Gene",
+      "identifier": "16956"
+    },
+    {
+      "type": "PublicationXref",
+      "dbName": "pubmed",
+      "dbId": "10770267",
+      "title": "Direct effects of statins on cells primarily involved in atherosclerosis.",
+      "source": "Hypertens Res",
+      "year": "2000",
+      "author": "Chen H",
+      "displayName": 1
+    }
+  ]
+}

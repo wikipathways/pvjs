@@ -1,0 +1,9 @@
+{
+  "metadataFilePaths": "./bower.json, ./component.json, ./package.json",
+  "modernizrFeatureDetects": [],
+  "integrations": [
+    "node",
+    "jquery",
+    "web-component"
+  ]
+}
