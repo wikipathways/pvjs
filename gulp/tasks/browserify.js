@@ -61,22 +61,31 @@ gulp.task('browserify', ['modernizr'], function() {
     // stream gulp compatible. Specify the
     // desired output filename here.
     .pipe(source(getBundleName() + '.js'))
-    .pipe(highland.pipeline(function(stream) {
-      if (global.isWatching) {
-        return stream;
-      }
 
-      return stream
-        // These steps are only enabled when
-        // a watch is not set.
-        // They are too slow to enable
-        // during development.
-        .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        // Add transformation tasks to the pipeline here.
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'));
-    }))
+    //============================================
+    // TODO: The below doesn't work currently.
+    // When uncommented get a TypeError
+    // Something to do with the highland package
+    //============================================
+    // .pipe(highland.pipeline(function(stream) {
+    //   if (global.isWatching) {
+    //     return stream;
+    //   }
+    //
+    //   return stream
+    //     // These steps are only enabled when
+    //     // a watch is not set.
+    //     // They are too slow to enable
+    //     // during development.
+    //     .pipe(buffer())
+    //     .pipe(sourcemaps.init({loadMaps: true}))
+    //     // Add transformation tasks to the pipeline here.
+    //     .pipe(uglify())
+    //     .pipe(sourcemaps.write('./'));
+    // }))
+    //===============================================
+
+
     // Specify the output destination
     .pipe(gulp.dest('./dist/'))
     // Log when bundling completes!
