@@ -130,7 +130,7 @@
     "cross-platform-text": "git://github.com/ariutta/cross-platform-text.git",
     "custom-event-polyfill": "~0.1.2",
     "element-resize-detector": "~0.1.4",
-    "gpml2json": "git://github.com/wikipathways/gpml2json.git",
+    "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-json.git",
     "highland": "~2.3.0",
     "iconv-lite": "~0.4.7",
     "insert-css": "~0.2.0",
