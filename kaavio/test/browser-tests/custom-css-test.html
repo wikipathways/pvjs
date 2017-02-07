@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html style="margin: 0; width: 100%; height: 100%; ">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <title>Pathvisiojs Simple Built Production Example</title>
+
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
+    <link rel="stylesheet" href="../demo/lib/pathvisiojs/css/pathvisiojs.css">
+
+    <!--[if lt IE 9]>
+    <script>
+
+      // pvjs won't run on IE8 and earlier
+      var pathvisiojs = {};
+      pathvisiojs.init = {};
+
+      // IE8 only allows console.log when Developer Tools is open. This will prevent errors
+      // from showing up if I use console.log without DevTools being open.
+      // from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
+      /**
+       * Protect window.console method calls, e.g. console is not defined on IE
+       * unless dev tools are open, and IE doesn't define console.debug
+       */
+      (function() {
+       if (!window.console) {
+         window.console = {};
+       }
+       // union of Chrome, FF, IE, and Safari console methods
+       var m = [
+       "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+       "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+       "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+       ];
+       // define undefined methods as noops to prevent errors
+       for (var i = 0; i < m.length; i++) {
+         if (!window.console[m[i]]) {
+         window.console[m[i]] = function() {};
+         }
+       }
+      })();
+    </script>
+    <![endif]-->
+  </head>
+
+  <body style="margin: 0; width: 100%; height: 100%; ">
+    <div id="production-container" style="width:inherit; height:inherit; margin:0; overflow:hidden;">
+    </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../dist/lib/modernizr/js/modernizr.min.js"></script>
+    <script src="../dist/lib/cross-platform-shapes/js/cross-platform-shapes.js"></script>
+    <script src="../dist/lib/cross-platform-text/js/cross-platform-text.js"></script>
+    <script src="../dist/lib/pathvisiojs/js/pathvisiojs.js"></script>
+    <script src="../dist/plugins/pathvisiojs-notifications/pathvisiojs-notifications.js"></script>
+    <script src="./load.js"></script>
+
+    <script>
+    window.addEventListener('load',
+      function() {
+        var Modernizr = Modernizr || {};
+        developmentLoader.parseUriParams(function(parsedInputData) {
+
+          /* *******************
+          /* Load pathvisiojs
+          /* *******************/
+          $(function(){
+            $('#production-container').pathvisiojs({
+              fitToContainer: true
+            , manualRender: true
+            , sourceData:parsedInputData.sourceData
+            , cssUri: './custom-css-test.css'
+            //, customMarkers: customMarkers
+            //, customSymbols: customSymbols
+            , bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/' // optional
+            , bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php' // optional
+            , diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif' // optional
+            , diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg' // optional
+            , imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' // optional
+            , pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=' // optional
+            , highlights: parsedInputData.highlights //optional
+            , hiddenElements: [
+              'find',
+              'wikipathways-link'
+            ]
+            })
+
+            // Get first element from array of instances
+            var pathInstance = $('#production-container').pathvisiojs('get').pop()
+
+            // Load plugins
+            pathvisiojsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
+
+            // Call renderer
+            pathInstance.render()
+
+            // pathInstance.highlight([
+            //   {
+            //     "label": "APC"
+            //   , "style": {
+            //       "fill": "green"
+            //     , "stroke": "green"
+            //     }
+            //   }
+            // , {
+            //     "xref": "HMDB00193,HMDB"
+            //   , "style": {
+            //       "fill": "blue"
+            //     , "stroke": "blue"
+            //     }
+            //   }
+            // ])
+          })
+        });
+      });
+    </script>
+  </body>
+</html>

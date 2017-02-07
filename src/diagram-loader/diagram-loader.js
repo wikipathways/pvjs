@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var Gpml = require('gpml2json');
+var Gpml = require('gpml2pvjson');
 var Utils = require('./../utils.js');
 
 module.exports = function renderer() {

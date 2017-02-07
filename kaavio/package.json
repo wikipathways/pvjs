@@ -1,0 +1,151 @@
+{
+  "name": "kaavio",
+  "version": "2.3.13",
+  "description": "Diagram viewer and editor.",
+  "main": "./lib/index.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "browserify": {
+    "transform": [
+      "brfs",
+      "deglobalify"
+    ],
+    "ignore": [
+      "jquery"
+    ]
+  },
+  "browser": {
+    "cheerio": false,
+    "commander": false,
+    "d3": false,
+    "jquery": false
+  },
+  "directories": {
+    "test": "test",
+    "lib": "lib",
+    "packages": "jspm_packages"
+  },
+  "scripts": {
+    "test": "mocha test/spec/api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wikipathways/kaavio.git"
+  },
+  "keywords": [
+    "network",
+    "node",
+    "edge",
+    "diagram"
+  ],
+  "author": "WikiPathways team",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/wikipathways/kaavio/issues"
+  },
+  "homepage": "http://wikipathways.github.io/kaavio",
+  "gitHead": "044be6618ee72b932fcb90f4369eb61706f3cfb9",
+  "readmeFilename": "README.md",
+  "style": [
+    "./src/css/*.css",
+    "./src/components/**/*.css"
+  ],
+  "dependencies": {
+    "ariutta-loading": "^1.0.0",
+    "cross-platform-shapes": "git://github.com/ariutta/cross-platform-shapes.git#1.1.0",
+    "cross-platform-text": "git://github.com/ariutta/cross-platform-text.git#0.0.14",
+    "csv-streamify": "~2.0.0",
+    "custom-event-polyfill": "~0.1.2",
+    "d3": "^3.5.16",
+    "element-resize-detector": "~0.1.4",
+    "highland": "~2.3.0",
+    "hyperquest": "^1.2.0",
+    "iconv-lite": "~0.4.7",
+    "insert-css": "~0.2.0",
+    "jquery": "^1.12.3",
+    "jsonld-rx-extra": "git://github.com/ariutta/jsonld-rx-extra#961f6543aa160e0595b6e91d6261a90b27dfa67b",
+    "JSONStream": "^1.0.4",
+    "lodash": "^3.5.0",
+    "mithril": "^0.2.0",
+    "promisescript": "~1.1.0",
+    "resolve-url": "~0.2.1",
+    "rx-extra": "git://github.com/ariutta/rx-extra.git#117359e7101c328187c648637c38c69aa60751d2",
+    "spin.js": "~2.0.2",
+    "svg-pan-zoom": "git://github.com/ariutta/svg-pan-zoom.git",
+    "tower-strcase": "~0.5.0",
+    "typeahead.js": "~0.10.5"
+  },
+  "devDependencies": {
+    "bdd-with-opts": "0.0.4",
+    "chai": "~2.1.2",
+    "chai-as-promised": "latest",
+    "connect": "~2.14.3",
+    "ecstatic": "~0.5.8",
+    "event-stream": "~3.1.7",
+    "express": "~3.4.7",
+    "freeport": "~1.0.4",
+    "gulp": "~3.8.11",
+    "gulp-changed": "~0.3.0",
+    "gulp-mocha": "~0.5.1",
+    "gulp-sequence": "~0.3.1",
+    "highland": "~2.3.0",
+    "inquirer": "~0.8.0",
+    "jquery": "^1.12.3",
+    "jsdom": "^8.3.0",
+    "loggin": "^3.0.1",
+    "matchdep": "~0.1.2",
+    "minimize": "~0.7.6",
+    "mkdirp": "^0.5.1",
+    "mocha": "~1.18.2",
+    "mocha-jsdom": "^1.1.0",
+    "mockserver": "~1.1.0",
+    "node-notifier": "~4.0.3",
+    "pretty-data": "~0.40.0",
+    "pretty-hrtime": "~0.2.1",
+    "prompt": "~0.2.13",
+    "q": "~1.0.1",
+    "reload": "~0.1.0",
+    "selenium-launcher": "git://github.com/ariutta/nodejs-selenium-launcher",
+    "selenium-standalone": "~2.44.0-7",
+    "sinon": "^1.17.3",
+    "spawn-mocha-parallel": "~1.0.0",
+    "wd": "~0.3.11",
+    "workflow-bob": "git://github.com/ariutta/workflow-bob.git",
+    "yargs": "~1.2.6"
+  },
+  "semverBumper": {
+    "jsonFiles": [
+      {
+        "filepath": "package.json",
+        "key": "version"
+      },
+      {
+        "filepath": "bower.json",
+        "key": "version"
+      }
+    ],
+    "grepOptions": {
+      "include": [],
+      "exclude": [
+        "config.js",
+        "old-gulpfile.js",
+        "phantomjsdriver.log"
+      ],
+      "excludeDir": [
+        "./docs",
+        "./test",
+        "./bower_components",
+        "./lib",
+        "./old-gulp",
+        "./demo",
+        "./old-demo",
+        "./tmp",
+        "./jspm_packages",
+        "./external-data",
+        "./dist",
+        "./.git"
+      ]
+    }
+  }
+}
