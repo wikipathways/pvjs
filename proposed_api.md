@@ -25,6 +25,11 @@ let pvjs = pvjs(elem).render();
 pvjs.toggleHighlight(node_identifier, colour);
 ```
 
+## Reset all highlights
+```
+pvjs.resetHighlight();
+```
+
 ## Zoom
 
 ```
@@ -35,6 +40,11 @@ pvjs.zoom(zoom_perc, zoom_origin);
 Zoom to a particular node.
 ```
 pvjs.zoomOn(node_identifier);
+```
+
+## Reset zoom
+```
+pvjs.resetZoom();
 ```
 
 ## Pan
@@ -48,11 +58,24 @@ pvjs.pan(top, left, bottom, right);
 pvjs.panTo(node_identifier);
 ```
 
+## Reset pan
+```
+pvjs.resetPan();
+```
+
 ## Toggle annotations
+Think this should automatically close other open annotations. Having too many open is messy.
 
 ```
 pvjs.toggleAnnotations(node_identifier);
 ```
+
+## Rest everythig
+```
+pvjs.reset();
+```
+
+
 
 ## Download
 ```
