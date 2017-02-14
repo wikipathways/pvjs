@@ -70,7 +70,7 @@ Think this should automatically close other open annotations. Having too many op
 pvjs.toggleAnnotations(node_identifier);
 ```
 
-## Rest everything
+## Reset everything
 ```
 pvjs.reset();
 ```
