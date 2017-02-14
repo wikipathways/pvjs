@@ -22,7 +22,7 @@ let pvjs = pvjs(elem).render();
 - How are nodes identified?
 
 ```
-pvjs.highlight(node_identifier, colour);
+pvjs.toggleHighlight(node_identifier, colour);
 ```
 
 ## Zoom
