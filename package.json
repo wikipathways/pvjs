@@ -62,6 +62,7 @@
     "base-url": "^1.0.0",
     "blueimp-load-image": "^1.13.0",
     "bridgedb": "git://github.com/bridgedb/bridgedbjs.git#dee39daa077c6adc926fcd7f9d253cba37897f30",
+    "browser-sync": "^2.18.8",
     "d3": "^3.5.16",
     "gpml2pvjson": "git://github.com/wikipathways/gpml2pvjson-js.git#aa3723a18eefcf3810c77b9f636604b3e788ca69",
     "he": "^0.5.0",

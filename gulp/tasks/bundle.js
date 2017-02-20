@@ -20,6 +20,8 @@ var assign = require('lodash/assign');
    of browserify for faster bundling using caching.
 
    Uglifies if not watching.
+
+   TODO: Js sourcemaps not working. Only TypeScript
 */
 
 gulp.task('bundle', bundle);
@@ -33,7 +35,7 @@ var bundler = function() {
     entries: ['./lib/main.js'],
     extension: ['js'],
     insertGlobals: true,
-    debug: true,
+    //debug: true,
     basedir: '.',
     transform: ['brfs', 'deglobalify']
   };
@@ -51,14 +53,13 @@ var bundler = function() {
 
 function bundle(){
   bundling = bundler()
+      .transform("babelify", {presets: ['es2015'], extensions: ['.js']})
       .ignore('commander')
       .ignore('cheerio')
       .bundle();
   bundling.on('error', gutil.log.bind(gutil, 'Browserify error'));
 
-  bundling = bundling.pipe(source('pvjs.js'));
-
-  bundling = bundling.pipe(source('typescript.js'))
+  bundling = bundling.pipe(source('pvjs.js'))
       .pipe(buffer())
       .pipe(sourcemaps.init({loadMaps: true}));
 
@@ -68,6 +69,6 @@ function bundle(){
   }
 
   return bundling
-      .pipe(sourcemaps.write())
+      .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest('./tmp/'));
 }
