@@ -1,5 +1,7 @@
 export class Manipulator {
     constructor(){
-        console.log("Success!")
+        console.log("Successfully loaded the manipulation API!");
     }
+
+
 }
