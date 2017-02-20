@@ -18,6 +18,9 @@
         "typings/browser",
         "typings/browser.d.ts"
     ],
+    "files": [
+        "custom-typings.d.ts"
+    ],
     "compileOnSave": true,
     "buildOnSave": false,
     "atom": {

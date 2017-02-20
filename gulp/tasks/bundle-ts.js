@@ -26,7 +26,7 @@ var bundler = function() {
     extension: ['ts'],
     extensions: ['.ts'],
     plugin: ['tsify'],
-    debug: true,
+    //debug: true,
     basedir: '.'
   };
 
