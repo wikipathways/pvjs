@@ -33,7 +33,7 @@ var bundler = function() {
     entries: ['./lib/main.js'],
     extension: ['js'],
     insertGlobals: true,
-    //debug: true,
+    debug: true,
     basedir: '.',
     transform: ['brfs', 'deglobalify']
   };
