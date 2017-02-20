@@ -23,3 +23,5 @@ lib/bootstrap.ts
 lib/main1.ts
 typings/
 demo/TODO_index.html
+/npm-debug.log
+/lib/
