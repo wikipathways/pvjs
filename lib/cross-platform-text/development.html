@@ -1,0 +1,77 @@
+<html style="margin: 0; width: 100%; height: 100%; ">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<title>Testing and Development</title>
+
+<body style="margin: 0px; width: 100%; height: 100%;">
+<div id="dev" style="width:inherit; height:inherit; margin:0; overflow:hidden;">
+  <div id="container" style="width: inherit; height: inherit;">
+    <div id="diagram-container">
+      <div>
+        <svg id="my-svg1" version="1.1" baseProfile="full" xmlns="http://www.w3.org/1999/xlink" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="100%" height="60%" style="display:inline" preserveAspectRatio="xMidYMid" xlink="http://www.w3.org/1999/xlink" ev="http://www.w3.org/2001/xml-events">
+          <g>
+            <desc>Demo for cross-platform-shapes library.</desc>
+          </g>
+          <title>diagram</title>
+          <defs>
+            <linearGradient id="MyGradient">
+              <stop offset="0%" stop-color="red"></stop>
+              <stop offset="95%" stop-color="red"></stop>
+              <stop offset="95%" stop-opacity="1"></stop>
+              <stop offset="95%" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <g id="viewport">
+          <rect fill="yellow" x="50" y="200" width="100" height="20"></rect>
+          <rect fill="green" x="160" y="200" width="100" height="20" transform="rotate(45,210,210)"></rect>
+          </g>
+        </svg>
+        <canvas id="my-canvas" width="150" height="150"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="./cross-platform-text.js"></script>
+<script src="./svg.js"></script>
+
+
+<script>
+  var crossPlatformTextInstance1 = Object.create(crossPlatformText);
+  crossPlatformTextInstance1.init({
+    targetSelector:'#my-svg1'
+  });
+  crossPlatformTextInstance1.render({
+    id:'my-text',
+    x:50,
+    y:200,
+    width:100,
+    height:20,
+    containerSelector:'#viewport',
+    textContent:'Ptog',
+    textAlign:'center',
+    verticalAlign:'middle',
+    color:'blue',
+    fontSize:12},
+    function(textElements) {
+      // do something, if desired
+    });
+  crossPlatformTextInstance1.render({
+    id:'my-text2',
+    x:160,
+    y:200,
+    width:100,
+    height:20,
+    containerSelector:'#viewport',
+    textContent:'Ptog',
+    textAlign:'center',
+    verticalAlign:'middle',
+    color:'orange',
+    fontSize:12,
+    rotation:45},
+    function(textElements) {
+      // do something, if desired
+    });
+ </script>

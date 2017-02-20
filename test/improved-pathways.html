@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>PVJS: Educationally Improved</title>
+
+    <link rel="stylesheet" href="../src/pvjs.css">
+
+    <!--Add jQuery-->
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+
+    <!--Add d3 for Kaavio-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+
+    <!--Add mithril-->
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+
+    <script src="../dist/pvjs-dev.bundle.js"></script>
+
+    <!--Add bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h1>Educationally Improved Pathways</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h3>Text here</h3>
+        </div>
+        <div class="col">
+          <h3>Pathway here</h3>
+          <div id="pvjs-container"></div>
+          Hello!
+        </div>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var pvjs_container = document.getElementById('pvjs-container')
+      new Pvjs(pvjs_container, {
+        sourceData: [
+          // at least one item required
+          {
+            uri:'/test/WP3963_91361.gpml', // Use local for now. until CORS okay
+            fileType:'gpml' // generally will correspond to filename extension
+          }
+        ],
+        displayErrors: true,
+displayWarnings: true,
+      }).render();
+    })()
+    </script>
+  </body>
+
+</html>

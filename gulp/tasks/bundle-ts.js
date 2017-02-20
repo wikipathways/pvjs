@@ -1,0 +1,66 @@
+var browserify = require('browserify');
+var gulp = require('gulp');
+var source = require('vinyl-source-stream');
+var tsify = require('tsify');
+var babelify = require("babelify");
+var buffer = require('vinyl-buffer');
+var sourcemaps = require('gulp-sourcemaps');
+var uglify = require('gulp-uglify');
+var watchify = require('watchify');
+var gutil = require('gulp-util');
+var assign = require('lodash/assign');
+
+/** Bundle Typescript!
+* Uses browserify to bundle Typescript starting from the main.ts file.
+*
+* If watching then it uses watchify to watch all imports and bundles if one
+* changes.
+*/
+gulp.task('bundle-ts', bundle);
+
+var bundler = function() {
+  // Set up the bundler
+  // Uses watchify if watching
+  var customOpts = {
+    entries: ['./lib/main.ts'],
+    extension: ['ts'],
+    plugin: ['tsify'],
+    //debug: true,
+    basedir: '.'
+  };
+
+  if(global.isWatching) {
+    gutil.log('Bundling Typescript using watchify!');
+    var opts = assign({}, { cache: {}, packageCache: {} }, customOpts);
+    return watchify(browserify(opts))
+      .on('update', bundle)
+      .on('log', gutil.log);
+  }
+
+  return browserify(customOpts);
+}
+
+bundler()
+  .transform(babelify, {extensions: ['.ts']})
+  .ignore('commander')
+  .ignore('cheerio');
+
+function bundle(){
+  gutil.log('Bundling Typescript...');
+
+  bundling = bundler().bundle();
+  bundling.on('error', gutil.log.bind(gutil, 'Browserify error'));
+
+  bundling = bundling.pipe(source('typescript.js'));
+
+  if(! global.isWatching) {
+    // Sourcemaps and uglify if not watching
+    bundling = bundling
+      .pipe(buffer())
+      .pipe(sourcemaps.init({loadMaps: true}))
+      .pipe(uglify())
+      .pipe(sourcemaps.write('./'))
+  }
+
+  return bundling.pipe(gulp.dest('./tmp/'));
+}
