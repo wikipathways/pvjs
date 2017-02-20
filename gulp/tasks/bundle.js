@@ -58,14 +58,16 @@ function bundle(){
 
   bundling = bundling.pipe(source('pvjs.js'));
 
+  bundling = bundling.pipe(source('typescript.js'))
+      .pipe(buffer())
+      .pipe(sourcemaps.init({loadMaps: true}));
+
   if(! global.isWatching) {
     // Sourcemaps and uglify if not watching
-    bundling = bundling
-      .pipe(buffer())
-      .pipe(sourcemaps.init({loadMaps: true}))
-      .pipe(uglify())
-      .pipe(sourcemaps.write('./'))
+    bundling = bundling.pipe(uglify())
   }
 
-  return bundling.pipe(gulp.dest('./tmp/'));
+  return bundling
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest('./tmp/'));
 }
