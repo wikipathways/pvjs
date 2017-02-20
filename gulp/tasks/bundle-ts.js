@@ -24,6 +24,7 @@ var bundler = function() {
   var customOpts = {
     entries: ['./lib/main.ts'],
     extension: ['ts'],
+    extensions: ['.ts'],
     plugin: ['tsify'],
     //debug: true,
     basedir: '.'
@@ -38,17 +39,17 @@ var bundler = function() {
   }
 
   return browserify(customOpts);
-}
-
-bundler()
-  .transform(babelify, {extensions: ['.ts']})
-  .ignore('commander')
-  .ignore('cheerio');
+};
 
 function bundle(){
   gutil.log('Bundling Typescript...');
 
-  bundling = bundler().bundle();
+  bundling = bundler()
+      .transform("babelify", {presets: ['es2015'], extensions: ['.ts', '.js']})
+      .ignore('commander')
+      .ignore('cheerio')
+      .bundle();
+
   bundling.on('error', gutil.log.bind(gutil, 'Browserify error'));
 
   bundling = bundling.pipe(source('typescript.js'));

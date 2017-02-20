@@ -47,14 +47,13 @@ var bundler = function() {
   }
 
   return browserify(customOpts);
-}
-
-bundler()
-  .ignore('commander')
-  .ignore('cheerio');
+};
 
 function bundle(){
-  bundling = bundler().bundle();
+  bundling = bundler()
+      .ignore('commander')
+      .ignore('cheerio')
+      .bundle();
   bundling.on('error', gutil.log.bind(gutil, 'Browserify error'));
 
   bundling = bundling.pipe(source('pvjs.js'));
