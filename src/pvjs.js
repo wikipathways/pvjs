@@ -9,7 +9,7 @@ var promisescript = require('promisescript');
 var DiagramLoader = require('./diagram-loader/diagram-loader');
 
 //var Kaavio = require('../../required-mithril-component/index.js');
-var Kaavio = require('../../kaavio/index.js');
+var Kaavio = require('../kaavio/index.js');
 //var wikipathwaysKaavioElement = require('../../kaavio/lib/wikipathways-kaavio-element.js');
 
 // Make IE work with the CustomEvent interface standard

@@ -19,25 +19,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
-gulp.task('browserify', function() {
-
-  // TODO move this into its own file
-  var modernizr = require('modernizr');
-
-  modernizr.build({
-    'feature-detects': [
-      'inputtypes',
-      'svg',
-      'svg/asimg',
-      'svg/clippaths',
-      'svg/filters',
-      'svg/foreignobject',
-      'svg/inline',
-      'svg/smil'
-    ]
-  }, function(result) {
-    fs.writeFileSync('./tmp/modernizr-custom.js', result);
-  });
+gulp.task('browserify', ['modernizr'], function() {
 
   var bundleMethod = global.isWatching ? watchify : browserify;
 
@@ -52,11 +34,15 @@ gulp.task('browserify', function() {
     }
   };
 
-  var bundler = bundleMethod({
-    // Specify the entry point of your app
-    entries: ['./tmp/modernizr-custom.js',
-      './src/pvjs.js']
-  })
+  var bundler = bundleMethod(
+    ['./tmp/modernizr.js','./src/pvjs.js'],
+    {
+      insertGlobals : true,
+      exclude: 'cheerio',
+      // Enable source maps!
+      debug: true
+    }
+  )
   .ignore('commander')
   .ignore('cheerio')
   // enable fs.readFileSync() in browser
@@ -68,38 +54,38 @@ gulp.task('browserify', function() {
     bundleLogger.start();
 
     return bundler
-    .bundle({
-      insertGlobals : true,
-      exclude: 'cheerio',
-      // Enable source maps!
-      debug: true
-    })
+    .bundle()
     // Report compile errors
     .on('error', handleErrors)
     // Use vinyl-source-stream to make the
     // stream gulp compatible. Specify the
     // desired output filename here.
     .pipe(source(getBundleName() + '.js'))
-    .pipe(highland.pipeline(function(stream) {
-      if (global.isWatching) {
-        return stream;
-      }
 
-      return stream
-        // These steps are only enabled when
-        // a watch is not set.
-        // They are too slow to enable
-        // during development.
-        .pipe(buffer())
-        // TODO keep an eye on this issue:
-        // https://github.com/floridoo/gulp-sourcemaps/issues/73
-        // It's the reason we're using v1.1.0 of gulp-sourcemaps,
-        // not the latest version.
-        .pipe(sourcemaps.init({loadMaps: true}))
-        // Add transformation tasks to the pipeline here.
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'));
-    }))
+    //============================================
+    // TODO: The below doesn't work currently.
+    // When uncommented get a TypeError
+    // Something to do with the highland package
+    //============================================
+    // .pipe(highland.pipeline(function(stream) {
+    //   if (global.isWatching) {
+    //     return stream;
+    //   }
+    //
+    //   return stream
+    //     // These steps are only enabled when
+    //     // a watch is not set.
+    //     // They are too slow to enable
+    //     // during development.
+    //     .pipe(buffer())
+    //     .pipe(sourcemaps.init({loadMaps: true}))
+    //     // Add transformation tasks to the pipeline here.
+    //     .pipe(uglify())
+    //     .pipe(sourcemaps.write('./'));
+    // }))
+    //===============================================
+
+
     // Specify the output destination
     .pipe(gulp.dest('./dist/'))
     // Log when bundling completes!

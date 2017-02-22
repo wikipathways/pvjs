@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/css" href="../../css/pathway-diagram.css"?>
+
+<svg id="double-line-hack"
+	version="1.1"
+	baseProfile="full"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	width="12"
+	height="12"
+        refXstart="0"
+        refYstart="6"
+        refXend="11"
+        refYend="6"
+	class="board-fill-color solid-stroke">
+
+	<!-- double-line-hack markers are used in double line handling; they include their own 
+	special blank rect to obscure the ends -->
+
+	<rect class="board-fill-color" stroke="none" x="0" y="4.5" width="2.3" height="3" />
+
+</svg>
