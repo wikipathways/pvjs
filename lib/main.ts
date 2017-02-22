@@ -15,7 +15,9 @@ let Pvjs = require('./main.js');
 // Import PVJS extensions
 import { Manipulator } from './manipulation-api'
 
-// Extend PVJS' prototype
-Pvjs.manipulator = new Manipulator();
 
+// Note: Temporary solution for extending PVJS
+// Just do pvjs_instance.manipulator = new Manipulator(pvjs_instance);
+// TODO: port PVJS and kaavio to TS and then import the Manipulator into PVJS directly
 window.Pvjs = Pvjs;
+window.Manipulator = Manipulator;

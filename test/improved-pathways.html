@@ -27,25 +27,37 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <h1>Educationally Improved Pathways</h1>
+          <h3 class="text-center">The chemical reactions of the MVA pathway</h3>
         </div>
       </div>
-      <div class="row">
+      <div class="row align-items-center">
         <div class="col">
-          <h3>Text here</h3>
+          <p>
+            MVA pathway enzymes condense <a href="#" onclick="pvjs_instance.manipulator.toggleHighlight('bbad0', 'red')">three acetyl-CoA molecules</a>
+            in a two-step reaction to produce
+            <a href="#" onclick="pvjs_instance.manipulator.toggleHighlight('de887', 'green')">3-hydroxy-3-methylglutaryl CoA (HMG-CoA)</a>.
+            Both reactions are reversible and in equilibria, with the intracellular concentration of acetyl-CoA being the primary driver.
+            <a href="#" onclick="pvjs_instance.manipulator.resetHighlight(); pvjs_instance.manipulator.zoom(2.5, {x:770, y:0})">
+              HMG-CoA is then reduced by HMG-CoA reductase to produce MVA via an irreversible reaction
+            </a>. MVA is then converted into isopentenyl-diphosphate (IPP) through a series of enzymatic steps,
+            which serves as a monomeric unit for the consequent synthesis
+            <a href="#" onclick="pvjs_instance.manipulator.resetZoom();
+                                pvjs_instance.manipulator.toggleHighlight(['ec8b4', 'c1f96', 'c6fb8'], 'blue')">
+              all downstream metabolites.
+            </a>
+          </p>
         </div>
         <div class="col">
-          <h3>Pathway here</h3>
           <div id="pvjs-container"></div>
-          Hello!
         </div>
       </div>
     </div>
 
     <script>
     (function(){
-      var pvjs_container = document.getElementById('pvjs-container')
-      new Pvjs(pvjs_container, {
+      var pvjs_container = document.getElementById('pvjs-container');
+
+      var pvjs_instance = new Pvjs(pvjs_container, {
         sourceData: [
           // at least one item required
           {
@@ -54,8 +66,12 @@
           }
         ],
         displayErrors: true,
-displayWarnings: true,
-      }).render();
+        displayWarnings: true
+      });
+      console.log(pvjs_instance);
+      pvjs_instance.render();
+      pvjs_instance.manipulator = new Manipulator(pvjs_instance);
+      window.pvjs_instance = pvjs_instance;
     })()
     </script>
   </body>
