@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"experimentalDecorators": true,
+		"inlineSourceMap": true,
+		"jsx": "react",
+		"moduleResolution": "node",
+		"noEmitOnError": true,
+		"noImplicitAny": false,
+		"pretty": true
+	},
+	"files": [
+		"src/main.tsx",
+		"index.d.ts"
+	],
+	"exclude": [
+		"ui/**/*",
+		"dist/**/*",
+		"tmp/**/*"
+    ]
+}
