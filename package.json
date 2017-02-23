@@ -73,6 +73,7 @@
     "typestyle": "^0.22.3"
   },
   "devDependencies": {
+    "@types/react": "^15.0.12",
     "babel-preset-es2015": "^6.13.2",
     "bdd-with-opts": "~1.0.0",
     "blessed": "^0.1.81",

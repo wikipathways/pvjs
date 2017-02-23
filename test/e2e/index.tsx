@@ -3,13 +3,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { values } from 'lodash';
-import Pvjs from '../../src/main';
+import {Pvjs} from '../../src/main';
 
 // React says not to render directly into document.body, so here's a container.
 var container = document.createElement('div');
 container.setAttribute('width', '100%');
 container.setAttribute('height', '1000px');
-document.body.appendChild(container)
+document.body.appendChild(container);
 
 const customStyle = `
 	.background {

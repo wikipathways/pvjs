@@ -6,7 +6,7 @@ import Diagram from './Diagram';
 //require('./kaavio.css');
 import { normalize, setupPage } from 'csstips';
  
-class Kaavio extends React.Component<any, any> {
+export class Kaavio extends React.Component<any, any> {
   constructor(props) {
 		super(props);
 		const id = props.id || 'kaavio-container-' + new Date().toISOString();
@@ -84,5 +84,3 @@ class Kaavio extends React.Component<any, any> {
 		</div>
 	}
 }
-
-export default Kaavio;
