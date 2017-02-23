@@ -60,6 +60,7 @@
     "csv-streamify": "^1.0.0",
     "csx": "^8.2.1",
     "gpml2pvjson": "^2.0.0-beta.1",
+    "jquery": "^3.1.1",
     "lodash": "^4.14.36",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.1",
