@@ -59,7 +59,7 @@
     "csstips": "^0.2.0",
     "csv-streamify": "^1.0.0",
     "csx": "^8.2.1",
-    "gpml2pvjson": "wikipathways/gpml2pvjson-js#8a3c5e1bc30e2bccc1badde2a1beba7c7a13a939",
+    "gpml2pvjson": "^2.0.0-beta.1",
     "lodash": "^4.14.36",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.1",
