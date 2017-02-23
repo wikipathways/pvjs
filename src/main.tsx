@@ -2,7 +2,7 @@ import { omit } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Kaavio from './kaavio/main';
-require('./stripped-bootstrap.css');
+//require('./stripped-bootstrap.css');
 import * as WikiPathwaysDefaultDisplayStyle from './WikiPathwaysDefaultDisplayStyle';
 
 //import gpml2pvjson from 'gpml2pvjson/lib/main';
