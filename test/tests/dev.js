@@ -78,8 +78,8 @@ describe('Quick test for development', function() {
       //.get('http://localhost:3000/test/one-diagram.html?' +
       //'gpml=http://localhost:3000/test/input-data/dev/dev.gpml')
       //.get('http://127.0.0.1:3000/test/web-component-demos/editor.html')
-      .get('http://pointer.ucsf.edu/pvjs/test/web-component-demos/editor.html')
-      .waitForElementById('kaavio-diagram-1', wd.asserters.isDisplayed, 3000)
+      .get('http://pointer.ucsf.edu/PVJS/test/web-component-demos/editor.html')
+      .waitForElementById('Kaavio-diagram-1', wd.asserters.isDisplayed, 3000)
       .saveScreenshot('tmp/dev-' + desired.browserName + '-test.png')
       .nodeify(done);
   });

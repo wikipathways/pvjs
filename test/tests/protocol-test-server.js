@@ -99,8 +99,8 @@ describe(desired.name, function() {
 
   it('should render diagram', function(done) {
     browser
-      .get('http://pointer.ucsf.edu/pvjs/test/one-diagram.html?gpml=http://pointer.ucsf.edu/pvjs/test/input-data/protocol/' + pathway.fileName)
-      .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 4000)
+      .get('http://pointer.ucsf.edu/PVJS/test/one-diagram.html?gpml=http://pointer.ucsf.edu/PVJS/test/input-data/protocol/' + pathway.fileName)
+      .waitForElementById("PVJS-diagram-1", wd.asserters.isDisplayed, 4000)
       .waitForElementByCss(".pathvisiojs-highlighter", wd.asserters.isDisplayed, 4000)
       .nodeify(done);
   });

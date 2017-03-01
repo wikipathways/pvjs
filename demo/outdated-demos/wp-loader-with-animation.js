@@ -6,7 +6,7 @@
  * creation of the pwImage_pvjs div that pvjs targets.
  */ 
 
-// master variable for height of pvjs viewer container divs
+// master variable for height of PVJS viewer container divs
 var viewer_height = '500px';
 var viewer_width = '100%';
 var viewer_min_width = '700px';
@@ -17,7 +17,7 @@ var viewer_max_width = '900px';
  *   1. Grab pwImage div; clean up <a>; remove <img>
  *   2. Prepare new divs inside thumbinner
  *   3. Animate window, if supported 
- *   4. Add final div for pvjs
+ *   4. Add final div for PVJS
  */
 $(window).ready(function() {
 	var img = $('#pwImage');
@@ -209,7 +209,7 @@ $(window).ready(function() {
 }); 
 
 /**
- * Adds the final div and the future home of the pvjs code.
+ * Adds the final div and the future home of the PVJS code.
  */
 
 var afterAnimate = function(c) {

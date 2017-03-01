@@ -13788,7 +13788,7 @@ pkginfo(module, {
   /** Used as the semantic version number. */
   var VERSION = '3.10.0';
 
-  /** Used to compose bitmasks for wrapper metadata. */
+  /** Used to compose bitmasks for Wrapper metadata. */
   var BIND_FLAG = 1,
       BIND_KEY_FLAG = 2,
       CURRY_BOUND_FLAG = 4,
@@ -14682,11 +14682,11 @@ pkginfo(module, {
     }
 
     /**
-     * The base constructor for creating `lodash` wrapper objects.
+     * The base constructor for creating `lodash` Wrapper objects.
      *
      * @private
      * @param {*} value The value to wrap.
-     * @param {boolean} [chainAll] Enable chaining for all wrapper methods.
+     * @param {boolean} [chainAll] Enable chaining for all Wrapper methods.
      * @param {Array} [actions=[]] Actions to peform to resolve the unwrapped value.
      */
     function LodashWrapper(value, chainAll, actions) {
@@ -14768,7 +14768,7 @@ pkginfo(module, {
     /*------------------------------------------------------------------------*/
 
     /**
-     * Creates a lazy wrapper object which wraps `value` to enable lazy evaluation.
+     * Creates a lazy Wrapper object which wraps `value` to enable lazy evaluation.
      *
      * @private
      * @param {*} value The value to wrap.
@@ -17333,7 +17333,7 @@ pkginfo(module, {
     /**
      * Creates a function that wraps `func` and invokes it with the optional `this`
      * binding of `thisArg` and the `partials` prepended to those provided to
-     * the wrapper.
+     * the Wrapper.
      *
      * @private
      * @param {Function} func The function to partially apply arguments to.
@@ -18206,11 +18206,11 @@ pkginfo(module, {
     }
 
     /**
-     * Creates a clone of `wrapper`.
+     * Creates a clone of `Wrapper`.
      *
      * @private
-     * @param {Object} wrapper The wrapper to clone.
-     * @returns {Object} Returns the cloned wrapper.
+     * @param {Object} wrapper The Wrapper to clone.
+     * @returns {Object} Returns the cloned Wrapper.
      */
     function wrapperClone(wrapper) {
       return wrapper instanceof LazyWrapper
@@ -19623,7 +19623,7 @@ pkginfo(module, {
      * @memberOf _
      * @category Chain
      * @param {*} value The value to wrap.
-     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @returns {Object} Returns the new `lodash` Wrapper instance.
      * @example
      *
      * var users = [
@@ -22031,16 +22031,16 @@ pkginfo(module, {
     }
 
     /**
-     * Creates a function that provides `value` to the wrapper function as its
+     * Creates a function that provides `value` to the Wrapper function as its
      * first argument. Any additional arguments provided to the function are
-     * appended to those provided to the wrapper function. The wrapper is invoked
+     * appended to those provided to the Wrapper function. The Wrapper is invoked
      * with the `this` binding of the created function.
      *
      * @static
      * @memberOf _
      * @category Function
      * @param {*} value The value to wrap.
-     * @param {Function} wrapper The wrapper function.
+     * @param {Function} wrapper The Wrapper function.
      * @returns {Function} Returns the new function.
      * @example
      *
@@ -26064,12 +26064,12 @@ pkginfo(module, {
 
     realNames[createHybridWrapper(undefined, BIND_KEY_FLAG).name] = [{ 'name': 'wrapper', 'func': undefined }];
 
-    // Add functions to the lazy wrapper.
+    // Add functions to the lazy Wrapper.
     LazyWrapper.prototype.clone = lazyClone;
     LazyWrapper.prototype.reverse = lazyReverse;
     LazyWrapper.prototype.value = lazyValue;
 
-    // Add chaining functions to the `lodash` wrapper.
+    // Add chaining functions to the `lodash` Wrapper.
     lodash.prototype.chain = wrapperChain;
     lodash.prototype.commit = wrapperCommit;
     lodash.prototype.concat = wrapperConcat;
@@ -26078,7 +26078,7 @@ pkginfo(module, {
     lodash.prototype.toString = wrapperToString;
     lodash.prototype.run = lodash.prototype.toJSON = lodash.prototype.valueOf = lodash.prototype.value = wrapperValue;
 
-    // Add function aliases to the `lodash` wrapper.
+    // Add function aliases to the `lodash` Wrapper.
     lodash.prototype.collect = lodash.prototype.map;
     lodash.prototype.head = lodash.prototype.first;
     lodash.prototype.select = lodash.prototype.filter;
@@ -39872,7 +39872,7 @@ process.chdir = function (dir) {
 	}
 
 	/**
-	 * A simple `Array#map`-like wrapper to work with domain name strings.
+	 * A simple `Array#map`-like Wrapper to work with domain name strings.
 	 * @private
 	 * @param {String} domain The domain name.
 	 * @param {Function} callback The function that gets called for every
@@ -43459,7 +43459,7 @@ function timestamp() {
 }
 
 
-// log is just a thin wrapper to console.log that prepends a timestamp
+// log is just a thin Wrapper to console.log that prepends a timestamp
 exports.log = function() {
   console.log('%s - %s', timestamp(), exports.format.apply(exports, arguments));
 };

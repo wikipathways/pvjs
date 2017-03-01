@@ -8,7 +8,7 @@
  * div that pvjs targets.
  */
 
-// master variable for height of pvjs viewer container divs
+// master variable for height of PVJS viewer container divs
 var viewerHeight = '500px';
 var viewerWidth = '100%';
 var viewerMinWidth = '700px';
@@ -18,7 +18,7 @@ var viewerMaxWidth = '100%';
  *  When page is ready:
  *   1. Grab pwImage div; clean up <a>; remove <img>
  *   2. Prepare new divs inside thumbinner
- *   3. Initialize pvjs app
+ *   3. Initialize PVJS app
  */
 $(window).ready(function() {
   var pathwayPagePathwayImageContainer = $('#pwImage');
@@ -39,7 +39,7 @@ $(window).ready(function() {
   }
 
   var pvjsContainer = $('<div />')
-  .attr('id', 'pvjs-container')
+  .attr('id', 'PVJS-container')
   .css({
     width: viewerWidth,
     'min-width': viewerMinWidth,

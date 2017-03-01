@@ -42,7 +42,7 @@ Install these programs using whatever method you prefer. For OS/X, many people l
 3. [Node.js](http://nodejs.org/download/)
 4. [Phash dependencies](https://github.com/aaronm67/node-phash) depending on your system
 
-When the programs are installed, return to the terminal window and `cd` into the `pvjs` directory, if you're not already there, and install the Node.js dependencies:
+When the programs are installed, return to the terminal window and `cd` into the `bio-pathway` directory, if you're not already there, and install the Node.js dependencies:
 
 ```
 $ npm update && npm install # uses the node package manager to install pvjs dependencies; may take a while

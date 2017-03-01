@@ -65,8 +65,8 @@ describe('Quick test for development', function() {
 
   it('should render the "dev" test page', function(done) {
     browser
-      .get('http://pointer.ucsf.edu/pvjs/test/web-component-demos/test-editor.html')
-      //.waitForElementById('kaavio-diagram-1', wd.asserters.isDisplayed, 3000)
+      .get('http://pointer.ucsf.edu/PVJS/test/web-component-demos/test-editor.html')
+      //.waitForElementById('Kaavio-diagram-1', wd.asserters.isDisplayed, 3000)
       .saveScreenshot('tmp/dev-' + desired.browserName + '-test.png')
       .nodeify(done);
   });

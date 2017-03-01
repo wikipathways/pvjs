@@ -88,7 +88,7 @@ describe(desired.name, function() {
   it('should render diagram', function(done) {
     browser
       .get('http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/input-data/protocol/' + pathway.fileName)
-      .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 4000)
+      .waitForElementById("PVJS-diagram-1", wd.asserters.isDisplayed, 4000)
       .waitForElementByCss(".pathvisiojs-highlighter", wd.asserters.isDisplayed, 4000)
       .nodeify(done);
   });

@@ -70,7 +70,7 @@ describe('full-protocol (' + desired.browserName + ')', function() {
             .get("http://pointer.ucsf.edu/d3/r/pathvisiojs/test/one-diagram.html?gpml=http://pointer.ucsf.edu/d3/r/pathvisiojs/test/data/protocol/interactions.gpml.xml")
             .title()
             .should.become("Pathvisiojs Simple Built Production Example")
-            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
+            .waitForElementById("PVJS-diagram-1", wd.asserters.isDisplayed, 20000)
             .saveScreenshot('tmp/interactions-' + desired.browserName + '-test.png')
             .nodeify(done);
     });
@@ -80,7 +80,7 @@ describe('full-protocol (' + desired.browserName + ')', function() {
             .get("http://pointer.ucsf.edu/d3/r/pathvisiojs/test/one-diagram.html?gpml=http://pointer.ucsf.edu/d3/r/pathvisiojs/test/data/protocol/gpml-data-nodes.gpml.xml")
             .title()
             .should.become("Pathvisiojs Simple Built Production Example")
-            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
+            .waitForElementById("PVJS-diagram-1", wd.asserters.isDisplayed, 20000)
             .saveScreenshot('tmp/data-nodes-' + desired.browserName + '-test.png')
             .nodeify(done);
     });
@@ -91,7 +91,7 @@ describe('full-protocol (' + desired.browserName + ')', function() {
             .get("http://test2.wikipathways.org/wpi/PathwayWidget.php?id=WP1")
             .title()
             .should.become("WikiPathways Pathway Viewer")
-            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
+            .waitForElementById("PVJS-diagram-1", wd.asserters.isDisplayed, 20000)
             .saveScreenshot('tmp/WP1-' + desired.browserName + '-test.png')
             .nodeify(done);
     });
@@ -101,7 +101,7 @@ describe('full-protocol (' + desired.browserName + ')', function() {
             .get("http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1")
             .title()
             .should.become("WikiPathways Pathway Viewer")
-            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 20000)
+            .waitForElementById("PVJS-diagram-1", wd.asserters.isDisplayed, 20000)
             .saveScreenshot('tmp/WP1-' + desired.browserName + '-production.png')
             .nodeify(done);
     });

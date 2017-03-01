@@ -26,7 +26,7 @@ describe('Public API', function() {
     customMockserver.launch();
     d3 = window.d3 = require('d3');
     m = window.m = require('mithril');
-    //require('../../dist/kaavio-dev-polyfills.bundle.js');
+    //require('../../dist/Kaavio-dev-polyfills.bundle.js');
     //require('Kaavio');
     //Kaavio = window.Kaavio;
     //kaavioEditor = require('../../index.js') || window.kaavioEditor;

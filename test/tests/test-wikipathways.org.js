@@ -68,7 +68,7 @@ describe('Quick test for development', function() {
     it("should render the 'dev' test page", function(done) {
         browser
             .get("http://localhost:3000/test/one-diagram.html?gpml=http://localhost:3000/test/data/dev/dev.gpml")
-            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 500)
+            .waitForElementById("PVJS-diagram-1", wd.asserters.isDisplayed, 500)
             .saveScreenshot('tmp/dev-' + desired.browserName + '-test.png')
             .nodeify(done);
     });

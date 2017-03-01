@@ -50,7 +50,7 @@
       var $ = window.$;
       window.GLOBAL_alternative_navigation = false;
       /* *******************
-      /* Load pvjs
+      /* Load PVJS
       /* *******************/
       $(function(){
         var pathInstance = null;
@@ -93,7 +93,7 @@
           }]);
 
           /*
-          $('#pvjs-container').pvjs({
+          $('#PVJS-container').PVJS({
             fitToContainer: true,
             manualRender: true,
             sourceData: [
@@ -105,7 +105,7 @@
           });
 
           // Get first element from array of instances
-          var pathInstance = $('#pvjs-container').pvjs('get').pop();
+          var pathInstance = $('#PVJS-container').PVJS('get').pop();
 
           // Expose pathInstance for debug
           window.pathInstance = pathInstance;

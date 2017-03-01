@@ -152,7 +152,7 @@ function runTest(baseIri) {
       browser
         .get(baseIri + '/test/one-diagram.html?gpml=' +
             baseIri + '/test/input-data/protocol/' + pathway.fileName)
-        .waitForElementById('pvjs-diagram-1', wd.asserters.isDisplayed, 4000)
+        .waitForElementById('PVJS-diagram-1', wd.asserters.isDisplayed, 4000)
         .waitForElementByCss('.pathvisiojs-highlighter',
             wd.asserters.isDisplayed, 4000)
         .nodeify(done);

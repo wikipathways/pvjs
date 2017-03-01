@@ -59,7 +59,7 @@ $('#pvjs-container').pvjs({
 });
 ```
 
-If you don't have jQuery and do not want to add it, then you may call `pvjs` directly and pass two arguments: container selector and options object.
+If you don't have jQuery and do not want to add it, then you may call `PVJS` directly and pass two arguments: container selector and options object.
 
 ```js
 pvjs('#pvjs-container', {

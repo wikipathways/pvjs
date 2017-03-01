@@ -104,7 +104,7 @@ describe('tutorial (' + desired.browserName + ')', function() {
             .elementById("DOID:9007")
             .text()
             .should.eventually.include('SIDS')
-            .waitForElementById("pvjs-diagram-1", wd.asserters.isDisplayed, 15000)
+            .waitForElementById("PVJS-diagram-1", wd.asserters.isDisplayed, 15000)
             .nodeify(done);
     });
 
