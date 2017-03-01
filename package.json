@@ -56,9 +56,11 @@
     "@types/react": "^15.0.5",
     "@types/react-dom": "^0.14.18",
     "@types/urijs": "^1.15.27",
+    "bootstrap": "^3.3.7",
     "csstips": "^0.2.0",
     "csv-streamify": "^1.0.0",
     "csx": "^8.2.1",
+    "file-loader": "^0.10.1",
     "gpml2pvjson": "^2.0.0-beta.1",
     "jquery": "^3.1.1",
     "lodash": "^4.14.36",
@@ -72,7 +74,8 @@
     "svg-pan-zoom": "^3.4.1",
     "tower-strcase": "~0.5.0",
     "typescript": "~2.1.6",
-    "typestyle": "^0.22.3"
+    "typestyle": "^0.22.3",
+    "url-loader": "^0.5.8"
   },
   "devDependencies": {
     "@types/react": "^15.0.12",

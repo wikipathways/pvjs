@@ -35,10 +35,10 @@ export class PanZoom extends React.Component<any, any> {
 
     render(){
         return (
-            <div>
-                <button onClick={this.zoomIn}>Zoom in</button>
-                <button onClick={this.zoomOut}>Zoom out</button>
-                <button onClick={this.resetZoom}>Reset</button>
+            <div className="zoomControlsClass">
+                <button className="zoomInClass btn btn-default" onClick={this.zoomIn}>Zoom in</button>
+                <button className="zoomOutClass btn btn-default" onClick={this.zoomOut}>Zoom out</button>
+                <button className="resetZoomClass" onClick={this.resetZoom}>Reset</button>
             </div>
         )
     }
