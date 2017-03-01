@@ -1,7 +1,7 @@
 import { forOwn } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Diagram from './Diagram';
+import {Diagram} from './Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./Kaavio.css');
 import { normalize, setupPage } from 'csstips';
