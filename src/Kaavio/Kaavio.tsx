@@ -5,6 +5,7 @@ import Diagram from './Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./Kaavio.css');
 import { normalize, setupPage } from 'csstips';
+import {PanZoom} from './PanZoom/PanZoom'
  
 export class Kaavio extends React.Component<any, any> {
   	diagamRef: any; //Reference to the diagram node
@@ -32,7 +33,7 @@ export class Kaavio extends React.Component<any, any> {
 		// TODO doublecheck how to use setupPage
 		//setupPage('#root');
 		setupPage('#' + id);
-  	}
+    }
 
 	componentWillReceiveProps(nextProps) {
 		let that = this;
@@ -85,6 +86,7 @@ export class Kaavio extends React.Component<any, any> {
 				markerDrawers={markerDrawers}
 				zIndices={zIndices}
 				customStyle={customStyle} />
+            <PanZoom diagram={this.diagamRef}/>
 		</div>
 	}
 }
