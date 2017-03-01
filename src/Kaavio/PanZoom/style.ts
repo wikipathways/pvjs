@@ -4,6 +4,12 @@ cssRaw(`
     @import('boot)
 `);
 
-const zoomControlsClass = {
-
+export const styles = {
+    zoomControlsWrapper: {
+        position: 'absolute',
+        right: 0
+    },
+    zoomControl: {
+        'margin-right': '1rem'
+    }
 };

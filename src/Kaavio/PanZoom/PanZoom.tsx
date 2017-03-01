@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as SVGPanZoom from 'svg-pan-zoom';
 import * as ReactDOM from 'react-dom';
+import {styles} from './style';
 
 export class PanZoom extends React.Component<any, any> {
     panZoom: any;
@@ -35,10 +36,10 @@ export class PanZoom extends React.Component<any, any> {
 
     render(){
         return (
-            <div className="zoomControlsClass">
-                <button className="zoomInClass btn btn-default" onClick={this.zoomIn}>Zoom in</button>
-                <button className="zoomOutClass btn btn-default" onClick={this.zoomOut}>Zoom out</button>
-                <button className="resetZoomClass" onClick={this.resetZoom}>Reset</button>
+            <div style={styles.zoomControlsWrapper}>
+                <button style={styles.zoomControl} className="zoomInClass btn btn-default" onClick={this.zoomIn}><span className="glyphicon glyphicon-zoom-in"> </span> </button>
+                <button style={styles.zoomControl} className="zoomOutClass btn btn-default" onClick={this.zoomOut}><span className="glyphicon glyphicon-zoom-out"> </span> </button>
+                <button style={styles.zoomControl} className="resetZoomClass btn btn-default" onClick={this.resetZoom}>Reset</button>
             </div>
         )
     }

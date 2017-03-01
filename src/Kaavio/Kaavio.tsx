@@ -71,7 +71,13 @@ export class Kaavio extends React.Component<any, any> {
 			})
 			.map((element) => element.id);
 
-		return <div id={id} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
+        const containerStyle = {
+            width: width,
+            height: height,
+            position: 'relative'
+        };
+
+		return <div id={id} style={containerStyle} className={`kaavio-container ${ customStyle.containerClass }`}>
 			<Diagram
 				ref={diagram => this.diagamRef = diagram}
 				organism={organism}
