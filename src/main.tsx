@@ -1,5 +1,5 @@
-import {pvjs} from './pvjs-wrapper/pvjs-wrapper.function';
-export {Pvjs} from './pvjs-wrapper/pvjs-wrapper.component';
+import {pvjs} from './Wrapper/Wrapper';
+export {Pvjs} from './PVJS/PVJS';
 
 declare var window: any;
 

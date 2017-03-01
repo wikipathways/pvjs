@@ -1,15 +1,15 @@
 import {Observable, AjaxRequest} from "rxjs";
 import { omit } from 'lodash';
-import * as WikiPathwaysDefaultDisplayStyle from './wikipathways-default.style';
-import {edgeDrawers} from "../d3-drawers/edge.drawers";
-import icons from "./bio-pathway.icons";
-import {markerDrawers} from "../d3-drawers/marker.drawers";
+import * as WikiPathwaysDefaultDisplayStyle from './WikiPathways.default.style';
+import {edgeDrawers} from "../Kaavio/EdgeDrawers";
+import icons from "./icons";
+import {markerDrawers} from "./MarkerDrawers";
 import * as React from 'react';
-import {DoubleStrokeFilter} from '../double-stroke-filter/double-stroke-filter.component';
-import {Kaavio} from '../kaavio/kaavio.component'
+import {DoubleStrokeFilter} from '../Kaavio/filters/DoubleStrokeFilter'
+import {Kaavio} from '../Kaavio/Kaavio'
 let gpml2pvjson = require('gpml2pvjson').default;
 
-export class BioPathway extends React.Component<any, any> {
+export class Pvjs extends React.Component<any, any> {
     pathwayRequest: Observable<any>;
     constructor(props) {
         const customStyle = props.customStyle || {};
@@ -57,7 +57,7 @@ export class BioPathway extends React.Component<any, any> {
                     omit(element, ['displayName']);
                     return element;
                 }).concat([{
-                    id: 'bio-pathway-infobox',
+                    id: 'PVJS-infobox',
                     pvjsonType: 'Node',
                     drawAs: 'None',
                     backgroundColor: 'transparent',

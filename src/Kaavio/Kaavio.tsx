@@ -3,13 +3,15 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Diagram from './Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
-//require('./kaavio.css');
+//require('./Kaavio.css');
 import { normalize, setupPage } from 'csstips';
  
 export class Kaavio extends React.Component<any, any> {
-  constructor(props) {
+  	diagamRef: any; //Reference to the diagram node
+
+    constructor(props) {
 		super(props);
-		const id = props.id || 'kaavio-container-' + new Date().toISOString();
+		const id = props.id || 'Kaavio-container-' + new Date().toISOString();
 		this.state = {
 			id: id,
 			pvjson: props.pvjson || {
@@ -30,7 +32,7 @@ export class Kaavio extends React.Component<any, any> {
 		// TODO doublecheck how to use setupPage
 		//setupPage('#root');
 		setupPage('#' + id);
-  }
+  	}
 
 	componentWillReceiveProps(nextProps) {
 		let that = this;
@@ -44,7 +46,7 @@ export class Kaavio extends React.Component<any, any> {
 		});
 	}
 
-  render() {
+  	render() {
 		let that = this;
 		const state = that.state;
 		const { customStyle, filters, pvjson, id, edgeDrawers, icons, markerDrawers } = state;
@@ -69,7 +71,9 @@ export class Kaavio extends React.Component<any, any> {
 			.map((element) => element.id);
 
 		return <div id={id} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
-			<Diagram organism={organism}
+			<Diagram
+				ref={diagram => this.diagamRef = diagram}
+				organism={organism}
 				name={name}
 				width={width}
 				height={height}
