@@ -59,7 +59,7 @@
     "csstips": "^0.2.0",
     "csv-streamify": "^1.0.0",
     "csx": "^8.2.1",
-    "gpml2pvjson": "wikipathways/gpml2pvjson-js#bd9d2f809d7ee8aa4c642f5d534243aa36fe47d4",
+    "gpml2pvjson": "2.0.0-beta.3",
     "js-base64": "^2.1.9",
     "lodash": "^4.14.36",
     "react": "^15.4.2",

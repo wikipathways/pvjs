@@ -42,6 +42,9 @@ export class Group extends React.Component<any, any> {
 				contained.y = contained.y - y;
 				return contained;
 			})
+			// TODO what's up with Citations being drawn like this?
+			// Why do they have x and y properties now?
+			.filter(el => el.pvjsonType !== 'Citation')
 			.map(function(contained) {
 				const SubTag = components[contained.pvjsonType];
 				return <SubTag key={contained.id} backgroundColor={backgroundColor}
