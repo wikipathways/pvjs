@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title>PVJS: Educationally Improved</title>
+
+    <link rel="stylesheet" href="../src/pvjs.css">
+
+    <!--Add jQuery-->
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+
+    <!--Add d3 for Kaavio-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+
+    <!--Add mithril-->
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+
+    <script src="../dist/pvjs-dev.bundle.js"></script>
+
+    <!--Add bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h3 class="text-center">The chemical reactions of the MVA pathway</h3>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col">
+          <p>
+            MVA pathway enzymes condense <a href="#" onclick="pvjs_instance.manipulator.toggleHighlight('bbad0', 'red')">three acetyl-CoA molecules</a>
+            in a two-step reaction to produce
+            <a href="#" onclick="pvjs_instance.manipulator.toggleHighlight('de887', 'green')">3-hydroxy-3-methylglutaryl CoA (HMG-CoA)</a>.
+            Both reactions are reversible and in equilibria, with the intracellular concentration of acetyl-CoA being the primary driver.
+            <a href="#" onclick="pvjs_instance.manipulator.resetHighlight(); pvjs_instance.manipulator.zoom(2.5, {x:770, y:0})">
+              HMG-CoA is then reduced by HMG-CoA reductase to produce MVA via an irreversible reaction
+            </a>. MVA is then converted into isopentenyl-diphosphate (IPP) through a series of enzymatic steps,
+            which serves as a monomeric unit for the consequent synthesis
+            <a href="#" onclick="pvjs_instance.manipulator.resetZoom();
+                                pvjs_instance.manipulator.toggleHighlight(['ec8b4', 'c1f96', 'c6fb8'], 'blue')">
+              all downstream metabolites.
+            </a>
+          </p>
+        </div>
+        <div class="col">
+          <div id="pvjs-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var pvjs_container = document.getElementById('pvjs-container');
+
+      var pvjs_instance = new Pvjs(pvjs_container, {
+        sourceData: [
+          // at least one item required
+          {
+            uri:'/test/WP3963_91361.gpml', // Use local for now. until CORS okay
+            fileType:'gpml' // generally will correspond to filename extension
+          }
+        ],
+        displayErrors: true,
+        displayWarnings: true
+      });
+      console.log(pvjs_instance);
+      pvjs_instance.render();
+      pvjs_instance.manipulator = new Manipulator(pvjs_instance);
+      window.pvjs_instance = pvjs_instance;
+    })()
+    </script>
+  </body>
+
+</html>
