@@ -53,10 +53,10 @@
     "@types/jsonstream": "^0.8.27",
     "@types/lodash": "^4.14.36",
     "@types/node": "^6.0.58",
-    "@types/react": "^15.0.5",
     "@types/react-dom": "^0.14.18",
     "@types/urijs": "^1.15.27",
     "bootstrap": "^3.3.7",
+    "bridgedb": "git://github.com/bridgedb/bridgedbjs.git#c9c62df8487f49f1ad7a1c2614b6680d879331e7",
     "csstips": "^0.2.0",
     "csv-streamify": "^1.0.0",
     "csx": "^8.2.1",
@@ -75,8 +75,7 @@
     "tower-strcase": "~0.5.0",
     "typescript": "~2.1.6",
     "typestyle": "^0.22.3",
-    "url-loader": "^0.5.8",
-    "bridgedb": "git://github.com/bridgedb/bridgedbjs.git#typescript"
+    "url-loader": "^0.5.8"
   },
   "devDependencies": {
     "@types/react": "^15.0.12",

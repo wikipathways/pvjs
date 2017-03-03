@@ -24,7 +24,7 @@ export class Node extends React.Component<any, any> {
     handleClick = (e) => {
         e.preventDefault();
         let target = e.currentTarget;
-        let attrs = this.getNodeAttributes(target);
+        let attrs = this.getNodeAttributes();
 
         // Fire a window event for the node click
         // This is a bit of a hack
@@ -37,15 +37,14 @@ export class Node extends React.Component<any, any> {
     };
 
     /**
-     * Get the attributes for the node
-     * @param node
-     * @returns {{id: any, classes: string[], resource: string}}
+     * Return the client-needed attributes for the node.
+     * These are attributes the client might be interested in. I.e. when a kaavioNodeClicked event is fired they get this.
+     * TODO: More properties might be wanted by the client
+     * @returns {{meta:any}}
      */
-    private getNodeAttributes(node): {id: string, classes: string[], resource: string} {
+    private getNodeAttributes() {
         return {
-            id: node.id,
-            classes: Array.from(node.classList.values()) as string[],
-            resource: node.attributes.getNamedItem('resource').value as string
+            meta: this.props.meta
         }
     };
 
@@ -78,74 +77,75 @@ export class Node extends React.Component<any, any> {
             console.warn(`Missing icon for ${drawAs}`);
         }
 
-        return <g id={id}
-                  className={className}
-                  transform={nodeTransform}
-                  onClick={this.handleClick}
-            // TODO the following two are WP-specific. Kaavio should be generic.
-                  resource={`identifiers:wikipathways/WP554/${id}`}>
-            <g property="rdfa:copy" href={wpType} />
-            {/* TODO re-enable this when we actually have the data
-             <g property="biopax:entityReference" content="identifiers:ec-code/3.6.3.14"></g>
-             */}
+        return (
+            <g id={id}
+              className={className}
+              transform={nodeTransform}
+              onClick={this.handleClick}>
 
-            {
-                // NOTE: we can pull the externally referenced SVGs in using either
-                // the SVG 'image' element or the SVG 'use' element. The 'use' element
-                // is better, because it allows for more control over styling.
-                // If the source image is not available, we can fall back to a simple
-                // rectangle.
-                iconsLoaded ?
-                    // see https://css-tricks.com/svg-use-with-external-reference-take-2/
-                    <use
-                        height={element.height + 'px'}
-                        href={'#' + icon.id}
-                        fill={backgroundColor}
-                        filter={!!filter ? `url(#${filter})` : null}
-                        stroke={color}
-                        strokeWidth={borderWidth}
-                        typeof="schema:ImageObject" className="Icon"
-                        width={element.width + 'px'}
-                        x="0"
-                        y="0"/>
-                    :
-                    <rect
-                        height={element.height + 'px'}
-                        fill={backgroundColor}
-                        filter={!!filter ? `url(#${filter})` : null}
-                        stroke={color}
-                        strokeWidth={borderWidth}
-                        typeof="schema:ImageObject" className="Icon"
-                        width={element.width + 'px'}
-                        x="0"
-                        y="0">
-                    </rect>
-            }
+                <g property="rdfa:copy" href={wpType} />
+                {/* TODO re-enable this when we actually have the data
+                 <g property="biopax:entityReference" content="identifiers:ec-code/3.6.3.14"></g>
+                 */}
 
-            <g transform={`translate(${ element.width / 10 } 0)`}
-               id={`text-for-${ element.id }`}
-               className="textlabel"
-               content={textContent}>
                 {
-                    (textContent || '')
-                        .split('\r')
-                        .map((t, i) => <text id={`text-line${i}`} key={`text-line${i}`} x="0" y={`${0.75 * (i + 1)}em`} dominantBaseline="central" textAnchor={textAnchor}>{t}</text>)
+                    // NOTE: we can pull the externally referenced SVGs in using either
+                    // the SVG 'image' element or the SVG 'use' element. The 'use' element
+                    // is better, because it allows for more control over styling.
+                    // If the source image is not available, we can fall back to a simple
+                    // rectangle.
+                    iconsLoaded ?
+                    // see https://css-tricks.com/svg-use-with-external-reference-take-2/
+                        <use
+                            height={element.height + 'px'}
+                            href={'#' + icon.id}
+                            fill={backgroundColor}
+                            filter={!!filter ? `url(#${filter})` : null}
+                            stroke={color}
+                            strokeWidth={borderWidth}
+                            typeof="schema:ImageObject" className="Icon"
+                            width={element.width + 'px'}
+                            x="0"
+                            y="0"/>
+                        :
+                        <rect
+                            height={element.height + 'px'}
+                            fill={backgroundColor}
+                            filter={!!filter ? `url(#${filter})` : null}
+                            stroke={color}
+                            strokeWidth={borderWidth}
+                            typeof="schema:ImageObject" className="Icon"
+                            width={element.width + 'px'}
+                            x="0"
+                            y="0">
+                        </rect>
                 }
 
-            </g>
-            {
-                (element.citation || [])
-                    .map((citationId) => elementMap[citationId])
-                    .map(function(citation) {
-                        return <text className="citation"
-                                     key={element.id + citation.id}
-                                     content={`identifiers:pubmed/${citation.dbId}`}
-                                     transform={`translate(${ element.width + 5 } 0)`}>{citation.textContent}</text>
-                    })
-            }
-            {
-                children
-            }
+                <g transform={`translate(${ element.width / 10 } 0)`}
+                   id={`text-for-${ element.id }`}
+                   className="textlabel"
+                   content={textContent}>
+                    {
+                        (textContent || '')
+                            .split('\r')
+                            .map((t, i) => <text id={`text-line${i}`} key={`text-line${i}`} x="0" y={`${0.75 * (i + 1)}em`} dominantBaseline="central" textAnchor={textAnchor}>{t}</text>)
+                    }
+
+                </g>
+                {
+                    (element.citation || [])
+                        .map((citationId) => elementMap[citationId])
+                        .map(function(citation) {
+                            return <text className="citation"
+                                         key={element.id + citation.id}
+                                         content={`identifiers:pubmed/${citation.dbId}`}
+                                         transform={`translate(${ element.width + 5 } 0)`}>{citation.textContent}</text>
+                        })
+                }
+                {
+                    children
+                }
         </g>
+        )
     }
 }

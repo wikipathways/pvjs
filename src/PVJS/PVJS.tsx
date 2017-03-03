@@ -8,6 +8,7 @@ import * as React from 'react';
 import {DoubleStrokeFilter} from '../Kaavio/filters/DoubleStrokeFilter'
 import {Kaavio} from '../Kaavio/Kaavio'
 let gpml2pvjson = require('gpml2pvjson').default;
+import {BridgeDbRenderer} from './BridgeDb/BridgeDb';
 
 export class Pvjs extends React.Component<any, any> {
     pathwayRequest: Observable<any>;
@@ -22,7 +23,22 @@ export class Pvjs extends React.Component<any, any> {
                 name: '',
             },
             customStyle: props.customStyle,
+            selected: null
         };
+    }
+
+    closeActive() {
+        this.setState({selected: null})
+    }
+
+    handleClick(e) {
+        let that = this;
+        let el = e.target;
+        const id = el.getAttribute('id');
+        const entity = that.state.entities[id];
+        if (entity && entity.type === 'DataNode' && entity.database && entity.identifier) {
+            that.setState({selected: entity});
+        }
     }
 
     getPathway() {
@@ -134,6 +150,12 @@ export class Pvjs extends React.Component<any, any> {
 
         const filters = doubleStrokeFilters;
 
-        return <Kaavio id={id} pvjson={pvjson} customStyle={/*customStyle*/WikiPathwaysDefaultDisplayStyle} edgeDrawers={edgeDrawers} icons={icons} markerDrawers={markerDrawers} filters={filters} />;
+        return (
+            <div>
+                <Kaavio id={id} pvjson={pvjson} customStyle={/*customStyle*/WikiPathwaysDefaultDisplayStyle}
+                        edgeDrawers={edgeDrawers} icons={icons} markerDrawers={markerDrawers} filters={filters} />
+                <BridgeDbRenderer/>
+            </div>
+        );
     }
 }

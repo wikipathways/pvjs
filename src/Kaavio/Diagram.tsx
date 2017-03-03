@@ -134,6 +134,10 @@ export class Diagram extends React.Component<any, any> {
 	 * Get all of the components inside the diagram.
 	 *
 	 * TODO: refactor this.
+	 * TODO: refactor things to be non-PVJS-specific
+	 * Currently, organism wpType etc. are hardcoded into the element prop. Sould put them in a meta prop that is added
+	 * by the client. Jacob has created a meta prop from the element prop in the Node so abstraction just needs to be done
+	 * before this. I.e. in Kaavio call and down to here.
 	 * @returns jsx
 	 */
 	getComponents = () => {
@@ -142,17 +146,28 @@ export class Diagram extends React.Component<any, any> {
 			.map(function(element) {
 				switch (element.pvjsonType) {
 					case 'Node':
+						// Meta is anything that Kaavio doesn't use but becomes part of the node properties.
+						// Useful for BridgeDb
+						let meta = {
+							organism: organism,
+							entityType: element.wpType,
+							displayName: element.displayName,
+							dataSource: element.dbName,
+							identifier: element.dbId
+						};
 						return 	<Components.Node key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap}
-									   edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />
+									   edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle}
+									   meta={meta}
+								/>;
 					case 'Edge':
 						return 	<Components.Edge key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap}
-									   edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />
+									   edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />;
 					case 'Group':
 						return <Components.Group key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap}
-							 edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />
+							 edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />;
 					case 'Marker':
 						return <Components.Marker key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap}
-							 edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />
+							 edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />;
 				}
 			});
 	};
