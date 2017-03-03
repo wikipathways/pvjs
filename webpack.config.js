@@ -12,7 +12,14 @@ module.exports = {
     loaders: [
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.json$/, loader: 'json-loader'},
-      { test: /\.ts(x?)$/, loader: 'ts-loader' }
+      { test: /\.ts(x?)$/, loader: 'ts-loader' },
+      {
+          test: /\.svg$/i,
+          loaders: [
+            'image-webpack?bypassOnDebug',
+            'svg-url-loader?noquotes'
+          ]
+      }
     ]
   },
   plugins: [new HtmlWebpackPlugin()]

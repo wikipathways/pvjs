@@ -2,8 +2,10 @@
 import { style } from 'typestyle';
 
 const kaavioBackgroundColor = 'white';
+const kaavioColor = 'black';
 
 export const containerClass = style({
+	color: kaavioColor,
 	backgroundColor: kaavioBackgroundColor,
 });
 
@@ -36,17 +38,16 @@ export const InfoBoxClass = style({
 
 export const CellularComponentClass = style({
 	[` .Icon`]: {
-		clipPath: 'url(#rounded-rectangle)',
+		clipPath: 'url(#rounded-rectangle-clip-path)',
 	},
   fill: 'transparent',
-	filter: 'url(#double)',
   stroke: '#808080',
   strokeWidth: 3,
 });
 
 export const DataNodeClass = style({
 	[` .Icon`]: {
-		clipPath: 'url(#rounded-rectangle)',
+		clipPath: 'url(#rounded-rectangle-clip-path)',
 		fill: '#518569',
 	},
 	[` .textlabel`]: {
@@ -74,6 +75,18 @@ export const DataNodeClass = style({
 		[`& .textlabel`]: {
 			fill: '#75C95C',
 		},
+	},
+});
+
+export const LabelClass = style({
+	[` .Icon`]: {
+		clipPath: 'url(#rounded-rectangle-clip-path)',
+		stroke: 'transparent',
+		strokeWidth: 0,
+		fill: 'transparent',
+	},
+	[` .textlabel`]: {
+		fill: '#444',
 	},
 });
 

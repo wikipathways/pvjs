@@ -1,9 +1,27 @@
 import { omit } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Base64 } from 'js-base64';
 import Kaavio from './kaavio/main';
+import { Filter, generateFilterId, doubleStroke, round } from './kaavio/filters';
 require('./stripped-bootstrap.css');
 import * as WikiPathwaysDefaultDisplayStyle from './WikiPathwaysDefaultDisplayStyle';
+
+const arc = require('./icons/arc.svg');
+const brace = require('./icons/brace.svg');
+const ellipse = require('./icons/ellipse.svg');
+const endoplasmicReticulum = require('./icons/endoplasmic-reticulum.svg');
+const hexagon = require('./icons/hexagon.svg');
+const golgiApparatus = require('./icons/golgi-apparatus.svg');
+const mimDegradation = require('./icons/mim-degradation.svg');
+const mitochondria = require('./icons/mitochondria.svg');
+const none = require('./icons/none.svg');
+const octagon = require('./icons/octagon.svg');
+const pentagon = require('./icons/pentagon.svg');
+const rectangle = require('./icons/rectangle.svg');
+const roundedRectangle = require('./icons/rounded-rectangle.svg');
+const sarcoplasmicReticulum = require('./icons/sarcoplasmic-reticulum.svg');
+const triangle = require('./icons/triangle.svg');
 
 //import gpml2pvjson from 'gpml2pvjson/lib/main';
 let gpml2pvjson = require('gpml2pvjson').default;
@@ -20,100 +38,76 @@ import 'rxjs/add/operator/map';
 let icons = {
 	Arc: {
 		id: 'arc',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/arc.svg'
+		url: arc
 	},
 	Brace: {
 		id: 'brace',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/brace.svg'
+		url: brace
 	},
 	EndoplasmicReticulum: {
 		id: 'endoplasmic-reticulum',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/endoplasmic-reticulum.svg'
+		url: endoplasmicReticulum
 	},
 	Hexagon: {
 		id: 'hexagon',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/hexagon.svg'
+		url: hexagon
 	},
 	GolgiApparatus: {
 		id: 'golgi-apparatus',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/golgi-apparatus.svg'
+		url: golgiApparatus
 	},
 	MimDegradation: {
 		id: 'mim-degradation',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/mim-degradation.svg'
+		url: mimDegradation
 	},
 	Mitochondria: {
 		id: 'mitochondria',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/mitochondria.svg'
+		url: mitochondria
 	},
 	None: {
 		id: 'none',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/none.svg'
+		url: none
 	},
-	Oval: {
-		id: 'oval',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/oval.svg'
+	Ellipse: {
+		id: 'ellipse',
+		url: ellipse
+	},
+	Octagon: {
+		id: 'octagon',
+		url: octagon
 	},
 	Pentagon: {
 		id: 'pentagon',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/pentagon.svg'
+		url: pentagon
 	},
 	Rectangle: {
 		id: 'rectangle',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/rectangle.svg'
+		url: rectangle,
+		//url: 'http://localhost:4522/icons/rectangle.svg'
+		//url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/rectangle.svg'
 		//url: 'http://clipartist.net/social/clipartist.net/B/base_tux_g_v_linux.svg#layer1',
 		//url: 'https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/svgs/fi-address-book.svg#Layer_1'
 		//url: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Aim_Shiny_Icon.svg',
 		//url: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Aim_Shiny_Icon.svg#svg2',
 		//url: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Svg_example2.svg',
 	},
-//	RoundedRectangle: {
-//		id: 'svg4333',
-//		url: 'https://upload.wikimedia.org/wikipedia/commons/f/f2/Black_box.svg#svg4333',
-//	},
-	Triangle: {
-		id: 'triangle',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/triangle.svg'
+	RoundedRectangle: {
+		id: 'rounded-rectangle',
+		url: roundedRectangle,
 	},
 	SarcoplasmicReticulum: {
 		id: 'sarcoplasmic-reticulum',
-		url: 'https://cdn.rawgit.com/wikipathways/pvjs/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols/sarcoplasmic-reticulum.svg'
+		url: sarcoplasmicReticulum
 	},
-	Silly: {
-		id: 'svg2',
-		url: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Aim_Shiny_Icon.svg',
-		//url: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Aim_Shiny_Icon.svg#svg2',
-		//url: 'http://clipartist.net/social/clipartist.net/B/base_tux_g_v_linux.svg#layer1',
-		//url: 'https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/svgs/fi-address-book.svg#Layer_1'
-		//url: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Svg_example2.svg',
+	Triangle: {
+		id: 'triangle',
+		url: triangle
 	},
 } as any;
-icons.Circle = icons.Oval;
-icons.Complex = icons.Hexagon;
-icons.RoundedRectangle = icons.Rectangle;
-
-class DoubleStrokeFilter extends React.Component<any, any> {
-  constructor(props) {
-		super(props);
-		this.state = {...props};
-  }
-	render() {
-		let that = this;
-		const { id, strokeWidth } = that.state;
-		if (strokeWidth === 1) {
-			return <filter id={id} key={id}>
-				<feComposite key="darkened" in="SourceGraphic" in2="SourceGraphic" operator="over" result="darkened" />
-				<feMorphology key="dilated" in="SourceGraphic" operator="dilate" radius="1" result="dilated" />
-				<feComposite key="doubled" in="dilated" in2="darkened" operator="out" result="doubled" />
-			</filter>;
-		}
-		 
-		return <filter id={id} key={id}>
-			<feMorphology key="dilated" in="SourceGraphic" operator="dilate" radius={strokeWidth} result="dilated" />
-			<feComposite key="doubled" in="dilated" operator="xor" in2="SourceGraphic" result="doubled" />
-		</filter>;
-	}
-}
+icons.Circle = icons.Oval = icons.Ellipse;
+icons.Complex = icons.Octagon;
+// if we allow for true none, it's hard to do custom styling
+icons.None = icons.Rectangle;
 
 let edgeDrawers = {
 	CurvedLine: {
@@ -141,7 +135,7 @@ let edgeDrawers = {
 
 				pointsForBezier.push([d3_svg_lineDot4(d3_svg_lineBasisBezier3, x), d3_svg_lineDot4(d3_svg_lineBasisBezier3, y)]);
 
-				pathData.push({command: 'bezierCurveTo', points: pointsForBezier});
+				pathData.push({command: 'C', points: pointsForBezier});
 			}
 
 			function changeDirection(currentDirection) {
@@ -151,8 +145,8 @@ let edgeDrawers = {
 			}
 
 			var elbowPointCount = elbowPoints.length;
-			var firstPoint = elbowPoints[0],
-				lastPoint = elbowPoints[elbowPointCount - 1];
+			var firstPoint = elbowPoints[0];
+			var lastPoint = elbowPoints[elbowPointCount - 1];
 			var points = [];
 			points.push(firstPoint);
 
@@ -160,20 +154,56 @@ let edgeDrawers = {
 			var pathData = [{command: 'M', points: [firstPoint.x, firstPoint.y]}];
 
 			var direction = [];
-			if (firstPoint.anchor) {
-				direction.push(firstPoint.anchor[2]);
-				direction.push(firstPoint.anchor[3]);
+			if (firstPoint.attachmentDisplay) {
+				const attachmentDisplay = firstPoint.attachmentDisplay;
+				direction.push(attachmentDisplay.orientation[0]);
+				direction.push(attachmentDisplay.orientation[1]);
+//			} else if (lastPoint.attachmentDisplay) {
+//				const attachmentDisplay = lastPoint.attachmentDisplay;
+//				direction.push(-1 * attachmentDisplay.orientation[0]);
+//				direction.push(-1 * attachmentDisplay.orientation[1]);
 			} else {
-				// arbitrary
-				direction = [1, 0];
-				console.warn('No anchor specified for edge "' + elementId + '"');
+				// best guess
+				const xDisplacement = lastPoint.x - firstPoint.x;
+				const absXDisplacement = Math.abs(xDisplacement);
+				const yDisplacement = lastPoint.y - firstPoint.y;
+				const absYDisplacement = Math.abs(yDisplacement);
+				if (absXDisplacement > absYDisplacement) {
+					direction = [0.5 * xDisplacement / absXDisplacement, 0];
+				} else {
+					direction = [0, 0.5 * yDisplacement / absYDisplacement];
+				}
+				console.warn('No attachmentDisplay specified for edge "' + elementId + '"');
 			}
+
+// M269.09329107314903
+// 377.7729607220381
+// 
+// L261.24440922762415
+// 377.772960722038
+
+// C253.39552738209935
+// 377.7729607220381
+// 237.69776369104966
+// 377.7729607220381
+// 229.84888184552483
+// 375.72746726836505
+
+// C222
+// 373.681973814692
+// 222
+// 369.590986907346
+// 222
+// 367.54549345367303
+// 
+// L222
+// 365.5
 
 			// for curves, I'm calculating and using the points representing the elbow vertices, from the given points (which represent the first point, any elbow segment mid-points and the last point).
 			// I'm making sure the curve passes through the midpoint of the marker side that is furthest away from the node it is attached to
 			// TODO this code might be confusing, because it involves redefining the points. Look at refactoring it for readability.
 			var markerHeightFactor = 0.75;
-			if (!!markerStart && firstPoint.anchor && typeof(firstPoint.anchor[2]) !== 'undefined' && typeof(firstPoint.anchor[3]) !== 'undefined') {
+			if (!!markerStart && firstPoint.attachmentDisplay && typeof(firstPoint.attachmentDisplay.orientation[0]) !== 'undefined' && typeof(firstPoint.attachmentDisplay.orientation[1]) !== 'undefined') {
 				var firstPointWithOffset: any = {};
 				var firstOffset;
 				//var firstMarkerData = crossPlatformShapesInstance.presetShapes[markerStart].getDimensions(crossPlatformShapesInstance);
@@ -183,13 +213,13 @@ let edgeDrawers = {
 				} else {
 					firstOffset = 12;
 				}
-				firstPointWithOffset.x = firstPoint.anchor[2] * firstOffset + firstPoint.x;
-				firstPointWithOffset.y = firstPoint.anchor[3] * firstOffset + firstPoint.y;
+				firstPointWithOffset.x = firstPoint.attachmentDisplay.orientation[0] * firstOffset + firstPoint.x;
+				firstPointWithOffset.y = firstPoint.attachmentDisplay.orientation[1] * firstOffset + firstPoint.y;
 				pathData.push({command: 'L', points: [firstPointWithOffset.x, firstPointWithOffset.y]});
 				points[0] = firstPointWithOffset;
 			}
 
-			if (!!markerEnd && lastPoint.anchor && typeof(lastPoint.anchor[2]) !== 'undefined' && typeof(lastPoint.anchor[3]) !== 'undefined') {
+			if (!!markerEnd && lastPoint.attachmentDisplay && typeof(lastPoint.attachmentDisplay.orientation[0]) !== 'undefined' && typeof(lastPoint.attachmentDisplay.orientation[1]) !== 'undefined') {
 				lastSegment.push({command: 'L', points: [lastPoint.x, lastPoint.y]});
 
 				var lastPointWithOffset: any = {};
@@ -201,8 +231,8 @@ let edgeDrawers = {
 				} else {
 					lastOffset = 12;
 				}
-				lastPointWithOffset.x = lastPoint.anchor[2] * lastOffset + lastPoint.x;
-				lastPointWithOffset.y = lastPoint.anchor[3] * lastOffset + lastPoint.y;
+				lastPointWithOffset.x = lastPoint.attachmentDisplay.orientation[0] * lastOffset + lastPoint.x;
+				lastPointWithOffset.y = lastPoint.attachmentDisplay.orientation[1] * lastOffset + lastPoint.y;
 				elbowPoints[elbowPointCount - 1] = lastPoint = lastPointWithOffset;
 			}
 
@@ -257,13 +287,13 @@ let edgeDrawers = {
 			var pathData = [{command: 'M', points: [firstPoint.x, firstPoint.y]}];
 
 			var direction = [];
-			if (firstPoint.anchor) {
-				direction.push(firstPoint.anchor[2]);
-				direction.push(firstPoint.anchor[3]);
+			if (firstPoint.attachmentDisplay) {
+				direction.push(firstPoint.attachmentDisplay.orientation[0]);
+				direction.push(firstPoint.attachmentDisplay.orientation[1]);
 			} else {
 				// arbitrary
 				direction = [1, 0];
-				console.warn('No anchor specified for edge "' + elementId + '"');
+				console.warn('No attachmentDisplay specified for edge "' + elementId + '"');
 			}
 
 			points.forEach(function(point, index) {
@@ -565,21 +595,20 @@ class Pvjs extends React.Component<any, any> {
 		return gpml2pvjson(
 				Observable.ajax(ajaxRequest)
 					.map((ajaxResponse): {data: string} => ajaxResponse.xhr.response)
-					.map(res => atob(res.data)),
+					.map(res => Base64.decode(res.data)),
 				fullId
 		)
 			.subscribe(function(pvjson) {
 				let { elements, organism, name } = pvjson;
 
-				const infoBoxTextContent = `Title: ${name}\rOrganism: ${organism}`;
+				const infoBoxTextContent = `Title: ${name} \n Organism: ${organism}`;
 
 				pvjson.elements = elements.map(function(element) {
 					const displayName = element.displayName;
 					if (displayName) {
 						element.textContent = displayName;
 					}
-					omit(element, ['displayName']);
-					return element;
+					return omit(element, ['displayName']);
 				}).concat([{
 					id: 'pvjs-infobox',
 					pvjsonType: 'Node',
@@ -595,13 +624,15 @@ class Pvjs extends React.Component<any, any> {
 						'Label',
 						'InfoBox',
 					],
-					padding: '0.5em',
+					padding: '0.1em',
+					align: 'left',
 					verticalAlign: 'middle',
+					fontFamily: 'Arial',
 					x: 5,
 					y: 5,
-					height: 30,
+					height: 50,
 					width: infoBoxTextContent.length * 3.5,
-					zIndex: Infinity,
+					zIndex: elements.length + 1,
 				}]);
 				that.setState({pvjson: pvjson});
 			}, function(err) {
@@ -637,28 +668,57 @@ class Pvjs extends React.Component<any, any> {
 		const state = that.state;
 		const { pvjson, id, customStyle } = state;
 
-		const doubleStrokeFilters = Array.from(
+		const filters = Array.from(
 				pvjson.elements
 					.filter((element) => element.lineStyle === 'double')
 					.reduce(function(acc, element) {
-						// we can't handle a strokeWidth of 0.4
-						const roundedStrokeWidth = Math.max(1, Math.round(element.borderWidth || 1));
-						element.filter = 'double' + roundedStrokeWidth;
-						acc.add(roundedStrokeWidth);
+						const lineStyle = element.lineStyle;
+						let elementFilters = [];
+						if (element.filter) {
+							elementFilters.push(element.filter);
+						}
+						const strokeWidth = element.borderWidth;
+						elementFilters.push(generateFilterId('doubleStroke', strokeWidth));
+						const filterId = elementFilters.join('_');
+						// NOTE: notice side effect
+						element.filter = filterId;
+						acc.add(filterId);
 						return acc;
 					}, new Set())
 		)
-		.reduce(function(acc: any, strokeWidth) {
-			const id = `double${strokeWidth}`;
-			acc.push(function double() {
-				return <DoubleStrokeFilter id={id} key={id} strokeWidth={strokeWidth} />;
-			});
+		.reduce(function(acc: any, filterId: string) {
+			const filterChildren = filterId.split('_').reduce(function(subAcc, subFilter: string): any[] {
+				const [filterName, strokeWidthAsString] = subFilter.split('-');
+				const strokeWidth = parseFloat(strokeWidthAsString);
+
+				if (filterName === 'round') {
+					round({source: 'SourceGraphic', strokeWidth: strokeWidth})
+						.forEach(function(x) {
+							subAcc.push(x)
+						});
+				} else if (filterName === 'doubleStroke') {
+					doubleStroke({
+						source: filterId.indexOf('ound') > -1 ? 'roundResult' : 'SourceGraphic',
+						strokeWidth: strokeWidth,
+					})
+						.forEach(function(x) {
+							subAcc.push(x);
+						});
+				}
+
+				return subAcc;
+			}, []);
+			acc.push(<Filter id={filterId} key={filterId} children={filterChildren} />);
 			return acc;
 		}, []);
-		
-		const filters = doubleStrokeFilters;
 
-		return <Kaavio id={id} pvjson={pvjson} customStyle={/*customStyle*/WikiPathwaysDefaultDisplayStyle} edgeDrawers={edgeDrawers} icons={icons} markerDrawers={markerDrawers} filters={filters} />;
+		return <Kaavio id={id}
+										pvjson={pvjson}
+										customStyle={/*customStyle*/WikiPathwaysDefaultDisplayStyle}
+										edgeDrawers={edgeDrawers}
+										filters={filters}
+										icons={icons}
+										markerDrawers={markerDrawers} />;
 	}
 }
 

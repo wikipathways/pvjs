@@ -36,7 +36,11 @@ class Kaavio extends React.Component<any, any> {
 		let that = this;
 		const prevProps = that.props;
 		forOwn(nextProps, function(prop, key) {
-			if (prop && JSON.stringify(prevProps[key]) !== JSON.stringify(prop)) {
+			if (key === 'filters') {
+				that.setState({
+					[key]: prop,
+				});
+			} else if (prop && JSON.stringify(prevProps[key]) !== JSON.stringify(prop)) {
 				that.setState({
 					[key]: prop,
 				});
@@ -70,6 +74,7 @@ class Kaavio extends React.Component<any, any> {
 
 		return <div id={id} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
 			<Diagram organism={organism}
+				id={`kaavio-diagram-for-${id.replace(/\W/g, '')}`}
 				name={name}
 				width={width}
 				height={height}

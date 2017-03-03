@@ -1,3 +1,4 @@
+/// <reference path="./svg-text.d.ts" />
 /// <reference path="./tower-strcase.d.ts" />
 /// <reference path="./node_modules/typescript/lib/lib.es6.d.ts" />
 
@@ -50,23 +51,41 @@ declare type Line = {
 
 //declare interface PathSegment {}
 
-declare type IconTypes = 'Arrow' | 'Ellipse' | 'EllipseDouble';
-
-// marker
-declare type Icon = {
-	[K in IconTypes]: {
-		shapes: any[],
-		getPathData: (x, y, width, height) => string
-		getDimensions: () => {markerWidth: number, markerHeight: number}
-	};
+// Based on the list from here: https://www.w3.org/TR/SVG/painting.html#MarkerProperties
+// but in camel case to match React inputs.
+declare type MarkerPropertyName = 'markerStart' | 'markerEnd' | 'markerMid' | 'marker';
+declare interface MarkerComponentProps {
+	backgroundColor: string;
+	color: string;
+	markerDrawers: Function;
+	markerLocationType: MarkerPropertyName;
+	markerName: NonFuncIriMarkerPropertyValue & string;
 }
 
-// shape
-declare type Icon1 = {
-	[K in IconTypes]: {
-		getPathSegments: (x, y, width, height) => any[]
-	};
+declare type NonFuncIriMarkerPropertyValue = 'none' | 'inherit';
+
+declare type IconTypes = 'Arc' | 'Ellipse' | 'Rectangle' | 'RoundedRectangle';
+
+declare interface Icon {
+	id: string,
+	url: string
 }
+
+//// marker
+//declare type Icon = {
+//	[K in IconTypes]: {
+//		shapes: any[],
+//		getPathData: (x, y, width, height) => string
+//		getDimensions: () => {markerWidth: number, markerHeight: number}
+//	};
+//}
+//// shape
+//declare type Icon1 = {
+//	[K in IconTypes]: {
+//		getPathSegments: (x, y, width, height) => any[]
+//	};
+//}
+
 
 //		ellipse: {
 //			getPathSegments: function(x, y, width, height) {
