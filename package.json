@@ -56,7 +56,7 @@
     "@types/react-dom": "^0.14.18",
     "@types/urijs": "^1.15.27",
     "bootstrap": "^3.3.7",
-    "bridgedb": "git://github.com/bridgedb/bridgedbjs.git#c9c62df8487f49f1ad7a1c2614b6680d879331e7",
+    "bridgedb": "git://github.com/bridgedb/bridgedbjs.git#b82e35ea9f249de5ff97561ff8ce81d612cad6c3",
     "csstips": "^0.2.0",
     "csv-streamify": "^1.0.0",
     "csx": "^8.2.1",
