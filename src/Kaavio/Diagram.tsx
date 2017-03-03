@@ -24,11 +24,11 @@ normalize();
 setupPage('#root');
 
 export class Diagram extends React.Component<any, any> {
-  constructor(props) {
+	constructor(props) {
 		super(props);
 		this.state = {...props};
 		this.state.iconsLoaded = false;
-  }
+	}
 
 	componentWillReceiveProps(nextProps) {
 		let that = this;
@@ -90,15 +90,79 @@ export class Diagram extends React.Component<any, any> {
 		that.getIcons();
 	}
 
-  render() {
+	/**
+	 * TODO: add description of this
+	 * @returns {any}
+	 */
+	getZIndexElements(){
+		const {zIndices, elementMap} = this.state;
+		return zIndices
+			.map((id) => elementMap[id]);
+	}
+
+	/**
+	 * TODO: Add description of this and refactor the code
+	 * @returns {any}
+	 */
+	getGroupedZIndexedElements() {
+		const {elementMap} = this.state;
+		return this.getZIndexElements()
+			.filter((element) => !element.isPartOf)
+			.reduce(function(acc, element) {
+				if (element.pvjsonType === 'Group') {
+					element.contains = element.contains
+						.map((id) => elementMap[id])
+						.sort(function(a, b) {
+							const zIndexA = a.zIndex;
+							const zIndexB = b.zIndex;
+							if (zIndexA < zIndexB) {
+								return 1;
+							} else if (zIndexA > zIndexB) {
+								return -1;
+							} else {
+								return 0;
+							}
+						})
+						.map((element) => element.id);
+				}
+				acc.push(element);
+				return acc;
+			}, []);
+	}
+
+	/**
+	 * Get all of the components inside the diagram.
+	 *
+	 * TODO: refactor this.
+	 * @returns jsx
+	 */
+	getComponents = () => {
+		const { backgroundColor, customStyle, edgeDrawers, elementMap, icons, iconsLoaded, name, organism } = this.state;
+		return this.getGroupedZIndexedElements().filter((element) => ['Node', 'Edge', 'Group'].indexOf(element.pvjsonType) > -1)
+			.map(function(element) {
+				switch (element.pvjsonType) {
+					case 'Node':
+						return 	<Components.Node key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap}
+									   edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />
+					case 'Edge':
+						return 	<Components.Edge key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap}
+									   edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />
+					case 'Group':
+						return <Components.Group key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap}
+							 edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />
+					case 'Marker':
+						return <Components.Marker key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap}
+							 edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />
+				}
+			});
+	};
+
+  	render() {
 		let that = this;
 		const state = that.state;
 		const { backgroundColor, customStyle, edgeDrawers, elementMap, filters, height, icons, iconsLoaded, name, organism, markerDrawers, width, zIndices } = state;
 
-		const zIndexedElements = zIndices
-			.map((id) => elementMap[id]);
-
-		const edges = zIndexedElements
+		const edges = this.getZIndexElements()
 			.filter((element) => element.pvjsonType === 'Edge');
 
 		// TODO Currently just using the background color of the diagram as a whole.
@@ -183,29 +247,6 @@ export class Diagram extends React.Component<any, any> {
 			);
 		}, []) as any[];
 
-		const groupedZIndexedElements = zIndexedElements
-			.filter((element) => !element.isPartOf)
-			.reduce(function(acc, element) {
-				if (element.pvjsonType === 'Group') {
-					element.contains = element.contains
-						.map((id) => elementMap[id])
-						.sort(function(a, b) {
-							const zIndexA = a.zIndex;
-							const zIndexB = b.zIndex;
-							if (zIndexA < zIndexB) {
-								return 1;
-							} else if (zIndexA > zIndexB) {
-								return -1;
-							} else {
-								return 0;
-							}
-						})
-						.map((element) => element.id);
-				}
-				acc.push(element);
-				return acc;
-			}, [])
-
 		return <svg xmlns="http://www.w3.org/2000/svg"
 						id="kaavio-diagram-1"
 						prefix={[
@@ -262,11 +303,7 @@ export class Diagram extends React.Component<any, any> {
 
     		<rect id="canvas" x="0" y ="0" width="100%" height="100%" className="kaavio-viewport-background" fill={backgroundColor}></rect>
 				{
-					groupedZIndexedElements.filter((element) => ['Node', 'Edge', 'Group'].indexOf(element.pvjsonType) > -1)
-						.map(function(element) {
-							const Tag = Components[element.pvjsonType];
-							return <Tag key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap} edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} customStyle={customStyle} />
-						})
+					this.getComponents()
 				}
     	</g>
 		</svg>

@@ -5,7 +5,10 @@ import {Components} from './';
 export class Node extends React.Component<any, any> {
     constructor(props) {
         super(props);
-        this.state = {...props};
+        this.state = {
+            ...props,
+            clicked: false
+        };
     }
 
     componentWillReceiveProps(nextProps) {
@@ -17,6 +20,34 @@ export class Node extends React.Component<any, any> {
             that.setState({iconsLoaded: nextIconsLoaded});
         }
     }
+
+    handleClick = (e) => {
+        e.preventDefault();
+        let target = e.currentTarget;
+        let attrs = this.getNodeAttributes(target);
+
+        // Fire a window event for the node click
+        // This is a bit of a hack
+        // TODO: Consider using React state/props. Setting the state/props of this node, detecting it in the parent...
+        // diagram and then firing an event from there. That way the Diagram knows if any elements are clicked and..
+        // can consider other components, not just Nodes
+
+        let event = new CustomEvent('kaavioNodeClicked', {'detail': attrs});
+        window.dispatchEvent(event);
+    };
+
+    /**
+     * Get the attributes for the node
+     * @param node
+     * @returns {{id: any, classes: string[], resource: string}}
+     */
+    private getNodeAttributes(node): {id: string, classes: string[], resource: string} {
+        return {
+            id: node.id,
+            classes: Array.from(node.classList.values()) as string[],
+            resource: node.attributes.getNamedItem('resource').value as string
+        }
+    };
 
     render() {
         let that = this;
@@ -50,9 +81,10 @@ export class Node extends React.Component<any, any> {
         return <g id={id}
                   className={className}
                   transform={nodeTransform}
+                  onClick={this.handleClick}
             // TODO the following two are WP-specific. Kaavio should be generic.
                   resource={`identifiers:wikipathways/WP554/${id}`}>
-            <g property="rdfa:copy" href={wpType}></g>
+            <g property="rdfa:copy" href={wpType} />
             {/* TODO re-enable this when we actually have the data
              <g property="biopax:entityReference" content="identifiers:ec-code/3.6.3.14"></g>
              */}

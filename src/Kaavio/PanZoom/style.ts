@@ -10,6 +10,6 @@ export const styles = {
         right: 0
     },
     zoomControl: {
-        'margin-right': '1rem'
+        marginRight: '1rem'
     }
 };
