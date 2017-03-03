@@ -9,6 +9,7 @@ var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 var gutil = require('gulp-util');
 var assign = require('lodash/assign');
+var brfs = require('gulp-brfs');
 
 /** Bundle Typescript!
 * Uses browserify to bundle Typescript starting from the main.ts file.
@@ -46,6 +47,7 @@ function bundle(){
 
   bundling = bundler()
       .transform("babelify", {presets: ['es2015'], extensions: ['.ts', '.js']})
+      .transform("brfs")
       .ignore('commander')
       .ignore('cheerio')
       .bundle();
