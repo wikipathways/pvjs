@@ -9,7 +9,7 @@ export class Manipulator {
     constructor(pvjs_instance: Pvjs){
         console.log("Successfully loaded the manipulation API!");
         this.pvjs_instance = pvjs_instance;
-        this.highlightedNodes = ['123'];
+        this.highlightedNodes = [];
     }
 
     /**
@@ -130,20 +130,71 @@ export class Manipulator {
     }
 
     private findNode(node_id): any {
-        return d3.select(this.pvjs_instance.selector).select("g path#" + node_id);
+        return d3.select(this.pvjs_instance.selector).select("g path#" + node_id)[0][0];
     }
+
+    // private convertCoords(x,y) {
+    //
+    // var offset = svgDoc.getBoundingClientRect();
+    //
+    // var matrix = elem.getScreenCTM();
+    //
+    //     return {
+    //         x: (matrix.a * x) + (matrix.c * y) + matrix.e - offset.left,
+    //         y: (matrix.b * x) + (matrix.d * y) + matrix.f - offset.top
+    //     };
+    // }
 
     private getNodeCoordinates(node_id): any {
         let node = this.findNode(node_id);
-        let x = d3.transform(node.attr("transform")).translate[0];
+        let clientRect = node.getBBox();
+
+        let x = clientRect.x;
+        let y = clientRect.y;
+        let width = clientRect.width;
+        let height = clientRect.height;
+
+        let centreX = x + (width/2);
+        let centreY = y + (height/2);
+
+        const containerHeight = this.pvjs_instance.panZoom.getSizes().height;
+        const containerWidth = this.pvjs_instance.panZoom.getSizes().width;
+        console.log(containerHeight);
+        console.log(containerWidth);
+        let realZoom = this.pvjs_instance.panZoom.getSizes().realZoom;
+        const offsetTop = containerHeight / 2;
+        const offsetLeft = containerWidth / 2;
+
+        return {
+            x: (-centreX * realZoom) + offsetLeft,
+            y: (-centreY * realZoom) + offsetTop
+        }
     }
 
-    zoom(zoom_perc, origin): any {
-        this.pvjs_instance.panZoom.zoomAtPoint(zoom_perc, origin);
+    private computeZoom(node_id): any {
+        let node = this.findNode(node_id);
+        const BBox = node.getBBox();
+
+        const nodeArea = BBox.width * BBox.height;
+        
+
+        const containerSize = this.pvjs_instance.panZoom.getSizes();
+        const containerArea = containerSize.width * containerSize.height;
+
+        const relativeArea = containerArea /nodeArea;
+        const scalingFactor = 0.08;
+        return relativeArea * scalingFactor;
+    }
+
+    zoom(zoom_perc): any {
+        this.pvjs_instance.panZoom.zoom(zoom_perc);
+        //this.pvjs_instance.panZoom.pan(origin);
     }
 
     zoomOn(node_id): any {
-
+        let zoom_perc = this.computeZoom(node_id);
+        this.zoom(zoom_perc);
+        this.panTo(node_id);
     }
 
     resetZoom(): any {
@@ -151,11 +202,13 @@ export class Manipulator {
     }
 
     pan(coordinates): any {
+        this.pvjs_instance.panZoom.pan(coordinates);
 
     }
 
     panTo(node_id): any {
-
+        let coordinates = this.getNodeCoordinates(node_id);
+        this.pan(coordinates);
     }
 
     resetPan(): any {
