@@ -21,7 +21,8 @@
     "test": "echo 'add working tests'",
     "watch": "npm-run-all -p start:mockserver watch:*",
     "watch:client": "npm-watch",
-    "watch:webpack": "npm run start:webpack"
+    "watch:webpack": "npm run start:webpack",
+    "watch:input-data-broken": "cat <(cat test/mockserver-data/pathways/HEADERS.txt) <(echo -n '{\"data\":\"') <(cat test/input-data/dev/playground.gpml | base64 | xargs echo -n) <(echo -n '\"}') > test/mockserver-data/pathways/playground/GET.mock"
   },
   "watch": {
     "test": [

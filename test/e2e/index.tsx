@@ -124,4 +124,7 @@ container.setAttribute('height', '1000px');
 document.body.appendChild(container)
 
 const pathwayId = getParameterByName('id') || 'WP4';
-pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + pathwayId, {customStyle: customStyle});
+pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + pathwayId, {
+	customStyle: customStyle,
+	src: 'http://localhost:4522/pathways/playground',
+});
