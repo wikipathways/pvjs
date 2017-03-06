@@ -1,52 +1,78 @@
 import { omit } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Base64 } from 'js-base64';
-import Kaavio from './kaavio/main';
-import { Filter, generateFilterId, doubleStroke, round } from './kaavio/filters';
+import {Base64} from 'js-base64';
+import {BridgeDbRenderer} from './BridgeDb';
+import {Kaavio} from './Kaavio';
+import {Filter, generateFilterId, doubleStroke, round} from './Kaavio/components/Filters';
 
-require('./stripped-bootstrap.css');
-import * as WikiPathwaysDefaultDisplayStyle from './WikiPathwaysDefaultDisplayStyle';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import * as WikiPathwaysDefaultDisplayStyle from './WikiPathways.style';
 
+// The edge drawing definitions are in Kaavio because they can be generically used.
+import EdgeDrawers from './Kaavio/components/EdgeDrawers';
+// But the icons and markers are specific to Pvjs (less likely to useful to other applications).
 import icons from './icons/main';
-import edgeDrawers from './edgeDrawers';
-import markerDrawers from './markerDrawers';
+import MarkerDrawers from './MarkerDrawers';
 
 //import gpml2pvjson from 'gpml2pvjson/lib/main';
 let gpml2pvjson = require('gpml2pvjson').default;
 
-import { Observable } from 'rxjs/Observable';
-import { AjaxRequest } from  'rxjs/observable/dom/AjaxObservable';
+import {Observable} from 'rxjs/Observable';
+import {AjaxRequest} from  'rxjs/observable/dom/AjaxObservable';
 import 'rxjs/add/observable/dom/ajax';
 
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/let';
 import 'rxjs/add/operator/map';
 
-class Pvjs extends React.Component<any, any> {
+export class Pvjs extends React.Component<any, any> {
 	pathwayRequest: Observable<any>;
   constructor(props) {
 		const customStyle = props.customStyle || {};
 		super(props);
 		this.state = {
-			id: props.id,
+			about: props.about,
+			version: props.version,
+			src: props.src,
+			alt: props.alt,
+			customStyle: props.customStyle,
 			pvjson: {
 				elements: [],
 				organism: '',
 				name: '',
 			},
-			customStyle: props.customStyle,
+			selected: null,
 		};
   }
+
+    closeActive() {
+			this.setState({selected: null})
+    }
+
+    handleClick(e) {
+        let that = this;
+        let el = e.target;
+				/*
+        const id = el.getAttribute('id');
+        const entity = that.state.entities[id];
+        if (entity && entity.type === 'DataNode' && entity.database && entity.identifier) {
+            that.setState({selected: entity});
+        }
+				console.log('e');
+				console.log(e);
+			 //*/
+    }
 
 	getPathway() {
 		let that = this;
 		const state = that.state;
-		// NOTE: this is in case the pathway id is provided as something like wikipathways:WP554
-		// TODO what about if it's provided as something like this: http://identifiers.org/wikipathways/WP554
-		const fullId = state.id.replace(/wikipathways:/, 'http://webservice.wikipathways.org/getPathwayAs?fileType=xml&format=json&pwId=')
+		const { about, version } = state;
+		// TODO handle version
+		const src = state.src ||
+			about.replace(/.*wikipathways[:\/]/, 'http://webservice.wikipathways.org/getPathwayAs?fileType=xml&format=json&pwId=');
 		const ajaxRequest: AjaxRequest = {
-			url: fullId,
+			url: src,
 			method: 'GET',
 			responseType: 'json',
 			timeout: 1 * 1000, // ms
@@ -56,7 +82,7 @@ class Pvjs extends React.Component<any, any> {
 				Observable.ajax(ajaxRequest)
 					.map((ajaxResponse): {data: string} => ajaxResponse.xhr.response)
 					.map(res => Base64.decode(res.data)),
-				fullId
+				about
 		)
 			.subscribe(function(pvjson) {
 				let { elements, organism, name } = pvjson;
@@ -126,7 +152,7 @@ class Pvjs extends React.Component<any, any> {
   render() {
 		let that = this;
 		const state = that.state;
-		const { pvjson, id, customStyle } = state;
+		const { about, customStyle, pvjson } = state;
 
 		const filters = Array.from(
 				pvjson.elements
@@ -151,12 +177,7 @@ class Pvjs extends React.Component<any, any> {
 				const [filterName, strokeWidthAsString] = subFilter.split('-');
 				const strokeWidth = parseFloat(strokeWidthAsString);
 
-				if (filterName === 'round') {
-					round({source: 'SourceGraphic', strokeWidth: strokeWidth})
-						.forEach(function(x) {
-							subAcc.push(x)
-						});
-				} else if (filterName === 'doubleStroke') {
+				if (filterName === 'doubleStroke') {
 					doubleStroke({
 						source: filterId.indexOf('ound') > -1 ? 'roundResult' : 'SourceGraphic',
 						strokeWidth: strokeWidth,
@@ -172,13 +193,11 @@ class Pvjs extends React.Component<any, any> {
 			return acc;
 		}, []);
 
-		return <Kaavio id={id}
-										pvjson={pvjson}
-										customStyle={/*customStyle*/WikiPathwaysDefaultDisplayStyle}
-										edgeDrawers={edgeDrawers}
-										filters={filters}
-										icons={icons}
-										markerDrawers={markerDrawers} />;
+		return <section>
+			<Kaavio handleClick={that.handleClick} about={about} pvjson={pvjson} customStyle={/*customStyle*/WikiPathwaysDefaultDisplayStyle}
+							edgeDrawers={EdgeDrawers} icons={icons} markerDrawers={MarkerDrawers} filters={filters} />
+			<BridgeDbRenderer/>
+		</section>
 	}
 }
 

@@ -1,6 +1,3 @@
-/// <reference path="../../index.d.ts" />
-
-//import { } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 

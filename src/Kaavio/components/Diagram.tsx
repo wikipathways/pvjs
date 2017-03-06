@@ -1,4 +1,4 @@
-/// <reference path="../../index.d.ts" />
+/// <reference path="../../../index.d.ts" />
 
 import { normalize, setupPage } from "csstips";
 import Edge from './Edge';
@@ -51,6 +51,10 @@ class Diagram extends React.Component<any, any> {
 				});
 			}
 		});
+	}
+
+	componentDidMount() {
+		this.getIcons();
 	}
 
 	getIcons() {
@@ -132,20 +136,8 @@ class Diagram extends React.Component<any, any> {
 			});
 	}
 
-	componentDidMount() {
-		this.getIcons();
-	}
-
-  render() {
-		let that = this;
-		const state = that.state;
-		const { backgroundColor, customStyle, edgeDrawers, elementMap, filters, height,
-						icons, iconsLoaded, iconSuffix,
-						id, name, organism, markerDrawers, width, zIndices } = state;
-
-		const zIndexedElements = zIndices
-			.map((id) => elementMap[id]);
-
+	getMarkerInputs(zIndexedElements) {
+		const backgroundColor = this.state.backgroundColor;
 		const edges = zIndexedElements
 			.filter((element) => element.pvjsonType === 'Edge');
 
@@ -180,58 +172,61 @@ class Diagram extends React.Component<any, any> {
 					}, new Set())
 		);
 
-	const markerInputs = markerColors
-		.map((color) => ({color: color}))
-		.reduce(function(acc: any[], partialInput) {
-			const pairs = toPairs(partialInput);
-			return acc.concat(
-					markerBackgroundColors
-						.map(function(markerBackgroundColor) {
-							return pairs
-								.reduce(function(subAcc: any, pair) {
-									const key = pair[0];
-									const value = pair[1];
-									subAcc[key] = value;
-									subAcc.markerBackgroundColor = markerBackgroundColor;
-									return subAcc;
-								}, {});
-						})
-			);
-		}, [])
-		.reduce(function(acc: any[], partialInput) {
-			const pairs = toPairs(partialInput);
-			return acc.concat(
-					MARKER_PROPERTY_NAMES
-						.map(function(markerLocationType) {
-							return pairs
-								.reduce(function(subAcc: any, pair) {
-									const key = pair[0];
-									const value = pair[1];
-									subAcc[key] = value;
-									subAcc.markerLocationType = markerLocationType;
-									return subAcc;
-								}, {});
-						})
-			);
-		}, [])
-		.reduce(function(acc: any[], partialInput) {
-			const pairs = toPairs(partialInput);
-			return acc.concat(
-					markerNames
-						.map(function(markerName) {
-							return pairs
-								.reduce(function(subAcc: any, pair) {
-									const key = pair[0];
-									const value = pair[1];
-									subAcc[key] = value;
-									subAcc.markerName = markerName;
-									return subAcc;
-								}, {});
-						})
-			);
-		}, []) as any[];
+		return markerColors
+			.map((color) => ({color: color}))
+			.reduce(function(acc: any[], partialInput) {
+				const pairs = toPairs(partialInput);
+				return acc.concat(
+						markerBackgroundColors
+							.map(function(markerBackgroundColor) {
+								return pairs
+									.reduce(function(subAcc: any, pair) {
+										const key = pair[0];
+										const value = pair[1];
+										subAcc[key] = value;
+										subAcc.markerBackgroundColor = markerBackgroundColor;
+										return subAcc;
+									}, {});
+							})
+				);
+			}, [])
+			.reduce(function(acc: any[], partialInput) {
+				const pairs = toPairs(partialInput);
+				return acc.concat(
+						MARKER_PROPERTY_NAMES
+							.map(function(markerLocationType) {
+								return pairs
+									.reduce(function(subAcc: any, pair) {
+										const key = pair[0];
+										const value = pair[1];
+										subAcc[key] = value;
+										subAcc.markerLocationType = markerLocationType;
+										return subAcc;
+									}, {});
+							})
+				);
+			}, [])
+			.reduce(function(acc: any[], partialInput) {
+				const pairs = toPairs(partialInput);
+				return acc.concat(
+						markerNames
+							.map(function(markerName) {
+								return pairs
+									.reduce(function(subAcc: any, pair) {
+										const key = pair[0];
+										const value = pair[1];
+										subAcc[key] = value;
+										subAcc.markerName = markerName;
+										return subAcc;
+									}, {});
+							})
+				);
+			}, []) as any[];
+	}
 
-		const groupedZIndexedElements = zIndexedElements
+	getGroupedZIndexedElements(zIndexedElements) {
+		const elementMap = this.state.elementMap;
+		return zIndexedElements
 			.filter((element) => !element.isPartOf)
 			.reduce(function(acc, element) {
 				const pvjsonType = element.pvjsonType;
@@ -271,9 +266,31 @@ class Diagram extends React.Component<any, any> {
 				}
 				return acc;
 			}, []);
+	}
+
+  render() {
+		let that = this;
+		const state = that.state;
+		const { about, backgroundColor, customStyle, edgeDrawers, elementMap, filters, handleClick,
+						height, icons, iconsLoaded, iconSuffix,
+						name, organism, markerDrawers, width, zIndices } = state;
+
+		const zIndexedElements = zIndices
+			.map((id) => elementMap[id]);
+
+		const markerInputs = that.getMarkerInputs(zIndexedElements);
+
+		const groupedZIndexedElements = that.getGroupedZIndexedElements(zIndexedElements);
+
+		function thisHandleClick(e) {
+			console.log('Diagram');
+			console.log('e.target');
+			console.log(e.target);
+			handleClick(e.target);
+		}
 
 		return <svg xmlns="http://www.w3.org/2000/svg"
-						id={id}
+						id={about}
 						prefix={[
 							'biopax: http://www.biopax.org/release/biopax-level3.owl#',
 							'gpml: http://vocabularies.wikipathways.org/gpml#',
@@ -288,6 +305,7 @@ class Diagram extends React.Component<any, any> {
 						preserveAspectRatio="xMidYMid"
 						width={width}
 						height={height}
+						onClick={thisHandleClick}
 						className={`kaavio-diagram ${ customStyle.diagramClass }`}
 						style={{overflow: 'hidden'}}>
 
@@ -329,10 +347,19 @@ class Diagram extends React.Component<any, any> {
 					groupedZIndexedElements.filter((element) => ['Node', 'Edge', 'Group'].indexOf(element.pvjsonType) > -1)
 						.filter((element) => !element.hasOwnProperty('isPartOf'))
 						.map(function(element) {
+							// Meta is anything that Kaavio doesn't use but becomes part of the node properties.
+							// Useful for BridgeDb
+							let meta = {
+								organism: organism,
+								entityType: element.wpType,
+								displayName: element.displayName,
+								dataSource: element.dbName,
+								identifier: element.dbId
+							};
 							const Tag = components[element.pvjsonType];
 							return <Tag key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap}
-													svgId={id} edgeDrawers={edgeDrawers}
-													icons={icons} iconsLoaded={iconsLoaded} iconSuffix={iconSuffix} customStyle={customStyle} />
+													svgId={about} edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} iconSuffix={iconSuffix}
+													customStyle={customStyle} meta={meta} />
 						})
 				}
     	</g>

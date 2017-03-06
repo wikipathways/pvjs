@@ -10,11 +10,10 @@
 		"pretty": true
 	},
 	"files": [
-		"src/main.tsx",
+		"src/index.tsx",
 		"index.d.ts"
 	],
 	"exclude": [
-		"ui/**/*",
 		"dist/**/*",
 		"tmp/**/*"
     ]

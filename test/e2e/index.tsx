@@ -1,15 +1,7 @@
 // NOTE: mock-server must be started before running this.
 
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { values } from 'lodash';
-import Pvjs from '../../src/main';
-
-// React says not to render directly into document.body, so here's a container.
-var container = document.createElement('div');
-container.setAttribute('width', '100%');
-container.setAttribute('height', '1000px');
-document.body.appendChild(container)
+import { pvjs } from '../../src/wrappers/vanilla';
 
 const customStyle = `
 	.background {
@@ -123,9 +115,13 @@ function getParameterByName(name, url?) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-const id = getParameterByName('id') || 'WP554';
+// React says not to render directly into document.body, so here's a container.
+var container = document.createElement('div');
+const containerId = 'pvjs-container-' + new Date().toISOString().replace(/\W/g, '');
+container.setAttribute('id', containerId);
+container.setAttribute('width', '100%');
+container.setAttribute('height', '1000px');
+document.body.appendChild(container)
 
-ReactDOM.render(
-	<Pvjs	id={'wikipathways:' + id} customStyle={customStyle} />,
-  container
-);
+const pathwayId = getParameterByName('id') || 'WP4';
+pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + pathwayId, {customStyle: customStyle});

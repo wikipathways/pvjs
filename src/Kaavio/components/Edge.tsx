@@ -1,9 +1,7 @@
-/// <reference path="../../index.d.ts" />
-
-import { intersection, keys } from 'lodash';
+import {intersection, keys} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { getMarkerPropertyValue, MARKER_PROPERTY_NAMES } from './Marker';
+import {getMarkerPropertyValue, MARKER_PROPERTY_NAMES} from './Marker';
 
 export class Edge extends React.Component<any, any> {
   constructor(props) {
@@ -19,10 +17,10 @@ export class Edge extends React.Component<any, any> {
   render() {
 		let that = this;
 		const state = that.state;
-		const { backgroundColor, edgeDrawers, element } = state;
-		const { color, borderWidth, points, id, drawAs, strokeDasharray } = element;
+		const {backgroundColor, edgeDrawers, element} = state;
+		const {color, borderWidth, points, id, drawAs, strokeDasharray} = element;
 
-		const { getPathSegments, getPointAtPosition } = edgeDrawers[drawAs];
+		const {getPathSegments, getPointAtPosition} = edgeDrawers[drawAs];
 		const pathSegments = getPathSegments(points, id);
 		const d = pathSegments
 			.map(function(pathSegment) {

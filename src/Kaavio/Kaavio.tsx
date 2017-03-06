@@ -1,17 +1,17 @@
-import { forOwn } from 'lodash';
+import {forOwn} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Diagram from './Diagram';
+import Diagram from './components/Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./kaavio.css');
 import { normalize, setupPage } from 'csstips';
  
-class Kaavio extends React.Component<any, any> {
+export class Kaavio extends React.Component<any, any> {
   constructor(props) {
 		super(props);
-		const id = props.id || 'kaavio-container-' + new Date().toISOString();
+		const about = (props.about || 'kaavio-container-' + new Date().toISOString()).replace(/\W/g, '');
 		this.state = {
-			id: id,
+			about: about,
 			pvjson: props.pvjson || {
 				elements: [],
 				organism: '',
@@ -21,6 +21,7 @@ class Kaavio extends React.Component<any, any> {
 			},
 			customStyle: props.customStyle || '',
 			filters: props.filters,
+			handleClick: props.handleClick,
 			edgeDrawers: props.edgeDrawers,
 			icons: props.icons,
 			markerDrawers: props.markerDrawers,
@@ -28,8 +29,7 @@ class Kaavio extends React.Component<any, any> {
 
 		normalize();
 		// TODO doublecheck how to use setupPage
-		//setupPage('#root');
-		setupPage('#' + id);
+		setupPage('#' + about);
   }
 
 	componentWillReceiveProps(nextProps) {
@@ -51,7 +51,7 @@ class Kaavio extends React.Component<any, any> {
   render() {
 		let that = this;
 		const state = that.state;
-		const { customStyle, filters, pvjson, id, edgeDrawers, icons, markerDrawers } = state;
+		const { about, customStyle, filters, handleClick, pvjson, edgeDrawers, icons, markerDrawers } = state;
 		const { elements, organism, name, width, height } = pvjson;
 		const backgroundColor = customStyle.backgroundColor || pvjson.backgroundColor || 'white';
 
@@ -59,6 +59,12 @@ class Kaavio extends React.Component<any, any> {
 			acc[element.id] = element;
 			return acc;
 		}, {});
+
+		function thisHandleClick(e) {
+			console.log('Kaavio');
+			console.log(e);
+			handleClick(e);
+		}
 
 		const zIndices = elements
 			.sort(function(a: any, b: any) {
@@ -72,9 +78,9 @@ class Kaavio extends React.Component<any, any> {
 			})
 			.map((element) => element.id);
 
-		return <div id={id} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
+		return <div id={about} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
 			<Diagram organism={organism}
-				id={`kaavio-diagram-for-${id.replace(/\W/g, '')}`}
+				about={`kaavio-diagram-for-${about}`}
 				name={name}
 				width={width}
 				height={height}
@@ -82,6 +88,7 @@ class Kaavio extends React.Component<any, any> {
 				edgeDrawers={edgeDrawers}
 				elementMap={elementMap}
 				filters={filters}
+				handleClick={thisHandleClick}
 				icons={icons}
 				markerDrawers={markerDrawers}
 				zIndices={zIndices}
@@ -89,5 +96,3 @@ class Kaavio extends React.Component<any, any> {
 		</div>
 	}
 }
-
-export default Kaavio;
