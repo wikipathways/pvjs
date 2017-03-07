@@ -37,7 +37,7 @@
             in a two-step reaction to produce
             <a href="#" onclick="pvjs_instance.manipulator.toggleHighlight('de887', 'green')">3-hydroxy-3-methylglutaryl CoA (HMG-CoA)</a>.
             Both reactions are reversible and in equilibria, with the intracellular concentration of acetyl-CoA being the primary driver.
-            <a href="#" onclick="pvjs_instance.manipulator.resetHighlight(); pvjs_instance.manipulator.zoom(2.5, {x:770, y:0})">
+            <a href="#" onclick="pvjs_instance.manipulator.resetHighlight(); pvjs_instance.manipulator.zoomOn('de887')">
               HMG-CoA is then reduced by HMG-CoA reductase to produce MVA via an irreversible reaction
             </a>. MVA is then converted into isopentenyl-diphosphate (IPP) through a series of enzymatic steps,
             which serves as a monomeric unit for the consequent synthesis
@@ -69,7 +69,9 @@
         displayWarnings: true
       });
       pvjs_instance.render();
-      pvjs_instance.manipulator = new Manipulator(pvjs_instance);
+      pvjs_instance.on('rendered.renderer', function(){
+        pvjs_instance.manipulator = new Manipulator(pvjs_instance);
+      });
       window.pvjs_instance = pvjs_instance;
     })()
     </script>
