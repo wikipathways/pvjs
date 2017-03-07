@@ -19,7 +19,7 @@ export class Manipulator {
      * @param node_id - one identifier or a string of identifiers
      * @param colour - can be any css colour
      * @param resetOthers - Reset all other highlighted nodes before highlighting. Default = true
-     * @param resetPan - reset the pan before highlighting. Default = true
+     * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      * @param resetZoom - reset the zoom before highlighting. Default = true
      *
      * This currently uses the highlighter facilities in Kaavio.
@@ -29,9 +29,8 @@ export class Manipulator {
      * TODO: Either write a new highlighter library or rewrite the kaavio one
      *
      */
-    toggleHighlight(node_id: any, colour: string, resetOthers: boolean = true, resetPan = true, resetZoom = true): void {
-        if(resetPan) this.resetPan();
-        if(resetZoom) this.resetZoom();
+    toggleHighlight(node_id: any, colour: string, resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+        if(resetPanZoom) this.resetPanZoom();
 
         if (typeof node_id === 'string'){
             // Just one node_id
@@ -232,13 +231,6 @@ export class Manipulator {
     }
 
     /**
-     * Reset the zoom
-     */
-    resetZoom(): void {
-        this.panZoom.resetZoom();
-    }
-
-    /**
      * Pan to a specific set of coordinates
      * @param coordinates
      */
@@ -249,21 +241,23 @@ export class Manipulator {
     /**
      * Pan to a specific node
      * @param node_id
-     * @param resetZoom - reset the zoom before panning. Default = true
+     * @param resetPanZoom - reset the zoom before panning. Default = true
      * @param resetHighlight - rest the highlight before panning. Default = true
      */
-    panTo(node_id: string, resetZoom: boolean = true, resetHighlight: boolean = true): void {
-        if(resetZoom) this.resetZoom();
+    panTo(node_id: string, resetPanZoom: boolean = true, resetHighlight: boolean = true): void {
+        if(resetPanZoom) this.resetPanZoom();
         if(resetHighlight) this.resetHighlight();
         let coordinates = this.getNodeCoordinates(node_id);
         this.pan(coordinates);
     }
 
     /**
-     * Reset the pan
+     * Reset the pan, zoom and center
      */
-    resetPan(): void {
+    resetPanZoom(): void {
         this.panZoom.resetPan();
+        this.panZoom.resetZoom();
+        this.panZoom.center();
     }
 
     toggleAnnotations(node_id): any {
