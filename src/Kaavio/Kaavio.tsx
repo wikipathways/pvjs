@@ -1,10 +1,10 @@
 import {forOwn} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Diagram from './components/Diagram';
+import {Diagram} from './components/Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./kaavio.css');
-import { normalize, setupPage } from 'csstips';
+import {normalize, setupPage} from 'csstips';
  
 export class Kaavio extends React.Component<any, any> {
   constructor(props) {
@@ -60,12 +60,6 @@ export class Kaavio extends React.Component<any, any> {
 			return acc;
 		}, {});
 
-		function thisHandleClick(e) {
-			console.log('Kaavio');
-			console.log(e);
-			handleClick(e);
-		}
-
 		const zIndices = elements
 			.sort(function(a: any, b: any) {
 				if (a.zIndex > b.zIndex) {
@@ -88,7 +82,7 @@ export class Kaavio extends React.Component<any, any> {
 				edgeDrawers={edgeDrawers}
 				elementMap={elementMap}
 				filters={filters}
-				handleClick={thisHandleClick}
+				handleClick={handleClick}
 				icons={icons}
 				markerDrawers={markerDrawers}
 				zIndices={zIndices}

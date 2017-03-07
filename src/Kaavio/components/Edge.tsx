@@ -2,6 +2,7 @@ import {intersection, keys} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {getMarkerPropertyValue, MARKER_PROPERTY_NAMES} from './Marker';
+import {Generic} from './Generic';
 
 export class Edge extends React.Component<any, any> {
   constructor(props) {
@@ -56,8 +57,8 @@ export class Edge extends React.Component<any, any> {
 			opts[attribute.name] = attribute.value;
 		});
 
-		return <path {...opts}/>;
+		return <Generic {...state} children={[
+			<path key={`path-for-${element.id}`} {...opts}/>
+		]} />;
 	}
 }
-
-export default Edge;

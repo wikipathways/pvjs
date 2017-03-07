@@ -1,13 +1,14 @@
-import { omit } from 'lodash';
+import {forOwn, omit} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Base64} from 'js-base64';
-import {BridgeDbRenderer} from './BridgeDb';
+//import {BridgeDbRenderer} from './BridgeDb';
 import {Kaavio} from './Kaavio';
 import {Filter, generateFilterId, doubleStroke, round} from './Kaavio/components/Filters';
+import {BridgeDb, XrefsAnnotationPanel} from 'bridgedb';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as WikiPathwaysDefaultDisplayStyle from './WikiPathways.style';
+//import * as WikiPathwaysDefaultDisplayStyle from './WikiPathways.style';
 
 // The edge drawing definitions are in Kaavio because they can be generically used.
 import EdgeDrawers from './Kaavio/components/EdgeDrawers';
@@ -43,26 +44,21 @@ export class Pvjs extends React.Component<any, any> {
 				name: '',
 			},
 			selected: null,
+			detailPanelOpen: false,
 		};
   }
 
-    closeActive() {
-			this.setState({selected: null})
-    }
+	closeActive() {
+		this.setState({selected: null, detailPanelOpen: false})
+	}
 
-    handleClick(e) {
-        let that = this;
-        let el = e.target;
-				/*
-        const id = el.getAttribute('id');
-        const entity = that.state.entities[id];
-        if (entity && entity.type === 'DataNode' && entity.database && entity.identifier) {
-            that.setState({selected: entity});
-        }
-				console.log('e');
-				console.log(e);
-			 //*/
-    }
+	handleClick(e) {
+		const that = this;
+		const entity = e.entity;
+		if (entity && entity.type.indexOf('DataNode') > -1 && entity.dbId && entity.dbName) {
+			that.setState({selected: entity, detailPanelOpen: true});
+		}
+	}
 
 	getPathway() {
 		let that = this;
@@ -97,7 +93,7 @@ export class Pvjs extends React.Component<any, any> {
 					return omit(element, ['displayName']);
 				}).concat([{
 					id: 'pvjs-infobox',
-					pvjsonType: 'Node',
+					kaavioType: 'Node',
 					drawAs: 'None',
 					backgroundColor: 'transparent',
 					borderWidth: 0,
@@ -135,24 +131,40 @@ export class Pvjs extends React.Component<any, any> {
 	}
 
 	// TODO is this correct? Or should we use componentWillUpdate?
-	componentDidUpdate(prevProps, prevState) {
+//	componentDidUpdate(prevProps, prevState) {
+//		let that = this;
+//		const state = that.state;
+//		if (JSON.stringify(prevState.pvjson) !== JSON.stringify(state.pvjson)) {
+//			that.getPathway();
+//		}
+//	}
+
+	componentWillReceiveProps(nextProps) {
 		let that = this;
-		const state = that.state;
-		if (JSON.stringify(prevState.pvjson) !== JSON.stringify(state.pvjson)) {
-			that.getPathway();
-		}
+		const prevProps = that.props;
+		forOwn(nextProps, function(prop, key) {
+			if (prop && JSON.stringify(prevProps[key]) !== JSON.stringify(prop)) {
+				that.setState({
+					[key]: prop,
+				});
+			}
+		});
 	}
 
 	componentWillUnmount() {
 		let that = this;
 		// TODO cancel any pending network requests, possibly something like this:
 		//that.pathwayRequest.dispose();
-	}	
+	}
+
+	handleCloseDetailsPanel() {
+		this.setState({detailPanelOpen: false})
+	}
 
   render() {
 		let that = this;
 		const state = that.state;
-		const { about, customStyle, pvjson } = state;
+		const { about, customStyle, detailPanelOpen, pvjson, selected } = state;
 
 		const filters = Array.from(
 				pvjson.elements
@@ -194,9 +206,21 @@ export class Pvjs extends React.Component<any, any> {
 		}, []);
 
 		return <section>
-			<Kaavio handleClick={that.handleClick} about={about} pvjson={pvjson} customStyle={/*customStyle*/WikiPathwaysDefaultDisplayStyle}
+			<Kaavio handleClick={that.handleClick.bind(that)} about={about} pvjson={pvjson}
+							customStyle={customStyle}
 							edgeDrawers={EdgeDrawers} icons={icons} markerDrawers={MarkerDrawers} filters={filters} />
-			<BridgeDbRenderer/>
+			{
+					detailPanelOpen ?
+							<XrefsAnnotationPanel
+									bridgeDb={new BridgeDb()}
+									organism={pvjson.organism}
+									entityType={!!selected && selected.wpType}
+									displayName={!!selected && selected.textContent}
+									dataSource={selected && selected.dbName}
+									identifier={!!selected && selected.dbId}
+									handleClose={that.handleCloseDetailsPanel.bind(that)}
+							/>: null
+			}
 		</section>
 	}
 }

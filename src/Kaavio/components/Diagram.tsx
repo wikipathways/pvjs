@@ -1,27 +1,22 @@
 /// <reference path="../../../index.d.ts" />
 
-import { normalize, setupPage } from "csstips";
-import Edge from './Edge';
-import Group from './Group';
-import { Base64 } from 'js-base64';
-import { find, groupBy, intersection, keys, forOwn, toPairs, uniq, values } from 'lodash';
-import { Marker, getMarkerId, MARKER_PROPERTY_NAMES, NON_FUNC_IRI_MARKER_PROPERTY_VALUES } from './Marker';
-import Node from './Node';
+import {Edge} from './Edge';
+import {Group} from './Group';
+import {Base64} from 'js-base64';
+import {defaults, find, intersection, keys, forOwn, omitBy, toPairs, uniq, values} from 'lodash';
+import {Marker, getMarkerId, MARKER_PROPERTY_NAMES, NON_FUNC_IRI_MARKER_PROPERTY_VALUES} from './Marker';
+import {Node} from './Node';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Observable } from 'rxjs/Observable';
-import { AjaxRequest } from  'rxjs/observable/dom/AjaxObservable';
+import {Observable} from 'rxjs/Observable';
+import {AjaxRequest} from  'rxjs/observable/dom/AjaxObservable';
 import 'rxjs/add/observable/dom/ajax';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
-import { style } from 'typestyle';
 import * as validDataUrl from 'valid-data-url';
-
-normalize();
-setupPage('#root');
 
 const components = {
 	Edge: Edge,
@@ -29,7 +24,7 @@ const components = {
 	Group: Group,
 };
 
-class Diagram extends React.Component<any, any> {
+export class Diagram extends React.Component<any, any> {
   constructor(props) {
 		super(props);
 		this.state = {...props};
@@ -61,7 +56,7 @@ class Diagram extends React.Component<any, any> {
 		// see https://css-tricks.com/ajaxing-svg-sprite/
 		let that = this;
 		const state = that.state;
-		const { icons, iconSuffix } = state;
+		const {icons, iconSuffix} = state;
 		const iconUrls: string[] = uniq(
 			values(icons)
 				.map((icon: {id: string, url: string}) => icon.url)
@@ -139,7 +134,7 @@ class Diagram extends React.Component<any, any> {
 	getMarkerInputs(zIndexedElements) {
 		const backgroundColor = this.state.backgroundColor;
 		const edges = zIndexedElements
-			.filter((element) => element.pvjsonType === 'Edge');
+			.filter((element) => element.kaavioType === 'Edge');
 
 		// TODO Currently just using the background color of the diagram as a whole.
 		// Do we want to handle the case where the marker is on top of another element?
@@ -229,8 +224,8 @@ class Diagram extends React.Component<any, any> {
 		return zIndexedElements
 			.filter((element) => !element.isPartOf)
 			.reduce(function(acc, element) {
-				const pvjsonType = element.pvjsonType;
-				if (pvjsonType === 'Group') {
+				const kaavioType = element.kaavioType;
+				if (kaavioType === 'Group') {
 					element.contains = element.contains
 						.map((id) => elementMap[id])
 						.sort(function(a, b) {
@@ -261,17 +256,26 @@ class Diagram extends React.Component<any, any> {
 						})
 						.map((element) => element.id);
 				}
-				if (['Burr'].indexOf(pvjsonType) === -1 && !element.hasOwnProperty('isPartOf')) {
+				if (['Burr'].indexOf(kaavioType) === -1 && !element.hasOwnProperty('isPartOf')) {
 					acc.push(element);
 				}
 				return acc;
 			}, []);
 	}
 
+	handleClick(e) {
+		let that = this;
+		const state = that.state;
+		const { handleClick } = state;
+		const id = e.target.parentNode.getAttribute('id');
+		const entity = state.elementMap[id];
+		handleClick(omitBy(defaults({entity: entity}, e), (v, k) => k.indexOf('_') === 0));
+	}
+
   render() {
 		let that = this;
 		const state = that.state;
-		const { about, backgroundColor, customStyle, edgeDrawers, elementMap, filters, handleClick,
+		const { about, backgroundColor, customStyle, edgeDrawers, elementMap, filters,
 						height, icons, iconsLoaded, iconSuffix,
 						name, organism, markerDrawers, width, zIndices } = state;
 
@@ -281,13 +285,6 @@ class Diagram extends React.Component<any, any> {
 		const markerInputs = that.getMarkerInputs(zIndexedElements);
 
 		const groupedZIndexedElements = that.getGroupedZIndexedElements(zIndexedElements);
-
-		function thisHandleClick(e) {
-			console.log('Diagram');
-			console.log('e.target');
-			console.log(e.target);
-			handleClick(e.target);
-		}
 
 		return <svg xmlns="http://www.w3.org/2000/svg"
 						id={about}
@@ -305,7 +302,7 @@ class Diagram extends React.Component<any, any> {
 						preserveAspectRatio="xMidYMid"
 						width={width}
 						height={height}
-						onClick={thisHandleClick}
+						onClick={this.handleClick.bind(this)}
 						className={`kaavio-diagram ${ customStyle.diagramClass }`}
 						style={{overflow: 'hidden'}}>
 
@@ -344,27 +341,16 @@ class Diagram extends React.Component<any, any> {
 
     		<rect x="0" y ="0" width="100%" height="100%" className="kaavio-viewport-background" fill={backgroundColor}></rect>
 				{
-					groupedZIndexedElements.filter((element) => ['Node', 'Edge', 'Group'].indexOf(element.pvjsonType) > -1)
+					groupedZIndexedElements.filter((element) => ['Node', 'Edge', 'Group'].indexOf(element.kaavioType) > -1)
 						.filter((element) => !element.hasOwnProperty('isPartOf'))
 						.map(function(element) {
-							// Meta is anything that Kaavio doesn't use but becomes part of the node properties.
-							// Useful for BridgeDb
-							let meta = {
-								organism: organism,
-								entityType: element.wpType,
-								displayName: element.displayName,
-								dataSource: element.dbName,
-								identifier: element.dbId
-							};
-							const Tag = components[element.pvjsonType];
+							const Tag = components[element.kaavioType];
 							return <Tag key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap}
 													svgId={about} edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} iconSuffix={iconSuffix}
-													customStyle={customStyle} meta={meta} />
+													customStyle={customStyle} />
 						})
 				}
     	</g>
 		</svg>
 	}
 }
-
-export default Diagram;

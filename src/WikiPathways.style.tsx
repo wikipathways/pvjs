@@ -71,6 +71,7 @@ export const DataNodeClass = style({
 			// NOTE: Uncomment the line below to see an example
 			// of adding a dropshadow to Pathway DataNodes:
 			/*filter: 'drop-shadow( 2px 2px 2px #000 )', */
+			strokeWidth: 0,
 		},
 		[`& .textlabel`]: {
 			fill: '#75C95C',

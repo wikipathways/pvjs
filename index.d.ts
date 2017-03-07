@@ -1,12 +1,7 @@
 /// <reference path="./svg-text.d.ts" />
 /// <reference path="./tower-strcase.d.ts" />
 /// <reference path="./node_modules/typescript/lib/lib.es6.d.ts" />
-
-// NOTE organism is in its own file, organism.d.ts.
-// This should not need to be specified here, because it's
-// already specified in tsconfig.js, but in Vim, Syntastic
-// is saying organism is undefined if I remove this.
-/// <reference path="./organism.d.ts" />
+/// <reference path="./node_modules/bridgedb/typings/organism.d.ts" />
 
 // for details on vocab, see http://vocabularies.bridgedb.org/ops#
 

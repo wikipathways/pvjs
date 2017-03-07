@@ -8,7 +8,7 @@ export interface Opts {
 	about?: string;
 	version?: number;
 	src?: string;
-	customStyle?: string;
+	customStyle?: any;
 }
 
 /**

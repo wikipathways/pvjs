@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Edge from './Edge';
-import Node from './Node';
+import {Edge} from './Edge';
+import {Node} from './Node';
 
 const components = {
 	Edge: Edge,
@@ -41,9 +41,9 @@ export class Group extends React.Component<any, any> {
 			})
 			// TODO what's up with Citations being drawn like this?
 			// Why do they have x and y properties now?
-			.filter(el => el.pvjsonType !== 'Citation')
+			.filter(el => el.kaavioType !== 'Citation')
 			.map(function(contained) {
-				const SubTag = components[contained.pvjsonType];
+				const SubTag = components[contained.kaavioType];
 				return <SubTag key={contained.id} backgroundColor={backgroundColor}
 								customStyle={customStyle}
 								edgeDrawers={edgeDrawers}
@@ -55,7 +55,7 @@ export class Group extends React.Component<any, any> {
 								/>
 			});
 
-		return <Node key={id} backgroundColor={backgroundColor}
+		return <Node backgroundColor={backgroundColor}
 						customStyle={customStyle}
 						edgeDrawers={edgeDrawers}
 						element={element}
