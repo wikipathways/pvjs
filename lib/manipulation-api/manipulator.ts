@@ -1,7 +1,6 @@
 import * as _ from 'lodash';
 import $ = require('jquery');
 import d3 = require('d3');
-import * as SvgPanZoom from 'svg-pan-zoom'
 
 export class Manipulator {
     private pvjs_instance: Pvjs;
@@ -12,7 +11,7 @@ export class Manipulator {
         this.pvjs_instance = pvjs_instance;
         this.highlightedNodes = [];
 
-        this.panZoom = pvjs_instance.panZoom // TODO: This is a hack for now. Fix this
+        this.panZoom = pvjs_instance.panZoom; // TODO: This is a hack for now. Fix this
     }
 
     /**
@@ -20,6 +19,8 @@ export class Manipulator {
      * @param node_id - one identifier or a string of identifiers
      * @param colour - can be any css colour
      * @param resetOthers - Reset all other highlighted nodes before highlighting. Default = true
+     * @param resetPan - reset the pan before highlighting. Default = true
+     * @param resetZoom - reset the zoom before highlighting. Default = true
      *
      * This currently uses the highlighter facilities in Kaavio.
      * However, Kaavio's highlighter is intended for use in the search box at the top of the diagram.
@@ -28,7 +29,10 @@ export class Manipulator {
      * TODO: Either write a new highlighter library or rewrite the kaavio one
      *
      */
-    toggleHighlight(node_id: string, colour: string, resetOthers: boolean = true): void {
+    toggleHighlight(node_id: any, colour: string, resetOthers: boolean = true, resetPan = true, resetZoom = true): void {
+        if(resetPan) this.resetPan();
+        if(resetZoom) this.resetZoom();
+
         if (typeof node_id === 'string'){
             // Just one node_id
             let arr = [];
@@ -181,11 +185,8 @@ export class Manipulator {
         const containerHeight = this.panZoom.getSizes().height;
         const containerWidth = this.panZoom.getSizes().width;
         let realZoom = this.panZoom.getSizes().realZoom;
-        const offsetTop = containerHeight / 2;
-        const offsetLeft = containerWidth / 2;
-
-        coordinates.x += offsetLeft;
-        coordinates.y += offsetTop;
+        coordinates.x += containerWidth / 2;
+        coordinates.y += containerHeight / 2;
 
         return coordinates;
     }
@@ -215,17 +216,19 @@ export class Manipulator {
      * @param zoom_perc
      */
     zoom(zoom_perc: number): void {
+        console.log("zooming by " + zoom_perc);
         this.panZoom.zoom(zoom_perc);
     }
 
     /**
      * Zoom onto a specific node
      * @param node_id
+     * @param resetHighlight - reset the highlight before zooming. Default = true
      */
-    zoomOn(node_id: string): void {
+    zoomOn(node_id: string, resetHighlight: boolean = true): void {
         let zoom_perc = this.computeZoom(node_id);
+        this.panTo(node_id, false, resetHighlight);
         this.zoom(zoom_perc);
-        this.panTo(node_id);
     }
 
     /**
@@ -246,8 +249,12 @@ export class Manipulator {
     /**
      * Pan to a specific node
      * @param node_id
+     * @param resetZoom - reset the zoom before panning. Default = true
+     * @param resetHighlight - rest the highlight before panning. Default = true
      */
-    panTo(node_id: string): void {
+    panTo(node_id: string, resetZoom: boolean = true, resetHighlight: boolean = true): void {
+        if(resetZoom) this.resetZoom();
+        if(resetHighlight) this.resetHighlight();
         let coordinates = this.getNodeCoordinates(node_id);
         this.pan(coordinates);
     }
@@ -262,5 +269,4 @@ export class Manipulator {
     toggleAnnotations(node_id): any {
 
     }
-
 }
