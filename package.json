@@ -138,7 +138,7 @@
     "ariutta-loading": "^1.0.0",
     "base-url": "^1.0.0",
     "blueimp-load-image": "~1.13.0",
-    "bridgedb": "~4.1.0",
+    "bridgedb": "^4.1.26",
     "cross-platform-shapes": "git://github.com/ariutta/cross-platform-shapes.git",
     "cross-platform-text": "git://github.com/ariutta/cross-platform-text.git",
     "csv-streamify": "~2.0.0",
