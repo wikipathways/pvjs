@@ -215,7 +215,6 @@ export class Manipulator {
      * @param zoom_perc
      */
     zoom(zoom_perc: number): void {
-        console.log("zooming by " + zoom_perc);
         this.panZoom.zoom(zoom_perc);
     }
 
