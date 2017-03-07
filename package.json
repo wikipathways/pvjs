@@ -55,7 +55,7 @@
     "csstips": "^0.2.0",
     "csv-streamify": "^1.0.0",
     "csx": "^8.2.1",
-    "gpml2pvjson": "2.0.0-beta.4",
+    "gpml2pvjson": "2.0.0-beta.6",
     "js-base64": "^2.1.9",
     "lodash": "^4.14.36",
     "react": "^15.4.2",

@@ -2,7 +2,7 @@ import { fill, flatten, last, range } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import * as RGBColor from 'rgbcolor';
+//import * as RGBColor from 'rgbcolor';
  
 export function doubleStroke({source = 'SourceGraphic', strokeWidth = 1}) {
 	if (strokeWidth === 1) {

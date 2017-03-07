@@ -2,13 +2,11 @@ import {forOwn, omit} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Base64} from 'js-base64';
-//import {BridgeDbRenderer} from './BridgeDb';
 import {Kaavio} from './Kaavio';
 import {Filter, generateFilterId, doubleStroke, round} from './Kaavio/components/Filters';
 import {BridgeDb, XrefsAnnotationPanel} from 'bridgedb';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import * as WikiPathwaysDefaultDisplayStyle from './WikiPathways.style';
 
 // The edge drawing definitions are in Kaavio because they can be generically used.
 import EdgeDrawers from './Kaavio/components/EdgeDrawers';
@@ -16,8 +14,7 @@ import EdgeDrawers from './Kaavio/components/EdgeDrawers';
 import icons from './icons/main';
 import MarkerDrawers from './MarkerDrawers';
 
-//import gpml2pvjson from 'gpml2pvjson/lib/main';
-let gpml2pvjson = require('gpml2pvjson').default;
+import {toPvjson} from 'gpml2pvjson';
 
 import {Observable} from 'rxjs/Observable';
 import {AjaxRequest} from  'rxjs/observable/dom/AjaxObservable';
@@ -74,7 +71,7 @@ export class Pvjs extends React.Component<any, any> {
 			timeout: 1 * 1000, // ms
 			crossDomain: true,
 		};
-		return gpml2pvjson(
+		return toPvjson(
 				Observable.ajax(ajaxRequest)
 					.map((ajaxResponse): {data: string} => ajaxResponse.xhr.response)
 					.map(res => Base64.decode(res.data)),
