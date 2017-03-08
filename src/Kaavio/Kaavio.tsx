@@ -1,6 +1,7 @@
-import { forOwn } from 'lodash';
+import {forOwn} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+<<<<<<< HEAD:src/Kaavio/Kaavio.tsx
 import {Diagram} from './Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./Kaavio.css');
@@ -13,8 +14,19 @@ export class Kaavio extends React.Component<any, any> {
     constructor(props) {
 		super(props);
 		const id = props.id || 'Kaavio-container-' + new Date().toISOString();
+=======
+import {Diagram} from './components/Diagram';
+// TODO see whether there's anything I need in here. If not, delete.
+//require('./kaavio.css');
+import {normalize, setupPage} from 'csstips';
+ 
+export class Kaavio extends React.Component<any, any> {
+  constructor(props) {
+		super(props);
+		const about = (props.about || 'kaavio-container-' + new Date().toISOString()).replace(/\W/g, '');
+>>>>>>> bd6bf6f8b5551ba02504a63326aa69690c06788d:src/Kaavio/Kaavio.tsx
 		this.state = {
-			id: id,
+			about: about,
 			pvjson: props.pvjson || {
 				elements: [],
 				organism: '',
@@ -24,6 +36,7 @@ export class Kaavio extends React.Component<any, any> {
 			},
 			customStyle: props.customStyle || '',
 			filters: props.filters,
+			handleClick: props.handleClick,
 			edgeDrawers: props.edgeDrawers,
 			icons: props.icons,
 			markerDrawers: props.markerDrawers,
@@ -31,15 +44,24 @@ export class Kaavio extends React.Component<any, any> {
 
 		normalize();
 		// TODO doublecheck how to use setupPage
+<<<<<<< HEAD:src/Kaavio/Kaavio.tsx
 		//setupPage('#root');
 		setupPage('#' + id);
     }
+=======
+		setupPage('#' + about);
+  }
+>>>>>>> bd6bf6f8b5551ba02504a63326aa69690c06788d:src/Kaavio/Kaavio.tsx
 
 	componentWillReceiveProps(nextProps) {
 		let that = this;
 		const prevProps = that.props;
 		forOwn(nextProps, function(prop, key) {
-			if (prop && JSON.stringify(prevProps[key]) !== JSON.stringify(prop)) {
+			if (key === 'filters') {
+				that.setState({
+					[key]: prop,
+				});
+			} else if (prop && JSON.stringify(prevProps[key]) !== JSON.stringify(prop)) {
 				that.setState({
 					[key]: prop,
 				});
@@ -50,7 +72,7 @@ export class Kaavio extends React.Component<any, any> {
   	render() {
 		let that = this;
 		const state = that.state;
-		const { customStyle, filters, pvjson, id, edgeDrawers, icons, markerDrawers } = state;
+		const { about, customStyle, filters, handleClick, pvjson, edgeDrawers, icons, markerDrawers } = state;
 		const { elements, organism, name, width, height } = pvjson;
 		const backgroundColor = customStyle.backgroundColor || pvjson.backgroundColor || 'white';
 
@@ -71,6 +93,7 @@ export class Kaavio extends React.Component<any, any> {
 			})
 			.map((element) => element.id);
 
+<<<<<<< HEAD:src/Kaavio/Kaavio.tsx
         const containerStyle = {
             width: width,
             height: height,
@@ -81,6 +104,11 @@ export class Kaavio extends React.Component<any, any> {
 			<Diagram
 				ref={diagram => this.diagamRef = diagram}
 				organism={organism}
+=======
+		return <div id={about} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
+			<Diagram organism={organism}
+				about={`kaavio-diagram-for-${about}`}
+>>>>>>> bd6bf6f8b5551ba02504a63326aa69690c06788d:src/Kaavio/Kaavio.tsx
 				name={name}
 				width={width}
 				height={height}
@@ -88,6 +116,7 @@ export class Kaavio extends React.Component<any, any> {
 				edgeDrawers={edgeDrawers}
 				elementMap={elementMap}
 				filters={filters}
+				handleClick={handleClick}
 				icons={icons}
 				markerDrawers={markerDrawers}
 				zIndices={zIndices}
