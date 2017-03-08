@@ -12,19 +12,6 @@ module.exports = {
   },
   module: {
     loaders: [
-<<<<<<< HEAD
-        { test: /\.css$/, loader: 'style-loader!css-loader' },
-        { test: /\.json$/, loader: 'json-loader'},
-        { test: /\.ts(x?)$/, loader: 'ts-loader' },
-        {
-            test: /\.(ttf|eot|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            loader: "url-loader?limit=10000&name=assets/fonts/[name].[hash].[ext]"
-        },
-        {
-            test: /\.(png|jpe?g|gif|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-            loader: "url-loader?limit=10000&name=assets/images/[name].[hash].[ext]"
-        }
-=======
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.json$/, loader: 'json-loader'},
       { test: /\.ts(x?)$/, loader: 'ts-loader' },
@@ -45,7 +32,6 @@ module.exports = {
           ]
       }
       //*/
->>>>>>> bd6bf6f8b5551ba02504a63326aa69690c06788d
     ]
   },
   plugins: [
