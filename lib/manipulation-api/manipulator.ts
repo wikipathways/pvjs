@@ -144,50 +144,93 @@ export class Manipulator {
         return d3.select(this.pvjs_instance.selector).select("g path#" + node_id)[0][0];
     }
 
-    /**
-     * Return the coordinates of the center of the node referenced by the node_id
-     * @param node_id
-     * @returns {{x: number, y: number}}
-     */
-    private getNodeCoordinates(node_id: string): {x: number, y: number} {
+    private getNodeBBox(node_id: string): {x: number, y: number, height: number, width: number} {
         let node = this.findNode(node_id);
         let clientRect = node.getBBox();
 
-        let x = clientRect.x;
-        let y = clientRect.y;
-        let width = clientRect.width;
-        let height = clientRect.height;
+        return {
+            x: clientRect.x,
+            y: clientRect.y,
+            height: clientRect.height,
+            width: clientRect.width
+        }
+    }
 
-        let centreX = x + (width/2);
-        let centreY = y + (height/2);
+    private getGroupBBox(node_ids: string[]): {x: number, y: number, height: number, width: number} {
+        const BBox = {
+            x: null, // Top right x coordinate
+            y: null, // Top right y coordinate
+            height: null,
+            width: null
+        };
 
-        const containerHeight = this.panZoom.getSizes().height;
-        const containerWidth = this.panZoom.getSizes().width;
-        let realZoom = this.panZoom.getSizes().realZoom;
-        const offsetTop = containerHeight / 2;
-        const offsetLeft = containerWidth / 2;
+        node_ids.forEach(node_id => {
+            const node = this.findNode(node_id);
+            const clientRect = node.getBBox();
+
+            if (!BBox.x || clientRect.x < BBox.x) BBox.x = clientRect.x;
+            if (!BBox.y || clientRect.y < BBox.y) BBox.y = clientRect.y;
+
+            const clientFarX = clientRect.x + clientRect.width;
+            const newBBoxWidth = BBox.width + clientFarX;
+            if(!BBox.width || newBBoxWidth > BBox.x) BBox.width = newBBoxWidth;
+
+            const clientFarY = clientRect.y + clientRect.height;
+            const newBBoxHeight = BBox.y + clientFarY;
+            if(!BBox.height || newBBoxHeight > BBox.height) BBox.height = newBBoxHeight;
+        });
+
+        return BBox;
+    }
+
+    /**
+     * Return the coordinates of the center of the node referenced by the node_id
+     * @param x
+     * @param y
+     * @param height
+     * @param width
+     * @returns {{x: number, y: number}}
+     */
+    private getCenterCoordinates({x, y, height, width}: {x: number, y: number, height: number, width: number}): {x: number, y: number} {
+        const centreX = x + (width/2);
+        const centreY = y + (height/2);
 
         return {
-            x: (-centreX * realZoom) + offsetLeft,
-            y: (-centreY * realZoom) + offsetTop
+            x: -centreX,
+            y: -centreY
+        }
+    }
+
+    /**
+     * Factor in the real zoom to the given coordinates
+     * @param x
+     * @param y
+     * @returns {{x: number, y: number}}
+     */
+    private addRealZoomToCoordinates({x, y}: {x: number, y: number}): {x: number, y: number}{
+        const realZoom = this.panZoom.getSizes().realZoom;
+
+        return {
+            x: x * realZoom,
+            y: y * realZoom
         }
     }
 
     /**
      * Return the coordinates that should be panned to to get the desired node into the center of the diagram
-     * @param node_id
-     * @returns {{x: number, y: number}}
+     * @param x
+     * @param y
+     * @returns {{x: any, y: any}}
      */
-    private getNodeCoordinatesWithOffset(node_id: string): {x: number, y:number}{
-        const coordinates = this.getNodeCoordinates(node_id);
+    private addOffsetToCoordinates({x, y}: {x: number, y: number}): {x: number, y:number}{
 
         const containerHeight = this.panZoom.getSizes().height;
         const containerWidth = this.panZoom.getSizes().width;
-        let realZoom = this.panZoom.getSizes().realZoom;
-        coordinates.x += containerWidth / 2;
-        coordinates.y += containerHeight / 2;
 
-        return coordinates;
+        return {
+            x: x + containerWidth / 2,
+            y: y + containerHeight / 2
+        }
     }
 
     /**
@@ -196,17 +239,15 @@ export class Manipulator {
      * @returns {number}
      */
     private computeZoom(node_id: string): number {
-        let node = this.findNode(node_id);
-        const BBox = node.getBBox();
-
-        const nodeArea = BBox.width * BBox.height;
-        
+        const BBox = this.getNodeBBox(node_id);
+        const longestNodeSide = (BBox.width > BBox.height) ? BBox.width : BBox.height;
 
         const containerSize = this.panZoom.getSizes();
-        const containerArea = containerSize.width * containerSize.height;
+        const longestContainerSide = (containerSize.width > containerSize.height) ? containerSize.width : containerSize.height;
 
-        const relativeArea = containerArea /nodeArea;
-        const scalingFactor = 0.08;
+
+        const relativeArea = longestContainerSide / longestNodeSide;
+        const scalingFactor = 0.6;
         return relativeArea * scalingFactor;
     }
 
@@ -246,7 +287,8 @@ export class Manipulator {
     panTo(node_id: string, resetPanZoom: boolean = true, resetHighlight: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
         if(resetHighlight) this.resetHighlight();
-        let coordinates = this.getNodeCoordinates(node_id);
+        const BBox = this.getNodeBBox(node_id);
+        const coordinates = this.addOffsetToCoordinates(this.addRealZoomToCoordinates(this.getCenterCoordinates(BBox)));
         this.pan(coordinates);
     }
 

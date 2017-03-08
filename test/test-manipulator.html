@@ -1,0 +1,161 @@
+<html>
+<head>
+    <title>PVJS: Educationally Improved</title>
+
+    <link rel="stylesheet" href="../src/pvjs.css">
+
+    <!--Add jQuery-->
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+
+    <!--Add d3 for Kaavio-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+
+    <!--Add mithril-->
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+
+    <script src="../dist/pvjs-dev.bundle.js"></script>
+
+    <!--Add bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h3 class="text-center">Manipulation API</h3>
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col">
+           <p>Test the WikiPathways manipulation API using the controls below. And see an example of the interactive description <a href="improved-pathways.html">here</a>.</p>
+
+            <form id="manipulation-tester" novalidate >
+                <div class="form-group">
+                    <label for="node-select">
+                        Select the node to manipulate (shift+click for multiple):
+                    </label>
+                    <p>
+                        <small><strong>Note:</strong> You may select multples for highlighting. However, only the first will be zoomed in on.</small>
+                        <small>Zooming/panning on multiple nodes is coming soon.</small>
+                    </p>
+                    <select id="node-select" multiple name="node-select" class="form-control">
+                        <option value="bbad0">Acetyl coA</option>
+                        <option value="de887">HMG coA</option>
+                        <option value="a82dd">Dimethyl diphosphate</option>
+                        <option value="c1f96">Dolichol</option>
+                        <option value="b1d73">PMVK</option>
+                        <option value="e4f19">FDPS</option>
+                    </select>
+                </div>
+                <fieldset class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="zoomPanOn" id="zoomOn" value="zoomOn" checked>
+                            Zoom on this node
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="zoomPanOn" id="panOn" value="panOn">
+                            Pan on this node
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="zoomPanOn" id="noPanZoom" value="panOff">
+                            Don't zoom or pan
+                        </label>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="highlight" value="highlight" id="highlight"> Toggle highlight
+                    </label>
+                </div>
+                <fieldset class="form-group">
+                    Choose a colour:
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="colour" id="red" value="red" checked>
+                            Red
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="colour" id="blue" value="blue">
+                            Blue
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="colour" id="green" value="green">
+                            Green
+                        </label>
+                    </div>
+                </fieldset>
+                <div style="text-align: center">
+                    <button class="btn btn-primary" type="submit">
+                        Manipulate!
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <div id="pvjs-container"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function(){
+        var pvjs_container = document.getElementById('pvjs-container');
+
+        var pvjs_instance = new Pvjs(pvjs_container, {
+            sourceData: [
+                // at least one item required
+                {
+                    uri:'/test/WP3963_91361.gpml', // Use local for now. until CORS okay
+                    fileType:'gpml' // generally will correspond to filename extension
+                }
+            ],
+            displayErrors: true,
+            displayWarnings: true
+        });
+        pvjs_instance.render();
+        pvjs_instance.on('rendered.renderer', function(){
+            pvjs_instance.manipulator = new Manipulator(pvjs_instance);
+        });
+
+        $("#manipulation-tester").submit(function(e){
+            e.preventDefault();
+            var nodes = $("#node-select").val();
+            var isHighlight = $("#highlight:checked").length > 0;
+            var isRed = $("#red:checked").length > 0;
+            var isBlue = $("#blue:checked").length > 0;
+            var isGreen = $("#green:checked").length > 0;
+            var isZoom = $("#zoomOn:checked").length > 0;
+            var isPan = $("#panOn:checked").length > 0;
+
+            if(isHighlight){
+                if(isRed) pvjs_instance.manipulator.toggleHighlight(nodes, 'red');
+                if(isBlue) pvjs_instance.manipulator.toggleHighlight(nodes, 'blue');
+                if(isGreen) pvjs_instance.manipulator.toggleHighlight(nodes, 'green');
+            }
+
+            if(isZoom) {
+                pvjs_instance.manipulator.zoomOn(nodes[0], false);
+            }
+            else if (isPan){
+                pvjs_instance.manipulator.panTo(nodes[0], true, false);
+            }
+        })
+    })()
+</script>
+</body>
+
+</html>
