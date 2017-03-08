@@ -18,7 +18,7 @@ export const viewportClass = style({
 		fill: kaavioBackgroundColor,
 	},
 	[`text`]: {
-		fontSize: '14px',
+		fontSize: '12px',
 		pointerEvents: 'none',
 		fontFamily: 'Arial, Helvetica, sans-serif',
 	}
@@ -48,7 +48,7 @@ export const CellularComponentClass = style({
 export const DataNodeClass = style({
 	[` .Icon`]: {
 		clipPath: 'url(#rounded-rectangle-clip-path)',
-		fill: '#518569',
+		fill: '#2BDA82',
 	},
 	[` .textlabel`]: {
 		fill: '#fff',
@@ -61,7 +61,7 @@ export const DataNodeClass = style({
 	[`&.Metabolite`]: {
 		[`& .Icon`]: {
 			clipPath: 'none',
-			fill: '#0059b3',
+			fill: '#0099FF',
 		},
 	},
 	[`&.Pathway`]: {
@@ -89,6 +89,12 @@ export const LabelClass = style({
 	[` .textlabel`]: {
 		fill: '#444',
 	},
+});
+
+export const StateClass = style({
+  fill: '#009999',
+  stroke: '#fff',
+  strokeWidth: 1,
 });
 
 export const GroupComplexClass = style({
