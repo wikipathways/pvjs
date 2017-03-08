@@ -162,15 +162,18 @@ export class Manipulator {
             lowestX: null,
             highestY: null,
             lowestY: null
-        }
+        };
 
         node_ids.forEach(node_id => {
             const node = this.findNode(node_id);
             const clientRect = node.getBBox();
 
-            if (!coordLimits.highestX || clientRect.x > coordLimits.highestX) coordLimits.highestX = clientRect.x;
+            const nodeHighestX = clientRect.x + clientRect.width;
+            if (!coordLimits.highestX ||  nodeHighestX > coordLimits.highestX) coordLimits.highestX = nodeHighestX;
             if (!coordLimits.lowestX || clientRect.x < coordLimits.lowestX) coordLimits.lowestX = clientRect.x;
-            if (!coordLimits.highestY || clientRect.y > coordLimits.highestY) coordLimits.highestY = clientRect.y;
+
+            const nodeHighestY = clientRect.y + clientRect.height;
+            if (!coordLimits.highestY || nodeHighestY > coordLimits.highestY) coordLimits.highestY = nodeHighestY;
             if (!coordLimits.lowestY || clientRect.y < coordLimits.lowestY) coordLimits.lowestY = clientRect.y;
         });
 
@@ -252,7 +255,7 @@ export class Manipulator {
 
 
         const relativeArea = longestContainerSide / longestNodeSide;
-        const scalingFactor = 0.8;
+        const scalingFactor = 1;
         return relativeArea * scalingFactor;
     }
 
