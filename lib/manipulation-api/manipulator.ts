@@ -157,30 +157,29 @@ export class Manipulator {
     }
 
     private getGroupBBox(node_ids: string[]): {x: number, y: number, height: number, width: number} {
-        const BBox = {
-            x: null, // Top right x coordinate
-            y: null, // Top right y coordinate
-            height: null,
-            width: null
-        };
+        const coordLimits = {
+            highestX: null,
+            lowestX: null,
+            highestY: null,
+            lowestY: null
+        }
 
         node_ids.forEach(node_id => {
             const node = this.findNode(node_id);
             const clientRect = node.getBBox();
 
-            if (!BBox.x || clientRect.x < BBox.x) BBox.x = clientRect.x;
-            if (!BBox.y || clientRect.y < BBox.y) BBox.y = clientRect.y;
-
-            const clientFarX = clientRect.x + clientRect.width;
-            const newBBoxWidth = BBox.width + clientFarX;
-            if(!BBox.width || newBBoxWidth > BBox.x) BBox.width = newBBoxWidth;
-
-            const clientFarY = clientRect.y + clientRect.height;
-            const newBBoxHeight = BBox.y + clientFarY;
-            if(!BBox.height || newBBoxHeight > BBox.height) BBox.height = newBBoxHeight;
+            if (!coordLimits.highestX || clientRect.x > coordLimits.highestX) coordLimits.highestX = clientRect.x;
+            if (!coordLimits.lowestX || clientRect.x < coordLimits.lowestX) coordLimits.lowestX = clientRect.x;
+            if (!coordLimits.highestY || clientRect.y > coordLimits.highestY) coordLimits.highestY = clientRect.y;
+            if (!coordLimits.lowestY || clientRect.y < coordLimits.lowestY) coordLimits.lowestY = clientRect.y;
         });
 
-        return BBox;
+        return {
+            x: coordLimits.lowestX,
+            y: coordLimits.lowestY,
+            height: (coordLimits.highestY - coordLimits.lowestY),
+            width: (coordLimits.highestX - coordLimits.lowestX)
+        }
     }
 
     /**
@@ -238,8 +237,14 @@ export class Manipulator {
      * @param node_id
      * @returns {number}
      */
-    private computeZoom(node_id: string): number {
-        const BBox = this.getNodeBBox(node_id);
+    private computeZoom(node_id: string | string[]): number {
+        let BBox;
+        if(typeof node_id === 'string') BBox = this.getNodeBBox(node_id);
+        else {
+            if(node_id.length === 1) BBox = this.getNodeBBox(node_id[0]);
+            else BBox = this.getGroupBBox(node_id);
+        }
+
         const longestNodeSide = (BBox.width > BBox.height) ? BBox.width : BBox.height;
 
         const containerSize = this.panZoom.getSizes();
@@ -247,7 +252,7 @@ export class Manipulator {
 
 
         const relativeArea = longestContainerSide / longestNodeSide;
-        const scalingFactor = 0.6;
+        const scalingFactor = 0.8;
         return relativeArea * scalingFactor;
     }
 
@@ -264,8 +269,8 @@ export class Manipulator {
      * @param node_id
      * @param resetHighlight - reset the highlight before zooming. Default = true
      */
-    zoomOn(node_id: string, resetHighlight: boolean = true): void {
-        let zoom_perc = this.computeZoom(node_id);
+    zoomOn(node_id: string | string[], resetHighlight: boolean = true): void {
+        const zoom_perc = this.computeZoom(node_id);
         this.panTo(node_id, false, resetHighlight);
         this.zoom(zoom_perc);
     }
@@ -284,10 +289,15 @@ export class Manipulator {
      * @param resetPanZoom - reset the zoom before panning. Default = true
      * @param resetHighlight - rest the highlight before panning. Default = true
      */
-    panTo(node_id: string, resetPanZoom: boolean = true, resetHighlight: boolean = true): void {
+    panTo(node_id: string | string[], resetPanZoom: boolean = true, resetHighlight: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
         if(resetHighlight) this.resetHighlight();
-        const BBox = this.getNodeBBox(node_id);
+        let BBox;
+        if (typeof node_id === 'string') BBox = this.getNodeBBox(node_id);
+        else {
+            if(node_id.length === 1) BBox = this.getNodeBBox(node_id[0]);
+            else BBox = this.getGroupBBox(node_id);
+        }
         const coordinates = this.addOffsetToCoordinates(this.addRealZoomToCoordinates(this.getCenterCoordinates(BBox)));
         this.pan(coordinates);
     }
