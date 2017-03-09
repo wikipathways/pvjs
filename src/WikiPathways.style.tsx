@@ -1,4 +1,3 @@
-/** Import */
 import { style } from 'typestyle';
 
 const kaavioBackgroundColor = 'white';
@@ -17,21 +16,22 @@ export const viewportClass = style({
 	[`.kaavio-viewport-background`]: {
 		fill: kaavioBackgroundColor,
 	},
+	fontFamily: 'Arial, Helvetica, sans-serif',
+	fontSize: '12px',
 	[`text`]: {
-		fontSize: '14px',
 		pointerEvents: 'none',
-		fontFamily: 'Arial, Helvetica, sans-serif',
+		strokeWidth: '0px',
 	}
 });
 
 export const citationClass = style({
-  fill: 'gray',
-  fontSize: '10px',
+	fill: 'gray',
+	fontSize: '10px',
 });
 
 export const InfoBoxClass = style({
   fill: '#444',
-	[` .citation.${citationClass}`]: {
+	[`${citationClass}`]: {
 		fontSize: '0px',
 	},
 });
@@ -48,7 +48,7 @@ export const CellularComponentClass = style({
 export const DataNodeClass = style({
 	[` .Icon`]: {
 		clipPath: 'url(#rounded-rectangle-clip-path)',
-		fill: '#518569',
+		fill: '#2BDA82',
 	},
 	[` .textlabel`]: {
 		fill: '#fff',
@@ -61,7 +61,7 @@ export const DataNodeClass = style({
 	[`&.Metabolite`]: {
 		[`& .Icon`]: {
 			clipPath: 'none',
-			fill: '#0059b3',
+			fill: '#0099FF',
 		},
 	},
 	[`&.Pathway`]: {
@@ -89,6 +89,12 @@ export const LabelClass = style({
 	[` .textlabel`]: {
 		fill: '#444',
 	},
+});
+
+export const StateClass = style({
+  fill: '#009999',
+  stroke: '#fff',
+  strokeWidth: 1,
 });
 
 export const GroupComplexClass = style({

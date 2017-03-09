@@ -57,9 +57,10 @@ export class Node extends React.Component<any, any> {
 			nodeTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
 		}
 
+		const iconProvided = icons.hasOwnProperty(drawAs);
 		const icon = icons[drawAs];
-		if (!icon) {
-			console.warn(`Missing icon for ${drawAs}`);
+		if (!iconProvided) {
+			console.warn(`No "${drawAs}" icon provided.`);
 		}
 
 		return <Generic {...state} children={[
@@ -70,26 +71,40 @@ export class Node extends React.Component<any, any> {
 				// rectangle.
 				// NOTE 'stroke' for the icon is analogous to the CSS property 'color' when
 				// referring to the border color of an HTML div.
-				iconsLoaded ?
-					// see https://css-tricks.com/svg-use-with-external-reference-take-2/
-					<use
-							id={`icon-for-${id}`}
-							key={`icon-for-${id}`}
-							x="0"
-							y="0"
-							width={width + 'px'}
-							height={height + 'px'}
-							href={'#' + icon.id + iconSuffix}
-							fill={backgroundColor}
-							filter={!!filter ? `url(#${filter})` : null}
-							// TODO does specifying stroke for a 'use' element do anything?
-							// If an the referenced element is using stroke="currentColor",
-							// I think the 'color' property might overrule this stroke property.
-							stroke={color}
-							strokeWidth={borderWidth}
-							typeof="schema:ImageObject" className="Icon"/>
+				iconProvided ?
+					iconsLoaded ?
+						// see https://css-tricks.com/svg-use-with-external-reference-take-2/
+						<use
+								id={`icon-for-${id}`}
+								key={`icon-for-${id}`}
+								x="0"
+								y="0"
+								width={width + 'px'}
+								height={height + 'px'}
+								href={'#' + icon.id + iconSuffix}
+								fill={backgroundColor}
+								filter={!!filter ? `url(#${filter})` : null}
+								// TODO does specifying stroke for a 'use' element do anything?
+								// If an the referenced element is using stroke="currentColor",
+								// I think the 'color' property might overrule this stroke property.
+								stroke={color}
+								strokeWidth={borderWidth}
+								typeof="schema:ImageObject" className="Icon"/>
+					:
+						<rect
+								id={`icon-for-${id}`}
+								key={`icon-for-${id}`}
+								x="0"
+								y="0"
+								width={width + 'px'}
+								height={height + 'px'}
+								fill={backgroundColor}
+								filter={!!filter ? `url(#${filter})` : null}
+								stroke={color}
+								strokeWidth={borderWidth}
+								typeof="schema:ImageObject" className="Icon"/>
 				:
-					<rect
+					<image
 							id={`icon-for-${id}`}
 							key={`icon-for-${id}`}
 							x="0"
@@ -100,7 +115,9 @@ export class Node extends React.Component<any, any> {
 							filter={!!filter ? `url(#${filter})` : null}
 							stroke={color}
 							strokeWidth={borderWidth}
-							typeof="schema:ImageObject" className="Icon"/>,
+							typeof="schema:ImageObject" className="Icon"
+							href="https://upload.wikimedia.org/wikipedia/commons/2/24/Warning_icon.svg" />,
+
 					!!textContent ?	<Text id={`text-for-${id}`}
 																key={`text-for-${id}`}
 																svgId={svgId}

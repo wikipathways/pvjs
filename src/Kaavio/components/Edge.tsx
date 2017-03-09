@@ -7,18 +7,15 @@ import {Generic} from './Generic';
 export class Edge extends React.Component<any, any> {
   constructor(props) {
 		super(props);
-		this.state = {
-			// NOTE: currently, this is the background color of the diagram as a whole,
-			// not necessarily that of the edge or any element the edge is on top of.
-			backgroundColor: props.backgroundColor,
-			edgeDrawers: props.edgeDrawers,
-			element: props.element,
-		}
+		// NOTE: currently, props.backgroundColor is the background color of the diagram as a whole,
+		// not necessarily that of the edge or any element the edge is on top of. That could be a
+		// problem for markers like Catalysis.
+		this.state = {...props};
 	}
   render() {
 		let that = this;
 		const state = that.state;
-		const {backgroundColor, edgeDrawers, element} = state;
+		const {backgroundColor, edgeDrawers, element, elementMap} = state;
 		const {color, borderWidth, points, id, drawAs, strokeDasharray} = element;
 
 		const {getPathSegments, getPointAtPosition} = edgeDrawers[drawAs];

@@ -51,11 +51,11 @@
   "homepage": "https://wikipathways.github.io/pvjs/docs/",
   "dependencies": {
     "bootstrap": "^3.3.7",	  
-    "bridgedb": "^6.0.0-10",
+    "bridgedb": "^6.0.0-14",
     "csstips": "^0.2.0",
     "csv-streamify": "^1.0.0",
     "csx": "^8.2.1",
-    "gpml2pvjson": "2.0.0-beta.6",
+    "gpml2pvjson": "2.0.0-beta.8",
     "js-base64": "^2.1.9",
     "lodash": "^4.14.36",
     "react": "^15.4.2",

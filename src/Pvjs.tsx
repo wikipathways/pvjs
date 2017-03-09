@@ -5,21 +5,16 @@ import {Base64} from 'js-base64';
 import {Kaavio} from './Kaavio';
 import {Filter, generateFilterId, doubleStroke, round} from './Kaavio/components/Filters';
 import {BridgeDb, XrefsAnnotationPanel} from 'bridgedb';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 // The edge drawing definitions are in Kaavio because they can be generically used.
 import EdgeDrawers from './Kaavio/components/EdgeDrawers';
 // But the icons and markers are specific to Pvjs (less likely to useful to other applications).
 import icons from './icons/main';
 import MarkerDrawers from './MarkerDrawers';
-
-import {toPvjson} from 'gpml2pvjson';
-
+import {gpml2pvjson} from 'gpml2pvjson';
 import {Observable} from 'rxjs/Observable';
 import {AjaxRequest} from  'rxjs/observable/dom/AjaxObservable';
 import 'rxjs/add/observable/dom/ajax';
-
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/let';
 import 'rxjs/add/operator/map';
@@ -71,7 +66,7 @@ export class Pvjs extends React.Component<any, any> {
 			timeout: 1 * 1000, // ms
 			crossDomain: true,
 		};
-		return toPvjson(
+		return gpml2pvjson(
 				Observable.ajax(ajaxRequest)
 					.map((ajaxResponse): {data: string} => ajaxResponse.xhr.response)
 					.map(res => Base64.decode(res.data)),

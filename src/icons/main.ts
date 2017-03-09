@@ -24,7 +24,7 @@ let icons = {
 		id: 'brace',
 		url: brace
 	},
-	EndoplasmicReticulum: {
+	'Endoplasmic Reticulum': {
 		id: 'endoplasmic-reticulum',
 		url: endoplasmicReticulum
 	},
@@ -32,7 +32,7 @@ let icons = {
 		id: 'hexagon',
 		url: hexagon
 	},
-	GolgiApparatus: {
+	'Golgi Apparatus': {
 		id: 'golgi-apparatus',
 		url: golgiApparatus
 	},
@@ -75,7 +75,7 @@ let icons = {
 		id: 'rounded-rectangle',
 		url: roundedRectangle,
 	},
-	SarcoplasmicReticulum: {
+	'Sarcoplasmic Reticulum': {
 		id: 'sarcoplasmic-reticulum',
 		url: sarcoplasmicReticulum
 	},
@@ -84,6 +84,7 @@ let icons = {
 		url: triangle
 	},
 } as any;
+
 icons.Circle = icons.Oval = icons.Ellipse;
 icons.Complex = icons.Octagon;
 // if we allow for true none, it's hard to do custom styling

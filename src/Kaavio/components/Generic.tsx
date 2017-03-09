@@ -24,19 +24,36 @@ export class Generic extends React.Component<any, any> {
 		let that = this;
 		const state = that.state;
 		const { about, children, customStyle, edgeDrawers, element, elementMap, icons, iconsLoaded, iconSuffix, svgId, organism } = state;
-
 		const { burrs, backgroundColor, borderWidth, color, drawAs, filter,
 						fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, height,
-						id, padding, rotation, strokeDasharray, textAlign,
+						id, padding, points, rotation, strokeDasharray, textAlign,
 						textContent, type, verticalAlign, width, wpType, x, y } = element;
-		
 
-		let nodeTransform;
+		let entityTransform;
 		if (x || y || rotation) {
-			nodeTransform = `translate(${element.x} ${element.y})`;
+			entityTransform = `translate(${element.x} ${element.y})`;
 			if (rotation) {
-				nodeTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
+				entityTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
 			}
+		}
+
+		let citationTransform;
+		if (x && y) {
+			citationTransform = `translate(${ element.width + 5 } -5)`;
+		} else if (points) {
+			// TODO get edge logic working so we can position this better
+			// TODO look at current production pvjs to see how this is done
+			const startPoint = points[0];
+			const startX = startPoint.x;
+			const startY = startPoint.y;
+			const endPoint = points[points.length - 1];
+			const endX = endPoint.x;
+			const endY = endPoint.y;
+			const displacementX = endX - startX;
+			const displacementY = endY - startY;
+			const citationX = startX + 5 * (1 + (displacementX === 0 ? 0 : displacementX / Math.abs(displacementX)));
+			const citationY = startY + 5 * (1 + (displacementY === 0 ? 0 : displacementY / Math.abs(displacementY)));
+			citationTransform = `translate(${citationX} ${citationY})`;
 		}
 
 		const className = customStyle ? type.concat(
@@ -55,7 +72,7 @@ export class Generic extends React.Component<any, any> {
 				className={className}
 				typeof={element.type.join(' ')}
 				color={color}
-				transform={nodeTransform}>
+				transform={entityTransform}>
 			{
 				/*
 				// TODO it would be nice to add the attribute resource to the 'g' element above,
@@ -97,7 +114,7 @@ export class Generic extends React.Component<any, any> {
 
 			{
 				element.citation ?
-					<text key={`citation-for-${element.id}`} className="citation" transform={`translate(${ element.width + 5 } 0)`}>{
+					<text key={`citation-for-${element.id}`} className={customStyle.citationClass} transform={citationTransform}>{
 						element.citation
 							.map((citationId) => elementMap[citationId].textContent)
 							.sort()
