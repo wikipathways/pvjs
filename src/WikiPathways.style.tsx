@@ -97,6 +97,11 @@ export const StateClass = style({
   strokeWidth: 1,
 });
 
+export const GroupGroupClass = style({
+  fill: 'transparent',
+  strokeWidth: 0,
+});
+
 export const GroupComplexClass = style({
   fill: '#B4B464',
   fillOpacity: 0.1,
