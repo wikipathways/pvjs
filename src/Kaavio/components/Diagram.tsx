@@ -131,13 +131,13 @@ export class Diagram extends React.Component<any, any> {
 			});
 	}
 
-	getMarkerInputs(zIndexedElements) {
+	getMarkerInputs(zIndexedEntities) {
 		const backgroundColor = this.state.backgroundColor;
-		const edges = zIndexedElements
-			.filter((element) => element.kaavioType === 'Edge');
+		const edges = zIndexedEntities
+			.filter((entity) => entity.kaavioType === 'Edge');
 
 		// TODO Currently just using the background color of the diagram as a whole.
-		// Do we want to handle the case where the marker is on top of another element?
+		// Do we want to handle the case where the marker is on top of another entity?
 		const markerBackgroundColors: ReadonlyArray<string> = [backgroundColor];
 
 		const markerColors = Array.from(
@@ -219,15 +219,15 @@ export class Diagram extends React.Component<any, any> {
 			}, []) as any[];
 	}
 
-	getGroupedZIndexedElements(zIndexedElements) {
-		const elementMap = this.state.elementMap;
-		return zIndexedElements
-			.filter((element) => !element.isPartOf)
-			.reduce(function(acc, element) {
-				const kaavioType = element.kaavioType;
+	getGroupedZIndexedEntities(zIndexedEntities) {
+		const entityMap = this.state.entityMap;
+		return zIndexedEntities
+			.filter((entity) => !entity.isPartOf)
+			.reduce(function(acc, entity) {
+				const kaavioType = entity.kaavioType;
 				if (kaavioType === 'Group') {
-					element.contains = element.contains
-						.map((id) => elementMap[id])
+					entity.contains = entity.contains
+						.map((id) => entityMap[id])
 						.sort(function(a, b) {
 							const zIndexA = a.zIndex;
 							const zIndexB = b.zIndex;
@@ -239,10 +239,10 @@ export class Diagram extends React.Component<any, any> {
 								return 0;
 							}
 						})
-						.map((element) => element.id);
-				} else if (element.hasOwnProperty('burrs')) {
-					element.burrs = element.burrs
-						.map((id) => elementMap[id])
+						.map((entity) => entity.id);
+				} else if (entity.hasOwnProperty('burrs')) {
+					entity.burrs = entity.burrs
+						.map((id) => entityMap[id])
 						.sort(function(a, b) {
 							const zIndexA = a.zIndex;
 							const zIndexB = b.zIndex;
@@ -254,10 +254,10 @@ export class Diagram extends React.Component<any, any> {
 								return 0;
 							}
 						})
-						.map((element) => element.id);
+						.map((entity) => entity.id);
 				}
-				if (['Burr'].indexOf(kaavioType) === -1 && !element.hasOwnProperty('isPartOf')) {
-					acc.push(element);
+				if (['Burr'].indexOf(kaavioType) === -1 && !entity.hasOwnProperty('isPartOf')) {
+					acc.push(entity);
 				}
 				return acc;
 			}, []);
@@ -268,23 +268,23 @@ export class Diagram extends React.Component<any, any> {
 		const state = that.state;
 		const { handleClick } = state;
 		const id = e.target.parentNode.getAttribute('id');
-		const entity = state.elementMap[id];
+		const entity = state.entityMap[id];
 		handleClick(omitBy(defaults({entity: entity}, e), (v, k) => k.indexOf('_') === 0));
 	}
 
   render() {
 		let that = this;
 		const state = that.state;
-		const { about, backgroundColor, customStyle, edgeDrawers, elementMap, filters,
+		const { about, backgroundColor, customStyle, edgeDrawers, entityMap, filters,
 						height, icons, iconsLoaded, iconSuffix,
 						name, organism, markerDrawers, width, zIndices } = state;
 
-		const zIndexedElements = zIndices
-			.map((id) => elementMap[id]);
+		const zIndexedEntities = zIndices
+			.map((id) => entityMap[id]);
 
-		const markerInputs = that.getMarkerInputs(zIndexedElements);
+		const markerInputs = that.getMarkerInputs(zIndexedEntities);
 
-		const groupedZIndexedElements = that.getGroupedZIndexedElements(zIndexedElements);
+		const groupedZIndexedEntities = that.getGroupedZIndexedEntities(zIndexedEntities);
 
 		return <svg xmlns="http://www.w3.org/2000/svg"
 						id={about}
@@ -341,11 +341,11 @@ export class Diagram extends React.Component<any, any> {
 
     		<rect x="0" y ="0" width="100%" height="100%" className="kaavio-viewport-background" fill={backgroundColor}></rect>
 				{
-					groupedZIndexedElements.filter((element) => ['Node', 'Edge', 'Group'].indexOf(element.kaavioType) > -1)
-						.filter((element) => !element.hasOwnProperty('isPartOf'))
-						.map(function(element) {
-							const Tag = components[element.kaavioType];
-							return <Tag key={element.id} backgroundColor={backgroundColor} element={element} elementMap={elementMap}
+					groupedZIndexedEntities.filter((entity) => ['Node', 'Edge', 'Group'].indexOf(entity.kaavioType) > -1)
+						.filter((entity) => !entity.hasOwnProperty('isPartOf'))
+						.map(function(entity) {
+							const Tag = components[entity.kaavioType];
+							return <Tag key={entity.id} backgroundColor={backgroundColor} entity={entity} entityMap={entityMap}
 													svgId={about} edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} iconSuffix={iconSuffix}
 													customStyle={customStyle} />
 						})

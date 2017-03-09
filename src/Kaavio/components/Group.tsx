@@ -1,3 +1,4 @@
+import {isArray, isNaN, isNumber} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Edge} from './Edge';
@@ -28,38 +29,49 @@ export class Group extends React.Component<any, any> {
 
   render() {
 		let that = this;
-		const { customStyle, elementMap, element, edgeDrawers, icons, iconsLoaded, iconSuffix } = that.state;
-		const { backgroundColor, borderWidth, color, drawAs, filter, fillOpacity, height, id, rotation, strokeDasharray, textContent, width, x, y } = element;
+		const { customStyle, entityMap, entity, edgeDrawers, icons, iconsLoaded, iconSuffix } = that.state;
+		const { backgroundColor, borderWidth, color, drawAs, filter, fillOpacity, height, id, rotation, strokeDasharray, textContent, width, x, y } = entity;
 
-		const children = 	element.contains
-			.map((containedId) => elementMap[containedId])
+		const children = 	entity.contains
+			.map((containedId) => entityMap[containedId])
 			.map(function(contained) {
-				// NOTE: notice side effect
-				contained.x = contained.x - x;
-				contained.y = contained.y - y;
+				const containedKaavioType = contained.kaavioType;
+				if (['Node', 'Burr'].indexOf(containedKaavioType) > -1) {
+					contained.x = contained.x - x;
+					contained.y = contained.y - y;
+				} else if (containedKaavioType === 'Edge') {
+					// TODO use gpml2pvjson point definition
+					contained.points = contained.points.map(function(point: {x: number, y: number}) {
+						// NOTE: notice side effects
+						point.x = point.x - x;
+						point.y = point.y - y;
+						return point;
+					});
+				} else {
+					throw new Error(`Unexpected content (type: "${contained.kaavioType}") in Group "${entity.id}".`)
+				}
 				return contained;
 			})
 			// TODO what's up with Citations being drawn like this?
 			// Why do they have x and y properties now?
-			.filter(el => el.kaavioType !== 'Citation')
+			//.filter(el => el.kaavioType !== 'Citation')
 			.map(function(contained) {
 				const SubTag = components[contained.kaavioType];
 				return <SubTag key={contained.id} backgroundColor={backgroundColor}
 								customStyle={customStyle}
 								edgeDrawers={edgeDrawers}
-								element={contained}
-								elementMap={elementMap}
+								entity={contained}
+								entityMap={entityMap}
 								icons={icons}
 								iconsLoaded={iconsLoaded}
-								iconSuffix={iconSuffix}
-								/>
+								iconSuffix={iconSuffix} />
 			});
 
 		return <Node backgroundColor={backgroundColor}
 						customStyle={customStyle}
 						edgeDrawers={edgeDrawers}
-						element={element}
-						elementMap={elementMap}
+						entity={entity}
+						entityMap={entityMap}
 						icons={icons}
 						iconsLoaded={iconsLoaded}
 						iconSuffix={iconSuffix}

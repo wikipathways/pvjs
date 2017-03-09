@@ -14,6 +14,9 @@ const roundedRectangle = require('./rounded-rectangle.svg');
 const sarcoplasmicReticulum = require('./sarcoplasmic-reticulum.svg');
 const triangle = require('./triangle.svg');
 
+// for more, see
+// https://commons.wikimedia.org/wiki/Category:Icons
+
 // https://github.com/wikipathways/pvjs/tree/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols
 let icons = {
 	Arc: {
@@ -24,7 +27,7 @@ let icons = {
 		id: 'brace',
 		url: brace
 	},
-	EndoplasmicReticulum: {
+	'Endoplasmic Reticulum': {
 		id: 'endoplasmic-reticulum',
 		url: endoplasmicReticulum
 	},
@@ -32,7 +35,7 @@ let icons = {
 		id: 'hexagon',
 		url: hexagon
 	},
-	GolgiApparatus: {
+	'Golgi Apparatus': {
 		id: 'golgi-apparatus',
 		url: golgiApparatus
 	},
@@ -75,7 +78,7 @@ let icons = {
 		id: 'rounded-rectangle',
 		url: roundedRectangle,
 	},
-	SarcoplasmicReticulum: {
+	'Sarcoplasmic Reticulum': {
 		id: 'sarcoplasmic-reticulum',
 		url: sarcoplasmicReticulum
 	},
@@ -84,6 +87,7 @@ let icons = {
 		url: triangle
 	},
 } as any;
+
 icons.Circle = icons.Oval = icons.Ellipse;
 icons.Complex = icons.Octagon;
 // if we allow for true none, it's hard to do custom styling
