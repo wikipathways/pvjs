@@ -6,9 +6,13 @@ import {Diagram} from './components/Diagram';
 //require('./kaavio.css');
 import {normalize, setupPage} from 'csstips';
 import {PanZoom} from "./PanZoom/PanZoom";
+import {Manipulator} from './manipulator';
 
 export class Kaavio extends React.Component<any, any> {
 	diagramRef: any;
+	panZoomRef: any;
+	private manipulator: Manipulator;
+
 	constructor(props) {
 		super(props);
 		const about = (props.about || 'kaavio-container-' + new Date().toISOString()).replace(/\W/g, '');
@@ -46,6 +50,18 @@ export class Kaavio extends React.Component<any, any> {
 				});
 			}
 		});
+	}
+
+	componentDidMount(){
+		this.setupManipulator()
+	}
+
+	private setupManipulator(): void {
+		if(this.manipulator) this.manipulator = null;
+
+		const diagramDOMNode = ReactDOM.findDOMNode(this.diagramRef) as SVGElement;
+		const {about} = this.state;
+		this.manipulator = new Manipulator(diagramDOMNode, this.panZoomRef);
 	}
 
 	render() {
@@ -87,7 +103,7 @@ export class Kaavio extends React.Component<any, any> {
 				markerDrawers={markerDrawers}
 				zIndices={zIndices}
 				customStyle={customStyle} />
-			<PanZoom diagram={this.diagramRef} />
+			<PanZoom ref={panZoom => this.panZoomRef = panZoom} diagram={this.diagramRef} />
 		</div>
 	}
 }

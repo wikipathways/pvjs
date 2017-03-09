@@ -2,9 +2,14 @@ import * as React from 'react';
 import * as SVGPanZoom from 'svg-pan-zoom';
 import * as ReactDOM from 'react-dom';
 import {styles} from './style';
+import {Observable, Subject, BehaviorSubject} from "rxjs";
 
 export class PanZoom extends React.Component<any, any> {
     panZoom: any;
+
+    // Observable for other components/services to listen to to check panZoom functions are ready.
+    private panZoomEnabled: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    panZoomEnabled$: Observable<boolean> = this.panZoomEnabled.asObservable();
 
     constructor(props){
         super(props);
@@ -12,17 +17,26 @@ export class PanZoom extends React.Component<any, any> {
 
     componentWillUpdate(nextProps, nextState){
         let node: SVGElement = ReactDOM.findDOMNode(nextProps.diagram) as SVGElement;
-        this.panZoom = SVGPanZoom(node, {
-            controlIconsEnabled: false,
-            fit: true,
-            center: true,
-            minZoom: 0.1,
-            maxZoom: 20.0,
-            zoomEnabled: false
-        });
+        SVGPanZoom(node, {
+                controlIconsEnabled: false,
+                fit: true,
+                center: true,
+                minZoom: 0.1,
+                maxZoom: 20.0,
+                zoomEnabled: false,
+                customEventsHandler: {
+                    init: (options) => {
+                        this.panZoom = options.instance;
+                        this.panZoomEnabled.next(true)
+                    },
+                    haltEventListeners: [],
+                    destroy: (_) => {}
+                }
+            }
+        );
     }
 
-    zoomIn = () =>  {
+    zoomIn = () => {
       this.panZoom.zoomIn()
     };
 

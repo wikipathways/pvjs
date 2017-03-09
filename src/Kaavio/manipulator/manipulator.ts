@@ -1,17 +1,23 @@
 import * as _ from 'lodash';
 import $ = require('jquery');
 import d3 = require('d3');
+import * as SVGPanZoom from 'svg-pan-zoom';
 
 export class Manipulator {
-    private pvjs_instance: Pvjs;
+    private diagram;
     private highlightedNodes: Array<string>;
     private panZoom;
 
-    constructor(pvjs_instance: Pvjs){
-        this.pvjs_instance = pvjs_instance;
+    constructor(diagram: SVGElement, panZoomRef){
+        this.diagram = diagram;
         this.highlightedNodes = [];
 
-        this.panZoom = pvjs_instance.panZoom; // TODO: This is a hack for now. Fix this
+        // Subscribe to the panZoomEnabled observable, wait for panZoom to be ready.
+        panZoomRef.panZoomEnabled.subscribe(res => {
+            if(res === true) {
+                this.panZoom = panZoomRef.panZoom;
+            }
+        })
     }
 
     /**
@@ -67,7 +73,7 @@ export class Manipulator {
             }
         }
         this.addHighlighted(node_id);
-        this.pvjs_instance.highlighter.highlight(id, null, styles);
+        //this.pvjs_instance.highlighter.highlight(id, null, styles);
     }
 
     /**
@@ -115,7 +121,7 @@ export class Manipulator {
      */
     private highlightOff(node_id: string): void {
         let id = '#' + node_id;
-        this.pvjs_instance.highlighter.attenuate(id);
+        //this.pvjs_instance.highlighter.attenuate(id);
         this.delHighlighted(node_id);
     }
 
@@ -141,7 +147,7 @@ export class Manipulator {
      * @returns {SVGLocatable}
      */
     private findNode(node_id): SVGLocatable {
-        return d3.select(this.pvjs_instance.selector).select("g path#" + node_id)[0][0];
+        return d3.select(this.diagram).select("g path#" + node_id)[0][0];
     }
 
     private getNodeBBox(node_id: string): {x: number, y: number, height: number, width: number} {
