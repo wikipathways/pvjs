@@ -5,8 +5,10 @@ import {Diagram} from './components/Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./kaavio.css');
 import {normalize, setupPage} from 'csstips';
+import {PanZoom} from "./PanZoom/PanZoom";
 
 export class Kaavio extends React.Component<any, any> {
+	diagramRef: any;
 	constructor(props) {
 		super(props);
 		const about = (props.about || 'kaavio-container-' + new Date().toISOString()).replace(/\W/g, '');
@@ -71,6 +73,7 @@ export class Kaavio extends React.Component<any, any> {
 
 		return <div id={about} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
 			<Diagram
+				ref={diagram => this.diagramRef = diagram}
 				about={`kaavio-diagram-for-${about}`}
 				name={name}
 				width={width}
@@ -84,6 +87,7 @@ export class Kaavio extends React.Component<any, any> {
 				markerDrawers={markerDrawers}
 				zIndices={zIndices}
 				customStyle={customStyle} />
+			<PanZoom diagram={this.diagramRef} />
 		</div>
 	}
 }
