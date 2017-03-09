@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {Generic} from './Generic';
+import {Entity} from './Entity';
 import Text from './Text';
 
 const textAlignToAlign = {
@@ -30,12 +30,12 @@ export class Node extends React.Component<any, any> {
   render() {
 		let that = this;
 		const state = that.state;
-		const { children, element, elementMap, icons, iconsLoaded, iconSuffix, svgId } = state;
+		const { children, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId } = state;
 
 		const { backgroundColor, borderWidth, color, drawAs, filter,
 						fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, height,
 						id, padding, rotation, strokeDasharray, textAlign,
-						textContent, type, verticalAlign, width, wpType, x, y } = element;
+						textContent, type, verticalAlign, width, wpType, x, y } = entity;
 		
 		const alignSvgText = textAlignToAlign[textAlign];
 		const alignSvgTextToXSvgText = {
@@ -52,7 +52,7 @@ export class Node extends React.Component<any, any> {
 		};
 		const ySvgText = verticalAlignToYSvgText[verticalAlign];
 		
-		let nodeTransform=`translate(${element.x} ${element.y})`;
+		let nodeTransform=`translate(${entity.x} ${entity.y})`;
 		if (rotation) {
 			nodeTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
 		}
@@ -63,7 +63,7 @@ export class Node extends React.Component<any, any> {
 			console.warn(`No "${drawAs}" icon provided.`);
 		}
 
-		return <Generic {...state} children={[
+		return <Entity {...state} children={[
 				// NOTE: we can pull the externally referenced SVGs in using either
 				// the SVG 'image' element or the SVG 'use' element. The 'use' element
 				// is better, because it allows for more control over styling.

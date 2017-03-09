@@ -29,11 +29,11 @@ export class Group extends React.Component<any, any> {
 
   render() {
 		let that = this;
-		const { customStyle, elementMap, element, edgeDrawers, icons, iconsLoaded, iconSuffix } = that.state;
-		const { backgroundColor, borderWidth, color, drawAs, filter, fillOpacity, height, id, rotation, strokeDasharray, textContent, width, x, y } = element;
+		const { customStyle, entityMap, entity, edgeDrawers, icons, iconsLoaded, iconSuffix } = that.state;
+		const { backgroundColor, borderWidth, color, drawAs, filter, fillOpacity, height, id, rotation, strokeDasharray, textContent, width, x, y } = entity;
 
-		const children = 	element.contains
-			.map((containedId) => elementMap[containedId])
+		const children = 	entity.contains
+			.map((containedId) => entityMap[containedId])
 			.map(function(contained) {
 				const containedKaavioType = contained.kaavioType;
 				if (['Node', 'Burr'].indexOf(containedKaavioType) > -1) {
@@ -48,7 +48,7 @@ export class Group extends React.Component<any, any> {
 						return point;
 					});
 				} else {
-					throw new Error(`Unexpected content (type: "${contained.kaavioType}") in Group "${element.id}".`)
+					throw new Error(`Unexpected content (type: "${contained.kaavioType}") in Group "${entity.id}".`)
 				}
 				return contained;
 			})
@@ -60,8 +60,8 @@ export class Group extends React.Component<any, any> {
 				return <SubTag key={contained.id} backgroundColor={backgroundColor}
 								customStyle={customStyle}
 								edgeDrawers={edgeDrawers}
-								element={contained}
-								elementMap={elementMap}
+								entity={contained}
+								entityMap={entityMap}
 								icons={icons}
 								iconsLoaded={iconsLoaded}
 								iconSuffix={iconSuffix} />
@@ -70,8 +70,8 @@ export class Group extends React.Component<any, any> {
 		return <Node backgroundColor={backgroundColor}
 						customStyle={customStyle}
 						edgeDrawers={edgeDrawers}
-						element={element}
-						elementMap={elementMap}
+						entity={entity}
+						entityMap={entityMap}
 						icons={icons}
 						iconsLoaded={iconsLoaded}
 						iconSuffix={iconSuffix}

@@ -4,7 +4,7 @@ import {Node} from './Node';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-export class Generic extends React.Component<any, any> {
+export class Entity extends React.Component<any, any> {
   constructor(props) {
 		super(props);
 		this.state = {...props};
@@ -23,37 +23,18 @@ export class Generic extends React.Component<any, any> {
   render() {
 		let that = this;
 		const state = that.state;
-		const { about, children, customStyle, edgeDrawers, element, elementMap, icons, iconsLoaded, iconSuffix, svgId, organism } = state;
+		const { about, children, customStyle, edgeDrawers, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, organism } = state;
 		const { burrs, backgroundColor, borderWidth, color, drawAs, filter,
 						fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, height,
 						id, padding, points, rotation, strokeDasharray, textAlign,
-						textContent, type, verticalAlign, width, wpType, x, y } = element;
+						textContent, type, verticalAlign, width, wpType, x, y, kaavioType } = entity;
 
 		let entityTransform;
 		if (x || y || rotation) {
-			entityTransform = `translate(${element.x} ${element.y})`;
+			entityTransform = `translate(${entity.x} ${entity.y})`;
 			if (rotation) {
 				entityTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
 			}
-		}
-
-		let citationTransform;
-		if (x && y) {
-			citationTransform = `translate(${ element.width + 5 } -5)`;
-		} else if (points) {
-			// TODO get edge logic working so we can position this better
-			// TODO look at current production pvjs to see how this is done
-			const startPoint = points[0];
-			const startX = startPoint.x;
-			const startY = startPoint.y;
-			const endPoint = points[points.length - 1];
-			const endX = endPoint.x;
-			const endY = endPoint.y;
-			const displacementX = endX - startX;
-			const displacementY = endY - startY;
-			const citationX = startX + 5 * (1 + (displacementX === 0 ? 0 : displacementX / Math.abs(displacementX)));
-			const citationY = startY + 5 * (1 + (displacementY === 0 ? 0 : displacementY / Math.abs(displacementY)));
-			citationTransform = `translate(${citationX} ${citationY})`;
 		}
 
 		const className = customStyle ? type.concat(
@@ -70,7 +51,7 @@ export class Generic extends React.Component<any, any> {
 		return <g id={id}
 				key={id}
 				className={className}
-				typeof={element.type.join(' ')}
+				typeof={entity.type.join(' ')}
 				color={color}
 				transform={entityTransform}>
 			{
@@ -92,51 +73,44 @@ export class Generic extends React.Component<any, any> {
 
 			{
 				(burrs || [])
-					.map((burrId) => elementMap[burrId])
+					.map((burrId) => entityMap[burrId])
 					.map(function(burr) {
 						// NOTE: notice side effect
 						burr.width += 0;
 						burr.height += 0;
-						burr.x = width * burr.attachmentDisplay.position[0] - burr.width / 2;
-						burr.y = height * burr.attachmentDisplay.position[1] - burr.height / 2;
+						const attachmentDisplay = burr.attachmentDisplay;
+						const position = attachmentDisplay.position;
+						const offset = attachmentDisplay.hasOwnProperty('offset') ? attachmentDisplay.offset : [0, 0];
+
+						// kaavioType is referring to the entity the burr is attached to
+						if (['Node', 'Group'].indexOf(kaavioType) > -1) {
+							burr.x = width * position[0] - burr.width / 2 + offset[0];
+							burr.y = height * position[1] - burr.height / 2 + offset[1];
+						} else if (kaavioType === 'Edge') {
+							// TODO get edge logic working so we can position this better
+							// TODO look at current production pvjs to see how this is done
+							const positionXY = edgeDrawers[entity.drawAs].getPointAtPosition(points, position[0]);
+							burr.x = positionXY.x - burr.width / 2 + offset[0];
+							burr.y = positionXY.y - burr.height / 2 + offset[1];
+						} else {
+							throw new Error(`Cannot handle burr with parent of type ${kaavioType}`)
+						}
+
 						return burr;
 					})
 					.map(function(burr) {
 						return <Node key={burr.id} backgroundColor={backgroundColor}
 										customStyle={customStyle}
-										element={burr}
-										elementMap={elementMap}
+										entity={burr}
+										entityMap={entityMap}
 										icons={icons}
 										iconsLoaded={iconsLoaded}
 										iconSuffix={iconSuffix} />;
 					})
 			}
 
-			{
-				element.citation ?
-					<text key={`citation-for-${element.id}`} className={customStyle.citationClass} transform={citationTransform}>{
-						element.citation
-							.map((citationId) => elementMap[citationId].textContent)
-							.sort()
-							.join(',')
-					}</text>
-				:
-					null
-//				/* TODO include the RDFa content while not overlapping the citation numbers
-//				(element.citation || [])
-//					.map((citationId) => elementMap[citationId])
-//					.map(function(citation) {
-//						return <text className="citation"
-//								key={element.id + citation.id}
-//								// TODO this is pvjs specific. kaavio should only contain diagram logic, not pvjs logic.
-//								content={`identifiers:pubmed/${citation.dbId}`}
-//								transform={`translate(${ element.width + 5 } 0)`}>{citation.textContent}</text>
-//					})
-//				//*/
-			}
-
 			{/*
-				// TODO it would be nice to add the attribute resource to the 'g' element above,
+				// TODO it would be nice to add the attribute resource to the 'g' entity above,
 				// but it is WikiPathways-specific, and Kaavio should be generic. How can we handle this?
 				resource={`identifiers:wikipathways/WP554/${id}`}
 

@@ -129,10 +129,8 @@ const edgeDrawers = {
 			pathData = pathData.concat(lastSegment);
 			return pathData;
 		},
-		getPointAtPosition: function(targetEdgeData, position) {
-			// TODO make this actually calculate and return a value
-			return {x:0, y: 0};
-		},
+		// TODO
+		getPointAtPosition: function(points, position) {return {}},
 	},
 	ElbowLine: {
 		getPathSegments: function(points, elementId) {
@@ -171,10 +169,8 @@ const edgeDrawers = {
 
 			return pathData;
 		},
-		getPointAtPosition: function(targetEdgeData, position) {
-			// TODO make this actually calculate and return a value
-			return {x:0, y: 0};
-		},
+		// TODO
+		getPointAtPosition: function(points, position) {return {}},
 	},
 	SegmentedLine: {
 		getPathSegments: function(points) {
@@ -190,10 +186,8 @@ const edgeDrawers = {
 
 			return pathData;
 		},
-		getPointAtPosition: function(targetEdgeData, position) {
-			// TODO make this actually calculate and return a value
-			return {x:0, y: 0};
-		},
+		// TODO
+		getPointAtPosition: function(points, position) {return {}},
 	},
 	StraightLine: {
 		getPathSegments: function(points) {
@@ -212,8 +206,7 @@ const edgeDrawers = {
 				points: [x1, y1]
 			}];
 		},
-		getPointAtPosition: function(targetEdgeData, position) {
-			const points = targetEdgeData.points;
+		getPointAtPosition: function(points, position) {
 			const firstPoint = points[0];
 			const lastPoint = points[points.length - 1];
 			const x0 = firstPoint.x;
@@ -223,9 +216,15 @@ const edgeDrawers = {
 
 			var x = x0 + (x1 - x0) * position;
 			var y = y0 + (y1 - y0) * position;
+
 			return {x: x, y: y};
 		},
 	},
 };
+
+// TODO calculate these!
+edgeDrawers.CurvedLine.getPointAtPosition = edgeDrawers.StraightLine.getPointAtPosition;
+edgeDrawers.SegmentedLine.getPointAtPosition = edgeDrawers.SegmentedLine.getPointAtPosition;
+edgeDrawers.ElbowLine.getPointAtPosition = edgeDrawers.ElbowLine.getPointAtPosition;
 
 export default edgeDrawers;

@@ -12,13 +12,11 @@ export class Kaavio extends React.Component<any, any> {
 		const about = (props.about || 'kaavio-container-' + new Date().toISOString()).replace(/\W/g, '');
 		this.state = {
 			about: about,
-			pvjson: props.pvjson || {
-				elements: [],
-				organism: '',
-				name: '',
-				width: 0,
-				height: 0,
-			},
+			backgroundColor: 'white',
+			entities: [],
+			name: '',
+			width: 0,
+			height: 0,
 			customStyle: props.customStyle || '',
 			filters: props.filters,
 			handleClick: props.handleClick,
@@ -51,16 +49,15 @@ export class Kaavio extends React.Component<any, any> {
   render() {
 		let that = this;
 		const state = that.state;
-		const { about, customStyle, filters, handleClick, pvjson, edgeDrawers, icons, markerDrawers } = state;
-		const { elements, organism, name, width, height } = pvjson;
-		const backgroundColor = customStyle.backgroundColor || pvjson.backgroundColor || 'white';
+		const { about, customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons, markerDrawers } = state;
+		const backgroundColor = customStyle.backgroundColor || state.backgroundColor;
 
-		const elementMap = elements.reduce(function(acc, element) {
-			acc[element.id] = element;
+		const entityMap = entities.reduce(function(acc, entity) {
+			acc[entity.id] = entity;
 			return acc;
 		}, {});
 
-		const zIndices = elements
+		const zIndices = entities
 			.sort(function(a: any, b: any) {
 				if (a.zIndex > b.zIndex) {
 					return 1;
@@ -70,17 +67,17 @@ export class Kaavio extends React.Component<any, any> {
 					return 0;
 				}
 			})
-			.map((element) => element.id);
+			.map((entity) => entity.id);
 
 		return <div id={about} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
-			<Diagram organism={organism}
+			<Diagram
 				about={`kaavio-diagram-for-${about}`}
 				name={name}
 				width={width}
 				height={height}
 				backgroundColor={backgroundColor}
 				edgeDrawers={edgeDrawers}
-				elementMap={elementMap}
+				entityMap={entityMap}
 				filters={filters}
 				handleClick={handleClick}
 				icons={icons}

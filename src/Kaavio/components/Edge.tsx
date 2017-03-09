@@ -2,21 +2,21 @@ import {intersection, keys} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {getMarkerPropertyValue, MARKER_PROPERTY_NAMES} from './Marker';
-import {Generic} from './Generic';
+import {Entity} from './Entity';
 
 export class Edge extends React.Component<any, any> {
   constructor(props) {
 		super(props);
 		// NOTE: currently, props.backgroundColor is the background color of the diagram as a whole,
-		// not necessarily that of the edge or any element the edge is on top of. That could be a
+		// not necessarily that of the edge or any entity the edge is on top of. That could be a
 		// problem for markers like Catalysis.
 		this.state = {...props};
 	}
   render() {
 		let that = this;
 		const state = that.state;
-		const {backgroundColor, edgeDrawers, element, elementMap} = state;
-		const {color, borderWidth, points, id, drawAs, strokeDasharray} = element;
+		const {backgroundColor, edgeDrawers, entity, entityMap} = state;
+		const {color, borderWidth, points, id, drawAs, strokeDasharray} = entity;
 
 		const {getPathSegments, getPointAtPosition} = edgeDrawers[drawAs];
 		const pathSegments = getPathSegments(points, id);
@@ -28,10 +28,10 @@ export class Edge extends React.Component<any, any> {
 			 
 		const markerProperties = intersection(
 				MARKER_PROPERTY_NAMES,
-				keys(element)
+				keys(entity)
 		)
 		.reduce(function(acc: any[], markerLocationType: MarkerPropertyName) {
-			const markerName = element[markerLocationType];
+			const markerName = entity[markerLocationType];
 			if (markerName) {
 				acc.push({
 					name: markerLocationType,
@@ -42,20 +42,20 @@ export class Edge extends React.Component<any, any> {
 		}, []) as any[];
 
 		let opts = {
-			className: element.type.join(' '),
+			className: entity.type.join(' '),
 			d: d,
 			fill: 'transparent',
 			stroke: color,
 			strokeDasharray: strokeDasharray,
 			strokeWidth: borderWidth,
-			id: element.id,
+			id: entity.id,
 		};
 		markerProperties.forEach(function(attribute) {
 			opts[attribute.name] = attribute.value;
 		});
 
-		return <Generic {...state} children={[
-			<path key={`path-for-${element.id}`} {...opts}/>
+		return <Entity {...state} children={[
+			<path key={`path-for-${entity.id}`} {...opts}/>
 		]} />;
 	}
 }

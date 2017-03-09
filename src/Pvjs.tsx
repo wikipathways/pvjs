@@ -1,4 +1,4 @@
-import {forOwn, omit} from 'lodash';
+import {find, forOwn, omit} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Base64} from 'js-base64';
@@ -19,6 +19,53 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/let';
 import 'rxjs/add/operator/map';
 
+// TODO move this into utils
+// Create a string of citation numbers for display,
+// delimited by commas, and
+// replacing any consecutive series of numbers with the
+// first and last joined by a hyphen.
+function createPublicationXrefString(displayNumbers) {
+	var publicationXrefString;
+	if (displayNumbers.length === 1) {
+		publicationXrefString = displayNumbers[0];
+	} else {
+		displayNumbers.sort(function(a, b) {
+			return a - b;
+		});
+		var i = 0;
+		publicationXrefString = displayNumbers[i].toString();
+
+		if (displayNumbers.length > 2) {
+			do {
+				i += 1;
+
+				if (displayNumbers[i - 1] + 1 !== displayNumbers[i] || displayNumbers[i] + 1 !== displayNumbers[i + 1]) {
+					if (i !== 1) {
+						if (displayNumbers[i - 2] + 2 === displayNumbers[i]) {
+							publicationXrefString += '-' + displayNumbers[i].toString();
+						} else {
+							publicationXrefString += ', ' + displayNumbers[i].toString();
+						}
+					} else {
+						publicationXrefString += ', ' + displayNumbers[i].toString();
+					}
+				}
+
+			} while (i < displayNumbers.length - 2);
+		}
+
+		i += 1;
+
+		if (displayNumbers[i - 2] + 2 === displayNumbers[i]) {
+			publicationXrefString += '-' + displayNumbers[i].toString();
+		} else {
+			publicationXrefString += ', ' + displayNumbers[i].toString();
+		}
+	}
+
+	return publicationXrefString;
+}
+
 export class Pvjs extends React.Component<any, any> {
 	pathwayRequest: Observable<any>;
   constructor(props) {
@@ -31,10 +78,11 @@ export class Pvjs extends React.Component<any, any> {
 			alt: props.alt,
 			customStyle: props.customStyle,
 			pvjson: {
-				elements: [],
+				entities: [],
 				organism: '',
 				name: '',
 			},
+			filters: [],
 			selected: null,
 			detailPanelOpen: false,
 		};
@@ -73,16 +121,16 @@ export class Pvjs extends React.Component<any, any> {
 				about
 		)
 			.subscribe(function(pvjson) {
-				let { elements, organism, name } = pvjson;
+				let { entities, organism, name } = pvjson;
 
 				const infoBoxTextContent = `Title: ${name} \n Organism: ${organism}`;
 
-				pvjson.elements = elements.map(function(element) {
-					const displayName = element.displayName;
+				pvjson.entities = entities.map(function(entity) {
+					const displayName = entity.displayName;
 					if (displayName) {
-						element.textContent = displayName;
+						entity.textContent = displayName;
 					}
-					return omit(element, ['displayName']);
+					return omit(entity, ['displayName']);
 				}).concat([{
 					id: 'pvjs-infobox',
 					kaavioType: 'Node',
@@ -106,9 +154,82 @@ export class Pvjs extends React.Component<any, any> {
 					y: 5,
 					height: 50,
 					width: infoBoxTextContent.length * 3.5,
-					zIndex: elements.length + 1,
+					zIndex: entities.length + 1,
 				}]);
-				that.setState({pvjson: pvjson});
+
+				pvjson.entities = pvjson.entities
+					.reduce(function(acc, entity) {
+						if (entity.hasOwnProperty('citation')) {
+							const burrs = entity.burrs || [];
+							const {citation, x, y, width, height, kaavioType, points} = entity;
+
+							const citationBurrId = `citation-burr-${citation.join('-')}-for-${entity.id}`;
+							burrs.push(citationBurrId);
+							entity.burrs = burrs;
+
+							const citationDisplayString = createPublicationXrefString(
+									citation
+										.map(cId => find(pvjson.entities, {id: cId}))
+										.map(c => c.textContent)
+							);
+							const citationBurr = {
+								id: citationBurrId,
+								type: ['Citation', 'Burr'],
+								width: citationDisplayString.length * 1.5,
+								height: 12,
+								textContent: citationDisplayString,
+								drawAs: 'None',
+								attachmentDisplay: {
+									position: kaavioType === 'Edge' ? [0.5] : [1, 0],
+									offset: kaavioType === 'Edge' ? [5, 5] : [0, -5],
+								},
+							};
+							acc.push(citationBurr);
+						}
+						acc.push(entity);
+						return acc;
+					}, []);
+
+				const filters = Array.from(
+						pvjson.entities
+							.filter((entity) => entity.lineStyle === 'double')
+							.reduce(function(acc, entity) {
+								const lineStyle = entity.lineStyle;
+								let entityFilters = [];
+								if (entity.filter) {
+									entityFilters.push(entity.filter);
+								}
+								const strokeWidth = entity.borderWidth;
+								entityFilters.push(generateFilterId('doubleStroke', strokeWidth));
+								const filterId = entityFilters.join('_');
+								// NOTE: notice side effect
+								entity.filter = filterId;
+								acc.add(filterId);
+								return acc;
+							}, new Set())
+				)
+					.reduce(function(acc: any, filterId: string) {
+						const filterChildren = filterId.split('_').reduce(function(subAcc, subFilter: string): any[] {
+							const [filterName, strokeWidthAsString] = subFilter.split('-');
+							const strokeWidth = parseFloat(strokeWidthAsString);
+
+							if (filterName === 'doubleStroke') {
+								doubleStroke({
+									source: filterId.indexOf('ound') > -1 ? 'roundResult' : 'SourceGraphic',
+									strokeWidth: strokeWidth,
+								})
+									.forEach(function(x) {
+										subAcc.push(x);
+									});
+							}
+
+							return subAcc;
+						}, []);
+						acc.push(<Filter id={filterId} key={filterId} children={filterChildren} />);
+						return acc;
+					}, []);
+
+				that.setState({pvjson: pvjson, filters: filters});
 			}, function(err) {
 				err.message = err.message || '';
 				err.message += ' Error getting pathway (is webservice.wikipathways.org down?)'
@@ -156,49 +277,15 @@ export class Pvjs extends React.Component<any, any> {
   render() {
 		let that = this;
 		const state = that.state;
-		const { about, customStyle, detailPanelOpen, pvjson, selected } = state;
-
-		const filters = Array.from(
-				pvjson.elements
-					.filter((element) => element.lineStyle === 'double')
-					.reduce(function(acc, element) {
-						const lineStyle = element.lineStyle;
-						let elementFilters = [];
-						if (element.filter) {
-							elementFilters.push(element.filter);
-						}
-						const strokeWidth = element.borderWidth;
-						elementFilters.push(generateFilterId('doubleStroke', strokeWidth));
-						const filterId = elementFilters.join('_');
-						// NOTE: notice side effect
-						element.filter = filterId;
-						acc.add(filterId);
-						return acc;
-					}, new Set())
-		)
-		.reduce(function(acc: any, filterId: string) {
-			const filterChildren = filterId.split('_').reduce(function(subAcc, subFilter: string): any[] {
-				const [filterName, strokeWidthAsString] = subFilter.split('-');
-				const strokeWidth = parseFloat(strokeWidthAsString);
-
-				if (filterName === 'doubleStroke') {
-					doubleStroke({
-						source: filterId.indexOf('ound') > -1 ? 'roundResult' : 'SourceGraphic',
-						strokeWidth: strokeWidth,
-					})
-						.forEach(function(x) {
-							subAcc.push(x);
-						});
-				}
-
-				return subAcc;
-			}, []);
-			acc.push(<Filter id={filterId} key={filterId} children={filterChildren} />);
-			return acc;
-		}, []);
+		const { about, customStyle, detailPanelOpen, pvjson, filters, selected } = state;
 
 		return <section>
-			<Kaavio handleClick={that.handleClick.bind(that)} about={about} pvjson={pvjson}
+			<Kaavio handleClick={that.handleClick.bind(that)} about={about}
+							entities={pvjson.entities}
+							name={pvjson.name}
+							width={pvjson.width}
+							height={pvjson.height}
+							backgroundColor={pvjson.backgroundColor}
 							customStyle={customStyle}
 							edgeDrawers={EdgeDrawers} icons={icons} markerDrawers={MarkerDrawers} filters={filters} />
 			{
@@ -211,7 +298,7 @@ export class Pvjs extends React.Component<any, any> {
 									dataSource={selected && selected.dbName}
 									identifier={!!selected && selected.dbId}
 									handleClose={that.handleCloseDetailsPanel.bind(that)}
-							/>: null
+							/>: <g />
 			}
 		</section>
 	}
