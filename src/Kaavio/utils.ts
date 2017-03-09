@@ -2,6 +2,8 @@ import {
     MarkerPropertyName, NonFuncIriMarkerPropertyValue,
     NON_FUNC_IRI_MARKER_PROPERTY_VALUES
 } from "./DiagramComponents";
+import {highlightedNode} from "./Kaavio";
+import * as _ from 'lodash';
 
 export function getMarkerId(
     markerLocationType: MarkerPropertyName,
@@ -26,4 +28,24 @@ export function getMarkerPropertyValue(
         return markerName;
     }
     return `url(#${getMarkerId(markerLocationType, markerName, color, backgroundColor)})`;
+}
+
+export function getHighlighted(entity, highlightedNodes) {
+    let result = {
+        highlighted: false,
+        color: null
+    };
+    // Only allow nodes to be highlighted
+    if(entity.kaavioType != 'Node') return result;
+
+    let matched: highlightedNode = _.find(highlightedNodes, (value, index) => {
+        return value['node_id'] == entity.id;
+    }) as highlightedNode;
+
+    if (matched) {
+        result.highlighted = true;
+        result.color = matched.color;
+    }
+
+    return result;
 }

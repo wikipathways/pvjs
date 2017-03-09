@@ -50,6 +50,7 @@
   },
   "homepage": "https://wikipathways.github.io/pvjs/docs/",
   "dependencies": {
+    "@types/lodash": "^4.14.54",
     "bootstrap": "^3.3.7",
     "bridgedb": "^6.0.0-14",
     "csstips": "^0.2.0",

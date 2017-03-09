@@ -14,7 +14,9 @@ const textAlignToAlign = {
 export class Node extends React.Component<any, any> {
   constructor(props) {
 		super(props);
-		this.state = {...props};
+		this.state = {
+			...props
+		};
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -30,7 +32,7 @@ export class Node extends React.Component<any, any> {
   render() {
 		let that = this;
 		const state = that.state;
-		const { children, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId } = state;
+		const { children, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, isHighlighted, highlightedColor } = state;
 
 		const { backgroundColor, borderWidth, color, drawAs, filter,
 						fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, height,
@@ -82,7 +84,7 @@ export class Node extends React.Component<any, any> {
 								width={width + 'px'}
 								height={height + 'px'}
 								href={'#' + icon.id + iconSuffix}
-								fill={backgroundColor}
+								fill={isHighlighted? highlightedColor: backgroundColor}
 								filter={!!filter ? `url(#${filter})` : null}
 								// TODO does specifying stroke for a 'use' element do anything?
 								// If an the referenced element is using stroke="currentColor",

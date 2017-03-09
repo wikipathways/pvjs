@@ -5,6 +5,8 @@
 
 // for details on vocab, see http://vocabularies.bridgedb.org/ops#
 
+
+
 declare interface DataSource {
 	about: string;
 	conventionalName: string;

@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Edge} from './Edge';
 import {Node} from './Node';
+import {getHighlighted} from "../utils";
 
 const components = {
 	Edge: Edge,
@@ -29,7 +30,7 @@ export class Group extends React.Component<any, any> {
 
   render() {
 		let that = this;
-		const { customStyle, entityMap, entity, edgeDrawers, icons, iconsLoaded, iconSuffix } = that.state;
+		const { customStyle, entityMap, entity, edgeDrawers, icons, iconsLoaded, iconSuffix, highlightedNodes } = that.state;
 		const { backgroundColor, borderWidth, color, drawAs, filter, fillOpacity, height, id, rotation, strokeDasharray, textContent, width, x, y } = entity;
 
 		const children = 	entity.contains
@@ -64,7 +65,10 @@ export class Group extends React.Component<any, any> {
 								entityMap={entityMap}
 								icons={icons}
 								iconsLoaded={iconsLoaded}
-								iconSuffix={iconSuffix} />
+								iconSuffix={iconSuffix}
+							    highlightedNodes={highlightedNodes}
+							    isHighlighted={getHighlighted(contained, highlightedNodes).highlighted} highlightedColor={getHighlighted(contained, highlightedNodes).color}
+								/>
 			});
 
 		return <Node backgroundColor={backgroundColor}
@@ -75,7 +79,10 @@ export class Group extends React.Component<any, any> {
 						icons={icons}
 						iconsLoaded={iconsLoaded}
 						iconSuffix={iconSuffix}
-						children={children} />;
+						children={children}
+					 	highlightedNodes={highlightedNodes}
+					    isHighlighted={getHighlighted(entity, highlightedNodes).highlighted} highlightedColor={getHighlighted(entity, highlightedNodes).color}
+						/>;
 	}
 }
 

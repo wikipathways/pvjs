@@ -8,10 +8,21 @@ import {normalize, setupPage} from 'csstips';
 import {PanZoom} from "./PanZoom/PanZoom";
 import {Manipulator} from './manipulator';
 
+// pullAllWith is missing from the lodash typings so just require for now
+// See issue: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/13747
+// TODO: Track the issue and go back to import * as _ from 'lodash'
+const _ = require('lodash');
+
+export interface highlightedNode {
+	node_id: string,
+	color: string; // CSS color. E.g. 'red' or '#ffff'
+}
+
 export class Kaavio extends React.Component<any, any> {
 	diagramRef: any;
 	panZoomRef: any;
 	private manipulator: Manipulator;
+	private highlightedNodes: highlightedNode[] = []; // A stack of the highlighted nodes that is pushed and popped
 
 	constructor(props) {
 		super(props);
@@ -29,6 +40,7 @@ export class Kaavio extends React.Component<any, any> {
 			edgeDrawers: props.edgeDrawers,
 			icons: props.icons,
 			markerDrawers: props.markerDrawers,
+			highlightedNodes: []
 		};
 
 		normalize();
@@ -60,15 +72,52 @@ export class Kaavio extends React.Component<any, any> {
 		if(this.manipulator) this.manipulator = null;
 
 		const diagramDOMNode = ReactDOM.findDOMNode(this.diagramRef) as SVGElement;
-		const {about} = this.state;
-		this.manipulator = new Manipulator(diagramDOMNode, this.panZoomRef);
+		this.manipulator = new Manipulator(this, diagramDOMNode, this.panZoomRef);
+	}
+
+
+	pushHighlighted = (highlighted: highlightedNode | highlightedNode[]) =>  {
+		let toHighlight;
+		if(highlighted.constructor !== Array){
+			toHighlight = [highlighted];
+		}
+		else {
+			toHighlight = highlighted;
+		}
+		// Remove any items from the current highlightedNodes array with the same node_id
+		_.pullAllWith(this.highlightedNodes, highlighted, (arrVal, othVal) => {
+			return arrVal.node_id == othVal.node_id;
+		});
+
+		this.highlightedNodes = this.highlightedNodes.concat(highlighted);
+		this.setState({
+			highlightedNodes: this.highlightedNodes
+		});
+	};
+
+	popHighlighted(node_id: string | string[]): void {
+		let toRemove;
+		if(typeof node_id === 'string'){
+			toRemove = [node_id]
+		}
+		else {
+			toRemove = node_id;
+		}
+
+		// Remove any items from the current highlightedNodes array with the same node_id
+		_.pullAllWith(this.highlightedNodes, toRemove, (arrVal, othVal) => {
+			return arrVal.node_id == othVal;
+		});
+		this.setState({highlightedNodes: this.highlightedNodes});
+
 	}
 
 	render() {
 		let that = this;
 		const state = that.state;
-		const { about, customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons, markerDrawers } = state;
+		const { about, customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons, markerDrawers, highlightedNodes } = state;
 		const backgroundColor = customStyle.backgroundColor || state.backgroundColor;
+		console.log(highlightedNodes);
 
 		const entityMap = entities.reduce(function(acc, entity) {
 			acc[entity.id] = entity;
@@ -102,7 +151,9 @@ export class Kaavio extends React.Component<any, any> {
 				icons={icons}
 				markerDrawers={markerDrawers}
 				zIndices={zIndices}
-				customStyle={customStyle} />
+				customStyle={customStyle}
+				highlightedNodes={highlightedNodes}
+			/>
 			<PanZoom ref={panZoom => this.panZoomRef = panZoom} diagram={this.diagramRef} />
 		</div>
 	}

@@ -8,9 +8,13 @@ export class Manipulator {
     private highlightedNodes: Array<string>;
     private panZoom;
 
-    constructor(diagram: SVGElement, panZoomRef){
+    constructor(kaavioRef, diagram, panZoomRef){
         this.diagram = diagram;
         this.highlightedNodes = [];
+        kaavioRef.pushHighlighted({
+            node_id: 'a489f',
+            color: 'red'
+        });
 
         // Subscribe to the panZoomEnabled observable, wait for panZoom to be ready.
         panZoomRef.panZoomEnabled.subscribe(res => {
