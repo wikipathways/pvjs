@@ -14,6 +14,9 @@ const roundedRectangle = require('./rounded-rectangle.svg');
 const sarcoplasmicReticulum = require('./sarcoplasmic-reticulum.svg');
 const triangle = require('./triangle.svg');
 
+// for more, see
+// https://commons.wikimedia.org/wiki/Category:Icons
+
 // https://github.com/wikipathways/pvjs/tree/609615339cfd2c3b862f4ccbff12ca4b56b35940/src/shape-library/symbols
 let icons = {
 	Arc: {
