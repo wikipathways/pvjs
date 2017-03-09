@@ -103,21 +103,27 @@ export const GroupGroupClass = style({
 });
 
 export const GroupComplexClass = style({
-  fill: '#B4B464',
-  fillOpacity: 0.1,
-  stroke: '#808080',
+  	[`& > .Icon`]: {
+		fill: '#B4B464',
+		fillOpacity: 0.1,
+		stroke: '#808080',
+	}
 });
 
 export const GroupNoneClass = style({
-  fill: '#B4B464',
-  fillOpacity: 0.1,
-  stroke: '#808080',
+	[`& > .Icon`]: {
+		fill: '#B4B464',
+		fillOpacity: 0.1,
+  		stroke: '#808080',	
+	}
 });
 
 export const GroupPathwayClass = style({
-  fill: '#008000',
-  fillOpacity: 0.05,
-  stroke: '#808080',
+	[`& > .Icon`]: {
+		fill: '#008000',
+		fillOpacity: 0.05,
+  		stroke: '#808080',
+	}
 });
 
 export const InteractionClass = style({
