@@ -2,15 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Entity} from './Entity';
 import Text from './Text';
-
-const textAlignToAlign = {
-	left: 'left',
-	center: 'center',
-	right: 'left',
-	start: 'left',
-	end: 'right',
-};
-
+import * as direction from 'direction';
+ 
 export class Node extends React.Component<any, any> {
   constructor(props) {
 		super(props);
@@ -37,22 +30,7 @@ export class Node extends React.Component<any, any> {
 						id, padding, rotation, strokeDasharray, textAlign,
 						textContent, type, verticalAlign, width, wpType, x, y } = entity;
 		
-		const alignSvgText = textAlignToAlign[textAlign];
-		const alignSvgTextToXSvgText = {
-			left: 0,
-			center: width / 2,
-			right: width,
-		};
-		const xSvgText = alignSvgTextToXSvgText[alignSvgText];
-
-		const verticalAlignToYSvgText = {
-			top: 0,
-			middle: height / 2,
-			bottom: height,
-		};
-		const ySvgText = verticalAlignToYSvgText[verticalAlign];
-		
-		let nodeTransform=`translate(${entity.x} ${entity.y})`;
+		let nodeTransform=`translate(${x} ${y})`;
 		if (rotation) {
 			nodeTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
 		}
@@ -63,7 +41,27 @@ export class Node extends React.Component<any, any> {
 			console.warn(`No "${drawAs}" icon provided.`);
 		}
 
+		const textDirection = direction(textContent);
+		let cssTextAlignToTypeSetter: any = {
+			left: 'left',
+			center: 'center',
+			right: 'right'
+		};
+		const right = cssTextAlignToTypeSetter.right;
+		const left = cssTextAlignToTypeSetter.left;
+		cssTextAlignToTypeSetter.start = textDirection === 'rtl' ? right : left;
+		cssTextAlignToTypeSetter.end = textDirection === 'rtl' ? left : right;
+		const xAlign = cssTextAlignToTypeSetter[textAlign];
+
+		const cssVerticalAlignToTypeSetter = {
+			top:  'top',
+			middle: 'center',
+			bottom: 'bottom'
+		};
+		const yAlign = cssVerticalAlignToTypeSetter[verticalAlign];
+		
 		return <Entity {...state} children={[
+
 				// NOTE: we can pull the externally referenced SVGs in using either
 				// the SVG 'image' element or the SVG 'use' element. The 'use' element
 				// is better, because it allows for more control over styling.
@@ -77,8 +75,8 @@ export class Node extends React.Component<any, any> {
 						<use
 								id={`icon-for-${id}`}
 								key={`icon-for-${id}`}
-								x="0"
-								y="0"
+								x="0px"
+								y="0px"
 								width={width + 'px'}
 								height={height + 'px'}
 								href={'#' + icon.id + iconSuffix}
@@ -89,26 +87,26 @@ export class Node extends React.Component<any, any> {
 								// I think the 'color' property might overrule this stroke property.
 								stroke={color}
 								strokeWidth={borderWidth}
-								typeof="schema:ImageObject" className="Icon"/>
+								typeof="schema:ImageObject" className="Icon" />
 					:
 						<rect
 								id={`icon-for-${id}`}
 								key={`icon-for-${id}`}
-								x="0"
-								y="0"
+								x="0px"
+								y="0px"
 								width={width + 'px'}
 								height={height + 'px'}
 								fill={backgroundColor}
 								filter={!!filter ? `url(#${filter})` : null}
 								stroke={color}
 								strokeWidth={borderWidth}
-								typeof="schema:ImageObject" className="Icon"/>
+								typeof="schema:ImageObject" className="Icon" />
 				:
 					<image
 							id={`icon-for-${id}`}
 							key={`icon-for-${id}`}
-							x="0"
-							y="0"
+							x="0px"
+							y="0px"
 							width={width + 'px'}
 							height={height + 'px'}
 							fill={backgroundColor}
@@ -118,27 +116,26 @@ export class Node extends React.Component<any, any> {
 							typeof="schema:ImageObject" className="Icon"
 							href="https://upload.wikimedia.org/wikipedia/commons/2/24/Warning_icon.svg" />,
 
-					!!textContent ?	<Text id={`text-for-${id}`}
-																key={`text-for-${id}`}
-																svgId={svgId}
-																textOverflow="clip"
-																x={xSvgText}
-																y={ySvgText}
-																// TODO what should these be?
-																outerWidth={width + padding}
-																outerHeight={height + padding}
-																align={alignSvgText}
-																verticalAlign={verticalAlign}
+					!!textContent ?	<Text entityId={id}
+																key={`react-text-element-for-${id}`}
 																className="textlabel"
-																attrs={{
-																	fill: 'currentColor',
-																	fontFamily: fontFamily,
-																	fontSize: fontSize,
-																	fontStyle: fontStyle,
-																	fontWeight: fontWeight
-																}}
-																padding={padding}
-																text={textContent}/> : null
+																textContent={textContent}
+																x={padding}
+																y={padding}
+																width={width}
+																height={height}
+																xAlign={xAlign}
+																yAlign={yAlign}
+																padding={padding} />
+												:
+													null
 		].concat(children || [])} />;
 	}
 }
+/*
+	 textContent={textContent.slice(0, 8) + '&#10;&#13;\r\n<br>\r1 \r 2a 2b\r3'}
+																textContent={textContent.slice(0, 8) + '\n1 \n 2a 2b\n3'}
+	see also:
+https://en.wikipedia.org/wiki/Newline#Unicode
+http://stackoverflow.com/questions/13836352/what-is-the-utf-8-representation-of-end-of-line-in-text-file
+ */

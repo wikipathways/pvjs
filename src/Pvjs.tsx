@@ -177,6 +177,8 @@ export class Pvjs extends React.Component<any, any> {
 								type: ['Citation', 'Burr'],
 								width: citationDisplayString.length * 1.5,
 								height: 12,
+								textAlign: 'center',
+								verticalAlign: 'middle',
 								textContent: citationDisplayString,
 								drawAs: 'None',
 								attachmentDisplay: {

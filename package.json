@@ -50,11 +50,12 @@
   },
   "homepage": "https://wikipathways.github.io/pvjs/docs/",
   "dependencies": {
-    "bootstrap": "^3.3.7",	  
+    "bootstrap": "^3.3.7",
     "bridgedb": "^6.0.0-14",
     "csstips": "^0.2.0",
     "csv-streamify": "^1.0.0",
     "csx": "^8.2.1",
+    "direction": "^1.0.0",
     "gpml2pvjson": "2.0.0-beta.10",
     "js-base64": "^2.1.9",
     "lodash": "^4.14.36",
@@ -69,6 +70,7 @@
     "svg-pan-zoom": "^3.4.1",
     "svg-text": "^0.4.6",
     "tower-strcase": "~0.5.0",
+    "typesettable": "^3.0.2",
     "typestyle": "^0.22.3",
     "url-loader": "^0.5.8",
     "valid-data-url": "^0.1.3"
