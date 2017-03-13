@@ -27,13 +27,22 @@ export class Node extends React.Component<any, any> {
 		if (prevIconsLoaded !== nextIconsLoaded) {
 			that.setState({iconsLoaded: nextIconsLoaded});
 		}
+
+		const prevHighlightedColor = prevProps.highlightedColor;
+		const prevHighlighted = prevProps.isHighlighted;
+		const {isHighlighted, highlightedColor} = nextProps;
+		if((isHighlighted != prevHighlighted) && (highlightedColor != prevHighlightedColor)) {
+			this.setState({
+				isHighlighted: isHighlighted,
+				highlightedColor: highlightedColor
+			})
+		}
 	}
 
   render() {
 		let that = this;
 		const state = that.state;
-		const { children, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, isHighlighted, highlightedColor } = state;
-
+		const { children, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, isHighlighted, highlightedColor} = state;
 		const { backgroundColor, borderWidth, color, drawAs, filter,
 						fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, height,
 						id, padding, rotation, strokeDasharray, textAlign,
@@ -84,7 +93,7 @@ export class Node extends React.Component<any, any> {
 								width={width + 'px'}
 								height={height + 'px'}
 								href={'#' + icon.id + iconSuffix}
-								fill={isHighlighted? highlightedColor: backgroundColor}
+								fill="transparent"
 								filter={!!filter ? `url(#${filter})` : null}
 								// TODO does specifying stroke for a 'use' element do anything?
 								// If an the referenced element is using stroke="currentColor",
@@ -140,7 +149,18 @@ export class Node extends React.Component<any, any> {
 																	fontWeight: fontWeight
 																}}
 																padding={padding}
-																text={textContent}/> : null
+																text={textContent}/> : null,
+
+					isHighlighted?
+						<rect
+							id={`highlight-for-${id}`}
+							key={`highlight-for-${id}`}
+							x="0"
+							y="0"
+							width={width + 'px'}
+							height={height + 'px'}
+							fill={highlightedColor}
+							className="Highlighted"/>: null,
 		].concat(children || [])} />;
 	}
 }

@@ -32,6 +32,7 @@ export class Group extends React.Component<any, any> {
 		let that = this;
 		const { customStyle, entityMap, entity, edgeDrawers, icons, iconsLoaded, iconSuffix, highlightedNodes } = that.state;
 		const { backgroundColor, borderWidth, color, drawAs, filter, fillOpacity, height, id, rotation, strokeDasharray, textContent, width, x, y } = entity;
+	  	const entityHighlighted = getHighlighted(entity, highlightedNodes);
 
 		const children = 	entity.contains
 			.map((containedId) => entityMap[containedId])
@@ -57,6 +58,7 @@ export class Group extends React.Component<any, any> {
 			// Why do they have x and y properties now?
 			//.filter(el => el.kaavioType !== 'Citation')
 			.map(function(contained) {
+				const highlighted = getHighlighted(contained, highlightedNodes);
 				const SubTag = components[contained.kaavioType];
 				return <SubTag key={contained.id} backgroundColor={backgroundColor}
 								customStyle={customStyle}
@@ -67,7 +69,7 @@ export class Group extends React.Component<any, any> {
 								iconsLoaded={iconsLoaded}
 								iconSuffix={iconSuffix}
 							    highlightedNodes={highlightedNodes}
-							    isHighlighted={getHighlighted(contained, highlightedNodes).highlighted} highlightedColor={getHighlighted(contained, highlightedNodes).color}
+							    isHighlighted={highlighted.highlighted} highlightedColor={highlighted.color}
 								/>
 			});
 
@@ -81,7 +83,7 @@ export class Group extends React.Component<any, any> {
 						iconSuffix={iconSuffix}
 						children={children}
 					 	highlightedNodes={highlightedNodes}
-					    isHighlighted={getHighlighted(entity, highlightedNodes).highlighted} highlightedColor={getHighlighted(entity, highlightedNodes).color}
+					    isHighlighted={entityHighlighted.highlighted} highlightedColor={entityHighlighted.color}
 						/>;
 	}
 }

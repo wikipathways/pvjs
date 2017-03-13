@@ -7,20 +7,17 @@ export class Manipulator {
     private diagram;
     private highlightedNodes: Array<string>;
     private panZoom;
+    private kaavio: any;
 
-    constructor(kaavioRef, diagram, panZoomRef){
-        this.diagram = diagram;
+    constructor(kaavioRef, panZoomRef){
         this.highlightedNodes = [];
-        kaavioRef.pushHighlighted({
-            node_id: 'a489f',
-            color: 'red'
-        });
 
         // Subscribe to the panZoomEnabled observable, wait for panZoom to be ready.
-        panZoomRef.panZoomEnabled.subscribe(res => {
+        kaavioRef.kaavioReady.subscribe(res => {
             if(res === true) {
                 this.panZoom = panZoomRef.panZoom;
             }
+            this.kaavio = kaavioRef;
         })
     }
 
@@ -71,13 +68,12 @@ export class Manipulator {
         }
 
         let styles;
-        if(colour){
-            styles = {
-                backgroundColor: colour
-            }
-        }
         this.addHighlighted(node_id);
-        //this.pvjs_instance.highlighter.highlight(id, null, styles);
+
+        this.kaavio.pushHighlighted({
+            node_id: node_id,
+            color: colour
+        });
     }
 
     /**
@@ -125,7 +121,7 @@ export class Manipulator {
      */
     private highlightOff(node_id: string): void {
         let id = '#' + node_id;
-        //this.pvjs_instance.highlighter.attenuate(id);
+        this.kaavio.popHighlighted(node_id);
         this.delHighlighted(node_id);
     }
 

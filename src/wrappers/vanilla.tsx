@@ -23,16 +23,20 @@ export interface Opts {
  * 						     	  URL where the pvjson for the pathway can be obtained.
  * @param [opts.customStyle]
  */
-export function pvjs(selector: string, about: string, opts: Opts){
-		const props = defaults({}, opts, {
-			about: about,
-			version: 0
-		});
+export function pvjs(selector: string, about: string, opts: Opts, callback?: any){
+	let ref = null;
+	const props = defaults({}, opts, {
+		about: about,
+		version: 0
+	});
     let container = document.querySelector(selector);
     ReactDOM.render(
-        <Pvjs {...props} />,
-        container
-    )
+        <Pvjs {...props} ref={pvjs => ref = pvjs}/>,
+        container,
+		(_) => {
+			callback(ref)
+		}
+    );
 }
 
 declare var window: any;

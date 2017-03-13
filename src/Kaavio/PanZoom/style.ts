@@ -1,8 +1,4 @@
-import {style, cssRaw} from 'typestyle';
-
-cssRaw(`
-    @import('boot)
-`);
+import {style} from 'typestyle';
 
 export const styles = {
     zoomControlsWrapper: {

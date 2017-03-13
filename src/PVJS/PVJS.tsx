@@ -9,9 +9,13 @@ import {DoubleStrokeFilter} from '../Kaavio/filters/DoubleStrokeFilter'
 import {Kaavio} from '../Kaavio/Kaavio'
 let gpml2pvjson = require('gpml2pvjson').default;
 import {BridgeDbRenderer} from './BridgeDb/BridgeDb';
+import {Manipulator} from "../Kaavio/manipulator/manipulator";
 
 export class Pvjs extends React.Component<any, any> {
     pathwayRequest: Observable<any>;
+    kaavioRef: any;
+    manipulator: Manipulator;
+
     constructor(props) {
         const customStyle = props.customStyle || {};
         super(props);
@@ -107,6 +111,7 @@ export class Pvjs extends React.Component<any, any> {
     componentDidMount() {
         let that = this;
         that.getPathway();
+        that.manipulator = that.kaavioRef.manipulator;
     }
 
     // TODO is this correct? Or should we use componentWillUpdate?
@@ -122,6 +127,10 @@ export class Pvjs extends React.Component<any, any> {
         let that = this;
         // TODO cancel any pending network requests, possibly something like this:
         //that.pathwayRequest.dispose();
+    }
+
+    getManipulator(){
+        return this.manipulator;
     }
 
     render() {
@@ -152,7 +161,7 @@ export class Pvjs extends React.Component<any, any> {
 
         return (
             <div>
-                <Kaavio id={id} pvjson={pvjson} customStyle={/*customStyle*/WikiPathwaysDefaultDisplayStyle}
+                <Kaavio id={id} pvjson={pvjson} customStyle={/*customStyle*/WikiPathwaysDefaultDisplayStyle} ref={kaavio => this.kaavioRef = kaavio}
                         edgeDrawers={edgeDrawers} icons={icons} markerDrawers={markerDrawers} filters={filters} />
                 <BridgeDbRenderer/>
             </div>

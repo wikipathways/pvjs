@@ -7,6 +7,7 @@ import {Diagram} from './components/Diagram';
 import {normalize, setupPage} from 'csstips';
 import {PanZoom} from "./PanZoom/PanZoom";
 import {Manipulator} from './manipulator';
+import {BehaviorSubject, Observable} from "rxjs";
 
 // pullAllWith is missing from the lodash typings so just require for now
 // See issue: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/13747
@@ -19,9 +20,13 @@ export interface highlightedNode {
 }
 
 export class Kaavio extends React.Component<any, any> {
+	// Observable for other components/services to listen to to check kaavio is ready
+	private kaavioReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
+	panZoomEnabled$: Observable<boolean> = this.kaavioReady.asObservable();
+
 	diagramRef: any;
 	panZoomRef: any;
-	private manipulator: Manipulator;
+	manipulator: Manipulator;
 	private highlightedNodes: highlightedNode[] = []; // A stack of the highlighted nodes that is pushed and popped
 
 	constructor(props) {
@@ -64,17 +69,17 @@ export class Kaavio extends React.Component<any, any> {
 		});
 	}
 
-	componentDidMount(){
-		this.setupManipulator()
+	componentDidUpdate(prevProps, prevState){
+		this.panZoomRef.panZoomEnabled.subscribe(res => {
+			if(res) this.kaavioReady.next(true);
+		});
+		this.setupManipulator();
 	}
 
 	private setupManipulator(): void {
 		if(this.manipulator) this.manipulator = null;
-
-		const diagramDOMNode = ReactDOM.findDOMNode(this.diagramRef) as SVGElement;
-		this.manipulator = new Manipulator(this, diagramDOMNode, this.panZoomRef);
+		this.manipulator = new Manipulator(this, this.panZoomRef);
 	}
-
 
 	pushHighlighted = (highlighted: highlightedNode | highlightedNode[]) =>  {
 		let toHighlight;
@@ -85,11 +90,11 @@ export class Kaavio extends React.Component<any, any> {
 			toHighlight = highlighted;
 		}
 		// Remove any items from the current highlightedNodes array with the same node_id
-		_.pullAllWith(this.highlightedNodes, highlighted, (arrVal, othVal) => {
+		_.pullAllWith(this.highlightedNodes, toHighlight, (arrVal, othVal) => {
 			return arrVal.node_id == othVal.node_id;
 		});
 
-		this.highlightedNodes = this.highlightedNodes.concat(highlighted);
+		this.highlightedNodes = this.highlightedNodes.concat(toHighlight);
 		this.setState({
 			highlightedNodes: this.highlightedNodes
 		});
@@ -117,7 +122,6 @@ export class Kaavio extends React.Component<any, any> {
 		const state = that.state;
 		const { about, customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons, markerDrawers, highlightedNodes } = state;
 		const backgroundColor = customStyle.backgroundColor || state.backgroundColor;
-		console.log(highlightedNodes);
 
 		const entityMap = entities.reduce(function(acc, entity) {
 			acc[entity.id] = entity;

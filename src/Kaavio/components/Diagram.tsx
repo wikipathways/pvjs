@@ -348,11 +348,12 @@ export class Diagram extends React.Component<any, any> {
 						.filter((entity) => !entity.hasOwnProperty('isPartOf'))
 						.map(function(entity) {
 							const Tag = components[entity.kaavioType];
+							const highlighted = getHighlighted(entity, highlightedNodes);
 							return <Tag key={entity.id} backgroundColor={backgroundColor} entity={entity} entityMap={entityMap}
 													svgId={about} edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} iconSuffix={iconSuffix}
 													customStyle={customStyle} highlightedNodes={highlightedNodes}
-													isHighlighted={getHighlighted(entity, highlightedNodes).highlighted}
-													highlightedColor={getHighlighted(entity, highlightedNodes).color} />
+													isHighlighted={highlighted.highlighted}
+													highlightedColor={highlighted.color} />
 						})
 				}
     	</g>

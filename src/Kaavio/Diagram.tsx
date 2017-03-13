@@ -176,6 +176,7 @@ export class Diagram extends React.Component<any, any> {
 		let that = this;
 		const state = that.state;
 		const { backgroundColor, customStyle, edgeDrawers, elementMap, filters, height, icons, iconsLoaded, name, organism, markerDrawers, width, zIndices } = state;
+		console.log()
 
 		const edges = this.getZIndexElements()
 			.filter((element) => element.pvjsonType === 'Edge');

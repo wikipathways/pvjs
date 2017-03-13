@@ -18,6 +18,7 @@ import 'rxjs/add/observable/dom/ajax';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/let';
 import 'rxjs/add/operator/map';
+import {Manipulator} from "./Kaavio/manipulator/manipulator";
 
 // TODO move this into utils
 // Create a string of citation numbers for display,
@@ -68,6 +69,9 @@ function createPublicationXrefString(displayNumbers) {
 
 export class Pvjs extends React.Component<any, any> {
 	pathwayRequest: Observable<any>;
+	kaavioRef: any;
+	manipulator: Manipulator;
+
   constructor(props) {
 		const customStyle = props.customStyle || {};
 		super(props);
@@ -243,6 +247,10 @@ export class Pvjs extends React.Component<any, any> {
 		that.getPathway();
 	}
 
+	componentDidUpdate(){
+		this.manipulator = this.kaavioRef.manipulator;
+	}
+
 	// TODO is this correct? Or should we use componentWillUpdate?
 //	componentDidUpdate(prevProps, prevState) {
 //		let that = this;
@@ -280,7 +288,7 @@ export class Pvjs extends React.Component<any, any> {
 		const { about, customStyle, detailPanelOpen, pvjson, filters, selected } = state;
 
 		return <section>
-			<Kaavio handleClick={that.handleClick.bind(that)} about={about}
+			<Kaavio ref={kaavio => this.kaavioRef = kaavio} handleClick={that.handleClick.bind(that)} about={about}
 							entities={pvjson.entities}
 							name={pvjson.name}
 							width={pvjson.width}

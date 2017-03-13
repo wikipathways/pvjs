@@ -16,25 +16,34 @@ export class PanZoom extends React.Component<any, any> {
     }
 
     componentWillUpdate(nextProps, nextState){
-        let node: SVGElement = ReactDOM.findDOMNode(nextProps.diagram) as SVGElement;
-        SVGPanZoom(node, {
-                controlIconsEnabled: false,
-                fit: true,
-                center: true,
-                minZoom: 0.1,
-                maxZoom: 20.0,
-                zoomEnabled: false,
-                customEventsHandler: {
-                    init: (options) => {
-                        this.panZoom = options.instance;
-                        this.panZoomEnabled.next(true)
-                    },
-                    haltEventListeners: [],
-                    destroy: (_) => {}
-                }
-            }
-        );
+        this.init(nextProps.diagram);
     }
+
+    destroy = () => {
+        if(! this.panZoom) return;
+        this.panZoom.destroy();
+    };
+
+    init = (diagram?) => {
+        if(! diagram) diagram = this.props.diagram;
+        let node: SVGElement = ReactDOM.findDOMNode(diagram) as SVGElement;
+        SVGPanZoom(node, {
+            controlIconsEnabled: false,
+            fit: true,
+            center: true,
+            minZoom: 0.1,
+            maxZoom: 20.0,
+            zoomEnabled: false,
+            customEventsHandler: {
+                init: (options) => {
+                    this.panZoom = options.instance;
+                    this.panZoomEnabled.next(true)
+                },
+                haltEventListeners: [],
+                destroy: (_) => {}
+            }
+        });
+    };
 
     zoomIn = () => {
       this.panZoom.zoomIn()

@@ -3,6 +3,7 @@
 import {Node} from './Node';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import * as _ from 'lodash';
 
 export class Entity extends React.Component<any, any> {
 	constructor(props) {
@@ -17,6 +18,21 @@ export class Entity extends React.Component<any, any> {
 		const nextIconsLoaded = nextProps.iconsLoaded;
 		if (prevIconsLoaded !== nextIconsLoaded) {
 			that.setState({iconsLoaded: nextIconsLoaded});
+		}
+
+		// Check if the children have changed
+		// This is inefficient since not all the children may have changed. Why is there an entity wrapper?
+		// TODO: Refactor the entity to make children updates more efficient
+
+		const nextChildren = nextProps.children;
+		const prevChildren = prevProps.children;
+
+		const diffArr = _.difference(prevChildren, nextChildren);
+
+		if(diffArr.length > 0 ){
+			that.setState({
+				children: nextChildren
+			})
 		}
 	}
 
