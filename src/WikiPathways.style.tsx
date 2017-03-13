@@ -41,16 +41,24 @@ export const DataNodeClass = style({
 	[` .textlabel`]: {
 		fill: '#fff',
 	},
+	[` .Highlighted`]: {
+		opacity: 0.6,
+		clipPath: 'url(#rounded-rectangle-clip-path)',
+		strokeWidth: '0px'
+	},
 	[`&.Rna`]: {
 		[`& .Icon`]: {
 			fill: '#9453A7',
-		},
+		}
 	},
 	[`&.Metabolite`]: {
 		[`& .Icon`]: {
 			clipPath: 'none',
 			fill: '#0099FF',
 		},
+		[`& .Highlighted`]: {
+			clipPath: 'none'
+		}
 	},
 	[`&.Pathway`]: {
 		[`& .Icon`]: {
@@ -64,6 +72,9 @@ export const DataNodeClass = style({
 		[`& .textlabel`]: {
 			fill: '#75C95C',
 		},
+		[`& .Highlighted`]: {
+			clipPath: 'none'
+		}
 	},
 });
 
