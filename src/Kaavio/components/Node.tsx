@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Entity} from './Entity';
 import Text from './Text';
+import * as _ from 'lodash';
 
 const textAlignToAlign = {
 	left: 'left',
@@ -20,29 +21,16 @@ export class Node extends React.Component<any, any> {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		let that = this;
-		const prevProps = that.props;
-		const prevIconsLoaded = prevProps.iconsLoaded;
-		const nextIconsLoaded = nextProps.iconsLoaded;
-		if (prevIconsLoaded !== nextIconsLoaded) {
-			that.setState({iconsLoaded: nextIconsLoaded});
-		}
-
-		const prevHighlightedColor = prevProps.highlightedColor;
-		const prevHighlighted = prevProps.isHighlighted;
-		const {isHighlighted, highlightedColor} = nextProps;
-		if((isHighlighted != prevHighlighted) || (highlightedColor != prevHighlightedColor)) {
-			this.setState({
-				isHighlighted: isHighlighted,
-				highlightedColor: highlightedColor
-			})
-		}
+		this.setState({
+			highlightedNodes: nextProps.highlightedNodes,
+			children: nextProps.children
+		});
 	}
 
   render() {
 		let that = this;
 		const state = that.state;
-		const { children, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, isHighlighted, highlightedColor} = state;
+		const { children, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, highlightedNodes} = state;
 		const { backgroundColor, borderWidth, color, drawAs, filter,
 						fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, height,
 						id, padding, rotation, strokeDasharray, textAlign,

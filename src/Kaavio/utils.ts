@@ -35,7 +35,8 @@ export function getHighlighted(entity, highlightedNodes) {
         highlighted: false,
         color: null
     };
-    // Only allow nodes to be highlighted
+
+    // Only allow nodes and edges to be highlighted
     if((entity.kaavioType != 'Node') && (entity.kaavioType != 'Edge')) return result;
 
     let matched: highlightedNode = _.find(highlightedNodes, (value, index) => {

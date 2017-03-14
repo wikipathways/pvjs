@@ -4,6 +4,7 @@ import {Node} from './Node';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as _ from 'lodash';
+import {getHighlighted} from "../utils";
 
 export class Entity extends React.Component<any, any> {
 	constructor(props) {
@@ -20,23 +21,16 @@ export class Entity extends React.Component<any, any> {
 			that.setState({iconsLoaded: nextIconsLoaded});
 		}
 
-		const prevIsHighlighted = prevProps.isHighlighted;
-		const nextIsHighlighted = nextProps.isHighlighted;
-		const prevHighlightedColor = prevProps.highlightedColor;
-		const nextHighlightedColor = nextProps.highlightedColor;
-
-		if((prevIsHighlighted !== nextIsHighlighted) || (prevHighlightedColor !== nextHighlightedColor)){
-			that.setState({
-				isHighlighted: nextIsHighlighted,
-				highlightedColor: nextHighlightedColor
-			})
-		}
+		that.setState({
+			highlightedNodes: nextProps.highlightedNodes,
+			children: nextProps.children
+		});
 	}
 
 	render() {
 		let that = this;
 		const state = that.state;
-		const { about, children, customStyle, edgeDrawers, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, organism, isHighlighted, highlightedColor } = state;
+		const { about, children, customStyle, edgeDrawers, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, organism, highlightedNodes } = state;
 		const { burrs, backgroundColor, borderWidth, color, drawAs, filter,
 			fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, height,
 			id, padding, points, rotation, strokeDasharray, textAlign,
@@ -44,7 +38,7 @@ export class Entity extends React.Component<any, any> {
 
 		let entityTransform;
 		if (x || y || rotation) {
-			entityTransform = `translate(${entity.x} ${entity.y})`;
+			entityTransform = `translate(${x} ${y})`;
 			if (rotation) {
 				entityTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
 			}
@@ -60,6 +54,10 @@ export class Entity extends React.Component<any, any> {
 			}, [])
 		)
 			.join(' ') : null;
+
+		const highlighted = getHighlighted(entity, highlightedNodes);
+		const isHighlighted = highlighted.highlighted;
+		const highlightedColor = highlighted.color;
 
 		return (
 			<g id={id}

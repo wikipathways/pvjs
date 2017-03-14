@@ -1,4 +1,4 @@
-import {intersection, keys} from 'lodash';
+import {intersection, keys, forOwn} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {getMarkerPropertyValue, MARKER_PROPERTY_NAMES} from './Marker';
@@ -14,16 +14,9 @@ export class Edge extends React.Component<any, any> {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		let prevProps = this.props;
-		const prevHighlightedColor = prevProps.highlightedColor;
-		const prevHighlighted = prevProps.isHighlighted;
-		const {isHighlighted, highlightedColor} = nextProps;
-		if((isHighlighted != prevHighlighted) || (highlightedColor != prevHighlightedColor)) {
-			this.setState({
-				isHighlighted: isHighlighted,
-				highlightedColor: highlightedColor
-			})
-		}
+		this.setState({
+			highlightedNodes: nextProps.highlightedNodes
+		})
 	}
 
   render() {

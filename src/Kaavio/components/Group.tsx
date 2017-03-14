@@ -1,9 +1,8 @@
-import {isArray, isNaN, isNumber} from 'lodash';
+import {isArray, isNaN, isNumber, forOwn} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Edge} from './Edge';
 import {Node} from './Node';
-import {getHighlighted} from "../utils";
 
 const components = {
 	Edge: Edge,
@@ -19,34 +18,44 @@ export class Group extends React.Component<any, any> {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		let that = this;
-		const prevProps = that.props;
-		const prevIconsLoaded = prevProps.iconsLoaded;
-		const nextIconsLoaded = nextProps.iconsLoaded;
-		if (prevIconsLoaded !== nextIconsLoaded) {
-			that.setState({iconsLoaded: nextIconsLoaded});
-		}
+		this.setState({
+			highlightedNodes: nextProps.highlightedNodes
+		});
 	}
 
   render() {
 		let that = this;
 		const { customStyle, entityMap, entity, edgeDrawers, icons, iconsLoaded, iconSuffix, highlightedNodes } = that.state;
 		const { backgroundColor, borderWidth, color, drawAs, filter, fillOpacity, height, id, rotation, strokeDasharray, textContent, width, x, y } = entity;
-	  	const entityHighlighted = getHighlighted(entity, highlightedNodes);
-
-		const children = 	entity.contains
+		const children = entity.contains
 			.map((containedId) => entityMap[containedId])
 			.map(function(contained) {
 				const containedKaavioType = contained.kaavioType;
+
 				if (['Node', 'Burr'].indexOf(containedKaavioType) > -1) {
-					contained.x = contained.x - x;
-					contained.y = contained.y - y;
+					// Keep a reference to the origin X and Y values in case of a re-render
+					if(! contained.origX) {
+						contained.origX = contained.x
+					}
+					if(! contained.origY ){
+						contained.origY = contained.y;
+					}
+					contained.x = contained.origX - x;
+					contained.y = contained.origY - y;
 				} else if (containedKaavioType === 'Edge') {
 					// TODO use gpml2pvjson point definition
-					contained.points = contained.points.map(function(point: {x: number, y: number}) {
+					contained.points = contained.points.map(function(point: {x: number, y: number, origX? : number, origY?: number}) {
 						// NOTE: notice side effects
-						point.x = point.x - x;
-						point.y = point.y - y;
+						// Keep a reference to the origin X and Y values in case of a re-render
+						if(! point.origX) {
+							point.origX = contained.x
+						}
+						if(! point.origY ){
+							point.origY = contained.y;
+						}
+
+						point.x = point.origX - x;
+						point.y = point.origY - y;
 						return point;
 					});
 				} else {
@@ -58,7 +67,6 @@ export class Group extends React.Component<any, any> {
 			// Why do they have x and y properties now?
 			//.filter(el => el.kaavioType !== 'Citation')
 			.map(function(contained) {
-				const highlighted = getHighlighted(contained, highlightedNodes);
 				const SubTag = components[contained.kaavioType];
 				return <SubTag key={contained.id} backgroundColor={backgroundColor}
 								customStyle={customStyle}
@@ -69,7 +77,6 @@ export class Group extends React.Component<any, any> {
 								iconsLoaded={iconsLoaded}
 								iconSuffix={iconSuffix}
 							    highlightedNodes={highlightedNodes}
-							    isHighlighted={highlighted.highlighted} highlightedColor={highlighted.color}
 								/>
 			});
 
@@ -83,7 +90,6 @@ export class Group extends React.Component<any, any> {
 						iconSuffix={iconSuffix}
 						children={children}
 					 	highlightedNodes={highlightedNodes}
-					    isHighlighted={entityHighlighted.highlighted} highlightedColor={entityHighlighted.color}
 						/>;
 	}
 }
