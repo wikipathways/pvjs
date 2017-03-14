@@ -71,9 +71,11 @@ export class Entity extends React.Component<any, any> {
 
 				<defs>
 					<filter id={"highlightEntity-for-" + id} key={"highlight-for-" + id}>
-						<feFlood floodColor={highlightedColor} floodOpacity="0.6" result="highlight" />
-						<feComposite in="highlight" in2="SourceGraphic"
-									 operator="atop"/>
+						<feColorMatrix in="SourceGraphic"
+									   type="saturate" values="0" result="toHighlight"/> {/* Desaturate all colours before highlighting */}
+						<feFlood floodColor={highlightedColor} floodOpacity="0.5" result="highlight" />
+						<feComposite in="highlight" in2="toHighlight"
+									 operator="atop" result="output"/>
 					</filter>
 				</defs>
 			{
