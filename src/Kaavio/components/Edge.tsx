@@ -12,6 +12,21 @@ export class Edge extends React.Component<any, any> {
 		// problem for markers like Catalysis.
 		this.state = {...props};
 	}
+
+	componentWillReceiveProps(nextProps) {
+		let prevProps = this.props;
+		const prevHighlightedColor = prevProps.highlightedColor;
+		const prevHighlighted = prevProps.isHighlighted;
+		const {isHighlighted, highlightedColor} = nextProps;
+		if((isHighlighted != prevHighlighted) || (highlightedColor != prevHighlightedColor)) {
+			console.log("Updating edge")
+			this.setState({
+				isHighlighted: isHighlighted,
+				highlightedColor: highlightedColor
+			})
+		}
+	}
+
   render() {
 		let that = this;
 		const state = that.state;
