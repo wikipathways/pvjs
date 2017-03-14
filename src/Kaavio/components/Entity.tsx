@@ -67,15 +67,13 @@ export class Entity extends React.Component<any, any> {
 				  className={className}
 				  typeof={entity.type.join(' ')}
 				  color={color}
-				  transform={entityTransform} filter={isHighlighted? 'url(#highlightEntity)': null }>
+				  transform={entityTransform} filter={isHighlighted? 'url(#highlightEntity-for-' + id + ')': null }>
 
-				<defs>
-					<filter id="highlightEntity">
-						<feFlood floodColor={highlightedColor} floodOpacity="0.8" result="highlight" />
+					<filter id={"highlightEntity-for-" + id} key={"highlight-for-" + id}>
+						<feFlood floodColor={highlightedColor} floodOpacity="0.6" result="highlight" />
 						<feComposite in="highlight" in2="SourceGraphic"
 									 operator="atop"/>
 					</filter>
-				</defs>
 			{
 				/*
 				 // TODO it would be nice to add the attribute resource to the 'g' element above,
