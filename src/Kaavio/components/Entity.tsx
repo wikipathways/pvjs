@@ -23,6 +23,7 @@ export class Entity extends React.Component<any, any> {
 
 		that.setState({
 			highlightedNodes: nextProps.highlightedNodes,
+			// TODO: This is problematic since all the children re-render. Fix this
 			children: nextProps.children
 		});
 	}

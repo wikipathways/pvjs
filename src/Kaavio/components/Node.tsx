@@ -23,6 +23,7 @@ export class Node extends React.Component<any, any> {
 	componentWillReceiveProps(nextProps) {
 		this.setState({
 			highlightedNodes: nextProps.highlightedNodes,
+			// TODO: This is problematic since all the children re-render. Fix this
 			children: nextProps.children
 		});
 	}
