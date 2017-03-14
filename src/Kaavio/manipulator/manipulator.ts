@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import $ = require('jquery');
 import d3 = require('d3');
 import * as SVGPanZoom from 'svg-pan-zoom';
+import * as ReactDOM from 'react-dom';
 
 export class Manipulator {
     private diagram;
@@ -15,9 +16,10 @@ export class Manipulator {
         // Subscribe to the panZoomEnabled observable, wait for panZoom to be ready.
         kaavioRef.kaavioReady.subscribe(res => {
             if(res === true) {
-                this.panZoom = panZoomRef.panZoom;
+                this.panZoom = panZoomRef;
             }
             this.kaavio = kaavioRef;
+            this.diagram = ReactDOM.findDOMNode(kaavioRef.diagramRef);
         })
     }
 
@@ -147,18 +149,31 @@ export class Manipulator {
      * @returns {SVGLocatable}
      */
     private findNode(node_id): SVGLocatable {
-        return d3.select(this.diagram).select("g path#" + node_id)[0][0];
+        return d3.select(this.diagram).select("g#" + node_id)[0][0];
+    }
+
+    /**
+     * Return the parent viewport that all other elements are relative to
+     * @returns {HTMLElement}
+     */
+    private getViewport(): SVGLocatable {
+        return d3.select(this.diagram).select(".svg-pan-zoom_viewport")[0][0]
     }
 
     private getNodeBBox(node_id: string): {x: number, y: number, height: number, width: number} {
         let node = this.findNode(node_id);
-        let clientRect = node.getBBox();
+        let viewport = this.getViewport();
+        let svg = this.diagram;
+        let BBox = node.getBBox();
+        let matrix = node.getCTM();
+        let viewportOffset = viewport.getCTM();
+        let svgOffset = svg.getBoundingClientRect();
 
         return {
-            x: clientRect.x,
-            y: clientRect.y,
-            height: clientRect.height,
-            width: clientRect.width
+            x: matrix.e - viewportOffset.e - viewportOffset.a,
+            y: matrix.f - viewportOffset.f - viewportOffset.d,
+            height: BBox.height,
+            width: BBox.width
         }
     }
 
@@ -172,7 +187,7 @@ export class Manipulator {
 
         node_ids.forEach(node_id => {
             const node = this.findNode(node_id);
-            const clientRect = node.getBBox();
+            const clientRect = this.getNodeBBox(node_id);
 
             const nodeHighestX = clientRect.x + clientRect.width;
             if (!coordLimits.highestX ||  nodeHighestX > coordLimits.highestX) coordLimits.highestX = nodeHighestX;
@@ -219,8 +234,8 @@ export class Manipulator {
         const realZoom = this.panZoom.getSizes().realZoom;
 
         return {
-            x: x * realZoom,
-            y: y * realZoom
+            x: x * (realZoom),
+            y: y * (realZoom)
         }
     }
 
@@ -307,7 +322,7 @@ export class Manipulator {
             if(node_id.length === 1) BBox = this.getNodeBBox(node_id[0]);
             else BBox = this.getGroupBBox(node_id);
         }
-        const coordinates = this.addOffsetToCoordinates(this.addRealZoomToCoordinates(this.getCenterCoordinates(BBox)));
+        const coordinates = this.addOffsetToCoordinates(this.getCenterCoordinates(BBox));
         this.pan(coordinates);
     }
 
@@ -315,12 +330,6 @@ export class Manipulator {
      * Reset the pan, zoom and center
      */
     resetPanZoom(): void {
-        this.panZoom.resetPan();
-        this.panZoom.resetZoom();
-        this.panZoom.center();
-    }
-
-    toggleAnnotations(node_id): any {
-
+        this.panZoom.resetPanZoom();
     }
 }

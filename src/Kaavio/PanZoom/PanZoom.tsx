@@ -45,6 +45,18 @@ export class PanZoom extends React.Component<any, any> {
         });
     };
 
+    getSizes = () => {
+        return this.panZoom.getSizes();
+    };
+
+    zoom = (zoom_perc: number) => {
+        this.panZoom.zoom(zoom_perc);
+    };
+
+    pan = (coordinates: {x: number, y: number}) => {
+        this.panZoom.pan(coordinates);
+    };
+
     zoomIn = () => {
       this.panZoom.zoomIn()
     };
@@ -53,8 +65,8 @@ export class PanZoom extends React.Component<any, any> {
         this.panZoom.zoomOut();
     };
 
-    resetZoom = () => {
-        this.panZoom.resetZoom();
+    resetPanZoom = () => {
+        this.panZoom.reset();
     };
 
     render(){
@@ -62,7 +74,7 @@ export class PanZoom extends React.Component<any, any> {
             <div style={styles.zoomControlsWrapper}>
                 <button style={styles.zoomControl} className="zoomInClass btn btn-default" onClick={this.zoomIn}><span className="glyphicon glyphicon-zoom-in"> </span> </button>
                 <button style={styles.zoomControl} className="zoomOutClass btn btn-default" onClick={this.zoomOut}><span className="glyphicon glyphicon-zoom-out"> </span> </button>
-                <button style={styles.zoomControl} className="resetZoomClass btn btn-default" onClick={this.resetZoom}>Reset</button>
+                <button style={styles.zoomControl} className="resetZoomClass btn btn-default" onClick={this.resetPanZoom}>Reset</button>
             </div>
         )
     }

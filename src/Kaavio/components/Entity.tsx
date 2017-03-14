@@ -20,18 +20,15 @@ export class Entity extends React.Component<any, any> {
 			that.setState({iconsLoaded: nextIconsLoaded});
 		}
 
-		// Check if the children have changed
-		// This is inefficient since not all the children may have changed. Why is there an entity wrapper?
-		// TODO: Refactor the entity to make children updates more efficient
+		const prevIsHighlighted = prevProps.isHighlighted;
+		const nextIsHighlighted = nextProps.isHighlighted;
+		const prevHighlightedColor = prevProps.highlightedColor;
+		const nextHighlightedColor = nextProps.highlightedColor;
 
-		const nextChildren = nextProps.children;
-		const prevChildren = prevProps.children;
-
-		const diffArr = _.difference(prevChildren, nextChildren);
-
-		if(diffArr.length > 0 ){
+		if((prevIsHighlighted !== nextIsHighlighted) || (prevHighlightedColor !== nextHighlightedColor)){
 			that.setState({
-				children: nextChildren
+				isHighlighted: nextIsHighlighted,
+				highlightedColor: nextHighlightedColor
 			})
 		}
 	}
@@ -39,7 +36,7 @@ export class Entity extends React.Component<any, any> {
 	render() {
 		let that = this;
 		const state = that.state;
-		const { about, children, customStyle, edgeDrawers, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, organism } = state;
+		const { about, children, customStyle, edgeDrawers, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, organism, isHighlighted, highlightedColor } = state;
 		const { burrs, backgroundColor, borderWidth, color, drawAs, filter,
 			fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, height,
 			id, padding, points, rotation, strokeDasharray, textAlign,
@@ -64,12 +61,21 @@ export class Entity extends React.Component<any, any> {
 		)
 			.join(' ') : null;
 
-		return <g id={id}
+		return (
+			<g id={id}
 				  key={id}
 				  className={className}
 				  typeof={entity.type.join(' ')}
 				  color={color}
-				  transform={entityTransform}>
+				  transform={entityTransform} filter={isHighlighted? 'url(#highlightEntity)': null }>
+
+				<defs>
+					<filter id="highlightEntity">
+						<feFlood floodColor={highlightedColor} floodOpacity="0.8" result="highlight" />
+						<feComposite in="highlight" in2="SourceGraphic"
+									 operator="atop"/>
+					</filter>
+				</defs>
 			{
 				/*
 				 // TODO it would be nice to add the attribute resource to the 'g' element above,
@@ -135,7 +141,13 @@ export class Entity extends React.Component<any, any> {
 			 <g property="rdfa:copy" href={wpType}></g>
 			 <g property="biopax:entityReference" content="identifiers:ec-code/3.6.3.14"></g>
 			 */}
-
-		</g>
+			{
+				isHighlighted?
+					<rect
+						id={`highlight-for-${id}`}
+						fill={highlightedColor}
+						className="Highlighted"/>: null
+			}
+		</g>)
 	}
 }

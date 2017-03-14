@@ -31,7 +31,7 @@ export class Node extends React.Component<any, any> {
 		const prevHighlightedColor = prevProps.highlightedColor;
 		const prevHighlighted = prevProps.isHighlighted;
 		const {isHighlighted, highlightedColor} = nextProps;
-		if((isHighlighted != prevHighlighted) && (highlightedColor != prevHighlightedColor)) {
+		if((isHighlighted != prevHighlighted) || (highlightedColor != prevHighlightedColor)) {
 			this.setState({
 				isHighlighted: isHighlighted,
 				highlightedColor: highlightedColor
@@ -150,17 +150,6 @@ export class Node extends React.Component<any, any> {
 																}}
 																padding={padding}
 																text={textContent}/> : null,
-
-					isHighlighted?
-						<rect
-							id={`highlight-for-${id}`}
-							key={`highlight-for-${id}`}
-							x="0"
-							y="0"
-							width={width + 'px'}
-							height={height + 'px'}
-							fill={highlightedColor}
-							className="Highlighted"/>: null,
 		].concat(children || [])} />;
 	}
 }
