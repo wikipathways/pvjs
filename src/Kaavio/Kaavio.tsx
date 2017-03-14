@@ -5,7 +5,7 @@ import {Diagram} from './components/Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./kaavio.css');
 import {normalize, setupPage} from 'csstips';
-import {PanZoom} from "./PanZoom/PanZoom";
+import {PanZoom} from "./components/PanZoom";
 import {Manipulator} from './manipulator';
 import {BehaviorSubject, Observable} from "rxjs";
 

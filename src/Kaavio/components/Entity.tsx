@@ -4,7 +4,28 @@ import {Node} from './Node';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as _ from 'lodash';
-import {getHighlighted} from "../utils";
+import {highlightedNode} from "../Kaavio";
+
+export function getHighlighted(entity, highlightedNodes) {
+	let result = {
+		highlighted: false,
+		color: null
+	};
+
+	// Only allow nodes and edges to be highlighted
+	if((entity.kaavioType != 'Node') && (entity.kaavioType != 'Edge')) return result;
+
+	let matched: highlightedNode = _.find(highlightedNodes, (value, index) => {
+		return value['node_id'] == entity.id;
+	}) as highlightedNode;
+
+	if (matched) {
+		result.highlighted = true;
+		result.color = matched.color;
+	}
+
+	return result;
+}
 
 export class Entity extends React.Component<any, any> {
 	constructor(props) {
@@ -73,8 +94,8 @@ export class Entity extends React.Component<any, any> {
 						<feColorMatrix in="StrokePaint"
 									   type="saturate" values="0" result="toHighlight"/> {/* Desaturate all colours before highlighting */}
 						<feFlood floodColor={highlightedColor} floodOpacity="0.5" result="highlight" />
-						<feComposite in="highlight" in2="toHighlight"
-									 operator="atop" result="output"/>
+						<feComposite in="highlight" in2="toHighlight" operator="atop" result="output"/>
+
 					</filter>
 				</defs>
 			{

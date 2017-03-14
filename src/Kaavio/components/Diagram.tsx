@@ -19,7 +19,6 @@ import 'rxjs/add/operator/mergeMap';
 import * as validDataUrl from 'valid-data-url';
 import * as _ from 'lodash';
 import {highlightedNode} from "../Kaavio";
-import {getHighlighted } from "../utils";
 
 const components = {
 	Edge: Edge,
@@ -348,7 +347,6 @@ export class Diagram extends React.Component<any, any> {
 						.filter((entity) => !entity.hasOwnProperty('isPartOf'))
 						.map(function(entity) {
 							const Tag = components[entity.kaavioType];
-							const highlighted = getHighlighted(entity, highlightedNodes);
 							return <Tag key={entity.id} backgroundColor={backgroundColor} entity={entity} entityMap={entityMap}
 													svgId={about} edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} iconSuffix={iconSuffix}
 													customStyle={customStyle} highlightedNodes={highlightedNodes}/>
