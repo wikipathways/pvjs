@@ -19,7 +19,6 @@ export class Edge extends React.Component<any, any> {
 		const prevHighlighted = prevProps.isHighlighted;
 		const {isHighlighted, highlightedColor} = nextProps;
 		if((isHighlighted != prevHighlighted) || (highlightedColor != prevHighlightedColor)) {
-			console.log("Updating edge")
 			this.setState({
 				isHighlighted: isHighlighted,
 				highlightedColor: highlightedColor
