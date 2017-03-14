@@ -22,7 +22,7 @@ export interface highlightedNode {
 export class Kaavio extends React.Component<any, any> {
 	// Observable for other components/services to listen to to check kaavio is ready
 	private kaavioReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
-	panZoomEnabled$: Observable<boolean> = this.kaavioReady.asObservable();
+	panZoomEnabled$: Observable<boolean> = this.kaavioReady.asObservable(); // TODO: Name this correctly kaavioReady$
 
 	diagramRef: any;
 	panZoomRef: any;
