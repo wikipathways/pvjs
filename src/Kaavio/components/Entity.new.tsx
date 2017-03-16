@@ -3,7 +3,7 @@ import * as ReactDom from 'react-dom';
 import {highlighter} from "../filters/highlighter";
 import {Text} from './Text.new';
 import {Node} from './Node.new';
-import {EntityProps} from "../typings/EntityProps";
+import {EntityProps} from "../typings";
 
 /**
  * Parent Entity component.
@@ -19,7 +19,7 @@ export class Entity extends React.Component<any, any> {
         // Also use this.props instead of this.state
 
         const {rotation, width, height, type, id, x, y, color, kaavioType, customClass, isHighlighted, highlightedColor,
-            textContent, fontFamily, fontSize, fontStyle, fontWeight, textAlign, textFill } = this.props;
+            textContent, fontFamily, fontSize, fontStyle, fontWeight, textAlign, fontColor} = this.props;
 
         let entityTransform;
         if (x || y || rotation) {
@@ -70,7 +70,7 @@ export class Entity extends React.Component<any, any> {
 
                 <Text id={`text-for-${id}`} key={`text-for-${id}`} className="textlabel" textContent={textContent}
                       fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} fontStyle={fontStyle}
-                      textAlign={textAlign} fill={textFill} x={xSvgText} y={ySvgText}/>
+                      textAlign={textAlign} fontColor={fontColor} x={xSvgText} y={ySvgText}/>
             </g>
         )
     }

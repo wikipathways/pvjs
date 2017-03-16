@@ -4,6 +4,7 @@ import {Observable, AjaxRequest, Subject} from "rxjs";
 import * as _ from 'lodash';
 import * as validDataUrl from 'valid-data-url';
 import {Base64} from 'js-base64';
+import {NodeProps} from "../typings";
 
 /**
  * Node is a rectangle within a Kaavio diagram.
@@ -13,7 +14,7 @@ export class Node extends React.Component<any, any> {
     iconNodeRef: any;
     containerRef: any;
 
-    constructor(props) {
+    constructor(props: NodeProps) {
         super(props);
         this.state = {
             loadedIcon: null,
@@ -81,7 +82,7 @@ export class Node extends React.Component<any, any> {
     }
 
     render(){
-        const { borderWidth, color, filter, height, id, width, textContent}
+        const { borderWidth, color, filter, height, id, width}
             = this.props;
 
         const {loadedIcon} = this.state;

@@ -2,11 +2,12 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import * as _ from 'lodash'
 import SvgText from 'svg-text';
+import {TextProps} from "../typings";
 
 export class Text extends React.Component<any, any> {
     svgRef: any;
 
-    constructor(props){
+    constructor(props: TextProps){
         super(props);
     }
 
@@ -14,11 +15,11 @@ export class Text extends React.Component<any, any> {
         // Anders: I've removed a lot of the custom props in favour of fewer with some defaults.
         // I can't see a use case for many of the ones that were here before. What do you think?
 
-        const {textContent = '', textAlign = 'center', className, fill = 'currentColor', fontFamily = 'serif',
+        const {textContent = '', textAlign = 'center', className, fontColor = 'currentColor', fontFamily = 'serif',
             fontSize = '1rem', fontStyle = 'normal', fontWeight = 'normal', x=0, y=0} = this.props;
 
         const style = {
-            fill: fill,
+            fill: fontColor,
             fontFamily: fontFamily,
             fontSize: fontSize,
             fontStyle: fontStyle,
