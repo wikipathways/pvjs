@@ -7,7 +7,7 @@ import * as validDataUrl from 'valid-data-url';
 import {Base64} from 'js-base64';
 
 /**
- * Component for the Group. Can contain any amount of child nodes/edges#
+ * Component for the Group. Can contain any amount of child nodes/edges
  *
  * Much of this logic is exactly the same as node. For example getting the icon
  * TODO: Make this a HOC of Node
