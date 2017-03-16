@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Text from './Text';
 import {Observable, AjaxRequest, Subject} from "rxjs";
 import * as _ from 'lodash';
 import * as validDataUrl from 'valid-data-url';
@@ -82,7 +81,7 @@ export class Node extends React.Component<any, any> {
     }
 
     render(){
-        const { borderWidth, borderColor, filter, height, id, width}
+        const { borderWidth, color, filter, height, id, width, textContent}
             = this.props;
 
         const {loadedIcon} = this.state;
@@ -98,7 +97,7 @@ export class Node extends React.Component<any, any> {
                     <g dangerouslySetInnerHTML={loadedIcon? {__html: loadedIcon.svgString}: null} />
                     <use id={`icon-for-${id}`} key={`icon-for-${id}`}
                          x="0" y="0" width={width + 'px'} height={height + 'px'} href={loadedIcon? '#' + loadedIcon.id: null} fill="transparent"
-                         filter={!!filter ? `url(#${filter})` : null} stroke={borderColor} strokeWidth={borderWidth}
+                         filter={!!filter ? `url(#${filter})` : null} stroke={color} strokeWidth={borderWidth}
                          typeof="schema:ImageObject" className="Icon"/>
             </g>
         );

@@ -119,10 +119,9 @@ export class Diagram extends React.Component<any, any> {
                         .map(function(entity) {
                             const highlighted = getHighlighted(entity, highlightedNodes);
                             const icon = icons[entity.drawAs];
-                            return <Entity key={entity.id} id={entity.id} kaavioType={entity.kaavioType} x={entity.x}
-                                           y={entity.y} width={entity.width} height={entity.height}
-                                           rotation={entity.rotation} backgroundColor={entity.backgroundColor}
-                                           icon={icon? icon: null} edgeDrawers={edgeDrawers}
+                            console.log(entity)
+                            return <Entity key={entity.id} {...entity} icon={icon? icon: null} edgeDrawers={edgeDrawers}
+                                           backgroundColor={backgroundColor} customStyle={customStyle}
                                            isHighlighted={highlighted.highlighted} highlightedColor={highlighted.color}
                             />
                         })

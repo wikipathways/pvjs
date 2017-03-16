@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import {getHighlighted} from "../utils/getHighlighted";
 import {highlighter} from "../filters/highlighter";
 import {Text} from './Text.new';
 import {Node} from './Node.new';
@@ -15,53 +14,12 @@ export class Entity extends React.Component<any, any> {
         super(props);
     }
 
-    /**
-     * Render the text for the component
-     * Anders: makes things neater. See option 2: http://devnacho.com/2016/02/15/different-ways-to-add-if-else-statements-in-JSX/
-     * TODO: Should extract this logic into the Text component
-     * @returns {any}
-     */
-    renderText(){
-        const {rotation, width, height, type, id, x, y, color, kaavioType, customClass, isHighlighted, highlightedColor,
-            text } = this.props;
-
-        if(!text) return;
-        // const alignSvgTextToXSvgText = {
-        //     left: 0,
-        //     center: width / 2,
-        //     right: width,
-        // };
-        // const xSvgText = alignSvgTextToXSvgText[alignSvgText];
-        //
-        // const verticalAlignToYSvgText = {
-        //     top: 0,
-        //     middle: height / 2,
-        //     bottom: height,
-        // };
-        // const ySvgText = verticalAlignToYSvgText[verticalAlign];
-
-        // const textAttrs = {
-        //     fill: 'currentColor',
-        //     fontFamily: fontFamily,
-        //     fontSize: fontSize,
-        //     fontStyle: fontStyle,
-        //     fontWeight: fontWeight
-        // };
-        // console.log(id)
-        return (
-           <Text id={`text-for-${id}`} key={`text-for-${id}`} textOverflow="clip" align="center"
-                 verticalAlign="middle" className="textlabel"
-                 text={text}/>
-        )
-    }
-
     render() {
         // Anders: Here, I only show the props that are required by the component.
         // Also use this.props instead of this.state
-        // using let that = this should be redundant in ES6.
-        // See: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions
 
-        const {rotation, width, height, type, id, x, y, color, kaavioType, customClass, isHighlighted, highlightedColor } = this.props;
+        const {rotation, width, height, type, id, x, y, color, kaavioType, customClass, isHighlighted, highlightedColor,
+            textContent, fontFamily, fontSize, fontStyle, fontWeight, textAlign, textFill } = this.props;
 
         let entityTransform;
         if (x || y || rotation) {
@@ -70,6 +28,14 @@ export class Entity extends React.Component<any, any> {
                 entityTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
             }
         }
+
+        const alignSvgTextToXSvgText = {
+            left: 0,
+            center: width / 2,
+            right: width,
+        };
+        const xSvgText = alignSvgTextToXSvgText[textAlign];
+        const ySvgText = height / 2; // Anders: I just set this to always be middle.
 
         // Anders: I think it's best to be explicit. Instead of using components[kaavioType] do this.
         // I know it's a bit redundant but in this case I think it aids comprehension
@@ -101,7 +67,10 @@ export class Entity extends React.Component<any, any> {
                 </defs>
 
                 {child}
-                {this.renderText()}
+
+                <Text id={`text-for-${id}`} key={`text-for-${id}`} className="textlabel" textContent={textContent}
+                      fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} fontStyle={fontStyle}
+                      textAlign={textAlign} fill={textFill} x={xSvgText} y={ySvgText}/>
             </g>
         )
     }

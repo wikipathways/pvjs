@@ -5,7 +5,7 @@ import {Group} from './Group';
 import {Base64} from 'js-base64';
 import {defaults, find, intersection, keys, forOwn, omitBy, toPairs, uniq, values} from 'lodash';
 import {Marker, getMarkerId, MARKER_PROPERTY_NAMES, NON_FUNC_IRI_MARKER_PROPERTY_VALUES} from './Marker';
-import {Node} from './Node.new';
+import {Node} from './Node';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Observable} from 'rxjs/Observable';
@@ -19,8 +19,6 @@ import 'rxjs/add/operator/mergeMap';
 import * as validDataUrl from 'valid-data-url';
 import * as _ from 'lodash';
 import {highlightedNode} from "../Kaavio";
-import {getHighlighted} from "../utils/getHighlighted";
-import {Entity} from "./Entity.new";
 
 const components = {
 	Edge: Edge,
@@ -29,12 +27,12 @@ const components = {
 };
 
 export class Diagram extends React.Component<any, any> {
-  constructor(props) {
+	constructor(props) {
 		super(props);
 		this.state = {...props};
 		this.state.iconsLoaded = false;
 		this.state.iconSuffix = new Date().toISOString().replace(/\W/g, '');
-  }
+	}
 
 	componentWillReceiveProps(nextProps) {
 		let that = this;
@@ -145,21 +143,21 @@ export class Diagram extends React.Component<any, any> {
 		const markerBackgroundColors: ReadonlyArray<string> = [backgroundColor];
 
 		const markerColors = Array.from(
-				edges
-					.filter((edge) => edge.hasOwnProperty('color'))
-					.reduce(function(acc, edge) {
-						acc.add(edge.color);
-						return acc;
-					}, new Set())
+			edges
+				.filter((edge) => edge.hasOwnProperty('color'))
+				.reduce(function(acc, edge) {
+					acc.add(edge.color);
+					return acc;
+				}, new Set())
 		);
 
 		const markerNames = Array.from(
-				edges
-					.reduce(function(acc, edge: any) {
-						intersection(
-								MARKER_PROPERTY_NAMES,
-								keys(edge)
-						)
+			edges
+				.reduce(function(acc, edge: any) {
+					intersection(
+						MARKER_PROPERTY_NAMES,
+						keys(edge)
+					)
 						.forEach(function(markerLocationType) {
 							const markerName: string & NonFuncIriMarkerPropertyValue = edge[markerLocationType];
 							// we don't want to create a marker def for markers with names like "none"
@@ -167,8 +165,8 @@ export class Diagram extends React.Component<any, any> {
 								acc.add(edge[markerLocationType]);
 							}
 						});
-						return acc;
-					}, new Set())
+					return acc;
+				}, new Set())
 		);
 
 		return markerColors
@@ -176,49 +174,49 @@ export class Diagram extends React.Component<any, any> {
 			.reduce(function(acc: any[], partialInput) {
 				const pairs = toPairs(partialInput);
 				return acc.concat(
-						markerBackgroundColors
-							.map(function(markerBackgroundColor) {
-								return pairs
-									.reduce(function(subAcc: any, pair) {
-										const key = pair[0];
-										const value = pair[1];
-										subAcc[key] = value;
-										subAcc.markerBackgroundColor = markerBackgroundColor;
-										return subAcc;
-									}, {});
-							})
+					markerBackgroundColors
+						.map(function(markerBackgroundColor) {
+							return pairs
+								.reduce(function(subAcc: any, pair) {
+									const key = pair[0];
+									const value = pair[1];
+									subAcc[key] = value;
+									subAcc.markerBackgroundColor = markerBackgroundColor;
+									return subAcc;
+								}, {});
+						})
 				);
 			}, [])
 			.reduce(function(acc: any[], partialInput) {
 				const pairs = toPairs(partialInput);
 				return acc.concat(
-						MARKER_PROPERTY_NAMES
-							.map(function(markerLocationType) {
-								return pairs
-									.reduce(function(subAcc: any, pair) {
-										const key = pair[0];
-										const value = pair[1];
-										subAcc[key] = value;
-										subAcc.markerLocationType = markerLocationType;
-										return subAcc;
-									}, {});
-							})
+					MARKER_PROPERTY_NAMES
+						.map(function(markerLocationType) {
+							return pairs
+								.reduce(function(subAcc: any, pair) {
+									const key = pair[0];
+									const value = pair[1];
+									subAcc[key] = value;
+									subAcc.markerLocationType = markerLocationType;
+									return subAcc;
+								}, {});
+						})
 				);
 			}, [])
 			.reduce(function(acc: any[], partialInput) {
 				const pairs = toPairs(partialInput);
 				return acc.concat(
-						markerNames
-							.map(function(markerName) {
-								return pairs
-									.reduce(function(subAcc: any, pair) {
-										const key = pair[0];
-										const value = pair[1];
-										subAcc[key] = value;
-										subAcc.markerName = markerName;
-										return subAcc;
-									}, {});
-							})
+					markerNames
+						.map(function(markerName) {
+							return pairs
+								.reduce(function(subAcc: any, pair) {
+									const key = pair[0];
+									const value = pair[1];
+									subAcc[key] = value;
+									subAcc.markerName = markerName;
+									return subAcc;
+								}, {});
+						})
 				);
 			}, []) as any[];
 	}
@@ -276,12 +274,12 @@ export class Diagram extends React.Component<any, any> {
 		handleClick(omitBy(defaults({entity: entity}, e), (v, k) => k.indexOf('_') === 0));
 	}
 
-  render() {
+	render() {
 		let that = this;
 		const state = that.state;
 		const { about, backgroundColor, customStyle, edgeDrawers, entityMap, filters,
-						height, icons, iconsLoaded, iconSuffix,
-						name, organism, markerDrawers, width, zIndices, highlightedNodes } = state;
+			height, icons, iconsLoaded, iconSuffix,
+			name, organism, markerDrawers, width, zIndices, highlightedNodes } = state;
 
 		const zIndexedEntities = zIndices
 			.map((id) => entityMap[id]);
@@ -291,8 +289,8 @@ export class Diagram extends React.Component<any, any> {
 		const groupedZIndexedEntities = that.getGroupedZIndexedEntities(zIndexedEntities);
 
 		return <svg xmlns="http://www.w3.org/2000/svg"
-						id={about}
-						prefix={[
+					id={about}
+					prefix={[
 							'biopax: http://www.biopax.org/release/biopax-level3.owl#',
 							'gpml: http://vocabularies.wikipathways.org/gpml#',
 							'identifiers: http://identifiers.org/',
@@ -300,28 +298,28 @@ export class Diagram extends React.Component<any, any> {
 							'rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#',
 							'wp: http://vocabularies.wikipathways.org/wp#',
 						].join(' ')}
-						vocab="http://schema.org/"
-						version="1.1"
-						baseProfile="full"
-						preserveAspectRatio="xMidYMid"
-						width={width}
-						height={height}
-						onClick={this.handleClick.bind(this)}
-						className={`kaavio-diagram ${ customStyle.diagramClass }`}
-						style={{overflow: 'hidden'}}>
+					vocab="http://schema.org/"
+					version="1.1"
+					baseProfile="full"
+					preserveAspectRatio="xMidYMid"
+					width={width}
+					height={height}
+					onClick={this.handleClick.bind(this)}
+					className={`kaavio-diagram ${ customStyle.diagramClass }`}
+					style={{overflow: 'hidden'}}>
 
 			<style type="text/css" dangerouslySetInnerHTML={{__html: `
 				<![CDATA[
 					${''/*customStyle*/}
 				]]>
 			`}}/>
-			
-    	<g id="viewport-20161003191720605"
-					className={`viewport ${customStyle.viewportClass} svg-pan-zoom_viewport`}
-					typeof="wp:Pathway gpml:Pathway"
-					resource="identifiers:wikipathways/WP554/">
 
-    		<defs>
+			<g id="viewport-20161003191720605"
+			   className={`viewport ${customStyle.viewportClass} svg-pan-zoom_viewport`}
+			   typeof="wp:Pathway gpml:Pathway"
+			   resource="identifiers:wikipathways/WP554/">
+
+				<defs>
 					{
 						<clipPath id="rounded-rectangle-clip-path" clipPathUnits="objectBoundingBox">
 							<rect x="0" y="0" rx="0.125" ry="0.25" width="1" height="1"></rect>
@@ -334,32 +332,22 @@ export class Diagram extends React.Component<any, any> {
 						markerInputs.map(function(input) {
 							const { markerLocationType, markerName, color, markerBackgroundColor } = input;
 							return <Marker key={getMarkerId(markerLocationType, markerName, color, markerBackgroundColor)}
-											color={color}
-											backgroundColor={markerBackgroundColor}
-											markerLocationType={markerLocationType}
-											markerName={markerName}
-											markerDrawers={markerDrawers} />;
+										   color={color}
+										   backgroundColor={markerBackgroundColor}
+										   markerLocationType={markerLocationType}
+										   markerName={markerName}
+										   markerDrawers={markerDrawers} />;
 						})
 					}
-    		</defs>
+				</defs>
 
-    		<rect x="0" y ="0" width="100%" height="100%" className="kaavio-viewport-background" fill={backgroundColor}></rect>
+				<rect x="0" y ="0" width="100%" height="100%" className="kaavio-viewport-background" fill={backgroundColor}></rect>
 				{
 					groupedZIndexedEntities.filter((entity) => ['Node', 'Edge', 'Group'].indexOf(entity.kaavioType) > -1)
 						.filter((entity) => !entity.hasOwnProperty('isPartOf'))
 						.map(function(entity) {
-							const highlighted = getHighlighted(entity, highlightedNodes);
-							return <Entity key={entity.id} id={entity.id} kaavioType={entity.kaavioType} x={entity.x}
-										   y={entity.y} width={entity.width} height={entity.height}
-										   rotation={entity.rotation} backgroundColor={entity.backgroundColor}
-										   icons={icons} iconsLoaded={iconsLoaded} iconSuffix={iconSuffix}
-										   edgeDrawers={edgeDrawers} drawAs={entity.drawAs}
-										   isHighlighted={highlighted.highlighted}
-										   highlightedColor={highlighted.color}
-							/>
-						})
-				}
-    	</g>
-		</svg>
-	}
-}
+							const Tag = components[entity.kaavioType];
+							return <Tag key={entity.id} backgroundColor={backgroundColor} entity={entity} entityMap={entityMap}
+										svgId={about} edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} iconSuffix={iconSuffix}
+										customStyle={customStyle} highlightedNodes={highlightedNodes}/>
+						});
