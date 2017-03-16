@@ -41,6 +41,7 @@ export class Diagram extends React.Component<any, any> {
             .reduce(function(acc, entity) {
                 const kaavioType = entity.kaavioType;
                 if (kaavioType === 'Group') {
+                    // TODO: refactor this so that contains is actually a map of the contained elements. Not just an array of their IDs
                     entity.contains = entity.contains
                         .map((id) => entityMap[id])
                         .sort(function(a, b) {
@@ -119,10 +120,10 @@ export class Diagram extends React.Component<any, any> {
                         .map(function(entity) {
                             const highlighted = getHighlighted(entity, highlightedNodes);
                             const icon = icons[entity.drawAs];
-                            console.log(entity)
                             return <Entity key={entity.id} {...entity} icon={icon? icon: null} edgeDrawers={edgeDrawers}
                                            backgroundColor={backgroundColor} customStyle={customStyle}
                                            isHighlighted={highlighted.highlighted} highlightedColor={highlighted.color}
+                                           highlightedNodes={highlightedNodes} icons={icons} entityMap={entityMap}
                             />
                         })
                 }

@@ -4,6 +4,7 @@ import {highlighter} from "../filters/highlighter";
 import {Text} from './Text.new';
 import {Node} from './Node.new';
 import {EntityProps} from "../typings";
+import {Group} from "./Group.new";
 
 /**
  * Parent Entity component.
@@ -14,20 +15,11 @@ export class Entity extends React.Component<any, any> {
         super(props);
     }
 
-    render() {
-        // Anders: Here, I only show the props that are required by the component.
-        // Also use this.props instead of this.state
+    renderText() {
+        const { width, height, id, textContent, fontFamily, fontSize, fontStyle, fontWeight, textAlign, fontColor}
+            = this.props;
 
-        const {rotation, width, height, type, id, x, y, color, kaavioType, customClass, isHighlighted, highlightedColor,
-            textContent, fontFamily, fontSize, fontStyle, fontWeight, textAlign, fontColor} = this.props;
-
-        let entityTransform;
-        if (x || y || rotation) {
-            entityTransform = `translate(${x} ${y})`;
-            if (rotation) {
-                entityTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
-            }
-        }
+        if(! textContent) return;
 
         const alignSvgTextToXSvgText = {
             left: 0,
@@ -36,6 +28,27 @@ export class Entity extends React.Component<any, any> {
         };
         const xSvgText = alignSvgTextToXSvgText[textAlign];
         const ySvgText = height / 2; // Anders: I just set this to always be middle.
+
+        return <Text id={`text-for-${id}`} key={`text-for-${id}`} className="textlabel" textContent={textContent}
+                     fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} fontStyle={fontStyle}
+                     textAlign={textAlign} fontColor={fontColor} x={xSvgText} y={ySvgText}/>
+    }
+
+    render() {
+        // Anders: Here, I only show the props that are required by the component.
+        // Also use this.props instead of this.state
+
+        const {rotation, width, height, type, id, x, y, color, kaavioType, customClass, isHighlighted, highlightedColor,
+            highlightedNodes, icons}
+            = this.props;
+
+        let entityTransform;
+        if (x || y || rotation) {
+            entityTransform = `translate(${x} ${y})`;
+            if (rotation) {
+                entityTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
+            }
+        }
 
         // Anders: I think it's best to be explicit. Instead of using components[kaavioType] do this.
         // I know it's a bit redundant but in this case I think it aids comprehension
@@ -51,7 +64,7 @@ export class Entity extends React.Component<any, any> {
                 //child = <Marker {...this.props} />;
                 break;
             case 'Group':
-                //child = <Group {...this.props} />;
+                child = <Group {...this.props} />;
                 break;
             default:
                 throw new Error('The Kaavio type of " + entity.kaavioType + " does not exist. Please use one of ' +
@@ -68,9 +81,7 @@ export class Entity extends React.Component<any, any> {
 
                 {child}
 
-                <Text id={`text-for-${id}`} key={`text-for-${id}`} className="textlabel" textContent={textContent}
-                      fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} fontStyle={fontStyle}
-                      textAlign={textAlign} fontColor={fontColor} x={xSvgText} y={ySvgText}/>
+                {this.renderText()}
             </g>
         )
     }
