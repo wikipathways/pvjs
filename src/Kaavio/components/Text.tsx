@@ -20,6 +20,7 @@ export interface TextOpts extends SvgTextOpts {
 	svg: undefined;
 }
 
+// TODO: Remove default export
 export default class Text extends React.Component<any, any> {
 	svgText: SvgText; // TODO this should be instance. Is it?
   constructor(props: TextOpts) {

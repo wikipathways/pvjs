@@ -127,6 +127,7 @@ document.body.appendChild(container)
 
 const pathwayId = getParameterByName('id') || 'WP4';
 declare var window: any;
+
 pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + pathwayId, {
     customStyle: WikiPathwaysDefaultDisplayStyle,
     //src: 'http://localhost:4522/pathways/playground',

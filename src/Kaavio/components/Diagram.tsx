@@ -5,7 +5,7 @@ import {Group} from './Group';
 import {Base64} from 'js-base64';
 import {defaults, find, intersection, keys, forOwn, omitBy, toPairs, uniq, values} from 'lodash';
 import {Marker, getMarkerId, MARKER_PROPERTY_NAMES, NON_FUNC_IRI_MARKER_PROPERTY_VALUES} from './Marker';
-import {Node} from './Node';
+import {Node} from './Node.new';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Observable} from 'rxjs/Observable';
@@ -19,6 +19,8 @@ import 'rxjs/add/operator/mergeMap';
 import * as validDataUrl from 'valid-data-url';
 import * as _ from 'lodash';
 import {highlightedNode} from "../Kaavio";
+import {getHighlighted} from "../utils/getHighlighted";
+import {Entity} from "./Entity.new";
 
 const components = {
 	Edge: Edge,
@@ -346,10 +348,15 @@ export class Diagram extends React.Component<any, any> {
 					groupedZIndexedEntities.filter((entity) => ['Node', 'Edge', 'Group'].indexOf(entity.kaavioType) > -1)
 						.filter((entity) => !entity.hasOwnProperty('isPartOf'))
 						.map(function(entity) {
-							const Tag = components[entity.kaavioType];
-							return <Tag key={entity.id} backgroundColor={backgroundColor} entity={entity} entityMap={entityMap}
-													svgId={about} edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} iconSuffix={iconSuffix}
-													customStyle={customStyle} highlightedNodes={highlightedNodes}/>
+							const highlighted = getHighlighted(entity, highlightedNodes);
+							return <Entity key={entity.id} id={entity.id} kaavioType={entity.kaavioType} x={entity.x}
+										   y={entity.y} width={entity.width} height={entity.height}
+										   rotation={entity.rotation} backgroundColor={entity.backgroundColor}
+										   icons={icons} iconsLoaded={iconsLoaded} iconSuffix={iconSuffix}
+										   edgeDrawers={edgeDrawers} drawAs={entity.drawAs}
+										   isHighlighted={highlighted.highlighted}
+										   highlightedColor={highlighted.color}
+							/>
 						})
 				}
     	</g>
