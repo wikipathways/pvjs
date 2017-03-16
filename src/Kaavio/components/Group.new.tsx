@@ -120,6 +120,8 @@ export class Group extends React.Component<any, any> {
             });
 
         if(loadedIcon) {
+            // If the icon is loaded, push the use node to the children along with the icon.
+            // TODO: Fix XSS
             children.push([
                     <g dangerouslySetInnerHTML={loadedIcon? {__html: loadedIcon.svgString}: null} />,
                     <use id={`icon-for-${id}`} key={`icon-for-${id}`}
