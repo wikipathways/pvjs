@@ -5,6 +5,7 @@ import {Text} from './Text.new';
 import {Node} from './Node.new';
 import {EntityProps} from "../typings";
 import {Group} from "./Group.new";
+import {Edge} from "./Edge.new";
 
 /**
  * Parent Entity component.
@@ -57,7 +58,7 @@ export class Entity extends React.Component<any, any> {
                 child = <Node {...this.props} />;
                 break;
             case 'Edge':
-                //child = <Edge {...this.props} />;
+                child = <Edge {...this.props} />;
                 break;
             case 'Marker':
                 //child = <Marker {...this.props} />;
