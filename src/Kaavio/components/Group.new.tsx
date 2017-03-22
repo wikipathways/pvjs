@@ -6,7 +6,6 @@ import {Node} from './Node.new';
 
 /**
  * Higher order Group component.
- * Uses Inheritance inversion and wraps around the Node.
  * Much of the implementation of a Group is the same as the Node, since a group is a node but with children...
  * See: https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e#.z5a94mm1b
  *
