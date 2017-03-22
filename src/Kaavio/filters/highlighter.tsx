@@ -1,7 +1,7 @@
 import * as React from 'react';
 export function highlighter(id, color) {
     return {
-        url: 'highlighter-for-id',
+        url: 'highlighter-for-' + id,
         filter: (
                 <filter id={"highlighter-for-" + id} key={"highlighter-for-" + id}>
                     <feColorMatrix in="StrokePaint"
