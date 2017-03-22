@@ -148,7 +148,7 @@ export class Manipulator {
      * @param node_id
      * @returns {SVGLocatable}
      */
-    private findNode(node_id): SVGLocatable {
+    private findNode(node_id): SVGRectElement {
         return d3.select(this.diagram).select("g#" + node_id)[0][0];
     }
 
@@ -156,7 +156,7 @@ export class Manipulator {
      * Return the parent viewport that all other elements are relative to
      * @returns {HTMLElement}
      */
-    private getViewport(): SVGLocatable {
+    private getViewport(): SVGRectElement {
         return d3.select(this.diagram).select(".svg-pan-zoom_viewport")[0][0]
     }
 

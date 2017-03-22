@@ -11,7 +11,6 @@ import {NodeProps} from "../typings";
  * It can be mapped to other pathway elements. For example, in PVJS this is mapped to metabolites and proteins.
  */
 export class Node extends React.Component<any, any> {
-    iconNodeRef: any;
     containerRef: any;
 
     constructor(props: NodeProps) {
@@ -82,9 +81,8 @@ export class Node extends React.Component<any, any> {
     }
 
     render(){
-        const { borderWidth, color, filter, height, id, width}
+        const { borderWidth, color, filter, height, id, width, children}
             = this.props;
-
         const {loadedIcon} = this.state;
 
         // Anders: Here, I just pass in the icon prop since that is all the component needs.
@@ -100,6 +98,7 @@ export class Node extends React.Component<any, any> {
                          x="0" y="0" width={width + 'px'} height={height + 'px'} href={loadedIcon? '#' + loadedIcon.id: null} fill="transparent"
                          filter={!!filter ? `url(#${filter})` : null} stroke={color} strokeWidth={borderWidth}
                          typeof="schema:ImageObject" className="Icon"/>
+                {children}
             </g>
         );
     }

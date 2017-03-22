@@ -19,8 +19,7 @@ export class Entity extends React.Component<any, any> {
         const { width, height, id, textContent, fontFamily, fontSize, fontStyle, fontWeight, textAlign, fontColor}
             = this.props;
 
-        if(! textContent) return;
-
+        if(!textContent) return;
         const alignSvgTextToXSvgText = {
             left: 0,
             center: width / 2,
@@ -64,10 +63,10 @@ export class Entity extends React.Component<any, any> {
                 //child = <Marker {...this.props} />;
                 break;
             case 'Group':
-                child = <Group {...this.props} />;
+                child = <Group {...this.props}/>;
                 break;
             default:
-                throw new Error('The Kaavio type of " + entity.kaavioType + " does not exist. Please use one of ' +
+                throw new Error('The Kaavio type of ' + kaavioType + ' does not exist. Please use one of ' +
                     'Node, Edge, Marker or Group.');
         }
         return (

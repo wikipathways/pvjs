@@ -70,6 +70,7 @@
     "svg-pan-zoom": "^3.4.1",
     "svg-text": "^0.4.6",
     "tower-strcase": "~0.5.0",
+    "typescript": "^2.2.1",
     "typestyle": "^0.22.3",
     "url-loader": "^0.5.8",
     "valid-data-url": "^0.1.3"

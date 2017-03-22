@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"declaration": true,
+		"declaration": false,
 		"experimentalDecorators": true,
 		"inlineSourceMap": true,
 		"jsx": "react",
