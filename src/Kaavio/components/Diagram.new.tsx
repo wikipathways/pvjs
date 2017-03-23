@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import * as validDataUrl from 'valid-data-url';
 import {MARKER_PROPERTY_NAMES, NON_FUNC_IRI_MARKER_PROPERTY_VALUES} from "./Marker";
 import {getHighlighted} from "../utils/getHighlighted";
+import {getMarkerId, Marker} from "./Marker.new";
 
 export class Diagram extends React.Component<any, any> {
     constructor(props) {
@@ -79,6 +80,91 @@ export class Diagram extends React.Component<any, any> {
             }, []);
     }
 
+    getMarkerInputs(zIndexedEntities) {
+        const backgroundColor = this.props.backgroundColor;
+        const edges = zIndexedEntities
+            .filter((entity) => entity.kaavioType === 'Edge');
+
+        // TODO Currently just using the background color of the diagram as a whole.
+        // Do we want to handle the case where the marker is on top of another entity?
+        const markerBackgroundColors: ReadonlyArray<string> = [backgroundColor];
+
+        const markerColors = Array.from(
+            edges
+                .filter((edge) => edge.hasOwnProperty('color'))
+                .reduce(function(acc, edge) {
+                    acc.add(edge.color);
+                    return acc;
+                }, new Set())
+        );
+
+        const markerNames = Array.from(
+            edges
+                .reduce(function(acc, edge: any) {
+                    _.intersection(
+                        MARKER_PROPERTY_NAMES,
+                        _.keys(edge)
+                    )
+                        .forEach(function(markerLocationType) {
+                            const markerName: string & NonFuncIriMarkerPropertyValue = edge[markerLocationType];
+                            // we don't want to create a marker def for markers with names like "none"
+                            if (NON_FUNC_IRI_MARKER_PROPERTY_VALUES.indexOf(markerName) === -1) {
+                                acc.add(edge[markerLocationType]);
+                            }
+                        });
+                    return acc;
+                }, new Set())
+        );
+
+        return markerColors
+            .map((color) => ({color: color}))
+            .reduce(function(acc: any[], partialInput) {
+                const pairs = _.toPairs(partialInput);
+                return acc.concat(
+                    markerBackgroundColors
+                        .map(function(markerBackgroundColor) {
+                            return pairs
+                                .reduce(function(subAcc: any, pair) {
+                                    const key = pair[0];
+                                    subAcc[key] = pair[1];
+                                    subAcc.markerBackgroundColor = markerBackgroundColor;
+                                    return subAcc;
+                                }, {});
+                        })
+                );
+            }, [])
+            .reduce(function(acc: any[], partialInput) {
+                const pairs = _.toPairs(partialInput);
+                return acc.concat(
+                    MARKER_PROPERTY_NAMES
+                        .map(function(markerLocationType) {
+                            return pairs
+                                .reduce(function(subAcc: any, pair) {
+                                    const key = pair[0];
+                                    subAcc[key] = pair[1];
+                                    subAcc.markerLocationType = markerLocationType;
+                                    return subAcc;
+                                }, {});
+                        })
+                );
+            }, [])
+            .reduce(function(acc: any[], partialInput) {
+                const pairs = _.toPairs(partialInput);
+                return acc.concat(
+                    markerNames
+                        .map(function(markerName) {
+                            return pairs
+                                .reduce(function(subAcc: any, pair) {
+                                    const key = pair[0];
+                                    subAcc[key] = pair[1];
+                                    subAcc.markerName = markerName;
+                                    return subAcc;
+                                }, {});
+                        })
+                );
+            }, []) as any[];
+    }
+
     render() {
         const { about, backgroundColor, customStyle, edgeDrawers, entityMap, filters, height, name, organism,
             markerDrawers, width, zIndices, highlightedNodes, icons} = this.props;
@@ -87,6 +173,8 @@ export class Diagram extends React.Component<any, any> {
             .map((id) => entityMap[id]);
 
         const groupedZIndexedEntities = this.getGroupedZIndexedEntities(zIndexedEntities);
+
+        const markerInputs = this.getMarkerInputs(zIndexedEntities);
 
         return <svg xmlns="http://www.w3.org/2000/svg" id={about} vocab="http://schema.org/" version="1.1"
                     baseProfile="full" preserveAspectRatio="xMidYMid" width={width} height={height}
@@ -111,6 +199,28 @@ export class Diagram extends React.Component<any, any> {
                className={`viewport ${customStyle.viewportClass} svg-pan-zoom_viewport`}
                typeof="wp:Pathway gpml:Pathway"
                resource="identifiers:wikipathways/WP554/">
+
+                <defs>
+                    {
+                        <clipPath id="rounded-rectangle-clip-path" clipPathUnits="objectBoundingBox">
+                            <rect x="0" y="0" rx="0.125" ry="0.25" width="1" height="1" />
+                        </clipPath>
+                    }
+                    {
+                        filters
+                    }
+                    {
+                        markerInputs.map((input) => {
+                            const { markerLocationType, markerName, color, markerBackgroundColor } = input;
+                            return <Marker key={getMarkerId(markerLocationType, markerName, color, markerBackgroundColor)}
+                                           color={color}
+                                           backgroundColor={markerBackgroundColor}
+                                           markerLocationType={markerLocationType}
+                                           markerName={markerName}
+                                           markerDrawers={markerDrawers} />;
+                        })
+                    }
+                </defs>
 
                 <rect x="0" y ="0" width="100%" height="100%" className="kaavio-viewport-background"
                       fill={backgroundColor} />

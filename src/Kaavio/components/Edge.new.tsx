@@ -44,7 +44,11 @@ export class Edge extends React.Component<any, any> {
             strokeWidth: borderWidth,
             id: id,
         };
-        markerProperties.forEach(function(attribute) {
+        markerProperties.filter(attribute => {
+            // Ensure only markerEnd, markerStart or markerMid
+            const allowed = ['markerMid', 'markerStart', 'markerEnd'];
+            return allowed.indexOf(attribute.name) > -1;
+        }).forEach((attribute) => {
             opts[attribute.name] = attribute.value;
         });
 
