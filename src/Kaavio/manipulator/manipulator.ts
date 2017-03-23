@@ -32,13 +32,6 @@ export class Manipulator {
      * @param resetOthers - Reset all other highlighted nodes before highlighting. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      * @param resetZoom - reset the zoom before highlighting. Default = true
-     *
-     * This currently uses the highlighter facilities in Kaavio.
-     * However, Kaavio's highlighter is intended for use in the search box at the top of the diagram.
-     * Mainly, this is bad because kaavio doesn't have a built in toggle highlight so have to keep track of
-     * the highlighted nodes here.
-     * TODO: Either write a new highlighter library or rewrite the kaavio one
-     *
      */
     toggleHighlight(node_id: any, colour: string, resetOthers: boolean = true, resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
