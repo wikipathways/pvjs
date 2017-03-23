@@ -12,7 +12,7 @@ export class Manipulator {
     constructor(kaavioRef, panZoomRef){
 
         // Subscribe to the panZoomEnabled observable, wait for panZoom to be ready.
-        kaavioRef.kaavioReady.subscribe(res => {
+        kaavioRef.kaavioReady$.subscribe(res => {
             if(res === true) {
                 this.panZoom = panZoomRef;
             }
