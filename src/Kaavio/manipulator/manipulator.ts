@@ -171,12 +171,13 @@ export class Manipulator {
         this.relPoint.x = BBox.x;
         this.relPoint.y = BBox.y;
         this.relPoint = this.relPoint.matrixTransform(matrix);
+        const realZoom = this.panZoom.getSizes().realZoom;
 
         return {
-            x: -this.relPoint.x,
-            y: -this.relPoint.y,
-            height: BBox.height,
-            width: BBox.width
+            x: this.relPoint.x,
+            y: this.relPoint.y,
+            height: BBox.height * realZoom,
+            width: BBox.width * realZoom
         }
     }
 
@@ -206,7 +207,7 @@ export class Manipulator {
             y: coordLimits.lowestY,
             height: (coordLimits.highestY - coordLimits.lowestY),
             width: (coordLimits.highestX - coordLimits.lowestX)
-        }
+        };
     }
 
     /**
@@ -221,15 +222,18 @@ export class Manipulator {
             if(node_id.length === 1) BBox = this.getNodeBBox(node_id[0]);
             else BBox = this.getGroupBBox(node_id);
         }
-
-        const longestNodeSide = (BBox.width > BBox.height) ? BBox.width : BBox.height;
-
         const containerSize = this.panZoom.getSizes();
-        const longestContainerSide = (containerSize.width > containerSize.height) ? containerSize.width : containerSize.height;
+        let relativeArea;
+        if(BBox.width >= BBox.height){
+            relativeArea = containerSize.width / BBox.width;
+        }
+        else {
+            relativeArea = containerSize.height / BBox.height
+        }
 
+        relativeArea = relativeArea * containerSize.realZoom;
 
-        const relativeArea = longestContainerSide / longestNodeSide;
-        const scalingFactor = 1;
+        const scalingFactor = 0.8;
         return relativeArea * scalingFactor;
     }
 
@@ -280,8 +284,8 @@ export class Manipulator {
 
         // First get the coordinates of the center of the BBox
         let coordinates = {
-            x: BBox.x -  ((BBox.width*sizes.realZoom) / 2),
-            y: BBox.y - ((BBox.height*sizes.realZoom) / 2)
+            x: -BBox.x -  (BBox.width / 2),
+            y: -BBox.y - (BBox.height / 2)
         };
 
         // Now add the current pan to the coordinates
