@@ -28,6 +28,7 @@ export class PanZoom extends React.Component<any, any> {
         if(! diagram) diagram = this.props.diagram;
         let node: SVGElement = ReactDOM.findDOMNode(diagram) as SVGElement;
         SVGPanZoom(node, {
+            viewportSelector: '.svg-pan-zoom_viewport',
             controlIconsEnabled: false,
             fit: true,
             center: true,
@@ -47,6 +48,10 @@ export class PanZoom extends React.Component<any, any> {
 
     getSizes = () => {
         return this.panZoom.getSizes();
+    };
+
+    getPan = () => {
+        return this.panZoom.getPan();
     };
 
     zoom = (zoom_perc: number) => {

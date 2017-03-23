@@ -9,6 +9,7 @@ export class Manipulator {
     private highlightedNodes: Array<string>;
     private panZoom;
     private kaavio: any;
+    private relPoint: any; // A point used to calculate element positions
 
     constructor(kaavioRef, panZoomRef){
         this.highlightedNodes = [];
@@ -20,6 +21,7 @@ export class Manipulator {
             }
             this.kaavio = kaavioRef;
             this.diagram = ReactDOM.findDOMNode(kaavioRef.diagramRef);
+            this.relPoint = this.diagram.createSVGPoint();
         })
     }
 
@@ -166,12 +168,13 @@ export class Manipulator {
         let svg = this.diagram;
         let BBox = node.getBBox();
         let matrix = node.getCTM();
-        let viewportOffset = viewport.getCTM();
-        let svgOffset = svg.getBoundingClientRect();
+        this.relPoint.x = BBox.x;
+        this.relPoint.y = BBox.y;
+        this.relPoint = this.relPoint.matrixTransform(matrix);
 
         return {
-            x: matrix.e - viewportOffset.e - viewportOffset.a,
-            y: matrix.f - viewportOffset.f - viewportOffset.d,
+            x: -this.relPoint.x,
+            y: -this.relPoint.y,
             height: BBox.height,
             width: BBox.width
         }
@@ -215,44 +218,12 @@ export class Manipulator {
      * @returns {{x: number, y: number}}
      */
     private getCenterCoordinates({x, y, height, width}: {x: number, y: number, height: number, width: number}): {x: number, y: number} {
-        const centreX = x + (width/2);
-        const centreY = y + (height/2);
+        const centreX = x - (width/2);
+        const centreY = y - (height/2);
 
         return {
-            x: -centreX,
-            y: -centreY
-        }
-    }
-
-    /**
-     * Factor in the real zoom to the given coordinates
-     * @param x
-     * @param y
-     * @returns {{x: number, y: number}}
-     */
-    private addRealZoomToCoordinates({x, y}: {x: number, y: number}): {x: number, y: number}{
-        const realZoom = this.panZoom.getSizes().realZoom;
-
-        return {
-            x: x * (realZoom),
-            y: y * (realZoom)
-        }
-    }
-
-    /**
-     * Return the coordinates that should be panned to to get the desired node into the center of the diagram
-     * @param x
-     * @param y
-     * @returns {{x: any, y: any}}
-     */
-    private addOffsetToCoordinates({x, y}: {x: number, y: number}): {x: number, y:number}{
-
-        const containerHeight = this.panZoom.getSizes().height;
-        const containerWidth = this.panZoom.getSizes().width;
-
-        return {
-            x: x + containerWidth / 2,
-            y: y + containerHeight / 2
+            x: centreX,
+            y: centreY
         }
     }
 
@@ -322,7 +293,24 @@ export class Manipulator {
             if(node_id.length === 1) BBox = this.getNodeBBox(node_id[0]);
             else BBox = this.getGroupBBox(node_id);
         }
-        const coordinates = this.addOffsetToCoordinates(this.getCenterCoordinates(BBox));
+
+        const sizes = this.panZoom.getSizes();
+
+        // First get the coordinates of the center of the BBox
+        let coordinates = {
+            x: BBox.x -  ((BBox.width*sizes.realZoom) / 2),
+            y: BBox.y - ((BBox.height*sizes.realZoom) / 2)
+        };
+
+        // Now add the current pan to the coordinates
+        const pan = this.panZoom.getPan();
+        coordinates.x += pan.x;
+        coordinates.y += pan.y;
+
+        // Center in the viewport
+        coordinates.x += (sizes.width/2);
+        coordinates.y += (sizes.height/2);
+
         this.pan(coordinates);
     }
 
