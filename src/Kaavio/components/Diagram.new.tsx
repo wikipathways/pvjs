@@ -30,7 +30,7 @@ export class Diagram extends React.Component<any, any> {
 
     handleClick(e) {
         const { handleClick, entityMap } = this.props;
-        const id = e.target.parentNode.getAttribute('id');
+        const id = e.target.parentNode.parentNode.getAttribute('id');
         const entity = entityMap[id];
         handleClick(_.omitBy(_.defaults({entity: entity}, e), (v, k) => k.indexOf('_') === 0));
     }

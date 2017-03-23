@@ -350,4 +350,4 @@ export class Diagram extends React.Component<any, any> {
 							return <Tag key={entity.id} backgroundColor={backgroundColor} entity={entity} entityMap={entityMap}
 										svgId={about} edgeDrawers={edgeDrawers} icons={icons} iconsLoaded={iconsLoaded} iconSuffix={iconSuffix}
 										customStyle={customStyle} highlightedNodes={highlightedNodes}/>
-						});
+						})
