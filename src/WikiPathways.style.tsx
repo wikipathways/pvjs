@@ -13,6 +13,7 @@ export const diagramClass = style({
 });
 
 export const viewportClass = style({
+	transition: 'transform 0.2s ease',
 	[`.kaavio-viewport-background`]: {
 		fill: kaavioBackgroundColor,
 	},

@@ -181,6 +181,12 @@ export class Manipulator {
         }
     }
 
+    /**
+     * Get the bounding box for a group of nodes.
+     * Note: if there is a huge number of node_ids this might take a while...
+     * @param node_ids
+     * @returns {{x: null, y: null, height: number, width: number}}
+     */
     private getGroupBBox(node_ids: string[]): {x: number, y: number, height: number, width: number} {
         const coordLimits = {
             highestX: null,
