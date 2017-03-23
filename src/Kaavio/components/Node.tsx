@@ -82,7 +82,7 @@ export class Node extends React.Component<any, any> {
     }
 
     render(){
-        const { borderWidth, color, filter, height, id, width, children}
+        const { borderWidth, color, filter, height, id, width, children, backgroundColor}
             = this.props;
         const {loadedIcon} = this.state;
 
@@ -96,7 +96,7 @@ export class Node extends React.Component<any, any> {
                     {/*TODO: This is BAD. XSS */}
                     <g dangerouslySetInnerHTML={loadedIcon? {__html: loadedIcon.svgString}: null} />
                     <use id={`icon-for-${id}`} key={`icon-for-${id}`}
-                         x="0" y="0" width={width + 'px'} height={height + 'px'} href={loadedIcon? '#' + loadedIcon.id: null} fill="transparent"
+                         x="0" y="0" width={width + 'px'} height={height + 'px'} href={loadedIcon? '#' + loadedIcon.id: null} fill={backgroundColor}
                          filter={!!filter ? `url(#${filter})` : null} stroke={color} strokeWidth={borderWidth}
                          typeof="schema:ImageObject" className="Icon"/>
                 {children}
