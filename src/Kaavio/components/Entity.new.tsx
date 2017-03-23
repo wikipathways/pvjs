@@ -6,7 +6,6 @@ import {Node} from './Node.new';
 import {EntityProps} from "../typings";
 import {Group} from "./Group.new";
 import {Edge} from "./Edge.new";
-import {Marker} from "./Marker.new";
 import {getHighlighted} from "../utils/getHighlighted";
 
 /**
