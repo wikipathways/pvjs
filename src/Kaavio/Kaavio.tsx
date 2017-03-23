@@ -100,7 +100,7 @@ export class Kaavio extends React.Component<any, any> {
 		});
 	};
 
-	popHighlighted(node_id: string | string[]): void {
+	popHighlighted = (node_id: string | string[]) => {
 		let toRemove;
 		if(typeof node_id === 'string'){
 			toRemove = [node_id]
@@ -114,8 +114,23 @@ export class Kaavio extends React.Component<any, any> {
 			return arrVal.node_id == othVal;
 		});
 		this.setState({highlightedNodes: this.highlightedNodes});
+	};
 
-	}
+	resetHighlighted = (exclude?: string[]) => {
+		let toReset = this.highlightedNodes.map(highlightedNode => {
+			return highlightedNode.node_id;
+		});
+		if(exclude){
+			toReset = _.pullAll(toReset, exclude);
+		}
+		this.popHighlighted(toReset)
+	};
+
+	isHighlighted = (node_id: string) => {
+		return !!this.highlightedNodes.find(elem => {
+			return elem.node_id === node_id;
+		});
+	};
 
 	render() {
 		let that = this;

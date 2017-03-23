@@ -6,13 +6,11 @@ import * as ReactDOM from 'react-dom';
 
 export class Manipulator {
     private diagram;
-    private highlightedNodes: Array<string>;
     private panZoom;
     private kaavio: any;
     private relPoint: any; // A point used to calculate element positions
 
     constructor(kaavioRef, panZoomRef){
-        this.highlightedNodes = [];
 
         // Subscribe to the panZoomEnabled observable, wait for panZoom to be ready.
         kaavioRef.kaavioReady.subscribe(res => {
@@ -28,12 +26,11 @@ export class Manipulator {
     /**
      * Toggle the highlighting of one or multiple nodes
      * @param node_id - one identifier or a string of identifiers
-     * @param colour - can be any css colour
+     * @param color - can be any css colour
      * @param resetOthers - Reset all other highlighted nodes before highlighting. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
-     * @param resetZoom - reset the zoom before highlighting. Default = true
      */
-    toggleHighlight(node_id: any, colour: string, resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+    toggleHighlight(node_id: any, color: string, resetOthers: boolean = false, resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
 
         if (typeof node_id === 'string'){
@@ -41,101 +38,85 @@ export class Manipulator {
             let arr = [];
             arr.push(node_id);
 
-            if(resetOthers) this.resetHighlight(arr);
-            this.toggleHighlightOfOneNode(node_id, colour);
+            if(resetOthers) this.resetHighlighted(arr);
+            this.toggleHighlightOne(node_id, color);
             return;
         }
 
-        if(resetOthers) this.resetHighlight(node_id);
+        if(resetOthers) this.resetHighlighted(node_id);
         node_id.forEach(singleNode => {
-            this.toggleHighlightOfOneNode(singleNode, colour);
+            this.toggleHighlightOne(singleNode, color);
         });
     }
 
-    /**
-     * Internal method to toggle the highlighting of one node.
-     * @param node_id
-     * @param colour
-     */
-    private toggleHighlightOfOneNode(node_id: string, colour: string): void {
-        let id = '#' + node_id;
-        if(this.isHighlighted(node_id)) {
-            this.highlightOff(node_id);
+    private toggleHighlightOne(node_id: string, color?: string){
+        if(this.kaavio.isHighlighted(node_id)){
+            this.highlightOffOne(node_id);
             return;
         }
 
-        let styles;
-        this.addHighlighted(node_id);
+        if(! color) throw new Error("No color specified.");
+        this.highlightOnOne(node_id, color);
+    }
 
+    highlightOn(node_id: any, color: string, resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+        if(resetPanZoom) this.resetPanZoom();
+        if(! color) throw new Error("No color specified.");
+
+        if (typeof node_id === 'string'){
+            // Just one node_id
+            let arr = [];
+            arr.push(node_id);
+
+            if(resetOthers) this.resetHighlighted(arr);
+            this.highlightOnOne(node_id, color);
+            return;
+        }
+
+        if(resetOthers) this.resetHighlighted(node_id);
+        node_id.forEach(singleNode => {
+            this.highlightOnOne(singleNode, color);
+        });
+    }
+
+    highlightOff(node_id: any, resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+        if(resetPanZoom) this.resetPanZoom();
+
+        if (typeof node_id === 'string'){
+            // Just one node_id
+            let arr = [];
+            arr.push(node_id);
+
+            if(resetOthers) this.resetHighlighted(arr);
+            this.highlightOffOne(node_id);
+            return;
+        }
+
+        if(resetOthers) this.resetHighlighted(node_id);
+        node_id.forEach(singleNode => {
+            this.highlightOffOne(singleNode);
+        });
+    }
+
+    private highlightOnOne(node_id: string, color: string): void {
+        let id = '#' + node_id;
         this.kaavio.pushHighlighted({
             node_id: node_id,
-            color: colour
+            color: color
         });
     }
 
-    /**
-     * Push the node_id onto the highlightedNodes array
-     * @param node_id
-     */
-    private addHighlighted(node_id: string): void {
-        this.highlightedNodes.push(node_id);
-    }
-
-    /**
-     * Delete the node_id from the highlightedNodes array
-     * @param node_id
-     */
-    private delHighlighted(node_id: string): void {
-        this.delFromArray(this.highlightedNodes, node_id);
-    }
-
-    /**
-     * Utility function to delete an element from an array
-     * @param array
-     * @param toDelete
-     * @returns {Array<string>}
-     */
-    private delFromArray(array: Array<string>, toDelete: string): Array<string> {
-        let index = array.indexOf(toDelete);
-        if (index === -1) return array;
-        array.splice(index, 1);
-        return this.delFromArray(array, toDelete); // Recursively delete.
-    }
-
-    /**
-     * Check if a node is highlighted
-     * @param node_id
-     * @returns {boolean}
-     */
-    private isHighlighted(node_id: string): boolean {
-        let index = this.highlightedNodes.indexOf(node_id);
-        return index !== -1;
-    }
-
-    /**
-     * Un-highlight a node.
-     * @param node_id
-     */
-    private highlightOff(node_id: string): void {
+    private highlightOffOne(node_id: string): void {
         let id = '#' + node_id;
         this.kaavio.popHighlighted(node_id);
-        this.delHighlighted(node_id);
     }
 
     /**
      * Un-highlight all highlighted nodes except those in the exclude array
      * @param exclude
      */
-    resetHighlight(exclude?: string[]): void {
-        let toReset = this.highlightedNodes.slice();
-        if(exclude){
-            exclude.forEach(excluded => {
-                this.delFromArray(toReset, excluded);
-            });
-        }
-        toReset.forEach(node_id => {
-            this.highlightOff(node_id);
-        });
+    resetHighlighted(exclude?: string[]): void {
+        this.kaavio.resetHighlighted(exclude);
     }
 
     /**
@@ -271,7 +252,7 @@ export class Manipulator {
      */
     panTo(node_id: string | string[], resetPanZoom: boolean = true, resetHighlight: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
-        if(resetHighlight) this.resetHighlight();
+        if(resetHighlight) this.resetHighlighted();
         let BBox;
         if (typeof node_id === 'string') BBox = this.getNodeBBox(node_id);
         else {
