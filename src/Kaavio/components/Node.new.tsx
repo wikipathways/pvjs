@@ -37,6 +37,7 @@ export class Node extends React.Component<any, any> {
         // This makes sense here but do other components need to do this? In which case this should be in Entity
         // Could you also check the ajax request? Not sure if it's correct
         const icon: any = this.props.icon;
+        if(! icon) return;
 
         if(validDataUrl(icon.url)) {
             const parts = icon.url.match(validDataUrl.regex);
