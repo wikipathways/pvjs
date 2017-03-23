@@ -210,24 +210,6 @@ export class Manipulator {
     }
 
     /**
-     * Return the coordinates of the center of the node referenced by the node_id
-     * @param x
-     * @param y
-     * @param height
-     * @param width
-     * @returns {{x: number, y: number}}
-     */
-    private getCenterCoordinates({x, y, height, width}: {x: number, y: number, height: number, width: number}): {x: number, y: number} {
-        const centreX = x - (width/2);
-        const centreY = y - (height/2);
-
-        return {
-            x: centreX,
-            y: centreY
-        }
-    }
-
-    /**
      * Compute the amount that the node should be zoomed in by
      * @param node_id
      * @returns {number}
