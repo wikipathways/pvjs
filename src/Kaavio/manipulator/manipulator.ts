@@ -1,7 +1,6 @@
 import * as _ from 'lodash';
 import $ = require('jquery');
 import d3 = require('d3');
-import * as SVGPanZoom from 'svg-pan-zoom';
 import * as ReactDOM from 'react-dom';
 
 export class Manipulator {
