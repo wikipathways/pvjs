@@ -30,20 +30,12 @@ export function getMarkerPropertyValue(
 }
 
 export class Marker extends React.Component<any, any> {
-  constructor(props: MarkerComponentProps) {
+  	constructor(props: MarkerComponentProps) {
 		super(props);
-		this.state = {
-			markerName: props.markerName,
-			color: props.color,
-			backgroundColor: props.backgroundColor,
-			markerLocationType: props.markerLocationType,
-			markerDrawers: props.markerDrawers,
-		}
 	}
-  render() {
-		let that = this;
-		const state = that.state;
-		const { backgroundColor, color, markerLocationType, markerDrawers, markerName } = state;
+
+  	render() {
+		const {id, backgroundColor, color, markerLocationType, markerDrawers, markerName } = this.props;
 
 		const markerDrawer = markerDrawers[markerName](backgroundColor, color);
 		const { markerAttributes, groupChildren } = markerDrawer;
@@ -69,5 +61,3 @@ export class Marker extends React.Component<any, any> {
 		</marker>;
 	}
 }
-
-export default Marker;

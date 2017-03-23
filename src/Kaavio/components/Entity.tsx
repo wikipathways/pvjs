@@ -1,175 +1,131 @@
-/// <reference path="../../../index.d.ts" />
-
-import {Node} from './Node';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as _ from 'lodash';
-import {highlightedNode} from "../Kaavio";
+import * as ReactDom from 'react-dom';
+import {highlighter} from "../filters/highlighter";
+import {Text} from './Text';
+import {Node} from './Node';
+import {EntityProps} from "../typings";
+import {Group} from "./Group";
+import {Edge} from "./Edge";
+import {getHighlighted} from "../utils/getHighlighted";
 
-export function getHighlighted(entity, highlightedNodes) {
-	let result = {
-		highlighted: false,
-		color: null
-	};
-
-	// Only allow nodes and edges to be highlighted
-	if((entity.kaavioType != 'Node') && (entity.kaavioType != 'Edge')) return result;
-
-	let matched: highlightedNode = _.find(highlightedNodes, (value, index) => {
-		return value['node_id'] == entity.id;
-	}) as highlightedNode;
-
-	if (matched) {
-		result.highlighted = true;
-		result.color = matched.color;
-	}
-
-	return result;
-}
-
+/**
+ * Parent Entity component.
+ * Most components share many properties so we "lift state up" to the parent.
+ */
 export class Entity extends React.Component<any, any> {
-	constructor(props) {
-		super(props);
-		this.state = {...props};
-	}
+    constructor(props: EntityProps) {
+        super(props);
+    }
 
-	componentWillReceiveProps(nextProps) {
-		let that = this;
-		const prevProps = that.props;
-		const prevIconsLoaded = prevProps.iconsLoaded;
-		const nextIconsLoaded = nextProps.iconsLoaded;
-		if (prevIconsLoaded !== nextIconsLoaded) {
-			that.setState({iconsLoaded: nextIconsLoaded});
-		}
+    renderText() {
+        const { width, height, id, textContent, fontFamily, fontSize, fontStyle, fontWeight, textAlign, fontColor}
+            = this.props;
 
-		that.setState({
-			highlightedNodes: nextProps.highlightedNodes,
-			// TODO: This is problematic since all the children re-render. Fix this
-			children: nextProps.children
-		});
-	}
+        if(!textContent) return;
+        const alignSvgTextToXSvgText = {
+            left: 0,
+            center: width / 2,
+            right: width,
+        };
+        const xSvgText = alignSvgTextToXSvgText[textAlign];
+        const ySvgText = height / 2; // Anders: I just set this to always be middle.
 
-	render() {
-		let that = this;
-		const state = that.state;
-		const { about, children, customStyle, edgeDrawers, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, organism, highlightedNodes } = state;
-		const { burrs, backgroundColor, borderWidth, color, drawAs, filter,
-			fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, height,
-			id, padding, points, rotation, strokeDasharray, textAlign,
-			textContent, type, verticalAlign, width, wpType, x, y, kaavioType } = entity;
+        return <Text id={`text-for-${id}`} key={`text-for-${id}`} className="textlabel" textContent={textContent}
+                     fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} fontStyle={fontStyle}
+                     textAlign={textAlign} fontColor={fontColor} x={xSvgText} y={ySvgText}/>
+    }
 
-		let entityTransform;
-		if (x || y || rotation) {
-			entityTransform = `translate(${x} ${y})`;
-			if (rotation) {
-				entityTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
-			}
-		}
+    renderBurrs() {
+        const {burrs, entityMap, width, height, kaavioType, edgeDrawers, points, drawAs, backgroundColor, customStyle,
+            icons, highlightedNodes}
+            = this.props;
+        if(! burrs || burrs.length < 1) return;
 
-		const className = customStyle ? type.concat(
-			type.reduce(function(acc, t) {
-				const thisStyle = customStyle[t + 'Class'];
-				if (thisStyle) {
-					acc.push(thisStyle);
-				}
-				return acc;
-			}, [])
-		)
-			.join(' ') : null;
+        return burrs.map((burrId) => entityMap[burrId])
+            .map((burr) => {
+                // NOTE: notice side effect
+                burr.width += 0;
+                burr.height += 0;
+                const attachmentDisplay = burr.attachmentDisplay;
+                const position = attachmentDisplay.position;
+                const offset = attachmentDisplay.hasOwnProperty('offset') ? attachmentDisplay.offset : [0, 0];
 
-		const highlighted = getHighlighted(entity, highlightedNodes);
-		const isHighlighted = highlighted.highlighted;
-		const highlightedColor = highlighted.color;
+                // kaavioType is referring to the entity the burr is attached to
+                if (['Node', 'Group'].indexOf(kaavioType) > -1) {
+                    burr.x = width * position[0] - burr.width / 2 + offset[0];
+                    burr.y = height * position[1] - burr.height / 2 + offset[1];
+                } else if (kaavioType === 'Edge') {
+                    // TODO get edge logic working so we can position this better
+                    // TODO look at current production pvjs to see how this is done
+                    const positionXY = edgeDrawers[drawAs].getPointAtPosition(points, position[0]);
+                    burr.x = positionXY.x - burr.width / 2 + offset[0];
+                    burr.y = positionXY.y - burr.height / 2 + offset[1];
+                } else {
+                    throw new Error(`Cannot handle burr with parent of type ${kaavioType}`)
+                }
 
-		return (
-			<g id={id}
-				  key={id}
-				  className={className}
-				  typeof={entity.type.join(' ')}
-				  color={color}
-				  transform={entityTransform} filter={isHighlighted? 'url(#highlightEntity-for-' + id + ')': null }>
+                return burr;
+            })
+            .map((burr) => {
+                // Return a new entity with the burr
+                // If just a Node is returned then actions such as highlighting the burr individually cannot be done
+                burr.kaavioType = "Node";
+                const highlighted = getHighlighted(burr, highlightedNodes);
+                const icon = icons[burr.drawAs];
+                return <Entity key={burr.id} {...burr} edgeDrawers={edgeDrawers}
+                               backgroundColor={backgroundColor} customStyle={customStyle}
+                               isHighlighted={highlighted.highlighted} highlightedColor={highlighted.color}
+                               highlightedNodes={highlightedNodes} icon={icon} icons={icons} entityMap={entityMap}/>;
+            });
+    }
 
-				<defs>
-					<filter id={"highlightEntity-for-" + id} key={"highlight-for-" + id}>
-						<feColorMatrix in="StrokePaint"
-									   type="saturate" values="0" result="toHighlight"/> {/* Desaturate all colours before highlighting */}
-						<feFlood floodColor={highlightedColor} floodOpacity="0.5" result="highlight" />
-						<feComposite in="highlight" in2="toHighlight" operator="atop" result="output"/>
+    render() {
+        // Anders: Here, I only show the props that are required by the component.
+        // Also use this.props instead of this.state
 
-					</filter>
-				</defs>
-			{
-				/*
-				 // TODO it would be nice to add the attribute resource to the 'g' element above,
-				 // but it is WikiPathways-specific, and Kaavio should be generic. How can we handle this?
-				 resource={`identifiers:wikipathways/WP554/${id}`}
+        const {rotation, width, height, type, id, x, y, color, kaavioType, customClass, isHighlighted, highlightedColor,
+            highlightedNodes, icons}
+            = this.props;
+        let entityTransform;
+        if (x || y || rotation) {
+            entityTransform = `translate(${x} ${y})`;
+            if (rotation) {
+                entityTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
+            }
+        }
 
-				 // TODO Similar to the issue as for the 'resource' attribute described above,
-				 // how can we add these rdfa items below in a generic fashion?
-				 <g property="rdfa:copy" href={wpType}></g>
-				 <g property="biopax:entityReference" content="identifiers:ec-code/3.6.3.14"></g>
-				 */
-			}
+        // Anders: I think it's best to be explicit. Instead of using components[kaavioType] do this.
+        // I know it's a bit redundant but in this case I think it aids comprehension
+        let child;
+        switch(kaavioType) {
+            case 'Node':
+                child = <Node {...this.props} />;
+                break;
+            case 'Edge':
+                child = <Edge {...this.props} />;
+                break;
+            case 'Group':
+                child = <Group {...this.props}/>;
+                break;
+            default:
+                throw new Error('The Kaavio type of ' + kaavioType + ' does not exist. Please use one of ' +
+                    'Node, Edge, Marker or Group.');
+        }
+        return (
+            <g id={id} key={id} className={customClass} color={color}
+               transform={entityTransform} filter={isHighlighted? 'url(#' + highlighter(id, highlightedColor).url + ')': null}>
 
-			{
-				children
-			}
+                <defs>
+                    {/*Define any SVG definitions that apply to the whole entity. Filters etc. */}
+                    {isHighlighted? highlighter(id, highlightedColor).filter: null}
+                </defs>
 
-			{
-				(burrs || [])
-					.map((burrId) => entityMap[burrId])
-					.map(function(burr) {
-						// NOTE: notice side effect
-						burr.width += 0;
-						burr.height += 0;
-						const attachmentDisplay = burr.attachmentDisplay;
-						const position = attachmentDisplay.position;
-						const offset = attachmentDisplay.hasOwnProperty('offset') ? attachmentDisplay.offset : [0, 0];
+                {child}
 
-						// kaavioType is referring to the entity the burr is attached to
-						if (['Node', 'Group'].indexOf(kaavioType) > -1) {
-							burr.x = width * position[0] - burr.width / 2 + offset[0];
-							burr.y = height * position[1] - burr.height / 2 + offset[1];
-						} else if (kaavioType === 'Edge') {
-							// TODO get edge logic working so we can position this better
-							// TODO look at current production pvjs to see how this is done
-							const positionXY = edgeDrawers[entity.drawAs].getPointAtPosition(points, position[0]);
-							burr.x = positionXY.x - burr.width / 2 + offset[0];
-							burr.y = positionXY.y - burr.height / 2 + offset[1];
-						} else {
-							throw new Error(`Cannot handle burr with parent of type ${kaavioType}`)
-						}
+                {this.renderBurrs()}
 
-						return burr;
-					})
-					.map(function(burr) {
-						return <Node key={burr.id} backgroundColor={backgroundColor}
-									 customStyle={customStyle}
-									 entity={burr}
-									 entityMap={entityMap}
-									 icons={icons}
-									 iconsLoaded={iconsLoaded}
-									 iconSuffix={iconSuffix} />;
-					})
-			}
-
-			{/*
-			 // TODO it would be nice to add the attribute resource to the 'g' entity above,
-			 // but it is WikiPathways-specific, and Kaavio should be generic. How can we handle this?
-			 resource={`identifiers:wikipathways/WP554/${id}`}
-
-			 // TODO Similar to the issue as for the 'resource' attribute described above,
-			 // how can we add these rdfa items below in a generic fashion?
-			 <g property="rdfa:copy" href={wpType}></g>
-			 <g property="biopax:entityReference" content="identifiers:ec-code/3.6.3.14"></g>
-			 */}
-			{
-				isHighlighted?
-					<rect
-						id={`highlight-for-${id}`}
-						fill={highlightedColor}
-						className="Highlighted"/>: null
-			}
-		</g>)
-	}
+                {this.renderText()}
+            </g>
+        )
+    }
 }

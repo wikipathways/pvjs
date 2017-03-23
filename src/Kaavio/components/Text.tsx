@@ -1,61 +1,50 @@
-// NOTE one difference from SvgText API:
-// the user specifies "id" and "svgId", not "element" and "svg"
-
-// NOTE other possibly relevant libraries:
-// https://www.npmjs.com/package/jsyg-texteditor
-// https://www.npmjs.com/package/svg-text-wrap: Give a string, a desired width, and some svg style attributes, get back an array
-// https://www.npmjs.com/package/svg-text-size: Get a {width, height} given a text string (or array) and svg attributes
-// https://github.com/reactjs/react-art/blob/master/src/ReactART.js#L539
-// https://github.com/ariutta/cross-platform-text/blob/master/lib/svg.js
-
-import { omit } from 'lodash';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-// TODO why do I need to specify importing SvgTextOpts?
-import SvgText, { SvgTextOpts } from 'svg-text';
- 
-export interface TextOpts extends SvgTextOpts {
-	id: string;
-	element: undefined;
-	svg: undefined;
-}
+import * as ReactDom from 'react-dom';
+import * as _ from 'lodash'
+import SvgText from 'svg-text';
+import {TextProps} from "../typings";
 
-// TODO: Remove default export
-export default class Text extends React.Component<any, any> {
-	svgText: SvgText; // TODO this should be instance. Is it?
-  constructor(props: TextOpts) {
-		super(props);
-		this.state = {...props};
-  }
+export class Text extends React.Component<any, any> {
+    svgRef: any;
 
-//	componentWillReceiveProps(nextProps) {
-//		let that = this;
-//		const prevProps = that.props;
-//		forOwn(nextProps, function(prop, key) {
-//			if (prop && JSON.stringify(prevProps[key]) !== JSON.stringify(prop)) {
-//				that.setState({
-//					[key]: prop,
-//				});
-//			}
-//		});
-//	}
+    constructor(props: TextProps){
+        super(props);
+    }
 
-  componentDidMount() {
-		let that = this;
-		const state = that.state;
-		const { id, svgId } = state;
-		const opts = omit(omit(state, 'id'), 'svgId') as SvgTextOpts;
-		opts.element = document.getElementById(id);
-		opts.svg = document.getElementById(svgId);
-		that.svgText = new SvgText(opts);
-	}
+    componentDidMount(){
+        // Anders: I've removed a lot of the custom props in favour of fewer with some defaults.
+        // I can't see a use case for many of the ones that were here before. What do you think?
 
-	componentWillUnmount() {
-		// destroy SvgText instance
-	}
+        const {textContent = '', textAlign = 'center', className, fontColor = 'currentColor', fontFamily = 'serif',
+            fontSize = '1rem', fontStyle = 'normal', fontWeight = 'normal', x=0, y=0} = this.props;
 
-  render() {
-		// Since this is always the same, React won't try to change the contents
-		return <g id={this.state.id}/>;
-	}
+        const style = {
+            fill: fontColor,
+            fontFamily: fontFamily,
+            fontSize: fontSize,
+            fontStyle: fontStyle,
+            fontWeight: fontWeight
+        };
+
+        // Use ReactDom to find the node. Don't access DOM directly through browser API.
+        const svgElem = ReactDom.findDOMNode(this.svgRef);
+        const opts = {
+            text: textContent,
+            element: svgElem,
+            align: textAlign,
+            verticalAlign: 'middle',
+            className: className,
+            textOverflow: 'ellipsis',
+            style: style,
+            x: x,
+            y: y
+        };
+        new SvgText(opts);
+    }
+
+    render() {
+        return (
+            <g ref={svgRef => this.svgRef = svgRef} />
+        )
+    }
 }

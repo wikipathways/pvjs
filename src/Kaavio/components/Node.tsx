@@ -1,144 +1,106 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {Entity} from './Entity';
-import Text from './Text';
+import {Observable, AjaxRequest, Subject} from "rxjs";
 import * as _ from 'lodash';
+import * as validDataUrl from 'valid-data-url';
+import {Base64} from 'js-base64';
+import {NodeProps} from "../typings";
 
-const textAlignToAlign = {
-	left: 'left',
-	center: 'center',
-	right: 'left',
-	start: 'left',
-	end: 'right',
-};
-
+/**
+ * Node is a rectangle within a Kaavio diagram.
+ * It can be mapped to other pathway elements. For example, in PVJS this is mapped to metabolites and proteins.
+ */
 export class Node extends React.Component<any, any> {
-  constructor(props) {
-		super(props);
-		this.state = {
-			...props
-		};
-	}
+    containerRef: any;
 
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			highlightedNodes: nextProps.highlightedNodes,
-			// TODO: This is problematic since all the children re-render. Fix this
-			children: nextProps.children
-		});
-	}
+    constructor(props: NodeProps) {
+        super(props);
+        this.state = {
+            loadedIcon: null,
+            iconSuffix: new Date().toISOString().replace(/\W/g, '')
+        }
+    }
 
-  render() {
-		let that = this;
-		const state = that.state;
-		const { children, entity, entityMap, icons, iconsLoaded, iconSuffix, svgId, highlightedNodes} = state;
-		const { backgroundColor, borderWidth, color, drawAs, filter,
-						fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, height,
-						id, padding, rotation, strokeDasharray, textAlign,
-						textContent, type, verticalAlign, width, wpType, x, y } = entity;
-		
-		const alignSvgText = textAlignToAlign[textAlign];
-		const alignSvgTextToXSvgText = {
-			left: 0,
-			center: width / 2,
-			right: width,
-		};
-		const xSvgText = alignSvgTextToXSvgText[alignSvgText];
+    componentDidMount() {
+        this.getIcon();
+    }
 
-		const verticalAlignToYSvgText = {
-			top: 0,
-			middle: height / 2,
-			bottom: height,
-		};
-		const ySvgText = verticalAlignToYSvgText[verticalAlign];
-		
-		let nodeTransform=`translate(${entity.x} ${entity.y})`;
-		if (rotation) {
-			nodeTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
-		}
+    componentWilUpdate() {
+        this.getIcon();
+    }
 
-		const iconProvided = icons.hasOwnProperty(drawAs);
-		const icon = icons[drawAs];
-		if (!iconProvided) {
-			console.warn(`No "${drawAs}" icon provided.`);
-		}
+    /**
+     * Using the icon prop, get the required SVG and set the state.
+     */
+    getIcon() {
+        // Anders: The node now only receives one icon and is responsible for retrieving the data from it's url.
+        // This makes sense here but do other components need to do this? In which case this should be in Entity
+        // Could you also check the ajax request? Not sure if it's correct
+        const icon: any = this.props.icon;
+        if(! icon) return;
 
-		return <Entity {...state} children={[
-				// NOTE: we can pull the externally referenced SVGs in using either
-				// the SVG 'image' element or the SVG 'use' element. The 'use' element
-				// is better, because it allows for more control over styling.
-				// If the source image is not available, we can fall back to a simple
-				// rectangle.
-				// NOTE 'stroke' for the icon is analogous to the CSS property 'color' when
-				// referring to the border color of an HTML div.
-				iconProvided ?
-					iconsLoaded ?
-						// see https://css-tricks.com/svg-use-with-external-reference-take-2/
-						<use
-								id={`icon-for-${id}`}
-								key={`icon-for-${id}`}
-								x="0"
-								y="0"
-								width={width + 'px'}
-								height={height + 'px'}
-								href={'#' + icon.id + iconSuffix}
-								fill="transparent"
-								filter={!!filter ? `url(#${filter})` : null}
-								// TODO does specifying stroke for a 'use' element do anything?
-								// If an the referenced element is using stroke="currentColor",
-								// I think the 'color' property might overrule this stroke property.
-								stroke={color}
-								strokeWidth={borderWidth}
-								typeof="schema:ImageObject" className="Icon"/>
-					:
-						<rect
-								id={`icon-for-${id}`}
-								key={`icon-for-${id}`}
-								x="0"
-								y="0"
-								width={width + 'px'}
-								height={height + 'px'}
-								fill={backgroundColor}
-								filter={!!filter ? `url(#${filter})` : null}
-								stroke={color}
-								strokeWidth={borderWidth}
-								typeof="schema:ImageObject" className="Icon"/>
-				:
-					<image
-							id={`icon-for-${id}`}
-							key={`icon-for-${id}`}
-							x="0"
-							y="0"
-							width={width + 'px'}
-							height={height + 'px'}
-							fill={backgroundColor}
-							filter={!!filter ? `url(#${filter})` : null}
-							stroke={color}
-							strokeWidth={borderWidth}
-							typeof="schema:ImageObject" className="Icon"
-							href="https://upload.wikimedia.org/wikipedia/commons/2/24/Warning_icon.svg" />,
+        if(validDataUrl(icon.url)) {
+            const parts = icon.url.match(validDataUrl.regex);
+            let mediaType = parts[1]? parts[1].toLowerCase(): null;
+            let charset = parts[2]? parts[2].split('=')[1].toLowerCase: null;
+            const isBase64 = !!parts[3];
+            let data = parts[4]? parts[4]: null;
+            const svgString = !isBase64 ? decodeURIComponent(data) : Base64.decode(data);
+            this.setState({
+                loadedIcon: {
+                    id: icon.id,
+                    svgString: svgString
+                }
+            });
+        }
+        else {
+            const ajaxRequest: AjaxRequest = {
+                url: icon.url,
+                method: 'GET',
+                responseType: 'text',
+                timeout: 1 * 1000, // ms
+                crossDomain: true,
+            };
+            Observable.ajax(ajaxRequest)
+                .subscribe(
+                    ajaxResponse => {
+                        const svgString = ajaxResponse.xhr.response;
+                        this.setState({
+                            loadedIcon: {
+                                id: icon.id,
+                                svgString: svgString
+                            }
+                        });
+                    },
+                    err => {
+                        err.message = err.message || '';
+                        err.message += ` Error getting icon from "${icon.url}". Is source website down?`;
+                        console.error(err);
+                    }
+                )
+        }
+    }
 
-					!!textContent ?	<Text id={`text-for-${id}`}
-																key={`text-for-${id}`}
-																svgId={svgId}
-																textOverflow="clip"
-																x={xSvgText}
-																y={ySvgText}
-																// TODO what should these be?
-																outerWidth={width + padding}
-																outerHeight={height + padding}
-																align={alignSvgText}
-																verticalAlign={verticalAlign}
-																className="textlabel"
-																attrs={{
-																	fill: 'currentColor',
-																	fontFamily: fontFamily,
-																	fontSize: fontSize,
-																	fontStyle: fontStyle,
-																	fontWeight: fontWeight
-																}}
-																padding={padding}
-																text={textContent}/> : null,
-		].concat(children || [])} />;
-	}
+    render(){
+        const { borderWidth, color, filter, height, id, width, children}
+            = this.props;
+        const {loadedIcon} = this.state;
+
+        // Anders: Here, I just pass in the icon prop since that is all the component needs.
+        // I don't think it's necessary to show the warning shape. In Diagram, I just show a console warning instead
+        // I set the icon SVG within this group rather than in the document. Seems better to keep related things together
+        // BTW, the XSS was present before just less obvious. Should think of a way to fix this.
+        return (
+            <g ref={containerRef => this.containerRef = containerRef}>
+                loadedIcon?
+                    {/*TODO: This is BAD. XSS */}
+                    <g dangerouslySetInnerHTML={loadedIcon? {__html: loadedIcon.svgString}: null} />
+                    <use id={`icon-for-${id}`} key={`icon-for-${id}`}
+                         x="0" y="0" width={width + 'px'} height={height + 'px'} href={loadedIcon? '#' + loadedIcon.id: null} fill="transparent"
+                         filter={!!filter ? `url(#${filter})` : null} stroke={color} strokeWidth={borderWidth}
+                         typeof="schema:ImageObject" className="Icon"/>
+                {children}
+            </g>
+        );
+    }
 }

@@ -1,97 +1,56 @@
-import {isArray, isNaN, isNumber, forOwn} from 'lodash';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import {Edge} from './Edge';
+import * as ReactDom from 'react-dom';
+import {getHighlighted} from "../utils/getHighlighted";
+import {Entity} from './Entity';
 import {Node} from './Node';
 
-const components = {
-	Edge: Edge,
-	Node: Node,
-	// NOTE: we don't currently allow nested groups
-	//Group: Group,
+/**
+ * Higher order Group component.
+ * Much of the implementation of a Group is the same as the Node, since a group is a node but with children...
+ * See: https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e#.z5a94mm1b
+ *
+ * @returns {Group}
+ */
+const nodeWithGroup = (wrappedNode) => {
+    return class nodeWithGroup extends React.Component<any, any> {
+        render() {
+            const {x, y, entityMap, highlightedNodes, backgroundColor, customStyle, icons, edgeDrawers, contains, id} = this.props;
+            const children = contains
+                .map((containedId) => entityMap[containedId]) // TODO: Refactor this so contains is actually the map of elements. Then don't have to pass through entityMap too
+                .filter(entity => ['Node', 'Edge'].indexOf(entity.kaavioType) > -1) // Ensure only node or Edge. We don't allow nested Groups
+                .map(entity => {
+                    // Set the X and Y values
+                    let toSet;
+                    if (entity.kaavioType == 'Edge') {
+                        toSet = entity.points;
+                    }
+                    else {
+                        toSet = entity;
+                    }
+
+                    // Keep a reference to the origin X and Y values in case of a re-render
+                    if (!toSet.origX) {
+                        toSet.origX = toSet.x
+                    }
+                    if (!toSet.origY) {
+                        toSet.origY = toSet.y;
+                    }
+                    toSet.x = toSet.origX - x;
+                    toSet.y = toSet.origY - y;
+                    return toSet;
+                })
+                .map(entity => {
+                    const highlighted = getHighlighted(entity, highlightedNodes);
+                    const icon = icons[entity.drawAs];
+                    return <Entity key={entity.id} {...entity} icon={icon? icon: null} edgeDrawers={edgeDrawers}
+                                   backgroundColor={backgroundColor} customStyle={customStyle}
+                                   isHighlighted={highlighted.highlighted} highlightedColor={highlighted.color}
+                                   highlightedNodes={highlightedNodes} icons={icons} entityMap={entityMap}
+                    />
+                });
+            return <Node key={id} {...this.props} children={children}/>;
+        }
+    };
 };
 
-export class Group extends React.Component<any, any> {
-  constructor(props) {
-		super(props);
-		this.state = {...props};
-	}
-
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			highlightedNodes: nextProps.highlightedNodes
-		});
-	}
-
-  render() {
-		let that = this;
-		const { customStyle, entityMap, entity, edgeDrawers, icons, iconsLoaded, iconSuffix, highlightedNodes } = that.state;
-		const { backgroundColor, borderWidth, color, drawAs, filter, fillOpacity, height, id, rotation, strokeDasharray, textContent, width, x, y } = entity;
-		const children = entity.contains
-			.map((containedId) => entityMap[containedId])
-			.map(function(contained) {
-				const containedKaavioType = contained.kaavioType;
-
-				if (['Node', 'Burr'].indexOf(containedKaavioType) > -1) {
-					// Keep a reference to the origin X and Y values in case of a re-render
-					if(! contained.origX) {
-						contained.origX = contained.x
-					}
-					if(! contained.origY ){
-						contained.origY = contained.y;
-					}
-					contained.x = contained.origX - x;
-					contained.y = contained.origY - y;
-				} else if (containedKaavioType === 'Edge') {
-					// TODO use gpml2pvjson point definition
-					contained.points = contained.points.map(function(point: {x: number, y: number, origX? : number, origY?: number}) {
-						// NOTE: notice side effects
-						// Keep a reference to the origin X and Y values in case of a re-render
-						if(! point.origX) {
-							point.origX = contained.x
-						}
-						if(! point.origY ){
-							point.origY = contained.y;
-						}
-
-						point.x = point.origX - x;
-						point.y = point.origY - y;
-						return point;
-					});
-				} else {
-					throw new Error(`Unexpected content (type: "${contained.kaavioType}") in Group "${entity.id}".`)
-				}
-				return contained;
-			})
-			// TODO what's up with Citations being drawn like this?
-			// Why do they have x and y properties now?
-			//.filter(el => el.kaavioType !== 'Citation')
-			.map(function(contained) {
-				const SubTag = components[contained.kaavioType];
-				return <SubTag key={contained.id} backgroundColor={backgroundColor}
-								customStyle={customStyle}
-								edgeDrawers={edgeDrawers}
-								entity={contained}
-								entityMap={entityMap}
-								icons={icons}
-								iconsLoaded={iconsLoaded}
-								iconSuffix={iconSuffix}
-							    highlightedNodes={highlightedNodes}
-								/>
-			});
-
-		return <Node backgroundColor={backgroundColor}
-						customStyle={customStyle}
-						edgeDrawers={edgeDrawers}
-						entity={entity}
-						entityMap={entityMap}
-						icons={icons}
-						iconsLoaded={iconsLoaded}
-						iconSuffix={iconSuffix}
-						children={children}
-					 	highlightedNodes={highlightedNodes}
-						/>;
-	}
-}
-
-export default Group;
+export const Group = nodeWithGroup(Node);
