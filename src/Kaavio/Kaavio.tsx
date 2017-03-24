@@ -28,7 +28,7 @@ export class Kaavio extends React.Component<any, any> {
 	panZoomRef: any;
 	manipulator: Manipulator;
 	private highlightedNodes: highlightedNode[] = []; // A stack of the highlighted nodes that is pushed and popped
-	private hiddenEntities: string[];
+	private hiddenEntities: string[] = [];
 
 	constructor(props) {
 		super(props);

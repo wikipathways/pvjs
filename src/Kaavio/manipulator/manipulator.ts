@@ -117,7 +117,6 @@ export class Manipulator {
     }
 
     private highlightOnOne(node_id: string, color: string): void {
-        let id = '#' + node_id;
         this.kaavio.pushHighlighted({
             node_id: node_id,
             color: color
@@ -125,7 +124,6 @@ export class Manipulator {
     }
 
     private highlightOffOne(node_id: string): void {
-        let id = '#' + node_id;
         this.kaavio.popHighlighted(node_id);
     }
 
@@ -135,6 +133,80 @@ export class Manipulator {
      */
     resetHighlighted(exclude?: string[]): void {
         this.kaavio.resetHighlighted(exclude);
+    }
+
+    /**
+     * Toggle the displaying of one or multiple entities
+     * @param entity_id - one identifier or a string of identifiers
+     * @param color - can be any css colour
+     * @param resetOthers - Reset all other hidden nodes before hiding. Default = true
+     * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
+     */
+    toggleHidden(entity_id: any, color: string, resetOthers: boolean = false, resetPanZoom: boolean = true): void {
+        if(resetPanZoom) this.resetPanZoom();
+
+        if (typeof entity_id === 'string'){
+            let arr = [];
+            arr.push(entity_id);
+            entity_id = arr;
+        }
+
+        if(resetOthers) this.resetHidden(entity_id);
+        entity_id.forEach(single => {
+            const hidden = this.kaavio.isHidden(single);
+            if(hidden){
+                this.show(single, false);
+            }
+            else {
+                this.hide(single, false);
+            }
+        });
+    }
+
+    /**
+     * Hide one or multiple entities
+     * @param entity_id - one identifier or a string of identifiers
+     * @param resetOthers - Reset all other hidden entities first. Default = true
+     * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
+     */
+    hide(entity_id: string | string[], resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+        if(resetPanZoom) this.resetPanZoom();
+
+        if (typeof entity_id === 'string'){
+            let arr = [];
+            arr.push(entity_id);
+            entity_id = arr;
+        }
+        if(resetOthers) this.resetHidden(entity_id as string[]);
+
+        this.kaavio.pushHidden(entity_id)
+    }
+
+    /**
+     * Show one or multiple entities
+     * @param entity_id - one identifier or a string of identifiers
+     * @param resetOthers - Reset all other hidden entities first. Default = true
+     * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
+     */
+    show(entity_id: string | string[], resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+        if(resetPanZoom) this.resetPanZoom();
+
+        if (typeof entity_id === 'string'){
+            let arr = [];
+            arr.push(entity_id);
+            entity_id = arr;
+        }
+
+        if(resetOthers) this.resetHidden(entity_id as string[]);
+        this.kaavio.popHidden(entity_id)
+    }
+
+    /**
+     * Un-highlight all highlighted nodes except those in the exclude array
+     * @param exclude
+     */
+    resetHidden(exclude?: string[]): void {
+        this.kaavio.resetHidden(exclude);
     }
 
     /**

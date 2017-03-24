@@ -115,7 +115,7 @@ export class Entity extends React.Component<any, any> {
                     'Node, Edge, Marker or Group.');
         }
 
-        if(hidden) return;
+        if(hidden) return null; // Must return a react element or null
 
         return (
             <g id={id} key={id} className={customClass} color={color}
