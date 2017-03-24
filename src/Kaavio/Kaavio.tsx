@@ -28,6 +28,7 @@ export class Kaavio extends React.Component<any, any> {
 	panZoomRef: any;
 	manipulator: Manipulator;
 	private highlightedNodes: highlightedNode[] = []; // A stack of the highlighted nodes that is pushed and popped
+	private hiddenEntities: string[];
 
 	constructor(props) {
 		super(props);
@@ -45,7 +46,8 @@ export class Kaavio extends React.Component<any, any> {
 			edgeDrawers: props.edgeDrawers,
 			icons: props.icons,
 			markerDrawers: props.markerDrawers,
-			highlightedNodes: []
+			highlightedNodes: [],
+			hiddenEntities: [],
 		};
 
 		normalize();
@@ -132,10 +134,58 @@ export class Kaavio extends React.Component<any, any> {
 		});
 	};
 
+	pushHidden = (entity_id: string | string[]) => {
+		let toHide;
+		if(entity_id.constructor !== Array){
+			toHide = [entity_id];
+		}
+		else {
+			toHide = entity_id;
+		}
+		// Remove any items from the current highlightedNodes array with the same node_id
+		_.pullAllWith(this.hiddenEntities, toHide, (arrVal, othVal) => {
+			return arrVal == othVal;
+		});
+
+		this.hiddenEntities = this.hiddenEntities.concat(toHide);
+		this.setState({
+			hiddenEntities: this.hiddenEntities
+		});
+	};
+
+	popHidden = (entity_id: string | string[]) => {
+		let toRemove;
+		if(typeof entity_id === 'string'){
+			toRemove = [entity_id]
+		}
+		else {
+			toRemove = entity_id;
+		}
+
+		// Remove any items from the current highlightedNodes array with the same node_id
+		_.pullAllWith(this.hiddenEntities, toRemove, (arrVal, othVal) => {
+			return arrVal == othVal;
+		});
+		this.setState({hiddenEntities: this.hiddenEntities});
+	};
+
+	resetHidden = (exclude?: string[]) => {
+		let toReset = this.hiddenEntities;
+		if(exclude){
+			toReset = _.pullAll(toReset, exclude);
+		}
+		this.popHidden(toReset)
+	};
+
+	isHidden = (entity_id: string) => {
+		return this.hiddenEntities.indexOf(entity_id) > -1;
+	};
+
 	render() {
 		let that = this;
 		const state = that.state;
-		const { about, customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons, markerDrawers, highlightedNodes } = state;
+		const { about, customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons,
+			markerDrawers, highlightedNodes, hiddenEntities } = state;
 		const backgroundColor = customStyle.backgroundColor || state.backgroundColor;
 
 		const entityMap = entities.reduce(function(acc, entity) {
@@ -172,6 +222,7 @@ export class Kaavio extends React.Component<any, any> {
 				zIndices={zIndices}
 				customStyle={customStyle}
 				highlightedNodes={highlightedNodes}
+				hiddenEntities={hiddenEntities}
 			/>
 			<PanZoom ref={panZoom => this.panZoomRef = panZoom} diagram={this.diagramRef} />
 		</div>

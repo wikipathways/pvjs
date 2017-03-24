@@ -7,6 +7,7 @@ import * as validDataUrl from 'valid-data-url';
 import {MARKER_PROPERTY_NAMES, NON_FUNC_IRI_MARKER_PROPERTY_VALUES} from "./Marker";
 import {getHighlighted} from "../utils/getHighlighted";
 import {getMarkerId, Marker} from "./Marker";
+import {getHidden} from "../utils/getHidden";
 
 export class Diagram extends React.Component<any, any> {
     constructor(props) {
@@ -167,7 +168,7 @@ export class Diagram extends React.Component<any, any> {
 
     render() {
         const { about, backgroundColor, customStyle, edgeDrawers, entityMap, filters, height, name, organism,
-            markerDrawers, width, zIndices, highlightedNodes, icons} = this.props;
+            markerDrawers, width, zIndices, highlightedNodes, icons, hiddenEntities} = this.props;
 
         const zIndexedEntities = zIndices
             .map((id) => entityMap[id]);
@@ -229,11 +230,13 @@ export class Diagram extends React.Component<any, any> {
                         .filter((entity) => !entity.hasOwnProperty('isPartOf'))
                         .map(function(entity) {
                             const highlighted = getHighlighted(entity, highlightedNodes);
+                            const hidden = getHidden(entity, hiddenEntities);
                             const icon = icons[entity.drawAs];
                             return <Entity key={entity.id} {...entity} icon={icon? icon: null} edgeDrawers={edgeDrawers}
                                            backgroundColor={backgroundColor} customStyle={customStyle}
                                            isHighlighted={highlighted.highlighted} highlightedColor={highlighted.color}
                                            highlightedNodes={highlightedNodes} icons={icons} entityMap={entityMap}
+                                           hidden={hidden} hiddenEntities={hiddenEntities}
                             />
                         })
                 }

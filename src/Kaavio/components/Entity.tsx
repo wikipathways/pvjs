@@ -7,6 +7,7 @@ import {EntityProps} from "../typings";
 import {Group} from "./Group";
 import {Edge} from "./Edge";
 import {getHighlighted} from "../utils/getHighlighted";
+import {getHidden} from "../utils/getHidden";
 
 /**
  * Parent Entity component.
@@ -37,7 +38,7 @@ export class Entity extends React.Component<any, any> {
 
     renderBurrs() {
         const {burrs, entityMap, width, height, kaavioType, edgeDrawers, points, drawAs, backgroundColor, customStyle,
-            icons, highlightedNodes}
+            icons, highlightedNodes, hiddenEntities}
             = this.props;
         if(! burrs || burrs.length < 1) return;
 
@@ -71,11 +72,13 @@ export class Entity extends React.Component<any, any> {
                 // If just a Node is returned then actions such as highlighting the burr individually cannot be done
                 burr.kaavioType = "Node";
                 const highlighted = getHighlighted(burr, highlightedNodes);
+                const hidden = getHidden(burr, hiddenEntities);
                 const icon = icons[burr.drawAs];
                 return <Entity key={burr.id} {...burr} edgeDrawers={edgeDrawers}
                                backgroundColor={backgroundColor} customStyle={customStyle}
                                isHighlighted={highlighted.highlighted} highlightedColor={highlighted.color}
-                               highlightedNodes={highlightedNodes} icon={icon} icons={icons} entityMap={entityMap}/>;
+                               highlightedNodes={highlightedNodes} icon={icon} icons={icons} entityMap={entityMap}
+                               hiddenEntities={hiddenEntities} hidden={hidden} />;
             });
     }
 
@@ -84,7 +87,7 @@ export class Entity extends React.Component<any, any> {
         // Also use this.props instead of this.state
 
         const {rotation, width, height, type, id, x, y, color, kaavioType, customClass, isHighlighted, highlightedColor,
-            highlightedNodes, icons}
+            highlightedNodes, icons, hidden, hiddenEntities}
             = this.props;
         let entityTransform;
         if (x || y || rotation) {
@@ -111,6 +114,9 @@ export class Entity extends React.Component<any, any> {
                 throw new Error('The Kaavio type of ' + kaavioType + ' does not exist. Please use one of ' +
                     'Node, Edge, Marker or Group.');
         }
+
+        if(hidden) return;
+
         return (
             <g id={id} key={id} className={customClass} color={color}
                transform={entityTransform} filter={isHighlighted? 'url(#' + highlighter(id, highlightedColor).url + ')': null}>
