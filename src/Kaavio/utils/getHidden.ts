@@ -8,7 +8,7 @@ export function getHidden(entity, hiddenEntities) {
 
     let matched: string = _.find(hiddenEntities, (value, index) => {
         return value == entity.id;
-    });
+    }) as string;
 
     if (matched) {
         result = true;
