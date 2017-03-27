@@ -32,10 +32,13 @@ export class Manipulator {
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
      * @param resetOthers - Reset all other highlighted entities before highlighting. Default = true
+     * @param resetHidden - Reset the hidden entities before highlighting. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
-    toggleHighlight(entity_id: any, color: string, resetOthers: boolean = false, resetPanZoom: boolean = true): void {
+    toggleHighlight(entity_id: any, color: string, resetOthers: boolean = true, resetHidden: boolean = false,
+                    resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
+        if(resetHidden) this.resetHidden();
 
         if (typeof entity_id === 'string'){
             let arr = [];
@@ -61,10 +64,13 @@ export class Manipulator {
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
      * @param resetOthers - Reset all other highlighted entities before highlighting. Default = true
+     * @param resetHidden - Reset the hidden entities before highlighting. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
-    highlightOn(entity_id: any, color: string, resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+    highlightOn(entity_id: any, color: string, resetOthers: boolean = true, resetHidden: boolean = true,
+                resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
+        if(resetHidden) this.resetHidden();
         if(! color) throw new Error("No color specified.");
 
         if (typeof entity_id === 'string'){
@@ -88,10 +94,13 @@ export class Manipulator {
      * Turn off the highlighting of one or multiple entities.
      * @param entity_id - one identifier or a string of identifiers
      * @param resetOthers - Reset all other highlighted entities before highlighting. Default = true
+     * @param resetHidden - Reset the hidden entities before highlighting. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
-    highlightOff(entity_id: any, resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+    highlightOff(entity_id: any, resetOthers: boolean = true,, resetHidden: boolean = true,
+                 resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
+        if(resetHidden) this.resetHidden();
 
         if (typeof entity_id === 'string'){
             let arr = [];
