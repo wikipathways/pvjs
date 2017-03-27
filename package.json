@@ -2,7 +2,7 @@
   "name": "pvjs",
   "version": "2.4.84",
   "description": "Diagram viewer and editor for biological pathways.",
-  "main": "src/index.ts",
+  "main": "src",
   "files": [
     "src/",
     "tsconfig.json",
