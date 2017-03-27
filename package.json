@@ -2,7 +2,7 @@
   "name": "pvjs",
   "version": "2.4.84",
   "description": "Diagram viewer and editor for biological pathways.",
-  "main": "src",
+  "main": "lib",
   "files": [
     "src/",
     "tsconfig.json",
@@ -11,6 +11,8 @@
     "index.d.ts"
   ],
   "scripts": {
+    "postinstall": "compile:ts",
+    "compile:ts": "tsc -p tsconfig.json",
     "build": "webpack --config webpack.config.js",
     "start": "npm-run-all -p start:mockserver start:webpack",
     "start:mockserver": "./node_modules/mockserver/bin/mockserver.js -p 4522 -m './test/mockserver-data'",
@@ -48,7 +50,6 @@
   },
   "homepage": "https://wikipathways.github.io/pvjs/docs/",
   "dependencies": {
-    "@types/lodash": "^4.14.54",
     "bootstrap": "^3.3.7",
     "bridgedb": "^6.0.0-14",
     "csstips": "^0.2.0",
@@ -127,7 +128,6 @@
     "svg-url-loader": "^2.0.2",
     "through": "~2.3.6",
     "ts-loader": "^1.3.3",
-    "typescript": "~2.1.6",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2",
     "webpack-hot-middleware": "^2.13.0",
