@@ -13,6 +13,7 @@
     "esnext/"
   ],
   "scripts": {
+    "prepare": "npm run build",
     "build": "webpack --config webpack.config.js",
     "start": "npm-run-all -p start:mockserver start:webpack",
     "start:mockserver": "./node_modules/mockserver/bin/mockserver.js -p 4522 -m './test/mockserver-data'",
