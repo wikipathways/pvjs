@@ -319,10 +319,11 @@ export class Manipulator {
      * Zoom onto a specific node
      * @param node_id
      * @param resetHighlight - reset the highlight before zooming. Default = true
+     * @param resetHidden - reset the hidden entities before zooming. Default = true
      */
-    zoomOn(node_id: string | string[], resetHighlight: boolean = true): void {
+    zoomOn(node_id: string | string[], resetHighlight: boolean = true, resetHidden: boolean = true): void {
         const zoom_perc = this.computeZoom(node_id);
-        this.panTo(node_id, false, resetHighlight);
+        this.panTo(node_id, false, resetHighlight, resetHidden);
         this.zoom(zoom_perc);
     }
 
@@ -338,11 +339,15 @@ export class Manipulator {
      * Pan to a specific node
      * @param node_id
      * @param resetPanZoom - reset the zoom before panning. Default = true
-     * @param resetHighlight - rest the highlight before panning. Default = true
+     * @param resetHighlight - reset the highlight before panning. Default = true
+     * @param resetHidden - reset the hidden entities before panning. Default = true
      */
-    panTo(node_id: string | string[], resetPanZoom: boolean = true, resetHighlight: boolean = true): void {
+    panTo(node_id: string | string[], resetPanZoom: boolean = true, resetHighlight: boolean = true,
+          resetHidden: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
         if(resetHighlight) this.resetHighlighted();
+        if(resetHidden) this.resetHidden();
+
         let BBox;
         if (typeof node_id === 'string') BBox = this.getNodeBBox(node_id);
         else {
