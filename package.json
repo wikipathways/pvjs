@@ -1,6 +1,6 @@
 {
   "name": "pvjs",
-  "version": "@next",
+  "version": "2.4.84",
   "description": "Diagram viewer and editor for biological pathways.",
   "files": [
     "src/",
