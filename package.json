@@ -5,6 +5,7 @@
   "main": "lib",
   "files": [
     "src/**/*",
+    "src/Kaavio/typings/**/*",
     "tsconfig.json",
     "tsconfig.base.json",
     "tsconfig.esnext.json",
