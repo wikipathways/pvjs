@@ -50,10 +50,10 @@ export class Manipulator {
         entity_id.forEach(single_id => {
             const highlighted = this.kaavio.isHighlighted(single_id);
             if(highlighted){
-                this.highlightOff(single_id, false)
+                this.highlightOff(single_id, false, false, false)
             }
             else {
-                this.highlightOn(single_id, color, false)
+                this.highlightOn(single_id, color, false, false, false)
             }
         });
     }
@@ -144,10 +144,10 @@ export class Manipulator {
         entity_id.forEach(single => {
             const hidden = this.kaavio.isHidden(single);
             if(hidden){
-                this.show(single, false);
+                this.show(single, false, false, false);
             }
             else {
-                this.hide(single, false);
+                this.hide(single, false, false, false);
             }
         });
     }
