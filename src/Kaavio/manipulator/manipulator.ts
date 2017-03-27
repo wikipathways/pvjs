@@ -28,107 +28,84 @@ export class Manipulator {
     }
 
     /**
-     * Toggle the highlighting of one or multiple nodes
-     * @param node_id - one identifier or a string of identifiers
+     * Toggle the highlighting of one or multiple entities
+     * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
-     * @param resetOthers - Reset all other highlighted nodes before highlighting. Default = true
+     * @param resetOthers - Reset all other highlighted entities before highlighting. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
-    toggleHighlight(node_id: any, color: string, resetOthers: boolean = false, resetPanZoom: boolean = true): void {
+    toggleHighlight(entity_id: any, color: string, resetOthers: boolean = false, resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
 
-        if (typeof node_id === 'string'){
-            // Just one node_id
+        if (typeof entity_id === 'string'){
             let arr = [];
-            arr.push(node_id);
-
-            if(resetOthers) this.resetHighlighted(arr);
-            this.toggleHighlightOne(node_id, color);
-            return;
+            arr.push(entity_id);
+            entity_id = arr;
         }
+        if(resetOthers) this.resetHighlighted(entity_id as string[]);
 
-        if(resetOthers) this.resetHighlighted(node_id);
-        node_id.forEach(singleNode => {
-            this.toggleHighlightOne(singleNode, color);
+        entity_id.forEach(single_id => {
+            const highlighted = this.kaavio.isHighlighted(single_id);
+            if(highlighted){
+                this.highlightOff(single_id, false)
+            }
+            else {
+                this.highlightOn(single_id, color, false)
+            }
         });
-    }
-
-    private toggleHighlightOne(node_id: string, color?: string){
-        if(this.kaavio.isHighlighted(node_id)){
-            this.highlightOffOne(node_id);
-            return;
-        }
-
-        if(! color) throw new Error("No color specified.");
-        this.highlightOnOne(node_id, color);
     }
 
     /**
      * Turn on the highlighting of one entity.
-     * Behaviour is to only change the highlighted entities if the node_id or color changes.
-     * @param node_id - one identifier or a string of identifiers
+     * Behaviour is to only change the highlighted entities if the entity_id or color changes.
+     * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
-     * @param resetOthers - Reset all other highlighted nodes before highlighting. Default = true
+     * @param resetOthers - Reset all other highlighted entities before highlighting. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
-    highlightOn(node_id: any, color: string, resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+    highlightOn(entity_id: any, color: string, resetOthers: boolean = true, resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
         if(! color) throw new Error("No color specified.");
 
-        if (typeof node_id === 'string'){
-            // Just one node_id
+        if (typeof entity_id === 'string'){
             let arr = [];
-            arr.push(node_id);
-
-            if(resetOthers) this.resetHighlighted(arr);
-            this.highlightOnOne(node_id, color);
-            return;
+            arr.push(entity_id);
+            entity_id = arr;
         }
 
-        if(resetOthers) this.resetHighlighted(node_id);
-        node_id.forEach(singleNode => {
-            this.highlightOnOne(singleNode, color);
+        if(resetOthers) this.resetHighlighted(entity_id);
+        const toHighlight = entity_id.map(single_id => {
+            return {
+                node_id: single_id,
+                color: color
+            }
         });
+
+        this.kaavio.pushHighlighted(toHighlight)
     }
 
     /**
-     * Turn off the highlighting of one or multiple nodes
-     * @param node_id - one identifier or a string of identifiers
-     * @param resetOthers - Reset all other highlighted nodes before highlighting. Default = true
+     * Turn off the highlighting of one or multiple entities.
+     * @param entity_id - one identifier or a string of identifiers
+     * @param resetOthers - Reset all other highlighted entities before highlighting. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
-    highlightOff(node_id: any, resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+    highlightOff(entity_id: any, resetOthers: boolean = true, resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
 
-        if (typeof node_id === 'string'){
-            // Just one node_id
+        if (typeof entity_id === 'string'){
             let arr = [];
-            arr.push(node_id);
-
-            if(resetOthers) this.resetHighlighted(arr);
-            this.highlightOffOne(node_id);
-            return;
+            arr.push(entity_id);
+            entity_id = arr;
         }
 
-        if(resetOthers) this.resetHighlighted(node_id);
-        node_id.forEach(singleNode => {
-            this.highlightOffOne(singleNode);
-        });
-    }
+        if(resetOthers) this.resetHighlighted(entity_id);
 
-    private highlightOnOne(node_id: string, color: string): void {
-        this.kaavio.pushHighlighted({
-            node_id: node_id,
-            color: color
-        });
-    }
-
-    private highlightOffOne(node_id: string): void {
-        this.kaavio.popHighlighted(node_id);
+        this.kaavio.popHighlighted(entity_id)
     }
 
     /**
-     * Un-highlight all highlighted nodes except those in the exclude array
+     * Un-highlight all highlighted entities except those in the exclude array
      * @param exclude
      */
     resetHighlighted(exclude?: string[]): void {
