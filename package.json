@@ -11,7 +11,7 @@
     "index.d.ts"
   ],
   "scripts": {
-    "postinstall": "compile:ts",
+    "postinstall": "npm run compile:ts",
     "compile:ts": "tsc -p tsconfig.json",
     "build": "webpack --config webpack.config.js",
     "start": "npm-run-all -p start:mockserver start:webpack",
