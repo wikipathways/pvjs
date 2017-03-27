@@ -97,7 +97,7 @@ export class Manipulator {
      * @param resetHidden - Reset the hidden entities before highlighting. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
-    highlightOff(entity_id: any, resetOthers: boolean = true,, resetHidden: boolean = true,
+    highlightOff(entity_id: any, resetOthers: boolean = true, resetHidden: boolean = true,
                  resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
         if(resetHidden) this.resetHidden();
