@@ -126,10 +126,13 @@ export class Manipulator {
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
      * @param resetOthers - Reset all other hidden nodes before hiding. Default = true
+     * @param resetHighlighted - Reset the highlighted entities before toggling. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
-    toggleHidden(entity_id: any, color: string, resetOthers: boolean = false, resetPanZoom: boolean = true): void {
+    toggleHidden(entity_id: any, color: string, resetOthers: boolean = false, resetHighlighted: boolean = true,
+                 resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
+        if(resetHighlighted) this.resetHighlighted();
 
         if (typeof entity_id === 'string'){
             let arr = [];
@@ -153,10 +156,13 @@ export class Manipulator {
      * Hide one or multiple entities
      * @param entity_id - one identifier or a string of identifiers
      * @param resetOthers - Reset all other hidden entities first. Default = true
+     * @param resetHighlighted - Reset the highlighted entities before hiding. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
-    hide(entity_id: string | string[], resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+    hide(entity_id: string | string[], resetOthers: boolean = true, resetHighlighted: boolean =true,
+         resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
+        if(resetHighlighted) this.resetHighlighted();
 
         if (typeof entity_id === 'string'){
             let arr = [];
@@ -172,10 +178,13 @@ export class Manipulator {
      * Show one or multiple entities
      * @param entity_id - one identifier or a string of identifiers
      * @param resetOthers - Reset all other hidden entities first. Default = true
+     * @param resetHighlighted - Reset the highlighted entities before showing. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
-    show(entity_id: string | string[], resetOthers: boolean = true, resetPanZoom: boolean = true): void {
+    show(entity_id: string | string[], resetOthers: boolean = true, resetHighlighted: boolean = true,
+         resetPanZoom: boolean = true): void {
         if(resetPanZoom) this.resetPanZoom();
+        if(resetHighlighted) this.resetHighlighted();
 
         if (typeof entity_id === 'string'){
             let arr = [];
