@@ -112,7 +112,7 @@ export class Entity extends React.Component<any, any> {
                 break;
             default:
                 throw new Error('The Kaavio type of ' + kaavioType + ' does not exist. Please use one of ' +
-                    'Node, Edge, Marker or Group.');
+                    'Node, Edge, or Group.');
         }
 
         if(hidden) return null; // Must return a react element or null
