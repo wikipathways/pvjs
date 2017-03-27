@@ -1,20 +1,15 @@
 {
   "name": "pvjs",
-  "version": "2.4.84",
+  "version": "@next",
   "description": "Diagram viewer and editor for biological pathways.",
-  "main": "main.js",
-  "main:esnext": "esnext/main.js",
   "files": [
-    "index.d.ts",
-    "organism.d.ts",
-    "csv-streamify.d.ts",
-    "main.js",
-    "main.d.ts",
-    "esnext/"
+    "src/",
+    "tsconfig.json",
+    "tsconfig.base.json",
+    "tsconfig.esnext.json",
+    "index.d.ts"
   ],
   "scripts": {
-    "prepare": "npm run build",
-    "postinstall": "npm run build",
     "build": "webpack --config webpack.config.js",
     "start": "npm-run-all -p start:mockserver start:webpack",
     "start:mockserver": "./node_modules/mockserver/bin/mockserver.js -p 4522 -m './test/mockserver-data'",
