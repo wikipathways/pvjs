@@ -4,7 +4,7 @@
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "lib",
   "files": [
-    "src/",
+    "src/**/*",
     "tsconfig.json",
     "tsconfig.base.json",
     "tsconfig.esnext.json",
