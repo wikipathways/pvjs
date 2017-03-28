@@ -5,9 +5,9 @@ export function highlighter(id, color) {
         filter: (
                 <filter id={"highlighter-for-" + id} key={"highlighter-for-" + id}>
                     <feColorMatrix in="StrokePaint"
-                                   type="saturate" values="0" result="toHighlight"/> {/* Desaturate all colours before highlighting */}
+                                   type="saturate" values="0" result="toHighlight" /> {/* Desaturate all colours before highlighting */}
                     <feFlood floodColor={color} floodOpacity="0.5" result="highlight" />
-                    <feComposite in="highlight" in2="toHighlight" operator="atop" result="output"/>
+                    <feComposite in="highlight" in2="toHighlight" operator="atop" result="output" />
                 </filter>
             )
     }

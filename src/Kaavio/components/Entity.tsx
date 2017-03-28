@@ -8,6 +8,7 @@ import {Group} from "./Group";
 import {Edge} from "./Edge";
 import {getHighlighted} from "../utils/getHighlighted";
 import {getHidden} from "../utils/getHidden";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 /**
  * Parent Entity component.
