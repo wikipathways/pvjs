@@ -2,7 +2,6 @@ import * as _ from 'lodash';
 import * as $ from 'jquery';
 import * as d3 from 'd3';
 import * as ReactDOM from 'react-dom';
-import 'web-animations-js'; // Import this polyfill for side-effects
 
 /**
  * Class for "The Manipulation API".

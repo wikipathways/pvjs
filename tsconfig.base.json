@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"declaration": false,
+		"declaration": true,
 		"experimentalDecorators": true,
 		"inlineSourceMap": true,
 		"jsx": "react",
@@ -10,8 +10,8 @@
 		"pretty": true
 	},
 	"files": [
-		"src/index.ts",
-		"index.d.ts"
+		"src/typings/index.d.ts",
+		"src/index.ts"
 	],
 	"exclude": [
 		"dist/**/*",

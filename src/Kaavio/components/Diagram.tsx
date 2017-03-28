@@ -177,18 +177,10 @@ export class Diagram extends React.Component<any, any> {
 
         const markerInputs = this.getMarkerInputs(zIndexedEntities);
 
-        return <svg xmlns="http://www.w3.org/2000/svg" id={about} vocab="http://schema.org/" version="1.1"
+        return <svg xmlns="http://www.w3.org/2000/svg" id={about} version="1.1"
                     baseProfile="full" preserveAspectRatio="xMidYMid" width={width} height={height}
                     onClick={this.handleClick.bind(this)} className={`kaavio-diagram ${ customStyle.diagramClass }`}
-                    style={{overflow: 'hidden'}}
-                    prefix={[
-                        'biopax: http://www.biopax.org/release/biopax-level3.owl#',
-                        'gpml: http://vocabularies.wikipathways.org/gpml#',
-                        'identifiers: http://identifiers.org/',
-                        'schema: http://schema.org/',
-                        'rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#',
-                        'wp: http://vocabularies.wikipathways.org/wp#',
-                    ].join(' ')}>
+                    style={{overflow: 'hidden'}}>
 
             <style type="text/css" dangerouslySetInnerHTML={{__html: `
 				<![CDATA[
@@ -197,9 +189,7 @@ export class Diagram extends React.Component<any, any> {
 			`}}/>
 
             <g id="viewport-20161003191720605"
-               className={`viewport ${customStyle.viewportClass} svg-pan-zoom_viewport`}
-               typeof="wp:Pathway gpml:Pathway"
-               resource="identifiers:wikipathways/WP554/">
+               className={`viewport ${customStyle.viewportClass} svg-pan-zoom_viewport`}>
 
                 <defs>
                     {

@@ -1,7 +1,7 @@
 // NOTE: mock-server must be started before running this.
 
 import { values } from 'lodash';
-import { pvjs } from '../../src/wrappers/vanilla';
+import {Pvjs} from '../../src'
 
 import * as WikiPathwaysDefaultDisplayStyle from '../../src/WikiPathways.style';
 
@@ -128,9 +128,13 @@ document.body.appendChild(container)
 const pathwayId = getParameterByName('id') || 'WP4';
 declare var window: any;
 
-pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + pathwayId, {
+Pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + pathwayId, {
     customStyle: WikiPathwaysDefaultDisplayStyle,
     //src: 'http://localhost:4522/pathways/playground',
 }, instance => {
     window.pvjs_instance = instance;
 });
+
+var wikipathwaysPvjs = document.createElement('div');
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="http://identifiers.org/wikipathways/${pathwayId}"></wikipathways-pvjs>`;
+document.body.appendChild(wikipathwaysPvjs);

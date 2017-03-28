@@ -2,7 +2,7 @@ import { defaults } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Pvjs from '../Pvjs';
+import {Pvjs as PvjsComponent} from '../Pvjs'; // Fix conflicting imports/exports
 
 export interface Opts {
 	about?: string;
@@ -22,8 +22,9 @@ export interface Opts {
  * @param [opts.src]: if pvjson for pathway cannot be obtained from about, give a
  * 						     	  URL where the pvjson for the pathway can be obtained.
  * @param [opts.customStyle]
+ * @param [callback]: The callback to call with the reference to the Pvjs instance
  */
-export function pvjs(selector: string, about: string, opts: Opts, callback?: any){
+export function Pvjs(selector: string, about: string, opts: Opts, callback?: any): void {
 	let ref = null;
 	const props = defaults({}, opts, {
 		about: about,
@@ -31,14 +32,10 @@ export function pvjs(selector: string, about: string, opts: Opts, callback?: any
 	});
     let container = document.querySelector(selector);
     ReactDOM.render(
-        <Pvjs {...props} ref={pvjs => ref = pvjs}/>,
+        <PvjsComponent {...props} ref={pvjs => ref = pvjs}/>,
         container,
 		(_) => {
 			callback(ref)
 		}
     );
 }
-
-declare var window: any;
-
-window.pvjs = pvjs;
