@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Pvjs} from '../Pvjs';
+import * as WikiPathwaysDefaultDisplayStyle from '../WikiPathways.style';
 
 declare let window: any;
 
@@ -63,12 +64,26 @@ class WikiPathwaysElement extends HTMLElement {
 		}
 	}
 
+	get customStyle(){
+		return this.getAttribute('customStyle');
+	}
+
+	set customStyle(val){
+		if(val){
+			this.setAttribute('customStyle', val);
+		}
+		else {
+			this.removeAttribute('customStyle')
+		}
+	}
+
 	private createPvjs(){
 		// TODO: Add props: src, alt, customStyles, displayErrors, displayWarnings, displaySuccess, fitToContainer,
 		// highlights, hashEditorState
 		const props = {
-			about: this.about,
-			version: this.version
+			about: 'http://identifiers.org/wikipathways/' + this.about,
+			version: this.version,
+			customStyle: this.customStyle? this.customStyle : WikiPathwaysDefaultDisplayStyle
 		};
 
 		ReactDOM.render(
