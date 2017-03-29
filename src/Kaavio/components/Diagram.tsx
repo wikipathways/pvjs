@@ -14,21 +14,6 @@ export class Diagram extends React.Component<any, any> {
         super(props);
     }
 
-    componentWillReceiveProps(nextProps) {
-        const prevProps = this.props;
-        _.forOwn(nextProps, (prop, key) => {
-            if (key === 'filters') {
-                this.setState({
-                    [key]: prop,
-                });
-            } else if (prop && JSON.stringify(prevProps[key]) !== JSON.stringify(prop)) {
-                this.setState({
-                    [key]: prop,
-                });
-            }
-        });
-    }
-
     handleClick(e) {
         const { handleClick, entityMap } = this.props;
         const id = e.target.parentNode.parentNode.getAttribute('id');
@@ -188,8 +173,7 @@ export class Diagram extends React.Component<any, any> {
 				]]>
 			`}}/>
 
-            <g id="viewport-20161003191720605"
-               className={`viewport ${customStyle.viewportClass} svg-pan-zoom_viewport`}>
+            <g className={`viewport ${customStyle.viewportClass} svg-pan-zoom_viewport`}>
 
                 <defs>
                     {
