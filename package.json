@@ -60,6 +60,7 @@
     "react-addons-shallow-compare": "^15.4.1",
     "react-dom": "^15.3.2",
     "react-selectize": "^2.1.0",
+    "react-spinkit": "^2.1.1",
     "rgbcolor": "^1.0.0",
     "rx-extra": "^2.0.3",
     "rxjs": "^5.2.0",

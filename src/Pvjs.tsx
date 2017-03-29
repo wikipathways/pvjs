@@ -19,6 +19,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/let';
 import 'rxjs/add/operator/map';
 import {Manipulator} from "./Kaavio/manipulator/manipulator";
+import * as Spinner from 'react-spinkit';
 
 // TODO move this into utils
 // Create a string of citation numbers for display,
@@ -294,7 +295,15 @@ export class Pvjs extends React.Component<any, any> {
 		const {loading, loaded, error, pvjson, filters} = this.state;
 		const { about, customStyle} = this.props;
 
-		if(loading) return null;
+		const spinnerStyle = {
+			width: '80px',
+			marginLeft: 'auto',
+			marginRight: 'auto',
+			paddingTop: '1rem'
+
+		};
+
+		if(loading) return <Spinner spinnerName="wandering-cubes" style={spinnerStyle} />;
 
 		return (
 			<section>
