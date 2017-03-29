@@ -32,27 +32,14 @@ export class Kaavio extends React.Component<any, any> {
 
 	constructor(props) {
 		super(props);
-		const about = (props.about || 'kaavio-container-' + new Date().toISOString()).replace(/\W/g, '');
 		this.state = {
-			about: about,
-			backgroundColor: 'white',
-			entities: [],
-			name: '',
-			width: 0,
-			height: 0,
-			customStyle: props.customStyle || '',
-			filters: props.filters,
-			handleClick: props.handleClick,
-			edgeDrawers: props.edgeDrawers,
-			icons: props.icons,
-			markerDrawers: props.markerDrawers,
 			highlightedNodes: [],
 			hiddenEntities: [],
 		};
 
 		normalize();
 		// TODO doublecheck how to use setupPage
-		setupPage('#' + about);
+		setupPage('#' + this.props.about);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -71,7 +58,7 @@ export class Kaavio extends React.Component<any, any> {
 		});
 	}
 
-	componentDidUpdate(prevProps, prevState){
+	componentDidMount(){
 		this.panZoomRef.panZoomEnabled.subscribe(res => {
 			if(res) this.kaavioReady.next(true);
 		});
@@ -182,11 +169,12 @@ export class Kaavio extends React.Component<any, any> {
 	};
 
 	render() {
-		let that = this;
-		const state = that.state;
-		const { about, customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons,
-			markerDrawers, highlightedNodes, hiddenEntities } = state;
-		const backgroundColor = customStyle.backgroundColor || state.backgroundColor;
+		const { propsAbout, customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons,
+			markerDrawers, propsBackgroundColor = 'white' } = this.props;
+		const {highlightedNodes , hiddenEntities} = this.state;
+
+		const backgroundColor = customStyle.backgroundColor || propsBackgroundColor;
+		const about = propsAbout || ('kaavio-container-' + new Date().toISOString()).replace(/\W/g, '');
 
 		const entityMap = entities.reduce(function(acc, entity) {
 			acc[entity.id] = entity;
@@ -205,26 +193,28 @@ export class Kaavio extends React.Component<any, any> {
 			})
 			.map((entity) => entity.id);
 
-		return <div id={about} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
-			<Diagram
-				ref={diagram => this.diagramRef = diagram}
-				about={`kaavio-diagram-for-${about}`}
-				name={name}
-				width={width}
-				height={height}
-				backgroundColor={backgroundColor}
-				edgeDrawers={edgeDrawers}
-				entityMap={entityMap}
-				filters={filters}
-				handleClick={handleClick}
-				icons={icons}
-				markerDrawers={markerDrawers}
-				zIndices={zIndices}
-				customStyle={customStyle}
-				highlightedNodes={highlightedNodes}
-				hiddenEntities={hiddenEntities}
-			/>
-			<PanZoom ref={panZoom => this.panZoomRef = panZoom} diagram={this.diagramRef} />
-		</div>
+		return (
+			<div id={about} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
+				<Diagram
+					ref={diagram => this.diagramRef = diagram}
+					about={`kaavio-diagram-for-${about}`}
+					name={name}
+					width={width}
+					height={height}
+					backgroundColor={backgroundColor}
+					edgeDrawers={edgeDrawers}
+					entityMap={entityMap}
+					filters={filters}
+					handleClick={handleClick}
+					icons={icons}
+					markerDrawers={markerDrawers}
+					zIndices={zIndices}
+					customStyle={customStyle}
+					highlightedNodes={highlightedNodes}
+					hiddenEntities={hiddenEntities}
+				/>
+				<PanZoom ref={panZoom => this.panZoomRef = panZoom} diagram={this.diagramRef} />
+			</div>
+		)
 	}
 }
