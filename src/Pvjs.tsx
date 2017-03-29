@@ -279,6 +279,7 @@ export class Pvjs extends React.Component<any, any> {
 
 		return (
 			<XrefsAnnotationPanel
+				key="details-panel"
 				bridgeDb={new BridgeDb()}
 				organism={pvjson.organism}
 				entityType={!!selected && selected.wpType}

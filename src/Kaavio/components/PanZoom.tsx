@@ -3,6 +3,7 @@ import * as SVGPanZoom from 'svg-pan-zoom';
 import * as ReactDOM from 'react-dom';
 import {styles} from './pan-zoom-style';
 import {Observable, Subject, BehaviorSubject} from "rxjs";
+import * as _ from 'lodash';
 
 export class PanZoom extends React.Component<any, any> {
     panZoom: any;
@@ -12,9 +13,9 @@ export class PanZoom extends React.Component<any, any> {
     }
 
     componentWillReceiveProps(nextProps, nextState){
-        const {diagram, onReady} = nextProps;
-        if(!diagram) return;
-        this.init(diagram, onReady);
+        const prevProps = this.props;
+        if(_.isEqual(nextProps.diagram, prevProps.diagram)) return;
+        this.init(nextProps.diagram, nextProps.onReady);
     }
 
     componentDidMount() {
