@@ -294,16 +294,21 @@ export class Pvjs extends React.Component<any, any> {
 		)
 	}
 
-  	render() {
-		const {loading, loaded, error, pvjson, filters} = this.state;
-		const { about, customStyle} = this.props;
-
+	renderLoadingIndicator(){
+		const {loaded, loading, error} = this.state;
 		const spinnerStyle = {
 			width: '80px',
-			marginLeft: 'auto',
-			marginRight: 'auto',
-			marginTop: '1rem'
+			position: 'absolute',
+			top: '50%',
+			'left': '50%',
+			transform: 'translate(-50%, 50%)'
 		};
+
+		if(loading && !loaded && !error) return <Spinner spinnerName="wandering-cubes" style={spinnerStyle} />;
+	}
+
+	renderError(){
+		const {loading, error} = this.state;
 
 		const errorStyle = {
 			padding: '2.5rem',
@@ -316,24 +321,34 @@ export class Pvjs extends React.Component<any, any> {
 			textAlign: 'center'
 		};
 
-		if(loading && !loaded && !error) return <Spinner spinnerName="wandering-cubes" style={spinnerStyle} />;
-
 		if(! loading && error) return (
 			<div style={errorStyle}>
 				<h3>Uh-oh!</h3>
 				<p>{error.message}</p>
 			</div>
 		);
+	}
 
+	renderKaavio(){
+		const {loaded, pvjson, filters} = this.state;
+		const { about, customStyle} = this.props;
+
+		if(!loaded) return null;
+
+		return <Kaavio ref={kaavio => this.kaavioRef = kaavio} handleClick={e => this.handleClick(e)} about={about}
+					   entities={pvjson.entities} name={pvjson.name} width={pvjson.width} height={pvjson.height}
+					   backgroundColor={pvjson.backgroundColor} customStyle={customStyle} edgeDrawers={EdgeDrawers}
+					   icons={icons} markerDrawers={markerDrawers} filters={filters}
+					   onReady={kaavio => this.onKaavioReady(kaavio)} />
+	}
+
+  	render() {
 		return (
 			// Add position relative to keep the absolute positioned annotationsPanel within bounds
-			<section style={{position: 'relative'}}>
-				<Kaavio ref={kaavio => this.kaavioRef = kaavio} handleClick={e => this.handleClick(e)} about={about}
-						entities={pvjson.entities} name={pvjson.name} width={pvjson.width} height={pvjson.height}
-						backgroundColor={pvjson.backgroundColor} customStyle={customStyle} edgeDrawers={EdgeDrawers}
-						icons={icons} markerDrawers={markerDrawers} filters={filters}
-						onReady={kaavio => this.onKaavioReady(kaavio)} />
-
+			<section style={{position: 'relative', minHeight: '30rem'}}>
+				{this.renderError()}
+				{this.renderLoadingIndicator()}
+				{this.renderKaavio()}
 				{this.renderDetailsPanel()}
 			</section>
 		)
