@@ -75,7 +75,8 @@
     "typestyle": "^0.22.3",
     "url-loader": "^0.5.8",
     "valid-data-url": "^0.1.3",
-    "web-animations-js": "^2.2.2"
+    "web-animations-js": "^2.2.2",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "@types/assert": "0.0.28",

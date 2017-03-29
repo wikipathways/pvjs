@@ -92,17 +92,20 @@ export class Pvjs extends React.Component<any, any> {
 		// TODO handle version
 		const src = about.replace(/.*wikipathways[:\/]/, 'http://webservice.wikipathways.org/getPathwayAs?fileType=xml&format=json&pwId=');
 
-		const ajaxRequest: AjaxRequest = {
-			url: src,
-			method: 'GET',
-			responseType: 'json',
-			timeout: 1000, // ms
-			crossDomain: true,
-		};
+		// Use the Fetch API to get the GPML and then convert it to JSON
+		const gpmlFetch = fetch(src)
+			.then(response => {
+				return response.json();
+			})
+			.then((json: any) => Base64.decode(json.data))
+			.catch(err => {
+				console.error(err.message + ': Error getting pathway (is webservice.wikipathways.org down?)');
+				err.message = "Make sure you're connected to the internet and reload the page.";
+				this.setState({error: err, loaded: false, loading: false})
+			});
 
-		const observable = Observable.ajax(ajaxRequest)
-			.map((ajaxResponse): {data: string} => ajaxResponse.xhr.response)
-            .map(res => Base64.decode(res.data));
+		// gpml2pvjson needs an observable stream
+		const observable = Observable.fromPromise(gpmlFetch);
 
 		return gpml2pvjson(observable, about).subscribe((pvjson) => {
 			const { entities, organism, name } = pvjson;
@@ -221,8 +224,8 @@ export class Pvjs extends React.Component<any, any> {
 
 			this.setState({pvjson: pvjson, filters: filters, loaded: true, loading: false});
 		}, (err) => {
-			console.error(err.message + ': Error getting pathway (is webservice.wikipathways.org down?)');
-			err.message = "Make sure you're connected to the internet and reload the page.";
+			console.error(err.message + ': Error converting GPML to JSON');
+			err.message = "Something went wrong! Try refreshing the page.";
 			this.setState({error: err, loaded: false, loading: false})
 		});
 	}

@@ -129,13 +129,13 @@ document.body.appendChild(container)
 const pathwayId = getParameterByName('id') || 'WP4';
 declare var window: any;
 
-Pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + pathwayId, {
-    customStyle: WikiPathwaysDefaultDisplayStyle,
-    //src: 'http://localhost:4522/pathways/playground',
-}, instance => {
-    window.pvjs_instance = instance;
-});
+// Pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + pathwayId, {
+//     customStyle: WikiPathwaysDefaultDisplayStyle,
+//     //src: 'http://localhost:4522/pathways/playground',
+// }, instance => {
+//     window.pvjs_instance = instance;
+// });
 
 var wikipathwaysPvjs = document.createElement('div');
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="WP169"></wikipathways-pvjs>`;
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="WP170"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);
