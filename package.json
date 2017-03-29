@@ -56,6 +56,7 @@
     "csv-streamify": "^1.0.0",
     "csx": "^8.2.1",
     "custom-elements": "^1.0.2",
+    "d3": "^4.7.4",
     "gpml2pvjson": "2.0.0-beta.10",
     "js-base64": "^2.1.9",
     "lodash": "^4.14.36",
