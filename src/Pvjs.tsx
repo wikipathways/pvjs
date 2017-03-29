@@ -285,7 +285,7 @@ export class Pvjs extends React.Component<any, any> {
 				displayName={!!selected && selected.textContent}
 				dataSource={selected && selected.dbName}
 				identifier={!!selected && selected.dbId}
-				handleClose={e => this.handleClick(e)}
+				handleClose={_ => this.handleCloseDetailsPanel()}
 			/>
 		)
 	}
@@ -322,7 +322,8 @@ export class Pvjs extends React.Component<any, any> {
 		);
 
 		return (
-			<section>
+			// Add position relative to keep the absolute positioned annotationsPanel within bounds
+			<section style={{position: 'relative'}}>
 				<Kaavio ref={kaavio => this.kaavioRef = kaavio} handleClick={e => this.handleClick(e)} about={about}
 						entities={pvjson.entities} name={pvjson.name} width={pvjson.width} height={pvjson.height}
 						backgroundColor={pvjson.backgroundColor} customStyle={customStyle} edgeDrawers={EdgeDrawers}
