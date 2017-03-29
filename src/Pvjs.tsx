@@ -221,8 +221,8 @@ export class Pvjs extends React.Component<any, any> {
 
 			this.setState({pvjson: pvjson, filters: filters, loaded: true, loading: false});
 		}, (err) => {
-			err.message = err.message || '';
-			err.message += ' Error getting pathway (is webservice.wikipathways.org down?)';
+			console.error(err.message + ': Error getting pathway (is webservice.wikipathways.org down?)');
+			err.message = "Make sure you're connected to the internet and reload the page.";
 			this.setState({error: err, loaded: false, loading: false})
 		});
 	}
@@ -242,7 +242,6 @@ export class Pvjs extends React.Component<any, any> {
 	componentWillMount() {
 		this.getPathway();
 	}
-
 
 	componentWillReceiveProps(nextProps) {
 		const prevProps = this.props;
@@ -299,11 +298,28 @@ export class Pvjs extends React.Component<any, any> {
 			width: '80px',
 			marginLeft: 'auto',
 			marginRight: 'auto',
-			paddingTop: '1rem'
-
+			marginTop: '1rem'
 		};
 
-		if(loading) return <Spinner spinnerName="wandering-cubes" style={spinnerStyle} />;
+		const errorStyle = {
+			padding: '2.5rem',
+			marginLeft: 'auto',
+			marginRight: 'auto',
+			marginTop: '1rem',
+			backgroundColor: '#e74c3c',
+			color: 'white',
+			width: '80%',
+			textAlign: 'center'
+		};
+
+		if(loading && !loaded && !error) return <Spinner spinnerName="wandering-cubes" style={spinnerStyle} />;
+
+		if(! loading && error) return (
+			<div style={errorStyle}>
+				<h3>Uh-oh!</h3>
+				<p>{error.message}</p>
+			</div>
+		);
 
 		return (
 			<section>
