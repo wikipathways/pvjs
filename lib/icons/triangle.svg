@@ -1,0 +1,9 @@
+<svg>
+  <defs>
+    <symbol id="triangle" overflow="visible"
+	preserveAspectRatio="none" viewBox="0 0 50 50">
+      <desc>triangle</desc>
+      <polygon stroke="currentColor" points="1,49 49,24 1,1"/>
+    </symbol>
+  </defs>
+</svg>
