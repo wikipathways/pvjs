@@ -2,6 +2,7 @@
 
 import { values } from 'lodash';
 import {Pvjs} from '../../src'
+import '../../src'; // Import for side-effects when using the custom element
 
 import * as WikiPathwaysDefaultDisplayStyle from '../../src/WikiPathways.style';
 
@@ -136,5 +137,5 @@ Pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + pathwayId, {
 });
 
 var wikipathwaysPvjs = document.createElement('div');
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="http://identifiers.org/wikipathways/${pathwayId}"></wikipathways-pvjs>`;
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="WP4"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);
