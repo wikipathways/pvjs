@@ -19,6 +19,13 @@ export interface highlightedNode {
 	color: string; // CSS color. E.g. 'red' or '#ffff'
 }
 
+/**
+ * Kaavio component.
+ * This is the highest component in Kaavio. All states are handled here and passed down as props to other components.
+ *
+ * You may pass an onReady(kaavio) function to this. This will be called with the Kaavio reference when everything is
+ * rendered. You can access the manipulation API via kaavio.manipulator
+ */
 export class Kaavio extends React.Component<any, any> {
 	manipulator: Manipulator;
 
@@ -35,10 +42,14 @@ export class Kaavio extends React.Component<any, any> {
 		setupPage('#' + this.props.about);
 	}
 
-	private setupManipulator(panZoom){
+	private onPanZoomReady(panZoom){
 		const {diagramRef} = this.state;
 		if(! diagramRef) return;
 		this.manipulator = new Manipulator(this, panZoom, diagramRef);
+
+		// Fire the onReady function with a reference to Kaavio
+		const {onReady} = this.props;
+		onReady(this);
 	}
 
 	pushHighlighted = (highlighted: highlightedNode | highlightedNode[]) =>  {
@@ -200,7 +211,7 @@ export class Kaavio extends React.Component<any, any> {
 					highlightedNodes={highlightedNodes}
 					hiddenEntities={hiddenEntities}
 				/>
-				<PanZoom diagram={this.state.diagramRef} onReady={panZoom => this.setupManipulator(panZoom)} />
+				<PanZoom diagram={this.state.diagramRef} onReady={panZoom => this.onPanZoomReady(panZoom)} />
 			</div>
 		)
 	}

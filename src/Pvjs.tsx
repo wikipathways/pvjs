@@ -242,9 +242,6 @@ export class Pvjs extends React.Component<any, any> {
 		this.getPathway();
 	}
 
-	// componentDidUpdate(){
-	// 	this.manipulator = this.kaavioRef.manipulator;
-	// }
 
 	componentWillReceiveProps(nextProps) {
 		const prevProps = this.props;
@@ -266,6 +263,10 @@ export class Pvjs extends React.Component<any, any> {
 	componentWillUnmount() {
 		// TODO cancel any pending network requests, possibly something like this:
 		//this.pathwayRequest.dispose();
+	}
+
+	onKaavioReady(kaavio){
+		this.manipulator = kaavio.manipulator;
 	}
 
 	handleCloseDetailsPanel() {
@@ -298,13 +299,10 @@ export class Pvjs extends React.Component<any, any> {
 		return (
 			<section>
 				<Kaavio ref={kaavio => this.kaavioRef = kaavio} handleClick={e => this.handleClick(e)} about={about}
-							entities={pvjson.entities}
-							name={pvjson.name}
-							width={pvjson.width}
-							height={pvjson.height}
-							backgroundColor={pvjson.backgroundColor}
-							customStyle={customStyle}
-							edgeDrawers={EdgeDrawers} icons={icons} markerDrawers={markerDrawers} filters={filters} />
+						entities={pvjson.entities} name={pvjson.name} width={pvjson.width} height={pvjson.height}
+						backgroundColor={pvjson.backgroundColor} customStyle={customStyle} edgeDrawers={EdgeDrawers}
+						icons={icons} markerDrawers={markerDrawers} filters={filters}
+						onReady={kaavio => this.onKaavioReady(kaavio)} />
 
 				{this.renderDetailsPanel()}
 			</section>
