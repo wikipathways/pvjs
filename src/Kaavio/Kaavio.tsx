@@ -7,7 +7,6 @@ import {Diagram} from './components/Diagram';
 import {normalize, setupPage} from 'csstips';
 import {PanZoom} from "./components/PanZoom";
 import {Manipulator} from './manipulator';
-import {BehaviorSubject, Observable} from "rxjs";
 
 // pullAllWith is missing from the lodash typings so just require for now
 // See issue: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/13747
