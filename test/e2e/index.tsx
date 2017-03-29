@@ -137,5 +137,5 @@ Pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + pathwayId, {
 });
 
 var wikipathwaysPvjs = document.createElement('div');
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="WP4"></wikipathways-pvjs>`;
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="WP169"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);
