@@ -48,7 +48,6 @@ export class PanZoom extends React.Component<any, any> {
                 destroy: (_) => {}
             }
         });
-        console.log(this.panZoom)
     };
 
     getSizes = () => {
