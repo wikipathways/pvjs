@@ -7,16 +7,20 @@ import {Observable, Subject, BehaviorSubject} from "rxjs";
 export class PanZoom extends React.Component<any, any> {
     panZoom: any;
 
-    // Observable for other components/services to listen to to check panZoom functions are ready.
-    private panZoomEnabled: BehaviorSubject<boolean> = new BehaviorSubject(false);
-    panZoomEnabled$: Observable<boolean> = this.panZoomEnabled.asObservable();
-
     constructor(props){
         super(props);
     }
 
-    componentWillUpdate(nextProps, nextState){
-        this.init(nextProps.diagram);
+    componentWillReceiveProps(nextProps, nextState){
+        const {diagram, onReady} = nextProps;
+        if(!diagram) return;
+        this.init(diagram, onReady);
+    }
+
+    componentDidMount() {
+        const {diagram, onReady} = this.props;
+        if(!diagram) return;
+        this.init(diagram, onReady);
     }
 
     destroy = () => {
@@ -24,8 +28,8 @@ export class PanZoom extends React.Component<any, any> {
         this.panZoom.destroy();
     };
 
-    init = (diagram?) => {
-        if(! diagram) diagram = this.props.diagram;
+    init = (diagram, onReady) => {
+        this.destroy(); // Destroy the diagram first in case there is one
         let node: SVGElement = ReactDOM.findDOMNode(diagram) as SVGElement;
         SVGPanZoom(node, {
             viewportSelector: '.svg-pan-zoom_viewport',
@@ -38,12 +42,13 @@ export class PanZoom extends React.Component<any, any> {
             customEventsHandler: {
                 init: (options) => {
                     this.panZoom = options.instance;
-                    this.panZoomEnabled.next(true)
+                    onReady(this.panZoom)
                 },
                 haltEventListeners: [],
                 destroy: (_) => {}
             }
         });
+        console.log(this.panZoom)
     };
 
     getSizes = () => {

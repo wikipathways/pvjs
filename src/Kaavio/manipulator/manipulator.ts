@@ -14,16 +14,11 @@ export class Manipulator {
     private kaavio: any;
     private relPoint: any; // A point used to calculate element positions
 
-    constructor(kaavioRef, panZoomRef){
-        // Subscribe to the panZoomEnabled observable, wait for panZoom to be ready.
-        kaavioRef.kaavioReady$.subscribe(res => {
-            if(res === true) {
-                this.panZoom = panZoomRef;
-            }
-            this.kaavio = kaavioRef;
-            this.diagram = ReactDOM.findDOMNode(kaavioRef.diagramRef);
-            this.relPoint = this.diagram.createSVGPoint();
-        })
+    constructor(kaavioRef, panZoomRef, diagramRef){
+        this.panZoom = panZoomRef;
+        this.kaavio = kaavioRef;
+        this.diagram = ReactDOM.findDOMNode(diagramRef);
+        this.relPoint = this.diagram.createSVGPoint();
     }
 
     /**

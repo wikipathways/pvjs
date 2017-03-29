@@ -20,17 +20,12 @@ export interface highlightedNode {
 }
 
 export class Kaavio extends React.Component<any, any> {
-	// Observable for other components/services to listen to to check kaavio is ready
-	private kaavioReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
-	kaavioReady$: Observable<boolean> = this.kaavioReady.asObservable();
-
 	manipulator: Manipulator;
 
 	constructor(props) {
 		super(props);
 		this.state = {
 			diagramRef: null,
-			panZoomRef: null,
 			highlightedNodes: [], // A stack of the highlighted nodes that is pushed and popped
 			hiddenEntities: [], // A stack of hidden entities that is pushed and popped
 		};
@@ -40,18 +35,10 @@ export class Kaavio extends React.Component<any, any> {
 		setupPage('#' + this.props.about);
 	}
 
-	componentDidMount(){
-		console.log("mounted");
-
-		this.state.panZoomRef.panZoomEnabled.subscribe(res => {
-			if(res) this.kaavioReady.next(true);
-		});
-		this.setupManipulator();
-	}
-
-	private setupManipulator(): void {
-		if(this.manipulator) this.manipulator = null;
-		this.manipulator = new Manipulator(this, this.state.panZoomRef);
+	private setupManipulator(panZoom){
+		const {diagramRef} = this.state;
+		if(! diagramRef) return;
+		this.manipulator = new Manipulator(this, panZoom, diagramRef);
 	}
 
 	pushHighlighted = (highlighted: highlightedNode | highlightedNode[]) =>  {
@@ -192,7 +179,7 @@ export class Kaavio extends React.Component<any, any> {
 
 		// TODO: Don't use refs!
 		// Accessing the diagram ref from the state is a little bit of a hack to get panZoom working.
-		// Consider refactoring the panZoom working to be truly Reactive and not use refs
+		// Consider refactoring the panZoom to be truly Reactive and not use refs
 		return (
 			<div id={about} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
 				<Diagram
@@ -213,8 +200,7 @@ export class Kaavio extends React.Component<any, any> {
 					highlightedNodes={highlightedNodes}
 					hiddenEntities={hiddenEntities}
 				/>
-				<PanZoom ref={panZoom => !this.state.panZoom && this.setState({panZoom: panZoom})}
-						 diagram={this.state.diagramRef} />
+				<PanZoom diagram={this.state.diagramRef} onReady={panZoom => this.setupManipulator(panZoom)} />
 			</div>
 		)
 	}
