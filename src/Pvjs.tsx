@@ -326,7 +326,7 @@ export class Pvjs extends React.Component<any, any> {
 			transform: 'translate(-50%, 50%)'
 		};
 
-		//if(loading && !loaded && !error) return <Spinner spinnerName="wandering-cubes" style={spinnerStyle} />;
+		if(loading && !loaded && !error) return <Spinner spinnerName="wandering-cubes" style={spinnerStyle} />;
 	}
 
 	renderError(){
