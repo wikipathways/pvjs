@@ -2,7 +2,7 @@ import { defaults } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Pvjs as PvjsComponent} from '../Pvjs'; // Fix conflicting imports/exports
-import * as WikiPathwaysDefaultDisplayStyle from '../../src/WikiPathways.style';
+import * as WikiPathwaysDefaultDisplayStyle from '../WikiPathways.style';
 
 export interface Opts {
 	about?: string;
