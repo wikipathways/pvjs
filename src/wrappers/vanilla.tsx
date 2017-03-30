@@ -29,7 +29,7 @@ export function Pvjs(selector: string, about: string, opts: Opts, callback?: any
 	const props = defaults({
 		customStyle: WikiPathwaysDefaultDisplayStyle
 	}, opts, {
-		about: about,
+		about: 'http://identifiers.org/wikipathways/' + about,
 		version: 0
 	});
     let container = document.querySelector(selector);
