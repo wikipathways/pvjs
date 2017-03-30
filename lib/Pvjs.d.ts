@@ -1,6 +1,5 @@
 /// <reference types="react" />
 import * as React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/dom/ajax';
 import 'rxjs/add/operator/do';
@@ -12,6 +11,11 @@ export declare class Pvjs extends React.Component<any, any> {
     kaavioRef: any;
     manipulator: Manipulator;
     constructor(props: any);
+    handleError(error: {
+        message: string;
+        friendlyMessage?: string;
+        status?: string;
+    }): void;
     getPathway(): any;
     closeActive(): void;
     handleClick(e: any): void;
@@ -21,5 +25,8 @@ export declare class Pvjs extends React.Component<any, any> {
     onKaavioReady(kaavio: any): void;
     handleCloseDetailsPanel(): void;
     renderDetailsPanel(): JSX.Element;
+    renderLoadingIndicator(): JSX.Element;
+    renderError(): JSX.Element;
+    renderKaavio(): JSX.Element;
     render(): JSX.Element;
 }

@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 export interface Opts {
     about?: string;
     version?: number;
