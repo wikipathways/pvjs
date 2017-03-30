@@ -17,6 +17,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/let';
 import 'rxjs/add/operator/map';
 import {Manipulator} from "./Kaavio/manipulator/manipulator";
+// TODO: Add to docs that webpack must be used to bring in CSS
+// SEE https://github.com/KyleAMathews/react-spinkit#css
 import * as Spinner from 'react-spinkit';
 
 // TODO move this into utils
