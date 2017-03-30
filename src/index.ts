@@ -8,6 +8,8 @@ import 'web-animations-js';
 import 'whatwg-fetch'
 
 // Import styles
+// TODO: Use material design
+// TODO: Use shadow DOM to encapsulate this css
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import internal libraries for side-effects.
