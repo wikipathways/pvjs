@@ -322,6 +322,22 @@ export class Manipulator {
     }
 
     /**
+     * Zoom the diagram in.
+     * Just a wrapper to access the method in the panZoom component
+     */
+    zoomIn(){
+        this.panZoom.zoomIn();
+    }
+
+    /**
+     * Zoom the diagram out
+     * Just a wrapper to access the method in the panZoom component
+     */
+    zoomOut(){
+        this.panZoom.zoomOut();
+    }
+
+    /**
      * Pan to a specific set of coordinates
      * @param coordinates
      */
