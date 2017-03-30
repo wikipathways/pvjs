@@ -129,7 +129,7 @@ document.body.appendChild(container)
 const pathwayId = getParameterByName('id') || 'WP4';
 declare var window: any;
 
-Pvjs('#' + containerId, pathwayId, {}, instance => {
+Pvjs('#' + containerId, pathwayId, {showPanZoomControls: false}, instance => {
     window.pvjs_instance = instance;
 });
 

@@ -9,8 +9,7 @@ import 'whatwg-fetch'
 
 // Import styles
 // TODO: Use material design
-// TODO: Use shadow DOM to encapsulate this css
-import 'bootstrap/dist/css/bootstrap.min.css';
+// TODO: Use shadow DOM to encapsulate styles
 
 // Import internal libraries for side-effects.
 import './wrappers/pvjs.webcomponent'; // TODO: Check this registers the component in browsers

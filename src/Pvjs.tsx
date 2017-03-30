@@ -352,7 +352,7 @@ export class Pvjs extends React.Component<any, any> {
 
 	renderKaavio(){
 		const {loaded, pvjson, filters} = this.state;
-		const { about, customStyle} = this.props;
+		const { about, customStyle, showPanZoomControls} = this.props;
 
 		if(!loaded) return null;
 
@@ -360,7 +360,7 @@ export class Pvjs extends React.Component<any, any> {
 					   entities={pvjson.entities} name={pvjson.name} width={pvjson.width} height={pvjson.height}
 					   backgroundColor={pvjson.backgroundColor} customStyle={customStyle} edgeDrawers={EdgeDrawers}
 					   icons={icons} markerDrawers={markerDrawers} filters={filters}
-					   onReady={kaavio => this.onKaavioReady(kaavio)} />
+					   onReady={kaavio => this.onKaavioReady(kaavio)} showPanZoomControls={showPanZoomControls} />
 	}
 
   	render() {

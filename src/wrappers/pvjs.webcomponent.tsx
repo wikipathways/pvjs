@@ -83,7 +83,8 @@ class WikiPathwaysElement extends HTMLElement {
 		const props = {
 			about: 'http://identifiers.org/wikipathways/' + this.about,
 			version: this.version,
-			customStyle: this.customStyle? this.customStyle : WikiPathwaysDefaultDisplayStyle
+			customStyle: this.customStyle? this.customStyle : WikiPathwaysDefaultDisplayStyle,
+			showPanZoomControls: true
 		};
 
 		ReactDOM.render(

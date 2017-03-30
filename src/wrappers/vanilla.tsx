@@ -9,6 +9,7 @@ export interface Opts {
 	version?: number;
 	src?: string;
 	customStyle?: any;
+	showPanZoomControls?: boolean;
 }
 
 /**
@@ -29,7 +30,8 @@ export function Pvjs(selector: string, about: string, opts: Opts, callback?: any
 	const props = defaults({}, opts, {
 		about: 'http://identifiers.org/wikipathways/' + about,
 		version: 0,
-		customStyle: WikiPathwaysDefaultDisplayStyle
+		customStyle: WikiPathwaysDefaultDisplayStyle,
+		showPanZoomControls: true
 	});
     let container = document.querySelector(selector);
     ReactDOM.render(

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as SVGPanZoom from 'svg-pan-zoom';
 import * as ReactDOM from 'react-dom';
-import {styles} from './pan-zoom-style';
 import {Observable, Subject, BehaviorSubject} from "rxjs";
 import * as _ from 'lodash';
 
@@ -15,13 +14,13 @@ export class PanZoom extends React.Component<any, any> {
     componentWillReceiveProps(nextProps, nextState){
         const prevProps = this.props;
         if(_.isEqual(nextProps.diagram, prevProps.diagram)) return;
-        this.init(nextProps.diagram, nextProps.onReady);
+        this.init(nextProps.diagram, nextProps.onReady, nextProps.showPanZoomControls);
     }
 
     componentDidMount() {
-        const {diagram, onReady} = this.props;
+        const {diagram, onReady, showPanZoomControls} = this.props;
         if(!diagram) return;
-        this.init(diagram, onReady);
+        this.init(diagram, onReady, showPanZoomControls);
     }
 
     destroy = () => {
@@ -29,12 +28,12 @@ export class PanZoom extends React.Component<any, any> {
         this.panZoom.destroy();
     };
 
-    init = (diagram, onReady) => {
+    init = (diagram, onReady, showControls: boolean) => {
         this.destroy(); // Destroy the diagram first in case there is one
         let node: SVGElement = ReactDOM.findDOMNode(diagram) as SVGElement;
         SVGPanZoom(node, {
             viewportSelector: '.svg-pan-zoom_viewport',
-            controlIconsEnabled: false,
+            controlIconsEnabled: showControls,
             fit: true,
             center: true,
             minZoom: 0.1,
@@ -80,12 +79,8 @@ export class PanZoom extends React.Component<any, any> {
     };
 
     render(){
-        return (
-            <div style={styles.zoomControlsWrapper}>
-                <button style={styles.zoomControl} className="zoomInClass btn btn-default" onClick={this.zoomIn}><span className="glyphicon glyphicon-zoom-in"> </span> </button>
-                <button style={styles.zoomControl} className="zoomOutClass btn btn-default" onClick={this.zoomOut}><span className="glyphicon glyphicon-zoom-out"> </span> </button>
-                <button style={styles.zoomControl} className="resetZoomClass btn btn-default" onClick={this.resetPanZoom}>Reset</button>
-            </div>
-        )
+        // Can put custom Kaavio controls here
+        // TODO: Make custom Kaavio PanZoom controls
+        return null;
     }
 }

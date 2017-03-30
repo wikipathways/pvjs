@@ -163,7 +163,7 @@ export class Kaavio extends React.Component<any, any> {
 
 	render() {
 		const {customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons,
-			markerDrawers} = this.props;
+			markerDrawers, showPanZoomControls = true} = this.props;
 		const {highlightedNodes , hiddenEntities} = this.state;
 
 		const backgroundColor = customStyle.backgroundColor || 'white' ;
@@ -210,7 +210,8 @@ export class Kaavio extends React.Component<any, any> {
 					highlightedNodes={highlightedNodes}
 					hiddenEntities={hiddenEntities}
 				/>
-				<PanZoom diagram={this.state.diagramRef} onReady={panZoom => this.onPanZoomReady(panZoom)} />
+				<PanZoom diagram={this.state.diagramRef} onReady={panZoom => this.onPanZoomReady(panZoom)}
+						 showPanZoomControls={showPanZoomControls} />
 			</div>
 		)
 	}
