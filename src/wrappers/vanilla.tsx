@@ -26,11 +26,10 @@ export interface Opts {
  */
 export function Pvjs(selector: string, about: string, opts: Opts, callback?: any): void {
 	let ref = null;
-	const props = defaults({
-		customStyle: WikiPathwaysDefaultDisplayStyle
-	}, opts, {
+	const props = defaults({}, opts, {
 		about: 'http://identifiers.org/wikipathways/' + about,
-		version: 0
+		version: 0,
+		customStyle: WikiPathwaysDefaultDisplayStyle
 	});
     let container = document.querySelector(selector);
     ReactDOM.render(
