@@ -13,7 +13,6 @@ import icons from './icons/main';
 import markerDrawers from './markerDrawers';
 import {gpml2pvjson} from 'gpml2pvjson';
 import {Observable} from 'rxjs/Observable';
-import {AjaxRequest} from  'rxjs/observable/dom/AjaxObservable';
 import 'rxjs/add/observable/dom/ajax';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/let';
