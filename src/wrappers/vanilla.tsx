@@ -1,7 +1,6 @@
 import { defaults } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {Pvjs as PvjsComponent} from '../Pvjs'; // Fix conflicting imports/exports
 
 export interface Opts {

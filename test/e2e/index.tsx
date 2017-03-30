@@ -129,7 +129,7 @@ document.body.appendChild(container)
 const pathwayId = getParameterByName('id') || 'WP4';
 declare var window: any;
 
-Pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + 'WP149', {
+Pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + pathwayId, {
     customStyle: WikiPathwaysDefaultDisplayStyle,
     //src: 'http://localhost:4522/pathways/playground',
 }, instance => {
@@ -137,5 +137,5 @@ Pvjs('#' + containerId, 'http://identifiers.org/wikipathways/' + 'WP149', {
 });
 
 var wikipathwaysPvjs = document.createElement('div');
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="WP189"></wikipathways-pvjs>`;
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="${pathwayId}"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);

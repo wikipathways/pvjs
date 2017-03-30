@@ -85,6 +85,17 @@ export class Pvjs extends React.Component<any, any> {
 		};
   	}
 
+  	handleError(error : {message: string, friendlyMessage?: string, status?: string}){
+		console.error(
+			'Error getting pathway (is webservice.wikipathways.org down?) \n' ,
+			`Message: ${error.message || 'none specified'} \n`,
+			`Status: ${error.status || 'none specified'} \n`
+		);
+
+		error.friendlyMessage = error.friendlyMessage || "Make sure you're connected to the internet and reload the page.";
+		this.setState({error: error, loaded: false, loading: false})
+	}
+
 	getPathway() {
   		this.setState({loading: true});
 		const { about, version } = this.props;
@@ -94,14 +105,30 @@ export class Pvjs extends React.Component<any, any> {
 		// Use the Fetch API to get the GPML and then convert it to JSON
 		const gpmlFetch = fetch(src)
 			.then(response => {
-				return response.json();
+				if(! response.ok) {
+					throw {
+						message: 'Getting pathway failed',
+						status: response.status,
+						friendlyMessage: 'Couldn\'t get the pathway.'
+					};
+				}
+				return response;
 			})
-			.then((json: any) => Base64.decode(json.data))
-			.catch(err => {
-				console.error(err.message + ': Error getting pathway (is webservice.wikipathways.org down?)');
-				err.message = "Make sure you're connected to the internet and reload the page.";
-				this.setState({error: err, loaded: false, loading: false})
-			});
+			.then(response => response.json())
+			.then((json: any) => {
+				// For some reason the status code from the webservice is still 200 even when an error appears
+				// Check the returned JSON for an error
+				// For now, it is structured like ["error", <status code>, <message>]
+				if(json[0] == "error"){
+					throw {
+						message: json[2],
+						status: json[1],
+						friendlyMessage: 'Failed getting the specified pathway.'
+					}
+				}
+				return Base64.decode(json.data)
+			})
+			.catch(err => this.handleError(err));
 
 		// gpml2pvjson needs an observable stream
 		const observable = Observable.fromPromise(gpmlFetch);
@@ -222,11 +249,7 @@ export class Pvjs extends React.Component<any, any> {
 			}, []);
 
 			this.setState({pvjson: pvjson, filters: filters, loaded: true, loading: false});
-		}, (err) => {
-			console.error(err.message + ': Error converting GPML to JSON');
-			err.message = "Something went wrong! Try refreshing the page.";
-			this.setState({error: err, loaded: false, loading: false})
-		});
+		}, err => this.handleError(err));
 	}
 
 	closeActive() {
@@ -303,7 +326,7 @@ export class Pvjs extends React.Component<any, any> {
 			transform: 'translate(-50%, 50%)'
 		};
 
-		if(loading && !loaded && !error) return <Spinner spinnerName="wandering-cubes" style={spinnerStyle} />;
+		//if(loading && !loaded && !error) return <Spinner spinnerName="wandering-cubes" style={spinnerStyle} />;
 	}
 
 	renderError(){
@@ -323,7 +346,7 @@ export class Pvjs extends React.Component<any, any> {
 		if(! loading && error) return (
 			<div style={errorStyle}>
 				<h3>Uh-oh!</h3>
-				<p>{error.message}</p>
+				<p>{error.friendlyMessage}</p>
 			</div>
 		);
 	}
