@@ -5,7 +5,6 @@ import {Base64} from 'js-base64';
 import {Kaavio} from './Kaavio';
 import {Filter, generateFilterId, doubleStroke, round} from './Kaavio/components/Filters';
 import {BridgeDb, XrefsAnnotationPanel} from 'bridgedb';
-import 'bootstrap/dist/css/bootstrap.min.css';
 // The edge drawing definitions are in Kaavio because they can be generically used.
 import EdgeDrawers from './Kaavio/components/EdgeDrawers';
 // But the icons and markers are specific to Pvjs (less likely to useful to other applications).

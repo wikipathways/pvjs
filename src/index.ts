@@ -7,6 +7,9 @@ import '@webcomponents/custom-elements/src/custom-elements';
 import 'web-animations-js';
 import 'whatwg-fetch'
 
+// Import styles
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // Import internal libraries for side-effects.
 import './wrappers/pvjs.webcomponent'; // TODO: Check this registers the component in browsers
 
