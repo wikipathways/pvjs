@@ -114,6 +114,16 @@ export declare class Manipulator {
      */
     zoomOn(node_id: string | string[], resetHighlight?: boolean, resetHidden?: boolean): void;
     /**
+     * Zoom the diagram in.
+     * Just a wrapper to access the method in the panZoom component
+     */
+    zoomIn(): void;
+    /**
+     * Zoom the diagram out
+     * Just a wrapper to access the method in the panZoom component
+     */
+    zoomOut(): void;
+    /**
      * Pan to a specific set of coordinates
      * @param coordinates
      */

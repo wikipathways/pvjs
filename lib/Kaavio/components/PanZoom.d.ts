@@ -6,7 +6,7 @@ export declare class PanZoom extends React.Component<any, any> {
     componentWillReceiveProps(nextProps: any, nextState: any): void;
     componentDidMount(): void;
     destroy: () => void;
-    init: (diagram: any, onReady: any) => void;
+    init: (diagram: any, onReady: any, showControls: boolean) => void;
     getSizes: () => any;
     getPan: () => any;
     zoom: (zoom_perc: number) => void;
@@ -17,5 +17,5 @@ export declare class PanZoom extends React.Component<any, any> {
     zoomIn: () => void;
     zoomOut: () => void;
     resetPanZoom: () => void;
-    render(): JSX.Element;
+    render(): any;
 }

@@ -3,6 +3,7 @@ export interface Opts {
     version?: number;
     src?: string;
     customStyle?: any;
+    showPanZoomControls?: boolean;
 }
 /**
  * Simple wrapper around the Pvjs react component.
