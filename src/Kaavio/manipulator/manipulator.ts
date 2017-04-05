@@ -204,7 +204,7 @@ export class Manipulator {
      * @returns {SVGLocatable}
      */
     private findNode(node_id): SVGRectElement {
-        return d3.select(this.diagram).select("g#" + node_id)[0][0];
+        return d3.select(this.diagram).select("g#" + node_id)._groups[0][0];
     }
 
     /**
@@ -212,9 +212,8 @@ export class Manipulator {
      * @returns {HTMLElement}
      */
     private getViewport(): SVGRectElement {
-        return d3.select(this.diagram).select(".svg-pan-zoom_viewport")[0][0]
+        return d3.select(this.diagram).select(".svg-pan-zoom_viewport")._groups[0][0]
     }
-
     /**
      * Get the bounding box of an entity.
      * @param node_id

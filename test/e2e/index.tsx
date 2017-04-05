@@ -129,11 +129,11 @@ document.body.appendChild(container)
 const pathwayId = getParameterByName('id') || 'WP4';
 declare var window: any;
 
-loadDiagram('#' + containerId, pathwayId, {showPanZoomControls: false}, instance => {
+loadDiagram('#' + containerId, pathwayId, {showPanZoomControls: true}, instance => {
     window.pvjs_instance = instance;
 });
 
-var wikipathwaysPvjs = document.createElement('div');
-wikipathwaysPvjs.setAttribute('style', 'width:100%;height:1200px')
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="${pathwayId}"></wikipathways-pvjs>`;
-document.body.appendChild(wikipathwaysPvjs);
+// var wikipathwaysPvjs = document.createElement('div');
+// wikipathwaysPvjs.setAttribute('style', 'width:100%;height:1200px')
+// wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="${pathwayId}"></wikipathways-pvjs>`;
+// document.body.appendChild(wikipathwaysPvjs);
