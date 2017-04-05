@@ -7,6 +7,7 @@ var cleanCSS = require('gulp-clean-css');
 // This is useful when using Angular CLI since all styles must be specified in the styles property of a component
 // See: https://github.com/angular/angular-cli/issues/1459
 // Note: the typestyles will still be imported fine since they are not css files
+// TODO: Add that this can be used in the README with an example for Angular CLI
 gulp.task('create-styles', function(){
     return gulp.src([
         './node_modules/roboto-fontface/css/roboto/roboto-fontface.css', // Robot font
