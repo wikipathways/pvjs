@@ -1,7 +1,7 @@
 // NOTE: mock-server must be started before running this.
 
 import { values } from 'lodash';
-import {Pvjs} from '../../src'
+import {loadDiagram} from '../../src'
 import '../../src'; // Import for side-effects when using the custom element
 
 import * as WikiPathwaysDefaultDisplayStyle from '../../src/WikiPathways.style';
@@ -129,7 +129,7 @@ document.body.appendChild(container)
 const pathwayId = getParameterByName('id') || 'WP4';
 declare var window: any;
 
-Pvjs('#' + containerId, pathwayId, {showPanZoomControls: false}, instance => {
+loadDiagram('#' + containerId, pathwayId, {showPanZoomControls: false}, instance => {
     window.pvjs_instance = instance;
 });
 

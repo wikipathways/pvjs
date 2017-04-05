@@ -25,7 +25,7 @@ export interface Opts {
  * @param [opts.customStyle]
  * @param [callback]: The callback to call with the reference to the Pvjs instance
  */
-export function Pvjs(selector: string, about: string, opts: Opts, callback?: any): void {
+export function loadDiagram(selector: string, about: string, opts: Opts, callback?: any): void {
 	let ref = null;
 	const props = defaults({}, opts, {
 		about: 'http://identifiers.org/wikipathways/' + about,

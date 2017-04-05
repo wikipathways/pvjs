@@ -18,4 +18,4 @@ export interface Opts {
  * @param [opts.customStyle]
  * @param [callback]: The callback to call with the reference to the Pvjs instance
  */
-export declare function Pvjs(selector: string, about: string, opts: Opts, callback?: any): void;
+export declare function loadDiagram(selector: string, about: string, opts: Opts, callback?: any): void;
