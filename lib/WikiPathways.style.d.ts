@@ -1,4 +1,3 @@
-import 'roboto-fontface/css/roboto/roboto-fontface.css';
 export declare const globalClass: string;
 export declare const containerClass: string;
 export declare const diagramClass: string;

@@ -1,6 +1,4 @@
 import { style } from 'typestyle';
-// TODO: State in docs that Webpack/browserify will automatically bring styles in when bundling
-import 'roboto-fontface/css/roboto/roboto-fontface.css';
 
 const kaavioBackgroundColor = 'white';
 const kaavioColor = 'black';

@@ -12,8 +12,9 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm-run-all build:lib build:dist",
-    "build:lib": "npm run rimraf ./lib && tsc --project tsconfig.esnext.json && npm run gulp copy:assets",
+    "build:lib": "npm run rimraf ./lib && tsc --project tsconfig.esnext.json && npm run assets",
     "build:dist": "npm run rimraf ./dist && webpack --config webpack.prod.config.js",
+    "assets": "npm run gulp copy:assets create-styles",
     "serve": "webpack-dev-server --config webpack.dev.config.js --open --progress",
     "start": "npm run serve",
     "test": "echo 'add working tests'",
@@ -105,6 +106,7 @@
     "global": "^4.3.0",
     "graceful-fs": "^4.1.4",
     "gulp": "^3.9.1",
+    "gulp-concat-css": "^2.3.0",
     "gulp-copy": "^1.0.0",
     "html-webpack-plugin": "^2.24.0",
     "image-webpack-loader": "^3.3.0",
