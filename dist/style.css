@@ -178,12 +178,16 @@
 .react-selectize.root-node .react-selectize-control {
   cursor: pointer;
   display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: box;
   display: flex;
   -webkit-box-align: start;
+  -moz-box-align: start;
   -o-box-align: start;
   -ms-flex-align: start;
+  -webkit-align-items: flex-start;
   align-items: flex-start;
   position: relative;
   padding: 2px;
@@ -192,6 +196,7 @@
   display: block;
   line-height: 30px;
   overflow: hidden;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   vertical-align: middle;
   white-space: nowrap;
@@ -200,19 +205,23 @@
 }
 .react-selectize.root-node .react-selectize-control .react-selectize-search-field-and-selected-values {
   display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: box;
   display: flex;
   min-height: 30px;
   -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -o-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
-  -ms-flex-positive: 1;
-      flex-grow: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
   -webkit-box-lines: multiple;
   -moz-box-lines: multiple;
   -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
@@ -228,36 +237,47 @@
 }
 .react-selectize.root-node .react-selectize-control .react-selectize-search-field-and-selected-values .value-wrapper {
   display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: box;
   display: flex;
   -webkit-box-align: center;
+  -moz-box-align: center;
   -o-box-align: center;
   -ms-flex-align: center;
+  -webkit-align-items: center;
   align-items: center;
 }
 .react-selectize.root-node .react-selectize-control .react-selectize-reset-button-container,
 .react-selectize.root-node .react-selectize-control .react-selectize-toggle-button-container {
   -webkit-box-flex: 0;
+  -moz-box-flex: 0;
   -o-box-flex: 0;
   -ms-box-flex: 0;
   box-flex: 0;
-  -ms-flex-positive: 0;
-      flex-grow: 0;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
   cursor: pointer;
   display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: box;
   display: flex;
   -webkit-box-align: center;
+  -moz-box-align: center;
   -o-box-align: center;
   -ms-flex-align: center;
+  -webkit-align-items: center;
   align-items: center;
   -webkit-box-pack: center;
+  -moz-box-pack: center;
   -o-box-pack: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   height: 30px;
 }
@@ -272,6 +292,9 @@
 }
 .react-selectize.root-node .react-selectize-control .react-selectize-reset-button path {
   -webkit-transition: stroke 0.5s 0s ease;
+  -moz-transition: stroke 0.5s 0s ease;
+  -o-transition: stroke 0.5s 0s ease;
+  -ms-transition: stroke 0.5s 0s ease;
   transition: stroke 0.5s 0s ease;
   stroke: #999;
   stroke-linecap: square;
@@ -290,6 +313,8 @@
   width: 100%;
 }
 .react-selectize.dropdown-menu {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   overflow: auto;
   position: absolute;
@@ -304,14 +329,18 @@
 }
 .react-selectize.dropdown-menu .groups.as-columns {
   display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: box;
   display: flex;
 }
 .react-selectize.dropdown-menu .groups.as-columns > div {
   -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -o-box-flex: 1;
   box-flex: 1;
+  -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
@@ -343,6 +372,7 @@
   background-color: #fff;
   border: 1px solid;
   border-color: #d9d9d9 #ccc #b3b3b3;
+  -webkit-border-radius: 4px;
   border-radius: 4px;
   font-size: 1em;
 }
@@ -371,47 +401,64 @@
 .react-selectize.dropdown-menu-wrapper.default .dropdown-menu.custom-enter-active,
 .react-selectize.dropdown-menu-wrapper.default .dropdown-menu.custom-leave-active {
   -webkit-transition: -webkit-transform 0.2s 0s ease;
-  transition: -webkit-transform 0.2s 0s ease;
+  -moz-transition: -moz-transform 0.2s 0s ease;
+  -o-transition: -o-transform 0.2s 0s ease;
+  -ms-transition: -ms-transform 0.2s 0s ease;
   transition: transform 0.2s 0s ease;
-  transition: transform 0.2s 0s ease, -webkit-transform 0.2s 0s ease;
 }
 .react-selectize.dropdown-menu-wrapper.default .dropdown-menu.flipped.custom-enter {
   -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -o-transform: translateY(100%);
   -ms-transform: translateY(100%);
   transform: translateY(100%);
 }
 .react-selectize.dropdown-menu-wrapper.default .dropdown-menu.flipped.custom-enter-active {
   -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -o-transform: translateY(0%);
   -ms-transform: translateY(0%);
   transform: translateY(0%);
 }
 .react-selectize.dropdown-menu-wrapper.default .dropdown-menu.flipped.custom-leave {
   -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -o-transform: translateY(0%);
   -ms-transform: translateY(0%);
   transform: translateY(0%);
 }
 .react-selectize.dropdown-menu-wrapper.default .dropdown-menu.flipped.custom-leave-active {
   -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -o-transform: translateY(100%);
   -ms-transform: translateY(100%);
   transform: translateY(100%);
 }
 .react-selectize.dropdown-menu-wrapper.default .dropdown-menu:not(.flipped).custom-enter {
   -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
   -ms-transform: translateY(-100%);
   transform: translateY(-100%);
 }
 .react-selectize.dropdown-menu-wrapper.default .dropdown-menu:not(.flipped).custom-enter-active {
   -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -o-transform: translateY(0%);
   -ms-transform: translateY(0%);
   transform: translateY(0%);
 }
 .react-selectize.dropdown-menu-wrapper.default .dropdown-menu:not(.flipped).custom-leave {
   -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -o-transform: translateY(0%);
   -ms-transform: translateY(0%);
   transform: translateY(0%);
 }
 .react-selectize.dropdown-menu-wrapper.default .dropdown-menu:not(.flipped).custom-leave-active {
   -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
   -ms-transform: translateY(-100%);
   transform: translateY(-100%);
 }
@@ -457,6 +504,7 @@
 .multi-select.react-selectize.default.root-node .simple-value {
   background: #f2f9fc;
   border: 1px solid #c9e6f2;
+  -webkit-border-radius: 2px;
   border-radius: 2px;
   color: #08c;
 }
@@ -466,9 +514,36 @@
 .simple-select.react-selectize.default.root-node:not(.open) .react-selectize-control {
   background-color: #f9f9f9;
   background-image: -webkit-linear-gradient(top, #fefefe, #f2f2f2);
+  background-image: -moz-linear-gradient(top, #fefefe, #f2f2f2);
+  background-image: -o-linear-gradient(top, #fefefe, #f2f2f2);
+  background-image: -ms-linear-gradient(top, #fefefe, #f2f2f2);
   background-image: linear-gradient(to bottom, #fefefe, #f2f2f2);
 }
 @-webkit-keyframes sk-fade-in {
+  0% {
+      opacity: 0;
+  }
+  50% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+@-moz-keyframes sk-fade-in {
+  0% {
+      opacity: 0;
+  }
+  50% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+@-ms-keyframes sk-fade-in {
   0% {
       opacity: 0;
   }
@@ -580,17 +655,17 @@
   animation-fill-mode: both;
 }
 
-.sk-circle2  { -webkit-transform: rotate(30deg);  -ms-transform: rotate(30deg);  transform: rotate(30deg)  }
-.sk-circle3  { -webkit-transform: rotate(60deg);  -ms-transform: rotate(60deg);  transform: rotate(60deg)  }
-.sk-circle4  { -webkit-transform: rotate(90deg);  -ms-transform: rotate(90deg);  transform: rotate(90deg)  }
-.sk-circle5  { -webkit-transform: rotate(120deg); -ms-transform: rotate(120deg); transform: rotate(120deg) }
-.sk-circle6  { -webkit-transform: rotate(150deg); -ms-transform: rotate(150deg); transform: rotate(150deg) }
-.sk-circle7  { -webkit-transform: rotate(180deg); -ms-transform: rotate(180deg); transform: rotate(180deg) }
-.sk-circle8  { -webkit-transform: rotate(210deg); -ms-transform: rotate(210deg); transform: rotate(210deg) }
-.sk-circle9  { -webkit-transform: rotate(240deg); -ms-transform: rotate(240deg); transform: rotate(240deg) }
-.sk-circle10 { -webkit-transform: rotate(270deg); -ms-transform: rotate(270deg); transform: rotate(270deg) }
-.sk-circle11 { -webkit-transform: rotate(300deg); -ms-transform: rotate(300deg); transform: rotate(300deg) }
-.sk-circle12 { -webkit-transform: rotate(330deg); -ms-transform: rotate(330deg); transform: rotate(330deg) }
+.sk-circle2  { -webkit-transform: rotate(30deg);  transform: rotate(30deg)  }
+.sk-circle3  { -webkit-transform: rotate(60deg);  transform: rotate(60deg)  }
+.sk-circle4  { -webkit-transform: rotate(90deg);  transform: rotate(90deg)  }
+.sk-circle5  { -webkit-transform: rotate(120deg); transform: rotate(120deg) }
+.sk-circle6  { -webkit-transform: rotate(150deg); transform: rotate(150deg) }
+.sk-circle7  { -webkit-transform: rotate(180deg); transform: rotate(180deg) }
+.sk-circle8  { -webkit-transform: rotate(210deg); transform: rotate(210deg) }
+.sk-circle9  { -webkit-transform: rotate(240deg); transform: rotate(240deg) }
+.sk-circle10 { -webkit-transform: rotate(270deg); transform: rotate(270deg) }
+.sk-circle11 { -webkit-transform: rotate(300deg); transform: rotate(300deg) }
+.sk-circle12 { -webkit-transform: rotate(330deg); transform: rotate(330deg) }
 
 .sk-circle2:before  { -webkit-animation-delay: -1.1s; animation-delay: -1.1s }
 .sk-circle3:before  { -webkit-animation-delay: -1.0s; animation-delay: -1.0s }
