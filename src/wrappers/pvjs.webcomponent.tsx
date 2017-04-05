@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {Pvjs} from '../Pvjs';
 import * as WikiPathwaysDefaultDisplayStyle from '../WikiPathways.style';
 

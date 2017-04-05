@@ -1,6 +1,4 @@
-import '@webcomponents/custom-elements/src/htmlelement-instanceof';
-import '@webcomponents/custom-elements/src/native-shim';
-import '@webcomponents/custom-elements/src/custom-elements';
+import 'document-register-element';
 import 'web-animations-js';
 import 'whatwg-fetch';
 import './wrappers/pvjs.webcomponent';

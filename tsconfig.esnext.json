@@ -2,7 +2,7 @@
 	"extends": "./tsconfig.base",
 	"compilerOptions": {
 		"module": "es2015",
-		"outDir": "esnext",
+		"outDir": "lib",
 		"target": "es6"
 	}
 }
