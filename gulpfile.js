@@ -9,10 +9,7 @@ var cleanCSS = require('gulp-clean-css');
 // Note: the typestyles will still be imported fine since they are not css files
 // TODO: Add that this can be used in the README with an example for Angular CLI
 gulp.task('create-styles', function(){
-    return gulp.src([
-        './node_modules/roboto-fontface/css/roboto/roboto-fontface.css', // Robot font
-        './node_modules/react-spinkit/css/*.css' // React SpinKit styles
-    ])
+    return gulp.src('./src/styles.css')
         .pipe(concatCss('styles.css'))
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest('./lib'));
