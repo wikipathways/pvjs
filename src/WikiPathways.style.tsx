@@ -6,16 +6,22 @@ const kaavioColor = 'black';
 export const globalClass = style({
 	fontFamily: 'Roboto',
 	position: 'relative',
-	minHeight: '30rem'
+	minHeight: '30rem',
+	width: '100%',
+	height: '100%'
 });
 
 export const containerClass = style({
 	color: kaavioColor,
-	backgroundColor: kaavioBackgroundColor
+	backgroundColor: kaavioBackgroundColor,
+	width: '100%',
+	height: '100%'
 });
 
 export const diagramClass = style({
 	backgroundColor: kaavioBackgroundColor,
+	width: '100%',
+	height: '100%'
 });
 
 export const viewportClass = style({

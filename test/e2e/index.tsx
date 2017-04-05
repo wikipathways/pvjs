@@ -122,7 +122,7 @@ function getParameterByName(name, url?) {
 var container = document.createElement('div');
 const containerId = 'pvjs-container-' + new Date().toISOString().replace(/\W/g, '');
 container.setAttribute('id', containerId);
-container.setAttribute('width', '100%');
+container.setAttribute('style', 'width: 100%; height:600px')
 container.setAttribute('height', '1000px');
 document.body.appendChild(container)
 
@@ -134,5 +134,6 @@ loadDiagram('#' + containerId, pathwayId, {showPanZoomControls: false}, instance
 });
 
 var wikipathwaysPvjs = document.createElement('div');
+wikipathwaysPvjs.setAttribute('style', 'width:100%;height:1200px')
 wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="${pathwayId}"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);

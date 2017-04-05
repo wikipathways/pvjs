@@ -163,7 +163,7 @@ export class Diagram extends React.Component<any, any> {
         const markerInputs = this.getMarkerInputs(zIndexedEntities);
 
         return <svg xmlns="http://www.w3.org/2000/svg" id={about} version="1.1"
-                    baseProfile="full" preserveAspectRatio="xMidYMid" width={width} height={height}
+                    baseProfile="full" preserveAspectRatio="xMidYMid"
                     onClick={this.handleClick.bind(this)} className={`kaavio-diagram ${ customStyle.diagramClass }`}
                     style={{overflow: 'hidden'}}>
 
@@ -199,6 +199,7 @@ export class Diagram extends React.Component<any, any> {
 
                 <rect x="0" y ="0" width="100%" height="100%" className="kaavio-viewport-background"
                       fill={backgroundColor} />
+                <g width={width} height={height}>
                 {
                     groupedZIndexedEntities.filter((entity) => ['Node', 'Edge', 'Group'].indexOf(entity.kaavioType) > -1)
                         .filter((entity) => !entity.hasOwnProperty('isPartOf'))
@@ -214,6 +215,7 @@ export class Diagram extends React.Component<any, any> {
                             />
                         })
                 }
+                </g>
             </g>
         </svg>
     }

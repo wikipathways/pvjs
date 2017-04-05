@@ -191,7 +191,7 @@ export class Kaavio extends React.Component<any, any> {
 		// Accessing the diagram ref from the state is a little bit of a hack to get panZoom working.
 		// Consider refactoring the panZoom to be truly Reactive and not use refs
 		return (
-			<div id={about} width={width} height={height} className={`kaavio-container ${ customStyle.containerClass }`}>
+			<div id={about} className={`kaavio-container ${ customStyle.containerClass }`}>
 				<Diagram
 					ref={diagram => !this.state.diagramRef && this.setState({diagramRef: diagram})}
 					about={`kaavio-diagram-for-${about}`}
