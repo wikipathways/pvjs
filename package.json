@@ -106,6 +106,7 @@
     "global": "^4.3.0",
     "graceful-fs": "^4.1.4",
     "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.4",
     "gulp-concat-css": "^2.3.0",
     "gulp-copy": "^1.0.0",
     "html-webpack-plugin": "^2.24.0",

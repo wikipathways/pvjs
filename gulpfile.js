@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var copy = require('gulp-copy');
 var concatCss = require('gulp-concat-css');
+var cleanCSS = require('gulp-clean-css');
 
 // Create an external CSS style that can optionally be used by devs instead of the webpack style loader
 // This is useful when using Angular CLI since all styles must be specified in the styles property of a component
@@ -12,6 +13,7 @@ gulp.task('create-styles', function(){
         './node_modules/react-spinkit/css/*.css' // React SpinKit styles
     ])
         .pipe(concatCss('styles.css'))
+        .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest('./lib'));
 });
 
