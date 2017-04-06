@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 import {Diagram} from './components/Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./kaavio.css');
-import {normalize, setupPage} from 'csstips';
+import {normalize} from 'csstips';
 import {PanZoom} from "./components/PanZoom";
 import {Manipulator} from './manipulator';
 
@@ -37,8 +37,6 @@ export class Kaavio extends React.Component<any, any> {
 		};
 
 		normalize();
-		// TODO doublecheck how to use setupPage
-		setupPage('#' + this.props.about);
 	}
 
 	private onPanZoomReady(panZoom){
