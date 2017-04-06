@@ -124,8 +124,7 @@ declare var window: any;
 // Vanillas
 // Small
 var container = document.createElement('div');
-const containerId = 'pvjs-container-' + new Date().toISOString().replace(/\W/g, '');
-container.setAttribute('id', containerId);
+container.setAttribute('id', 'vanilla-small');
 container.setAttribute('style', 'width: 100px; height:100px');
 var heading = document.createElement('h1');
 heading.innerText = 'Small size using vanilla wrapper';
@@ -133,12 +132,13 @@ container.appendChild(heading);
 document.body.appendChild(container);
 
 
-loadDiagram('#' + containerId, pathwayId, {showPanZoomControls: true}, instance => {
+loadDiagram('#vanilla-small', pathwayId, {showPanZoomControls: true}, instance => {
     window.pvjs_instance = instance;
 });
 
 // large
 var container = document.createElement('div');
+container.setAttribute('id', 'vanilla-large');
 container.setAttribute('style', 'width: 1200px; height:800px');
 var heading = document.createElement('h1');
 heading.innerText = 'Large size using vanilla wrapper';
@@ -146,12 +146,13 @@ container.appendChild(heading);
 document.body.appendChild(container);
 
 
-loadDiagram('#' + containerId, pathwayId, {showPanZoomControls: true}, instance => {
+loadDiagram('#vanilla-large', pathwayId, {showPanZoomControls: true}, instance => {
     window.pvjs_instance = instance;
 });
 
 // 100% width height
 var container = document.createElement('div');
+container.setAttribute('id', 'vanilla-100');
 container.setAttribute('style', 'width: 100%; height:100%');
 var heading = document.createElement('h1');
 heading.innerText = '100% size using vanilla wrapper';
@@ -159,7 +160,7 @@ container.appendChild(heading);
 document.body.appendChild(container);
 
 
-loadDiagram('#' + containerId, pathwayId, {showPanZoomControls: true}, instance => {
+loadDiagram('#vanilla-100', pathwayId, {showPanZoomControls: true}, instance => {
     window.pvjs_instance = instance;
 });
 
@@ -169,6 +170,15 @@ var wikipathwaysPvjs = document.createElement('div');
 wikipathwaysPvjs.setAttribute('style', 'width:400px;height:800px')
 wikipathwaysPvjs.innerHTML = `
     <h1>Taller than wide using custom element</h1>
+    <wikipathways-pvjs about="${pathwayId}"></wikipathways-pvjs>
+`;
+document.body.appendChild(wikipathwaysPvjs);
+
+// Wider than tall
+var wikipathwaysPvjs = document.createElement('div');
+wikipathwaysPvjs.setAttribute('style', 'width:1200px;height:600px')
+wikipathwaysPvjs.innerHTML = `
+    <h1>Wider than tall using custom element</h1>
     <wikipathways-pvjs about="${pathwayId}"></wikipathways-pvjs>
 `;
 document.body.appendChild(wikipathwaysPvjs);
