@@ -321,10 +321,10 @@ export class Pvjs extends React.Component<any, any> {
 		const {loaded, loading, error} = this.state;
 		const spinnerStyle = {
 			width: '80px',
-			position: 'absolute',
+			position: 'relative',
 			top: '50%',
-			'left': '50%',
-			transform: 'translate(-50%, 50%)'
+			left: '50%',
+			transform: 'translate(-50%, -50%)'
 		};
 
 		if(loading && !loaded && !error) return <Spinner spinnerName="wandering-cubes" style={spinnerStyle} />;
@@ -334,14 +334,15 @@ export class Pvjs extends React.Component<any, any> {
 		const {loading, error} = this.state;
 
 		const errorStyle = {
+			position: 'relative',
 			padding: '2.5rem',
-			marginLeft: 'auto',
-			marginRight: 'auto',
-			marginTop: '1rem',
 			backgroundColor: '#e74c3c',
 			color: 'white',
 			width: '80%',
-			textAlign: 'center'
+			textAlign: 'center',
+			transform: 'translate(-50%, -50%)',
+			top: '50%',
+			left: '50%'
 		};
 
 		if(! loading && error) return (
