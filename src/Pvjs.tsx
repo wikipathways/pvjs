@@ -20,6 +20,7 @@ import {Manipulator} from "./Kaavio/manipulator/manipulator";
 // TODO: Add to docs that webpack must be used to bring in CSS
 // SEE https://github.com/KyleAMathews/react-spinkit#css
 import * as Spinner from 'react-spinkit';
+import {BehaviorSubject} from "rxjs";
 
 // TODO move this into utils
 // Create a string of citation numbers for display,
@@ -72,6 +73,8 @@ export class Pvjs extends React.Component<any, any> {
 	pathwayRequest: Observable<any>;
 	kaavioRef: any;
 	manipulator: Manipulator;
+	private readySubject = new BehaviorSubject(false);
+	ready = this.readySubject.asObservable();
 
   	constructor(props) {
 		super(props);
@@ -293,6 +296,7 @@ export class Pvjs extends React.Component<any, any> {
 
 	onKaavioReady(kaavio){
 		this.manipulator = kaavio.manipulator;
+		this.readySubject.next(true);
 	}
 
 	handleCloseDetailsPanel() {
