@@ -24,5 +24,6 @@ export declare class Kaavio extends React.Component<any, any> {
     popHidden: (entity_id: string | string[]) => void;
     resetHidden: (exclude?: string[]) => void;
     isHidden: (entity_id: string) => boolean;
+    getEntities: () => any;
     render(): JSX.Element;
 }

@@ -4,7 +4,6 @@ import * as ReactDOM from 'react-dom';
 import {Diagram} from './components/Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./kaavio.css');
-import {normalize} from 'csstips';
 import {PanZoom} from "./components/PanZoom";
 import {Manipulator} from './manipulator';
 
@@ -35,8 +34,6 @@ export class Kaavio extends React.Component<any, any> {
 			highlightedNodes: [], // A stack of the highlighted nodes that is pushed and popped
 			hiddenEntities: [], // A stack of hidden entities that is pushed and popped
 		};
-
-		normalize();
 	}
 
 	private onPanZoomReady(panZoom){
@@ -157,6 +154,10 @@ export class Kaavio extends React.Component<any, any> {
 	isHidden = (entity_id: string) => {
 		const {hiddenEntities} = this.state;
 		return hiddenEntities.indexOf(entity_id) > -1;
+	};
+
+	getEntities = () => {
+		return this.props.entities;
 	};
 
 	render() {

@@ -22,6 +22,21 @@ export class Manipulator {
     }
 
     /**
+     * Return a list of the entities in the diagram.
+     * Only return the useful properties though.
+     */
+    getEntities(){
+        return this.kaavio.getEntities().map(entity => {
+            return {
+                id: entity.id,
+                kaavioType: entity.kaavioType,
+                textContent: entity.textContent,
+                types: entity.type
+            }
+        })
+    }
+
+    /**
      * Toggle the highlighting of one or multiple entities
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour

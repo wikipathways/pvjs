@@ -10,6 +10,11 @@ export declare class Manipulator {
     private relPoint;
     constructor(kaavioRef: any, panZoomRef: any, diagramRef: any);
     /**
+     * Return a list of the entities in the diagram.
+     * Only return the useful properties though.
+     */
+    getEntities(): any;
+    /**
      * Toggle the highlighting of one or multiple entities
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
