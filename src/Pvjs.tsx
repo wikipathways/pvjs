@@ -369,7 +369,6 @@ export class Pvjs extends React.Component<any, any> {
   	render() {
 		const {customStyle} = this.props;
 		return (
-			// Add position relative to keep the absolute positioned annotationsPanel within bounds
 			<section className={customStyle.globalClass}>
 				{this.renderError()}
 				{this.renderLoadingIndicator()}
