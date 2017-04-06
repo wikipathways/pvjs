@@ -10,6 +10,8 @@ export declare class Pvjs extends React.Component<any, any> {
     pathwayRequest: Observable<any>;
     kaavioRef: any;
     manipulator: Manipulator;
+    private readySubject;
+    ready: Observable<boolean>;
     constructor(props: any);
     handleError(error: {
         message: string;
