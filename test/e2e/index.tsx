@@ -118,22 +118,57 @@ function getParameterByName(name, url?) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-// React says not to render directly into document.body, so here's a container.
+const pathwayId = getParameterByName('id') || 'WP4';
+declare var window: any;
+
+// Vanillas
+// Small
 var container = document.createElement('div');
 const containerId = 'pvjs-container-' + new Date().toISOString().replace(/\W/g, '');
 container.setAttribute('id', containerId);
-container.setAttribute('style', 'width: 100%; height:600px')
-container.setAttribute('height', '1000px');
-document.body.appendChild(container)
+container.setAttribute('style', 'width: 100px; height:100px');
+var heading = document.createElement('h1');
+heading.innerText = 'Small size using vanilla wrapper';
+container.appendChild(heading);
+document.body.appendChild(container);
 
-const pathwayId = getParameterByName('id') || 'WP4';
-declare var window: any;
 
 loadDiagram('#' + containerId, pathwayId, {showPanZoomControls: true}, instance => {
     window.pvjs_instance = instance;
 });
 
-// var wikipathwaysPvjs = document.createElement('div');
-// wikipathwaysPvjs.setAttribute('style', 'width:100%;height:1200px')
-// wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="${pathwayId}"></wikipathways-pvjs>`;
-// document.body.appendChild(wikipathwaysPvjs);
+// large
+var container = document.createElement('div');
+container.setAttribute('style', 'width: 1200px; height:800px');
+var heading = document.createElement('h1');
+heading.innerText = 'Large size using vanilla wrapper';
+container.appendChild(heading);
+document.body.appendChild(container);
+
+
+loadDiagram('#' + containerId, pathwayId, {showPanZoomControls: true}, instance => {
+    window.pvjs_instance = instance;
+});
+
+// 100% width height
+var container = document.createElement('div');
+container.setAttribute('style', 'width: 100%; height:100%');
+var heading = document.createElement('h1');
+heading.innerText = '100% size using vanilla wrapper';
+container.appendChild(heading);
+document.body.appendChild(container);
+
+
+loadDiagram('#' + containerId, pathwayId, {showPanZoomControls: true}, instance => {
+    window.pvjs_instance = instance;
+});
+
+// Custom elements
+// Taller than wide
+var wikipathwaysPvjs = document.createElement('div');
+wikipathwaysPvjs.setAttribute('style', 'width:400px;height:800px')
+wikipathwaysPvjs.innerHTML = `
+    <h1>Taller than wide using custom element</h1>
+    <wikipathways-pvjs about="${pathwayId}"></wikipathways-pvjs>
+`;
+document.body.appendChild(wikipathwaysPvjs);

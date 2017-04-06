@@ -165,7 +165,7 @@ export class Diagram extends React.Component<any, any> {
         return <svg xmlns="http://www.w3.org/2000/svg" id={about} version="1.1"
                     baseProfile="full" preserveAspectRatio="xMidYMid"
                     onClick={this.handleClick.bind(this)} className={`kaavio-diagram ${ customStyle.diagramClass }`}
-                    style={{overflow: 'hidden'}}>
+                    viewBox={`0 0 ${width} ${height}`} >
 
             <style type="text/css" dangerouslySetInnerHTML={{__html: `
 				<![CDATA[

@@ -6,9 +6,9 @@ const kaavioColor = 'black';
 export const globalClass = style({
 	fontFamily: 'Roboto',
 	position: 'relative',
-	minHeight: '30rem',
 	width: '100%',
-	height: '100%'
+	height: '100%',
+	overflow: 'hidden'
 });
 
 export const containerClass = style({
