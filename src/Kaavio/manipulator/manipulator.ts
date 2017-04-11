@@ -43,7 +43,8 @@ export class Manipulator {
      * @param resets - Object containg which resets should be carried out
      */
     toggleHighlight(entity_id: any, color: string,
-                    resets: {others: boolean, panZoom: boolean, hidden: boolean} = {}): Manipulator {
+                    resets: {others: boolean, panZoom: boolean, hidden: boolean}
+                    = {others: false, panZoom: false, hidden: false}): Manipulator {
         if(resets.panZoom) this.resetPanZoom();
         if(resets.hidden) this.resetHidden();
 
@@ -75,7 +76,8 @@ export class Manipulator {
      * @param resets - Object containing which resets should be carried out
      */
     highlightOn(entity_id: any, color: string,
-                resets: {others: boolean, panZoom: boolean, hidden: boolean} = {}): Manipulator {
+                resets: {others: boolean, panZoom: boolean, hidden: boolean}
+                = {others: false, panZoom: false, hidden: false}): Manipulator {
         if(resets.panZoom) this.resetPanZoom();
         if(resets.hidden) this.resetHidden();
         if(! color) throw new Error("No color specified.");
@@ -103,7 +105,8 @@ export class Manipulator {
      * @param entity_id - one identifier or a string of identifiers
      * @param resets - Object containing which resets should be carried out
      */
-    highlightOff(entity_id: any, resets: {others: boolean, panZoom: boolean, hidden: boolean} = {}): Manipulator {
+    highlightOff(entity_id: any, resets: {others: boolean, panZoom: boolean, hidden: boolean} =
+                     {others: false, panZoom: false, hidden: false}): Manipulator {
         if(resets.panZoom) this.resetPanZoom();
         if(resets.hidden) this.resetHidden();
 
@@ -133,7 +136,8 @@ export class Manipulator {
      * @param entity_id - one identifier or a string of identifiers
      * @param resets - Object containing which resets should be carried out
      */
-    toggleHidden(entity_id: any, resets: {others: boolean, panZoom: boolean, highlighted: boolean} = {}): Manipulator {
+    toggleHidden(entity_id: any, resets: {others: boolean, panZoom: boolean, highlighted: boolean} =
+                     {others: false, panZoom: false, highlighted: false}): Manipulator {
         if(resets.panZoom) this.resetPanZoom();
         if(resets.highlighted) this.resetHighlighted();
 
@@ -163,7 +167,8 @@ export class Manipulator {
      * @param resets - Object containing which resets should be carried out
      */
     hide(entity_id: string | string[],
-         resets: {others: boolean, panZoom: boolean, highlighted: boolean} = {}): Manipulator {
+         resets: {others: boolean, panZoom: boolean, highlighted: boolean} =
+             {others: false, panZoom: false, highlighted: false}): Manipulator {
         if(resets.panZoom) this.resetPanZoom();
         if(resets.panZoom) this.resetHighlighted();
 
@@ -184,7 +189,8 @@ export class Manipulator {
      * @param resets - Object containing which resets should be carried out
      */
     show(entity_id: string | string[],
-         resets: {others: boolean, panZoom: boolean, highlighted: boolean} = {}): Manipulator {
+         resets: {others: boolean, panZoom: boolean, highlighted: boolean} =
+             {others: false, panZoom: false, highlighted: false}): Manipulator {
         if(resets.panZoom) this.resetPanZoom();
         if(resets.highlighted) this.resetHighlighted();
 
@@ -327,7 +333,8 @@ export class Manipulator {
      * @param node_id
      * @param resets - the resets that should be carried out.
      */
-    zoomOn(node_id: string | string[], resets: {highlighted: boolean, hidden: boolean} ={}): Manipulator {
+    zoomOn(node_id: string | string[], resets: {highlighted: boolean, hidden: boolean}
+            = {highlighted: false, hidden: false}): Manipulator {
         if(resets.highlighted) this.resetHighlighted();
         if(resets.hidden) this.resetHidden();
         const zoom_perc = this.computeZoom(node_id);
@@ -372,7 +379,8 @@ export class Manipulator {
      * @param resets - the resets to be carried out.
      */
     panTo(node_id: string | string[],
-          resets: {panZoom: boolean, highlighted: boolean, hidden: boolean} ={}): Manipulator {
+          resets: {panZoom: boolean, highlighted: boolean, hidden: boolean}
+          = {panZoom: false, highlighted: false, hidden: false}): Manipulator {
         if(resets.panZoom) this.resetPanZoom();
         if(resets.highlighted) this.resetHighlighted();
         if(resets.hidden) this.resetHidden();
