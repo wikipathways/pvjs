@@ -15,67 +15,79 @@ export declare class Manipulator {
      */
     getEntities(): any;
     /**
-     * Toggle the highlighting of one or multiple entities
+     * Toggle the highlighting of one or multiple entities. Returns this for chaining
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
-     * @param resetOthers - Reset all other highlighted entities before highlighting. Default = true
-     * @param resetHidden - Reset the hidden entities before highlighting. Default = true
-     * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
+     * @param resets - Object containg which resets should be carried out
      */
-    toggleHighlight(entity_id: any, color: string, resetOthers?: boolean, resetHidden?: boolean, resetPanZoom?: boolean): void;
+    toggleHighlight(entity_id: any, color: string, resets?: {
+        others: boolean;
+        panZoom: boolean;
+        hidden: boolean;
+    }): Manipulator;
     /**
-     * Turn on the highlighting of one entity.
+     * Turn on the highlighting of one entity. Returns this for chaining
      * Behaviour is to only change the highlighted entities if the entity_id or color changes.
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
-     * @param resetOthers - Reset all other highlighted entities before highlighting. Default = true
-     * @param resetHidden - Reset the hidden entities before highlighting. Default = true
-     * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
+     * @param resets - Object containing which resets should be carried out
      */
-    highlightOn(entity_id: any, color: string, resetOthers?: boolean, resetHidden?: boolean, resetPanZoom?: boolean): void;
+    highlightOn(entity_id: any, color: string, resets?: {
+        others: boolean;
+        panZoom: boolean;
+        hidden: boolean;
+    }): Manipulator;
     /**
-     * Turn off the highlighting of one or multiple entities.
+     * Turn off the highlighting of one or multiple entities. Returns this for chaining
      * @param entity_id - one identifier or a string of identifiers
-     * @param resetOthers - Reset all other highlighted entities before highlighting. Default = true
-     * @param resetHidden - Reset the hidden entities before highlighting. Default = true
-     * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
+     * @param resets - Object containing which resets should be carried out
      */
-    highlightOff(entity_id: any, resetOthers?: boolean, resetHidden?: boolean, resetPanZoom?: boolean): void;
+    highlightOff(entity_id: any, resets?: {
+        others: boolean;
+        panZoom: boolean;
+        hidden: boolean;
+    }): Manipulator;
     /**
-     * Un-highlight all highlighted entities except those in the exclude array
+     * Un-highlight all highlighted entities except those in the exclude array. Returns this for chaining
      * @param exclude
      */
-    resetHighlighted(exclude?: string[]): void;
+    resetHighlighted(exclude?: string[]): Manipulator;
     /**
-     * Toggle the displaying of one or multiple entities
+     * Toggle the displaying of one or multiple entities. Returns this for chaining
      * @param entity_id - one identifier or a string of identifiers
-     * @param color - can be any css colour
-     * @param resetOthers - Reset all other hidden nodes before hiding. Default = true
-     * @param resetHighlighted - Reset the highlighted entities before toggling. Default = true
-     * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
+     * @param resets - Object containing which resets should be carried out
      */
-    toggleHidden(entity_id: any, color: string, resetOthers?: boolean, resetHighlighted?: boolean, resetPanZoom?: boolean): void;
+    toggleHidden(entity_id: any, resets?: {
+        others: boolean;
+        panZoom: boolean;
+        highlighted: boolean;
+    }): Manipulator;
     /**
-     * Hide one or multiple entities
+     * Hide one or multiple entities. Returns this for chaining
      * @param entity_id - one identifier or a string of identifiers
-     * @param resetOthers - Reset all other hidden entities first. Default = true
-     * @param resetHighlighted - Reset the highlighted entities before hiding. Default = true
-     * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
+     * @param resets - Object containing which resets should be carried out
      */
-    hide(entity_id: string | string[], resetOthers?: boolean, resetHighlighted?: boolean, resetPanZoom?: boolean): void;
+    hide(entity_id: string | string[], resets?: {
+        others: boolean;
+        panZoom: boolean;
+        highlighted: boolean;
+    }): Manipulator;
     /**
-     * Show one or multiple entities
+     * Show one or multiple entities. Returns this for chaining
      * @param entity_id - one identifier or a string of identifiers
-     * @param resetOthers - Reset all other hidden entities first. Default = true
-     * @param resetHighlighted - Reset the highlighted entities before showing. Default = true
-     * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
+     * @param resets - Object containing which resets should be carried out
      */
-    show(entity_id: string | string[], resetOthers?: boolean, resetHighlighted?: boolean, resetPanZoom?: boolean): void;
+    show(entity_id: string | string[], resets?: {
+        others: boolean;
+        panZoom: boolean;
+        highlighted: boolean;
+    }): Manipulator;
     /**
-     * Un-highlight all highlighted nodes except those in the exclude array
+     * Un-highlight all highlighted nodes except those in the exclude array.
+     * Returns this for chaining
      * @param exclude
      */
-    resetHidden(exclude?: string[]): void;
+    resetHidden(exclude?: string[]): Manipulator;
     /**
      * Return the node element reference by the node_id
      * @param node_id
@@ -107,45 +119,59 @@ export declare class Manipulator {
      */
     private computeZoom(node_id);
     /**
-     * Zoom in
+     * Zoom in.
+     * Returns this for chaining
      * @param zoom_perc
      */
-    zoom(zoom_perc: number): void;
+    zoom(zoom_perc: number): Manipulator;
     /**
      * Zoom onto a specific node
+     * Returns this for chaining
      * @param node_id
-     * @param resetHighlight - reset the highlight before zooming. Default = true
-     * @param resetHidden - reset the hidden entities before zooming. Default = true
+     * @param resets - the resets that should be carried out.
      */
-    zoomOn(node_id: string | string[], resetHighlight?: boolean, resetHidden?: boolean): void;
+    zoomOn(node_id: string | string[], resets?: {
+        highlighted: boolean;
+        hidden: boolean;
+    }): Manipulator;
     /**
      * Zoom the diagram in.
+     * Returns this for chaining
      * Just a wrapper to access the method in the panZoom component
      */
-    zoomIn(): void;
+    zoomIn(): Manipulator;
     /**
      * Zoom the diagram out
+     * Returns this for chaining
      * Just a wrapper to access the method in the panZoom component
      */
-    zoomOut(): void;
+    zoomOut(): Manipulator;
     /**
-     * Pan to a specific set of coordinates
+     * Pan to a specific set of coordinates.
+     * Returns this for chaining
      * @param coordinates
      */
     pan(coordinates: {
         x: number;
         y: number;
-    }): void;
+    }): Manipulator;
     /**
-     * Pan to a specific node
+     * Pan to a specific node. Returns this for chaining
      * @param node_id
-     * @param resetPanZoom - reset the zoom before panning. Default = true
-     * @param resetHighlight - reset the highlight before panning. Default = true
-     * @param resetHidden - reset the hidden entities before panning. Default = true
+     * @param resets - the resets to be carried out.
      */
-    panTo(node_id: string | string[], resetPanZoom?: boolean, resetHighlight?: boolean, resetHidden?: boolean): void;
+    panTo(node_id: string | string[], resets?: {
+        panZoom: boolean;
+        highlighted: boolean;
+        hidden: boolean;
+    }): Manipulator;
     /**
-     * Reset the pan, zoom and center
+     * Reset the pan, zoom and center.
+     * Returns this for chaining
      */
-    resetPanZoom(): void;
+    resetPanZoom(): Manipulator;
+    /**
+     * Reset everything! Resets pan, zoom, hidden, and highlighted
+     */
+    reset(): Manipulator;
 }
