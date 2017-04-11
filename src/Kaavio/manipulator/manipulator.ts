@@ -25,7 +25,7 @@ export class Manipulator {
      * Return a list of the entities in the diagram.
      * Only return the useful properties though.
      */
-    getEntities(){
+    getEntities() {
         return this.kaavio.getEntities().map(entity => {
             return {
                 id: entity.id,
@@ -33,11 +33,11 @@ export class Manipulator {
                 textContent: entity.textContent,
                 types: entity.type
             }
-        })
+        });
     }
 
     /**
-     * Toggle the highlighting of one or multiple entities
+     * Toggle the highlighting of one or multiple entities. Returns this for chaining
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
      * @param resetOthers - Reset all other highlighted entities before highlighting. Default = true
@@ -45,7 +45,7 @@ export class Manipulator {
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
     toggleHighlight(entity_id: any, color: string, resetOthers: boolean = true, resetHidden: boolean = false,
-                    resetPanZoom: boolean = true): void {
+                    resetPanZoom: boolean = true): Manipulator {
         if(resetPanZoom) this.resetPanZoom();
         if(resetHidden) this.resetHidden();
 
@@ -65,10 +65,12 @@ export class Manipulator {
                 this.highlightOn(single_id, color, false, false, false)
             }
         });
+
+        return this;
     }
 
     /**
-     * Turn on the highlighting of one entity.
+     * Turn on the highlighting of one entity. Returns this for chaining
      * Behaviour is to only change the highlighted entities if the entity_id or color changes.
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
@@ -77,7 +79,7 @@ export class Manipulator {
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
     highlightOn(entity_id: any, color: string, resetOthers: boolean = true, resetHidden: boolean = true,
-                resetPanZoom: boolean = true): void {
+                resetPanZoom: boolean = true): Manipulator {
         if(resetPanZoom) this.resetPanZoom();
         if(resetHidden) this.resetHidden();
         if(! color) throw new Error("No color specified.");
@@ -96,18 +98,19 @@ export class Manipulator {
             }
         });
 
-        this.kaavio.pushHighlighted(toHighlight)
+        this.kaavio.pushHighlighted(toHighlight);
+        return this;
     }
 
     /**
-     * Turn off the highlighting of one or multiple entities.
+     * Turn off the highlighting of one or multiple entities. Returns this for chaining
      * @param entity_id - one identifier or a string of identifiers
      * @param resetOthers - Reset all other highlighted entities before highlighting. Default = true
      * @param resetHidden - Reset the hidden entities before highlighting. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
     highlightOff(entity_id: any, resetOthers: boolean = true, resetHidden: boolean = true,
-                 resetPanZoom: boolean = true): void {
+                 resetPanZoom: boolean = true): Manipulator {
         if(resetPanZoom) this.resetPanZoom();
         if(resetHidden) this.resetHidden();
 
@@ -119,19 +122,21 @@ export class Manipulator {
 
         if(resetOthers) this.resetHighlighted(entity_id);
 
-        this.kaavio.popHighlighted(entity_id)
+        this.kaavio.popHighlighted(entity_id);
+        return this;
     }
 
     /**
-     * Un-highlight all highlighted entities except those in the exclude array
+     * Un-highlight all highlighted entities except those in the exclude array. Returns this for chaining
      * @param exclude
      */
-    resetHighlighted(exclude?: string[]): void {
+    resetHighlighted(exclude?: string[]): Manipulator {
         this.kaavio.resetHighlighted(exclude);
+        return this;
     }
 
     /**
-     * Toggle the displaying of one or multiple entities
+     * Toggle the displaying of one or multiple entities. Returns this for chaining
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
      * @param resetOthers - Reset all other hidden nodes before hiding. Default = true
@@ -139,7 +144,7 @@ export class Manipulator {
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
     toggleHidden(entity_id: any, color: string, resetOthers: boolean = false, resetHighlighted: boolean = true,
-                 resetPanZoom: boolean = true): void {
+                 resetPanZoom: boolean = true): Manipulator {
         if(resetPanZoom) this.resetPanZoom();
         if(resetHighlighted) this.resetHighlighted();
 
@@ -159,17 +164,19 @@ export class Manipulator {
                 this.hide(single, false, false, false);
             }
         });
+
+        return this;
     }
 
     /**
-     * Hide one or multiple entities
+     * Hide one or multiple entities. Returns this for chaining
      * @param entity_id - one identifier or a string of identifiers
      * @param resetOthers - Reset all other hidden entities first. Default = true
      * @param resetHighlighted - Reset the highlighted entities before hiding. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
     hide(entity_id: string | string[], resetOthers: boolean = true, resetHighlighted: boolean =true,
-         resetPanZoom: boolean = true): void {
+         resetPanZoom: boolean = true): Manipulator {
         if(resetPanZoom) this.resetPanZoom();
         if(resetHighlighted) this.resetHighlighted();
 
@@ -180,18 +187,19 @@ export class Manipulator {
         }
         if(resetOthers) this.resetHidden(entity_id as string[]);
 
-        this.kaavio.pushHidden(entity_id)
+        this.kaavio.pushHidden(entity_id);
+        return this;
     }
 
     /**
-     * Show one or multiple entities
+     * Show one or multiple entities. Returns this for chaining
      * @param entity_id - one identifier or a string of identifiers
      * @param resetOthers - Reset all other hidden entities first. Default = true
      * @param resetHighlighted - Reset the highlighted entities before showing. Default = true
      * @param resetPanZoom - reset the pan & zoom before highlighting. Default = true
      */
     show(entity_id: string | string[], resetOthers: boolean = true, resetHighlighted: boolean = true,
-         resetPanZoom: boolean = true): void {
+         resetPanZoom: boolean = true): Manipulator {
         if(resetPanZoom) this.resetPanZoom();
         if(resetHighlighted) this.resetHighlighted();
 
@@ -202,15 +210,18 @@ export class Manipulator {
         }
 
         if(resetOthers) this.resetHidden(entity_id as string[]);
-        this.kaavio.popHidden(entity_id)
+        this.kaavio.popHidden(entity_id);
+        return this;
     }
 
     /**
-     * Un-highlight all highlighted nodes except those in the exclude array
+     * Un-highlight all highlighted nodes except those in the exclude array.
+     * Returns this for chaining
      * @param exclude
      */
-    resetHidden(exclude?: string[]): void {
+    resetHidden(exclude?: string[]): Manipulator {
         this.kaavio.resetHidden(exclude);
+        return this;
     }
 
     /**
@@ -316,58 +327,68 @@ export class Manipulator {
     }
 
     /**
-     * Zoom in
+     * Zoom in.
+     * Returns this for chaining
      * @param zoom_perc
      */
-    zoom(zoom_perc: number): void {
+    zoom(zoom_perc: number): Manipulator {
         this.panZoom.zoom(zoom_perc);
+        return this
     }
 
     /**
      * Zoom onto a specific node
+     * Returns this for chaining
      * @param node_id
      * @param resetHighlight - reset the highlight before zooming. Default = true
      * @param resetHidden - reset the hidden entities before zooming. Default = true
      */
-    zoomOn(node_id: string | string[], resetHighlight: boolean = true, resetHidden: boolean = true): void {
+    zoomOn(node_id: string | string[], resetHighlight: boolean = true, resetHidden: boolean = true): Manipulator {
         const zoom_perc = this.computeZoom(node_id);
         this.panTo(node_id, false, resetHighlight, resetHidden);
         this.zoom(zoom_perc);
+        return this
     }
 
     /**
      * Zoom the diagram in.
+     * Returns this for chaining
      * Just a wrapper to access the method in the panZoom component
      */
-    zoomIn(){
+    zoomIn(): Manipulator {
         this.panZoom.zoomIn();
+        return this;
     }
 
     /**
      * Zoom the diagram out
+     * Returns this for chaining
      * Just a wrapper to access the method in the panZoom component
      */
-    zoomOut(){
+    zoomOut(): Manipulator {
         this.panZoom.zoomOut();
+        return this;
     }
 
     /**
-     * Pan to a specific set of coordinates
+     * Pan to a specific set of coordinates.
+     * Returns this for chaining
      * @param coordinates
      */
-    pan(coordinates: {x: number, y: number}): void {
+    pan(coordinates: {x: number, y: number}): Manipulator {
         this.panZoom.pan(coordinates);
+        return this;
     }
 
     /**
-     * Pan to a specific node
+     * Pan to a specific node. Returns this for chaining
      * @param node_id
      * @param resetPanZoom - reset the zoom before panning. Default = true
      * @param resetHighlight - reset the highlight before panning. Default = true
      * @param resetHidden - reset the hidden entities before panning. Default = true
      */
     panTo(node_id: string | string[], resetPanZoom: boolean = true, resetHighlight: boolean = true,
-          resetHidden: boolean = true): void {
+          resetHidden: boolean = true): Manipulator {
         if(resetPanZoom) this.resetPanZoom();
         if(resetHighlight) this.resetHighlighted();
         if(resetHidden) this.resetHidden();
@@ -397,12 +418,25 @@ export class Manipulator {
         coordinates.y += (sizes.height/2);
 
         this.pan(coordinates);
+        return this;
     }
 
     /**
-     * Reset the pan, zoom and center
+     * Reset the pan, zoom and center.
+     * Returns this for chaining
      */
-    resetPanZoom(): void {
+    resetPanZoom(): Manipulator {
         this.panZoom.resetPanZoom();
+        return this;
+    }
+
+    /**
+     * Reset everything! Resets pan, zoom, hidden, and highlighted
+     */
+    reset(): Manipulator {
+        this.resetPanZoom();
+        this.resetHidden();
+        this.resetHighlighted();
+        return this;
     }
 }
