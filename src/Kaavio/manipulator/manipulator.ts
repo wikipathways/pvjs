@@ -327,7 +327,7 @@ export class Manipulator {
 
         // We must reset the zoom first, wait for it, and then compute the zoom level
         // Otherwise, the computed value may be incorrect
-        this.resetZoom().takeLast(1).subscribe(_ => {
+        this.resetZoom().subscribe(_ => {
             const zoom_perc = this.computeZoom(node_id);
             this.panTo(node_id);
             this.zoom(zoom_perc);
@@ -372,7 +372,7 @@ export class Manipulator {
 
         // We must reset the panZoom first, wait for it to happen, and then compute the location.
         // Otherwise, the computed coordinates will be in an incorrect position
-        this.resetPan().takeLast(1).subscribe(_ => {
+        this.resetPan().subscribe(_ => {
             let BBox;
             if (typeof node_id === 'string') BBox = this.getNodeBBox(node_id);
             else {

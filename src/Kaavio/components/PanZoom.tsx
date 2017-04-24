@@ -75,39 +75,39 @@ export class PanZoom extends React.Component<any, any> {
     // TODO: If rewriting this to not use SVGPanZoom return observables from the zoom/pan methods
     zoom = (zoom_perc: number) => {
         this.panZoom.zoom(zoom_perc);
-        return this.didZoom.asObservable();
+        return this.didZoom.asObservable().takeLast(1);
     };
 
     pan = (coordinates: {x: number, y: number}) => {
         this.panZoom.pan(coordinates);
-        return this.didPan.asObservable();
+        return this.didPan.asObservable().takeLast(1);
     };
 
     zoomIn = () => {
       this.panZoom.zoomIn();
-      return this.didZoom.asObservable();
+      return this.didZoom.asObservable().takeLast(1);
     };
 
     zoomOut = () => {
         this.panZoom.zoomOut();
-        return this.didZoom.asObservable();
+        return this.didZoom.asObservable().takeLast(1);
     };
 
     resetPan = () => {
         this.panZoom.resetPan();
-        return this.didPan.asObservable();
+        return this.didPan.asObservable().takeLast(1);
     };
 
     resetZoom = () => {
         this.panZoom.resetZoom();
-        return this.didZoom.asObservable();
+        return this.didZoom.asObservable().takeLast(1);
     };
 
     reset = () => {
        this.panZoom.reset();
        // Return the merged observable since either pan or zoom, or both can be used
        return this.didPan.asObservable()
-           .merge(this.didZoom.asObservable());
+           .merge(this.didZoom.asObservable()).takeLast(1);
     };
 
     render(){
