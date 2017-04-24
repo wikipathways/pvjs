@@ -1,3 +1,4 @@
+import { Observable } from "rxjs";
 /**
  * Class for "The Manipulation API".
  * Really, this is just a wrapper around public functions within Kaavio components with a few extras.
@@ -15,7 +16,7 @@ export declare class Manipulator {
      */
     getEntities(): any;
     /**
-     * Toggle the highlighting of one or multiple entities. Returns this for chaining
+     * Toggle the highlighting of one or multiple entities.
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
      * @param resets - Object containg which resets should be carried out
@@ -24,9 +25,9 @@ export declare class Manipulator {
         others: boolean;
         panZoom: boolean;
         hidden: boolean;
-    }): Manipulator;
+    }): void;
     /**
-     * Turn on the highlighting of one entity. Returns this for chaining
+     * Turn on the highlighting of one entity.
      * Behaviour is to only change the highlighted entities if the entity_id or color changes.
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
@@ -36,9 +37,9 @@ export declare class Manipulator {
         others: boolean;
         panZoom: boolean;
         hidden: boolean;
-    }): Manipulator;
+    }): void;
     /**
-     * Turn off the highlighting of one or multiple entities. Returns this for chaining
+     * Turn off the highlighting of one or multiple entities.
      * @param entity_id - one identifier or a string of identifiers
      * @param resets - Object containing which resets should be carried out
      */
@@ -46,14 +47,14 @@ export declare class Manipulator {
         others: boolean;
         panZoom: boolean;
         hidden: boolean;
-    }): Manipulator;
+    }): void;
     /**
-     * Un-highlight all highlighted entities except those in the exclude array. Returns this for chaining
+     * Un-highlight all highlighted entities except those in the exclude array.
      * @param exclude
      */
-    resetHighlighted(exclude?: string[]): Manipulator;
+    resetHighlighted(exclude?: string[]): void;
     /**
-     * Toggle the displaying of one or multiple entities. Returns this for chaining
+     * Toggle the displaying of one or multiple entities.
      * @param entity_id - one identifier or a string of identifiers
      * @param resets - Object containing which resets should be carried out
      */
@@ -61,9 +62,9 @@ export declare class Manipulator {
         others: boolean;
         panZoom: boolean;
         highlighted: boolean;
-    }): Manipulator;
+    }): void;
     /**
-     * Hide one or multiple entities. Returns this for chaining
+     * Hide one or multiple entities.
      * @param entity_id - one identifier or a string of identifiers
      * @param resets - Object containing which resets should be carried out
      */
@@ -71,9 +72,9 @@ export declare class Manipulator {
         others: boolean;
         panZoom: boolean;
         highlighted: boolean;
-    }): Manipulator;
+    }): void;
     /**
-     * Show one or multiple entities. Returns this for chaining
+     * Show one or multiple entities.
      * @param entity_id - one identifier or a string of identifiers
      * @param resets - Object containing which resets should be carried out
      */
@@ -81,13 +82,12 @@ export declare class Manipulator {
         others: boolean;
         panZoom: boolean;
         highlighted: boolean;
-    }): Manipulator;
+    }): void;
     /**
      * Un-highlight all highlighted nodes except those in the exclude array.
-     * Returns this for chaining
      * @param exclude
      */
-    resetHidden(exclude?: string[]): Manipulator;
+    resetHidden(exclude?: string[]): void;
     /**
      * Return the node element reference by the node_id
      * @param node_id
@@ -120,43 +120,38 @@ export declare class Manipulator {
     private computeZoom(node_id);
     /**
      * Zoom in.
-     * Returns this for chaining
      * @param zoom_perc
      */
-    zoom(zoom_perc: number): Manipulator;
+    zoom(zoom_perc: number): void;
     /**
      * Zoom onto a specific node
-     * Returns this for chaining
      * @param node_id
      * @param resets - the resets that should be carried out.
      */
     zoomOn(node_id: string | string[], resets?: {
         highlighted: boolean;
         hidden: boolean;
-    }): Manipulator;
+    }): void;
     /**
      * Zoom the diagram in.
-     * Returns this for chaining
      * Just a wrapper to access the method in the panZoom component
      */
-    zoomIn(): Manipulator;
+    zoomIn(): void;
     /**
      * Zoom the diagram out
-     * Returns this for chaining
      * Just a wrapper to access the method in the panZoom component
      */
-    zoomOut(): Manipulator;
+    zoomOut(): void;
     /**
      * Pan to a specific set of coordinates.
-     * Returns this for chaining
      * @param coordinates
      */
     pan(coordinates: {
         x: number;
         y: number;
-    }): Manipulator;
+    }): void;
     /**
-     * Pan to a specific node. Returns this for chaining
+     * Pan to a specific node.
      * @param node_id
      * @param resets - the resets to be carried out.
      */
@@ -164,14 +159,18 @@ export declare class Manipulator {
         panZoom: boolean;
         highlighted: boolean;
         hidden: boolean;
-    }): Manipulator;
-    /**
-     * Reset the pan, zoom and center.
-     * Returns this for chaining
-     */
-    resetPanZoom(): Manipulator;
+    }): void;
+    resetPan(): Observable<{
+        x: number;
+        y: number;
+    }>;
+    resetZoom(): Observable<number>;
+    resetPanZoom(): Observable<number | {
+        x: number;
+        y: number;
+    }>;
     /**
      * Reset everything! Resets pan, zoom, hidden, and highlighted
      */
-    reset(): Manipulator;
+    reset(): void;
 }

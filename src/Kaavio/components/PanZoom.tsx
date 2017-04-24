@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as SVGPanZoom from 'svg-pan-zoom';
 import * as ReactDOM from 'react-dom';
-import {Subject} from "rxjs";
+import {Subject, Observable} from "rxjs/Rx";
 import * as _ from 'lodash';
 
 export class PanZoom extends React.Component<any, any> {
