@@ -133,7 +133,7 @@ document.body.appendChild(container);
 
 
 loadDiagram('#vanilla-small', pathwayId, {showPanZoomControls: true}, instance => {
-    window.pvjs_instance = instance;
+    //window.pvjs_instance = instance;
 });
 
 // large
@@ -147,7 +147,10 @@ document.body.appendChild(container);
 
 
 loadDiagram('#vanilla-large', pathwayId, {showPanZoomControls: true}, instance => {
-    window.pvjs_instance = instance;
+    window.instance = instance;
+    instance.ready.subscribe(_ => {
+        console.log(instance.manipulator.resetPanZoom())
+    })
 });
 
 // 100% width height
@@ -160,9 +163,9 @@ container.setAttribute('style', 'width: 100%; height:100%');
 document.body.appendChild(container);
 
 
-loadDiagram('#vanilla-100', pathwayId, {showPanZoomControls: true}, instance => {
-    window.pvjs_instance = instance;
-});
+// loadDiagram('#vanilla-100', pathwayId, {showPanZoomControls: true}, instance => {
+//     //window.pvjs_instance = instance;
+// });
 
 // Custom elements
 // Taller than wide

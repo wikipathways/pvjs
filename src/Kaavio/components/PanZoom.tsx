@@ -75,7 +75,7 @@ export class PanZoom extends React.Component<any, any> {
     };
 
     resetPanZoom = () => {
-        this.panZoom.reset();
+       this.panZoom.reset();
     };
 
     render(){
