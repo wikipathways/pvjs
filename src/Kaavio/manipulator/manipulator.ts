@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import * as $ from 'jquery';
 import * as d3 from 'd3';
 import * as ReactDOM from 'react-dom';
+import {Observable} from "rxjs";
 
 /**
  * Class for "The Manipulation API".
@@ -323,9 +324,14 @@ export class Manipulator {
             = {highlighted: false, hidden: false}): void {
         if(resets.highlighted) this.resetHighlighted();
         if(resets.hidden) this.resetHidden();
-        const zoom_perc = this.computeZoom(node_id);
-        this.panTo(node_id);
-        this.zoom(zoom_perc);
+
+        // We must reset the zoom first, wait for it, and then compute the zoom level
+        // Otherwise, the computed value may be incorrect
+        this.resetZoom().subscribe(_ => {
+            const zoom_perc = this.computeZoom(node_id);
+            this.panTo(node_id);
+            this.zoom(zoom_perc);
+        });
     }
 
     /**
@@ -364,38 +370,47 @@ export class Manipulator {
         if(resets.highlighted) this.resetHighlighted();
         if(resets.hidden) this.resetHidden();
 
-        let BBox;
-        if (typeof node_id === 'string') BBox = this.getNodeBBox(node_id);
-        else {
-            if(node_id.length === 1) BBox = this.getNodeBBox(node_id[0]);
-            else BBox = this.getGroupBBox(node_id);
-        }
+        // We must reset the panZoom first, wait for it to happen, and then compute the location.
+        // Otherwise, the computed coordinates will be in an incorrect position
+        this.resetPan().subscribe(_ => {
+            let BBox;
+            if (typeof node_id === 'string') BBox = this.getNodeBBox(node_id);
+            else {
+                if(node_id.length === 1) BBox = this.getNodeBBox(node_id[0]);
+                else BBox = this.getGroupBBox(node_id);
+            }
 
-        const sizes = this.panZoom.getSizes();
+            const sizes = this.panZoom.getSizes();
 
-        // First get the coordinates of the center of the BBox
-        let coordinates = {
-            x: -BBox.x -  (BBox.width / 2),
-            y: -BBox.y - (BBox.height / 2)
-        };
+            // First get the coordinates of the center of the BBox
+            let coordinates = {
+                x: -BBox.x -  (BBox.width / 2),
+                y: -BBox.y - (BBox.height / 2)
+            };
 
-        // Now add the current pan to the coordinates
-        const pan = this.panZoom.getPan();
-        coordinates.x += pan.x;
-        coordinates.y += pan.y;
+            // Now add the current pan to the coordinates
+            const pan = this.panZoom.getPan();
+            coordinates.x += pan.x;
+            coordinates.y += pan.y;
 
-        // Center in the viewport
-        coordinates.x += (sizes.width/2);
-        coordinates.y += (sizes.height/2);
+            // Center in the viewport
+            coordinates.x += (sizes.width/2);
+            coordinates.y += (sizes.height/2);
 
-        this.pan(coordinates);
+            this.pan(coordinates);
+        });
     }
 
-    /**
-     * Reset the pan, zoom and center.
-     */
-    resetPanZoom(): void {
-        this.panZoom.resetPanZoom();
+    resetPan(): Observable<{x: number, y: number}> {
+        return this.panZoom.resetPan();
+    }
+
+    resetZoom(): Observable<number> {
+        return this.panZoom.resetZoom();
+    }
+
+    resetPanZoom(): Observable<number | {x: number, y: number}> {
+        return this.panZoom.reset();
     }
 
     /**
