@@ -38,64 +38,40 @@ export class Manipulator {
     }
 
     /**
-     * Toggle the highlighting of one or multiple entities.
-     * @param entity_id - one identifier or a string of identifiers
+     * Toggle the highlighting of one entity.
+     * @param entity_id - one identifier
      * @param color - can be any css colour
      */
-    toggleHighlight(entity_id: any, color: string): void {
-        if (typeof entity_id === 'string'){
-            let arr = [];
-            arr.push(entity_id);
-            entity_id = arr;
+    toggleHighlight(entity_id: string, color: string): void {
+        const highlighted = this.kaavio.isHighlighted(entity_id);
+        if(highlighted){
+            this.highlightOff(entity_id)
         }
-
-        entity_id.forEach(single_id => {
-            const highlighted = this.kaavio.isHighlighted(single_id);
-            if(highlighted){
-                this.highlightOff(single_id)
-            }
-            else {
-                this.highlightOn(single_id, color)
-            }
-        });
+        else {
+            this.highlightOn(entity_id, color)
+        }
     }
 
     /**
      * Turn on the highlighting of one entity.
      * Behaviour is to only change the highlighted entities if the entity_id or color changes.
-     * @param entity_id - one identifier or a string of identifiers
+     * @param entity_id - one identifier
      * @param color - can be any css colour
      */
-    highlightOn(entity_id: any, color: string): void {
+    highlightOn(entity_id: string, color: string): void {
         if(! color) throw new Error("No color specified.");
 
-        if (typeof entity_id === 'string'){
-            let arr = [];
-            arr.push(entity_id);
-            entity_id = arr;
-        }
-
-        const toHighlight = entity_id.map(single_id => {
-            return {
-                node_id: single_id,
-                color: color
-            }
+        this.kaavio.pushHighlighted({
+            node_id: entity_id,
+            color: color
         });
-
-        this.kaavio.pushHighlighted(toHighlight);
     }
 
     /**
-     * Turn off the highlighting of one or multiple entities.
-     * @param entity_id - one identifier or a string of identifiers
+     * Turn off the highlighting of one entity.
+     * @param entity_id - one identifier
      */
-    highlightOff(entity_id: any): void {
-        if (typeof entity_id === 'string'){
-            let arr = [];
-            arr.push(entity_id);
-            entity_id = arr;
-        }
-
+    highlightOff(entity_id: string): void {
         this.kaavio.popHighlighted(entity_id);
     }
 
@@ -108,57 +84,37 @@ export class Manipulator {
     }
 
     /**
-     * Toggle the displaying of one or multiple entities.
-     * @param entity_id - one identifier or a string of identifiers
+     * Toggle the displaying of one entity.
+     * @param entity_id - one identifier
      */
-    toggleHidden(entity_id: any): void {
-        if (typeof entity_id === 'string'){
-            let arr = [];
-            arr.push(entity_id);
-            entity_id = arr;
+    toggleHidden(entity_id: string): void {
+        const hidden = this.kaavio.isHidden(entity_id);
+        if(hidden){
+            this.show(entity_id);
         }
-
-        entity_id.forEach(single => {
-            const hidden = this.kaavio.isHidden(single);
-            if(hidden){
-                this.show(single);
-            }
-            else {
-                this.hide(single);
-            }
-        });
+        else {
+            this.hide(entity_id);
+        }
     }
 
     /**
-     * Hide one or multiple entities.
-     * @param entity_id - one identifier or a string of identifiers
+     * Hide one entity.
+     * @param entity_id - one identifier
      */
-    hide(entity_id: string | string[]): void {
-        if (typeof entity_id === 'string'){
-            let arr = [];
-            arr.push(entity_id);
-            entity_id = arr;
-        }
-
+    hide(entity_id: string): void {
         this.kaavio.pushHidden(entity_id);
     }
 
     /**
-     * Show one or multiple entities.
-     * @param entity_id - one identifier or a string of identifiers
+     * Show one entity
+     * @param entity_id - one identifier
      */
-    show(entity_id: string | string[]): void {
-        if (typeof entity_id === 'string'){
-            let arr = [];
-            arr.push(entity_id);
-            entity_id = arr;
-        }
-
+    show(entity_id: string): void {
         this.kaavio.popHidden(entity_id);
     }
 
     /**
-     * Un-highlight all highlighted nodes except those in the exclude array.
+     * Un-hide all highlighted nodes except those in the exclude array.
      * @param exclude
      */
     resetHidden(exclude?: string[]): void {
