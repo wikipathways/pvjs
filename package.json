@@ -70,7 +70,7 @@
     "roboto-fontface": "^0.7.0",
     "rx-extra": "^2.0.3",
     "rxjs": "^5.2.0",
-    "svg-pan-zoom": "^3.4.1",
+    "svg-pan-zoom": "^3.5.0",
     "svg-text": "^0.4.6",
     "tower-strcase": "~0.5.0",
     "typestyle": "^0.22.3",
