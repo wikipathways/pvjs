@@ -1,1 +1,0 @@
-export { Kaavio } from './Kaavio';
