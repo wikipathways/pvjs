@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import * as _ from 'lodash'
-import SvgText from 'svg-text';
+import { Typesetter } from 'typesettable';
 import {TextProps} from "../typings";
 
 export class Text extends React.Component<any, any> {
@@ -27,7 +27,15 @@ export class Text extends React.Component<any, any> {
         };
 
         // Use ReactDom to find the node. Don't access DOM directly through browser API.
-        const svgElem = ReactDom.findDOMNode(this.svgRef);
+        const svgElem = ReactDom.findDOMNode(this.svgRef) as SVGElement;
+
+        const typesetter = Typesetter.svg(svgElem);
+        const writeOptions = {
+            xAlign: textAlign,
+            yAlign: "middle",
+            textRotation: 0,
+            textShear: 0,
+        };
         const opts = {
             text: textContent,
             element: svgElem,
@@ -39,7 +47,8 @@ export class Text extends React.Component<any, any> {
             x: x,
             y: y
         };
-        new SvgText(opts);
+
+        typesetter.write(textContent, x, y);
     }
 
     render() {
