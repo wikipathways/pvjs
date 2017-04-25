@@ -9,7 +9,7 @@ export class PanZoom extends React.Component<any, any> {
     // Some components may need to know when the diagram is currently panning or zooming
     // This observable is true if the diagram is zooming or panning and false if not
     private isUpdating: BehaviorSubject<boolean>;
-    isUpdating$ = this.isUpdating.asObservable();
+    isUpdating$: Observable<boolean>;
 
     constructor(props){
         super(props);
@@ -47,6 +47,7 @@ export class PanZoom extends React.Component<any, any> {
                 init: (options) => {
                     this.panZoom = options.instance;
                     this.isUpdating = new BehaviorSubject(false);
+                    this.isUpdating$ = this.isUpdating.asObservable();
                     onReady(this);
                 },
                 haltEventListeners: [],
