@@ -15,7 +15,7 @@
     "build:lib": "npm run rimraf ./lib && tsc --project tsconfig.esnext.json && npm run assets",
     "build:dist": "npm run rimraf ./dist && webpack --config webpack.prod.config.js",
     "assets": "npm run gulp copy:assets",
-    "serve": "webpack-dev-server --config webpack.dev.config.js --open --progress",
+    "serve": "webpack-dev-server --config webpack.dev.config.js --open --progress --inline",
     "start": "npm run serve",
     "test": "echo 'add working tests'",
     "watch:input-data-broken": "cat <(cat test/mockserver-data/pathways/HEADERS.txt) <(echo -n '{\"data\":\"') <(cat test/input-data/dev/playground.gpml | base64 | xargs echo -n) <(echo -n '\"}') > test/mockserver-data/pathways/playground/GET.mock",

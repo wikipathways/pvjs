@@ -148,9 +148,6 @@ document.body.appendChild(container);
 
 loadDiagram('#vanilla-large', pathwayId, {showPanZoomControls: true}, instance => {
     window.instance = instance;
-    instance.ready.subscribe(_ => {
-        console.log(instance.manipulator.resetPanZoom())
-    })
 });
 
 // 100% width height
