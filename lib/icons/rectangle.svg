@@ -1,0 +1,8 @@
+<svg>
+  <defs>
+    <symbol id="rectangle" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+	<desc>rectangle</desc>
+	<rect x="0" y="0" width="100" height="100" stroke="currentColor"></rect>
+    </symbol>
+  </defs>
+</svg>
