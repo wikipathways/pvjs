@@ -25,15 +25,9 @@ export interface EntityProps extends TextProps, NodeProps {
 
 export interface TextProps {
     textContent: string,
-    textAlign?: string,  // center, left or right
-    className?: string,
-    fontColor?: string, // CSS colour
-    fontFamily?: string,
-    fontSize?: string, // As CSS so '10px', '1rem'
-    fontStyle?: string,
-    fontWeight?: string, // As css so '100' or 'normal'
-    x?: number, // X offset for the text
-    y?: number // Y offset for the text
+    textAlign?: "left" | "center" | "right",
+    height: number,
+    width: number
 }
 
 export interface NodeProps {

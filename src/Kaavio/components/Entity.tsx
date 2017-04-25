@@ -22,19 +22,11 @@ export class Entity extends React.Component<any, any> {
     renderText() {
         const { width, height, id, textContent, fontFamily, fontSize, fontStyle, fontWeight, textAlign, fontColor}
             = this.props;
-
         if(!textContent) return;
-        const alignSvgTextToXSvgText = {
-            left: 0,
-            center: width / 2,
-            right: width,
-        };
-        const xSvgText = alignSvgTextToXSvgText[textAlign];
-        const ySvgText = height / 2; // Anders: I just set this to always be middle.
 
         return <Text id={`text-for-${id}`} key={`text-for-${id}`} className="textlabel" textContent={textContent}
                      fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} fontStyle={fontStyle}
-                     textAlign={textAlign} fontColor={fontColor} x={xSvgText} y={ySvgText}/>
+                     textAlign={textAlign} fontColor={fontColor} width={width} height={height}/>
     }
 
     renderBurrs() {
@@ -92,7 +84,7 @@ export class Entity extends React.Component<any, any> {
             = this.props;
         let entityTransform;
         if (x || y || rotation) {
-            entityTransform = `translate(${x} ${y})`;
+            entityTransform = `translate(${x},${y})`;
             if (rotation) {
                 entityTransform += ` rotate(${ rotation },${ x + width / 2 },${ y + height / 2 })`;
             }

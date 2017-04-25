@@ -151,7 +151,7 @@ export class Pvjs extends React.Component<any, any> {
 			});
 
 			// Build up the title for the diagram
-			const infoBoxTextContent = `Title: ${name} \n Organism: ${organism}`;
+			const infoBoxTextContent = `Title: ${name}\nOrganism: ${organism}`;
 			// Add on the info box containing the title
 			pvjson.entities = entities.concat([{
 				id: 'pvjs-infobox',
