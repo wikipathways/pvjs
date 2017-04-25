@@ -16,75 +16,45 @@ export declare class Manipulator {
      */
     getEntities(): any;
     /**
-     * Toggle the highlighting of one or multiple entities.
-     * @param entity_id - one identifier or a string of identifiers
+     * Toggle the highlighting of one entity.
+     * @param entity_id - one identifier
      * @param color - can be any css colour
-     * @param resets - Object containg which resets should be carried out
      */
-    toggleHighlight(entity_id: any, color: string, resets?: {
-        others: boolean;
-        panZoom: boolean;
-        hidden: boolean;
-    }): void;
+    toggleHighlight(entity_id: string, color: string): void;
     /**
      * Turn on the highlighting of one entity.
      * Behaviour is to only change the highlighted entities if the entity_id or color changes.
-     * @param entity_id - one identifier or a string of identifiers
+     * @param entity_id - one identifier
      * @param color - can be any css colour
-     * @param resets - Object containing which resets should be carried out
      */
-    highlightOn(entity_id: any, color: string, resets?: {
-        others: boolean;
-        panZoom: boolean;
-        hidden: boolean;
-    }): void;
+    highlightOn(entity_id: string, color: string): void;
     /**
-     * Turn off the highlighting of one or multiple entities.
-     * @param entity_id - one identifier or a string of identifiers
-     * @param resets - Object containing which resets should be carried out
+     * Turn off the highlighting of one entity.
+     * @param entity_id - one identifier
      */
-    highlightOff(entity_id: any, resets?: {
-        others: boolean;
-        panZoom: boolean;
-        hidden: boolean;
-    }): void;
+    highlightOff(entity_id: string): void;
     /**
      * Un-highlight all highlighted entities except those in the exclude array.
      * @param exclude
      */
     resetHighlighted(exclude?: string[]): void;
     /**
-     * Toggle the displaying of one or multiple entities.
-     * @param entity_id - one identifier or a string of identifiers
-     * @param resets - Object containing which resets should be carried out
+     * Toggle the displaying of one entity.
+     * @param entity_id - one identifier
      */
-    toggleHidden(entity_id: any, resets?: {
-        others: boolean;
-        panZoom: boolean;
-        highlighted: boolean;
-    }): void;
+    toggleHidden(entity_id: string): void;
     /**
-     * Hide one or multiple entities.
-     * @param entity_id - one identifier or a string of identifiers
-     * @param resets - Object containing which resets should be carried out
+     * Hide one entity.
+     * @param entity_id - one identifier
      */
-    hide(entity_id: string | string[], resets?: {
-        others: boolean;
-        panZoom: boolean;
-        highlighted: boolean;
-    }): void;
+    hide(entity_id: string): void;
     /**
-     * Show one or multiple entities.
-     * @param entity_id - one identifier or a string of identifiers
-     * @param resets - Object containing which resets should be carried out
+     * Show one entity
+     * @param entity_id - one identifier
      */
-    show(entity_id: string | string[], resets?: {
-        others: boolean;
-        panZoom: boolean;
-        highlighted: boolean;
-    }): void;
+    show(entity_id: string): void;
     /**
-     * Un-highlight all highlighted nodes except those in the exclude array.
+     * Un-hide all highlighted nodes except those in the exclude array.
      * @param exclude
      */
     resetHidden(exclude?: string[]): void;
@@ -126,12 +96,8 @@ export declare class Manipulator {
     /**
      * Zoom onto a specific node
      * @param node_id
-     * @param resets - the resets that should be carried out.
      */
-    zoomOn(node_id: string | string[], resets?: {
-        highlighted: boolean;
-        hidden: boolean;
-    }): void;
+    zoomOn(node_id: string | string[]): void;
     /**
      * Zoom the diagram in.
      * Just a wrapper to access the method in the panZoom component
@@ -155,20 +121,12 @@ export declare class Manipulator {
      * @param node_id
      * @param resets - the resets to be carried out.
      */
-    panTo(node_id: string | string[], resets?: {
-        panZoom: boolean;
-        highlighted: boolean;
-        hidden: boolean;
-    }): void;
+    panTo(node_id: string | string[]): void;
     resetPan(): Observable<{
         x: number;
         y: number;
     }>;
     resetZoom(): Observable<number>;
-    resetPanZoom(): Observable<number | {
-        x: number;
-        y: number;
-    }>;
     /**
      * Reset everything! Resets pan, zoom, hidden, and highlighted
      */
