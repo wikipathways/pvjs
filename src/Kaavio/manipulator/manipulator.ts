@@ -41,19 +41,13 @@ export class Manipulator {
      * Toggle the highlighting of one or multiple entities.
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
-     * @param resets - Object containg which resets should be carried out
      */
-    toggleHighlight(entity_id: any, color: string,
-                    resets: {others: boolean, panZoom: boolean, hidden: boolean}
-                    = {others: false, panZoom: false, hidden: false}): void {
-        if(resets.hidden) this.resetHidden();
-
+    toggleHighlight(entity_id: any, color: string): void {
         if (typeof entity_id === 'string'){
             let arr = [];
             arr.push(entity_id);
             entity_id = arr;
         }
-        if(resets.others) this.resetHighlighted(entity_id as string[]);
 
         entity_id.forEach(single_id => {
             const highlighted = this.kaavio.isHighlighted(single_id);
@@ -71,12 +65,8 @@ export class Manipulator {
      * Behaviour is to only change the highlighted entities if the entity_id or color changes.
      * @param entity_id - one identifier or a string of identifiers
      * @param color - can be any css colour
-     * @param resets - Object containing which resets should be carried out
      */
-    highlightOn(entity_id: any, color: string,
-                resets: {others: boolean, panZoom: boolean, hidden: boolean}
-                = {others: false, panZoom: false, hidden: false}): void {
-        if(resets.hidden) this.resetHidden();
+    highlightOn(entity_id: any, color: string): void {
         if(! color) throw new Error("No color specified.");
 
         if (typeof entity_id === 'string'){
@@ -85,7 +75,6 @@ export class Manipulator {
             entity_id = arr;
         }
 
-        if(resets.others) this.resetHighlighted(entity_id);
         const toHighlight = entity_id.map(single_id => {
             return {
                 node_id: single_id,
@@ -99,19 +88,13 @@ export class Manipulator {
     /**
      * Turn off the highlighting of one or multiple entities.
      * @param entity_id - one identifier or a string of identifiers
-     * @param resets - Object containing which resets should be carried out
      */
-    highlightOff(entity_id: any, resets: {others: boolean, panZoom: boolean, hidden: boolean} =
-                     {others: false, panZoom: false, hidden: false}): void {
-        if(resets.hidden) this.resetHidden();
-
+    highlightOff(entity_id: any): void {
         if (typeof entity_id === 'string'){
             let arr = [];
             arr.push(entity_id);
             entity_id = arr;
         }
-
-        if(resets.others) this.resetHighlighted(entity_id);
 
         this.kaavio.popHighlighted(entity_id);
     }
@@ -127,19 +110,14 @@ export class Manipulator {
     /**
      * Toggle the displaying of one or multiple entities.
      * @param entity_id - one identifier or a string of identifiers
-     * @param resets - Object containing which resets should be carried out
      */
-    toggleHidden(entity_id: any, resets: {others: boolean, panZoom: boolean, highlighted: boolean} =
-                     {others: false, panZoom: false, highlighted: false}): void {
-        if(resets.highlighted) this.resetHighlighted();
-
+    toggleHidden(entity_id: any): void {
         if (typeof entity_id === 'string'){
             let arr = [];
             arr.push(entity_id);
             entity_id = arr;
         }
 
-        if(resets.others) this.resetHidden(entity_id);
         entity_id.forEach(single => {
             const hidden = this.kaavio.isHidden(single);
             if(hidden){
@@ -154,19 +132,13 @@ export class Manipulator {
     /**
      * Hide one or multiple entities.
      * @param entity_id - one identifier or a string of identifiers
-     * @param resets - Object containing which resets should be carried out
      */
-    hide(entity_id: string | string[],
-         resets: {others: boolean, panZoom: boolean, highlighted: boolean} =
-             {others: false, panZoom: false, highlighted: false}): void {
-        if(resets.panZoom) this.resetHighlighted();
-
+    hide(entity_id: string | string[]): void {
         if (typeof entity_id === 'string'){
             let arr = [];
             arr.push(entity_id);
             entity_id = arr;
         }
-        if(resets.panZoom) this.resetHidden(entity_id as string[]);
 
         this.kaavio.pushHidden(entity_id);
     }
@@ -174,20 +146,14 @@ export class Manipulator {
     /**
      * Show one or multiple entities.
      * @param entity_id - one identifier or a string of identifiers
-     * @param resets - Object containing which resets should be carried out
      */
-    show(entity_id: string | string[],
-         resets: {others: boolean, panZoom: boolean, highlighted: boolean} =
-             {others: false, panZoom: false, highlighted: false}): void {
-        if(resets.highlighted) this.resetHighlighted();
-
+    show(entity_id: string | string[]): void {
         if (typeof entity_id === 'string'){
             let arr = [];
             arr.push(entity_id);
             entity_id = arr;
         }
 
-        if(resets.others) this.resetHidden(entity_id as string[]);
         this.kaavio.popHidden(entity_id);
     }
 
@@ -312,13 +278,8 @@ export class Manipulator {
     /**
      * Zoom onto a specific node
      * @param node_id
-     * @param resets - the resets that should be carried out.
      */
-    zoomOn(node_id: string | string[], resets: {highlighted: boolean, hidden: boolean}
-            = {highlighted: false, hidden: false}): void {
-        if(resets.highlighted) this.resetHighlighted();
-        if(resets.hidden) this.resetHidden();
-
+    zoomOn(node_id: string | string[]): void {
         // If the diagram is in the process of moving, the computed coordinates will be incorrect
         // by the time the diagram stops moving. Wait for the diagram to stop moving first by using
         // the isUpdating observable
@@ -361,12 +322,7 @@ export class Manipulator {
      * @param node_id
      * @param resets - the resets to be carried out.
      */
-    panTo(node_id: string | string[],
-          resets: {panZoom: boolean, highlighted: boolean, hidden: boolean}
-          = {panZoom: false, highlighted: false, hidden: false}): void {
-        if(resets.highlighted) this.resetHighlighted();
-        if(resets.hidden) this.resetHidden();
-
+    panTo(node_id: string | string[]): void {
         // If the diagram is in the process of moving, the computed coordinates will be incorrect
         // by the time the diagram stops moving. Wait for the diagram to stop moving first by using
         // the isUpdating observable
