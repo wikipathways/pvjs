@@ -108,10 +108,8 @@ export class Entity extends React.Component<any, any> {
                     'Node, Edge, or Group.');
         }
 
-        if(hidden) return null; // Must return a react element or null
-
         return (
-            <g id={id} key={id} className={customClass} color={color}
+            <g id={id} key={id} className={customClass} color={color} visibility={hidden? 'hidden' : 'visible'}
                transform={entityTransform} filter={isHighlighted? 'url(#' + highlighter(id, highlightedColor).url + ')': null}>
 
                 <defs>
