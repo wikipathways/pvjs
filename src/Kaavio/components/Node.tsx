@@ -98,7 +98,8 @@ export class Node extends React.Component<any, any> {
                     <g dangerouslySetInnerHTML={loadedIcon? {__html: loadedIcon.svgString}: null} />
                     <use id={`icon-for-${id}`} key={`icon-for-${id}`}
                          x="0" y="0" width={width + 'px'} height={height + 'px'}
-                         fill={backgroundColor} xlinkHref={loadedIcon? '#' + loadedIcon.id: null}
+                         fill={backgroundColor}
+                         xlinkHref={loadedIcon? '#' + loadedIcon.id: null}
                          filter={!!filter ? `url(#${filter})` : null} stroke={color} strokeWidth={borderWidth}
                          className="Icon"/>
                 {children}

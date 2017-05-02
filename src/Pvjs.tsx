@@ -159,7 +159,7 @@ export class Pvjs extends React.Component<any, any> {
 				drawAs: 'None',
 				backgroundColor: 'transparent',
 				borderWidth: 0,
-				color: '#999999',
+				color: '#141414',
 				fontSize: 14,
 				textContent: infoBoxTextContent,
 				textAlign: 'start',
@@ -360,6 +360,7 @@ export class Pvjs extends React.Component<any, any> {
 	renderKaavio(){
 		const {loaded, pvjson, filters} = this.state;
 		const { about, customStyle, showPanZoomControls} = this.props;
+		if(pvjson) console.log(pvjson.entities);
 
 		if(!loaded) return null;
 

@@ -8,24 +8,23 @@ export class Text extends React.Component<any, any> {
     }
 
     render() {
-        const {textContent = '', width, maxFontSize = 12, height} = this.props;
+        const {textContent = '', width, height, fontSize = 12, fontFamily = 'arial', fontStyle, fontWeight,
+            color = '#141414'} = this.props;
         const lines = textContent.split('\n');
         const lineSpacing = 2; // In px
 
-        // Calculate the font size that will fit into the container
-        // All sizes must be in pixels.
-        // TODO: Handle other size formats (em, rem, in, mm etc.)
-        const longestLineLength = lines.reduce((acc, val) => val.length > acc ? val.length : acc, 0);
-        const fontSize = Math.min(width / longestLineLength, maxFontSize);
-
         const style = {
-            fontSize: `${fontSize}px`
+            fontSize: `${fontSize}px`,
+            fontFamily,
+            fontStyle,
+            fontWeight
         };
 
         const SVGText = lines.map((content, i) =>
             <text key={`text-line-${i}`}
                   textAnchor="middle"
                   style={style}
+                  fill={color}
                   dy={
                       /* Add an extra offset of the fontSize (plus a spacer) for each line*/
                       lines.length > 1 ? (fontSize + lineSpacing)*i : fontSize

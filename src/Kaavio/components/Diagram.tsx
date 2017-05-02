@@ -208,7 +208,7 @@ export class Diagram extends React.Component<any, any> {
                             const hidden = getHidden(entity, hiddenEntities);
                             const icon = icons[entity.drawAs];
                             return <Entity key={entity.id} {...entity} icon={icon? icon: null} edgeDrawers={edgeDrawers}
-                                           backgroundColor={backgroundColor} customStyle={customStyle}
+                                           customStyle={customStyle}
                                            isHighlighted={highlighted.highlighted} highlightedColor={highlighted.color}
                                            highlightedNodes={highlightedNodes} icons={icons} entityMap={entityMap}
                                            hidden={hidden} hiddenEntities={hiddenEntities}

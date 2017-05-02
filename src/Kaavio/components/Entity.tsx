@@ -20,14 +20,13 @@ export class Entity extends React.Component<any, any> {
     }
 
     renderText() {
-        const { width, height, id, textContent, fontFamily, fontSize, fontStyle, fontWeight, textAlign, fontColor}
+        const { width, height, id, textContent, fontFamily, fontSize, fontStyle, fontWeight, textAlign, color}
             = this.props;
         if(!textContent) return;
-        if(id === 'f71') console.log(width, height)
 
         return <Text id={`text-for-${id}`} key={`text-for-${id}`} className="textlabel" textContent={textContent}
                      fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} fontStyle={fontStyle}
-                     textAlign={textAlign} fontColor={fontColor} width={width} height={height}/>
+                     textAlign={textAlign} color={color} width={width} height={height}/>
     }
 
     renderBurrs() {
@@ -77,12 +76,10 @@ export class Entity extends React.Component<any, any> {
     }
 
     render() {
-        // Anders: Here, I only show the props that are required by the component.
-        // Also use this.props instead of this.state
+        console.log(this.props);
 
-        const {rotation, width, height, type, id, x, y, color, kaavioType, customClass, isHighlighted, highlightedColor,
-            highlightedNodes, icons, hidden, hiddenEntities}
-            = this.props;
+        const {rotation, width, height, type, id, x, y, color, kaavioType, customClass, isHighlighted,
+            highlightedColor, hidden} = this.props;
         let entityTransform;
         if (x || y || rotation) {
             entityTransform = `translate(${x},${y})`;
