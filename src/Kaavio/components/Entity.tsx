@@ -96,7 +96,7 @@ export class Entity extends React.Component<any, any> {
                 child = <Node {...this.props} />;
                 break;
             case 'Edge':
-                child = <Edge {...this.props} />;
+                child = <Edge  {...this.props} />;
                 break;
             case 'Group':
                 child = <Group {...this.props}/>;

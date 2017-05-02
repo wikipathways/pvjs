@@ -360,7 +360,6 @@ export class Pvjs extends React.Component<any, any> {
 	renderKaavio(){
 		const {loaded, pvjson, filters} = this.state;
 		const { about, customStyle, showPanZoomControls} = this.props;
-		if(pvjson) console.log(pvjson.entities);
 
 		if(!loaded) return null;
 

@@ -9,7 +9,7 @@ export class Edge extends React.Component<any, any> {
     }
 
     render() {
-        const {id, drawAs, color, strokeDasharray, borderWidth, edgeDrawers, points, backgroundColor, type}
+        const {id, drawAs, color, strokeDasharray, borderWidth, edgeDrawers, points, type}
             = this.props;
 
         const {getPathSegments, getPointAtPosition} = edgeDrawers[drawAs];
@@ -29,7 +29,9 @@ export class Edge extends React.Component<any, any> {
                 if (markerName) {
                     acc.push({
                         name: markerLocationType,
-                        value: getMarkerPropertyValue(markerLocationType, markerName, color, backgroundColor)
+                        // Currently just using the same color for backgroundColor (arrow head) as color (line)
+                        // See line 86 in Kaavio.tsx
+                        value: getMarkerPropertyValue(markerLocationType, markerName, color, color)
                     });
                 }
                 return acc;

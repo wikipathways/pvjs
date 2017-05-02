@@ -73,7 +73,6 @@ export class Diagram extends React.Component<any, any> {
 
         // TODO Currently just using the background color of the diagram as a whole.
         // Do we want to handle the case where the marker is on top of another entity?
-        const markerBackgroundColors: ReadonlyArray<string> = [backgroundColor];
 
         const markerColors = Array.from(
             edges
@@ -83,6 +82,10 @@ export class Diagram extends React.Component<any, any> {
                     return acc;
                 }, new Set())
         );
+
+        // TODO Currently just keeping the background colors the same as the colours. I.e. arrowhead is same as line
+        // Do we want to handle the case where the marker is on top of another entity?
+        const markerBackgroundColors = markerColors.slice();
 
         const markerNames = Array.from(
             edges
