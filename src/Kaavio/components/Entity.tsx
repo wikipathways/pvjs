@@ -23,6 +23,7 @@ export class Entity extends React.Component<any, any> {
         const { width, height, id, textContent, fontFamily, fontSize, fontStyle, fontWeight, textAlign, fontColor}
             = this.props;
         if(!textContent) return;
+        if(id === 'f71') console.log(width, height)
 
         return <Text id={`text-for-${id}`} key={`text-for-${id}`} className="textlabel" textContent={textContent}
                      fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} fontStyle={fontStyle}

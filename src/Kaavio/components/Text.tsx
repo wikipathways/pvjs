@@ -1,42 +1,48 @@
 import * as React from 'react';
-import * as ReactDom from 'react-dom';
-import * as _ from 'lodash'
-import { CacheMeasurer, SvgContext, Wrapper, Writer  } from 'typesettable';
 import {TextProps} from "../typings";
 
 export class Text extends React.Component<any, any> {
-    svgRef: any;
 
     constructor(props: TextProps){
         super(props);
     }
 
-    componentDidMount(){
-        // Anders: I've removed a lot of the custom props in favour of fewer with some defaults.
-        // I can't see a use case for many of the ones that were here before. What do you think?
-
-        const {textContent = '', textAlign = 'center', width = 200, height = 200}:TextProps = this.props;
-
-        // Use ReactDom to find the node. Don't access DOM directly through browser API.
-        const svgElem = ReactDom.findDOMNode(this.svgRef) as SVGElement;
-
-        const writeOptions = {
-            xAlign: textAlign,
-            yAlign: "center" as "center",
-            textRotation: 0,
-            textShear: 0,
-        };
-        const context = new SvgContext(svgElem);
-        const measurer = new CacheMeasurer(context);
-        const wrapper = new Wrapper().allowBreakingWords(true);
-        const writer = new Writer(measurer, context, wrapper);
-
-        writer.write(textContent, width, height, writeOptions);
-    }
-
     render() {
+        const {textContent = '', width, maxFontSize = 12, height} = this.props;
+        const lines = textContent.split('\n');
+        const lineSpacing = 2; // In px
+
+        // Calculate the font size that will fit into the container
+        // All sizes must be in pixels.
+        // TODO: Handle other size formats (em, rem, in, mm etc.)
+        const longestLineLength = lines.reduce((acc, val) => val.length > acc ? val.length : acc, 0);
+        const fontSize = Math.min(width / longestLineLength, maxFontSize);
+
+        const style = {
+            fontSize: `${fontSize}px`
+        };
+
+        const SVGText = lines.map((content, i) =>
+            <text key={`text-line-${i}`}
+                  textAnchor="middle"
+                  style={style}
+                  dy={
+                      /* Add an extra offset of the fontSize (plus a spacer) for each line*/
+                      lines.length > 1 ? (fontSize + lineSpacing)*i : fontSize
+                  }
+            >{content}</text>
+        );
+
+        const SVGTextHeight: number = (lines.length > 1 ?
+            (fontSize + lineSpacing)*lines.length : fontSize);
+
+        const shiftX: number = width / 2;
+        const shiftY: number = (height - SVGTextHeight) / 2;
+
         return (
-            <g ref={svgRef => this.svgRef = svgRef} />
+            <g transform={`translate(${shiftX},${shiftY})`}>
+                {SVGText}
+            </g>
         )
     }
 }
