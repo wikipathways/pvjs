@@ -76,7 +76,6 @@ export class Entity extends React.Component<any, any> {
     }
 
     render() {
-        console.log(this.props);
 
         const {rotation, width, height, type, id, x, y, color, kaavioType, customClass, isHighlighted,
             highlightedColor, hidden} = this.props;
