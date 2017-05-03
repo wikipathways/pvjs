@@ -219,7 +219,7 @@ export class Manipulator {
 
         relativeArea = relativeArea * containerSize.realZoom;
 
-        const scalingFactor = 0.8;
+        const scalingFactor = 0.95;
         return relativeArea * scalingFactor;
     }
 
