@@ -86,23 +86,20 @@ export class Node extends React.Component<any, any> {
             = this.props;
         const {loadedIcon} = this.state;
 
-        // Anders: Here, I just pass in the icon prop since that is all the component needs.
-        // I don't think it's necessary to show the warning shape. In Diagram, I just show a console warning instead
-        // I set the icon SVG within this group rather than in the document. Seems better to keep related things together
-        // BTW, the XSS was present before just less obvious. Should think of a way to fix this.
+        // Add the style too. Fixes firefox bug where fill, stroke etc. isn't inherited
         const style = {
             fill: backgroundColor,
             color: color,
             stroke: color,
             strokeWidth: borderWidth
-        }
+        };
         return (
             <g ref={containerRef => this.containerRef = containerRef}>
                 {/*TODO: This is BAD. XSS */}
                 <g dangerouslySetInnerHTML={loadedIcon? {__html: loadedIcon.svgString}: null} />
                 <use id={`icon-for-${id}`} key={`icon-for-${id}`}
                      x="0" y="0" width={width + 'px'} height={height + 'px'}
-
+                     style={style}
                      fill={backgroundColor}
                      xlinkHref={loadedIcon? '#' + loadedIcon.id: null}
                      filter={!!filter ? `url(#${filter})` : null} stroke={color} strokeWidth={borderWidth}
