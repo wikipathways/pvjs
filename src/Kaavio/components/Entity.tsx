@@ -106,7 +106,8 @@ export class Entity extends React.Component<any, any> {
         }
 
         return (
-            <g id={id} key={id} className={customClass} color={color} visibility={hidden? 'hidden' : 'visible'}
+            <g id={id} key={id} className={customClass} color={color}
+               visibility={hidden? 'hidden' : 'visible'}
                transform={entityTransform} filter={isHighlighted? 'url(#' + highlighter(id, highlightedColor).url + ')': null}>
 
                 <defs>

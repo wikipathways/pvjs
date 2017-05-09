@@ -90,18 +90,23 @@ export class Node extends React.Component<any, any> {
         // I don't think it's necessary to show the warning shape. In Diagram, I just show a console warning instead
         // I set the icon SVG within this group rather than in the document. Seems better to keep related things together
         // BTW, the XSS was present before just less obvious. Should think of a way to fix this.
+        const style = {
+            fill: backgroundColor,
+            color: color,
+            stroke: color,
+            strokeWidth: borderWidth
+        }
         return (
             <g ref={containerRef => this.containerRef = containerRef}>
-                loadedIcon?
-                    {/*TODO: This is BAD. XSS */}
-                    {/* Use xLinkHref instead of just href. As per https://github.com/facebook/react/issues/3845 */}
-                    <g dangerouslySetInnerHTML={loadedIcon? {__html: loadedIcon.svgString}: null} />
-                    <use id={`icon-for-${id}`} key={`icon-for-${id}`}
-                         x="0" y="0" width={width + 'px'} height={height + 'px'}
-                         fill={backgroundColor}
-                         xlinkHref={loadedIcon? '#' + loadedIcon.id: null}
-                         filter={!!filter ? `url(#${filter})` : null} stroke={color} strokeWidth={borderWidth}
-                         className="Icon"/>
+                {/*TODO: This is BAD. XSS */}
+                <g dangerouslySetInnerHTML={loadedIcon? {__html: loadedIcon.svgString}: null} />
+                <use id={`icon-for-${id}`} key={`icon-for-${id}`}
+                     x="0" y="0" width={width + 'px'} height={height + 'px'}
+
+                     fill={backgroundColor}
+                     xlinkHref={loadedIcon? '#' + loadedIcon.id: null}
+                     filter={!!filter ? `url(#${filter})` : null} stroke={color} strokeWidth={borderWidth}
+                     className="Icon"/>
                 {children}
             </g>
         );
