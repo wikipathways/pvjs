@@ -47,7 +47,7 @@ export class Panner {
                     y: shouldPanY ? stepFuncY(prevCoords.y): prevCoords.y
                 };
                 prevCoords = toPan;
-                this.pan(toPan);
+                this.pan(toPan, false);
                 step++;
             };
 
@@ -120,9 +120,7 @@ export class Panner {
                 coordinates.x += (sizes.width/2);
                 coordinates.y += (sizes.height/2);
 
-                if(animate)
-                    return this.animatePan(coordinates);
-                this.pan(coordinates);
+                this.pan(coordinates, animate);
             })
     }
 
