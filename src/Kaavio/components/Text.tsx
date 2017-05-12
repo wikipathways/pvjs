@@ -36,7 +36,7 @@ export class Text extends React.Component<any, any> {
             (fontSize + lineSpacing)*lines.length : fontSize);
 
         const shiftX: number = width / 2;
-        const shiftY: number = (height - SVGTextHeight) / 2;
+        const shiftY: number = SVGTextHeight / 2;
 
         return (
             <g transform={`translate(${shiftX},${shiftY})`}>
