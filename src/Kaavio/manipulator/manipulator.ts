@@ -30,7 +30,7 @@ export interface Manipulator {
 }
 
 /**
- * Factory for the manipualtion API
+ * Factory for the manipulation API
  * @param kaavioRef
  * @param panZoomRef
  * @param diagramRef
@@ -50,7 +50,10 @@ export function getManipulator(kaavioRef, panZoomRef, diagramRef): Manipulator {
       hide: hider.hide.bind(hider),
       show: hider.show.bind(hider),
       resetHidden: hider.resetHidden.bind(hider),
-      zoomOn: zoomer.zoomOn.bind(zoomer),
+      zoomOn: function(entity_id: string | string[]) {
+          zoomer.zoomOn.bind(zoomer)(entity_id);
+          panner.panTo.bind(panner)(entity_id);
+      },
       zoomIn: zoomer.zoomIn.bind(zoomer),
       zoomOut: zoomer.zoomOut.bind(zoomer),
       zoom: zoomer.zoom.bind(zoomer),

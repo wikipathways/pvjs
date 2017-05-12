@@ -79,6 +79,7 @@ export class Zoomer {
      * @param animate - should the diagram be animated?
      */
     zoomOn(node_id: string | string[], animate = true): void {
+
         // If the diagram is in the process of moving, the computed coordinates will be incorrect
         // by the time the diagram stops moving. Wait for the diagram to stop moving first by using
         // the isUpdating observable
@@ -87,7 +88,6 @@ export class Zoomer {
             .first()
             .subscribe(() => {
                 const zoom_perc = this.computeZoom(node_id);
-                console.log(zoom_perc)
                 this.zoom(zoom_perc, animate);
             })
     }
