@@ -6,6 +6,7 @@ import {Diagram} from './components/Diagram';
 //require('./kaavio.css');
 import {PanZoom} from "./components/PanZoom";
 import {Manipulator} from './manipulator';
+import {getManipulator} from "./manipulator/manipulator";
 
 // pullAllWith is missing from the lodash typings so just require for now
 // See issue: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/13747
@@ -39,7 +40,7 @@ export class Kaavio extends React.Component<any, any> {
 	private onPanZoomReady(panZoom){
 		const {diagramRef} = this.state;
 		if(! diagramRef) return;
-		this.manipulator = new Manipulator(this, panZoom, diagramRef);
+		this.manipulator = getManipulator(this, panZoom, diagramRef);
 
 		// Fire the onReady function with a reference to Kaavio
 		const {onReady} = this.props;
