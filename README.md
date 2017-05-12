@@ -10,6 +10,7 @@ and it has not been fully cross browser tested.
 Having said that, most of the desired functionality does work as intended in most modern browsers.
 
 **Note**: If you need to use the stable version of Pvjs see [this README](https://github.com/wikipathways/pvjs/blob/master/README.md).
+
 ## Bugs
 If you find a bug please report it via the [issue tracker](https://github.com/wikipathways/pvjs/issues).
 
