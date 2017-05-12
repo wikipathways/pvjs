@@ -77,6 +77,10 @@ export class PanZoom extends React.Component<any, any> {
         return this.panZoom.getPan();
     };
 
+    getZoom = () => {
+        return this.panZoom.getZoom();
+    }
+
     zoom = (zoom_perc: number) => {
         this.panZoom.zoom(zoom_perc);
     };

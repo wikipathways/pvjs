@@ -223,19 +223,39 @@ export class Manipulator {
         return relativeArea * scalingFactor;
     }
 
+    private animateZoom(zoom_perc: number): void {
+        const duration = 300;
+        const zoomStep = .1;
+        const curZoom = this.panZoom.getZoom();
+        const diffZoom = Math.abs(curZoom - zoom_perc);
+
+        const totalSteps = Math.round(diffZoom/zoomStep);
+        let step = 0;
+        const intervalID = setInterval(() => {
+            if(step <= totalSteps) {
+                this.panZoom.zoom(curZoom + (step * zoomStep));
+                step++;
+            }
+            else {
+                clearInterval(intervalID);
+            }
+        }, duration / totalSteps)
+    }
+
     /**
-     * Zoom in.
+     * Zoom in by a percentage
      * @param zoom_perc
      */
     zoom(zoom_perc: number): void{
-        this.panZoom.zoom(zoom_perc);
+        this.zoom(zoom_perc);
     }
 
     /**
      * Zoom onto a specific node
      * @param node_id
+     * @param animate - should the diagram be animated?
      */
-    zoomOn(node_id: string | string[]): void {
+    zoomOn(node_id: string | string[], animate = true): void {
         // If the diagram is in the process of moving, the computed coordinates will be incorrect
         // by the time the diagram stops moving. Wait for the diagram to stop moving first by using
         // the isUpdating observable
@@ -245,6 +265,8 @@ export class Manipulator {
             .subscribe(() => {
                 const zoom_perc = this.computeZoom(node_id);
                 this.panTo(node_id);
+                if(animate)
+                    return this.animateZoom(zoom_perc);
                 this.zoom(zoom_perc);
             })
     }
@@ -265,6 +287,64 @@ export class Manipulator {
         this.panZoom.zoomOut();
     }
 
+    private animatePan(coordinates: {x: number, y: number}): void {
+        const duration = 300;
+        const panStep = 1;
+        const curPan = this.panZoom.getPan();
+        const diffX = coordinates.x - curPan.x;
+        const diffY = coordinates.y - curPan.y;
+
+        const forwardX = diffX > 0;
+        const forwardY = diffY > 0;
+
+        const totalStepsY = Math.round(Math.abs(diffY/panStep));
+        const totalStepsX = Math.round(Math.abs(diffX/panStep));
+        const totalSteps = Math.max(totalStepsX, totalStepsY);
+
+        let step = 0;
+        let prevCoords = curPan;
+        const intervalID = setInterval(() => {
+
+            if(step >= totalSteps) {
+                clearInterval(intervalID);
+                return;
+            }
+
+            const doPan = (shouldPanX, shouldPanY, stepFuncX, stepFuncY) => {
+                if(!shouldPanX && !shouldPanY) {
+                    clearInterval(intervalID);
+                    return
+                }
+
+                const toPan = {
+                    x: shouldPanX ? stepFuncX(prevCoords.x): prevCoords.x,
+                    y: shouldPanY ? stepFuncY(prevCoords.y): prevCoords.y
+                };
+                prevCoords = toPan;
+                this.pan(toPan);
+                step++;
+            };
+
+            const addStep = (coord) => coord + step;
+            const takeStep = (coord) => coord - step;
+
+            if(forwardX && forwardY) {
+                // Bottom right
+                return doPan(prevCoords.x <= coordinates.x, prevCoords.y <= coordinates.y, addStep, addStep);
+            }
+            else if(!forwardX && forwardY) {
+                // Bottom left
+                return doPan(prevCoords.x >= coordinates.x, prevCoords.y <= coordinates.y, takeStep, addStep);
+            }
+            else if(forwardX && !forwardY) {
+                // Top right
+                return doPan(prevCoords.x <= coordinates.x, prevCoords.y >= coordinates.y, addStep, takeStep);
+            }
+
+            return doPan(prevCoords.x >= coordinates.x, prevCoords.y >= coordinates.y, takeStep, takeStep);
+        }, duration / totalSteps)
+    }
+
     /**
      * Pan to a specific set of coordinates.
      * @param coordinates
@@ -276,9 +356,9 @@ export class Manipulator {
     /**
      * Pan to a specific node.
      * @param node_id
-     * @param resets - the resets to be carried out.
+     * @param animate - Should the pan be animated?
      */
-    panTo(node_id: string | string[]): void {
+    panTo(node_id: string | string[], animate = true): void {
         // If the diagram is in the process of moving, the computed coordinates will be incorrect
         // by the time the diagram stops moving. Wait for the diagram to stop moving first by using
         // the isUpdating observable
@@ -311,6 +391,8 @@ export class Manipulator {
                 coordinates.x += (sizes.width/2);
                 coordinates.y += (sizes.height/2);
 
+                if(animate)
+                    return this.animatePan(coordinates);
                 this.pan(coordinates);
             })
     }
