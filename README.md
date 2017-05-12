@@ -1,107 +1,218 @@
-pvjs-2.4.84
+Pvjs
 ====================
 
-JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. It uses SVG and HTML for rendering, the [Mithril](http://lhorie.github.io/mithril/) framework for code organization and [BridgeDb](http://bridgedb.org/) for biological entity reference queries.
+JavaScript-based biological pathway diagram viewer. Used in [WikiPathways](http://wikipathways.org).
 
-Demo
-====
+## Beta
+The beta tag given to this version means that it is not advisable to use it in production. There are some known issues 
+and it has not been fully cross browser tested.
 
-* [WikiPathways - Sandbox Pathway](http://wikipathways.org/index.php/Pathway:WP4)
+Having said that, most of the desired functionality does work as intended in most modern browsers.
 
-How To Add It To Your Site
-===================
-You can loading it with either one of the two options below: HTML Element or Script.
-It's as simple as referencing the pvjs JavaScript bundle and its dependencies in your HTML document:
+## Bugs
+If you find a bug please report it via the [issue tracker](https://github.com/wikipathways/pvjs/issues).
 
-## Load Using [Custom HTML Element](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/)
+## Installation
+```
+npm install @wikipathways/pvjs --save
+```
+### Using the UMD bundle
+Pvjs comes with a UMD bundle that you can include in your HTML page. It's available under `dist/index.js`.
 
-```HTML
-<wikipathways-pvjs
-    alt="WP525 Biological Pathway"
-    src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525"
-    display-errors="true"
-    display-warnings="true"
-    fit-to-container="true">
-</wikipathways-pvjs>
+1) Copy the file into your projects assets. Probably use a task runner like Gulp for this.
+2) Include it in your head tag
 
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-polyfills-2.3.5.bundle.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.84.bundle.min.js"></script>
+```
+<script src="assets/pvjs/index.js"></script>
 ```
 
-## Load Using Script
+3) Pvjs is now available via the `Pvjs` namespace. So you can call something like `Pvjs.loadDiagram(<params>)`.
+### Importing
+If you are using a module bundler like [Webpack](http://webpack.github.io/), then just import Pvjs as you normally would.
 
-First reference the pvjs JavaScript bundle and its dependencies in your HTML document:
-
-```HTML
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-polyfills-2.3.5.bundle.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.84.bundle.min.js"></script>
+```javascript
+// Import everything for side-effects
+// Can just do this if using the custom element
+import '@wikipathways/pvjs';
+ 
+import {loadDiagram} from '@wikipathways/pvjs';
 ```
 
-If you have jQuery, then you may do:
+## Usage
+### Custom element
+A custom element is provided that allows easy use with a simple HTML tag.
 
-```js
-$('#pvjs-container').pvjs({
-  sourceData: [
-    // at least one item required
-    {
-      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525',
-      fileType:'gpml' // generally will correspond to filename extension
-    },
-    {
-      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP525',
-      fileType:'png'
-    }
-  ]
-});
+```html
+<wikipathways-pvjs about="SOMEPATHWAYID"></wikipathways-pvjs>
 ```
 
-If you don't have jQuery and do not want to add it, then you may call `PVJS` directly and pass two arguments: container selector and options object.
+About is the WikiPathways ID. E.g. Give "WP78" for the TCA sycle.
 
-```js
-pvjs('#pvjs-container', {
-  sourceData: [
-    // at least one item required
-    {
-      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525',
-      fileType:'gpml' // generally will correspond to filename extension
-    },
-    {
-      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP525',
-      fileType:'png'
-    }
-  ]
-});
+### loadDiagram
+Use the loadDiagram for more fine-grained control. 
+Pass in a callback that is called with the instance of the diagram to perform operations on the diagram.
+
+```javascript
+import { loadDiagram } from '@wikipathways/pvjs';
+
+loadDiagram('#pathway-container', 'SOME_WP_ID', opts, callback);
 ```
 
-For Developers
-==============
-If it's your first time working on pvjs, check out the [Getting Started Guide](https://github.com/wikipathways/pvjs/tree/master/test) for tips on testing and contributing to the codebase.
+`opts` is an object containing options for the diagram. Available options are:
+```
+{
+	version?: number; // The version number. Use 0 for latest
+	showPanZoomControls?: boolean;
+}
+```
 
-See [./lib/README.md](https://github.com/wikipathways/pvjs/blob/master/lib/README.md) for descriptions and locations of the pvjs components, plugins, event messages and options.
+## Manipulation API
+The manipulation API allows you to perform operations on the diagram such as highlighting and hiding elements, and 
+zooming in to parts of the diagram.
 
-Related
-=======
-This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pvjs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pvjs.
+### Usage
+```javascript
+import { loadDiagram } from '@wikipathways/pvjs';
 
-License
-=======
+loadDiagram('#pathway-container', 'SOME_WP_ID', options, instance => {
+    // Subscribe to the ready observable
+    pathwayInstance.ready$.subscribe(ready => {
+        if (! ready) return;
+        
+        // Can now use the manipulation API
+        instance.manipulator.zoomOn('SOME_ENTITY_ID');
+    })
+})
+```
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+### Getting the entity IDs
+For most of the methods in the manipulation API an entity ID is required.
+The manipulation API provides a `getEntities` method which returns an array containing some useful properties for the 
+entities in the diagram. 
 
-       http://www.apache.org/licenses/LICENSE-2.0
+Entities refers to any element on the diagram. E.g. metabolites, genes, interactions (arrows)...
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+```javascript
+const entities = instance.manipulator.getEntitites();
 
+// I just want to get the entity that contains has "Acetyl CoA" for the text.
+const acetylCoA = entities.filter(singleEntity => singleEntity.textContent === 'Acetyl CoA')[0];
+
+// Now I can grab the ID
+const ID = acetylCoA.id;
+```
+
+### Methods
+#### zoomOn
+This method accepts a single entity ID or an array of entity IDs. If a single entity is given then the diagram will 
+*zoom and pan* to that entity. If an array is given, the diagram will *zoom and pan* to the area defined by all of those 
+entities.
+
+```javascript
+zoomOn(entity_id: string | string[])
+```
+
+### zoomIn
+Zoom the diagram in by one increment
+```javascript
+zoomIn()
+```
+
+### zoomOut
+```javascript
+zoomOut()
+```
+
+### panTo
+Basically the same as zoomOn but without the zooming.
+
+```javascript
+panTo(entity_id: string | string[])
+```
+
+### highlightOn
+Highlight the entity with any CSS color.
+
+```javascript
+highlightOn(entity_id: string, color: string)
+```
+
+### highlightOff
+```javascript
+highlightOff(entity_id: string)
+```
+
+### toggleHighlight
+```javascript
+toggleHighlight(entity_id: string)
+```
+
+### hide
+```javascript
+hide(entity_id: string)
+```
+
+### show
+```javascript
+show(entity_id: string)
+```
+
+### toggleHidden 
+```javascript
+toggleHidden(entity_id: string)
+```
+
+### resetPan
+```javascript
+resetPan()
+```
+
+### resetZoom
+```javascript
+resetZoom()
+```
+
+### resetHighlighted
+Un-highlight all highlighted entities.
+Accepts an optional exclude array that will exclude the given entities from being reset.
+```javascript
+resetHighlighted(exclude?: string[])
+```
+
+### resetHidden
+Show all hidden entities. 
+Accepts an optional exclude array that will exclude the given entities from being reset.
+```javascript
+resetHidden(exclude?: string[])
+```
+
+### reset
+Reset the pan, zoom, hidden, and highlighted entities
+
+```javascript
+reset()
+```
+
+## Example
+```javascript
+import { loadDiagram } from '@wikipathways/pvjs';
+
+// WP78 is the TCA cycle
+loadDiagram('#pathway-container', 'WP78', options, instance => {
+    // Subscribe to the ready observable
+    pathwayInstance.ready$.subscribe(ready => {
+        if (! ready) return;
+        
+        // Get the ID for citrate
+        const ID = instance.manipulator.getEntities()
+                .filter(singleEntity => singleEntity.textContent === 'citrate')[0].id;
+        
+        instance.manipulator.zoomOn(ID);
+        instance.manipulator.zoomOut();
+        instance.manipulator.highlightOn(ID, '#00FFFF');
+    })
+})
+```
 
 Funding
 =======
