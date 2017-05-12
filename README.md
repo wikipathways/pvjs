@@ -97,7 +97,7 @@ Entities refers to any element on the diagram. E.g. metabolites, genes, interact
 ```javascript
 const entities = instance.manipulator.getEntitites();
 
-// I just want to get the entity that contains has "Acetyl CoA" for the text.
+// I just want to get the entity that has "Acetyl CoA" for the text.
 const acetylCoA = entities.filter(singleEntity => singleEntity.textContent === 'Acetyl CoA')[0];
 
 // Now I can grab the ID
