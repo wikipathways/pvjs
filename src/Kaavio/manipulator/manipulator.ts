@@ -2,6 +2,7 @@ import {Highlighter} from './highlighter';
 import {Hider} from "./hider";
 import {Zoomer} from "./zoomer";
 import {Panner} from "./panner";
+import * as ReactDOM from 'react-dom';
 
 export interface Manipulator {
     toggleHighlight(entity_id: string, color: string): void;
@@ -37,8 +38,9 @@ export interface Manipulator {
 export function getManipulator(kaavioRef, panZoomRef, diagramRef): Manipulator {
   const highlighter = new Highlighter(kaavioRef);
   const hider = new Hider(kaavioRef);
-  const zoomer = new Zoomer(kaavioRef, panZoomRef, diagramRef);
-  const panner = new Panner(kaavioRef, panZoomRef, diagramRef);
+  const diagram = ReactDOM.findDOMNode(diagramRef);
+  const zoomer = new Zoomer(kaavioRef, panZoomRef, diagram);
+  const panner = new Panner(kaavioRef, panZoomRef, diagram);
 
   return <Manipulator>{
       toggleHighlight: highlighter.toggleHighlight.bind(highlighter),

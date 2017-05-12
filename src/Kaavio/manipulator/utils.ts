@@ -1,8 +1,9 @@
-import d3 from 'd3';
+import * as d3 from 'd3';
 
 /**
  * Return the node element reference by the node_id
  * @param node_id
+ * @param diagram
  * @returns {SVGLocatable}
  */
 export const findNode = (node_id, diagram) => {

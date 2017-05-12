@@ -21,12 +21,12 @@ export class Zoomer {
      */
     private computeZoom(node_id: string | string[]): number {
         let BBox;
-        if(typeof node_id === 'string') BBox = getNodeBBox(node_id, this.diagram, this.panZoom.getSizes().realZoom);
+        const containerSize = this.panZoom.getSizes();
+        if(typeof node_id === 'string') BBox = getNodeBBox(node_id, this.diagram, containerSize.realZoom);
         else {
-            if(node_id.length === 1) BBox = getNodeBBox(node_id[0], this.diagram, this.panZoom.getSizes().realZoom);
+            if(node_id.length === 1) BBox = getNodeBBox(node_id[0], this.diagram, containerSize.realZoom);
             else BBox = getGroupBBox(node_id, this.diagram, this.panZoom.getSizes().realZoom);
         }
-        const containerSize = this.panZoom.getSizes();
         let relativeArea;
         if(BBox.width >= BBox.height){
             relativeArea = containerSize.width / BBox.width;
@@ -67,9 +67,10 @@ export class Zoomer {
      */
     zoom(zoom_perc: number, animate = true): void{
         if(animate) {
-            return this.animateZoom(zoom_perc);
+            this.animateZoom(zoom_perc);
+        } else {
+            this.panZoom.zoom(zoom_perc);
         }
-        this.zoom(zoom_perc);
     }
 
     /**
@@ -86,6 +87,7 @@ export class Zoomer {
             .first()
             .subscribe(() => {
                 const zoom_perc = this.computeZoom(node_id);
+                console.log(zoom_perc)
                 this.zoom(zoom_perc, animate);
             })
     }
