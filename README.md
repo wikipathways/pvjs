@@ -70,6 +70,8 @@ loadDiagram('#pathway-container', 'SOME_WP_ID', opts, callback);
 The manipulation API allows you to perform operations on the diagram such as highlighting and hiding elements, and 
 zooming in to parts of the diagram.
 
+A demonstration of what's possible with the manipulation API is available at [MetabMaster](http://metabaster.jcbwndsr.com);
+
 ### Usage
 ```javascript
 import { loadDiagram } from '@wikipathways/pvjs';
