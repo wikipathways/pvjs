@@ -103,10 +103,11 @@ License
    limitations under the License.
 
 
-Funding
+Support and Funding
 =======
 * The National Institute for General Medical Sciences [R01-GM100039](http://www.nigms.nih.gov/)
 * The BioRange program of the Netherlands [Bioinformatics Centre](http://www.nbic.nl/)
 * [University Maastricht](http://www.unimaas.nl/default.asp?taal=en): Broad Research Strategy Program Part 2 (BOS2)
+* Open source license for cross-browser testing courtesy <a href="https://www.browserstack.com">BrowserStack <img src="https://dgzoq9b5asjg1.cloudfront.net/production/images/static/header/header-logo.svg" alt="BrowserStack" height="42" width="auto"></a>
 
 NOTE: manually changed yolk.js dependency to rely on rx-extra instead of plain rx.
