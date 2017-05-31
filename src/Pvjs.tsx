@@ -299,6 +299,9 @@ export class Pvjs extends React.Component<any, any> {
 	onKaavioReady(kaavio){
 		this.manipulator = kaavio.manipulator;
 		this.readySubject.next(true);
+
+		const { onReady } = this.props;
+		onReady(this.manipulator);
 	}
 
 	handleCloseDetailsPanel() {

@@ -79,11 +79,17 @@ const WPID = 'WP4'; // Or whatever ID you desire
 const version = 0; // Version 0 is the latest
 const showPanZoomControls = true;
 
+const onPvjsReady = (pvjsRef) => {
+    // Here you can perform operations on the diagram
+    // Use the Manipulation API
+};
+
 ReactDOM.render(
     <Pvjs 
     about={'http://identifiers.org/wikipathways/' + WPID} 
     version={version} 
-    showPanZoomControls={showPanZoomControls}  />,
+    showPanZoomControls={showPanZoomControls}
+    onReady={onPvjsReady} />,
     document.getElementById('root')
 );
 
