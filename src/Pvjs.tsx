@@ -83,7 +83,7 @@ export class Pvjs extends React.Component<any, any> {
 		this.state = {
 			pvjson: null,
 			filters: null,
-			loading: false
+			loading: false,
 			loaded: false,
 			detailPanelOpen: false,
 			selected: null,
