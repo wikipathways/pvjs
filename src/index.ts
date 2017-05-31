@@ -15,4 +15,5 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css';
 import './wrappers/pvjs.webcomponent'; // TODO: Check this registers the component in browsers
 
 // Exports
-export {loadDiagram} from './wrappers/vanilla';
+export { loadDiagram } from './wrappers/vanilla';
+export { Pvjs } from './Pvjs';

@@ -21,6 +21,7 @@ import {Manipulator} from "./Kaavio/manipulator/manipulator";
 // SEE https://github.com/KyleAMathews/react-spinkit#css
 import * as Spinner from 'react-spinkit';
 import {BehaviorSubject} from "rxjs";
+import * as WikiPathwaysDefaultDisplayStyle from './WikiPathways.style';
 
 // TODO move this into utils
 // Create a string of citation numbers for display,
@@ -78,10 +79,11 @@ export class Pvjs extends React.Component<any, any> {
 
   	constructor(props) {
 		super(props);
+		if(! props.customStyle) props.customStyle = WikiPathwaysDefaultDisplayStyle;
 		this.state = {
 			pvjson: null,
 			filters: null,
-			loading: false,
+			loading: false
 			loaded: false,
 			detailPanelOpen: false,
 			selected: null,
