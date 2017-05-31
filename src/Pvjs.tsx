@@ -301,8 +301,7 @@ export class Pvjs extends React.Component<any, any> {
 		this.readySubject.next(true);
 
 		const { onReady } = this.props;
-		onReady(this.manipulator);
-	}
+		if (onReady) onReady(this); }
 
 	handleCloseDetailsPanel() {
 		this.setState({detailPanelOpen: false})
