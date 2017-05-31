@@ -75,7 +75,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Pvjs } from '@wikipathways/pvjs';
 
-const WPID = '4'; // Or whatever ID you desire
+const WPID = 'WP4'; // Or whatever ID you desire
 const version = 0; // Version 0 is the latest
 const showPanZoomControls = true;
 
