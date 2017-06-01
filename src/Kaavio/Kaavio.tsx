@@ -72,13 +72,6 @@ export class Kaavio extends React.Component<any, any> {
 		else {
 			toRemove = node_id;
 		}
-		const {highlightedNodes} = this.state;
-
-		// Remove any items from the current highlightedNodes array with the same node_id
-		_.pullAllWith(highlightedNodes, toRemove, (arrVal, othVal) => {
-			return arrVal.node_id == othVal;
-		});
-		this.setState({highlightedNodes: highlightedNodes});
 
 		this.setState((prevState) => {
 			const removed = _.difference(prevState.highlightedNodes, toRemove);
