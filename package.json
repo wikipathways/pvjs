@@ -1,6 +1,6 @@
 {
   "name": "@wikipathways/pvjs",
-  "version": "3.2.2-beta",
+  "version": "3.2.3-beta",
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "dist/index.js",
   "module": "lib/index.js",
