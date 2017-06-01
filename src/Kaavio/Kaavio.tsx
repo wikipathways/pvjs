@@ -74,8 +74,10 @@ export class Kaavio extends React.Component<any, any> {
 		}
 
 		this.setState((prevState) => {
-			const removed = _.difference(prevState.highlightedNodes, toRemove);
-			return {hiddenEntities: removed}
+			const removed = _.differenceWith(prevState.highlightedNodes, toRemove, (arrVal, othVal) => {
+				return arrVal.node_id == othVal;
+			});
+			return {highlightedNodes: removed}
 		});
 	};
 
