@@ -81,15 +81,12 @@ export class Kaavio extends React.Component<any, any> {
 		});
 	};
 
-	resetHighlighted = (exclude?: string[]) => {
-		const {highlightedNodes} = this.state;
-		let toReset = highlightedNodes.map(highlightedNode => {
-			return highlightedNode.node_id;
-		});
-		if(exclude){
-			toReset = _.pullAll(toReset, exclude);
-		}
-		this.popHighlighted(toReset)
+	resetHighlighted = (exclude: string[] = []) => {
+		this.setState(prevState => {
+			const reset = prevState.highlightedNodes
+				.filter(singleHighlightedNode => exclude.indexOf(singleHighlightedNode.node_id) > -1);
+			return { highlightedNodes: reset }
+		})
 	};
 
 	isHighlighted = (node_id: string) => {
@@ -132,14 +129,8 @@ export class Kaavio extends React.Component<any, any> {
 		});
 	};
 
-	resetHidden = (exclude?: string[]) => {
-		const {hiddenEntities} = this.state;
-
-		let toReset = hiddenEntities;
-		if(exclude){
-			toReset = _.pullAll(toReset, exclude);
-		}
-		this.popHidden(toReset)
+	resetHidden = (exclude: string[] = []) => {
+		this.setState({hiddenEntities: exclude});
 	};
 
 	isHidden = (entity_id: string) => {
