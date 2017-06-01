@@ -55,15 +55,12 @@ export class Kaavio extends React.Component<any, any> {
 			toHighlight = highlighted;
 		}
 
-		const {highlightedNodes} = this.state;
-
-		// Remove any items from the current highlightedNodes array with the same node_id
-		_.pullAllWith(highlightedNodes, toHighlight, (arrVal, othVal) => {
-			return arrVal.node_id == othVal.node_id;
-		});
-
-		this.setState({
-			highlightedNodes: highlightedNodes.concat(toHighlight)
+		this.setState((prevState) => {
+			// Remove same elements so the entity is highlighted with the newly specified color
+			const differences = _.differenceWith(prevState.highlightedNodes, toHighlight, (arrVal, othVal) => {
+				return arrVal.node_id == othVal.node_id;
+			});
+			return { highlightedNodes: differences.concat(toHighlight)}
 		});
 	};
 
@@ -82,6 +79,11 @@ export class Kaavio extends React.Component<any, any> {
 			return arrVal.node_id == othVal;
 		});
 		this.setState({highlightedNodes: highlightedNodes});
+
+		this.setState((prevState) => {
+			const removed = _.difference(prevState.highlightedNodes, toRemove);
+			return {hiddenEntities: removed}
+		});
 	};
 
 	resetHighlighted = (exclude?: string[]) => {
@@ -111,15 +113,12 @@ export class Kaavio extends React.Component<any, any> {
 			toHide = entity_id;
 		}
 
-		const {hiddenEntities} = this.state;
-
-		// Remove any items from the current highlightedNodes array with the same node_id
-		_.pullAllWith(hiddenEntities, toHide, (arrVal, othVal) => {
-			return arrVal == othVal;
-		});
-
-		this.setState({
-			hiddenEntities: hiddenEntities.concat(toHide)
+		this.setState((prevState) => {
+			// Remove same elements so the entity is highlighted with the newly specified color
+			const differences = _.differenceWith(prevState.hiddenEntities, toHide, (arrVal, othVal) => {
+				return arrVal == othVal;
+			});
+			return { hiddenEntities: differences.concat(toHide)}
 		});
 	};
 
@@ -132,13 +131,10 @@ export class Kaavio extends React.Component<any, any> {
 			toRemove = entity_id;
 		}
 
-		const {hiddenEntities} = this.state;
-
-		// Remove any items from the current highlightedNodes array with the same node_id
-		_.pullAllWith(hiddenEntities, toRemove, (arrVal, othVal) => {
-			return arrVal == othVal;
+		this.setState((prevState) => {
+			const removed = _.difference(prevState.hiddenEntities, toRemove);
+			return {hiddenEntities: removed}
 		});
-		this.setState({hiddenEntities: hiddenEntities});
 	};
 
 	resetHidden = (exclude?: string[]) => {
