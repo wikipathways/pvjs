@@ -56,15 +56,12 @@ export class Kaavio extends React.Component<any, any> {
 			toHighlight = highlighted;
 		}
 
-		const {highlightedNodes} = this.state;
-
-		// Remove any items from the current highlightedNodes array with the same node_id
-		_.pullAllWith(highlightedNodes, toHighlight, (arrVal, othVal) => {
-			return arrVal.node_id == othVal.node_id;
-		});
-
-		this.setState({
-			highlightedNodes: highlightedNodes.concat(toHighlight)
+		this.setState((prevState) => {
+			// Remove same elements so the entity is highlighted with the newly specified color
+			const differences = _.differenceWith(prevState.highlightedNodes, toHighlight, (arrVal, othVal) => {
+				return arrVal.node_id == othVal.node_id;
+			});
+			return { highlightedNodes: differences.concat(toHighlight)}
 		});
 	};
 
@@ -76,24 +73,21 @@ export class Kaavio extends React.Component<any, any> {
 		else {
 			toRemove = node_id;
 		}
-		const {highlightedNodes} = this.state;
 
-		// Remove any items from the current highlightedNodes array with the same node_id
-		_.pullAllWith(highlightedNodes, toRemove, (arrVal, othVal) => {
-			return arrVal.node_id == othVal;
+		this.setState((prevState) => {
+			const removed = _.differenceWith(prevState.highlightedNodes, toRemove, (arrVal, othVal) => {
+				return arrVal.node_id == othVal;
+			});
+			return {highlightedNodes: removed}
 		});
-		this.setState({highlightedNodes: highlightedNodes});
 	};
 
-	resetHighlighted = (exclude?: string[]) => {
-		const {highlightedNodes} = this.state;
-		let toReset = highlightedNodes.map(highlightedNode => {
-			return highlightedNode.node_id;
-		});
-		if(exclude){
-			toReset = _.pullAll(toReset, exclude);
-		}
-		this.popHighlighted(toReset)
+	resetHighlighted = (exclude: string[] = []) => {
+		this.setState(prevState => {
+			const reset = prevState.highlightedNodes
+				.filter(singleHighlightedNode => exclude.indexOf(singleHighlightedNode.node_id) > -1);
+			return { highlightedNodes: reset }
+		})
 	};
 
 	isHighlighted = (node_id: string) => {
@@ -112,15 +106,12 @@ export class Kaavio extends React.Component<any, any> {
 			toHide = entity_id;
 		}
 
-		const {hiddenEntities} = this.state;
-
-		// Remove any items from the current highlightedNodes array with the same node_id
-		_.pullAllWith(hiddenEntities, toHide, (arrVal, othVal) => {
-			return arrVal == othVal;
-		});
-
-		this.setState({
-			hiddenEntities: hiddenEntities.concat(toHide)
+		this.setState((prevState) => {
+			// Remove same elements so the entity is highlighted with the newly specified color
+			const differences = _.differenceWith(prevState.hiddenEntities, toHide, (arrVal, othVal) => {
+				return arrVal == othVal;
+			});
+			return { hiddenEntities: differences.concat(toHide)}
 		});
 	};
 
@@ -133,23 +124,14 @@ export class Kaavio extends React.Component<any, any> {
 			toRemove = entity_id;
 		}
 
-		const {hiddenEntities} = this.state;
-
-		// Remove any items from the current highlightedNodes array with the same node_id
-		_.pullAllWith(hiddenEntities, toRemove, (arrVal, othVal) => {
-			return arrVal == othVal;
+		this.setState((prevState) => {
+			const removed = _.difference(prevState.hiddenEntities, toRemove);
+			return {hiddenEntities: removed}
 		});
-		this.setState({hiddenEntities: hiddenEntities});
 	};
 
-	resetHidden = (exclude?: string[]) => {
-		const {hiddenEntities} = this.state;
-
-		let toReset = hiddenEntities;
-		if(exclude){
-			toReset = _.pullAll(toReset, exclude);
-		}
-		this.popHidden(toReset)
+	resetHidden = (exclude: string[] = []) => {
+		this.setState({hiddenEntities: exclude});
 	};
 
 	isHidden = (entity_id: string) => {

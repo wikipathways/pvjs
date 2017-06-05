@@ -21,6 +21,8 @@ import {Manipulator} from "./Kaavio/manipulator/manipulator";
 // SEE https://github.com/KyleAMathews/react-spinkit#css
 import * as Spinner from 'react-spinkit';
 import {BehaviorSubject} from "rxjs";
+import * as WikiPathwaysDefaultDisplayStyle from './WikiPathways.style';
+import {CSSProperties} from "react";
 
 // TODO move this into utils
 // Create a string of citation numbers for display,
@@ -297,7 +299,9 @@ export class Pvjs extends React.Component<any, any> {
 	onKaavioReady(kaavio){
 		this.manipulator = kaavio.manipulator;
 		this.readySubject.next(true);
-	}
+
+		const { onReady } = this.props;
+		if (onReady) onReady(this); }
 
 	handleCloseDetailsPanel() {
 		this.setState({detailPanelOpen: false})
@@ -325,20 +329,20 @@ export class Pvjs extends React.Component<any, any> {
 		const {loaded, loading, error} = this.state;
 		const spinnerStyle = {
 			width: '80px',
-			position: 'relative',
+			position: 'relative' as CSSProperties['position'],
 			top: '50%',
 			left: '50%',
 			transform: 'translate(-50%, -50%)'
 		};
 
-		if(loading && !loaded && !error) return <Spinner spinnerName="wandering-cubes" style={spinnerStyle} />;
+		if(loading && !loaded && !error) return <Spinner name="wandering-cubes" style={spinnerStyle} />;
 	}
 
 	renderError(){
 		const {loading, error} = this.state;
 
 		const errorStyle = {
-			position: 'relative',
+			position: 'relative' as CSSProperties['position'],
 			padding: '2.5rem',
 			backgroundColor: '#e74c3c',
 			color: 'white',
@@ -359,7 +363,8 @@ export class Pvjs extends React.Component<any, any> {
 
 	renderKaavio(){
 		const {loaded, pvjson, filters} = this.state;
-		const { about, customStyle, showPanZoomControls} = this.props;
+		const { about, showPanZoomControls} = this.props;
+		const customStyle = this.props.customStyle || WikiPathwaysDefaultDisplayStyle;
 
 		if(!loaded) return null;
 
@@ -371,7 +376,7 @@ export class Pvjs extends React.Component<any, any> {
 	}
 
   	render() {
-		const {customStyle} = this.props;
+		const customStyle = this.props.customStyle || WikiPathwaysDefaultDisplayStyle;
 		return (
 			<section className={customStyle.globalClass}>
 				{this.renderError()}

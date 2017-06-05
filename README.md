@@ -68,6 +68,34 @@ loadDiagram('#pathway-container', 'SOME_WP_ID', opts, callback);
 }
 ```
 
+### In React
+If you are already using React then you can directly use the React component
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Pvjs } from '@wikipathways/pvjs';
+
+const WPID = 'WP4'; // Or whatever ID you desire
+const version = 0; // Version 0 is the latest
+const showPanZoomControls = true;
+
+const onPvjsReady = (pvjsRef) => {
+    // Here you can perform operations on the diagram
+    // Use the Manipulation API
+};
+
+ReactDOM.render(
+    <Pvjs 
+    about={'http://identifiers.org/wikipathways/' + WPID} 
+    version={version} 
+    showPanZoomControls={showPanZoomControls}
+    onReady={onPvjsReady} />,
+    document.getElementById('root')
+);
+
+
+```
+
 ## Manipulation API
 The manipulation API allows you to perform operations on the diagram such as highlighting and hiding elements, and 
 zooming in to parts of the diagram.
