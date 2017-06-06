@@ -35,12 +35,12 @@ export class Kaavio extends React.Component<any, any> {
 
 		// This is a port to the legacy use of node_id
 		// TODO: Change all references of highlightedNodes to the new highlightedEntities
-		let highlightedEntitiesLegacy = highlightedEntities.map(singleHighlightedEntity => {
+		const highlightedEntitiesLegacy = highlightedEntities ? highlightedEntities.map(singleHighlightedEntity => {
 			return {
 				node_id: singleHighlightedEntity.entityId,
 				color: singleHighlightedEntity.color
 			}
-		});
+		}) : [];
 
 		const entityMap = entities.reduce(function(acc, entity) {
 			acc[entity.id] = entity;
