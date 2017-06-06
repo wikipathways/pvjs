@@ -5,7 +5,6 @@ import {Diagram} from './components/Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./kaavio.css');
 import {PanZoom} from './components/PanZoom';
-import {getManipulator} from "./manipulator";
 
 import * as _ from 'lodash';
 
@@ -22,118 +21,19 @@ export interface highlightedNode {
  * rendered. You can access the manipulation API via kaavio.manipulator
  */
 export class Kaavio extends React.Component<any, any> {
-	manipulator;
 
 	constructor(props) {
 		super(props);
 		this.state = {
 			diagramRef: null,
-			highlightedNodes: [], // A stack of the highlighted nodes that is pushed and popped
-			hiddenEntities: [], // A stack of hidden entities that is pushed and popped
 		};
 	}
 
-	private onPanZoomReady(panZoom){
-		const {diagramRef} = this.state;
-		if(! diagramRef) return;
-		this.manipulator = getManipulator(this, panZoom, diagramRef);
-
+	onPanZoomReady = (panZoom) => {
 		// Fire the onReady function with a reference to Kaavio
 		const {onReady} = this.props;
 		onReady(this);
 	}
-
-	pushHighlighted = (highlighted: highlightedNode | highlightedNode[]) =>  {
-		let toHighlight;
-		if(highlighted.constructor !== Array){
-			toHighlight = [highlighted];
-		}
-		else {
-			toHighlight = highlighted;
-		}
-
-		this.setState((prevState) => {
-			// Remove same elements so the entity is highlighted with the newly specified color
-			const differences = _.differenceWith(prevState.highlightedNodes, toHighlight, (arrVal, othVal) => {
-				return arrVal.node_id == othVal.node_id;
-			});
-			return { highlightedNodes: differences.concat(toHighlight)}
-		});
-	};
-
-	popHighlighted = (node_id: string | string[]) => {
-		let toRemove;
-		if(typeof node_id === 'string'){
-			toRemove = [node_id]
-		}
-		else {
-			toRemove = node_id;
-		}
-
-		this.setState((prevState) => {
-			const removed = _.differenceWith(prevState.highlightedNodes, toRemove, (arrVal, othVal) => {
-				return arrVal.node_id == othVal;
-			});
-			return {highlightedNodes: removed}
-		});
-	};
-
-	resetHighlighted = (exclude: string[] = []) => {
-		this.setState(prevState => {
-			const reset = prevState.highlightedNodes
-				.filter(singleHighlightedNode => exclude.indexOf(singleHighlightedNode.node_id) > -1);
-			return { highlightedNodes: reset }
-		})
-	};
-
-	isHighlighted = (node_id: string) => {
-		const {highlightedNodes} = this.state;
-		return !!highlightedNodes.find(elem => {
-			return elem.node_id === node_id;
-		});
-	};
-
-	pushHidden = (entity_id: string | string[]) => {
-		let toHide;
-		if(entity_id.constructor !== Array){
-			toHide = [entity_id];
-		}
-		else {
-			toHide = entity_id;
-		}
-
-		this.setState((prevState) => {
-			// Remove same elements so the entity is highlighted with the newly specified color
-			const differences = _.differenceWith(prevState.hiddenEntities, toHide, (arrVal, othVal) => {
-				return arrVal == othVal;
-			});
-			return { hiddenEntities: differences.concat(toHide)}
-		});
-	};
-
-	popHidden = (entity_id: string | string[]) => {
-		let toRemove;
-		if(typeof entity_id === 'string'){
-			toRemove = [entity_id]
-		}
-		else {
-			toRemove = entity_id;
-		}
-
-		this.setState((prevState) => {
-			const removed = _.difference(prevState.hiddenEntities, toRemove);
-			return {hiddenEntities: removed}
-		});
-	};
-
-	resetHidden = (exclude: string[] = []) => {
-		this.setState({hiddenEntities: exclude});
-	};
-
-	isHidden = (entity_id: string) => {
-		const {hiddenEntities} = this.state;
-		return hiddenEntities.indexOf(entity_id) > -1;
-	};
 
 	getEntities = () => {
 		return this.props.entities;
@@ -141,8 +41,8 @@ export class Kaavio extends React.Component<any, any> {
 
 	render() {
 		const {customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons,
-			markerDrawers, showPanZoomControls = true} = this.props;
-		const {highlightedNodes , hiddenEntities} = this.state;
+			markerDrawers, highlightedEntities, hiddenEntities, zoomedEntities, pannedEntities,
+			showPanZoomControls = true} = this.props;
 
 		const backgroundColor = customStyle.backgroundColor || 'white' ;
 		let {about} = this.props;
@@ -170,6 +70,7 @@ export class Kaavio extends React.Component<any, any> {
 		// Consider refactoring the panZoom to be truly Reactive and not use refs
 		return (
 			<div id={about} className={`kaavio-container ${ customStyle.containerClass }`}>
+				{/* highlightedNodes is legacy. TODO: All references of highlightedNodes -> highlightedEntities */}
 				<Diagram
 					ref={diagram => !this.state.diagramRef && this.setState({diagramRef: diagram})}
 					about={`kaavio-diagram-for-${about}`}
@@ -185,10 +86,13 @@ export class Kaavio extends React.Component<any, any> {
 					markerDrawers={markerDrawers}
 					zIndices={zIndices}
 					customStyle={customStyle}
-					highlightedNodes={highlightedNodes}
+					highlightedNodes={highlightedEntities}
 					hiddenEntities={hiddenEntities}
 				/>
-				<PanZoom diagram={this.state.diagramRef} onReady={panZoom => this.onPanZoomReady(panZoom)}
+				<PanZoom diagram={this.state.diagramRef}
+						 zoomedEntities={zoomedEntities}
+						 pannedEntities={pannedEntities}
+						 onReady={this.onPanZoomReady}
 						 showPanZoomControls={showPanZoomControls} />
 			</div>
 		)

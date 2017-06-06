@@ -1,109 +1,8 @@
-// NOTE: mock-server must be started before running this.
-
-import { values } from 'lodash';
 import {loadDiagram} from '../../src'
 import '../../src'; // Import for side-effects when using the custom element
-
-import * as WikiPathwaysDefaultDisplayStyle from '../../src/WikiPathways.style';
-
-//const customStyle = `
-//	.background {
-//		fill: white;
-//	}
-//
-//	.shadow {
-//		filter: drop-shadow( 2px 2px 2px #000 ); /* Same syntax as box-shadow */
-//		-webkit-filter: drop-shadow( 2px 2px 2px #000 );
-//	}
-//
-//	text {
-//		font-size: 14px;
-//		pointer-events: none;
-//		font-family: Arial, Helvetica, sans-serif;
-//	}
-//
-//	.InfoBox {
-//		fill: #444;
-//	}
-//
-//	.citation {
-//		fill: gray;
-//		font-size: 10px;
-//	}
-//
-//	.InfoBox .citation {
-//		font-size: 0px;
-//	}
-//
-//	.CellularComponent {
-//		stroke: #808080;
-//		stroke-width:3;
-//		fill: #fff;
-//	}
-//
-//	.Cell {
-//		stroke: #808080;
-//		stroke-width:3;
-//		fill: #fff;
-//	}
-//
-//
-//	.DataNode .shapeType {
-//		clip-path: url(#rounded-rectangle);
-//		fill: #518569;
-//	}
-//
-//	.DataNode .textlabel {
-//		fill: #fff;
-//	}
-//
-//	.Rna .shapeType {
-//	fill: #9453A7;
-//	}
-//
-//	.Metabolite .shapeType {
-//		fill: #0059b3;
-//		clip-path: none;
-//	}
-//
-//	.Pathway .shapeType {
-//	fill: white;
-//	clip-path: none;
-//	}
-//
-//	.Pathway .textlabel {
-//		fill: #75C95C;
-//	}
-//
-//
-//	.Group-Complex {
-//		fill: #B4B464;
-//		fill-opacity: 0.1;
-//		stroke: #808080;
-//	}
-//
-//	.Group-None {
-//		fill: #B4B464;
-//		fill-opacity: 0.1;
-//		stroke: #808080;
-//	}
-//
-//	.Group-Pathway {
-//		fill: #008000;
-//		fill-opacity: 0.05;
-//		stroke: #808080;
-//	}
-//
-//
-//	.Interaction {
-//		stroke: #000000;
-//	}
-//
-//	.Inhibition {
-//		stroke: red;
-//		stroke-width: 1.3;
-//	}
-//`;
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Pvjs } from '../../src/Pvjs';
 
 // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 function getParameterByName(name, url?) {
@@ -120,6 +19,19 @@ function getParameterByName(name, url?) {
 
 const pathwayId = getParameterByName('id') || 'WP4';
 declare var window: any;
+
+// Directly using React element
+var heading = document.createElement('h1');
+heading.innerText = 'Directly using React component';
+document.body.appendChild(heading);
+var container = document.createElement('div');
+container.setAttribute('style', 'width: 1200px; height:800px');
+document.body.appendChild(container);
+ReactDOM.render(
+    <Pvjs about={'http://identifiers.org/wikipathways/' + pathwayId} zoomedEntities={['d8bae', 'd32e4']} pannedEntities={['d8bae', 'd32e4']} />,
+    container
+);
+
 
 // Vanillas
 // Small
