@@ -32,6 +32,14 @@
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    },
+    "moduleDirectories": [
+      "node_modules"
+    ],
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
       "ts",
@@ -117,6 +125,7 @@
     "deglobalify": "^0.2.0",
     "enzyme": "^2.8.2",
     "extract-text-webpack-plugin": "^2.1.0",
+    "fetch-mock": "^5.11.0",
     "file-loader": "^0.10.1",
     "freeport": "~1.0.4",
     "global": "^4.3.2",
@@ -126,6 +135,7 @@
     "gulp-concat-css": "^2.3.0",
     "gulp-copy": "^1.0.0",
     "html-webpack-plugin": "^2.24.0",
+    "identity-obj-proxy": "^3.0.0",
     "image-webpack-loader": "^3.3.1",
     "inquirer": "~0.8.0",
     "jaguarjs-jsdoc": "0.0.1",

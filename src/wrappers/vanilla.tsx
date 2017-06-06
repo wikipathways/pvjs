@@ -1,4 +1,4 @@
-import { defaults } from 'lodash';
+import { uniq } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Pvjs as PvjsComponent} from '../Pvjs'; // Fix conflicting imports/exports
@@ -26,19 +26,44 @@ export interface Opts {
  * @param [callback]: The callback to call with the reference to the Pvjs instance
  */
 export function loadDiagram(selector: string, about: string, opts: Opts, callback?: any): void {
-	let ref = null;
-	const props = defaults({}, opts, {
+	const props = Object.assign({}, opts, {
 		about: 'http://identifiers.org/wikipathways/' + about,
 		version: 0,
 		customStyle: WikiPathwaysDefaultDisplayStyle,
-		showPanZoomControls: true
+		showPanZoomControls: true,
+		highlightedEntities: [],
+		zoomedEntities: [],
+		pannedEntities: []
 	});
     let container = document.querySelector(selector);
-    ReactDOM.render(
-        <PvjsComponent {...props} ref={pvjs => ref = pvjs}/>,
+    renderComponent(
+        props,
         container,
-		(_) => {
-			callback(ref)
+		() => {
+			callback({
+				highlightOn: (entityId, color) => {
+					props.highlightedEntities = props.highlightedEntities.concat([{entityId, color}]);
+					renderComponent(props, container)
+				},
+				highlightOff: (entityId) => {
+					props.highlightedEntities = props.highlightedEntities
+						.filter(singleEntity => singleEntity.entityId !== entityId);
+					renderComponent(props, container)
+				},
+				zoomOn: (entityId) => {
+					props.zoomedEntities = [entityId];
+					props.pannedEntities = [entityId];
+					renderComponent(props, container);
+				}
+			})
 		}
     );
 }
+
+const renderComponent = (props, container, cb?) => {
+	ReactDOM.render(
+		<PvjsComponent {...props}/>,
+		container,
+		cb
+	)
+};

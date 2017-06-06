@@ -8,49 +8,77 @@ export class PanZoom extends React.Component<any, any> {
     constructor(props){
         super(props);
         this.state = {
-            ready: false,
+            ready: false, // Is the diagram ready to pan or zoom?
             panZoom: null,
+            shouldZoom: false,
+            shouldPan: false,
         };
     }
 
     componentWillReceiveProps(nextProps) {
         const prevProps = this.props;
-        if(isEqual(nextProps, prevProps)) return;
+        const {pannedEntities, zoomedEntities} = nextProps;
         if(! isEqual(nextProps.diagram, prevProps.diagram)) {
             const onInit = (panZoomInstance) => {
-                this.setState({panZoom: panZoomInstance, ready: true});
+                this.setState({
+                    panZoom: panZoomInstance,
+                    ready: true,
+                    shouldZoom: true,
+                    shouldPan: true,
+                });
             };
-            this.init(nextProps.diagram, nextProps.showPanZoomControls, onInit);
+            this.init(nextProps.diagram, onInit);
         }
 
-        if(! isEqual(nextProps.zoomedEntities, prevProps.zoomedEntities)) {
-            this.zoomOnEntities();
+        if(! isEqual(prevProps.pannedEntities, pannedEntities)) {
+            this.setState({shouldPan: true});
         }
-        if(! isEqual(nextProps.pannedEntities, prevProps.pannedEntities)) {
-            this.panToEntities();
+        if (! isEqual(prevProps.zoomedEntities, zoomedEntities)) {
+            this.setState({shouldZoom: true});
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const { ready } = this.state;
+        // Whenever the state or props change, we check if the component should pan or zoom
+        // If ONE of them is needed, it is performed
+        // By calling setState in setOn[Pan/Zoom], this will be called again
+        // So if both of them are needed, they are performed one after the other
+        const { shouldPan, shouldZoom, panZoom, ready } = this.state;
 
-        if (! ready) return;
-        this.panToEntities();
-        this.zoomOnEntities();
+        if(shouldPan && ready) {
+            panZoom.setOnPan(() => {
+                this.setState({shouldPan: false});
+                panZoom.setOnPan(() => {});
+            });
+            this.panToEntities();
+        }
+        else if(shouldZoom && ready) {
+            panZoom.setOnZoom(() => {
+                this.setState({shouldZoom: false});
+                panZoom.setOnZoom(() => {});
+            });
+            this.zoomOnEntities();
+        }
     }
 
     destroy = () => {
         const { panZoom } = this.state;
         if(! panZoom) return;
         panZoom.destroy();
+        this.setState({
+            ready: false,
+            shouldPan: false,
+            shouldZoom: false,
+            panZoom: null,
+        })
     };
 
-    init = (diagram, showControls: boolean, onInit?) => {
+    init = (diagram, onInit?) => {
         this.destroy(); // Destroy the diagram first in case there is one
         let node: SVGElement = ReactDOM.findDOMNode(diagram) as SVGElement;
         SVGPanZoom(node, {
             viewportSelector: '.svg-pan-zoom_viewport',
-            controlIconsEnabled: showControls,
+            controlIconsEnabled: false,
             fit: true,
             center: true,
             minZoom: 0.1,
@@ -62,32 +90,67 @@ export class PanZoom extends React.Component<any, any> {
                     onInit(options.instance)
                 },
                 haltEventListeners: [],
-                destroy: (_) => {
-                }
+                destroy: () => {}
             },
-            beforeZoom: (oldZoom, newZoom) => {
+            beforeZoom: () => {
                 // Don't allow if not ready
-                // const { ready } = this.state;
-                // if (! ready) return false;
-                //
-                // this.setState({ready: false});
+                const { ready } = this.state;
+                if (! ready) return false;
+                // Don't allow any more zooming until done
+                this.setState({ready: false});
                 return true;
             },
-            beforePan: (oldPan, newPan) =>  {
+            beforePan: () =>  {
                 // Don't allow if not ready
-                // const { ready } = this.state;
-                // console.log(ready);
-                // if (! ready) return false;
-                //
-                // this.setState({ready: false});
+                const { ready } = this.state;
+                if (! ready) return false;
+                // Don't allow any more panning until done
+                this.setState({ready: false});
                 return true;
             },
-            // This event is fired after the transformation matrix is applied
-            // See: https://github.com/ariutta/svg-pan-zoom/issues/121#issuecomment-252393381
-            // So set isUpdating to false here
-            // onUpdatedCTM: newCTM => this.setState({ready: true})
+            onUpdatedCTM: () => this.setState({ready: true})
         } as SvgPanZoom.Options);
     };
+
+    zoomOnEntities() {
+        const { zoomedEntities } = this.props;
+        const { panZoom } = this.state;
+
+        if (! zoomedEntities || zoomedEntities.length < 1) {
+            panZoom.reset();
+            return;
+        }
+
+        const BBox = this.locate(zoomedEntities);
+        const containerBBox = panZoom.getSizes();
+        const scalingFactor = 0.8;
+
+        if (BBox.width >= BBox.height) {
+            panZoom.zoom((containerBBox.width / BBox.width) * scalingFactor * containerBBox.realZoom);
+            return;
+        }
+        panZoom.zoom((containerBBox.height / BBox.height) * scalingFactor * containerBBox.realZoom);
+    }
+
+    panToEntities() {
+        const { pannedEntities } = this.props;
+        const { panZoom } = this.state;
+
+        if (! pannedEntities || pannedEntities.length < 1) {
+            panZoom.resetPan();
+            return;
+        }
+
+        const BBox = this.locate(pannedEntities);
+        const curPan = panZoom.getPan();
+        const containerSizes = panZoom.getSizes();
+
+        const coordinates = {
+            x: -BBox.x -  (BBox.width / 2) + curPan.x + (containerSizes.width / 2),
+            y: -BBox.y - (BBox.height / 2) + curPan.y + (containerSizes.height / 2),
+        };
+        panZoom.pan(coordinates);
+    }
 
     locate(entities: string[]) {
         const { diagram } = this.props;
@@ -128,38 +191,6 @@ export class PanZoom extends React.Component<any, any> {
             height: maxY - minY,
             width: maxX - minX,
         }
-    }
-
-    zoomOnEntities() {
-        const { zoomedEntities } = this.props;
-        const { panZoom } = this.state;
-        if (! zoomedEntities) return;
-
-        const BBox = this.locate(zoomedEntities);
-        const containerBBox = panZoom.getSizes();
-        const scalingFactor = 0.9;
-
-        if (BBox.width >= BBox.height) {
-            panZoom.zoom((containerBBox.width / BBox.width) * scalingFactor);
-            return;
-        }
-        panZoom.zoom((containerBBox.height / BBox.height) * scalingFactor);
-    }
-
-    panToEntities() {
-        const { pannedEntities } = this.props;
-        const { panZoom } = this.state;
-        if (! pannedEntities) return;
-
-        const BBox = this.locate(pannedEntities);
-        const curPan = panZoom.getPan();
-        const containerSizes = panZoom.getSizes();
-
-        const coordinates = {
-            x: -BBox.x -  (BBox.width / 2) + curPan.x + (containerSizes.width / 2),
-            y: -BBox.y - (BBox.height / 2) + curPan.x + (containerSizes.height / 2),
-        };
-        panZoom.pan(coordinates);
     }
 
     render(){

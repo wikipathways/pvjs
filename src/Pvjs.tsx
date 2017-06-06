@@ -22,6 +22,7 @@ import * as Spinner from 'react-spinkit';
 import {BehaviorSubject} from "rxjs";
 import * as WikiPathwaysDefaultDisplayStyle from './WikiPathways.style';
 import {CSSProperties} from "react";
+import 'whatwg-fetch';
 
 // TODO move this into utils
 // Create a string of citation numbers for display,
