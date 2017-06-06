@@ -18,6 +18,7 @@
     "serve": "webpack-dev-server --config webpack.dev.config.js --open --progress --inline",
     "start": "npm run serve",
     "test": "jest",
+    "test:watch": "jest --watch",
     "gulp": "gulp",
     "rimraf": "rimraf"
   },
@@ -90,6 +91,7 @@
   "devDependencies": {
     "@types/assert": "0.0.28",
     "@types/bootstrap": "^3.3.33",
+    "@types/enzyme": "^2.8.0",
     "@types/jest": "^19.2.4",
     "@types/js-base64": "^2.1.5",
     "@types/jsonstream": "^0.8.27",

@@ -4,14 +4,11 @@ import * as ReactDOM from 'react-dom';
 import {Diagram} from './components/Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./kaavio.css');
-import {PanZoom} from "./components/PanZoom";
+import {PanZoom} from './components/PanZoom';
 import {Manipulator} from './manipulator';
 import {getManipulator} from "./manipulator/manipulator";
 
-// pullAllWith is missing from the lodash typings so just require for now
-// See issue: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/13747
-// TODO: Track the issue and go back to import * as _ from 'lodash'
-const _ = require('lodash');
+import * as _ from 'lodash';
 
 export interface highlightedNode {
 	node_id: string,

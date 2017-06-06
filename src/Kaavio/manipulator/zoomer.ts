@@ -14,31 +14,27 @@ export class Zoomer {
         this.diagram = diagram;
     }
 
-    /**
-     * Compute the amount that the node should be zoomed in by
-     * @param node_id
-     * @returns {number}
-     */
-    private computeZoom(node_id: string | string[]): number {
+    computeZoom(containerDims: {width: number, height: number}, entityDims: {width: number, height: number},
+                scalingFactor = 1) {
+        let relativeArea;
+        if (entityDims.width >= entityDims.height) {
+            relativeArea = containerDims.width / entityDims.width;
+        }
+        else {
+            relativeArea = containerDims.height / entityDims.height;
+        }
+        return relativeArea * scalingFactor;
+    }
+
+    computeZoomForEntity(entity_id: string | string[]): number {
         let BBox;
         const containerSize = this.panZoom.getSizes();
-        if(typeof node_id === 'string') BBox = getNodeBBox(node_id, this.diagram, containerSize.realZoom);
+        if(typeof entity_id === 'string') BBox = getNodeBBox(entity_id, this.diagram, containerSize.realZoom);
         else {
-            if(node_id.length === 1) BBox = getNodeBBox(node_id[0], this.diagram, containerSize.realZoom);
-            else BBox = getGroupBBox(node_id, this.diagram, this.panZoom.getSizes().realZoom);
+            if(entity_id.length === 1) BBox = getNodeBBox(entity_id[0], this.diagram, containerSize.realZoom);
+            else BBox = getGroupBBox(entity_id, this.diagram, this.panZoom.getSizes().realZoom);
         }
-        let relativeArea;
-        if(BBox.width >= BBox.height){
-            relativeArea = containerSize.width / BBox.width;
-        }
-        else {
-            relativeArea = containerSize.height / BBox.height
-        }
-
-        relativeArea = relativeArea * containerSize.realZoom;
-
-        const scalingFactor = 0.95;
-        return relativeArea * scalingFactor;
+        return this.computeZoom(containerSize, BBox, 0.95)
     }
 
     private animateZoom(zoom_perc: number): Promise<any> {
@@ -64,11 +60,6 @@ export class Zoomer {
         });
     }
 
-    /**
-     * Zoom in by a percentage
-     * @param zoom_perc
-     * @param animate
-     */
     zoom(zoom_perc: number, animate = true): Promise<any> {
         if(animate) {
             return this.animateZoom(zoom_perc);
@@ -80,12 +71,7 @@ export class Zoomer {
         }
     }
 
-    /**
-     * Zoom onto a specific node
-     * @param node_id
-     * @param animate - should the diagram be animated?
-     */
-    zoomOn(node_id: string | string[], animate = true): Promise<any> {
+    zoomOn(entity_id: string | string[], animate = true): Promise<any> {
         // If the diagram is in the process of moving, the computed coordinates will be incorrect
         // by the time the diagram stops moving. Wait for the diagram to stop moving first by using
         // the isUpdating observable
@@ -93,24 +79,16 @@ export class Zoomer {
             .filter(isUpdating => ! isUpdating)
             .first()
             .map(() => {
-                const zoom_perc = this.computeZoom(node_id);
+                const zoom_perc = this.computeZoomForEntity(entity_id);
                 return Observable.fromPromise(this.zoom(zoom_perc, animate));
             })
             .toPromise();
     }
 
-    /**
-     * Zoom the diagram in.
-     * Just a wrapper to access the method in the panZoom component
-     */
     zoomIn(): void {
         this.panZoom.zoomIn();
     }
 
-    /**
-     * Zoom the diagram out
-     * Just a wrapper to access the method in the panZoom component
-     */
     zoomOut(): void {
         this.panZoom.zoomOut();
     }
