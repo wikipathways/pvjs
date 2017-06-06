@@ -16,7 +16,6 @@ import 'rxjs/add/observable/dom/ajax';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/let';
 import 'rxjs/add/operator/map';
-import {Manipulator} from "./Kaavio/manipulator/manipulator";
 // TODO: Add to docs that webpack must be used to bring in CSS
 // SEE https://github.com/KyleAMathews/react-spinkit#css
 import * as Spinner from 'react-spinkit';
@@ -74,7 +73,7 @@ function createPublicationXrefString(displayNumbers) {
 export class Pvjs extends React.Component<any, any> {
 	pathwayRequest: Observable<any>;
 	kaavioRef: any;
-	manipulator: Manipulator;
+	manipulator;
 	private readySubject = new BehaviorSubject(false);
 	ready = this.readySubject.asObservable();
 

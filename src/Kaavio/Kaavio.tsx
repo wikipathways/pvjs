@@ -5,7 +5,6 @@ import {Diagram} from './components/Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./kaavio.css');
 import {PanZoom} from './components/PanZoom';
-import {Manipulator} from './manipulator';
 import {getManipulator} from "./manipulator/manipulator";
 
 import * as _ from 'lodash';
@@ -23,7 +22,7 @@ export interface highlightedNode {
  * rendered. You can access the manipulation API via kaavio.manipulator
  */
 export class Kaavio extends React.Component<any, any> {
-	manipulator: Manipulator;
+	manipulator;
 
 	constructor(props) {
 		super(props);
