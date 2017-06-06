@@ -5,7 +5,7 @@ import {Diagram} from './components/Diagram';
 // TODO see whether there's anything I need in here. If not, delete.
 //require('./kaavio.css');
 import {PanZoom} from './components/PanZoom';
-import {getManipulator} from "./manipulator/manipulator";
+import {getManipulator} from "./manipulator";
 
 import * as _ from 'lodash';
 

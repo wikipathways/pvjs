@@ -1,4 +1,4 @@
-import { getManipulator } from './manipulator';
+import { getManipulator } from './index';
 
 describe('Manipulation API', () => {
     it('Should provide a factory function', () => {
