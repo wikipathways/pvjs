@@ -29,11 +29,18 @@ export class Kaavio extends React.Component<any, any> {
 			markerDrawers, highlightedEntities, hiddenEntities, zoomedEntities, pannedEntities,
 			showPanZoomControls = true} = this.props;
 
-		console.log(this.props);
-
 		const backgroundColor = customStyle.backgroundColor || 'white' ;
 		let {about} = this.props;
 		about = about || ('kaavio-container-' + new Date().toISOString()).replace(/\W/g, '');
+
+		// This is a port to the legacy use of node_id
+		// TODO: Change all references of highlightedNodes to the new highlightedEntities
+		let highlightedEntitiesLegacy = highlightedEntities.map(singleHighlightedEntity => {
+			return {
+				node_id: singleHighlightedEntity.entityId,
+				color: singleHighlightedEntity.color
+			}
+		});
 
 		const entityMap = entities.reduce(function(acc, entity) {
 			acc[entity.id] = entity;
@@ -57,7 +64,6 @@ export class Kaavio extends React.Component<any, any> {
 		// Consider refactoring the panZoom to be truly Reactive and not use refs
 		return (
 			<div id={about} className={`kaavio-container ${ customStyle.containerClass }`}>
-				{/* highlightedNodes is legacy. TODO: All references of highlightedNodes -> highlightedEntities */}
 				<Diagram
 					ref={diagram => !this.state.diagramRef && this.setState({diagramRef: diagram})}
 					about={`kaavio-diagram-for-${about}`}
@@ -73,7 +79,7 @@ export class Kaavio extends React.Component<any, any> {
 					markerDrawers={markerDrawers}
 					zIndices={zIndices}
 					customStyle={customStyle}
-					highlightedNodes={highlightedEntities}
+					highlightedNodes={highlightedEntitiesLegacy}
 					hiddenEntities={hiddenEntities}
 				/>
 				<PanZoom diagram={this.state.diagramRef}

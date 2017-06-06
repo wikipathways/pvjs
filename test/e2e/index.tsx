@@ -31,7 +31,7 @@ ReactDOM.render(
     <Pvjs about={'http://identifiers.org/wikipathways/' + pathwayId}
           zoomedEntities={['d8bae', 'd32e4']}
           pannedEntities={['d8bae', 'd32e4']}
-          highlightedEntities={[{node_id: 'd8bae', color: 'red' }]}
+          highlightedEntities={[{entityId: 'd8bae', color: 'red' }]}
           hiddenEntities={['d32e4']}
     />,
     container
