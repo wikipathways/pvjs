@@ -41,23 +41,27 @@ export class Zoomer {
         return relativeArea * scalingFactor;
     }
 
-    private animateZoom(zoom_perc: number): void {
+    private animateZoom(zoom_perc: number): Promise<any> {
         const duration = 300;
         const zoomStep = .1;
         const curZoom = this.panZoom.getZoom();
         const diffZoom = Math.abs(curZoom - zoom_perc);
-
         const totalSteps = Math.round(diffZoom/zoomStep);
+
         let step = 0;
-        const intervalID = setInterval(() => {
-            if(step <= totalSteps) {
-                this.panZoom.zoom(curZoom + (step * zoomStep));
-                step++;
-            }
-            else {
-                clearInterval(intervalID);
-            }
-        }, duration / totalSteps)
+
+        return new Promise(resolve => {
+            const intervalID = setInterval(() => {
+                if(step <= totalSteps) {
+                    this.panZoom.zoom(curZoom + (step * zoomStep));
+                    step++;
+                }
+                else {
+                    clearInterval(intervalID);
+                    resolve()
+                }
+            }, duration / totalSteps)
+        });
     }
 
     /**
@@ -65,11 +69,14 @@ export class Zoomer {
      * @param zoom_perc
      * @param animate
      */
-    zoom(zoom_perc: number, animate = true): void{
+    zoom(zoom_perc: number, animate = true): Promise<any> {
         if(animate) {
-            this.animateZoom(zoom_perc);
+            return this.animateZoom(zoom_perc);
         } else {
-            this.panZoom.zoom(zoom_perc);
+            return new Promise(resolve => {
+                this.panZoom.zoom(zoom_perc);
+                resolve();
+            });
         }
     }
 
@@ -78,18 +85,18 @@ export class Zoomer {
      * @param node_id
      * @param animate - should the diagram be animated?
      */
-    zoomOn(node_id: string | string[], animate = true): void {
-
+    zoomOn(node_id: string | string[], animate = true): Promise<any> {
         // If the diagram is in the process of moving, the computed coordinates will be incorrect
         // by the time the diagram stops moving. Wait for the diagram to stop moving first by using
         // the isUpdating observable
-        this.panZoom.isUpdating$
+        return this.panZoom.isUpdating$
             .filter(isUpdating => ! isUpdating)
             .first()
-            .subscribe(() => {
+            .map(() => {
                 const zoom_perc = this.computeZoom(node_id);
-                this.zoom(zoom_perc, animate);
+                return Observable.fromPromise(this.zoom(zoom_perc, animate));
             })
+            .toPromise();
     }
 
     /**

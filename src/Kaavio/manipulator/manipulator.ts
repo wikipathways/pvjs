@@ -51,8 +51,9 @@ export function getManipulator(kaavioRef, panZoomRef, diagramRef): Manipulator {
       show: hider.show.bind(hider),
       resetHidden: hider.resetHidden.bind(hider),
       zoomOn: function(entity_id: string | string[]) {
-          zoomer.zoomOn.bind(zoomer)(entity_id);
-          panner.panTo.bind(panner)(entity_id);
+          panner.panTo.bind(panner)(entity_id).then(() => {
+              zoomer.zoomOn.bind(zoomer)(entity_id);
+          });
       },
       zoomIn: zoomer.zoomIn.bind(zoomer),
       zoomOut: zoomer.zoomOut.bind(zoomer),
