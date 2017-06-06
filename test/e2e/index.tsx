@@ -28,7 +28,12 @@ var container = document.createElement('div');
 container.setAttribute('style', 'width: 1200px; height:800px');
 document.body.appendChild(container);
 ReactDOM.render(
-    <Pvjs about={'http://identifiers.org/wikipathways/' + pathwayId} zoomedEntities={['d8bae', 'd32e4']} pannedEntities={['d8bae', 'd32e4']} />,
+    <Pvjs about={'http://identifiers.org/wikipathways/' + pathwayId}
+          zoomedEntities={['d8bae', 'd32e4']}
+          pannedEntities={['d8bae', 'd32e4']}
+          highlightedEntities={[{node_id: 'd8bae', color: 'red' }]}
+          hiddenEntities={['d32e4']}
+    />,
     container
 );
 

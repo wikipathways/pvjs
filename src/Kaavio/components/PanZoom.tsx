@@ -18,7 +18,7 @@ export class PanZoom extends React.Component<any, any> {
         if(isEqual(nextProps, prevProps)) return;
         if(! isEqual(nextProps.diagram, prevProps.diagram)) {
             const onInit = (panZoomInstance) => {
-                this.setState({panZoom: panZoomInstance, ready: true}, () => console.log(this.state));
+                this.setState({panZoom: panZoomInstance, ready: true});
             };
             this.init(nextProps.diagram, nextProps.showPanZoomControls, onInit);
         }
@@ -138,7 +138,6 @@ export class PanZoom extends React.Component<any, any> {
         const BBox = this.locate(zoomedEntities);
         const containerBBox = panZoom.getSizes();
         const scalingFactor = 0.9;
-        console.log(BBox);
 
         if (BBox.width >= BBox.height) {
             panZoom.zoom((containerBBox.width / BBox.width) * scalingFactor);

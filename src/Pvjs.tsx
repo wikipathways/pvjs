@@ -371,7 +371,7 @@ export class Pvjs extends React.Component<any, any> {
 					   entities={pvjson.entities} name={pvjson.name} width={pvjson.width} height={pvjson.height}
 					   backgroundColor={pvjson.backgroundColor} customStyle={customStyle} edgeDrawers={EdgeDrawers}
 					   icons={icons} markerDrawers={markerDrawers} filters={filters}
-					   highlightedEntites={highlightedEntities} hiddenEntities={hiddenEntities}
+					   highlightedEntities={highlightedEntities} hiddenEntities={hiddenEntities}
 					   pannedEntities={pannedEntities} zoomedEntities={zoomedEntities}
 					   onReady={kaavio => this.onKaavioReady(kaavio)} showPanZoomControls={showPanZoomControls} />
 	}

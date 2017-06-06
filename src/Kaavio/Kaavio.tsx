@@ -1,17 +1,6 @@
-import {forOwn} from 'lodash';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import {Diagram} from './components/Diagram';
-// TODO see whether there's anything I need in here. If not, delete.
-//require('./kaavio.css');
 import {PanZoom} from './components/PanZoom';
-
-import * as _ from 'lodash';
-
-export interface highlightedNode {
-	node_id: string,
-	color: string; // CSS color. E.g. 'red' or '#ffff'
-}
 
 /**
  * Kaavio component.
@@ -33,16 +22,14 @@ export class Kaavio extends React.Component<any, any> {
 		// Fire the onReady function with a reference to Kaavio
 		const {onReady} = this.props;
 		onReady(this);
-	}
-
-	getEntities = () => {
-		return this.props.entities;
 	};
 
 	render() {
 		const {customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons,
 			markerDrawers, highlightedEntities, hiddenEntities, zoomedEntities, pannedEntities,
 			showPanZoomControls = true} = this.props;
+
+		console.log(this.props);
 
 		const backgroundColor = customStyle.backgroundColor || 'white' ;
 		let {about} = this.props;
