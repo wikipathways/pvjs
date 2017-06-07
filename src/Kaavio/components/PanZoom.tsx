@@ -12,13 +12,16 @@ export class PanZoom extends React.Component<any, any> {
             panZoom: null,
             shouldZoom: false,
             shouldPan: false,
+            // Users can pan/zoom the diagram so the state provides an actual representation of the pan/zoom state
+            zoomedEntities: props.zoomedEntities,
+            pannedEntities: props.pannedEntities,
         };
     }
 
     componentWillReceiveProps(nextProps) {
         const prevProps = this.props;
-        const {pannedEntities, zoomedEntities} = nextProps;
-        if(! isEqual(nextProps.diagram, prevProps.diagram)) {
+        const {pannedEntities, zoomedEntities, diagram} = nextProps;
+        if(! isEqual(diagram, prevProps.diagram)) {
             const onInit = (panZoomInstance) => {
                 this.setState({
                     panZoom: panZoomInstance,
@@ -30,11 +33,11 @@ export class PanZoom extends React.Component<any, any> {
             this.init(nextProps.diagram, onInit);
         }
 
-        if(! isEqual(prevProps.pannedEntities, pannedEntities)) {
-            this.setState({shouldPan: true});
+        if(! isEqual(this.state.pannedEntities, pannedEntities) || pannedEntities.length < 1) {
+            this.setState({shouldPan: true, pannedEntities: pannedEntities});
         }
-        if (! isEqual(prevProps.zoomedEntities, zoomedEntities)) {
-            this.setState({shouldZoom: true});
+        if (! isEqual(this.state.zoomedEntities, zoomedEntities) || zoomedEntities.length < 1) {
+            this.setState({shouldZoom: true, zoomedEntities: zoomedEntities});
         }
     }
 
@@ -73,7 +76,7 @@ export class PanZoom extends React.Component<any, any> {
         let node: SVGElement = ReactDOM.findDOMNode(diagram) as SVGElement;
         SVGPanZoom(node, {
             viewportSelector: '.svg-pan-zoom_viewport',
-            controlIconsEnabled: false,
+            controlIconsEnabled: true,
             fit: true,
             center: true,
             minZoom: 0.1,
@@ -92,7 +95,8 @@ export class PanZoom extends React.Component<any, any> {
                 const { ready } = this.state;
                 if (! ready) return false;
                 // Don't allow any more zooming until done
-                this.setState({ready: false});
+                // Reset the zoomedEntities since the diagram has moved and we can't be sure they are still zoomed on
+                this.setState({ready: false, zoomedEntities: []});
                 return true;
             },
             beforePan: () =>  {
@@ -100,7 +104,8 @@ export class PanZoom extends React.Component<any, any> {
                 const { ready } = this.state;
                 if (! ready) return false;
                 // Don't allow any more panning until done
-                this.setState({ready: false});
+                // Reset pannedEntities since the diagram has moved and we can't be sure they are still panned on
+                this.setState({ready: false, pannedEntities: []});
                 return true;
             },
             onUpdatedCTM: () => this.setState({ready: true})
@@ -113,6 +118,7 @@ export class PanZoom extends React.Component<any, any> {
 
         return new Promise(resolve => {
             if (! zoomedEntities || zoomedEntities.length < 1){
+                panZoom.resetZoom();
                 resolve();
                 return;
             }
@@ -140,6 +146,7 @@ export class PanZoom extends React.Component<any, any> {
 
         return new Promise(resolve => {
             if (! pannedEntities || pannedEntities.length < 1) {
+                panZoom.center();
                 resolve();
                 return;
             }

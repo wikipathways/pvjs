@@ -65,13 +65,19 @@ export class Manipulator {
 
     zoomOn = (entityId: string | string[]) => {
         let toZoom;
-        if (! Array.isArray(entityId))
-            toZoom = [entityId];
-        else
+        if (Array.isArray(entityId))
             toZoom = entityId;
+        else
+            toZoom = [entityId];
 
         this.props.zoomedEntities = toZoom;
         this.props.pannedEntities = toZoom;
+        this.renderFunc();
+    };
+
+    resetZoom = () => {
+        this.props.zoomedEntities = [];
+        this.props.pannedEntities = [];
         this.renderFunc();
     };
 
@@ -83,6 +89,19 @@ export class Manipulator {
             toPan = entityId;
 
         this.props.pannedEntities = toPan;
+        this.renderFunc();
+    };
+
+    resetPan = () => {
+        this.props.pannedEntities = [];
+        this.renderFunc();
+    };
+
+    reset = () => {
+        this.props.pannedEntities = [];
+        this.props.zoomedEntities = [];
+        this.props.hiddenEntities = [];
+        this.props.highlightedEntities = [];
         this.renderFunc();
     }
 }
