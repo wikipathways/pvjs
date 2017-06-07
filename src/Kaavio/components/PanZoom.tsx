@@ -41,7 +41,7 @@ export class PanZoom extends React.Component<any, any> {
     componentDidUpdate(prevProps, prevState) {
         // Whenever the state or props change, we check if the component should pan or zoom
         // If ONE of them is needed, it is performed
-        // By calling setState in setOn[Pan/Zoom], this will be called again
+        // By calling setState in the then callback, this will be called again
         // So if both of them are needed, they are performed one after the other
         const { shouldPan, shouldZoom, ready } = this.state;
         if(shouldPan && ready) {
@@ -117,7 +117,10 @@ export class PanZoom extends React.Component<any, any> {
                 return;
             }
 
-            panZoom.setOnZoom(() => resolve());
+            panZoom.setOnZoom(() => {
+                panZoom.setOnZoom(() => {});
+                resolve();
+            });
 
             const BBox = this.locate(zoomedEntities);
             const containerBBox = panZoom.getSizes();
@@ -141,6 +144,7 @@ export class PanZoom extends React.Component<any, any> {
                 return;
             }
             panZoom.setOnPan(() => {
+                panZoom.setOnPan(() => {});
                 resolve();
             });
 
