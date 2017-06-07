@@ -3,10 +3,10 @@
 exports[`Kaavio Should allow hiding entities 1`] = `
 <div
   className="kaavio-container undefined"
-  id="kaaviocontainer20170607T082322783Z"
+  id="kaavio-container"
 >
   <Diagram
-    about="kaavio-diagram-for-kaaviocontainer20170607T082322783Z"
+    about="kaavio-diagram-for-kaavio-container"
     backgroundColor="white"
     customStyle={Object {}}
     entityMap={
@@ -48,10 +48,10 @@ exports[`Kaavio Should allow hiding entities 1`] = `
 exports[`Kaavio Should allow highlighted entities 1`] = `
 <div
   className="kaavio-container undefined"
-  id="kaaviocontainer20170607T082322780Z"
+  id="kaavio-container"
 >
   <Diagram
-    about="kaavio-diagram-for-kaaviocontainer20170607T082322780Z"
+    about="kaavio-diagram-for-kaavio-container"
     backgroundColor="white"
     customStyle={Object {}}
     entityMap={
@@ -95,10 +95,10 @@ exports[`Kaavio Should allow highlighted entities 1`] = `
 exports[`Kaavio Should allow zoomed and panned entities 1`] = `
 <div
   className="kaavio-container undefined"
-  id="kaaviocontainer20170607T082322785Z"
+  id="kaavio-container"
 >
   <Diagram
-    about="kaavio-diagram-for-kaaviocontainer20170607T082322785Z"
+    about="kaavio-diagram-for-kaavio-container"
     backgroundColor="white"
     customStyle={Object {}}
     entityMap={
@@ -145,10 +145,10 @@ exports[`Kaavio Should allow zoomed and panned entities 1`] = `
 exports[`Kaavio Should render with an entity list 1`] = `
 <div
   className="kaavio-container undefined"
-  id="kaaviocontainer20170607T082322775Z"
+  id="kaavio-container"
 >
   <Diagram
-    about="kaavio-diagram-for-kaaviocontainer20170607T082322775Z"
+    about="kaavio-diagram-for-kaavio-container"
     backgroundColor="white"
     customStyle={Object {}}
     entityMap={
@@ -185,10 +185,10 @@ exports[`Kaavio Should render with an entity list 1`] = `
 exports[`Kaavio should render correctly 1`] = `
 <div
   className="kaavio-container undefined"
-  id="kaaviocontainer20170607T082322772Z"
+  id="kaavio-container"
 >
   <Diagram
-    about="kaavio-diagram-for-kaaviocontainer20170607T082322772Z"
+    about="kaavio-diagram-for-kaavio-container"
     backgroundColor="white"
     customStyle={Object {}}
     entityMap={Object {}}

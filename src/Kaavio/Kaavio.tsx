@@ -31,7 +31,7 @@ export class Kaavio extends React.Component<any, any> {
 
 		const backgroundColor = customStyle.backgroundColor || 'white' ;
 		let {about} = this.props;
-		about = about || ('kaavio-container-' + new Date().toISOString()).replace(/\W/g, '');
+		about = about || 'kaavio-container';
 
 		// This is a port to the legacy use of node_id
 		// TODO: Change all references of highlightedNodes to the new highlightedEntities

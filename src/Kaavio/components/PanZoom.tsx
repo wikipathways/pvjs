@@ -43,21 +43,16 @@ export class PanZoom extends React.Component<any, any> {
         // If ONE of them is needed, it is performed
         // By calling setState in setOn[Pan/Zoom], this will be called again
         // So if both of them are needed, they are performed one after the other
-        const { shouldPan, shouldZoom, panZoom, ready } = this.state;
-
+        const { shouldPan, shouldZoom, ready } = this.state;
         if(shouldPan && ready) {
-            panZoom.setOnPan(() => {
-                this.setState({shouldPan: false});
-                panZoom.setOnPan(() => {});
+            this.panToEntities().then(() => {
+                this.setState({shouldPan: false})
             });
-            this.panToEntities();
         }
         else if(shouldZoom && ready) {
-            panZoom.setOnZoom(() => {
-                this.setState({shouldZoom: false});
-                panZoom.setOnZoom(() => {});
+            this.zoomOnEntities().then(() => {
+                this.setState({shouldZoom: false})
             });
-            this.zoomOnEntities();
         }
     }
 
@@ -112,44 +107,53 @@ export class PanZoom extends React.Component<any, any> {
         } as SvgPanZoom.Options);
     };
 
-    zoomOnEntities() {
+    zoomOnEntities(): Promise<{}> {
         const { zoomedEntities } = this.props;
         const { panZoom } = this.state;
 
-        if (! zoomedEntities || zoomedEntities.length < 1) {
-            panZoom.reset();
-            return;
-        }
+        return new Promise(resolve => {
+            if (! zoomedEntities || zoomedEntities.length < 1){
+                resolve();
+                return;
+            }
 
-        const BBox = this.locate(zoomedEntities);
-        const containerBBox = panZoom.getSizes();
-        const scalingFactor = 0.8;
+            panZoom.setOnZoom(() => resolve());
 
-        if (BBox.width >= BBox.height) {
-            panZoom.zoom((containerBBox.width / BBox.width) * scalingFactor * containerBBox.realZoom);
-            return;
-        }
-        panZoom.zoom((containerBBox.height / BBox.height) * scalingFactor * containerBBox.realZoom);
+            const BBox = this.locate(zoomedEntities);
+            const containerBBox = panZoom.getSizes();
+            const scalingFactor = 0.8;
+
+            if (BBox.width >= BBox.height) {
+                panZoom.zoom((containerBBox.width / BBox.width) * scalingFactor * containerBBox.realZoom);
+                return;
+            }
+            panZoom.zoom((containerBBox.height / BBox.height) * scalingFactor * containerBBox.realZoom);
+        });
     }
 
-    panToEntities() {
+    panToEntities(): Promise<{}> {
         const { pannedEntities } = this.props;
         const { panZoom } = this.state;
 
-        if (! pannedEntities || pannedEntities.length < 1) {
-            panZoom.resetPan();
-            return;
-        }
+        return new Promise(resolve => {
+            if (! pannedEntities || pannedEntities.length < 1) {
+                resolve();
+                return;
+            }
+            panZoom.setOnPan(() => {
+                resolve();
+            });
 
-        const BBox = this.locate(pannedEntities);
-        const curPan = panZoom.getPan();
-        const containerSizes = panZoom.getSizes();
+            const BBox = this.locate(pannedEntities);
+            const curPan = panZoom.getPan();
+            const containerSizes = panZoom.getSizes();
 
-        const coordinates = {
-            x: -BBox.x -  (BBox.width / 2) + curPan.x + (containerSizes.width / 2),
-            y: -BBox.y - (BBox.height / 2) + curPan.y + (containerSizes.height / 2),
-        };
-        panZoom.pan(coordinates);
+            const coordinates = {
+                x: -BBox.x -  (BBox.width / 2) + curPan.x + (containerSizes.width / 2),
+                y: -BBox.y - (BBox.height / 2) + curPan.y + (containerSizes.height / 2),
+            };
+            panZoom.pan(coordinates);
+        });
     }
 
     locate(entities: string[]) {
