@@ -52,7 +52,8 @@ About is the WikiPathways ID. E.g. Give "WP78" for the TCA sycle.
 
 ### loadDiagram
 Use the loadDiagram for more fine-grained control. 
-Pass in a callback that is called with the instance of the manipulator so you can make changes to the diagram.
+Pass in a callback that is called with the instance of the manipulator so you can make changes to the diagram. The 
+callback **will not** be called if an error (e.g. network error) occurs.
 
 ```javascript
 import { loadDiagram } from '@wikipathways/pvjs';
