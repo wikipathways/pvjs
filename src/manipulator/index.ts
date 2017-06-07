@@ -103,5 +103,9 @@ export class Manipulator {
         this.props.hiddenEntities = [];
         this.props.highlightedEntities = [];
         this.renderFunc();
+    };
+
+    getEntities = () => {
+
     }
 }

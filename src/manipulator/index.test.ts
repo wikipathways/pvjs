@@ -63,3 +63,7 @@ it('should have resetPan', () => {
 it('should have reset that resets pan, zoom, highlighted & hidden', () => {
     testManipulationFunc('reset');
 });
+
+it('should have getEntities', () => {
+    testManipulationFunc('getEntities')
+});
