@@ -1,22 +1,15 @@
-import { uniq } from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Pvjs as PvjsComponent} from '../Pvjs'; // Fix conflicting imports/exports
 import * as WikiPathwaysDefaultDisplayStyle from '../WikiPathways.style';
-
-export interface Opts {
-	about?: string;
-	version?: number;
-	src?: string;
-	customStyle?: any;
-	showPanZoomControls?: boolean;
-}
+import { Manipulator } from '../manipulator';
+import { curryRight } from 'lodash';
 
 /**
  * Simple wrapper around the Pvjs react component.
  * Use this function to call Pvjs
  * @param selector: DOM Selector for the container in which to render the diagram
- * @param about: unique identifier for the pathway
+ * @param WPId: The WikiPathways ID. E.g. WP4
  * @param [opts]
  * @param [opts.version=0]: Pathways at WikiPathways are versioned, e.g., WP1 has version 73346.
  * 													Version 0 mean latest.
@@ -25,9 +18,9 @@ export interface Opts {
  * @param [opts.customStyle]
  * @param [callback]: The callback to call with the reference to the Pvjs instance
  */
-export function loadDiagram(selector: string, about: string, opts: Opts, callback?: any): void {
+export function loadDiagram(selector: string, WPId: string, opts: any, callback?: any): void {
 	const props = Object.assign({}, opts, {
-		about: 'http://identifiers.org/wikipathways/' + about,
+		about: 'http://identifiers.org/wikipathways/' + WPId,
 		version: 0,
 		customStyle: WikiPathwaysDefaultDisplayStyle,
 		showPanZoomControls: true,
@@ -35,27 +28,13 @@ export function loadDiagram(selector: string, about: string, opts: Opts, callbac
 		zoomedEntities: [],
 		pannedEntities: []
 	});
-    let container = document.querySelector(selector);
+    const container = document.querySelector(selector);
     renderComponent(
         props,
         container,
 		() => {
-			callback({
-				highlightOn: (entityId, color) => {
-					props.highlightedEntities = props.highlightedEntities.concat([{entityId, color}]);
-					renderComponent(props, container)
-				},
-				highlightOff: (entityId) => {
-					props.highlightedEntities = props.highlightedEntities
-						.filter(singleEntity => singleEntity.entityId !== entityId);
-					renderComponent(props, container)
-				},
-				zoomOn: (entityId) => {
-					props.zoomedEntities = [entityId];
-					props.pannedEntities = [entityId];
-					renderComponent(props, container);
-				}
-			})
+        	const reRender = curryRight(renderComponent as (t1: any) => any)(null)(container);
+			callback(new Manipulator(reRender, props))
 		}
     );
 }
@@ -64,6 +43,6 @@ const renderComponent = (props, container, cb?) => {
 	ReactDOM.render(
 		<PvjsComponent {...props}/>,
 		container,
-		cb
-	)
+		cb ? cb : null
+	);
 };
