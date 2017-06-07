@@ -124,6 +124,7 @@
     "deep-diff": "^0.3.8",
     "deglobalify": "^0.2.0",
     "enzyme": "^2.8.2",
+    "enzyme-to-json": "^1.5.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "fetch-mock": "^5.11.0",
     "file-loader": "^0.10.1",
