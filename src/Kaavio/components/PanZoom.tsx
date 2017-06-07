@@ -20,7 +20,7 @@ export class PanZoom extends React.Component<any, any> {
 
     componentWillReceiveProps(nextProps) {
         const prevProps = this.props;
-        const {pannedEntities, zoomedEntities, diagram} = nextProps;
+        const {pannedEntities = [], zoomedEntities = [], diagram} = nextProps;
         if(! isEqual(diagram, prevProps.diagram)) {
             const onInit = (panZoomInstance) => {
                 this.setState({
@@ -113,7 +113,7 @@ export class PanZoom extends React.Component<any, any> {
     };
 
     zoomOnEntities(): Promise<{}> {
-        const { zoomedEntities } = this.props;
+        const { zoomedEntities = [] } = this.props;
         const { panZoom } = this.state;
 
         return new Promise(resolve => {
@@ -141,7 +141,7 @@ export class PanZoom extends React.Component<any, any> {
     }
 
     panToEntities(): Promise<{}> {
-        const { pannedEntities } = this.props;
+        const { pannedEntities = [] } = this.props;
         const { panZoom } = this.state;
 
         return new Promise(resolve => {
