@@ -107,11 +107,14 @@ function registerWikiPathwaysPvjsElement() {
 	window.customElements.define('wikipathways-pvjs', WikiPathwaysElement);
 }
 
-if (document.readyState === 'complete') {
-  registerWikiPathwaysPvjsElement();
-} else {
-  window.addEventListener('load', function listener(event) {
-    window.removeEventListener('load', listener, false);
-    registerWikiPathwaysPvjsElement();
-  }, false);
+
+if(typeof(window) !== 'undefined' && typeof(document) !== 'undefined') {
+	if (document.readyState === 'complete') {
+		registerWikiPathwaysPvjsElement();
+	} else {
+		window.addEventListener('load', function listener(event) {
+			window.removeEventListener('load', listener, false);
+			registerWikiPathwaysPvjsElement();
+		}, false);
+	}
 }

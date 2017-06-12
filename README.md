@@ -52,7 +52,8 @@ About is the WikiPathways ID. E.g. Give "WP78" for the TCA sycle.
 
 ### loadDiagram
 Use the loadDiagram for more fine-grained control. 
-Pass in a callback that is called with the instance of the diagram to perform operations on the diagram.
+Pass in a callback that is called with the instance of the manipulator so you can make changes to the diagram. The 
+callback **will not** be called if an error (e.g. network error) occurs.
 
 ```javascript
 import { loadDiagram } from '@wikipathways/pvjs';
@@ -65,6 +66,10 @@ loadDiagram('#pathway-container', 'SOME_WP_ID', opts, callback);
 {
 	version?: number; // The version number. Use 0 for latest
 	showPanZoomControls?: boolean;
+	hiddenEntities: string[], // List of entityIds,
+	highlightedEntities: {entityId: string, color: string}[],
+	zoomedEntities: string[],
+	pannedEntities: string[]
 }
 ```
 
@@ -78,10 +83,14 @@ import { Pvjs } from '@wikipathways/pvjs';
 const WPID = 'WP4'; // Or whatever ID you desire
 const version = 0; // Version 0 is the latest
 const showPanZoomControls = true;
+highlightedEntities = [{entityId: 'd8bae', color: 'red'}];
+hiddenEntities = ['d8bae'];
+zoomedEntities = ['d8bae'];
+pannedEntities = ['d8bae'];
 
 const onPvjsReady = (pvjsRef) => {
-    // Here you can perform operations on the diagram
-    // Use the Manipulation API
+    // This will be called when everything is ready.
+    // After Kaavio is mounted and pan/zoom functionality is ready
 };
 
 ReactDOM.render(
@@ -89,7 +98,11 @@ ReactDOM.render(
     about={'http://identifiers.org/wikipathways/' + WPID} 
     version={version} 
     showPanZoomControls={showPanZoomControls}
-    onReady={onPvjsReady} />,
+    onReady={onPvjsReady} 
+    highlightedEntities={highlightedEntities} 
+    hiddenEntities={hiddenEntities}
+    zoomedEntities={zoomedEntities}
+    pannedEntities={pannedEntities} />,
     document.getElementById('root')
 );
 
@@ -106,14 +119,8 @@ A demonstration of what's possible with the manipulation API is available at [Me
 ```javascript
 import { loadDiagram } from '@wikipathways/pvjs';
 
-loadDiagram('#pathway-container', 'SOME_WP_ID', options, instance => {
-    // Subscribe to the ready observable
-    pathwayInstance.ready$.subscribe(ready => {
-        if (! ready) return;
-        
-        // Can now use the manipulation API
-        instance.manipulator.zoomOn('SOME_ENTITY_ID');
-    })
+loadDiagram('#pathway-container', 'SOME_WP_ID', options, manipulator => {
+        manipulator.zoomOn('SOME_ENTITY_ID');
 })
 ```
 
@@ -230,19 +237,14 @@ reset()
 import { loadDiagram } from '@wikipathways/pvjs';
 
 // WP78 is the TCA cycle
-loadDiagram('#pathway-container', 'WP78', options, instance => {
-    // Subscribe to the ready observable
-    pathwayInstance.ready$.subscribe(ready => {
-        if (! ready) return;
-        
-        // Get the ID for citrate
-        const ID = instance.manipulator.getEntities()
-                .filter(singleEntity => singleEntity.textContent === 'citrate')[0].id;
-        
-        instance.manipulator.zoomOn(ID);
-        instance.manipulator.zoomOut();
-        instance.manipulator.highlightOn(ID, '#00FFFF');
-    })
+loadDiagram('#pathway-container', 'WP78', options, manipulator => {
+    // Get the ID for citrate
+    const ID = manipulator.getEntities()
+            .filter(singleEntity => singleEntity.textContent === 'citrate')[0].id;
+    
+    manipulator.zoomOn(ID);
+    manipulator.zoomOut();
+    manipulator.highlightOn(ID, '#00FFFF');
 })
 ```
 

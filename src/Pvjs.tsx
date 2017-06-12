@@ -16,13 +16,13 @@ import 'rxjs/add/observable/dom/ajax';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/let';
 import 'rxjs/add/operator/map';
-import {Manipulator} from "./Kaavio/manipulator/manipulator";
 // TODO: Add to docs that webpack must be used to bring in CSS
 // SEE https://github.com/KyleAMathews/react-spinkit#css
 import * as Spinner from 'react-spinkit';
 import {BehaviorSubject} from "rxjs";
 import * as WikiPathwaysDefaultDisplayStyle from './WikiPathways.style';
 import {CSSProperties} from "react";
+import 'whatwg-fetch';
 
 // TODO move this into utils
 // Create a string of citation numbers for display,
@@ -74,7 +74,7 @@ function createPublicationXrefString(displayNumbers) {
 export class Pvjs extends React.Component<any, any> {
 	pathwayRequest: Observable<any>;
 	kaavioRef: any;
-	manipulator: Manipulator;
+	manipulator;
 	private readySubject = new BehaviorSubject(false);
 	ready = this.readySubject.asObservable();
 
@@ -363,7 +363,7 @@ export class Pvjs extends React.Component<any, any> {
 
 	renderKaavio(){
 		const {loaded, pvjson, filters} = this.state;
-		const { about, showPanZoomControls} = this.props;
+		const { about, showPanZoomControls, highlightedEntities, hiddenEntities, zoomedEntities, pannedEntities} = this.props;
 		const customStyle = this.props.customStyle || WikiPathwaysDefaultDisplayStyle;
 
 		if(!loaded) return null;
@@ -372,6 +372,8 @@ export class Pvjs extends React.Component<any, any> {
 					   entities={pvjson.entities} name={pvjson.name} width={pvjson.width} height={pvjson.height}
 					   backgroundColor={pvjson.backgroundColor} customStyle={customStyle} edgeDrawers={EdgeDrawers}
 					   icons={icons} markerDrawers={markerDrawers} filters={filters}
+					   highlightedEntities={highlightedEntities} hiddenEntities={hiddenEntities}
+					   pannedEntities={pannedEntities} zoomedEntities={zoomedEntities}
 					   onReady={kaavio => this.onKaavioReady(kaavio)} showPanZoomControls={showPanZoomControls} />
 	}
 

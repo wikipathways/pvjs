@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Kaavio Should allow hiding entities 1`] = `
+<div
+  className="kaavio-container undefined"
+  id="kaavio-container"
+>
+  <Diagram
+    about="kaavio-diagram-for-kaavio-container"
+    backgroundColor="white"
+    customStyle={Object {}}
+    entityMap={
+      Object {
+        "my-node": Object {
+          "backgroundColor": "white",
+          "borderWidth": 1,
+          "color": "black",
+          "height": 12,
+          "id": "my-node",
+          "kaavioType": "node",
+          "textContent": "My node",
+          "width": 1.5,
+          "x": 0,
+          "y": 0,
+        },
+      }
+    }
+    hiddenEntities={
+      Array [
+        "my-node",
+      ]
+    }
+    highlightedNodes={Array []}
+    zIndices={
+      Array [
+        "my-node",
+      ]
+    }
+  />
+  <PanZoom
+    diagram={null}
+    onReady={[Function]}
+    showPanZoomControls={true}
+  />
+</div>
+`;
+
+exports[`Kaavio Should allow highlighted entities 1`] = `
+<div
+  className="kaavio-container undefined"
+  id="kaavio-container"
+>
+  <Diagram
+    about="kaavio-diagram-for-kaavio-container"
+    backgroundColor="white"
+    customStyle={Object {}}
+    entityMap={
+      Object {
+        "my-node": Object {
+          "backgroundColor": "white",
+          "borderWidth": 1,
+          "color": "black",
+          "height": 12,
+          "id": "my-node",
+          "kaavioType": "node",
+          "textContent": "My node",
+          "width": 1.5,
+          "x": 0,
+          "y": 0,
+        },
+      }
+    }
+    highlightedNodes={
+      Array [
+        Object {
+          "color": "red",
+          "node_id": "my-node",
+        },
+      ]
+    }
+    zIndices={
+      Array [
+        "my-node",
+      ]
+    }
+  />
+  <PanZoom
+    diagram={null}
+    onReady={[Function]}
+    showPanZoomControls={true}
+  />
+</div>
+`;
+
+exports[`Kaavio Should allow zoomed and panned entities 1`] = `
+<div
+  className="kaavio-container undefined"
+  id="kaavio-container"
+>
+  <Diagram
+    about="kaavio-diagram-for-kaavio-container"
+    backgroundColor="white"
+    customStyle={Object {}}
+    entityMap={
+      Object {
+        "my-node": Object {
+          "backgroundColor": "white",
+          "borderWidth": 1,
+          "color": "black",
+          "height": 12,
+          "id": "my-node",
+          "kaavioType": "node",
+          "textContent": "My node",
+          "width": 1.5,
+          "x": 0,
+          "y": 0,
+        },
+      }
+    }
+    highlightedNodes={Array []}
+    zIndices={
+      Array [
+        "my-node",
+      ]
+    }
+  />
+  <PanZoom
+    diagram={null}
+    onReady={[Function]}
+    pannedEntities={
+      Array [
+        "my-node",
+      ]
+    }
+    showPanZoomControls={true}
+    zoomedEntities={
+      Array [
+        "my-node",
+      ]
+    }
+  />
+</div>
+`;
+
+exports[`Kaavio Should render with an entity list 1`] = `
+<div
+  className="kaavio-container undefined"
+  id="kaavio-container"
+>
+  <Diagram
+    about="kaavio-diagram-for-kaavio-container"
+    backgroundColor="white"
+    customStyle={Object {}}
+    entityMap={
+      Object {
+        "my-node": Object {
+          "backgroundColor": "white",
+          "borderWidth": 1,
+          "color": "black",
+          "height": 12,
+          "id": "my-node",
+          "kaavioType": "node",
+          "textContent": "My node",
+          "width": 1.5,
+          "x": 0,
+          "y": 0,
+        },
+      }
+    }
+    highlightedNodes={Array []}
+    zIndices={
+      Array [
+        "my-node",
+      ]
+    }
+  />
+  <PanZoom
+    diagram={null}
+    onReady={[Function]}
+    showPanZoomControls={true}
+  />
+</div>
+`;
+
+exports[`Kaavio should render correctly 1`] = `
+<div
+  className="kaavio-container undefined"
+  id="kaavio-container"
+>
+  <Diagram
+    about="kaavio-diagram-for-kaavio-container"
+    backgroundColor="white"
+    customStyle={Object {}}
+    entityMap={Object {}}
+    highlightedNodes={Array []}
+    zIndices={Array []}
+  />
+  <PanZoom
+    diagram={null}
+    onReady={[Function]}
+    showPanZoomControls={true}
+  />
+</div>
+`;
