@@ -95,14 +95,14 @@ const onPvjsReady = (pvjsRef) => {
 
 ReactDOM.render(
     <Pvjs 
-    about={'http://identifiers.org/wikipathways/' + WPID} 
-    version={version} 
-    showPanZoomControls={showPanZoomControls}
-    onReady={onPvjsReady} 
-    highlightedEntities={highlightedEntities} 
-    hiddenEntities={hiddenEntities}
-    zoomedEntities={zoomedEntities}
-    pannedEntities={pannedEntities} />,
+        about={'http://identifiers.org/wikipathways/' + WPID} 
+        version={version} 
+        showPanZoomControls={showPanZoomControls}
+        onReady={onPvjsReady} 
+        highlightedEntities={highlightedEntities} 
+        hiddenEntities={hiddenEntities}
+        zoomedEntities={zoomedEntities}
+        pannedEntities={pannedEntities} />,
     document.getElementById('root')
 );
 
