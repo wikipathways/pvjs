@@ -2,7 +2,6 @@
 // Required libraries that are imported for side-effects. Polyfills and shims go here.
 // TODO: Most of these polyfills are actually used by Kaavio. Be sure to include them when separating
 import 'document-register-element';
-import 'web-animations-js';
 import 'whatwg-fetch';
 
 // Import styles
