@@ -121,8 +121,18 @@ ReactDOM.render(
         pannedEntities={pannedEntities} />,
     document.getElementById('root')
 );
+```
 
+## Setting dimensions
+In all usage methods, it is advisable to wrap the Pvjs diagram in a container with predefined with and heights.
+Pvjs will then fill this container.
 
+```html
+<!--Example with the HTML custom element-->
+
+<div style="width: 800px; height: 600px">
+    wikipathways-pvjs wpId="SOMEPATHWAYID" version="0"></wikipathways-pvjs>
+</div>
 ```
 
 ## Manipulation API (Manipulator)
