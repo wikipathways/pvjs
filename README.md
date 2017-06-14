@@ -245,9 +245,9 @@ reset()
 import { loadDiagram } from '@wikipathways/pvjs';
 
 // WP78 is the TCA cycle
-loadDiagram('#pathway-container', 'WP78', options, manipulator => {
+loadDiagram('#pathway-container', 'WP78', options, {manipulator, entities} => {
     // Get the ID for citrate
-    const ID = manipulator.getEntities()
+    const ID = entities
             .filter(singleEntity => singleEntity.textContent === 'citrate')[0].id;
     
     manipulator.zoomOn(ID);
