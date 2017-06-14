@@ -21,14 +21,14 @@ npm install @wikipathways/pvjs --save
 ### Using the UMD bundle
 Pvjs comes with a UMD bundle that you can include in your HTML page. It's available under `dist/index.js`.
 
-1) Copy the file into your projects assets. Probably use a task runner like Gulp for this.
-2) Include it in your head tag
+1. Copy the file into your projects assets. Probably use a task runner like Gulp for this.
+2. Include it in your head tag
 
 ```
 <script src="assets/pvjs/index.js"></script>
 ```
 
-3) Pvjs is now available via the `Pvjs` namespace.
+3. Pvjs is now available via the `Pvjs` namespace.
 
 ### Importing
 If you are using a module bundler like [Webpack](http://webpack.github.io/), then just import Pvjs as you normally would.
@@ -57,7 +57,7 @@ Use the loadDiagram for more fine-grained control.
 Pass in a callback that is called with the instance of the manipulator so you can make changes to the diagram. The 
 callback **will not** be called if an error (e.g. network error) occurs. Details of the manipulator are available below.
 
-*Note* that if you are using the *UMD** module, you will need to call `Pvjs.loadDiagram(...)`.
+*Note* that if you are using the *UMD* module, you will need to call `Pvjs.loadDiagram(...)`.
 
 ```javascript
 import { loadDiagram } from '@wikipathways/pvjs';
