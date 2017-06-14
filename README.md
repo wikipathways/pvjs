@@ -138,7 +138,7 @@ Manipulator. Use the entities to get the IDs to perform manipulations on.
 ```javascript
 import { loadDiagram } from '@wikipathways/pvjs';
 
-loadDiagram('#pathway-container', 'SOME_WP_ID', options, {entities, manipulator} => {
+loadDiagram('#pathway-container', 'SOME_WP_ID', options, ({entities, manipulator}) => {
         // Grab an entityId
         // I just want to get the entity that has "Acetyl CoA" for the text.
         const acetylCoA = entities
@@ -245,7 +245,7 @@ reset()
 import { loadDiagram } from '@wikipathways/pvjs';
 
 // WP78 is the TCA cycle
-loadDiagram('#pathway-container', 'WP78', options, {manipulator, entities} => {
+loadDiagram('#pathway-container', 'WP78', options, ({manipulator, entities}) => {
     // Get the ID for citrate
     const ID = entities
             .filter(singleEntity => singleEntity.textContent === 'citrate')[0].id;
