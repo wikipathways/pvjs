@@ -68,7 +68,7 @@ loadDiagram('#pathway-container', 'SOME_WP_ID', opts, callback);
 `opts` is an object containing options for the diagram. Available options are:
 ```
 {
-	version?: number; // The version number. Use 0 for latest
+	version?: number; // The version number. Use 0 for latest. Defaults to 0
 	showPanZoomControls?: boolean;
 	hiddenEntities: string[], // List of entityIds,
 	highlightedEntities: {entityId: string, color: string}[],
