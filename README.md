@@ -131,7 +131,7 @@ Pvjs will then fill this container.
 <!--Example with the HTML custom element-->
 
 <div style="width: 800px; height: 600px">
-    wikipathways-pvjs wpId="SOMEPATHWAYID" version="0"></wikipathways-pvjs>
+    <wikipathways-pvjs wpId="SOMEPATHWAYID" version="0"></wikipathways-pvjs>
 </div>
 ```
 
