@@ -73,7 +73,9 @@ loadDiagram('#pathway-container', 'SOME_WP_ID', opts, callback);
 	hiddenEntities: string[], // List of entityIds,
 	highlightedEntities: {entityId: string, color: string}[],
 	zoomedEntities: string[],
-	pannedEntities: string[]
+	pannedEntities: string[],
+	detailPanelEnabled: boolean, // Defaults to true. Whether the pop-up for more detail on nodes should show
+	onEntityClick: (entity) => void, // Called whenever an entity is clicked
 }
 ```
 
@@ -96,6 +98,8 @@ hiddenEntities = ['d8bae'];
 zoomedEntities = ['d8bae'];
 pannedEntities = ['d8bae'];
 
+onEntityClick = (entity) => console.log(entity);
+
 const onReady = (entityList) => {
     // This will be called when everything is ready.
     // After Kaavio is mounted and pan/zoom functionality is ready
@@ -109,6 +113,8 @@ ReactDOM.render(
         version={version} 
         showPanZoomControls={showPanZoomControls}
         onReady={onPvjsReady} 
+        onEntityClick={onEntityClick}
+        detailPanelEnabled={true}
         highlightedEntities={highlightedEntities} 
         hiddenEntities={hiddenEntities}
         zoomedEntities={zoomedEntities}
