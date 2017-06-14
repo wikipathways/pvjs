@@ -1,4 +1,4 @@
-import { find, pullAllBy, partial } from 'lodash';
+import { partial } from 'lodash';
 
 export class Manipulator {
     props: any;
@@ -104,8 +104,4 @@ export class Manipulator {
         this.props.highlightedEntities = [];
         this.renderFunc();
     };
-
-    getEntities = () => {
-
-    }
 }

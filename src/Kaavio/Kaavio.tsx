@@ -24,8 +24,15 @@ export class Kaavio extends React.Component<any, any> {
 		onReady(this);
 	};
 
+	handleClick = (e) => {
+		const { onEntityClick } = this.props;
+		const entity = e.entity;
+		if (onEntityClick && entity)
+			onEntityClick(entity);
+	}
+
 	render() {
-		const {customStyle, filters, handleClick, entities, name, width, height, edgeDrawers, icons,
+		const {customStyle, filters, entities, name, width, height, edgeDrawers, icons,
 			markerDrawers, highlightedEntities, hiddenEntities, zoomedEntities, pannedEntities,
 			showPanZoomControls = true} = this.props;
 
@@ -74,7 +81,7 @@ export class Kaavio extends React.Component<any, any> {
 					edgeDrawers={edgeDrawers}
 					entityMap={entityMap}
 					filters={filters}
-					handleClick={handleClick}
+					handleClick={this.handleClick}
 					icons={icons}
 					markerDrawers={markerDrawers}
 					zIndices={zIndices}

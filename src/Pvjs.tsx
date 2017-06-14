@@ -72,11 +72,7 @@ function createPublicationXrefString(displayNumbers) {
 }
 
 export class Pvjs extends React.Component<any, any> {
-	pathwayRequest: Observable<any>;
 	kaavioRef: any;
-	manipulator;
-	private readySubject = new BehaviorSubject(false);
-	ready = this.readySubject.asObservable();
 
   	constructor(props) {
 		super(props);
@@ -262,11 +258,13 @@ export class Pvjs extends React.Component<any, any> {
 		this.setState({selected: null, detailPanelOpen: false})
 	}
 
-	handleClick(e) {
-		const that = this;
-		const entity = e.entity;
-		if (entity && entity.type.indexOf('DataNode') > -1 && entity.dbId && entity.dbName) {
-			that.setState({selected: entity, detailPanelOpen: true});
+	handleEntityClick = (entity) => {
+  		const { onEntityClick, detailPanelEnabled = true} = this.props;
+		if (onEntityClick)
+			onEntityClick(entity);
+
+		if (entity.type.indexOf('DataNode') > -1 && entity.dbId && entity.dbName) {
+			this.setState({selected: entity, detailPanelOpen: detailPanelEnabled});
 		}
 	}
 
@@ -293,22 +291,23 @@ export class Pvjs extends React.Component<any, any> {
 
 	componentWillUnmount() {
 		// TODO cancel any pending network requests, possibly something like this:
-		//this.pathwayRequest.dispose();
+		// this.pathwayRequest.dispose();
 	}
 
-	onKaavioReady(kaavio){
-		this.manipulator = kaavio.manipulator;
-		this.readySubject.next(true);
-
+	onKaavioReady(){
 		const { onReady } = this.props;
-		if (onReady) onReady(this); }
+		if (onReady) {
+			const { pvjson } = this.state;
+			onReady(pvjson.entities);
+		}
+	}
 
 	handleCloseDetailsPanel() {
 		this.setState({detailPanelOpen: false})
 	}
 
 	renderDetailsPanel() {
-		const {pvjson, selected, detailPanelOpen} = this.state;
+		const { pvjson, selected, detailPanelOpen } = this.state;
 		if(! detailPanelOpen) return null;
 
 		return (
@@ -368,13 +367,13 @@ export class Pvjs extends React.Component<any, any> {
 
 		if(!loaded) return null;
 
-		return <Kaavio ref={kaavio => this.kaavioRef = kaavio} handleClick={e => this.handleClick(e)} about={about}
+		return <Kaavio ref={kaavio => this.kaavioRef = kaavio} onEntityClick={this.handleEntityClick} about={about}
 					   entities={pvjson.entities} name={pvjson.name} width={pvjson.width} height={pvjson.height}
 					   backgroundColor={pvjson.backgroundColor} customStyle={customStyle} edgeDrawers={EdgeDrawers}
 					   icons={icons} markerDrawers={markerDrawers} filters={filters}
 					   highlightedEntities={highlightedEntities} hiddenEntities={hiddenEntities}
 					   pannedEntities={pannedEntities} zoomedEntities={zoomedEntities}
-					   onReady={kaavio => this.onKaavioReady(kaavio)} showPanZoomControls={showPanZoomControls} />
+					   onReady={kaavio => this.onKaavioReady()} showPanZoomControls={showPanZoomControls} />
 	}
 
   	render() {

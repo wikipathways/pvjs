@@ -63,7 +63,7 @@ container.setAttribute('style', 'width: 1200px; height:800px');
 document.body.appendChild(container);
 
 
-loadDiagram('#vanilla-large', pathwayId, {showPanZoomControls: true}, instance => {
+loadDiagram('#vanilla-large', pathwayId, {showPanZoomControls: true, detailPanelEnabled: false, onEntityClick: (entity) => console.log(entity)}, instance => {
     window.instance = instance;
 });
 

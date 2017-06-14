@@ -16,6 +16,7 @@ import { curryRight } from 'lodash';
  * @param [opts.src]: if pvjson for pathway cannot be obtained from about, give a
  * 						     	  URL where the pvjson for the pathway can be obtained.
  * @param [opts.customStyle]
+ * @param [opts.onEntityClick] called with the entity that has been clicked
  * @param [callback]: The callback to call with the reference to the Pvjs instance
  */
 export function loadDiagram(selector: string, WPId: string, opts: any, callback?: any): void {
@@ -32,17 +33,25 @@ export function loadDiagram(selector: string, WPId: string, opts: any, callback?
     renderComponent(
         props,
         container,
-		() => {
+		(entities) => {
         	const reRender = curryRight(renderComponent as (t1: any) => any)(null)(container);
-			callback(new Manipulator(reRender, props))
+        	if (callback) {
+				callback({
+					entities,
+					manipulator: new Manipulator(reRender, props)
+				})
+			}
 		}
     );
 }
 
 const renderComponent = (props, container, cb?) => {
+	if(cb) {
+		props.onReady = cb;
+	}
+
 	ReactDOM.render(
-		<PvjsComponent {...props}/>,
-		container,
-		cb ? cb : null
+		<PvjsComponent {...props} />,
+		container
 	);
 };

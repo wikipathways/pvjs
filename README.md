@@ -80,7 +80,7 @@ loadDiagram('#pathway-container', 'SOME_WP_ID', opts, callback);
 ### In React
 If you are already using React then you can directly use the React component. 
 
-You do not need to use the Manipulator when using the React component. Just update the props to achieve the desired
+You *do not* need to use the Manipulator when using the React component. Just update the props to achieve the desired
 effect.
 
 ```javascript
@@ -126,33 +126,24 @@ zooming in to parts of the diagram.
 A demonstration of what's possible with the manipulation API is available at [MetabMaster](http://metabaster.jcbwndsr.com);
 
 ### Usage
+The callback function to loadDiagram is called with an object containing the list of entities in the diagram and the 
+Manipulator. Use the entities to get the IDs to perform manipulations on.
+
 ```javascript
 import { loadDiagram } from '@wikipathways/pvjs';
 
-loadDiagram('#pathway-container', 'SOME_WP_ID', options, manipulator => {
+loadDiagram('#pathway-container', 'SOME_WP_ID', options, {entities, manipulator} => {
+        // Grab an entityId
+        // I just want to get the entity that has "Acetyl CoA" for the text.
+        const acetylCoA = entities
+            .filter(singleEntity => singleEntity.textContent === 'Acetyl CoA')[0].id;
+    
         // Use the manipulator methods here
-        manipulator.zoomOn('SOME_ENTITY_ID');
+        manipulator.zoomOn(acetylCoA);
 })
 ```
 
 ### Methods
-#### Getting the entity IDs
-For most of the methods in the manipulation API an entity ID is required.
-The manipulation API provides a `getEntities` method which returns an array containing some useful properties for the 
-entities in the diagram. 
-
-Entities refers to any element on the diagram. E.g. metabolites, genes, interactions (arrows)...
-
-```javascript
-const entities = manipulator.getEntitites();
-
-// I just want to get the entity that has "Acetyl CoA" for the text.
-const acetylCoA = entities.filter(singleEntity => singleEntity.textContent === 'Acetyl CoA')[0];
-
-// Now I can grab the ID
-const ID = acetylCoA.id;
-```
-
 #### zoomOn
 This method accepts a single entity ID or an array of entity IDs. If a single entity is given then the diagram will 
 *zoom and pan* to that entity. If an array is given, the diagram will *zoom and pan* to the area defined by all of those 

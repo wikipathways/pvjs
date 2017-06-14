@@ -85,7 +85,9 @@ export class PanZoom extends React.Component<any, any> {
             customEventsHandler: {
                 init: (options) => {
                     if(! onInit ) return;
-                    onInit(options.instance)
+                    onInit(options.instance);
+                    const { onReady } = this.props;
+                    onReady();
                 },
                 haltEventListeners: [],
                 destroy: () => {}
