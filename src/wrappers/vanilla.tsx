@@ -9,7 +9,7 @@ import { curryRight } from 'lodash';
  * Simple wrapper around the Pvjs react component.
  * Use this function to call Pvjs
  * @param selector: DOM Selector for the container in which to render the diagram
- * @param WPId: The WikiPathways ID. E.g. WP4
+ * @param wpId: The WikiPathways ID. E.g. WP4
  * @param [opts]
  * @param [opts.version=0]: Pathways at WikiPathways are versioned, e.g., WP1 has version 73346.
  * 													Version 0 mean latest.
@@ -19,9 +19,9 @@ import { curryRight } from 'lodash';
  * @param [opts.onEntityClick] called with the entity that has been clicked
  * @param [callback]: The callback to call with the reference to the Pvjs instance
  */
-export function loadDiagram(selector: string, WPId: string, opts: any, callback?: any): void {
+export function loadDiagram(selector: string, wpId: string, opts: any, callback?: any): void {
 	const props = Object.assign({}, opts, {
-		about: 'http://identifiers.org/wikipathways/' + WPId,
+		wpId,
 		version: 0,
 		customStyle: WikiPathwaysDefaultDisplayStyle,
 		showPanZoomControls: true,

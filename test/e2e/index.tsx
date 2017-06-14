@@ -28,7 +28,7 @@ var container = document.createElement('div');
 container.setAttribute('style', 'width: 1200px; height:800px');
 document.body.appendChild(container);
 ReactDOM.render(
-    <Pvjs about={'http://identifiers.org/wikipathways/' + pathwayId}
+    <Pvjs wpId={pathwayId}
           zoomedEntities={['d8bae', 'd32e4']}
           pannedEntities={['d8bae', 'd32e4']}
           highlightedEntities={[{entityId: 'd8bae', color: 'red' }]}
@@ -88,7 +88,7 @@ heading.innerText = 'Taller than wide using custom element';
 document.body.appendChild(heading);
 var wikipathwaysPvjs = document.createElement('div');
 wikipathwaysPvjs.setAttribute('style', 'width:400px;height:800px')
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="${pathwayId}"></wikipathways-pvjs>`;
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wpId="${pathwayId}" version="0"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);
 
 // Wider than tall
@@ -97,5 +97,5 @@ heading.innerText = 'Wider than tall using custom element';
 document.body.appendChild(heading);
 var wikipathwaysPvjs = document.createElement('div');
 wikipathwaysPvjs.setAttribute('style', 'width:1200px;height:600px')
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs about="${pathwayId}"></wikipathways-pvjs>`;
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wpId="${pathwayId}" version="0"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);

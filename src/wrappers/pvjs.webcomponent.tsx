@@ -15,33 +15,33 @@ class WikiPathwaysElement extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ['about', 'version'];
+		return ['wpId', 'version'];
 	}
 
 	connectedCallback() {
-		if(! this.about) return;
+		if(! this.wpId) return;
 		this.createPvjs();
 	}
 
 	attributeChangedCallback(name, oldValue, newValue){
-		if(! this.about) return;
+		if(! this.wpId) return;
 		this.createPvjs();
 	}
 	/**
 	 * Get the unique identifier for the desired pathway
-	 * E.g. http://identifiers.org/wikipathways/WP1
+	 * E.g. WP4
 	 * @returns {string|null}
 	 */
-	get about() {
-		return this.getAttribute('about');
+	get wpId() {
+		return this.getAttribute('wpId');
 	}
 
-	set about(val){
+	set wpId(val){
 		if(val){
-			this.setAttribute('about', val);
+			this.setAttribute('wpId', val);
 		}
 		else {
-			this.removeAttribute('about');
+			this.removeAttribute('wpId');
 		}
 	}
 
@@ -80,7 +80,7 @@ class WikiPathwaysElement extends HTMLElement {
 		// TODO: Add props: src, alt, customStyles, displayErrors, displayWarnings, displaySuccess, fitToContainer,
 		// highlights, hashEditorState
 		const props = {
-			about: 'http://identifiers.org/wikipathways/' + this.about,
+			wpId: this.wpId,
 			version: this.version,
 			customStyle: this.customStyle? this.customStyle : WikiPathwaysDefaultDisplayStyle,
 			showPanZoomControls: true

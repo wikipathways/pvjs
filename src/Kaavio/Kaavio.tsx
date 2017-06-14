@@ -37,8 +37,7 @@ export class Kaavio extends React.Component<any, any> {
 			showPanZoomControls = true} = this.props;
 
 		const backgroundColor = customStyle.backgroundColor || 'white' ;
-		let {about} = this.props;
-		about = about || 'kaavio-container';
+		const about = 'kaavio-container';
 
 		// This is a port to the legacy use of node_id
 		// TODO: Change all references of highlightedNodes to the new highlightedEntities

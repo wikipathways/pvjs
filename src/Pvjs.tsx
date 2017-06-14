@@ -100,9 +100,9 @@ export class Pvjs extends React.Component<any, any> {
 
 	getPathway() {
   		this.setState({loading: true});
-		const { about, version } = this.props;
+		const { wpId, version = 0 } = this.props;
 		// TODO handle version
-		const src = about.replace(/.*wikipathways[:\/]/, 'http://webservice.wikipathways.org/getPathwayAs?fileType=xml&format=json&pwId=');
+		const src = `http://webservice.wikipathways.org/getPathwayAs?fileType=xml&format=json&pwId=${wpId}&revision=${version}`;
 
 		// Use the Fetch API to get the GPML and then convert it to JSON
 		const gpmlFetch = fetch(src)
@@ -135,6 +135,8 @@ export class Pvjs extends React.Component<any, any> {
 		// gpml2pvjson needs an observable stream
 		const observable = Observable.fromPromise(gpmlFetch);
 
+		// Just for gpm2vpvjson legacy
+		const about = `http://identifiers.org/wikipathways/${wpId}`;
 		return gpml2pvjson(observable, about).subscribe((pvjson) => {
 			const { entities, organism, name } = pvjson;
 
@@ -274,7 +276,7 @@ export class Pvjs extends React.Component<any, any> {
 
 	componentWillReceiveProps(nextProps) {
 		const prevProps = this.props;
-		if (nextProps.about !== prevProps.about || nextProps.version !== prevProps.version) {
+		if (nextProps.wpId !== prevProps.wpId || nextProps.version !== prevProps.version) {
 			// Reset the state
 			this.setState({
 				pvjson: null,
@@ -362,12 +364,12 @@ export class Pvjs extends React.Component<any, any> {
 
 	renderKaavio(){
 		const {loaded, pvjson, filters} = this.state;
-		const { about, showPanZoomControls, highlightedEntities, hiddenEntities, zoomedEntities, pannedEntities} = this.props;
+		const { wpId, showPanZoomControls, highlightedEntities, hiddenEntities, zoomedEntities, pannedEntities} = this.props;
 		const customStyle = this.props.customStyle || WikiPathwaysDefaultDisplayStyle;
 
 		if(!loaded) return null;
 
-		return <Kaavio ref={kaavio => this.kaavioRef = kaavio} onEntityClick={this.handleEntityClick} about={about}
+		return <Kaavio ref={kaavio => this.kaavioRef = kaavio} onEntityClick={this.handleEntityClick}
 					   entities={pvjson.entities} name={pvjson.name} width={pvjson.width} height={pvjson.height}
 					   backgroundColor={pvjson.backgroundColor} customStyle={customStyle} edgeDrawers={EdgeDrawers}
 					   icons={icons} markerDrawers={markerDrawers} filters={filters}

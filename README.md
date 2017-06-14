@@ -46,10 +46,10 @@ import {loadDiagram} from '@wikipathways/pvjs';
 A custom element is provided that allows easy use with a simple HTML tag.
 
 ```html
-<wikipathways-pvjs about="SOMEPATHWAYID"></wikipathways-pvjs>
+<wikipathways-pvjs wpId="SOMEPATHWAYID" version="0"></wikipathways-pvjs>
 ```
 
-About is the WikiPathways ID. E.g. Give "WP78" for the TCA sycle.
+wpId is the WikiPathways ID (e.g. WP4) and version is the version of the pathway to use (0 is the latest).
 
 ### loadDiagram
 Use the loadDiagram for more fine-grained control. 
