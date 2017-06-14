@@ -28,7 +28,8 @@ Pvjs comes with a UMD bundle that you can include in your HTML page. It's availa
 <script src="assets/pvjs/index.js"></script>
 ```
 
-3) Pvjs is now available via the `Pvjs` namespace. So you can call something like `Pvjs.loadDiagram(<params>)`.
+3) Pvjs is now available via the `Pvjs` namespace.
+
 ### Importing
 If you are using a module bundler like [Webpack](http://webpack.github.io/), then just import Pvjs as you normally would.
 
@@ -52,8 +53,11 @@ About is the WikiPathways ID. E.g. Give "WP78" for the TCA sycle.
 
 ### loadDiagram
 Use the loadDiagram for more fine-grained control. 
+
 Pass in a callback that is called with the instance of the manipulator so you can make changes to the diagram. The 
-callback **will not** be called if an error (e.g. network error) occurs.
+callback **will not** be called if an error (e.g. network error) occurs. Details of the manipulator are available below.
+
+*Note* that if you are using the *UMD** module, you will need to call `Pvjs.loadDiagram(...)`.
 
 ```javascript
 import { loadDiagram } from '@wikipathways/pvjs';
@@ -74,7 +78,11 @@ loadDiagram('#pathway-container', 'SOME_WP_ID', opts, callback);
 ```
 
 ### In React
-If you are already using React then you can directly use the React component
+If you are already using React then you can directly use the React component. 
+
+You do not need to use the Manipulator when using the React component. Just update the props to achieve the desired
+effect.
+
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -88,9 +96,11 @@ hiddenEntities = ['d8bae'];
 zoomedEntities = ['d8bae'];
 pannedEntities = ['d8bae'];
 
-const onPvjsReady = (pvjsRef) => {
+const onReady = (entityList) => {
     // This will be called when everything is ready.
     // After Kaavio is mounted and pan/zoom functionality is ready
+    // It is passed a list of all the entities in the diagram
+    // You can use this in setState to update the props passed to Pvjs for highlightedEntities, hiddenEntities etc.
 };
 
 ReactDOM.render(
@@ -109,7 +119,7 @@ ReactDOM.render(
 
 ```
 
-## Manipulation API
+## Manipulation API (Manipulator)
 The manipulation API allows you to perform operations on the diagram such as highlighting and hiding elements, and 
 zooming in to parts of the diagram.
 
@@ -120,11 +130,13 @@ A demonstration of what's possible with the manipulation API is available at [Me
 import { loadDiagram } from '@wikipathways/pvjs';
 
 loadDiagram('#pathway-container', 'SOME_WP_ID', options, manipulator => {
+        // Use the manipulator methods here
         manipulator.zoomOn('SOME_ENTITY_ID');
 })
 ```
 
-### Getting the entity IDs
+### Methods
+#### Getting the entity IDs
 For most of the methods in the manipulation API an entity ID is required.
 The manipulation API provides a `getEntities` method which returns an array containing some useful properties for the 
 entities in the diagram. 
@@ -132,7 +144,7 @@ entities in the diagram.
 Entities refers to any element on the diagram. E.g. metabolites, genes, interactions (arrows)...
 
 ```javascript
-const entities = instance.manipulator.getEntitites();
+const entities = manipulator.getEntitites();
 
 // I just want to get the entity that has "Acetyl CoA" for the text.
 const acetylCoA = entities.filter(singleEntity => singleEntity.textContent === 'Acetyl CoA')[0];
@@ -141,20 +153,19 @@ const acetylCoA = entities.filter(singleEntity => singleEntity.textContent === '
 const ID = acetylCoA.id;
 ```
 
-### Methods
 #### zoomOn
 This method accepts a single entity ID or an array of entity IDs. If a single entity is given then the diagram will 
 *zoom and pan* to that entity. If an array is given, the diagram will *zoom and pan* to the area defined by all of those 
 entities.
 
 ```javascript
-zoomOn(entity_id: string | string[])
+manipulator.zoomOn(entity_id: string | string[])
 ```
 
 ### zoomIn
 Zoom the diagram in by one increment
 ```javascript
-zoomIn()
+manipulator.zoomIn()
 ```
 
 ### zoomOut
