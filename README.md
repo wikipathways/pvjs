@@ -26,14 +26,14 @@ Pvjs comes with a UMD bundle that you can include in your HTML page. It's availa
 
 ```html
 <script src="assets/pvjs/index.js"></script>
-<script src="assets/pvjs/index.css"></script>
+<script src="assets/pvjs/style.css"></script>
 ```
 
 Alternatively, just use it from the unpkg CDN:
 
 ```html
 <script src="https://unpkg.com/@wikipathways/pvjs/dist/index.js"></script>
-<script src="https://unpkg.com/@wikipathways/pvjs/dist/index.css"></script>
+<script src="https://unpkg.com/@wikipathways/pvjs/dist/style.css"></script>
 ```
 
 3. Pvjs is now available via the `Pvjs` namespace.
