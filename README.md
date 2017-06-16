@@ -132,7 +132,7 @@ ReactDOM.render(
 ```
 
 ## Setting dimensions
-In all usage methods, it is advisable to wrap the Pvjs diagram in a container with predefined with and heights.
+In all usage methods, it is advisable to wrap the Pvjs diagram in a container with predefined width and height.
 Pvjs will then fill this container.
 
 ```html
