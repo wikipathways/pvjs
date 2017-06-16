@@ -22,7 +22,7 @@ npm install @wikipathways/pvjs --save
 Pvjs comes with a UMD bundle that you can include in your HTML page. It's available under `dist/index.js`.
 
 1. Copy `dist/index.js`, `dist/style.css`, and all of `dist/assets` into your project assets (tip: use a task runner like gulp)
-2. Include `inde.js` and `style.css` in your project's head tag:
+2. Include `index.js` and `style.css` in your project's head tag:
 
 ```html
 <script src="assets/pvjs/index.js"></script>
