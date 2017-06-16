@@ -117,7 +117,7 @@ const onReady = (entityList) => {
 
 ReactDOM.render(
     <Pvjs 
-        about={'http://identifiers.org/wikipathways/' + WPID} 
+        wpId={WPID} 
         version={version} 
         showPanZoomControls={showPanZoomControls}
         onReady={onPvjsReady} 
