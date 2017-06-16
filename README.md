@@ -24,9 +24,16 @@ Pvjs comes with a UMD bundle that you can include in your HTML page. It's availa
 1. Copy `dist/index.js`, `dist/style.css`, and all of `dist/assets` into your project assets (tip: use a task runner like gulp)
 2. Include `inde.js` and `style.css` in your project's head tag:
 
-```
+```html
 <script src="assets/pvjs/index.js"></script>
 <script src="assets/pvjs/index.css"></script>
+```
+
+Alternatively, just use it from the unpkg CDN:
+
+```html
+<script src="https://unpkg.com/@wikipathways/pvjs/dist/index.js"></script>
+<script src="https://unpkg.com/@wikipathways/pvjs/dist/index.css"></script>
 ```
 
 3. Pvjs is now available via the `Pvjs` namespace.
