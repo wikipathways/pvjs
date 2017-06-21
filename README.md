@@ -69,6 +69,13 @@ entity. It is a comma separated list of `label:color` where color can be a name 
 <wikipathways-pvjs wpId="WP4" version="0" highlightedByLabel="d-glucose:green,ATP:#ff0000"></wikipathways-pvjs>
 ```
 
+You may also highlight by cross-references (highlightedByXref). This property is structured as 
+`databaseName$databaseId:color`. Note that highlightedByXref takes precedence over highlightedByName meaning that if the 
+same entity is matched by both, the color given in highlightedByXref will be used.
+
+```html
+<wikipathways-pvjs wpId="WP4" version="0" highlightedByXref="Affy$ENSG00000012048:yellow,Affy$HMDB00464:#ff0000"></wikipathways-pvjs>
+```
 ### loadDiagram
 Use the loadDiagram for more fine-grained control. 
 
