@@ -96,7 +96,7 @@ class WikiPathwaysElement extends HTMLElement {
 
 	// comma-separated map of entity labels to highlight
 	// cases are ignored
-	// E.g. Nucles:red,ATP:green,..
+	// E.g. Nucleus:red,ATP:green,..
 	get highlightedByLabel() {
 		return this.getAttribute('highlightedByLabel');
 	}
@@ -107,6 +107,21 @@ class WikiPathwaysElement extends HTMLElement {
 		}
 		else {
 			this.removeAttribute('highlightedByLabel');
+		}
+	}
+
+	// dbName$dbId:color,...
+	// E.g. Entrez Gene$8525:red
+	get highlightedByXref() {
+		return this.getAttribute('highlightedByXref');
+	}
+
+	set highlightedByXref(val) {
+		if(val) {
+			this.setAttribute('highlightedByXref', val);
+		}
+		else {
+			this.removeAttribute('highlightedByXref');
 		}
 	}
 
@@ -121,15 +136,16 @@ class WikiPathwaysElement extends HTMLElement {
 			});
 		};
 
-		let highlightedMap;
+		let highlightedEntities;
 		if (this.highlightedById) {
-			highlightedMap = createHighlightedMap('entityId', this.highlightedById);
+			highlightedEntities = createHighlightedMap('entityId', this.highlightedById);
 		}
 
-		let callback;
+		const callbackFuncs = [];
 		if (this.highlightedByLabel) {
 			const highlightedMap = createHighlightedMap('label', this.highlightedByLabel);
-			callback = ({entities, manipulator}) => {
+			callbackFuncs.push(({entities, manipulator}) => {
+				console.log(entities.filter(single => single.textContent === 'Calcium'));
 				highlightedMap.forEach(singleHighlighted => {
 					entities.filter(singleEntity => !!singleEntity.textContent)
 						.filter(singleEntity =>
@@ -138,15 +154,31 @@ class WikiPathwaysElement extends HTMLElement {
 							manipulator.highlightOn(toHighlight.id, singleHighlighted.color);
 						});
 				})
-			}
+			})
+		}
+
+		if(this.highlightedByXref) {
+			const highlightedMap = createHighlightedMap('xref', this.highlightedByXref);
+			callbackFuncs.push(({entities, manipulator}) => {
+				highlightedMap.forEach(singleHighlighted => {
+					const xrefSplit = singleHighlighted.xref.split('$'); // [dbName, dbId];
+					entities.filter(singleEntity => !!singleEntity.dbName && !!singleEntity.dbId)
+						.filter(singleEntity =>
+							singleEntity.dbName === xrefSplit[0] && singleEntity.dbId === xrefSplit[1]
+						).forEach(toHighlight => {
+							manipulator.highlightOn(toHighlight.id, singleHighlighted.color)
+						})
+				})
+			})
 		}
 
 		const opts = {
 			version: this.version,
 			customStyle: this.customStyle? this.customStyle : WikiPathwaysDefaultDisplayStyle,
 			showPanZoomControls: true,
-			highlightedEntities: highlightedMap,
+			highlightedEntities,
 		};
+		const callback = toPass => callbackFuncs.forEach(singleCb => singleCb(toPass));
 		loadDiagram(`#${this.id}`, this.wpId, opts, callback);
 	}
 }

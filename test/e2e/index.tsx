@@ -90,7 +90,8 @@ var wikipathwaysPvjs = document.createElement('div');
 wikipathwaysPvjs.setAttribute('style', 'width:400px;height:800px')
 wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wpId="${pathwayId}" version="0"
     highlightedById="d8bae:red,daafb:purple"
-    highlightedByLabel="nucLeus:blue,d-glucose:green,calcium:black"></wikipathways-pvjs>`;
+    highlightedByLabel="nucLeus:blue,d-glucose:green,calcium:black"
+    highlightedByXref="Affy$ENSG00000012048:yellow,Affy$HMDB00464:purple"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);
 
 // Wider than tall
