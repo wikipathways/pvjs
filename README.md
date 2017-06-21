@@ -59,6 +59,16 @@ A custom element is provided that allows easy use with a simple HTML tag.
 
 wpId is the WikiPathways ID (e.g. WP4) and version is the version of the pathway to use (0 is the latest).
 
+### Highlighting
+The custom element accepts properties to highlight diagram entities. 
+
+You can highlight by using the `highlightedByLabel` property, which will allow you to highlight by the text within a diagram
+entity. It is a comma separated list of `label:color` where color can be a name (e.g. 'red') or a hexadecimal
+ (e.g. '#ff0000'). Note that label is **case insensitive**.
+```html
+<wikipathways-pvjs wpId="WP4" version="0" highlightedByLabel="d-glucose:green,ATP:#ff0000"></wikipathways-pvjs>
+```
+
 ### loadDiagram
 Use the loadDiagram for more fine-grained control. 
 
