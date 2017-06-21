@@ -141,6 +141,7 @@ class WikiPathwaysElement extends HTMLElement {
 			highlightedEntities = createHighlightedMap('entityId', this.highlightedById);
 		}
 
+		// all funcs in this array are called in the callback passed to loadDiagram
 		const callbackFuncs = [];
 		if (this.highlightedByLabel) {
 			const highlightedMap = createHighlightedMap('label', this.highlightedByLabel);
