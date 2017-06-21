@@ -146,7 +146,6 @@ class WikiPathwaysElement extends HTMLElement {
 		if (this.highlightedByLabel) {
 			const highlightedMap = createHighlightedMap('label', this.highlightedByLabel);
 			callbackFuncs.push(({entities, manipulator}) => {
-				console.log(entities.filter(single => single.textContent === 'Calcium'));
 				highlightedMap.forEach(singleHighlighted => {
 					entities.filter(singleEntity => !!singleEntity.textContent)
 						.filter(singleEntity =>
