@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Pvjs} from '../Pvjs';
 import * as WikiPathwaysDefaultDisplayStyle from '../WikiPathways.style';
+import { loadDiagram } from './vanilla';
 
 declare let window: any;
 
@@ -12,6 +13,7 @@ declare let window: any;
 class WikiPathwaysElement extends HTMLElement {
 	constructor(){
 		super();
+		this.id = `wikipathways-pvjs-${Date.now()}`;
 	}
 
 	static get observedAttributes() {
@@ -77,58 +79,75 @@ class WikiPathwaysElement extends HTMLElement {
 		}
 	}
 
-	get highlightedEntities() {
-		return this.getAttribute('highlightedEntities');
+	// comma-separated map of entityIds to highlight
+	// E.g. d8bae:red,faafb:green,...
+	get highlightedById() {
+		return this.getAttribute('highlightedById');
 	}
 
-	set highlightedEntities(val) {
+	set highlightedById(val) {
 		if(val) {
-			this.setAttribute('highlightedEntities', val);
+			this.setAttribute('highlightedById', val);
 		}
 		else {
-			this.removeAttribute('highlightedEntities');
+			this.removeAttribute('highlightedById');
 		}
 	}
 
-	get highlightedColors() {
-		return this.getAttribute('highlightedColors');
+	// comma-separated map of entity labels to highlight
+	// cases are ignored
+	// E.g. Nucles:red,ATP:green,..
+	get highlightedByLabel() {
+		return this.getAttribute('highlightedByLabel');
 	}
 
-	set highlightedColors(val) {
-		if (val) {
-			this.setAttribute('highlightedColors', val);
+	set highlightedByLabel(val) {
+		if(val) {
+			this.setAttribute('highlightedByLabel', val);
 		}
 		else {
-			this.removeAttribute('highlightedColors');
+			this.removeAttribute('highlightedByLabel');
 		}
 	}
 
 	private createPvjs(){
-		// TODO: Add props: src, alt, customStyles, displayErrors, displayWarnings, displaySuccess, fitToContainer,
-		// highlights, hashEditorState
-		let highlightedMap;
-		if (this.highlightedColors && this.highlightedEntities) {
-			const highlightedColorArray = this.highlightedColors.split(',');
-			highlightedMap = this.highlightedEntities.split(',').map((singleHighlighted, i) => {
+		const createHighlightedMap = (propName, propVal) => {
+			return propVal.split(',').map((singleHighlighted, i) => {
+				const splitMap = singleHighlighted.split(':');
 				return {
-					entityId: singleHighlighted,
-					color: highlightedColorArray.length > 1 ? highlightedColorArray[i] : highlightedColorArray[0]
+					[propName]: splitMap[0],
+					color: splitMap[1],
 				}
 			});
+		};
+
+		let highlightedMap;
+		if (this.highlightedById) {
+			highlightedMap = createHighlightedMap('entityId', this.highlightedById);
 		}
 
-		const props = {
-			wpId: this.wpId,
+		let callback;
+		if (this.highlightedByLabel) {
+			const highlightedMap = createHighlightedMap('label', this.highlightedByLabel);
+			callback = ({entities, manipulator}) => {
+				highlightedMap.forEach(singleHighlighted => {
+					entities.filter(singleEntity => !!singleEntity.textContent)
+						.filter(singleEntity =>
+							singleEntity.textContent.toUpperCase() === singleHighlighted.label.toUpperCase()
+						).forEach(toHighlight => {
+							manipulator.highlightOn(toHighlight.id, singleHighlighted.color);
+						});
+				})
+			}
+		}
+
+		const opts = {
 			version: this.version,
 			customStyle: this.customStyle? this.customStyle : WikiPathwaysDefaultDisplayStyle,
 			showPanZoomControls: true,
 			highlightedEntities: highlightedMap,
 		};
-
-		ReactDOM.render(
-			<Pvjs {...props} />,
-			this
-		)
+		loadDiagram(`#${this.id}`, this.wpId, opts, callback);
 	}
 }
 

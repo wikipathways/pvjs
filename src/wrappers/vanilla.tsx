@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import {Pvjs as PvjsComponent} from '../Pvjs'; // Fix conflicting imports/exports
 import * as WikiPathwaysDefaultDisplayStyle from '../WikiPathways.style';
 import { Manipulator } from '../manipulator';
-import { curryRight } from 'lodash';
+import { curryRight, defaults } from 'lodash';
 
 /**
  * Simple wrapper around the Pvjs react component.
@@ -20,7 +20,7 @@ import { curryRight } from 'lodash';
  * @param [callback]: The callback to call with the reference to the Pvjs instance
  */
 export function loadDiagram(selector: string, wpId: string, opts: any, callback?: any): void {
-	const props = Object.assign({}, opts, {
+	const props = defaults(opts, {
 		wpId,
 		version: 0,
 		customStyle: WikiPathwaysDefaultDisplayStyle,

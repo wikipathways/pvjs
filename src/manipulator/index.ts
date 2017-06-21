@@ -1,10 +1,10 @@
-import { partial } from 'lodash';
+import { partial, defaults } from 'lodash';
 
 export class Manipulator {
     props: any;
     renderFunc: () => void;
     constructor(renderFunc: (props) => void, initProps) {
-        this.props = Object.assign({}, initProps, {
+        this.props = defaults(initProps, {
             highlightedEntities: [],
             hiddenEntities: [],
             zoomedEntities: [],
