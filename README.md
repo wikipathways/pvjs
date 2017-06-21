@@ -72,6 +72,7 @@ entity. It is a comma separated list of `label:color` where color can be a name 
 You may also highlight by cross-references (highlightedByXref). This property is structured as 
 `databaseName$databaseId:color`. Note that highlightedByXref takes precedence over highlightedByName meaning that if the 
 same entity is matched by both, the color given in highlightedByXref will be used.
+All parts of highlightedByXref are **case sensitive**.
 
 ```html
 <wikipathways-pvjs wpId="WP4" version="0" highlightedByXref="Affy$ENSG00000012048:yellow,Affy$HMDB00464:#ff0000"></wikipathways-pvjs>
