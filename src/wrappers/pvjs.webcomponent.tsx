@@ -27,6 +27,7 @@ class WikiPathwaysElement extends HTMLElement {
 		if(! this.wpId) return;
 		this.createPvjs();
 	}
+
 	/**
 	 * Get the unique identifier for the desired pathway
 	 * E.g. WP4
@@ -76,14 +77,52 @@ class WikiPathwaysElement extends HTMLElement {
 		}
 	}
 
+	get highlightedEntities() {
+		return this.getAttribute('highlightedEntities');
+	}
+
+	set highlightedEntities(val) {
+		if(val) {
+			this.setAttribute('highlightedEntities', val);
+		}
+		else {
+			this.removeAttribute('highlightedEntities');
+		}
+	}
+
+	get highlightedColors() {
+		return this.getAttribute('highlightedColors');
+	}
+
+	set highlightedColors(val) {
+		if (val) {
+			this.setAttribute('highlightedColors', val);
+		}
+		else {
+			this.removeAttribute('highlightedColors');
+		}
+	}
+
 	private createPvjs(){
 		// TODO: Add props: src, alt, customStyles, displayErrors, displayWarnings, displaySuccess, fitToContainer,
 		// highlights, hashEditorState
+		let highlightedMap;
+		if (this.highlightedColors && this.highlightedEntities) {
+			const highlightedColorArray = this.highlightedColors.split(',');
+			highlightedMap = this.highlightedEntities.split(',').map((singleHighlighted, i) => {
+				return {
+					entityId: singleHighlighted,
+					color: highlightedColorArray.length > 1 ? highlightedColorArray[i] : highlightedColorArray[0]
+				}
+			});
+		}
+
 		const props = {
 			wpId: this.wpId,
 			version: this.version,
 			customStyle: this.customStyle? this.customStyle : WikiPathwaysDefaultDisplayStyle,
-			showPanZoomControls: true
+			showPanZoomControls: true,
+			highlightedEntities: highlightedMap,
 		};
 
 		ReactDOM.render(

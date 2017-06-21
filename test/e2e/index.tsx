@@ -88,7 +88,8 @@ heading.innerText = 'Taller than wide using custom element';
 document.body.appendChild(heading);
 var wikipathwaysPvjs = document.createElement('div');
 wikipathwaysPvjs.setAttribute('style', 'width:400px;height:800px')
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wpId="${pathwayId}" version="0"></wikipathways-pvjs>`;
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wpId="${pathwayId}" version="0"
+    highlightedEntities="d8bae" highlightedColors="red"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);
 
 // Wider than tall
