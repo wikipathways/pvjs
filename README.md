@@ -59,7 +59,7 @@ A custom element is provided that allows easy use with a simple HTML tag.
 
 wpId is the WikiPathways ID (e.g. WP4) and version is the version of the pathway to use (0 is the latest).
 
-### Highlighting
+#### Highlighting
 The custom element accepts properties to highlight diagram entities. 
 
 You can highlight by using the `highlightedByLabel` property, which will allow you to highlight by the text within a diagram
