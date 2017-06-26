@@ -1,10 +1,10 @@
 {
   "name": "@wikipathways/pvjs",
-  "version": "3.5.1-beta",
+  "version": "3.5.2-beta",
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "dist/index.js",
   "module": "lib/index.js",
-  "jsnext:main": "lib/index.js",
+  "jsnext:main": "lib/index.",
   "typings": "lib/index",
   "files": [
     "lib",
@@ -13,7 +13,7 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "npm-run-all build:lib build:dist",
-    "build:lib": "npm run rimraf ./lib && tsc --project tsconfig.esnext.json && npm run assets",
+    "build:lib": "npm run rimraf ./lib && tsc --project tsconfig.json && npm run assets",
     "build:dist": "npm run rimraf ./dist && webpack --config webpack.prod.config.js",
     "assets": "npm run gulp copy:assets",
     "test:e2e": "npm run serve && npm run serve:bundle",

@@ -9,6 +9,7 @@
 			"scripthost"
 		],
 		"module": "commonjs",
-		"target": "es5"
+		"target": "es5",
+		"outDir": "lib"
 	}
 }
