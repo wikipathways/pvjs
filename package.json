@@ -4,6 +4,7 @@
   "description": "Diagram viewer and editor for biological pathways.",
   "main": "dist/index.js",
   "module": "lib/index.js",
+  "jsnext:main": "lib/index.js",
   "typings": "lib/index",
   "files": [
     "lib",
