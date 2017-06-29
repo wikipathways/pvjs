@@ -72,11 +72,12 @@ export class PanZoom extends React.Component<any, any> {
     };
 
     init = (diagram, onInit?) => {
+        const { showPanZoomControls } = this.props;
         this.destroy(); // Destroy the diagram first in case there is one
         let node: SVGElement = ReactDOM.findDOMNode(diagram) as SVGElement;
         SVGPanZoom(node, {
             viewportSelector: '.svg-pan-zoom_viewport',
-            controlIconsEnabled: true,
+            controlIconsEnabled: showPanZoomControls,
             fit: true,
             center: true,
             minZoom: 0.1,
