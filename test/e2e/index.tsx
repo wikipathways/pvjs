@@ -25,13 +25,14 @@ var heading = document.createElement('h1');
 heading.innerText = 'Directly using React component';
 document.body.appendChild(heading);
 var container = document.createElement('div');
-container.setAttribute('style', 'width: 1200px; height:500px');
+container.setAttribute('style', 'width: 600px; height:400px');
 document.body.appendChild(container);
 ReactDOM.render(
     <Pvjs wpId={pathwayId}
           zoomedEntities={['d8bae', 'd32e4']}
           pannedEntities={['d8bae', 'd32e4']}
           panCoordinates={{x: -0.184, y: -0.178}}
+          zoomLevel={2}
           highlightedEntities={[{entityId: 'd8bae', color: 'red' }]}
           hiddenEntities={['d32e4']}
     />,
