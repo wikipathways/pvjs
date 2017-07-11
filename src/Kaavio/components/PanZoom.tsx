@@ -57,7 +57,6 @@ export class PanZoom extends React.Component<any, any> {
         // By calling setState in the then callback, this will be called again
         // So if both of them are needed, they are performed one after the other
         const { shouldPan, shouldZoom, ready, panCoordinates, zoomLevel, pannedEntities = [], zoomedEntities = [] } = this.state;
-        console.log(shouldPan, shouldZoom);
         if(shouldPan && ready) {
             let promise;
             if(panCoordinates)
@@ -138,11 +137,14 @@ export class PanZoom extends React.Component<any, any> {
 
     handleChange = () => {
         const { panZoom } = this.state;
+        const { onChange } = this.props;
         const pan = panZoom.getPan();
         const sizes = panZoom.getSizes();
         const relX = pan.x / sizes.width;
         const relY = pan.y / sizes.height;
-        console.log(relX, relY);
+        const zoomLevel = panZoom.getZoom();
+        if(onChange)
+            onChange({x: relX, y: relY, zoomLevel})
     };
 
     panToCoordinates(coordinates: {x: number, y: number}): Promise<{}> {
