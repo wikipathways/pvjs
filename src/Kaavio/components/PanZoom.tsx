@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as SVGPanZoom from 'svg-pan-zoom';
 import * as ReactDOM from 'react-dom';
 import { isEqual, minBy, maxBy } from 'lodash';
-import * as d3 from 'd3';
 
 export class PanZoom extends React.Component<any, any> {
     constructor(props){
@@ -12,15 +11,18 @@ export class PanZoom extends React.Component<any, any> {
             panZoom: null,
             shouldZoom: false,
             shouldPan: false,
-            // Users can pan/zoom the diagram so the state provides an actual representation of the pan/zoom state
+            // Since users can manually drag the diagram, props are only initial, state provides actual pan/zoom state
             zoomedEntities: props.zoomedEntities,
             pannedEntities: props.pannedEntities,
+            // Takes precedence over panned/zoomed entities
+            panCoordinates: props.panCoordinates,
+            zoomLevel: props.zoomLevel,
         };
     }
 
     componentWillReceiveProps(nextProps) {
         const prevProps = this.props;
-        const {pannedEntities = [], zoomedEntities = [], diagram} = nextProps;
+        const {pannedEntities = [], zoomedEntities = [], diagram, panCoordinates, zoomLevel} = nextProps;
         if(! isEqual(diagram, prevProps.diagram)) {
             const onInit = (panZoomInstance) => {
                 this.setState({
@@ -33,11 +35,19 @@ export class PanZoom extends React.Component<any, any> {
             this.init(nextProps.diagram, onInit);
         }
 
-        if(! isEqual(this.state.pannedEntities, pannedEntities) || pannedEntities.length < 1) {
-            this.setState({shouldPan: true, pannedEntities: pannedEntities});
+        if(panCoordinates) {
+            this.setState({ shouldPan: true, panCoordinates });
         }
-        if (! isEqual(this.state.zoomedEntities, zoomedEntities) || zoomedEntities.length < 1) {
-            this.setState({shouldZoom: true, zoomedEntities: zoomedEntities});
+
+        if (zoomLevel) {
+            this.setState({ shouldZoom: true, zoomLevel })
+        }
+
+        if(!panCoordinates && (! isEqual(this.state.pannedEntities, pannedEntities) || pannedEntities.length < 1)) {
+            this.setState({ shouldPan: true, pannedEntities });
+        }
+        if (!zoomLevel && (! isEqual(this.state.zoomedEntities, zoomedEntities) || zoomedEntities.length < 1)) {
+            this.setState({ shouldZoom: true, zoomedEntities });
         }
     }
 
@@ -72,10 +82,10 @@ export class PanZoom extends React.Component<any, any> {
     };
 
     init = (diagram, onInit?) => {
-        const { showPanZoomControls } = this.props;
+        const { showPanZoomControls, onPanZoomChange } = this.props;
         this.destroy(); // Destroy the diagram first in case there is one
         let node: SVGElement = ReactDOM.findDOMNode(diagram) as SVGElement;
-        SVGPanZoom(node, {
+        const pan = SVGPanZoom(node, {
             viewportSelector: '.svg-pan-zoom_viewport',
             controlIconsEnabled: showPanZoomControls,
             fit: true,
@@ -102,6 +112,7 @@ export class PanZoom extends React.Component<any, any> {
                 this.setState({ready: false, zoomedEntities: []});
                 return true;
             },
+            onZoom: this.handleChange,
             beforePan: () =>  {
                 // Don't allow if not ready
                 const { ready } = this.state;
@@ -111,9 +122,27 @@ export class PanZoom extends React.Component<any, any> {
                 this.setState({ready: false, pannedEntities: []});
                 return true;
             },
+            onPan: this.handleChange,
             onUpdatedCTM: () => this.setState({ready: true})
         } as SvgPanZoom.Options);
     };
+
+    handleChange = () => {
+        const { panZoom } = this.state;
+        const pan = panZoom.getPan();
+        const sizes = panZoom.getSizes();
+        const relX = pan.x / sizes.width;
+        const relY = pan.y / sizes.height;
+        console.log(relX, relY)
+    };
+
+    // panToCoordinates(coordinates: {x: number, y: number}): Promise<{}> {
+    //
+    // }
+    //
+    // zoomToLevel(level: number): Promise<{}> {
+    //
+    // }
 
     zoomOnEntities(): Promise<{}> {
         const { zoomedEntities = [] } = this.props;
@@ -127,7 +156,8 @@ export class PanZoom extends React.Component<any, any> {
             }
 
             panZoom.setOnZoom(() => {
-                panZoom.setOnZoom(() => {});
+                this.handleChange();
+                panZoom.setOnZoom(this.handleChange);
                 resolve();
             });
 
@@ -154,7 +184,8 @@ export class PanZoom extends React.Component<any, any> {
                 return;
             }
             panZoom.setOnPan(() => {
-                panZoom.setOnPan(() => {});
+                this.handleChange();
+                panZoom.setOnPan(this.handleChange);
                 resolve();
             });
 
@@ -178,7 +209,7 @@ export class PanZoom extends React.Component<any, any> {
         // This may not be the best algorithm to do this. It will compute the BBox for every entity
         // TODO: Increase efficiency of this
         const BBoxes = entities
-            .map(singleEntity => d3.select(diagramDOMNode).select("g#" + singleEntity)._groups[0][0])
+            .map(singleEntity => diagramDOMNode.querySelector(`g#${singleEntity}`) as SVGSVGElement)
             .filter(locatedEntity => !!locatedEntity)
             .map(locatedEntity => Object.assign({}, { BBox: locatedEntity.getBBox(), matrix: locatedEntity.getCTM() } ))
             .map(coords => {
