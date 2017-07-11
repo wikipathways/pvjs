@@ -364,7 +364,8 @@ export class Pvjs extends React.Component<any, any> {
 
 	renderKaavio(){
 		const {loaded, pvjson, filters} = this.state;
-		const { wpId, showPanZoomControls, highlightedEntities, hiddenEntities, zoomedEntities, pannedEntities} = this.props;
+		const { wpId, showPanZoomControls, highlightedEntities, hiddenEntities,
+			zoomedEntities, pannedEntities, panCoordinates, zoomLevel} = this.props;
 		const customStyle = this.props.customStyle || WikiPathwaysDefaultDisplayStyle;
 
 		if(!loaded) return null;
@@ -375,6 +376,7 @@ export class Pvjs extends React.Component<any, any> {
 					   icons={icons} markerDrawers={markerDrawers} filters={filters}
 					   highlightedEntities={highlightedEntities} hiddenEntities={hiddenEntities}
 					   pannedEntities={pannedEntities} zoomedEntities={zoomedEntities}
+					   panCoordinates={panCoordinates} zoomLevel={zoomLevel}
 					   onReady={kaavio => this.onKaavioReady()} showPanZoomControls={showPanZoomControls} />
 	}
 

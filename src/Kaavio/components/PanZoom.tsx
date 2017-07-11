@@ -56,16 +56,24 @@ export class PanZoom extends React.Component<any, any> {
         // If ONE of them is needed, it is performed
         // By calling setState in the then callback, this will be called again
         // So if both of them are needed, they are performed one after the other
-        const { shouldPan, shouldZoom, ready } = this.state;
+        const { shouldPan, shouldZoom, ready, panCoordinates, zoomLevel, pannedEntities = [], zoomedEntities = [] } = this.state;
         if(shouldPan && ready) {
-            this.panToEntities().then(() => {
-                this.setState({shouldPan: false})
-            });
+            let promise;
+            if(panCoordinates)
+                promise = this.panToCoordinates(panCoordinates);
+            else
+                promise = this.panToEntities(pannedEntities);
+
+            promise.then(() => this.setState({shouldPan: false}));
         }
         else if(shouldZoom && ready) {
-            this.zoomOnEntities().then(() => {
-                this.setState({shouldZoom: false})
-            });
+            let promise;
+            if(zoomLevel)
+                promise = this.zoomToLevel(zoomLevel);
+            else
+             promise = this.zoomOnEntities(zoomedEntities);
+
+            promise.then(() => this.setState({shouldZoom: false}));
         }
     }
 
@@ -133,19 +141,39 @@ export class PanZoom extends React.Component<any, any> {
         const sizes = panZoom.getSizes();
         const relX = pan.x / sizes.width;
         const relY = pan.y / sizes.height;
-        console.log(relX, relY)
     };
 
-    // panToCoordinates(coordinates: {x: number, y: number}): Promise<{}> {
-    //
-    // }
-    //
-    // zoomToLevel(level: number): Promise<{}> {
-    //
-    // }
+    panToCoordinates(coordinates: {x: number, y: number}): Promise<{}> {
+        const { panZoom } = this.state;
+        const sizes = panZoom.getSizes();
+        const absCoordinates = {
+            x: coordinates.x * sizes.width,
+            y: coordinates.y * sizes.height,
+        };
 
-    zoomOnEntities(): Promise<{}> {
-        const { zoomedEntities = [] } = this.props;
+        return new Promise(resolve => {
+            panZoom.pan(absCoordinates);
+            panZoom.setOnPan(() => {
+                this.handleChange();
+                panZoom.setOnPan(this.handleChange);
+                resolve();
+            });
+        });
+    }
+
+    zoomToLevel(level: number): Promise<{}> {
+        const { panZoom } = this.state;
+        return new Promise(resolve => {
+            panZoom.zoom(level);
+            panZoom.setOnZoom(() => {
+                this.handleChange();
+                panZoom.setOnZoom(this.handleChange);
+                resolve();
+            });
+        });
+    }
+
+    zoomOnEntities(zoomedEntities): Promise<{}> {
         const { panZoom } = this.state;
 
         return new Promise(resolve => {
@@ -173,8 +201,7 @@ export class PanZoom extends React.Component<any, any> {
         });
     }
 
-    panToEntities(): Promise<{}> {
-        const { pannedEntities = [] } = this.props;
+    panToEntities(pannedEntities): Promise<{}> {
         const { panZoom } = this.state;
 
         return new Promise(resolve => {
