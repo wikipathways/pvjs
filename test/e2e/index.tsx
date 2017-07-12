@@ -29,6 +29,7 @@ container.setAttribute('style', 'width: 600px; height:400px');
 document.body.appendChild(container);
 ReactDOM.render(
     <Pvjs wpId={pathwayId}
+          panZoomLocked={true}
           zoomedEntities={['d8bae', 'd32e4']}
           pannedEntities={['d8bae', 'd32e4']}
           panCoordinates={{x: -0.184, y: -0.178}}
