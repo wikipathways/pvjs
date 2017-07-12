@@ -112,9 +112,10 @@ export class PanZoom extends React.Component<any, any> {
                 destroy: () => {}
             },
             beforeZoom: () => {
-                // Don't allow if not ready
                 const { locked } = this.props;
                 const { ready, shouldZoom } = this.state;
+                // Don't allow if not ready or locked
+                // shouldZoom is only true if a programmatic zoom is set in props, still allow this
                 if (! ready || (locked && !shouldZoom)) return false;
                 // Don't allow any more zooming until done
                 // Reset the zoomedEntities since the diagram has moved and we can't be sure they are still zoomed on
@@ -123,9 +124,10 @@ export class PanZoom extends React.Component<any, any> {
             },
             onZoom: this.handleChange,
             beforePan: () =>  {
-                // Don't allow if not ready
                 const { locked } = this.props;
                 const { ready, shouldPan } = this.state;
+                // Don't allow if not ready or locked
+                // shouldPan is only true if a programmatic pan is set in props, still allow this
                 if (! ready || (locked && !shouldPan)) return false;
                 // Don't allow any more panning until done
                 // Reset pannedEntities since the diagram has moved and we can't be sure they are still panned on
