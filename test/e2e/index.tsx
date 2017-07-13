@@ -27,15 +27,7 @@ var container = document.createElement('div');
 container.setAttribute('style', 'width: 600px; height:400px');
 document.body.appendChild(container);
 ReactDOM.render(
-    <Pvjs wpId={pathwayId}
-          panZoomLocked={true}
-          zoomedEntities={['d8bae', 'd32e4']}
-          pannedEntities={['d8bae', 'd32e4']}
-          panCoordinates={{x: -0.184, y: -0.178}}
-          zoomLevel={2}
-          highlightedEntities={[{entityId: 'd8bae', color: 'red' }]}
-          hiddenEntities={['d32e4']}
-    />,
+    <Pvjs wpId={pathwayId} />,
     container
 );
 
@@ -55,5 +47,5 @@ heading.innerText = 'Wider than tall using custom element';
 document.body.appendChild(heading);
 var wikipathwaysPvjs = document.createElement('div');
 wikipathwaysPvjs.setAttribute('style', 'width:1200px;height:600px')
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wp-id="${pathwayId}" version="0"></wikipathways-pvjs>`;
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wp-id="${pathwayId}" version="0" show-pan-zoom-controls=""></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);

@@ -44,6 +44,10 @@ export class CustomElement extends HTMLElement {
         const kebabCased = kebabCase(name);
         return this.getAttribute(kebabCased);
     }
+    private boolGetter(name) {
+        const kebabCased = kebabCase(name);
+        return this.hasAttribute(kebabCased);
+    }
 
     get wpId() {
         return this.basicGetter('wpId');
@@ -60,21 +64,21 @@ export class CustomElement extends HTMLElement {
     }
 
     get showPanZoomControls() {
-        return this.basicGetter('showPanZoomControls');
+        return this.boolGetter('showPanZoomControls');
     }
     set showPanZoomControls(val) {
         this.basicSetter('showPanZoomControls', val)
     }
 
     get detailPanelEnabled() {
-        return this.basicGetter('detailPanelEnabled');
+        return this.boolGetter('detailPanelEnabled');
     }
     set detailPanelEnabled(val) {
         this.basicSetter('detailPanelEnabled', val)
     }
 
     get panZoomLocked() {
-        return this.basicGetter('panZoomLocked');
+        return this.boolGetter('panZoomLocked');
     }
     set panZoomLocked(val) {
         this.basicSetter('panZoomLocked', val);
@@ -226,6 +230,7 @@ export class CustomElement extends HTMLElement {
                 [camelCased]: this[camelCased]
             }
         }, {});
+
         ReactDOM.render(<Pvjs {...props} onReady={entities => this.entities = entities} />, this)
     }
 }
