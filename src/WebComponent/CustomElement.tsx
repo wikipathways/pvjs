@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Pvjs} from '../Pvjs';
-import { cloneDeep } from 'lodash';
+import { kebabCase, camelCase } from 'lodash';
 import * as WikiPathwaysDefaultDisplayStyle from '../WikiPathways.style';
 import { loadDiagram } from '../wrappers/vanilla';
 
@@ -17,68 +17,72 @@ export class CustomElement extends HTMLElement {
         this.id = `wikipathways-pvjs-${Date.now()}`;
     }
 
-    // TODO: camelCase -> snake-case
     static get observedAttributes() {
-        return ['wpId', 'version', 'showPanZoomControls', 'detailPanelEnabled', 'showPanZoomControls',
-            'panZoomLocked', 'highlightedEntities', 'hiddenEntities', 'pannedEntities', 'zoomedEntities'];
+        return ['wp-id', 'version', 'show-pan-zoom-controls', 'detail-panel-enabled',
+            'pan-zoom-locked', 'highlighted-entities', 'hidden-entities', 'panned-entities', 'zoomed-entities'];
     }
 
     connectedCallback() {
-        if(! this.getAttribute('wpId')) return;
+        if(! this.wpId) return;
         this.renderPvjs();
     }
 
     attributeChangedCallback(){
-        if(! this.getAttribute('wpId')) return;
+        if(! this.wpId) return;
         this.renderPvjs();
     }
 
     private basicSetter(name, val) {
+        const kebabCased = kebabCase(name);
         if(val) {
-            this.setAttribute(name, val);
+            this.setAttribute(kebabCased, val);
         }
         else {
-            this.removeAttribute(name);
+            this.removeAttribute(kebabCased);
         }
+    }
+    private basicGetter(name) {
+        const kebabCased = kebabCase(name);
+        return this.getAttribute(kebabCased);
     }
 
     get wpId() {
-        return this.getAttribute('wpId');
+        return this.basicGetter('wpId');
     }
     set wpId(val) {
         this.basicSetter('wpId', val);
     }
 
     get version() {
-        return this.getAttribute('version') || 0;
+        return this.basicGetter('version') || 0;
     }
     set version(val) {
         this.basicSetter('version', val)
     }
 
     get showPanZoomControls() {
-        return this.getAttribute('showPanZoomControls');
+        return this.basicGetter('showPanZoomControls');
     }
     set showPanZoomControls(val) {
         this.basicSetter('showPanZoomControls', val)
     }
 
     get detailPanelEnabled() {
-        return this.getAttribute('detailPanelEnabled');
+        return this.basicGetter('detailPanelEnabled');
     }
     set detailPanelEnabled(val) {
         this.basicSetter('detailPanelEnabled', val)
     }
 
     get panZoomLocked() {
-        return this.getAttribute('panZoomLocked');
+        return this.basicGetter('panZoomLocked');
     }
     set panZoomLocked(val) {
         this.basicSetter('panZoomLocked', val);
     }
 
     arrayGetter(name) {
-        const attr = this.getAttribute(name);
+        const attr = this.basicGetter(name);
         if(attr)
             return attr.split(',');
         else return [];
@@ -217,10 +221,11 @@ export class CustomElement extends HTMLElement {
 
     private renderPvjs(){
         const props = CustomElement.observedAttributes.reduce((acc, singleAttr) => {
-           return {
-               ...acc,
-               [singleAttr]: this[singleAttr]
-           }
+            const camelCased = camelCase(singleAttr);
+            return {
+                ...acc,
+                [camelCased]: this[camelCased]
+            }
         }, {});
         ReactDOM.render(<Pvjs {...props} onReady={entities => this.entities = entities} />, this)
     }

@@ -47,10 +47,7 @@ heading.innerText = 'Taller than wide using custom element';
 document.body.appendChild(heading);
 var wikipathwaysPvjs = document.createElement('div');
 wikipathwaysPvjs.setAttribute('style', 'width:400px;height:800px')
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wpId="${pathwayId}" version="0"
-    highlightedById="d8bae:red,daafb:purple"
-    highlightedByLabel="nucLeus:blue,d-glucose:green,calcium:black"
-    highlightedByXref="Affy$ENSG00000012048:yellow,Affy$HMDB00464:purple"></wikipathways-pvjs>`;
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wp-id="${pathwayId}" version="0"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);
 
 // Wider than tall
@@ -59,5 +56,5 @@ heading.innerText = 'Wider than tall using custom element';
 document.body.appendChild(heading);
 var wikipathwaysPvjs = document.createElement('div');
 wikipathwaysPvjs.setAttribute('style', 'width:1200px;height:600px')
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wpId="${pathwayId}" version="0"></wikipathways-pvjs>`;
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wp-id="${pathwayId}" version="0"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);
