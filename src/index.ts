@@ -11,7 +11,7 @@ import 'whatwg-fetch';
 import 'roboto-fontface/css/roboto/roboto-fontface.css';
 
 // Import internal libraries for side-effects.
-import './wrappers/pvjs.webcomponent'; // TODO: Check this registers the component in browsers
+import './WebComponent';
 
 // Exports
 export { loadDiagram } from './wrappers/vanilla';

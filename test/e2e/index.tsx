@@ -20,69 +20,69 @@ function getParameterByName(name, url?) {
 const pathwayId = getParameterByName('id') || 'WP4';
 declare var window: any;
 
-// Directly using React element
-var heading = document.createElement('h1');
-heading.innerText = 'Directly using React component';
-document.body.appendChild(heading);
-var container = document.createElement('div');
-container.setAttribute('style', 'width: 600px; height:400px');
-document.body.appendChild(container);
-ReactDOM.render(
-    <Pvjs wpId={pathwayId}
-          panZoomLocked={true}
-          zoomedEntities={['d8bae', 'd32e4']}
-          pannedEntities={['d8bae', 'd32e4']}
-          panCoordinates={{x: -0.184, y: -0.178}}
-          zoomLevel={2}
-          highlightedEntities={[{entityId: 'd8bae', color: 'red' }]}
-          hiddenEntities={['d32e4']}
-    />,
-    container
-);
-
-
-// Vanillas
-// Small
-var heading = document.createElement('h1');
-heading.innerText = 'Small size using vanilla wrapper';
-document.body.appendChild(heading);
-var container = document.createElement('div');
-container.setAttribute('id', 'vanilla-small');
-container.setAttribute('style', 'width: 100px; height:100px');
-document.body.appendChild(container);
-
-
-loadDiagram('#vanilla-small', pathwayId, {showPanZoomControls: true}, instance => {
-    //window.pvjs_instance = instance;
-});
-
-// large
-var heading = document.createElement('h1');
-heading.innerText = 'Large size using vanilla wrapper';
-document.body.appendChild(heading);
-var container = document.createElement('div');
-container.setAttribute('id', 'vanilla-large');
-container.setAttribute('style', 'width: 1200px; height:800px');
-document.body.appendChild(container);
-
-
-loadDiagram('#vanilla-large', pathwayId, {showPanZoomControls: false, detailPanelEnabled: false, onEntityClick: (entity) => console.log(entity)}, instance => {
-    window.instance = instance;
-});
-
-// 100% width height
-var heading = document.createElement('h1');
-heading.innerText = '100% size using vanilla wrapper';
-document.body.appendChild(heading);
-var container = document.createElement('div');
-container.setAttribute('id', 'vanilla-100');
-container.setAttribute('style', 'width: 100%; height:100%');
-document.body.appendChild(container);
-
-
-// loadDiagram('#vanilla-100', pathwayId, {showPanZoomControls: true}, instance => {
+// // Directly using React element
+// var heading = document.createElement('h1');
+// heading.innerText = 'Directly using React component';
+// document.body.appendChild(heading);
+// var container = document.createElement('div');
+// container.setAttribute('style', 'width: 600px; height:400px');
+// document.body.appendChild(container);
+// ReactDOM.render(
+//     <Pvjs wpId={pathwayId}
+//           panZoomLocked={true}
+//           zoomedEntities={['d8bae', 'd32e4']}
+//           pannedEntities={['d8bae', 'd32e4']}
+//           panCoordinates={{x: -0.184, y: -0.178}}
+//           zoomLevel={2}
+//           highlightedEntities={[{entityId: 'd8bae', color: 'red' }]}
+//           hiddenEntities={['d32e4']}
+//     />,
+//     container
+// );
+//
+//
+// // Vanillas
+// // Small
+// var heading = document.createElement('h1');
+// heading.innerText = 'Small size using vanilla wrapper';
+// document.body.appendChild(heading);
+// var container = document.createElement('div');
+// container.setAttribute('id', 'vanilla-small');
+// container.setAttribute('style', 'width: 100px; height:100px');
+// document.body.appendChild(container);
+//
+//
+// loadDiagram('#vanilla-small', pathwayId, {showPanZoomControls: true}, instance => {
 //     //window.pvjs_instance = instance;
 // });
+//
+// // large
+// var heading = document.createElement('h1');
+// heading.innerText = 'Large size using vanilla wrapper';
+// document.body.appendChild(heading);
+// var container = document.createElement('div');
+// container.setAttribute('id', 'vanilla-large');
+// container.setAttribute('style', 'width: 1200px; height:800px');
+// document.body.appendChild(container);
+//
+//
+// loadDiagram('#vanilla-large', pathwayId, {showPanZoomControls: false, detailPanelEnabled: false, onEntityClick: (entity) => console.log(entity)}, instance => {
+//     window.instance = instance;
+// });
+//
+// // 100% width height
+// var heading = document.createElement('h1');
+// heading.innerText = '100% size using vanilla wrapper';
+// document.body.appendChild(heading);
+// var container = document.createElement('div');
+// container.setAttribute('id', 'vanilla-100');
+// container.setAttribute('style', 'width: 100%; height:100%');
+// document.body.appendChild(container);
+//
+//
+// // loadDiagram('#vanilla-100', pathwayId, {showPanZoomControls: true}, instance => {
+// //     //window.pvjs_instance = instance;
+// // });
 
 // Custom elements
 // Taller than wide

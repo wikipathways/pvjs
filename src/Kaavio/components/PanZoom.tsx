@@ -12,8 +12,8 @@ export class PanZoom extends React.Component<any, any> {
             shouldZoom: false,
             shouldPan: false,
             // Since users can manually drag the diagram, props are only initial, state provides actual pan/zoom state
-            zoomedEntities: props.zoomedEntities,
-            pannedEntities: props.pannedEntities,
+            zoomedEntities: props.zoomedEntities || [],
+            pannedEntities: props.pannedEntities || [],
             // Takes precedence over panned/zoomed entities
             panCoordinates: props.panCoordinates,
             zoomLevel: props.zoomLevel,
