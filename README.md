@@ -203,10 +203,10 @@ The custom element provides a custom API that allows you to programmatically man
 </script>
 ```
 
-#### <a name="manipulation.properties"> Properties
+#### <a name="manipulation.properties"></a> Properties
 * `entities`: The list of entity objects in the diagram.
 
-#### <a name="manipulation.methods"> Methods
+#### <a name="manipulation.methods"></a> Methods
 
 ##### zoomOn
 This method accepts a single entity ID or an array of entity IDs. If a single entity is given then the diagram will
