@@ -1,5 +1,4 @@
-import {loadDiagram} from '../../src'
-import '../../src'; // Import for side-effects when using the custom element
+import '../../src/WebComponent';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Pvjs } from '../../src/Pvjs';

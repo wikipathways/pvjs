@@ -1,9 +1,8 @@
+import 'document-register-element';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Pvjs} from '../Pvjs';
 import { kebabCase, camelCase } from 'lodash';
-import * as WikiPathwaysDefaultDisplayStyle from '../WikiPathways.style';
-import { loadDiagram } from '../wrappers/vanilla';
 
 /**
  * A custom HTML element for WikiPathways Diagrams
@@ -206,12 +205,12 @@ export class CustomElement extends HTMLElement {
         this.renderPvjs();
     };
 
-    resetPan = () => {
+    resetPan() {
         this.pannedEntities = [];
         this.renderPvjs();
     };
 
-    reset = () => {
+    reset() {
         this.pannedEntities = [];
         this.zoomedEntities = [];
         this.hiddenEntities = [];

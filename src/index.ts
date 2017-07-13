@@ -1,7 +1,6 @@
 // IMPORTS
 // Required libraries that are imported for side-effects. Polyfills and shims go here.
 // TODO: Most of these polyfills are actually used by Kaavio. Be sure to include them when separating
-import 'document-register-element';
 import 'whatwg-fetch';
 
 // Import styles
@@ -14,5 +13,4 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css';
 import './WebComponent';
 
 // Exports
-export { loadDiagram } from './wrappers/vanilla';
 export { Pvjs } from './Pvjs';
