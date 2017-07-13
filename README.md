@@ -59,52 +59,6 @@ A custom element is provided that allows easy use with a simple HTML tag.
 
 wpId is the WikiPathways ID (e.g. WP4) and version is the version of the pathway to use (0 is the latest).
 
-#### Highlighting
-The custom element accepts properties to highlight diagram entities. 
-
-You can highlight by using the `highlightedByLabel` property, which will allow you to highlight by the text within a diagram
-entity. It is a comma separated list of `label:color` where color can be a name (e.g. 'red') or a hexadecimal
- (e.g. '#ff0000'). Note that label is **case insensitive**.
-```html
-<wikipathways-pvjs wpId="WP4" version="0" highlightedByLabel="d-glucose:green,ATP:#ff0000"></wikipathways-pvjs>
-```
-
-You may also highlight by cross-references (highlightedByXref). This property is structured as 
-`databaseName$databaseId:color`. Note that highlightedByXref takes precedence over highlightedByName meaning that if the 
-same entity is matched by both, the color given in highlightedByXref will be used.
-All parts of highlightedByXref are **case sensitive**.
-
-```html
-<wikipathways-pvjs wpId="WP4" version="0" highlightedByXref="Affy$ENSG00000012048:yellow,Affy$HMDB00464:#ff0000"></wikipathways-pvjs>
-```
-### loadDiagram
-Use the loadDiagram for more fine-grained control. 
-
-Pass in a callback that is called with the instance of the manipulator so you can make changes to the diagram. The 
-callback **will not** be called if an error (e.g. network error) occurs. Details of the manipulator are available below.
-
-*Note* that if you are using the *UMD* module, you will need to call `Pvjs.loadDiagram(...)`.
-
-```javascript
-import { loadDiagram } from '@wikipathways/pvjs';
-
-loadDiagram('#pathway-container', 'SOME_WP_ID', opts, callback);
-```
-
-`opts` is an object containing options for the diagram. Available options are:
-```
-{
-	version?: number; // The version number. Use 0 for latest. Defaults to 0
-	showPanZoomControls?: boolean;
-	hiddenEntities: string[], // List of entityIds,
-	highlightedEntities: {entityId: string, color: string}[],
-	zoomedEntities: string[],
-	pannedEntities: string[],
-	detailPanelEnabled: boolean, // Defaults to true. Whether the pop-up for more detail on nodes should show
-	onEntityClick: (entity) => void, // Called whenever an entity is clicked
-}
-```
-
 ### In React
 If you are already using React then you can directly use the React component. 
 
@@ -150,8 +104,8 @@ ReactDOM.render(
 ```
 
 ## Setting dimensions
-In all usage methods, it is advisable to wrap the Pvjs diagram in a container with predefined width and height.
-Pvjs will then fill this container.
+It is advisable to wrap the Pvjs diagram in a container with predefined width and height.
+Pvjs will then fill this container. This holds true for React and the custom element.
 
 ```html
 <!--Example with the HTML custom element-->
@@ -159,137 +113,6 @@ Pvjs will then fill this container.
 <div style="width: 800px; height: 600px">
     <wikipathways-pvjs wpId="SOMEPATHWAYID" version="0"></wikipathways-pvjs>
 </div>
-```
-
-## Manipulation API (Manipulator)
-The manipulation API allows you to perform operations on the diagram such as highlighting and hiding elements, and 
-zooming in to parts of the diagram.
-
-A demonstration of what's possible with the manipulation API is available at [MetabMaster](http://metabaster.jcbwndsr.com);
-
-### Usage
-The callback function to loadDiagram is called with an object containing the list of entities in the diagram and the 
-Manipulator. Use the entities to get the IDs to perform manipulations on.
-
-```javascript
-import { loadDiagram } from '@wikipathways/pvjs';
-
-loadDiagram('#pathway-container', 'SOME_WP_ID', options, ({entities, manipulator}) => {
-        // Grab an entityId
-        // I just want to get the entity that has "Acetyl CoA" for the text.
-        const acetylCoA = entities
-            .filter(singleEntity => singleEntity.textContent === 'Acetyl CoA')[0].id;
-    
-        // Use the manipulator methods here
-        manipulator.zoomOn(acetylCoA);
-})
-```
-
-### Methods
-#### zoomOn
-This method accepts a single entity ID or an array of entity IDs. If a single entity is given then the diagram will 
-*zoom and pan* to that entity. If an array is given, the diagram will *zoom and pan* to the area defined by all of those 
-entities.
-
-```javascript
-manipulator.zoomOn(entity_id: string | string[])
-```
-
-### zoomIn
-Zoom the diagram in by one increment
-```javascript
-manipulator.zoomIn()
-```
-
-### zoomOut
-```javascript
-zoomOut()
-```
-
-### panTo
-Basically the same as zoomOn but without the zooming.
-
-```javascript
-panTo(entity_id: string | string[])
-```
-
-### highlightOn
-Highlight the entity with any CSS color.
-
-```javascript
-highlightOn(entity_id: string, color: string)
-```
-
-### highlightOff
-```javascript
-highlightOff(entity_id: string)
-```
-
-### toggleHighlight
-```javascript
-toggleHighlight(entity_id: string)
-```
-
-### hide
-```javascript
-hide(entity_id: string)
-```
-
-### show
-```javascript
-show(entity_id: string)
-```
-
-### toggleHidden 
-```javascript
-toggleHidden(entity_id: string)
-```
-
-### resetPan
-```javascript
-resetPan()
-```
-
-### resetZoom
-```javascript
-resetZoom()
-```
-
-### resetHighlighted
-Un-highlight all highlighted entities.
-Accepts an optional exclude array that will exclude the given entities from being reset.
-```javascript
-resetHighlighted(exclude?: string[])
-```
-
-### resetHidden
-Show all hidden entities. 
-Accepts an optional exclude array that will exclude the given entities from being reset.
-```javascript
-resetHidden(exclude?: string[])
-```
-
-### reset
-Reset the pan, zoom, hidden, and highlighted entities
-
-```javascript
-reset()
-```
-
-## Example
-```javascript
-import { loadDiagram } from '@wikipathways/pvjs';
-
-// WP78 is the TCA cycle
-loadDiagram('#pathway-container', 'WP78', options, ({manipulator, entities}) => {
-    // Get the ID for citrate
-    const ID = entities
-            .filter(singleEntity => singleEntity.textContent === 'citrate')[0].id;
-    
-    manipulator.zoomOn(ID);
-    manipulator.zoomOut();
-    manipulator.highlightOn(ID, '#00FFFF');
-})
 ```
 
 Funding
