@@ -13,7 +13,6 @@ export class CustomElement extends HTMLElement {
 
     constructor(){
         super();
-        this.id = `wikipathways-pvjs-${Date.now()}`;
     }
 
     static get observedAttributes() {
