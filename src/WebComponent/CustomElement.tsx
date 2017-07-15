@@ -221,6 +221,11 @@ export class CustomElement extends HTMLElement {
         this.renderPvjs();
     };
 
+    private onReady = entities => {
+        this.entities = entities;
+        this.setAttribute('ready', '');
+    };
+
     private renderPvjs(){
         const props = CustomElement.observedAttributes.reduce((acc, singleAttr) => {
             const camelCased = camelCase(singleAttr);
@@ -230,6 +235,6 @@ export class CustomElement extends HTMLElement {
             }
         }, {});
 
-        ReactDOM.render(<Pvjs {...props} onReady={entities => this.entities = entities} />, this)
+        ReactDOM.render(<Pvjs {...props} onReady={this.onReady}/>, this)
     }
 }

@@ -177,6 +177,11 @@ An example is served at [this gist](https://gist.github.com/jacobwindsor/b45fdf2
 * `detail-panel-enabled`: Indicates whether the annotations pop-up will be shown when an entity is clicked.
 * `pan-zoom-locked`: Indicates whether the user can manually pan and zoom the diagram. Note, changes via the [Manipulation API](#component.manipulation) will still take effect.
 * `show-pan-zoom-controls`: Indicates whether the controls for panning and zooming are shown.
+* `ready`: Indicates when the diagram is fully loaded and ready for manipulating. You cannot set this.
+* `highlighted-entities`: Comma separated list of `entityId:color` maps. E.g. `d8bae:red`. You may set this using the [API](#component.manipulation).
+* `panned-entities`: Comma separated list of entity IDs that are panned to. You may set this using the [API](#component.manipulation).
+* `zoomed-entities`: Comma separated list of entity IDs that are zoomed to. You may set this using the [API](#component.manipulation).
+* `hidden-entities`: Comma separated list of entity IDs that are hidden. You may set this using the [API](#component.manipulation).
 
 ### <a name="component.manipulation"></a> Manipulating
 The custom element provides a custom API that allows you to programmatically manipulate the diagram.

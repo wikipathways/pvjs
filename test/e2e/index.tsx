@@ -38,8 +38,21 @@ heading.innerText = 'Taller than wide using custom element';
 document.body.appendChild(heading);
 var wikipathwaysPvjs = document.createElement('div');
 wikipathwaysPvjs.setAttribute('style', 'width:400px;height:800px')
-wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs wp-id="${pathwayId}" version="0"></wikipathways-pvjs>`;
+wikipathwaysPvjs.innerHTML = `<wikipathways-pvjs id="my-diag" wp-id="${pathwayId}" version="0"></wikipathways-pvjs>`;
 document.body.appendChild(wikipathwaysPvjs);
+
+var diag = document.getElementById('my-diag');
+var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        if(mutation.attributeName === 'ready' && !mutation.oldValue){
+            var node = diag['entities'].find(singleEntity => singleEntity.textContent === "TCA Cycle");
+            diag['highlightOn'](node.id, 'red');
+            diag['zoomOn'](node.id);
+        }
+
+    });
+});
+observer.observe(diag, { attributes: true, childList: false, characterData: false });
 
 // Wider than tall
 var heading = document.createElement('h1');
