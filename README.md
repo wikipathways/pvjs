@@ -168,12 +168,7 @@ class MyPvjsComponent extends Component {
 The web component allows you to use Pvjs without React. To use it, first make sure that Pvjs is available on the page in which you're using it. The easiest way to do this is to include the UMD bundle in your pages head. If you're using a module bundler, just make sure Pvjs is included in your build process (normally in `index.js`).
 
 ### <a name="component.example"></a> Example
-
-```HTML
-<div style="width:100vw; height:100vh">
-  <wikipathways-pvjs wp-id="WP4" version="0" detail-panel-enabled show-pan-zoom-controls></wikipathways-pvjs>
-</div>
-```
+<script src="https://gist.github.com/jacobwindsor/3684220d95210df2dcbdf79b9e5c2ef5.js"></script>
 
 ### <a name="component.attributes"></a> Attributes
 
@@ -187,21 +182,7 @@ The web component allows you to use Pvjs without React. To use it, first make su
 The custom element provides a custom API that allows you to programmatically manipulate the diagram.
 
 #### <a name="manipulation.example"></a> Example
-```HTML
-<div style="width:100vw; height:100vh">
-  <wikipathways-pvjs wp-id="WP4" version="0" id="my-diagram"></wikipathways-pvjs>
-</div>
-
-<script>
-  var diag = document.getElementById('my-diagram');
-
-  // Find the entity in the diagram with TCA cycle as the node text
-  var TCA = diag.entities.find(singleEntity => singleEntity.textContent === 'TCA Cycle');
-
-  // Highlight the TCA Cycle node red
-  diag.highlightOn(TCA.id, 'red');
-</script>
-```
+<script src="https://gist.github.com/jacobwindsor/b45fdf2485a2e0c772fe2884c32ee9cc.js"></script>
 
 #### <a name="manipulation.properties"></a> Properties
 * `entities`: The list of entity objects in the diagram.
