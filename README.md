@@ -168,7 +168,7 @@ class MyPvjsComponent extends Component {
 The web component allows you to use Pvjs without React. To use it, first make sure that Pvjs is available on the page in which you're using it. The easiest way to do this is to include the UMD bundle in your pages head. If you're using a module bundler, just make sure Pvjs is included in your build process (normally in `index.js`).
 
 ### <a name="component.example"></a> Example
-An example is served at [this gist](https://gist.github.com/jacobwindsor/b45fdf2485a2e0c772fe2884c32ee9cc).
+An example is served at [this gist](https://gist.github.com/jacobwindsor/3684220d95210df2dcbdf79b9e5c2ef5).
 
 ### <a name="component.attributes"></a> Attributes
 
@@ -187,7 +187,7 @@ An example is served at [this gist](https://gist.github.com/jacobwindsor/b45fdf2
 The custom element provides a custom API that allows you to programmatically manipulate the diagram.
 
 #### <a name="manipulation.example"></a> Example
-An example is served at [this gist](https://gist.github.com/jacobwindsor/3684220d95210df2dcbdf79b9e5c2ef5).
+An example is served at [this gist](https://gist.github.com/jacobwindsor/b45fdf2485a2e0c772fe2884c32ee9cc).
 
 #### <a name="manipulation.properties"></a> Properties
 * `entities`: The list of entity objects in the diagram.
