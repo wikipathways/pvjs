@@ -86,7 +86,7 @@ ReactDOM.render(
 * `version`: Default = 0. A number for the version of the pathway. 0 is latest.
 * `onReady`: Function that is called with the list of entities in the diagram when the diagram has finished loading. You can use this to get the entityIds for other props.
 * `onEntityClick`: Function that is called with the entity whenever a diagram entity has been clicked.
-* `onPanZoomChanged`: Function that is called whenever the diagram is panned or zoomed. It is called with an object with the form: `{ x: number, y: number, zoomLevel: number }`. The coordinates in the object are relative to the diagram dimensions.
+* `onPanZoomChange`: Function that is called whenever the diagram is panned or zoomed. It is called with an object with the form: `{ x: number, y: number, zoomLevel: number }`. The coordinates in the object are relative to the diagram dimensions.
 * `detailPanelEnabled`: Default = `true`. Indicates whether the annotations pop-up will be shown when an entity is clicked.
 * `panZoomLocked`: Default = `false`. Indicates whether the user can manually pan and zoom the diagram. Note, changes to pannedEntities and zoomedEntities will still have an effect if this is true.
 * `showPanZoomControls`: Default = true. Indicates whether the controls for panning and zooming are shown.
