@@ -9,8 +9,8 @@ export class PanZoom extends React.Component<any, any> {
         this.state = {
             ready: false, // Is the diagram ready to pan or zoom?
             panZoom: null,
-            shouldZoom: false,
-            shouldPan: false,
+            shouldZoom: props.zoomLevel || props.zoomedEntities,
+            shouldPan: props.panCoordinates || props.pannedEntities,
             // Since users can manually drag the diagram, props are only initial, state provides actual pan/zoom state
             zoomedEntities: props.zoomedEntities || [],
             pannedEntities: props.pannedEntities || [],
@@ -21,6 +21,7 @@ export class PanZoom extends React.Component<any, any> {
     }
 
     componentWillReceiveProps(nextProps) {
+        // Because of ref behaviour, this is called without changing props manually
         const prevProps = this.props;
         const {pannedEntities = [], zoomedEntities = [], diagram, panCoordinates, zoomLevel} = nextProps;
         if(! isEqual(diagram, prevProps.diagram)) {
@@ -28,26 +29,25 @@ export class PanZoom extends React.Component<any, any> {
                 this.setState({
                     panZoom: panZoomInstance,
                     ready: true,
-                    shouldZoom: true,
-                    shouldPan: true,
+                    shouldZoom: zoomedEntities || zoomLevel,
+                    shouldPan: pannedEntities || panCoordinates,
+                    panCoordinates,
+                    zoomLevel,
+                    pannedEntities,
+                    zoomedEntities,
                 });
             };
             this.init(nextProps.diagram, onInit);
         }
-
-        if(panCoordinates) {
-            this.setState({ shouldPan: true, panCoordinates });
-        }
-
-        if (zoomLevel) {
-            this.setState({ shouldZoom: true, zoomLevel })
-        }
-
-        if(!panCoordinates && (! isEqual(this.state.pannedEntities, pannedEntities) || pannedEntities.length < 1)) {
-            this.setState({ shouldPan: true, pannedEntities });
-        }
-        if (!zoomLevel && (! isEqual(this.state.zoomedEntities, zoomedEntities) || zoomedEntities.length < 1)) {
-            this.setState({ shouldZoom: true, zoomedEntities });
+        else {
+            this.setState({
+                shouldZoom: zoomedEntities || zoomLevel,
+                shouldPan: pannedEntities || panCoordinates,
+                panCoordinates,
+                zoomLevel,
+                pannedEntities,
+                zoomedEntities,
+            });
         }
     }
 
@@ -71,7 +71,7 @@ export class PanZoom extends React.Component<any, any> {
             if(zoomLevel)
                 promise = this.zoomToLevel(zoomLevel);
             else
-             promise = this.zoomOnEntities(zoomedEntities);
+                promise = this.zoomOnEntities(zoomedEntities);
 
             promise.then(() => this.setState({shouldZoom: false}));
         }
@@ -177,7 +177,8 @@ export class PanZoom extends React.Component<any, any> {
                 panZoom.setOnZoom(this.handleChange);
                 resolve();
             });
-            panZoom.zoom(level);
+            // Use zoomAtPoint since the coordinates change with level
+            panZoom.zoomAtPoint(level, panZoom.getPan())
         });
     }
 
