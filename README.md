@@ -97,6 +97,8 @@ ReactDOM.render(
 * `zoomLevel`: Default = `1`. Number indicating the level of zoom the diagram should be at. 1 = no zoom in/out.
 * `panCoordinates`: Default: `{x: 0, y: 0}`. Relative coordinates to pan to. `x` is relative to the diagram width and `y` the diagram height. E.g. `{x: 0.5, y: 0.5}` will pan half way across the x and y axis.
 
+*Note that pannedCoordinates and zoomLevel take precedence over pannedEntities and zoomedEntities.*
+
 ### <a name="react.advanced"></a> Advanced Example
 
 ```javascript
