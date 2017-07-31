@@ -63,7 +63,9 @@
     "pvjs",
     "network",
     "pathway",
-    "biology"
+    "biology",
+    "wikipathways",
+    "bioinformatics"
   ],
   "author": "WikiPathways team",
   "license": "Apache-2.0",
