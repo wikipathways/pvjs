@@ -45,7 +45,7 @@ export class PanZoom extends React.Component<any, any> {
                             pannedEntities,
                             zoomedEntities,
                         })
-                    }, 10)
+                    }, 500)
                 });
 
                 this.setState({
