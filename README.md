@@ -192,7 +192,10 @@ The custom element provides a custom API that allows you to programmatically man
 An example is served at [this gist](https://gist.github.com/jacobwindsor/b45fdf2485a2e0c772fe2884c32ee9cc).
 
 #### <a name="manipulation.properties"></a> Properties
-* `entities`: The list of entity objects in the diagram.
+* `entities`: The list of entity objects in the diagram. This is null until the diagram is ready.
+
+### Events
+* `ready`: This is fired when the diagram is ready. `entities` is provided in the detail object for convenience. See [this gist](https://gist.github.com/jacobwindsor/b45fdf2485a2e0c772fe2884c32ee9cc).
 
 #### <a name="manipulation.methods"></a> Methods
 

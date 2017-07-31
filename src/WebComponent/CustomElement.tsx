@@ -224,6 +224,10 @@ export class CustomElement extends HTMLElement {
     private onReady = entities => {
         this.entities = entities;
         this.setAttribute('ready', '');
+        const readyEvent = new CustomEvent('ready', {
+            detail: { entities }
+        });
+        this.dispatchEvent(readyEvent);
     };
 
     private renderPvjs(){
