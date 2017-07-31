@@ -22,9 +22,10 @@ Having said that, most of the desired functionality does work as intended in mos
 * [Web Component](#component)
   * [Example](#component.example)
   * [Attributes](#component.attributes)
+  * [Properties](#component.properties)
+  * [Events](#component.events)
   * [Manipulating](#component.manipulation)
     * [Example](#manipulation.example)
-    * [Properties](#manipulation.properties)
     * [Methods](#manipulation.methods)
 * [Contributions & Bug Reports](#contributions)
 * [Funding](#funding)
@@ -185,17 +186,19 @@ An example is served at [this gist](https://gist.github.com/jacobwindsor/3684220
 * `zoomed-entities`: Comma separated list of entity IDs that are zoomed to. You may set this using the [API](#component.manipulation).
 * `hidden-entities`: Comma separated list of entity IDs that are hidden. You may set this using the [API](#component.manipulation).
 
+#### <a name="component.properties"></a> Properties
+These properties are **not** reflected in the DOM attributes.
+
+* `entities`: The list of entity objects in the diagram. This is null until the diagram is ready.
+
+### <a name="component.events"></a> Events
+* `ready`: This is fired when the diagram is ready. `entities` is provided in the detail object for convenience. See [this gist](https://gist.github.com/jacobwindsor/b45fdf2485a2e0c772fe2884c32ee9cc).
+
 ### <a name="component.manipulation"></a> Manipulating
 The custom element provides a custom API that allows you to programmatically manipulate the diagram.
 
 #### <a name="manipulation.example"></a> Example
 An example is served at [this gist](https://gist.github.com/jacobwindsor/b45fdf2485a2e0c772fe2884c32ee9cc).
-
-#### <a name="manipulation.properties"></a> Properties
-* `entities`: The list of entity objects in the diagram. This is null until the diagram is ready.
-
-### Events
-* `ready`: This is fired when the diagram is ready. `entities` is provided in the detail object for convenience. See [this gist](https://gist.github.com/jacobwindsor/b45fdf2485a2e0c772fe2884c32ee9cc).
 
 #### <a name="manipulation.methods"></a> Methods
 
