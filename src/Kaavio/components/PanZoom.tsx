@@ -26,6 +26,28 @@ export class PanZoom extends React.Component<any, any> {
         const {pannedEntities = [], zoomedEntities = [], diagram, panCoordinates, zoomLevel} = nextProps;
         if(! isEqual(diagram, prevProps.diagram)) {
             const onInit = (panZoomInstance) => {
+                window.addEventListener('resize', () => {
+                    // Respond to changes in window size
+                    panZoomInstance.resize();
+                    panZoomInstance.fit();
+                    panZoomInstance.center();
+
+                    // Wait for the diagram to resize and center
+                    // This is not the best way but it the simplest
+                    // Relatively high timeout just in case resizing takes a while
+                    setTimeout(() => {
+                        this.setState({
+                            shouldPan: true,
+                            shouldZoom: true,
+                            ready: true,
+                            panCoordinates,
+                            zoomLevel,
+                            pannedEntities,
+                            zoomedEntities,
+                        })
+                    }, 10)
+                });
+
                 this.setState({
                     panZoom: panZoomInstance,
                     ready: true,

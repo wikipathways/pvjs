@@ -24,10 +24,10 @@ var heading = document.createElement('h1');
 heading.innerText = 'Directly using React component';
 document.body.appendChild(heading);
 var container = document.createElement('div');
-container.setAttribute('style', 'width: 600px; height:400px');
+container.setAttribute('style', 'width: 100%; height:400px');
 document.body.appendChild(container);
 ReactDOM.render(
-    <Pvjs wpId={pathwayId} panCoordinates={{x:-.5, y:-.5}} zoomLevel={3} zoomedEntities={['d8bae']} pannedEntities={['d8bae']} />,
+    <Pvjs wpId={pathwayId} zoomedEntities={['d8bae']} pannedEntities={['d8bae']} />,
     container
 );
 
