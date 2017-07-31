@@ -18,6 +18,47 @@ export class PanZoom extends React.Component<any, any> {
             panCoordinates: props.panCoordinates,
             zoomLevel: props.zoomLevel,
         };
+
+        window.addEventListener('resize', this.onResize)
+    }
+
+    onResize = () => {
+        const { panZoom } = this.state;
+        if (! panZoom ) return;
+        const {pannedEntities = [], zoomedEntities = [], diagram, panCoordinates, zoomLevel} = this.props;
+        // Respond to changes in window size
+        panZoom.resize();
+        panZoom.fit();
+        panZoom.center();
+
+        // Wait for the diagram to resize and center
+        // This is not the best way but it the simplest
+        // Relatively high timeout just in case resizing takes a while
+        setTimeout(() => {
+            this.setState({
+                shouldPan: true,
+                shouldZoom: true,
+                ready: true,
+                panCoordinates,
+                zoomLevel,
+                pannedEntities,
+                zoomedEntities,
+            })
+        }, 500)
+    }
+
+    onInit(panZoomInstance) {
+        const {pannedEntities = [], zoomedEntities = [], diagram, panCoordinates, zoomLevel} = this.props;
+        this.setState({
+            panZoom: panZoomInstance,
+            ready: true,
+            shouldZoom: zoomedEntities || zoomLevel,
+            shouldPan: pannedEntities || panCoordinates,
+            panCoordinates,
+            zoomLevel,
+            pannedEntities,
+            zoomedEntities,
+        });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -25,41 +66,7 @@ export class PanZoom extends React.Component<any, any> {
         const prevProps = this.props;
         const {pannedEntities = [], zoomedEntities = [], diagram, panCoordinates, zoomLevel} = nextProps;
         if(! isEqual(diagram, prevProps.diagram)) {
-            const onInit = (panZoomInstance) => {
-                window.addEventListener('resize', () => {
-                    // Respond to changes in window size
-                    panZoomInstance.resize();
-                    panZoomInstance.fit();
-                    panZoomInstance.center();
-
-                    // Wait for the diagram to resize and center
-                    // This is not the best way but it the simplest
-                    // Relatively high timeout just in case resizing takes a while
-                    setTimeout(() => {
-                        this.setState({
-                            shouldPan: true,
-                            shouldZoom: true,
-                            ready: true,
-                            panCoordinates,
-                            zoomLevel,
-                            pannedEntities,
-                            zoomedEntities,
-                        })
-                    }, 500)
-                });
-
-                this.setState({
-                    panZoom: panZoomInstance,
-                    ready: true,
-                    shouldZoom: zoomedEntities || zoomLevel,
-                    shouldPan: pannedEntities || panCoordinates,
-                    panCoordinates,
-                    zoomLevel,
-                    pannedEntities,
-                    zoomedEntities,
-                });
-            };
-            this.init(nextProps.diagram, onInit);
+            this.init(diagram);
         }
         else {
             this.setState({
@@ -111,7 +118,7 @@ export class PanZoom extends React.Component<any, any> {
         })
     };
 
-    init = (diagram, onInit?) => {
+    init = (diagram) => {
         const { showPanZoomControls } = this.props;
         this.destroy(); // Destroy the diagram first in case there is one
         let node: SVGElement = ReactDOM.findDOMNode(diagram) as SVGElement;
@@ -125,8 +132,7 @@ export class PanZoom extends React.Component<any, any> {
             zoomEnabled: false,
             customEventsHandler: {
                 init: (options) => {
-                    if(! onInit ) return;
-                    onInit(options.instance);
+                    this.onInit(options.instance);
                     const { onReady } = this.props;
                     onReady();
                 },
