@@ -11,9 +11,8 @@ import { kebabCase, camelCase } from 'lodash';
 export class CustomElement extends HTMLElement {
     entities;
 
-    constructor(self){
-        self = super(self);
-        return self;
+    constructor(){
+        super();
     }
 
     static get observedAttributes() {
