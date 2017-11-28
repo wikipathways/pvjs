@@ -1,0 +1,11 @@
+<svg>
+  <defs>
+    <symbol id="Ellipse" overflow="visible"
+		preserveAspectRatio="none" viewBox="0 0 50 50">
+	<desc>Ellipse</desc>
+	<ellipse stroke="currentColor"
+	      vector-effect="non-scaling-stroke"
+	      cx="25" cy="25" rx="25" ry="25"></ellipse>
+    </symbol>
+  </defs>
+</svg>

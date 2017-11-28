@@ -1,0 +1,11 @@
+<svg>
+  <defs>
+    <symbol id="TriangleEquilateralEast" overflow="visible"
+	preserveAspectRatio="none" viewBox="0 0 50 50">
+      <desc>TriangleEquilateralEast</desc>
+      <polygon stroke="currentColor"
+	      vector-effect="non-scaling-stroke"
+	      points="0,50 50,25 0,0"/>
+    </symbol>
+  </defs>
+</svg>

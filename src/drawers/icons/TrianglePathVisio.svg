@@ -1,0 +1,11 @@
+<svg>
+  <defs>
+    <symbol id="TrianglePathVisio" overflow="visible"
+	preserveAspectRatio="none" viewBox="0 0 50 50">
+      <desc>TrianglePathVisio</desc>
+      <polygon stroke="currentColor"
+	      vector-effect="non-scaling-stroke"
+	      points="14.5,3.3 14.5,46.7 61,25 "/>
+    </symbol>
+  </defs>
+</svg>

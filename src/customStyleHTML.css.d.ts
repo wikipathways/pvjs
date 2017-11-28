@@ -1,0 +1,1 @@
+export const kaavioContainer: string;

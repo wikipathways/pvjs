@@ -1,0 +1,14 @@
+<svg>
+  <defs>
+    <symbol id="MimDegradation" overflow="visible"
+		preserveAspectRatio="none" viewBox="0 0 100 100">
+	<desc>MimDegradation</desc>
+	<circle cx="50" cy="50" r="49" stroke="currentColor"
+		vector-effect="non-scaling-stroke"
+		/>
+	<line  x1="1" y1="1" x2="100" y2="100" stroke="currentColor" stroke-width="1"
+		vector-effect="non-scaling-stroke"
+		/>
+    </symbol>
+  </defs>
+</svg>
