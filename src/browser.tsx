@@ -35,17 +35,19 @@ export function Pvjs(userSpecifiedContainerInput: any, data) {
       }}
       onEntityClick={function(entity) {
         if (window.hasOwnProperty("XrefPanel")) {
-          window["XrefPanel"][
-            "show"
-          ](
-            userSpecifiedContainer,
-            entity.dbId,
-            entity.dbConventionalName,
-            data.pathway.organism,
-            {
-              "0": entity.textContent
-            }
-          );
+          if (!!entity.dbConventionalName && !!entity.dbId) {
+            window["XrefPanel"][
+              "show"
+            ](
+              userSpecifiedContainer,
+              entity.dbId,
+              entity.dbConventionalName,
+              data.pathway.organism,
+              {
+                "0": entity.textContent
+              }
+            );
+          }
         }
       }}
     />,

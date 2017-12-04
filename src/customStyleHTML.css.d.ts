@@ -1,1 +1,1 @@
-export const kaavioContainer: string;
+export const Container: string;
