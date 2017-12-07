@@ -1,6 +1,6 @@
 {
   "name": "@wikipathways/pvjs",
-  "version": "4.0.0-5",
+  "version": "4.0.0-6",
   "main": "index.js",
   "bin": "./bin/pvjs",
   "files": [
@@ -32,16 +32,15 @@
     "watch:lib": "npm-run-all -p watch:lib:*",
     "watch:lib:assets": "npm run build:lib:assets && onchange 'src/**' -- npm run build:lib:assets",
     "watch:lib:ts": "tsc --project tsconfig.esnext.json --watch",
-    "watch1:browser": "webpack --config webpack.browser.dev.config.js --watch",
     "watch:browser": "webpack-dev-server --config webpack.browser.dev.config.js --open --progress --inline",
     "watch:node": "webpack --config webpack.node.dev.config.js --watch",
-    "watch:test": "onchange 'dist/**' -- npm test"
+    "watch1:test": "onchange 'dist/**' -- npm test"
   },
   "author": "",
   "license": "Apache-2.0",
   "description": "",
   "dependencies": {
-    "kaavio": "^4.0.0-12",
+    "kaavio": "^4.0.0-14",
     "react": "^15.6.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",
