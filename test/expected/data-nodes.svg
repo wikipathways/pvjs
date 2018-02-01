@@ -1,16 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" prefix="schema:http://schema.org/" id="hashsha256fd34e9516dbcc0a7ab9dd86419bc88e26b38334c2a5f91c1c0ba372ab9810ea8-svg" version="1.1" baseProfile="full" preserveAspectRatio="xMidYMid" class="Diagram" typeof="Diagram" viewBox="0 0 602.9155931563928 786.4815301392441" data-reactroot="" data-reactid="1" data-react-checksum="-1555389856"><style type="text/css" data-reactid="2">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" prefix="schema:http://schema.org/" id="hashsha256fd34e9516dbcc0a7ab9dd86419bc88e26b38334c2a5f91c1c0ba372ab9810ea8-svg" version="1.1" baseProfile="full" preserveAspectRatio="xMidYMid" class="Diagram" typeof="Diagram" viewBox="0 0 602.9155931563928 786.4815301392441" data-reactroot="" data-reactid="1" data-react-checksum="2095419562"><style type="text/css" data-reactid="2">
 				<![CDATA[
-					.Viewport {
-  fill: none;
-}
-
-.Viewport .textContent {
+					.Viewport .textContent {
   pointer-events: none;
   stroke-width: 0px;
-}
-
-path.Edge {
-  fill: none;
 }
 
 					.Viewport.Icon {

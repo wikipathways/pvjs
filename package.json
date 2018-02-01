@@ -1,6 +1,6 @@
 {
   "name": "@wikipathways/pvjs",
-  "version": "4.0.0-9",
+  "version": "4.0.0-10",
   "main": "index.js",
   "bin": "./bin/pvjs",
   "files": [
@@ -42,7 +42,7 @@
   "license": "Apache-2.0",
   "description": "",
   "dependencies": {
-    "kaavio": "^4.0.0-20",
+    "kaavio": "^4.0.0-21",
     "react": "^15.6.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",
