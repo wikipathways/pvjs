@@ -1,0 +1,9 @@
+<svg>
+  <defs>
+    <symbol id="none" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <desc>none</desc>
+      <rect id="none" x="0" y="0" width="0" height="0"
+	stroke="none" fill="none" stroke-width="0"/>
+    </symbol>
+  </defs>
+</svg>

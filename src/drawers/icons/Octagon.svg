@@ -1,0 +1,10 @@
+<svg>
+  <defs>
+    <symbol id="Octagon" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+	<desc>Octagon</desc>
+	<path stroke="currentColor"
+	      vector-effect="non-scaling-stroke"
+	      d="M0,25 L25,0 L75,0 L100,25 L100,75 L75,100 L25,100 L0,75 Z"/>
+    </symbol>
+  </defs>
+</svg>

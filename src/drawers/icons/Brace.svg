@@ -1,0 +1,11 @@
+<svg>
+  <defs>
+    <!-- TODO viewBox probably wrong -->
+    <symbol id="Brace" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+	<desc>Brace</desc>
+	<path stroke="currentColor"
+	      vector-effect="non-scaling-stroke"
+		d="m1.5,49.499996c0,-16.166668 8.166666,-24.249996 24.499998,-24.249996s24.499998,-8.083336 24.499998,-24.250002c0,16.166666 8.166664,24.250002 24.499996,24.250002s24.5,8.083328 24.5,24.249996"/>
+    </symbol>
+  </defs>
+</svg>

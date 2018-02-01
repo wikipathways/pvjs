@@ -1,0 +1,13 @@
+<svg>
+  <defs>
+    <symbol id="PentagonPathVisio" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+	<desc>PentagonPathVisio</desc>
+	<g transform="translate(8, 0) scale(0.95, 1)">
+		<polygon stroke="currentColor"
+		      vector-effect="non-scaling-stroke"
+		      points="59.159732818603516,99.61322021484375 95,50.28331756591797 59.159732818603516,0.9534196853637695 1.168962001800537,19.795764923095703 1.168962001800537,80.7708740234375 "/>
+        </g>
+    </symbol>
+  </defs>
+
+</svg>

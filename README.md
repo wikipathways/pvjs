@@ -1,113 +1,306 @@
-pvjs-2.4.84
+Pvjs
 ====================
 
-JavaScript-based diagram viewer (implemented) and editor (in-progress) intended for biological pathways. It uses SVG and HTML for rendering, the [Mithril](http://lhorie.github.io/mithril/) framework for code organization and [BridgeDb](http://bridgedb.org/) for biological entity reference queries.
+JavaScript-based biological pathway diagram viewer. Used in [WikiPathways](http://wikipathways.org).
 
-Demo
-====
+## Beta
+The beta tag given to this version means that it is not advisable to use it in production. There are some known issues
+and it has not been fully cross browser tested.
 
-* [WikiPathways - Sandbox Pathway](http://wikipathways.org/index.php/Pathway:WP4)
+Having said that, most of the desired functionality does work as intended in most modern browsers.
 
-How To Add It To Your Site
-===================
-You can loading it with either one of the two options below: HTML Element or Script.
-It's as simple as referencing the pvjs JavaScript bundle and its dependencies in your HTML document:
+**Note**: If you need to use the stable version of Pvjs see [this README](https://github.com/wikipathways/pvjs/blob/master/README.md).
 
-## Load Using [Custom HTML Element](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/)
+## Contents
+* [Installation](#install)
+  * [Using a Module Bundler (Webpack)](#webpack)
+  * [Using the UMD bundle](#umd)
+* [React Usage](#react)
+  * [Basic Example](#react.example)
+  * [Props](#react.props)
+  * [Advanced Example](#react.advanced)
+* [Web Component](#component)
+  * [Example](#component.example)
+  * [Attributes](#component.attributes)
+  * [Properties](#component.properties)
+  * [Events](#component.events)
+  * [Manipulating](#component.manipulation)
+    * [Example](#manipulation.example)
+    * [Methods](#manipulation.methods)
+* [Contributions & Bug Reports](#contributions)
+* [Funding](#funding)
 
-```HTML
-<wikipathways-pvjs
-    alt="WP525 Biological Pathway"
-    src="http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525"
-    display-errors="true"
-    display-warnings="true"
-    fit-to-container="true">
-</wikipathways-pvjs>
+## <a name="install"></a>Installation
+### <a name="webpack"></a>Using a Module Bundler (Webpack)
+We recommend using a module bundler like [Webpack](https://webpack.js.org/) in your project. If you're doing this, just install and import Pvjs. All examples will assume you are using this method and not the UMD bundle.
 
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-polyfills-2.3.5.bundle.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.84.bundle.min.js"></script>
+Note that Pvjs does come with some styles which will be automatically picked up by Webpack.
+
+```
+npm install @wikipathways/pvjs --save
 ```
 
-## Load Using Script
-
-First reference the pvjs JavaScript bundle and its dependencies in your HTML document:
-
-```HTML
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-polyfills-2.3.5.bundle.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//wikipathways.github.io/pvjs/lib/pvjs/pvjs-2.4.84.bundle.min.js"></script>
+```javascript
+// Somewhere in your project
+import { Pvjs } from '@wikipathways/pvjs';
 ```
 
-If you have jQuery, then you may do:
+### <a name="umd"></a>Using the UMD bundle
+Pvjs comes with a UMD bundle that you can include in your HTML page. It's available under `dist/index.js`. Once you've included the bundle, Pvjs is available under the `Pvjs` namespace.
+```
 
-```js
-$('#pvjs-container').pvjs({
-  sourceData: [
-    // at least one item required
-    {
-      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525',
-      fileType:'gpml' // generally will correspond to filename extension
-    },
-    {
-      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP525',
-      fileType:'png'
+### <a name="umd"></a>Using the UMD bundle
+Pvjs comes with a UMD bundle that you can include in your HTML page. It's available under `dist/index.js`. Once you've included the bundle, Pvjs is available under the `Pvjs` namespace.
+
+1. Copy `dist/index.js`, `dist/style.css`, and all of `dist/assets` into your project assets (tip: use a task runner like gulp)
+2. Include `index.js` and `style.css` in your project's head tag:
+
+```html
+<script src="assets/pvjs/index.js"></script>
+<link rel="stylesheet" href="assets/pvjs/style.css" />
+```
+
+Alternatively, just use it from the unpkg CDN:
+
+```html
+<script src="https://unpkg.com/@wikipathways/pvjs/dist/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@wikipathways/pvjs/dist/style.css" />
+```
+
+## <a name="react"></a> React Usage
+If you are already using React then you can directly use the React component.
+
+### <a name="react.example"></a> Basic Example
+Use the component as below. Pvjs will fill whatever container it is in, so it is a good idea to place it inside a container with set dimensions.
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Pvjs } from '@wikipathways/pvjs';
+
+ReactDOM.render(
+    <Pvjs
+        wpId="WP4"
+    />,
+    document.getElementById('root')
+);
+```
+
+### <a name="react.props"></a> Props
+* `wpId`: Required. A string for the WikiPathways ID of the desired pathway. E.g. 'WP4'.
+* `version`: Default = 0. A number for the version of the pathway. 0 is latest.
+* `onReady`: Function that is called with the list of entities in the diagram when the diagram has finished loading. You can use this to get the entityIds for other props.
+* `onEntityClick`: Function that is called with the entity whenever a diagram entity has been clicked.
+* `onPanZoomChange`: Function that is called whenever the diagram is panned or zoomed. It is called with an object with the form: `{ x: number, y: number, zoomLevel: number }`. The coordinates in the object are relative to the diagram dimensions.
+* `detailPanelEnabled`: Default = `true`. Indicates whether the annotations pop-up will be shown when an entity is clicked.
+* `panZoomLocked`: Default = `false`. Indicates whether the user can manually pan and zoom the diagram. Note, changes to pannedEntities and zoomedEntities will still have an effect if this is true.
+* `showPanZoomControls`: Default = true. Indicates whether the controls for panning and zooming are shown.
+* `highlightedEntities`: Default = `[]`. Array of objects for highlighted diagram entities. Objects in this array look like `{ entityId: string, color: string }`. Color can be any CSS color. See the [advanced example](#react.advanced).
+* `hiddenEntities`: Default = `[]`. Array of entityIds. See the [advanced example](#react.advanced).
+* `pannedEntities`: Default = `[]`. Array of entityIds. See the [advanced example](#react.advanced).
+* `zoomedEntities`: Default = `[]`. Array of entityIds. See the [advanced example](#react.advanced). Note, that zoomed does not also mean panned. In most cases, an entityId in zoomedEntities should also be in pannedEntities.
+* `zoomLevel`: Default = `1`. Number indicating the level of zoom the diagram should be at. 1 = no zoom in/out.
+* `panCoordinates`: Default: `{x: 0, y: 0}`. Relative coordinates to pan to. `x` is relative to the diagram width and `y` the diagram height. E.g. `{x: 0.5, y: 0.5}` will pan half way across the x and y axis.
+
+*Note that pannedCoordinates and zoomLevel take precedence over pannedEntities and zoomedEntities.*
+
+### <a name="react.advanced"></a> Advanced Example
+
+```javascript
+import React, { Component } from 'react';
+import { Pvjs } from '@wikipathways/pvjs';
+
+class MyPvjsComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      highlightedEntities: [],
+      hiddenEntities: [],
+      zoomedEntities: [],
+      pannedEntities: [],
     }
-  ]
-});
+  }
+
+  onEntityClick = entity => {
+    // This will highlight an entity red, whenever it is clicked
+    this.setState(state => {
+      return {
+        highlightedEntities: state.highlightedEntities.concat([
+          {
+            entityId: entity.id,
+            color: 'red', // Color can be any CSS color
+          },
+        ]),
+      }
+    });
+  }
+
+  onPvjsReady = entityList => {
+    // Find the entity with TCA cycle as the node text
+    const TCA = entityList.find(singleEntity => singleEntity.textContent === 'TCA Cycle');
+    const BRCA1 = entityList.find(singleEntity => singleEntity.textContent === 'BRCA1');
+
+    this.setState({
+      highlightedEntities: [{entityId: TCA.id, color: 'blue'}],
+      pannedEntities: [TCA.id],
+      zoomedEntities: [TCA.id],
+      hiddenEntities: ['daafb'],
+    });
+  }
+
+  render() {
+    const { highlightedEntities, hiddenEntities, zoomedEntities, pannedEntities } = this.state;
+
+    return (
+      <div style={{width: '100vw', height: '100vh'}}>
+        <Pvjs
+          wpId="WP4"
+          version={0}
+          onReady={this.onPvjsReady}
+          onEntityClick={this.onEntityClick}
+          highlightedEntities={highlightedEntities}
+          hiddenEntities={hiddenEntities}
+          zoomedEntities={zoomedEntities}
+          pannedEntities={pannedEntities}
+          detailPanelEnabled={false}
+        />
+      </div>
+    )
+  }
+}
 ```
 
-If you don't have jQuery and do not want to add it, then you may call `pvjs` directly and pass two arguments: container selector and options object.
+## <a name="component"></a> Web Component
+The web component allows you to use Pvjs without React. To use it, first make sure that Pvjs is available on the page in which you're using it. The easiest way to do this is to include the UMD bundle in your pages head. If you're using a module bundler, just make sure Pvjs is included in your build process (normally in `index.js`).
 
-```js
-pvjs('#pvjs-container', {
-  sourceData: [
-    // at least one item required
-    {
-      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:WP525',
-      fileType:'gpml' // generally will correspond to filename extension
-    },
-    {
-      uri:'http://www.wikipathways.org//wpi/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:WP525',
-      fileType:'png'
-    }
-  ]
-});
+### <a name="component.example"></a> Example
+An example is served at [this gist](https://gist.github.com/jacobwindsor/3684220d95210df2dcbdf79b9e5c2ef5).
+
+### <a name="component.attributes"></a> Attributes
+
+* `wp-id`: Required. A string for the WikiPathways ID of the desired pathway. E.g. 'WP4'.
+* `version`: Default = 0. A number for the version of the pathway. 0 is latest.
+* `detail-panel-enabled`: Indicates whether the annotations pop-up will be shown when an entity is clicked.
+* `pan-zoom-locked`: Indicates whether the user can manually pan and zoom the diagram. Note, changes via the [Manipulation API](#component.manipulation) will still take effect.
+* `show-pan-zoom-controls`: Indicates whether the controls for panning and zooming are shown.
+* `ready`: Indicates when the diagram is fully loaded and ready for manipulating. You cannot set this.
+* `highlighted-entities`: Comma separated list of `entityId:color` maps. E.g. `d8bae:red`. You may set this using the [API](#component.manipulation).
+* `panned-entities`: Comma separated list of entity IDs that are panned to. You may set this using the [API](#component.manipulation).
+* `zoomed-entities`: Comma separated list of entity IDs that are zoomed to. You may set this using the [API](#component.manipulation).
+* `hidden-entities`: Comma separated list of entity IDs that are hidden. You may set this using the [API](#component.manipulation).
+
+#### <a name="component.properties"></a> Properties
+These properties are **not** reflected in the DOM attributes.
+
+* `entities`: The list of entity objects in the diagram. This is null until the diagram is ready.
+
+### <a name="component.events"></a> Events
+* `ready`: This is fired when the diagram is ready. `entities` is provided in the detail object for convenience. See [this gist](https://gist.github.com/jacobwindsor/b45fdf2485a2e0c772fe2884c32ee9cc).
+
+### <a name="component.manipulation"></a> Manipulating
+The custom element provides a custom API that allows you to programmatically manipulate the diagram.
+
+#### <a name="manipulation.example"></a> Example
+An example is served at [this gist](https://gist.github.com/jacobwindsor/b45fdf2485a2e0c772fe2884c32ee9cc).
+
+#### <a name="manipulation.methods"></a> Methods
+
+##### zoomOn
+This method accepts a single entity ID or an array of entity IDs. If a single entity is given then the diagram will
+*zoom and pan* to that entity. If an array is given, the diagram will *zoom and pan* to the area defined by all of those
+entities.
+
+```javascript
+zoomOn(entity_id: string | string[])
 ```
 
-For Developers
-==============
-If it's your first time working on pvjs, check out the [Getting Started Guide](https://github.com/wikipathways/pvjs/tree/master/test) for tips on testing and contributing to the codebase.
+##### panTo
+Basically the same as zoomOn but without the zooming.
 
-See [./lib/README.md](https://github.com/wikipathways/pvjs/blob/master/lib/README.md) for descriptions and locations of the pvjs components, plugins, event messages and options.
+```javascript
+panTo(entity_id: string | string[])
+```
 
-Related
-=======
-This project is supported by the same community that maintains the Java-based pathway diagram editor [PathVisio](http://www.pathvisio.org/), but the codebases between pvjs and PathVisio-Java are entirely distinct. PathVisio-Java plugins will not work with pvjs.
+##### highlightOn
 
-License
-=======
+### <a name="component.attributes"></a> Attributes
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+```javascript
+highlightOn(entity_id: string, color: string)
+```
 
-       http://www.apache.org/licenses/LICENSE-2.0
+##### highlightOff
+```javascript
+highlightOff(entity_id: string)
+```
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+##### toggleHighlight
+```javascript
+toggleHighlight(entity_id: string)
+```
 
+##### hide
+```javascript
+hide(entity_id: string)
+```
 
-Support and Funding
-=======
+##### show
+```javascript
+show(entity_id: string)
+```
+
+##### toggleHidden
+```javascript
+toggleHidden(entity_id: string)
+```
+
+##### resetPan
+```javascript
+resetPan()
+
+##### toggleHidden
+```javascript
+toggleHidden(entity_id: string)
+```
+
+##### resetPan
+```javascript
+resetPan()
+```
+
+##### resetZoom
+```javascript
+resetZoom()
+```
+
+##### resetHighlighted
+Un-highlight all highlighted entities.
+Accepts an optional exclude array that will exclude the given entities from being reset.
+```javascript
+resetHighlighted(exclude?: string[])
+```
+
+##### resetHidden
+Show all hidden entities.
+Accepts an optional exclude array that will exclude the given entities from being reset.
+```javascript
+resetHidden(exclude?: string[])
+```
+
+##### reset
+Reset the pan, zoom, hidden, and highlighted entities
+
+```javascript
+reset()
+```
+
+## <a name="contributions"></a> Contributions & Bugs
+We love pull requests! If you want to contribute to Pvjs then please feel free to make a pull request. The GitHub page is available [here](https://github.com/wikipathways/pvjs).
+
+If you find a bug please check the [issue tracker](https://github.com/wikipathways/pvjs/issues) to see if it hasn't already been reported. If not, then please create a new issue. If you can then we would love for you to make a fix for it in a pull request.
+
+## <a name="funding"></a> Funding
 * The National Institute for General Medical Sciences [R01-GM100039](http://www.nigms.nih.gov/)
 * The BioRange program of the Netherlands [Bioinformatics Centre](http://www.nbic.nl/)
 * [University Maastricht](http://www.unimaas.nl/default.asp?taal=en): Broad Research Strategy Program Part 2 (BOS2)
-* Open source license for cross-browser testing courtesy <a href="https://www.browserstack.com">BrowserStack <img src="https://dgzoq9b5asjg1.cloudfront.net/production/images/static/header/header-logo.svg" alt="BrowserStack" height="42" width="auto"></a>
-
-NOTE: manually changed yolk.js dependency to rely on rx-extra instead of plain rx.
