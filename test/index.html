@@ -76,7 +76,8 @@
     <script src="./pvjs.js"></script>
     <script>
       window.addEventListener('load', function() {
-        d3.json("./WP1243_69897.json", function(data) {
+        var jsons = ['WP1243_69897', 'WP528_92047'];
+        d3.json("./" + jsons[1] + ".json", function(data) {
           pvjs.Pvjs("#production-container", data)
         });
       });

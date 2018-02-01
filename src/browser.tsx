@@ -13,8 +13,6 @@ import * as edgeDrawerMap from "./drawers/edges/index";
 import * as filterDrawerMap from "./drawers/filters/index";
 import { Icons } from "./drawers/icons/index";
 import * as markerDrawerMap from "./drawers/markers/index";
-// TODO make kaavio CLI able to build icons for pvjs and then move
-// PathVisio Icons from kaavio to pvjs
 
 export function Pvjs(userSpecifiedContainerInput: any, data) {
   const userSpecifiedContainer = isString(userSpecifiedContainerInput)

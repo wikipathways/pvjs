@@ -2,7 +2,8 @@ import { find, forOwn, omit } from "lodash";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Base64 } from "js-base64";
-import { Kaavio } from "./Kaavio";
+import { Kaavio } from "kaavio/lib/Kaavio";
+//import { Kaavio } from "./Kaavio";
 import {
   Filter,
   generateFilterId,
