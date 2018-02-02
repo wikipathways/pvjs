@@ -6,8 +6,8 @@ import { isString } from "lodash/fp";
 //import { Kaavio } from "kaavio";
 import { Kaavio } from "kaavio/lib/Kaavio";
 
-const customStyleHTML = require("./customStyleHTML.css");
-const customStyleSVG = require("./customStyleSVG.css");
+const customStyleHTML = require("./html.css");
+const customStyleSVG = require("./svg.plain.css");
 
 import * as edgeDrawerMap from "./drawers/edges/index";
 import * as filterDrawerMap from "./drawers/filters/index";

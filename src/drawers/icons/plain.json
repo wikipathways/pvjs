@@ -1,0 +1,18 @@
+{
+  "ArcPathVisio": "file://./ArcPathVisio.svg#ArcPathVisio",
+  "Brace": "file://./Brace.svg#Brace",
+  "Complex": "file://./Octagon.svg#Octagon",
+  "Ellipse": "file://./Ellipse.svg#Ellipse",
+  "EndoplasmicReticulum": "file://./EndoplasmicReticulum.svg#EndoplasmicReticulum",
+  "HexagonPathVisio": "file://./HexagonPathVisio.svg#HexagonPathVisio",
+  "GolgiApparatus": "file://./GolgiApparatus.svg#GolgiApparatus",
+  "MimDegradation": "file://./MimDegradation.svg#MimDegradation",
+  "Mitochondria": "file://./Mitochondria.svg#Mitochondria",
+  "Octagon": "file://./Octagon.svg#Octagon",
+  "PentagonPathVisio": "file://./PentagonPathVisio.svg#PentagonPathVisio",
+  "Rectangle": "file://./Rectangle.svg#Rectangle",
+  "RoundedRectangle": "file://./RoundedRectangle.svg#RoundedRectangle",
+  "SarcoplasmicReticulum": "file://./SarcoplasmicReticulum.svg#SarcoplasmicReticulum",
+  "TrianglePathVisio": "file://./TrianglePathVisio.svg#TrianglePathVisio",
+  "none": "file://./none.svg#none"
+}

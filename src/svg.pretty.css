@@ -1,0 +1,166 @@
+.Viewport.Icon {
+  fill: #fefefa;
+}
+
+.textContent {
+  stroke: none;
+}
+
+marker {
+  /* this is what should work per the spec
+  stroke-dasharray: none; */
+  /* but I need to add this to make it work in Safari */
+  stroke-dasharray: 9999999999999999999999999;
+}
+
+.Citation.Icon {
+  fill: none;
+  stroke-width: 0px;
+}
+
+.Citation.textContent {
+  text-align: center;
+  vertical-align: top;
+  font-size: 7px;
+  fill: #999999;
+  fill-opacity: 1;
+  stroke: none;
+}
+
+.Icon.ArcPathVisio {fill: currentColor; stroke: none;}
+.Icon.Brace {fill: currentColor; stroke: none;}
+.Icon.Ellipse {fill: currentColor; stroke: none;}
+.Icon.EndoplasmicReticulum {fill: currentColor; stroke: none;}
+.Icon.GolgiApparatus {fill: currentColor; stroke: none;}
+.Icon.HexagonPathVisio {fill: currentColor; stroke: none;}
+.Icon.MimDegradation {fill: currentColor; stroke: none;}
+.Icon.Mitochondria {fill: currentColor; stroke: none;}
+.Icon.Octagon {fill: currentColor; stroke: none;}
+.Icon.Pentagon {fill: currentColor; stroke: none;}
+.Icon.Rectangle {fill: currentColor; stroke: none;}
+.Icon.RoundedRectangle {fill: currentColor; stroke: none;}
+.Icon.SarcoplasmicReticulum {fill: currentColor; stroke: none;}
+.Icon.TrianglePathVisio {fill: currentColor; stroke: none;}
+.Icon.none {fill: currentColor; stroke: none;}
+
+.CellularComponent .Icon {
+  clip-path: none;
+  fill: transparent;
+  stroke: #808080;
+  stroke-width: 3;
+}
+
+.DataNode {
+  /*stroke-miterlimit: 1;*/
+  /*filter: drop-shadow( 5px 5px 5px red );*/
+  /*filter: drop-shadow(16px 16px 20px black);*/
+  filter: drop-shadow( 2px 2px 2px #000 ); /* Same syntax as box-shadow */
+  -webkit-filter: drop-shadow( 2px 2px 2px #000 );
+}
+.DataNode:hover {
+  cursor: text;
+  opacity: 0.9;
+  stroke-width: 0px;
+}
+.DataNode .Icon {
+  clip-path: url(#RoundedRectangleClipPath);
+  fill: #2BDA82;
+  stroke-width: 0px;
+}
+.DataNode .textContent {
+  fill: #fff;
+  font-weight: bold;
+}
+.DataNode:hover .textContent {
+  fill: yellow;
+}
+.DataNode .Highlighted {
+  opacity: 0.9;
+  stroke-width: 0px;
+}
+
+.DataNode.Rna .Icon {
+  fill: #9453A7;
+}
+
+.DataNode.Metabolite .Icon {
+    fill: #0099FF;
+}
+.DataNode.Metabolite .Highlighted {
+}
+
+.DataNode.Pathway .Icon {
+  fill: white;
+  stroke-width: 0px;
+}
+.DataNode.Pathway .textContent {
+  fill: #75C95C;
+}
+.DataNode.Pathway .Highlighted {
+}
+
+.Label .Icon {
+  stroke: transparent;
+  stroke-width: 0px;
+  fill: transparent;
+}
+
+.Label .Icon .textContent {
+  fill: #444;
+}
+
+.State {
+  fill: #009999;
+  stroke: #fff;
+  stroke-width: 1;
+}
+
+.GroupGroup {
+  fill: transparent;
+  stroke-width: 0px;
+}
+
+.GroupComplex > .Icon {
+  fill: #B4B464;
+  fill-opacity: 0.1;
+  stroke: #808080;
+}
+
+.GroupNone > .Icon {
+		fill: #B4B464;
+		fill-opacity: 0.1;
+    stroke: #808080;	
+}
+
+.GroupPathway > .Icon {
+  fill: #008000;
+  fill-opacity: 0.05;
+  stroke: #808080;
+}
+
+.Interaction {
+  stroke: #000000;
+}
+
+.Inhibition {
+  stroke: red;
+  stroke-width: 1.3;
+}
+
+.Citation .Icon {
+  fill: none;
+  stroke-width: 0px;
+}
+.Citation .textContent {
+  fill: gray;
+  font-size: 10px;
+}
+
+.InfoBox {
+  fill: #444;
+}
+/*
+.InfoBox .Citation {
+  font-size: 0px;
+}
+*/

@@ -14,24 +14,38 @@ import { createJson2SvgCLI } from "kaavio/lib/createJson2SvgCLI";
 import * as customStyleHTMLModule from "./customStyleHTML.css";
 const customStyleHTML = customStyleHTMLModule["default"];
 //*/
-const customStyleHTML = require("./customStyleHTML.css");
+const customStyleHTML = require("./html.css");
 /*
 //import customStyleSVG from "./customStyleSVG.css";
 import * as customStyleSVGModule from "./customStyleSVG.css";
 const customStyleSVG = customStyleSVGModule["default"];
 //*/
-const customStyleSVG = require("./customStyleSVG.css");
+const customStyleSVGPlain = require("./svg.plain.css");
+const customStyleSVGPretty = require("./svg.pretty.css");
 
 import * as edgeDrawerMap from "./drawers/edges/index";
 import * as filterDrawerMap from "./drawers/filters/index";
-import { Icons } from "./drawers/icons/index";
+import { Icons as IconsPlain } from "./drawers/IconBundle.plain";
+import { Icons as IconsPretty } from "./drawers/IconBundle.pretty";
 import * as markerDrawerMap from "./drawers/markers/index";
 
-createJson2SvgCLI("pvjs", {
-  customStyleHTML,
-  customStyleSVG,
-  edgeDrawerMap,
-  filterDrawerMap,
-  Icons,
-  markerDrawerMap
-});
+const plain = false;
+if (plain) {
+  createJson2SvgCLI("pvjs", {
+    customStyleHTML,
+    customStyleSVG: customStyleSVGPlain,
+    edgeDrawerMap,
+    filterDrawerMap,
+    Icons: IconsPlain,
+    markerDrawerMap
+  });
+} else {
+  createJson2SvgCLI("pvjs", {
+    customStyleHTML,
+    customStyleSVG: customStyleSVGPretty,
+    edgeDrawerMap,
+    filterDrawerMap,
+    Icons: IconsPretty,
+    markerDrawerMap
+  });
+}
