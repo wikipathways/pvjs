@@ -2,6 +2,12 @@
   fill: white;
 }
 
+/* Hide the top-level citation numbers */
+/*
+.Viewport > .Citation.textContent {
+  font-size: 0px;
+}
+*/
 /* Hide the InfoBox */
 .Viewport.textContent {
   font-size: 0;

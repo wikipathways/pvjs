@@ -2,7 +2,9 @@
   "name": "@wikipathways/pvjs",
   "version": "4.0.0-13",
   "main": "index.js",
-  "bin": "./bin/pvjs",
+  "bin": {
+    "pvjs": "./bin/pvjs"
+  },
   "files": [
     "lib/",
     "bin/",
@@ -28,7 +30,7 @@
     "bundle": "npm-run-all -p bundle:*",
     "bundle:icons": "npm-run-all -p bundle:icons:*",
     "bundle:icons:plain": "kaavio bundle icons ./src/drawers/icons/plain.json -o ./src/drawers/IconBundle.plain.tsx",
-    "bundle:icons:pretty": "kaavio bundle icons ./src/drawers/icons/pretty.json -o ./src/drawers/IconBundle.pretty.tsx",
+    "bundle:icons:pretty": "kaavio bundle icons -p HMDB00243Pattern ./src/drawers/icons/pretty.json -o ./src/drawers/IconBundle.pretty.tsx",
     "prepublishOnly-broken": "npm run build && npm run test && npm run expected",
     "prepublishOnly": "npm run build && npm run expected",
     "test": "echo 'get in-browser tests working' && npm run test:checksums",
@@ -47,7 +49,7 @@
   "license": "Apache-2.0",
   "description": "",
   "dependencies": {
-    "kaavio": "^4.0.0-26",
+    "kaavio": "^4.0.0-30",
     "react": "^15.6.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",

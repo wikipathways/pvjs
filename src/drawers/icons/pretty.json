@@ -10,10 +10,20 @@
   "Mitochondria": "file://./Mitochondria.svg#Mitochondria",
   "Octagon": "file://./Octagon.svg#Octagon",
   "PentagonPathVisio": "file://./PentagonPathVisio.svg#PentagonPathVisio",
-  "Rectangle": "file://./Rectangle.svg#Rectangle",
+  "Rectangle": "file://./RoundedRectangle.svg#RoundedRectangle",
   "RoundedRectangle": "file://./RoundedRectangle.svg#RoundedRectangle",
   "RoundedRectangleClipPath": "file://./RoundedRectangleClipPath.svg#RoundedRectangleClipPath",
   "SarcoplasmicReticulum": "file://./SarcoplasmicReticulum.svg#SarcoplasmicReticulum",
   "TrianglePathVisio": "file://./TrianglePathVisio.svg#TrianglePathVisio",
-  "none": "file://./none.svg#none"
+  "none": "file://./none.svg#none",
+  "HMDB00042": "http://www.simolecule.com/cdkdepict/depict/bow/svg?smi=CC(O)=O&abbr=on&hdisp=bridgehead&showtitle=false&zoom=0.75&annotate=none",
+  "HMDB00042Filter": "file://./HMDB00042Filter.svg#HMDB00042Filter",
+  "HMDB00097": "http://www.simolecule.com/cdkdepict/depict/bow/svg?smi=C[N%2B](C)(C)CCO&abbr=on&hdisp=bridgehead&showtitle=false&zoom=0.75&annotate=none",
+  "HMDB00097Filter": "file://./HMDB00097Filter.svg#HMDB00097Filter",
+  "HMDB00243": "http://www.simolecule.com/cdkdepict/depict/bow/svg?smi=CC(=O)C(O)=O&abbr=on&hdisp=bridgehead&showtitle=false&zoom=0.75&annotate=none",
+  "HMDB00243Filter": "file://./HMDB00243Filter.svg#HMDB00243Filter",
+  "HMDB00243Pattern": "file://./HMDB00243Pattern.svg#HMDB00243Pattern",
+  "HMDB01206Pattern": "file://./HMDB01206Pattern.svg#HMDB01206Pattern",
+  "InvertFilter": "file://./InvertFilter.svg#InvertFilter",
+  "ToPinkFilter": "file://./ToPinkFilter.svg#ToPinkFilter"
 }
