@@ -1,9 +1,9 @@
 svg > .Viewport {
-  filter: url(#InvertFilter);
+  filter: url(#FilterInvert95);
 }
 
 .Viewport.textContent {
-  fill: #b0b0b0;
+  fill: #c0c0c0;
 }
 
 .Edge > path.Edge {
@@ -13,7 +13,7 @@ svg > .Viewport {
 .Viewport > .DataNode,
 .Group > .DataNode,
 .Group > .Group.Icon {
-  filter: url(#InvertFilter);
+  filter: url(#FilterInvert95);
   /*stroke-miterlimit: 1;*/
   /*filter: drop-shadow( 5px 5px 5px red );*/
   /*filter: drop-shadow(16px 16px 20px black);*/
@@ -109,6 +109,8 @@ rect.DataNode.Icon {
   filter: none;
 }
 
+[typeof~="hmdb:HMDB00042"].DataNode.Metabolite:hover rect.Icon,
+[typeof~="hmdb:HMDB00097"].DataNode.Metabolite:hover rect.Icon,
 [typeof~="hmdb:HMDB00243"].DataNode.Metabolite:hover rect.Icon,
 [typeof~="hmdb:HMDB01206"].DataNode.Metabolite:hover rect.Icon,
 [name="acetyl-CoA"].DataNode.Metabolite:hover rect.Icon {
@@ -122,41 +124,39 @@ rect.DataNode.Icon {
 [typeof~="hmdb:HMDB00042"].DataNode.Metabolite:hover .textContent,
 [typeof~="hmdb:HMDB00097"].DataNode.Metabolite:hover .textContent,
 [typeof~="hmdb:HMDB00243"].DataNode.Metabolite:hover .textContent,
+[typeof~="hmdb:HMDB01206"].DataNode.Metabolite:hover .textContent,
 [name="acetyl-CoA"].DataNode.Metabolite:hover .textContent {
   font-size: 0px;
 }
 
 [typeof~="hmdb:HMDB00042"].DataNode.Metabolite:hover rect.Icon {
-  cursor: default;
-  filter: url(#HMDB00042Filter);
-  height: 50px;
-  transform: translateX(20px);
+  fill: url(#PatternHMDB00042);
+  transform: scale(2, 2);
 }
 
 [typeof~="hmdb:HMDB00097"].DataNode.Metabolite:hover rect.Icon {
-  cursor: default;
-  filter: url(#HMDB00097Filter);
-  height: 24px;
+  fill: url(#PatternHMDB00097);
+  transform: scale(3, 3);
 }
 
 [typeof~="hmdb:HMDB00243"].DataNode.Metabolite:hover rect.Icon {
-  fill: url(#HMDB00243Pattern);
+  fill: url(#PatternHMDB00243);
   transform: scale(2.5, 2.5);
 }
 
 [typeof~="hmdb:HMDB01206"].DataNode.Metabolite:hover rect.Icon,
 [name="acetyl-CoA"].DataNode.Metabolite:hover rect.Icon {
-  fill: url(#HMDB01206Pattern);
-  transform: scale(2.5, 2.5);
+  fill: url(#PatternHMDB01206);
+  transform: scale(4, 4);
 }
 
 /*
 .Edge > path[marker-end*="arrow"].Edge {
-  filter: url(#ToPinkFilter);
+  filter: url(#FilterWhiteToPink);
 }
 
 .Edge > path[marker-end*="catalysis"].Edge {
-  filter: url(#ToPinkFilter);
+  filter: url(#FilterWhiteToPink);
   color: white;
   stroke: white;
 }

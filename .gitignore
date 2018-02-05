@@ -5,3 +5,4 @@ logs
 dist
 npm-debug.log
 lib
+*.css.d.ts
