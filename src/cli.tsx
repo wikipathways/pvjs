@@ -20,29 +20,6 @@ import { Icons as IconsPlain } from "./drawers/IconBundle.plain";
 import { Icons as IconsPretty } from "./drawers/IconBundle.pretty";
 import * as markerDrawerMap from "./drawers/markers/index";
 
-/*
-const plain = true;
-if (plain) {
-  createJson2SvgCLI("pvjs", {
-    customStyleHTML,
-    customStyleSVG: customStyleSVGPlain,
-    edgeDrawerMap,
-    filterDrawerMap,
-    Icons: IconsPlain,
-    markerDrawerMap
-  });
-} else {
-  createJson2SvgCLI("pvjs", {
-    customStyleHTML,
-    customStyleSVG: customStyleSVGPretty,
-    edgeDrawerMap,
-    filterDrawerMap,
-    Icons: IconsPretty,
-    markerDrawerMap
-  });
-}
-//*/
-
 createJson2SvgCLI("pvjs", [
   {
     name: "plain",

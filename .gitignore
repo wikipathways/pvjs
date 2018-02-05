@@ -5,4 +5,5 @@ logs
 dist
 npm-debug.log
 lib
+test/expected/*.svg
 *.css.d.ts
