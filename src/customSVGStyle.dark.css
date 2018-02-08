@@ -140,22 +140,22 @@ rect.DataNode.Icon {
 }
 
 [typeof~="wikidata:Q47512"].DataNode.Metabolite:hover rect.Icon {
-  fill: url(#PatternHMDB00042);
+  fill: url(#PatternQ47512);
   transform: scale(2, 2);
 }
 
 [typeof~="wikidata:Q193166"].DataNode.Metabolite:hover rect.Icon {
-  fill: url(#PatternHMDB00097);
+  fill: url(#PatternQ193166);
   transform: scale(3, 3);
 }
 
 [typeof~="wikidata:Q213580"].DataNode.Metabolite:hover rect.Icon {
-  fill: url(#PatternHMDB00243);
+  fill: url(#PatternQ213580);
   transform: scale(2.5, 2.5);
 }
 
 [typeof~="wikidata:Q715317"].DataNode.Metabolite:hover rect.Icon {
-  fill: url(#PatternHMDB01206);
+  fill: url(#PatternQ715317);
   transform: scale(4, 4);
 }
 
