@@ -7,7 +7,7 @@
   "HexagonPathVisio": "file://./HexagonPathVisio.svg#HexagonPathVisio",
   "GolgiApparatus": "file://./GolgiApparatus.svg#GolgiApparatus",
   "MimDegradation": "file://./MimDegradation.svg#MimDegradation",
-  "Mitochondria": "file://./Mitochondria.svg#Mitochondria",
+  "Mitochondria": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Mitochondria.svg",
   "Octagon": "file://./Octagon.svg#Octagon",
   "PentagonPathVisio": "file://./PentagonPathVisio.svg#PentagonPathVisio",
   "Rectangle": "file://./RoundedRectangle.svg#RoundedRectangle",
@@ -16,10 +16,14 @@
   "SarcoplasmicReticulum": "file://./SarcoplasmicReticulum.svg#SarcoplasmicReticulum",
   "TrianglePathVisio": "file://./TrianglePathVisio.svg#TrianglePathVisio",
   "none": "file://./none.svg#none",
+  "FilterBlackToRed": "file://./FilterBlackToRed.svg#FilterBlackToRed",
+  "FilterBlackToGreen": "file://./FilterBlackToGreen.svg#FilterBlackToGreen",
   "FilterInvert95": "file://./FilterInvert95.svg#FilterInvert95",
+  "FilterWhiteTo33BFFF": "file://./FilterWhiteTo33BFFF.svg#FilterWhiteTo33BFFF",
   "FilterWhiteToRed": "file://./FilterWhiteToRed.svg#FilterWhiteToRed",
-  "PatternHMDB00042": "file://./PatternHMDB00042.svg#PatternHMDB00042",
-  "PatternHMDB00097": "file://./PatternHMDB00097.svg#PatternHMDB00097",
-  "PatternHMDB00243": "file://./PatternHMDB00243.svg#PatternHMDB00243",
-  "PatternHMDB01206": "file://./PatternHMDB01206.svg#PatternHMDB01206"
+  "FilterWhiteToGreen": "file://./FilterWhiteToGreen.svg#FilterWhiteToGreen",
+  "PatternQ47512": "file://./PatternQ47512.svg#PatternQ47512",
+  "PatternQ193166": "file://./PatternQ193166.svg#PatternQ193166",
+  "PatternQ213580": "file://./PatternQ213580.svg#PatternQ213580",
+  "PatternQ715317": "file://./PatternQ715317.svg#PatternQ715317"
 }

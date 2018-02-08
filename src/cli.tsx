@@ -7,34 +7,41 @@ import { createJson2SvgCLI } from "kaavio/lib/createJson2SvgCLI";
 // Importing as * as blah yields an object, not a string.
 // Both require and import + extract default work, but they look ugly.
 /*
-//import customStyleSVG from "./customStyleSVG.css";
-import * as customStyleSVGModule from "./customStyleSVG.css";
-const customStyleSVG = customStyleSVGModule["default"];
+//import customSVGStyle from "./customSVGStyle.css";
+import * as customSVGStyleModule from "./customSVGStyle.css";
+const customSVGStyle = customSVGStyleModule["default"];
 //*/
-const customStyleSVGPlain = require("./svg.plain.css");
-const customStyleSVGPretty = require("./svg.pretty.css");
+const customSVGStylePlain = require("./customSVGStyle.plain.css");
+const customSVGStylePretty = require("./customSVGStyle.dark.css");
+const npmPackage = require("../package.json");
 
 import * as edgeDrawerMap from "./drawers/edges/index";
 import * as filterDrawerMap from "./drawers/filters/index";
-import { Icons as IconsPlain } from "./drawers/IconBundle.plain";
-import { Icons as IconsPretty } from "./drawers/IconBundle.pretty";
+import { Defs as DefsPlain } from "./drawers/defs/__bundled_dont_edit__.plain";
+import { Defs as DefsDark } from "./drawers/defs/__bundled_dont_edit__.dark";
 import * as markerDrawerMap from "./drawers/markers/index";
 
-createJson2SvgCLI("pvjs", [
+createJson2SvgCLI(npmPackage, [
   {
     name: "plain",
-    style: customStyleSVGPlain,
+    pathway: {
+      backgroundColor: "white"
+    },
+    customSVGStyle: customSVGStylePlain,
     edgeDrawerMap,
     filterDrawerMap,
-    Icons: IconsPlain,
+    Defs: DefsPlain,
     markerDrawerMap
   },
   {
-    name: "pretty",
-    style: customStyleSVGPretty,
+    name: "dark",
+    pathway: {
+      backgroundColor: "#3D3D3D"
+    },
+    customSVGStyle: customSVGStylePretty,
     edgeDrawerMap,
     filterDrawerMap,
-    Icons: IconsPretty,
+    Defs: DefsDark,
     markerDrawerMap
   }
 ]);

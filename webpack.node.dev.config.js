@@ -9,8 +9,6 @@ webpackConfig.output = {
   path: path.resolve(__dirname, "dist"),
   filename: "cli.js",
   libraryTarget: "commonjs2"
-  //library: "Pvjs",
-  //libraryTarget: "umd"
 };
 webpackConfig.target = "node";
 webpackConfig.node = {

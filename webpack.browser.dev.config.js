@@ -13,7 +13,11 @@ webpackConfig.output = {
 
 webpackConfig.devtool = "cheap-module-eval-source-map";
 webpackConfig.devServer = {
-  contentBase: [path.join(__dirname, "test"), path.join(__dirname, "dist")],
+  contentBase: [
+    path.join(__dirname, "test"),
+    path.join(__dirname, "dist"),
+    path.join(__dirname, "node_modules/gpml2pvjson/test/expected")
+  ],
   //compress: true,
   port: 9000
 };

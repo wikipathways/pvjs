@@ -1,0 +1,202 @@
+.Viewport.textContent {
+  fill: #C0C0C0;
+}
+
+.Edge > path.Edge {
+  stroke-width: 1.1px;
+}
+
+.Viewport > .DataNode,
+.Group > .DataNode,
+.Group > .Group.Icon {
+/*
+  filter: url(#FilterInvert95);
+*/
+  /*stroke-miterlimit: 1;*/
+  /*filter: drop-shadow( 5px 5px 5px red );*/
+  /*filter: drop-shadow(16px 16px 20px black);*/
+  /* Same syntax as box-shadow */
+  /*
+  filter: drop-shadow( 2px 2px 2px #000 );
+  -webkit-filter: drop-shadow( 2px 2px 2px #000 );
+  */
+}
+
+.GroupGroup {
+  fill: transparent;
+  stroke-width: 0px;
+}
+
+.GroupComplex > .Icon {
+  fill: #B4B464;
+  fill-opacity: 0.1;
+  stroke: #808080;
+}
+
+.GroupNone > .Icon {
+		fill: #B4B464;
+		fill-opacity: 0.1;
+    stroke: #808080;	
+}
+
+.GroupPathway > .Icon {
+  fill: #008000;
+  fill-opacity: 0.05;
+  stroke: #808080;
+}
+
+:not(.CellularComponent).Shape {
+  filter: url(#FilterInvert95);
+}
+
+.Label.Icon {
+  color: transparent;
+  fill: none;
+  fill-opacity: 0;
+  stroke: none;
+  /*filter: url(#FilterInvert95);*/
+}
+g.Label > .Label.textContent {
+  fill: #FEFEFE;
+  /*filter: url(#FilterInvert95);*/
+}
+
+rect.DataNode.Icon {
+  /* clip-path needed because rx,ry don't work in FF */
+  clip-path: url(#RoundedRectangleClipPath);
+  rx: 15px;
+  ry: 15px;
+  stroke-width: 0px;
+}
+.DataNode .textContent {
+  font-weight: bold;
+}
+.DataNode:hover {
+  cursor: text;
+}
+
+.DataNode.GeneProduct.Icon {
+  fill: #f4d03f;
+}
+.DataNode.GeneProduct .textContent {
+  fill: #333;
+}
+
+.DataNode.Protein.Icon {
+  fill: brown;
+}
+.DataNode.Protein .textContent {
+  fill: #FEFEFE;
+}
+
+.DataNode.Rna.Icon {
+  fill: #9453A7;
+}
+.DataNode.Rna .textContent {
+  fill: #ECF0F1;
+}
+
+.DataNode.Pathway.Icon {
+  fill: #75C95C;
+  /* NOTE: Uncomment the line below to see an example
+   *      of adding a dropshadow to Pathway DataNodes: */
+  /*filter: 'drop-shadow( 2px 2px 2px #000 )'; */
+}
+.DataNode.Pathway .textContent {
+  fill: #1C2833;
+}
+
+.DataNode.Metabolite.Icon {
+  fill: #0000EE;
+}
+.DataNode.Metabolite .textContent {
+  fill: #FEFEFE;
+}
+
+[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover,
+[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover,
+
+[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover,
+[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover {
+  filter: none;
+}
+
+[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover rect.Icon,
+[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover rect.Icon,
+[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover rect.Icon,
+[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover rect.Icon {
+  cursor: default;
+  /* needed for FF. See
+     https://bugzilla.mozilla.org/show_bug.cgi?id=1209061 */
+  transform-box:fill-box;
+  transform-origin: 50% 50%;
+}
+
+[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover .textContent,
+[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover .textContent,
+[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover .textContent,
+[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover .textContent {
+  font-size: 0px;
+}
+
+[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover rect.Icon {
+  fill: url(#PatternHMDB00042);
+  transform: scale(2, 2);
+}
+
+[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover rect.Icon {
+  fill: url(#PatternHMDB00097);
+  transform: scale(3, 3);
+}
+
+[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover rect.Icon {
+  fill: url(#PatternHMDB00243);
+  transform: scale(2.5, 2.5);
+}
+
+[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover rect.Icon {
+  fill: url(#PatternHMDB01206);
+  transform: scale(4, 4);
+}
+
+.DataNode > .State {
+  filter: url(#FilterWhiteTo33BFFF);
+}
+
+g.Interaction {
+  /*filter: url(#FilterInvert95);*/
+  stroke-width: 1.3;
+}
+
+g.Stimulation {
+  filter: url(#FilterBlackToGreen);
+}
+
+g.Inhibition {
+  filter: url(#FilterBlackToRed);
+}
+
+.Citation .Icon {
+  fill: none;
+  stroke-width: 0px;
+}
+.Citation .textContent {
+  fill: gray;
+  font-size: 10px;
+}
+
+/* stuff that should maybe go into Kaavio */
+/*
+.textContent {
+  stroke: none;
+}
+*/
+
+/* this is what should work per the spec
+stroke-dasharray: none; */
+/* but I need to add this to make it work in Safari */
+/*
+marker {
+  stroke-dasharray: 9999999999999999999999999;
+}
+*/

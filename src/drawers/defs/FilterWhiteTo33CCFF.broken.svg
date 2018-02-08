@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 183 276" color-interpolation-filters="sRGB">
+<filter id="FilterWhiteTo33CCFF" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100% 100%">
+  <feComponentTransfer xmlns="http://www.w3.org/2000/svg">
+    <feFuncR type="linear" slope="0.05" intercept="0"/>
+    <feFuncG type="linear" slope="0.61" intercept="0"/>
+    <feFuncB type="linear" slope="1" intercept="0"/>
+    <feFuncA type="linear" slope="1" intercept="0"/>
+    <!-- Calculated linearly, I'd expect the values above to be different,
+         because
+	   #FFFFFF = R: 255, G: 255, B: 255
+         and
+	   #33CCFF = R: 51, G: 204, B: 255
+	 so the filter for #FFFFFF to #33CCFF should be
+	   R: (51 / 255) * 255, G: (204 / 255) * 255, B: (255 / 255) * 255
+	   => R: 0.2 * 255, G: 0.8 * 255, B: 1.0 * 255
+	 which would be this
+    <feFuncR type="linear" slope="0.2" intercept="0"/>
+    <feFuncG type="linear" slope="0.8" intercept="0"/>
+    <feFuncB type="linear" slope="1" intercept="0"/>
+	but that produced a different shade of blue. The ones I'm using
+	produce very close to what we want.
+    -->
+  </feComponentTransfer>
+</filter>
+</svg>

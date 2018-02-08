@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 183 276" color-interpolation-filters="sRGB">
- <filter id="FilterInvert95">
-    <feComponentTransfer>
-        <feFuncR type="table" tableValues="1 0.05"/>
-        <feFuncG type="table" tableValues="1 0.05"/>
-        <feFuncB type="table" tableValues="1 0.05"/>
-    </feComponentTransfer>
- </filter>
-</svg>

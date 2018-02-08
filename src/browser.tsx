@@ -6,12 +6,12 @@ import { isString } from "lodash/fp";
 //import { Kaavio } from "kaavio";
 import { Kaavio } from "kaavio/lib/Kaavio";
 
-const customStyleHTML = require("./html.css");
-const customStyleSVG = require("./svg.plain.css");
+const customStyleSVG = require("./customHTMLStyle.css");
+const customSVGStyle = require("./customSVGStyle.plain.css");
 
 import * as edgeDrawerMap from "./drawers/edges/index";
 import * as filterDrawerMap from "./drawers/filters/index";
-import { Icons } from "./drawers/icons/index";
+import { Defs } from "./drawers/defs/__bundled_dont_edit__.plain";
 import * as markerDrawerMap from "./drawers/markers/index";
 
 export function Pvjs(userSpecifiedContainerInput: any, data) {
@@ -21,8 +21,8 @@ export function Pvjs(userSpecifiedContainerInput: any, data) {
 
   return ReactDOM.render(
     <Kaavio
-      customStyleSVG={customStyleSVG}
-      Icons={Icons}
+      customSVGStyle={customSVGStyle}
+      Defs={Defs}
       edgeDrawerMap={edgeDrawerMap}
       filterDrawerMap={filterDrawerMap}
       markerDrawerMap={markerDrawerMap}
