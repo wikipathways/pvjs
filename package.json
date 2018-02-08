@@ -1,6 +1,6 @@
 {
   "name": "@wikipathways/pvjs",
-  "version": "4.0.0-19",
+  "version": "4.0.0-21",
   "main": "index.js",
   "bin": {
     "pvjs": "./bin/pvjs"
@@ -30,7 +30,7 @@
     "bundle": "npm-run-all -p bundle:*",
     "bundle:defs": "npm-run-all bundle:defs:*",
     "bundle:defs:plain": "kaavio bundle defs ./src/drawers/defs/plain.json -o ./src/drawers/defs/__bundled_dont_edit__.plain.tsx",
-    "bundle:defs:dark": "kaavio bundle defs ./src/drawers/defs/dark.json -o ./src/drawers/defs/__bundled_dont_edit__.dark.tsx",
+    "bundle:defs:dark": "kaavio bundle defs -p PatternQ193166,PatternQ213580,PatternQ47512,PatternQ715317 ./src/drawers/defs/dark.json -o ./src/drawers/defs/__bundled_dont_edit__.dark.tsx",
     "postinstall": "npm-run-all bundle; echo \"\\nBuilding expected SVGs for testing purposes...:\"; npm run deleteUnconvertables; inputs=\"./node_modules/gpml2pvjson/test/expected/*.json\"; echo \"# Converting $inputs from JSON to SVG and verifying checksums...\"; for f in $inputs; do pathway_name=`basename \"$f\" | sed s/.json//`; base_path=`echo \"./test/expected/$pathway_name\"`; echo \"\\n## Processing $pathway_name...\"; cat \"$f\" | bin/pvjs --react | tee \"$base_path.svg\" | shasum -p -a 1 -c \"$base_path.svg.sha1sum\" || break; done",
     "prepublishOnly": "npm-run-all build test expected",
     "test": "npm-run-all test:browser test:convertOne test:quick test:checksums",

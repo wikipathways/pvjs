@@ -126,10 +126,12 @@ rect.DataNode.Icon {
 [typeof~="wikidata:Q213580"].DataNode.Metabolite:hover rect.Icon,
 [typeof~="wikidata:Q715317"].DataNode.Metabolite:hover rect.Icon {
   cursor: default;
+  filter: url(#FilterInvert95);
   /* needed for FF. See
      https://bugzilla.mozilla.org/show_bug.cgi?id=1209061 */
   transform-box:fill-box;
   transform-origin: 50% 50%;
+  transform: scale(1.5, 2);
 }
 
 [typeof~="wikidata:Q47512"].DataNode.Metabolite:hover .textContent,
@@ -141,22 +143,22 @@ rect.DataNode.Icon {
 
 [typeof~="wikidata:Q47512"].DataNode.Metabolite:hover rect.Icon {
   fill: url(#PatternQ47512);
-  transform: scale(2, 2);
+  /*transform: scale(2, 2);*/
 }
 
 [typeof~="wikidata:Q193166"].DataNode.Metabolite:hover rect.Icon {
   fill: url(#PatternQ193166);
-  transform: scale(3, 3);
+  /*transform: scale(3, 3);*/
 }
 
 [typeof~="wikidata:Q213580"].DataNode.Metabolite:hover rect.Icon {
   fill: url(#PatternQ213580);
-  transform: scale(2.5, 2.5);
+  /*transform: scale(2.5, 2.5);*/
 }
 
 [typeof~="wikidata:Q715317"].DataNode.Metabolite:hover rect.Icon {
   fill: url(#PatternQ715317);
-  transform: scale(4, 4);
+  /*transform: scale(4, 4);*/
 }
 
 .DataNode > .State {
