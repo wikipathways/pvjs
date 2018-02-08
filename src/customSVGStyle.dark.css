@@ -1,3 +1,11 @@
+svg > .Viewport {
+  filter: url(#FilterInvert95);
+}
+
+rect.Viewport {
+  filter: url(#FilterInvert100);
+}
+
 .Viewport.textContent {
   fill: #C0C0C0;
 }
@@ -9,8 +17,8 @@
 .Viewport > .DataNode,
 .Group > .DataNode,
 .Group > .Group.Icon {
+  filter: url(#FilterInvert100);
 /*
-  filter: url(#FilterInvert95);
 */
   /*stroke-miterlimit: 1;*/
   /*filter: drop-shadow( 5px 5px 5px red );*/
@@ -45,9 +53,11 @@
   stroke: #808080;
 }
 
+/*
 :not(.CellularComponent).Shape {
-  filter: url(#FilterInvert95);
+  filter: url(#FilterInvert100);
 }
+*/
 
 .Label.Icon {
   color: transparent;
@@ -61,6 +71,11 @@ g.Label > .Label.textContent {
   /*filter: url(#FilterInvert95);*/
 }
 
+/*
+.Viewport > g.DataNode,.Group > g.DataNode {
+  filter: url(#FilterInvert100);
+}
+*/
 rect.DataNode.Icon {
   /* clip-path needed because rx,ry don't work in FF */
   clip-path: url(#RoundedRectangleClipPath);
@@ -97,7 +112,10 @@ rect.DataNode.Icon {
 }
 
 .DataNode.Pathway.Icon {
+  filter: url(#FilterWhiteToGreen);
+  /*
   fill: #75C95C;
+  */
   /* NOTE: Uncomment the line below to see an example
    *      of adding a dropshadow to Pathway DataNodes: */
   /*filter: 'drop-shadow( 2px 2px 2px #000 )'; */
@@ -118,7 +136,6 @@ rect.DataNode.Icon {
 
 [typeof~="wikidata:Q213580"].DataNode.Metabolite:hover,
 [typeof~="wikidata:Q715317"].DataNode.Metabolite:hover {
-  filter: none;
   /* clip-path needed because rx,ry don't work in FF */
   clip-path: none;
   rx: 0px;
@@ -130,7 +147,7 @@ rect.DataNode.Icon {
 [typeof~="wikidata:Q213580"].DataNode.Metabolite:hover rect.Icon,
 [typeof~="wikidata:Q715317"].DataNode.Metabolite:hover rect.Icon {
   cursor: default;
-  filter: url(#FilterInvert95);
+  filter: url(#FilterInvert100);
   /* needed for FF. See
      https://bugzilla.mozilla.org/show_bug.cgi?id=1209061 */
   transform-box:fill-box;

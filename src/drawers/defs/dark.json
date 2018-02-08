@@ -18,6 +18,7 @@
   "none": "file://./none.svg#none",
   "FilterBlackToRed": "file://./FilterBlackToRed.svg#FilterBlackToRed",
   "FilterBlackToGreen": "file://./FilterBlackToGreen.svg#FilterBlackToGreen",
+  "FilterInvert100": "file://./FilterInvert100.svg#FilterInvert100",
   "FilterInvert95": "file://./FilterInvert95.svg#FilterInvert95",
   "FilterWhiteTo33BFFF": "file://./FilterWhiteTo33BFFF.svg#FilterWhiteTo33BFFF",
   "FilterWhiteToRed": "file://./FilterWhiteToRed.svg#FilterWhiteToRed",
