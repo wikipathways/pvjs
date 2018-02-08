@@ -1,6 +1,6 @@
 {
   "name": "@wikipathways/pvjs",
-  "version": "4.0.0-21",
+  "version": "4.0.0-22",
   "main": "index.js",
   "bin": {
     "pvjs": "./bin/pvjs"
