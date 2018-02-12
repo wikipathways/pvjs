@@ -180,9 +180,13 @@ svg > .Viewport {
 }
 
 [typeof~="wikidata:Q47512"].DataNode.Metabolite:hover .textContent,
+[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover .textContent > *,
 [typeof~="wikidata:Q193166"].DataNode.Metabolite:hover .textContent,
+[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover .textContent > *,
 [typeof~="wikidata:Q213580"].DataNode.Metabolite:hover .textContent,
-[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover .textContent {
+[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover .textContent > *,
+[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover .textContent,
+[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover .textContent > * {
   font-size: 0px;
 }
 
