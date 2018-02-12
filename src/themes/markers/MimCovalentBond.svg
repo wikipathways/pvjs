@@ -1,0 +1,26 @@
+<!--
+This is the graphical representation of a covalent irreversible binding.
+See 7.2.3 from https:discover.nci.nih.gov/mim/formal_mim_spec.pdf
+PathVisio-Java doesn't do this quite right, because the arrowheads are
+not visible.
+-->
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="MimCovalentBond"
+            markerUnits="userSpaceOnUse"
+	    orient="auto"
+	    preserveAspectRatio="none"
+	    markerWidth="12"
+	    markerHeight="12"
+	    data-context-stroke-dashoffset="11">
+      <g>
+        <path
+          d="M 11,1 L 1,1 L 1,11 L 11,11"
+          stroke="currentColor"
+          strokeWidth="1"
+          fill="none"
+        />
+      </g>
+    </marker>
+  </defs>
+</svg>

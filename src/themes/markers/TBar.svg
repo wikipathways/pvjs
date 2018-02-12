@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="TBar"
+            markerUnits="userSpaceOnUse"
+	    orient="auto"
+	    preserveAspectRatio="none"
+	    markerWidth="10"
+	    markerHeight="20"
+	    data-context-stroke-dashoffset="7">
+        <line
+          stroke="currentColor"
+          strokeWidth="1.8"
+          x1="3"
+          y1="0"
+          x2="3"
+          y2="20"
+        />
+    </marker>
+  </defs>
+</svg>

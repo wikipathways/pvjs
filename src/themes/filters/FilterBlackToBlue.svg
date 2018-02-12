@@ -1,0 +1,79 @@
+<!--
+Identity
+	#ffffff -> #ffffff
+           values="  1   0   0 0 0 
+                     0   1   0 0 0 
+                     0   0   1 0 0 
+                     0   0   0 1 0"
+WhiteToBlue-ish
+	#ffffff -> #cbfcfd
+           values=" .5   0   0 0 0 
+                     0   1   0 0 0 
+                     0   0   1 0 0 
+                     0   0   0 1 0"
+
+WhiteToBlue-ish2
+	#ffffff -> #76f9fb
+           values="  0   0   0 0 0 
+                     0   1   0 0 0 
+                     0   0   1 0 0 
+                     0   0   0 1 0"
+
+WhiteToRed-ish
+	#ffffff -> #ea3f33
+           values="  1   0   0 0 0 
+                     0  -1   0 0 1 
+                     0   0  -1 0 1 
+                     0   0   0 1 0"
+
+BlackToYellow-ish
+	#000000 -> #???
+
+           values=" -1   0   0 0 1 
+                     0  -1   0 0 1 
+                     0   0   1 0 0 
+                     0   0   0 1 0"
+
+BlackToMauve-ish
+	#000000 -> #???
+
+           values=" -1   0   0 0 1 
+                     0  -1   0 0 0 
+                     0   0   1 0 1 
+                     0   0   0 1 0"
+
+BlackToTeal-ish
+	#000000 -> #???
+
+           values=" -1   0   0 0 9
+                     0  -1   0 0 1 
+                     0   0   1 0 1 
+                     0   0   0 1 0"
+
+BlackToBlue-ish
+	#000000 -> #0048fb
+
+           values=" -1   0   0 0 9
+                     0  -1   0 0 0
+                     0   0   1 0 1 
+                     0   0   0 1 0"
+Likewise
+           values="  1   0    0 0 -1
+                     0   1    0 0 -1
+                     0   0   -1 0  1
+                     0   0    0 1  0"/>
+
+but we actually want #254afc
+
+0 to f is 16 steps
+so 0.5 * f should be 8
+     -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100% 100%" color-interpolation-filters="sRGB">
+    <filter id="FilterBlackToBlue" filterUnits="userSpaceOnUse" x="-100%" y="-100%" width="200%" height="200%" preserveAspectRatio="none" viewBox="0 0 100% 100%">
+      <feColorMatrix type="matrix" in="SourceGraphic"
+           values="  1   0    0 0 -1
+                     0   1    0 0 -1
+                     0   0   -1 0  1
+                     0   0    0 1  0"/>
+    </filter>
+</svg>

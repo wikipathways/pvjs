@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="Arrow"
+            markerUnits="userSpaceOnUse"
+	    orient="auto"
+	    preserveAspectRatio="none"
+	    markerWidth="12"
+	    markerHeight="12"
+	    data-context-stroke-dashoffset="5.8">
+      <g transform="rotate(180, 6, 6)">
+        <polygon points="12,11 0,6 12,1" stroke-width="0" fill="currentColor"/>
+      </g>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,67 @@
+<!--
+Identity
+	#ffffff -> #ffffff
+           values="  1   0   0 0 0 
+                     0   1   0 0 0 
+                     0   0   1 0 0 
+                     0   0   0 1 0"
+WhiteToBlue-ish
+	#ffffff -> #cbfcfd
+           values=" .5   0   0 0 0 
+                     0   1   0 0 0 
+                     0   0   1 0 0 
+                     0   0   0 1 0"
+
+WhiteToBlue-ish2
+	#ffffff -> #76f9fb
+           values="  0   0   0 0 0 
+                     0   1   0 0 0 
+                     0   0   1 0 0 
+                     0   0   0 1 0"
+
+WhiteToRed-ish
+	#ffffff -> #ea3f33
+           values="  1   0   0 0 0 
+                     0  -1   0 0 1 
+                     0   0  -1 0 1 
+                     0   0   0 1 0"
+
+WhiteToBlue-ish
+	#ffffff -> #???
+
+           values="-.99    0   0 0 1 
+                      0 -.95   0 0 1 
+                      0    0   1 0 0 
+                      0    0   0 1 0"/>
+#005efb
+#5d9cfc
+#4a88fc
+#3e7cfc
+
+Chrome results:
+#33 71 fc | -.95 -.89
+#2f 76 fb | -.96 -.87
+#45 88 fc | -.94 -.8
+
+#23 4a fc | -.94 -1
+
+#25 4a fc: what we actually want 
+
+0 to f is 16 steps
+so 0.5 * f should be 8
+
+
+Screen normalized vs. print normalized?
+http://vidthekid.info/misc/fhwacolors.html
+
+-->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 100% 100%" color-interpolation-filters="sRGB">
+    <filter id="FilterWhiteToBlue" filterUnits="userSpaceOnUse" x="-100%" y="-100%" width="200%" height="200%" preserveAspectRatio="none" viewBox="0 0 100% 100%">
+      <feColorMatrix type="matrix" in="SourceGraphic"
+           values="  -1    0   0 0 1 
+                      0   -1   0 0 1 
+                      0    0   1 0 0 
+                      0    0   0 1 0"/>
+    </filter>
+</svg>

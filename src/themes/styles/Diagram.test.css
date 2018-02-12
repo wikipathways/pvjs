@@ -1,0 +1,20 @@
+.DataNode.Metabolite .Icon {
+  filter: url(#FilterWhiteToBlue);
+}
+.DataNode.Metabolite .textContent {
+  filter: url(#FilterInvert100);
+}
+
+.DataNode.Metabolite .Icon:hover {
+  filter: none;
+  fill: #0000FF;
+}
+
+.DataNode.Protein .Icon {
+  fill: white;
+}
+
+.Interaction {
+  filter: url(#FilterBlackToBlue);
+  stroke-width: 1.3;
+}

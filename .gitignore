@@ -7,5 +7,5 @@ npm-debug.log
 lib
 test/expected/*.svg
 *.css.d.ts
-src/drawers/IconBundle.plain.tsx
-src/drawers/IconBundle.pretty.tsx
+test/playground.json
+src/themes/__bundles_dont_edit__

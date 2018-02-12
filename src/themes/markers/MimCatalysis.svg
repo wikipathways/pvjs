@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="MimCatalysis"
+            markerUnits="userSpaceOnUse"
+	    orient="auto"
+	    preserveAspectRatio="none"
+	    markerWidth="12"
+	    markerHeight="12"
+	    data-context-stroke-dashoffset="11">
+      <g transform="rotate(180, 6, 6)">
+        <circle cx="6" cy="6" r="5.3px" stroke="currentColor" stroke-width="1" fill="none">
+	</circle>
+      </g>
+    </marker>
+  </defs>
+</svg>

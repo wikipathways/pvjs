@@ -1,0 +1,61 @@
+{
+  "clipPaths": {
+    "RoundedRectangleClipPath": "file://./symbols/RoundedRectangleClipPath.svg#RoundedRectangleClipPath"
+  },
+  "filters": {
+    "FilterBlackToRed": "file://./filters/FilterBlackToRed.svg#FilterBlackToRed",
+    "FilterBlackToGreen": "file://./filters/FilterBlackToGreen.svg#FilterBlackToGreen",
+    "FilterInvert100": "file://./filters/FilterInvert100.svg#FilterInvert100",
+    "FilterInvert95": "file://./filters/FilterInvert95.svg#FilterInvert95",
+    "FilterWhiteTo33BFFF": "file://./filters/FilterWhiteTo33BFFF.svg#FilterWhiteTo33BFFF",
+    "FilterWhiteToRed": "file://./filters/FilterWhiteToRed.svg#FilterWhiteToRed",
+    "FilterWhiteToGreen": "file://./filters/FilterWhiteToGreen.svg#FilterWhiteToGreen"
+  },
+  "markers": {
+    "Arrow": "file://./markers/Arrow.svg#Arrow",
+    "MimBinding": "file://./markers/MimBinding.svg#MimBinding",
+    "MimCatalysis": "file://./markers/MimCatalysis.svg#MimCatalysis",
+    "MimCleavage": "file://./markers/MimCleavage.svg#MimCleavage",
+    "MimConversion": "file://./markers/Arrow.svg#Arrow",
+    "MimCovalentBond": "file://./markers/MimCovalentBond.svg#MimCovalentBond",
+    "MimGap": "file://./markers/MimGap.svg#MimGap",
+    "MimInhibition": "file://./markers/TBar.svg#TBar",
+    "MimModification": "file://./markers/MimModification.svg#MimModification",
+    "MimNecessaryStimulation": "file://./markers/MimNecessaryStimulation.svg#MimNecessaryStimulation",
+    "MimStimulation": "file://./markers/MimStimulation.svg#MimStimulation",
+    "MimTranscriptionTranslation": "file://./markers/MimTranscriptionTranslation.svg#MimTranscriptionTranslation",
+    "TBar": "file://./markers/TBar.svg#TBar"
+  },
+  "preserveAspectRatio": [
+    "PatternQ193166",
+    "PatternQ213580",
+    "PatternQ47512",
+    "PatternQ715317"
+  ],
+  "styles": {
+    "container": "./styles/Container.css",
+    "diagram": "./styles/Diagram.dark.css"
+  },
+  "symbols": {
+    "ArcPathVisio": "file://./symbols/ArcPathVisio.svg#ArcPathVisio",
+    "Brace": "file://./symbols/Brace.svg#Brace",
+    "Complex": "file://./symbols/Octagon.svg#Octagon",
+    "Ellipse": "file://./symbols/Ellipse.svg#Ellipse",
+    "EndoplasmicReticulum": "file://./symbols/EndoplasmicReticulum.svg#EndoplasmicReticulum",
+    "HexagonPathVisio": "file://./symbols/HexagonPathVisio.svg#HexagonPathVisio",
+    "GolgiApparatus": "file://./symbols/GolgiApparatus.svg#GolgiApparatus",
+    "MimDegradation": "file://./symbols/MimDegradation.svg#MimDegradation",
+    "Mitochondria": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Mitochondria.svg",
+    "Octagon": "file://./symbols/Octagon.svg#Octagon",
+    "PentagonPathVisio": "file://./symbols/PentagonPathVisio.svg#PentagonPathVisio",
+    "Rectangle": "file://./symbols/RoundedRectangle.svg#RoundedRectangle",
+    "RoundedRectangle": "file://./symbols/RoundedRectangle.svg#RoundedRectangle",
+    "SarcoplasmicReticulum": "file://./symbols/SarcoplasmicReticulum.svg#SarcoplasmicReticulum",
+    "TrianglePathVisio": "file://./symbols/TrianglePathVisio.svg#TrianglePathVisio",
+    "none": "file://./symbols/none.svg#none",
+    "PatternQ47512": "file://./patterns/PatternQ47512.svg#PatternQ47512",
+    "PatternQ193166": "file://./patterns/PatternQ193166.svg#PatternQ193166",
+    "PatternQ213580": "file://./patterns/PatternQ213580.svg#PatternQ213580",
+    "PatternQ715317": "file://./patterns/PatternQ715317.svg#PatternQ715317"
+  }
+}

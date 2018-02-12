@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="MimNecessaryStimulation"
+            markerUnits="userSpaceOnUse"
+	    orient="auto"
+	    preserveAspectRatio="none"
+	    markerWidth="16"
+	    markerHeight="12"
+	    data-context-stroke-dashoffset="9">
+      <g transform="rotate(180, 8, 6)">
+        <line x1="14" y1="0" x2="14" y2="12" stroke="currentColor" stroke-width="1" fill="none"/>
+	<line x1="16" y1="6" x2="16" y2="6" stroke="none" fill="none"/>
+	<polygon points="0,6 9,11 9,1" stroke="currentColor" stroke-width="1" fill="none"/>
+      </g>
+    </marker>
+  </defs>
+</svg>

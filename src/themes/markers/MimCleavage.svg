@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="MimCleavage"
+            markerUnits="userSpaceOnUse"
+	    orient="auto"
+	    preserveAspectRatio="none"
+	    markerWidth="20"
+	    markerHeight="30"
+	    data-context-stroke-dashoffset="18">
+		<g transform="rotate(180, 10, 15)">
+			<line x1="18" y1="14.5" x2="18" y2="30" stroke="currentColor" stroke-width="1"/>
+			<line x1="18" y1="30" x2="0" y2="0" stroke="currentColor" stroke-width="1"/>
+		</g>
+    </marker>
+  </defs>
+</svg>
+

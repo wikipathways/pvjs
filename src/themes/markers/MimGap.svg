@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+	<marker
+	id="MimGap"
+	markerUnits="userSpaceOnUse"
+	orient="auto"
+	preserveAspectRatio="none"
+	markerWidth="12"
+	markerHeight="12"
+	data-context-stroke-dashoffset="5.3">
+		<g transform="rotate(180, 6, 6)">
+			<rect x="0" y="5.3" width="8" height="1.4" stroke="none" fill="none"/>
+		</g>
+	</marker>
+  </defs>
+</svg>
