@@ -1,6 +1,6 @@
 <svg>
   <defs>
-	  <clipPath id="RoundedRectangleClipPath" clipPathUnits="objectBoundingBox">
+	  <clipPath id="ClipPathRoundedRectangle" clipPathUnits="objectBoundingBox">
 		  <rect x="0" y="0" rx="0.125" ry="0.25" width="1" height="1"></rect>
 	  </clipPath>
   </defs>

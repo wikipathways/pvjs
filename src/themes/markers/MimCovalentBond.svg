@@ -16,7 +16,7 @@ not visible.
       <g>
         <path
           d="M 11,1 L 1,1 L 1,11 L 11,11"
-          stroke="currentColor"
+          stroke="black"
           strokeWidth="1"
           fill="none"
         />

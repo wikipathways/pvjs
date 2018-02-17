@@ -57,7 +57,7 @@ http://vidthekid.info/misc/fhwacolors.html
 -->
 
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 100% 100%" color-interpolation-filters="sRGB">
-    <filter id="FilterWhiteToBlue" filterUnits="userSpaceOnUse" x="-100%" y="-100%" width="200%" height="200%" preserveAspectRatio="none" viewBox="0 0 100% 100%">
+    <filter id="WhiteToBlue" filterUnits="userSpaceOnUse" x="-100%" y="-100%" width="200%" height="200%" preserveAspectRatio="none" viewBox="0 0 100% 100%">
       <feColorMatrix type="matrix" in="SourceGraphic"
            values="  -1    0   0 0 1 
                       0   -1   0 0 1 

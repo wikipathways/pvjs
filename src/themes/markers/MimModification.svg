@@ -8,7 +8,7 @@
 	    markerHeight="12"
 	    data-context-stroke-dashoffset="11">
       <g transform="rotate(180, 6, 6)">
-        <polygon points="0,6 11,11 11,1" stroke-width="0" fill="currentColor"/>
+        <polygon points="0,6 11,11 11,1" stroke-width="0" fill="black"/>
       </g>
     </marker>
   </defs>

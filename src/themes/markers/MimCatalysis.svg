@@ -8,7 +8,7 @@
 	    markerHeight="12"
 	    data-context-stroke-dashoffset="11">
       <g transform="rotate(180, 6, 6)">
-        <circle cx="6" cy="6" r="5.3px" stroke="currentColor" stroke-width="1" fill="none">
+        <circle cx="6" cy="6" r="5.3px" stroke="black" stroke-width="1" fill="none">
 	</circle>
       </g>
     </marker>

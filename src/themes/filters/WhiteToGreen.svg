@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 183 276" color-interpolation-filters="sRGB">
-  <filter id="FilterWhiteToGreen" filterUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100% 100%">
+  <filter id="WhiteToGreen" filterUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100% 100%">
     <feComponentTransfer>
       <feFuncR type="linear" slope="-1" intercept="1"/>
       <feFuncG type="linear" slope="1" intercept="0"/>

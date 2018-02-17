@@ -1,19 +1,15 @@
-.Viewport.Icon {
-  fill: white;
-}
-
 /* Hide the top-level citation numbers */
-/*
-.Viewport > .Citation.textContent {
+.Viewport > .Citation > .Text {
   font-size: 0px;
 }
-*/
+
 /* Hide the InfoBox */
-.Viewport.textContent {
+.Viewport > .Text {
   font-size: 0;
 }
 
-.textContent {
+/* having a thin stroke might help with contrast for some foreground/background combos */
+.Text {
   stroke: none;
 }
 
@@ -27,28 +23,23 @@
 }
 
 /* TODO should this apply to things other than DataNodes? */
-.DataNode.textContent {
+.DataNode .Text {
   pointer-events: none;
 }
 
-.DataNode.Highlighted {
+.DataNode .Highlighted {
   opacity: 0.6;
   stroke-width: 0px;
 }
 
-marker {
-  /* this is what should work per the spec
-  stroke-dasharray: none; */
-  /* but I need to add this to make it work in Safari */
-  stroke-dasharray: 9999999999999999999999999;
-}
-
-.Citation.Icon {
+/*
+.Citation .Icon {
   fill: none;
   stroke-width: 0px;
 }
+*/
 
-.Citation.textContent {
+.Citation .Text {
   text-align: center;
   vertical-align: top;
   font-size: 7px;

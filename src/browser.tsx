@@ -4,14 +4,12 @@ import { isString } from "lodash/fp";
 // TODO look at how to properly import this so it works
 // for both ES5, esnext, tree-shaking, etc.
 //import { Kaavio } from "kaavio";
-import { Kaavio } from "kaavio/lib/Kaavio";
+import { Kaavio } from "kaavio/esnext/Kaavio";
 
+import * as theme from "./themes/dark/theme";
 const ContainerCustomStyle = require("./themes/styles/Container.css");
 const DiagramCustomStylePlain = require("./themes/styles/Diagram.plain.css");
-import { Defs } from "./themes/__bundles_dont_edit__/plain/Defs";
-
-import * as edgeDrawerMap from "./drawers/edges/index";
-import * as filterDrawerMap from "./drawers/filters/index";
+const DiagramCustomStyleDark = require("./themes/styles/Diagram.dark.css");
 
 export function Pvjs(userSpecifiedContainerInput: any, data) {
   const userSpecifiedContainer = isString(userSpecifiedContainerInput)
@@ -20,13 +18,12 @@ export function Pvjs(userSpecifiedContainerInput: any, data) {
 
   return ReactDOM.render(
     <Kaavio
-      style={{
-        container: ContainerCustomStyle,
-        diagram: DiagramCustomStylePlain
+      theme={{
+        containerStyle: ContainerCustomStyle,
+        //diagramStyle: DiagramCustomStylePlain,
+        diagramStyle: DiagramCustomStyleDark,
+        ...theme
       }}
-      Defs={Defs}
-      edgeDrawerMap={edgeDrawerMap}
-      filterDrawerMap={filterDrawerMap}
       pathway={data.pathway}
       entityMap={data.entityMap}
       onReady={function() {

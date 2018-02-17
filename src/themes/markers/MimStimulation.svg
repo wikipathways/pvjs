@@ -10,7 +10,7 @@
       <g transform="rotate(180, 6, 6)">
         <line x1="12" y1="6" x2="12" y2="6" stroke="none" fill="none">
 	</line>
-	<polygon points="0,6 11,11 11,1" stroke="currentColor" stroke-width="1" fill="none">
+	<polygon points="0,6 11,11 11,1" stroke="black" stroke-width="1" fill="none">
 	</polygon>
       </g>
     </marker>

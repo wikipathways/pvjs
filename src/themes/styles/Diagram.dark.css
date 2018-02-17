@@ -1,23 +1,10 @@
-/*
-svg > .Viewport {
-  filter: url(#FilterInvert95);
-}
-//*/
-
-.Viewport .Icon {
-  filter: url(#FilterInvert95);
+.Viewport > .Icon {
+  filter: url(#Invert95);
 }
 
-.Viewport .Node .Node .Icon {
-  filter: none;
-}
-
-.Viewport .textContent,.Viewport .textContent > * {
-  fill: #C0C0C0;
-}
-
-.Viewport .textContent .textContent {
-  fill: unset;
+/* Hide the InfoBox */
+.Viewport > .Text {
+  font-size: 0;
 }
 
 .Edge > path {
@@ -28,7 +15,7 @@ svg > .Viewport {
 .Group .DataNode,
 .Viewport .Group .Icon {
 /*
-  filter: url(#FilterInvert95);
+  filter: url(#Invert95);
 */
   /*stroke-miterlimit: 1;*/
   /*filter: drop-shadow( 5px 5px 5px red );*/
@@ -40,102 +27,85 @@ svg > .Viewport {
   */
 }
 
-.GroupGroup {
+.GroupGroup > .Icon {
   fill: transparent;
   stroke-width: 0px;
 }
 
-.GroupComplex .Icon {
+.GroupComplex > .Icon {
   fill: #B4B464;
   fill-opacity: 0.1;
   stroke: #808080;
 }
 
-.GroupComplex .Icon .Icon {
-  fill: unset;
-  fill-opacity: unset;
-  stroke: unset;
-}
-
-.GroupNone .Icon {
+.GroupNone > .Icon {
 		fill: #B4B464;
 		fill-opacity: 0.1;
     stroke: #808080;	
 }
 
-.GroupNone .Icon .Icon {
-  fill: unset;
-  fill-opacity: unset;
-  stroke: unset;
-}
-
-.GroupPathway .Icon {
+.GroupPathway > .Icon {
   fill: #008000;
   fill-opacity: 0.05;
   stroke: #808080;
 }
 
-.GroupPathway .Icon .Icon {
-  fill: unset;
-  fill-opacity: unset;
-  stroke: unset;
+.CellularComponent > .Icon {
+  color: red;
+  fill: pink;
+  fill-opacity: 0.05;
+  stroke: orange;
 }
 
-/*
-:not(.CellularComponent).Shape {
-  filter: url(#FilterInvert100);
-}
-*/
-
-.Label .Icon {
+.Label > .Icon {
   color: transparent;
   fill: none;
   fill-opacity: 0;
   stroke: none;
-  /*filter: url(#FilterInvert95);*/
+  /*filter: url(#Invert95);*/
 }
-.Label .textContent {
+.Label > .Text {
   fill: #FEFEFE;
-  /*filter: url(#FilterInvert95);*/
+  /*filter: url(#Invert95);*/
 }
 
-.DataNode .Icon {
-  /* clip-path needed because rx,ry don't work in FF */
-  clip-path: url(#RoundedRectangleClipPath);
+.DataNode > .Icon {
+  /* clip-path needed because rx & ry don't work in FF or Safari */
+  clip-path: url(#ClipPathRoundedRectangle);
   rx: 15px;
   ry: 15px;
   stroke-width: 0px;
 }
-.DataNode .textContent,.DataNode .textContent > * {
+.DataNode > .Text {
   font-weight: bold;
 }
 .DataNode:hover {
   cursor: text;
 }
 
-.DataNode.GeneProduct .Icon {
+.DataNode.GeneProduct > .Icon {
   fill: #f4d03f;
 }
-.DataNode.GeneProduct .textContent,.DataNode.GeneProduct .textContent > * {
+.DataNode.GeneProduct .Text {
   fill: #333;
 }
 
-.DataNode.Protein .Icon {
+.DataNode.Protein > .Icon {
   fill: brown;
 }
-.DataNode.Protein .textContent,.DataNode.Protein .textContent > * {
+.DataNode.Protein > .Text {
   fill: #FEFEFE;
 }
 
-.DataNode.Rna .Icon {
+.DataNode.Rna > .Icon {
   fill: #9453A7;
 }
-.DataNode.Rna .textContent,.DataNode.Rna .textContent > * {
+.DataNode.Rna > .Text {
   fill: #ECF0F1;
 }
 
-.DataNode.Pathway .Icon {
-  filter: url(#FilterWhiteToGreen);
+.DataNode.Pathway > .Icon {
+  filter: url(#WhiteToGreen);
   /*
   fill: #75C95C;
   */
@@ -143,35 +113,33 @@ svg > .Viewport {
    *      of adding a dropshadow to Pathway DataNodes: */
   /*filter: 'drop-shadow( 2px 2px 2px #000 )'; */
 }
-.DataNode.Pathway .textContent,.DataNode.Pathway .textContent > * {
-  filter: url(#FilterInvert100);
+.DataNode.Pathway > .Text {
+  filter: url(#Invert100);
   /*fill: #1C2833;*/
 }
 
-.DataNode.Metabolite .Icon {
+.DataNode.Metabolite > .Icon {
   fill: #0000EE;
 }
-.DataNode.Metabolite .textContent,.DataNode.Metabolite .textContent > * {
+.DataNode.Metabolite > .Text {
   fill: #FEFEFE;
 }
 
 [typeof~="wikidata:Q47512"].DataNode.Metabolite:hover,
 [typeof~="wikidata:Q193166"].DataNode.Metabolite:hover,
-
 [typeof~="wikidata:Q213580"].DataNode.Metabolite:hover,
 [typeof~="wikidata:Q715317"].DataNode.Metabolite:hover {
-  /* clip-path needed because rx,ry don't work in FF */
-  clip-path: none;
-  rx: 0px;
-  ry: 0px;
+  clip-path: unset;
+  rx: unset;
+  ry: unset;
 }
 
-[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover .Icon,
-[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover .Icon,
-[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover .Icon,
-[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover .Icon {
+[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover > .Node > .Icon,
+[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover > .Node > .Icon,
+[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover > .Node > .Icon,
+[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover > .Node > .Icon {
   cursor: default;
-  filter: url(#FilterInvert95);
+  filter: url(#Invert95);
   /* needed for FF. See
      https://bugzilla.mozilla.org/show_bug.cgi?id=1209061 */
   transform-box: fill-box;
@@ -179,75 +147,51 @@ svg > .Viewport {
   transform: scale(2, 3);
 }
 
-[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover .textContent,
-[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover .textContent > *,
-[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover .textContent,
-[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover .textContent > *,
-[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover .textContent,
-[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover .textContent > *,
-[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover .textContent,
-[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover .textContent > * {
+[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover .Text,
+[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover .Text,
+[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover .Text,
+[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover .Text {
   font-size: 0px;
 }
 
-[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover .Icon {
+[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover > .Node > .Icon {
   fill: url(#PatternQ47512);
   /*transform: scale(2, 2);*/
 }
 
-[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover .Icon {
+[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover > .Node > .Icon {
   fill: url(#PatternQ193166);
   /*transform: scale(3, 3);*/
 }
 
-[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover .Icon {
+[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover > .Node > .Icon {
   fill: url(#PatternQ213580);
   /*transform: scale(2.5, 2.5);*/
 }
 
-[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover .Icon {
+[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover > .Node > .Icon {
   fill: url(#PatternQ715317);
   /*transform: scale(4, 4);*/
 }
 
-.DataNode .State {
-  filter: url(#FilterWhiteTo33BFFF);
+.DataNode > State {
+  filter: url(#WhiteTo33BFFF);
 }
 
 .Interaction {
-  filter: url(#FilterInvert95);
+  filter: url(#Invert95);
   stroke-width: 1.3;
 }
 
 .Stimulation {
-  filter: url(#FilterBlackToGreen);
+  filter: url(#BlackToGreen);
 }
 
 .Inhibition {
-  filter: url(#FilterBlackToRed);
+  filter: url(#BlackToRed);
 }
 
-.Citation .Icon {
-  fill: none;
-  stroke-width: 0px;
-}
-.Citation .textContent {
+.Citation .Text {
   fill: gray;
   font-size: 10px;
 }
-
-/* stuff that should maybe go into Kaavio */
-/*
-.textContent {
-  stroke: none;
-}
-*/
-
-/* this is what should work per the spec
-stroke-dasharray: none; */
-/* but I need to add this to make it work in Safari */
-/*
-marker {
-  stroke-dasharray: 9999999999999999999999999;
-}
-*/

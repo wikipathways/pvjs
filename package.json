@@ -1,10 +1,11 @@
 {
   "name": "@wikipathways/pvjs",
-  "version": "4.0.0-29",
+  "version": "4.0.0-31",
   "main": "index.js",
   "bin": {
     "pvjs": "./bin/pvjs"
   },
+  "repo": "https://github.com/wikipathways/pvjs",
   "files": [
     "lib/",
     "bin/",
@@ -12,7 +13,7 @@
     "test/expected"
   ],
   "scripts": {
-    "build": "npm-run-all -p bundle build:css; npm-run-all -p build:dev:* build:dist:* build:lib:*",
+    "build": "npm-run-all -p bundle build:css; npm-run-all -p build:lib:* build:dev:* build:dist:*",
     "build:css": "tcm src",
     "build:dev:browser": "webpack --config webpack.browser.dev.config.js",
     "build:dev:node": "webpack --config webpack.node.dev.config.js",
@@ -30,9 +31,9 @@
     "expected": "echo 'Setting expected values for tests'; npm-run-all expected:* || break",
     "expected:checksums": "echo \"Converting JSON (from GPML test files) to SVG and generating checksums:\"; npm run deleteUnconvertables; source_dirname=./node_modules/gpml2pvjson/test/expected; for source_file in $source_dirname/*.json; do output_file=`echo $source_file | sed s#$source_dirname#test/expected# | sed 's/\\.json//'`\".svg\"; echo \"$source_file -> $output_file and $output_file.sha1sum\"; cat \"$source_file\" | bin/pvjs --react | tee \"$output_file\" | shasum -p -a 1 > \"$output_file.sha1sum\" || break; done",
     "bundle": "npm-run-all -p bundle:*",
-    "bundle:dark": "kaavio bundle ./src/themes/dark.json -o ./src/themes",
-    "bundle:test": "kaavio bundle ./src/themes/test.json -o ./src/themes",
-    "bundle:plain": "kaavio bundle ./src/themes/plain.json -o ./src/themes",
+    "bundle:dark": "kaavio bundle ./src/themes/dark.json",
+    "bundle:test": "kaavio bundle ./src/themes/test.json",
+    "bundle:plain": "kaavio bundle ./src/themes/plain.json",
     "postinstall": "npm-run-all bundle; echo \"\\nBuilding expected SVGs for testing purposes...:\"; npm run deleteUnconvertables; inputs=\"./node_modules/gpml2pvjson/test/expected/*.json\"; echo \"# Converting $inputs from JSON to SVG and verifying checksums...\"; for f in $inputs; do pathway_name=`basename \"$f\" | sed s/.json//`; base_path=`echo \"./test/expected/$pathway_name\"`; echo \"\\n## Processing $pathway_name...\"; cat \"$f\" | bin/pvjs --react | tee \"$base_path.svg\" | shasum -p -a 1 -c \"$base_path.svg.sha1sum\" || break; done",
     "prepublishOnly": "npm-run-all build test expected",
     "test": "npm-run-all test:browser test:quick test:checksums",
@@ -56,11 +57,13 @@
   "license": "Apache-2.0",
   "description": "",
   "dependencies": {
-    "kaavio": "^4.0.0-47",
-    "react": "^15.6.2",
+    "kaavio": "^4.0.0-49",
+    "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",
-    "react-dom": "^15.6.2"
+    "react-dom": "^16.2.0",
+    "react-selectize": "^3.0.1",
+    "react-spinkit": "^3.0.0"
   },
   "devDependencies": {
     "@types/js-base64": "^2.3.1",
@@ -81,6 +84,7 @@
     "onchange": "^3.3.0",
     "postcss-loader": "^2.1.0",
     "precss": "^2.0.0",
+    "react-test-renderer": "^16.2.0",
     "source-map-loader": "^0.2.3",
     "string-replace-webpack-plugin": "^0.1.3",
     "to-string-loader": "^1.1.5",

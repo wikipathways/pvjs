@@ -32,7 +32,7 @@ WhiteToRedish
 so 0.5 * f should be 8
      -->
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 183 276" color-interpolation-filters="sRGB">
-    <filter id="FilterWhiteTo33BFFF" filterUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100% 100%">
+    <filter id="WhiteTo33BFFF" filterUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100% 100%">
       <feColorMatrix type="matrix" in="SourceGraphic"
            values="  1   0   0 0 0 
                      0   1   0 0 0 

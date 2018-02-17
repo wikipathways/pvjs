@@ -9,3 +9,6 @@ test/expected/*.svg
 *.css.d.ts
 test/playground.json
 src/themes/__bundles_dont_edit__
+src/themes/dark/
+src/themes/plain/
+src/themes/experimental/

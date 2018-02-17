@@ -80,8 +80,8 @@ module.exports = {
         test: /\.css$/,
         include: [
           path.resolve(__dirname, "lib"),
-          path.resolve(__dirname, "node_modules/kaavio")
-          //path.resolve(__dirname, "../kaavio/")
+          path.resolve(__dirname, "node_modules/kaavio"),
+          path.resolve(__dirname, "../kaavio/")
         ],
         use: [{ loader: "to-string-loader" }, { loader: "css-loader" }]
       },
@@ -105,7 +105,7 @@ module.exports = {
           // is specified instead of transpiling everything. This speeds up the
           // compilation.
           path.resolve(__dirname, "node_modules/kaavio"),
-          //path.resolve(__dirname, "../kaavio/"),
+          path.resolve(__dirname, "../kaavio/"),
           path.resolve(__dirname, "node_modules/color-interpolate"),
           path.resolve(__dirname, "node_modules/fs-extra"),
           path.resolve(__dirname, "node_modules/universalify"),

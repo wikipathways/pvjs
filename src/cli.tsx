@@ -1,6 +1,6 @@
 import "source-map-support/register";
 
-import { createJson2SvgCLI } from "kaavio/lib/createJson2SvgCLI";
+import { createJson2SvgCLI } from "kaavio/esnext/createJson2SvgCLI";
 
 const npmPackage = require("../package.json");
 
@@ -13,27 +13,18 @@ const npmPackage = require("../package.json");
 import * as DiagramCustomStyleModule from "./DiagramCustomStyle.css";
 const DiagramCustomStyle = DiagramCustomStyleModule["default"];
 //*/
+
+import * as theme from "./themes/dark/theme";
 const DiagramCustomStylePlain = require("./themes/styles/Diagram.plain.css");
 const DiagramCustomStyleDark = require("./themes/styles/Diagram.dark.css");
-import { Defs as DefsPlain } from "./themes/__bundles_dont_edit__/plain/Defs";
-import { Defs as DefsDark } from "./themes/__bundles_dont_edit__/dark/Defs";
-
-import * as edgeDrawerMap from "./drawers/edges/index";
-import * as filterDrawerMap from "./drawers/filters/index";
 
 createJson2SvgCLI(npmPackage, [
   {
     name: "plain",
-    style: DiagramCustomStylePlain,
-    edgeDrawerMap,
-    filterDrawerMap,
-    Defs: DefsPlain
+    theme: { diagramStyle: DiagramCustomStylePlain, ...theme }
   },
   {
     name: "dark",
-    style: DiagramCustomStyleDark,
-    edgeDrawerMap,
-    filterDrawerMap,
-    Defs: DefsDark
+    theme: { diagramStyle: DiagramCustomStyleDark, ...theme }
   }
 ]);
