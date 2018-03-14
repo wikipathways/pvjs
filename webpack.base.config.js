@@ -2,24 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const StringReplacePlugin = require("string-replace-webpack-plugin");
-
-const babelLoader = {
-  loader: "babel-loader",
-  options: {
-    presets: [
-      [
-        "env",
-        {
-          targets: {
-            node: "5.10",
-            browsers: ["last 2 versions", "ie >= 10"]
-          }
-        }
-      ],
-      "react"
-    ]
-  }
-};
+const npmPkg = require("./package.json");
 
 const shebangRemovalLoader = {
   loader: StringReplacePlugin.replace({
@@ -36,8 +19,35 @@ const shebangRemovalLoader = {
 
 module.exports = {
   context: path.resolve(__dirname),
+  entry: {
+    "pvjs.vanilla": ["babel-polyfill", "./esnext/pvjs.vanilla.js"]
+    /*
+    "pvjs.jquery": ["babel-polyfill", "./esnext/pvjs.jquery.js"]
+    "wikipathways-pvjs.webcomponent": [
+      "babel-polyfill",
+      "./esnext/wikipathways-pvjs.webcomponent.js"
+    ]
+    //*/
+    //"Pvjs": ["babel-polyfill", "./esnext/Pvjs.js"],
+    //cli: ["babel-polyfill", "./esnext/cli.js"]
+  },
+  output: {
+    filename: "[name].js",
+    path: path.resolve(__dirname, "dist"),
+    library: "Pvjs",
+    libraryExport: "Pvjs",
+    libraryTarget: "umd"
+  },
   resolve: {
-    extensions: [".webpack.js", ".web.js", ".js", ".jsx", ".json"]
+    extensions: [
+      ".webpack.js",
+      ".web.js",
+      ".ts",
+      ".tsx",
+      ".js",
+      ".jsx",
+      ".json"
+    ]
   },
   module: {
     rules: [
@@ -78,11 +88,18 @@ module.exports = {
       //*/
       {
         test: /\.css$/,
+        /*
+        exclude: /node_modules/,
         include: [
-          path.resolve(__dirname, "lib"),
+          path.resolve(__dirname, "esnext"),
           path.resolve(__dirname, "node_modules/kaavio"),
-          path.resolve(__dirname, "../kaavio/")
+          path.resolve(__dirname, "../kaavio/"),
+          path.resolve(__dirname, "node_modules/loaders.css"),
+          path.resolve(__dirname, "node_modules/bridgedb"),
+          path.resolve(__dirname, "node_modules/react-select"),
+          path.resolve(__dirname, "node_modules/react-spinkit")
         ],
+        //*/
         use: [{ loader: "to-string-loader" }, { loader: "css-loader" }]
       },
       {
@@ -91,36 +108,31 @@ module.exports = {
         use: "json-loader"
       },
       {
-        test: /\.jsx?$/,
-        use: ["source-map-loader"],
-        enforce: "pre"
+        test: /\.[jt]sx?$/,
+        use: ["source-map-loader", shebangRemovalLoader],
+        enforce: "pre",
+        exclude: [/lodash/, /react-dom/, /react-spinkit/]
       },
       {
-        test: /\.jsx?$/,
-        //*
-        include: [
-          path.resolve(__dirname, "lib"),
-          // NOTE: we need to run any modules published as esnext through Babel.
-          // Specifying which paths to include tells Babel to only transpile what
-          // is specified instead of transpiling everything. This speeds up the
-          // compilation.
-          path.resolve(__dirname, "node_modules/kaavio"),
-          path.resolve(__dirname, "../kaavio/"),
-          path.resolve(__dirname, "node_modules/color-interpolate"),
-          path.resolve(__dirname, "node_modules/fs-extra"),
-          path.resolve(__dirname, "node_modules/universalify"),
-          path.resolve(__dirname, "node_modules/url-regex")
-        ],
-        use: [babelLoader, shebangRemovalLoader]
+        test: require.resolve("react-dom"),
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "expose-loader",
+            options: "ReactDOM"
+          }
+        ]
       }
     ]
   },
   plugins: [
-    /*
+    new webpack.DefinePlugin({
+      version: npmPkg.version
+    }),
+    //new webpack.IgnorePlugin(/source-map-support/),
     new ExtractTextPlugin({
       filename: "style.css",
       allChunks: true
     })
-  //*/
   ]
 };

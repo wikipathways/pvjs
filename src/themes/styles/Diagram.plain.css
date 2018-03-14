@@ -8,23 +8,19 @@
   font-size: 0;
 }
 
-/* having a thin stroke might help with contrast for some foreground/background combos */
+/* TODO: having a thin stroke might help with contrast for
+ * certain foreground/background combos. Should we use a
+ * stroke of 0.05px and maybe apply an invert filter? */
 .Text {
   stroke: none;
 }
 
 .DataNode {
   stroke-miterlimit: 1;
-  pointer-events: auto;
 }
 
 .DataNode:hover {
   cursor: pointer;
-}
-
-/* TODO should this apply to things other than DataNodes? */
-.DataNode .Text {
-  pointer-events: none;
 }
 
 .DataNode .Highlighted {
@@ -32,12 +28,10 @@
   stroke-width: 0px;
 }
 
-/*
 .Citation .Icon {
   fill: none;
   stroke-width: 0px;
 }
-*/
 
 .Citation .Text {
   text-align: center;

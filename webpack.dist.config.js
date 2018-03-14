@@ -1,34 +1,40 @@
 const path = require("path");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
-
 const webpackConfig = require("./webpack.base.config");
 
-webpackConfig.entry = path.resolve(__dirname, "lib/browser.js");
-webpackConfig.output = {
-  path: path.resolve(__dirname, "dist"),
-  filename: "pvjs.js",
-  library: "pvjs",
-  libraryTarget: "umd"
+const babelLoader = {
+  loader: "babel-loader",
+  options: {
+    presets: [
+      [
+        "env",
+        {
+          targets: {
+            node: "current",
+            browsers: ["last 2 versions", "ie >= 10"]
+          }
+        }
+      ],
+      "react"
+    ]
+  }
 };
+webpackConfig.module.rules
+  .filter(
+    ({ test }) =>
+      ["/\\.tsx?/", "/\\.jsx?$/", "/\\.[jt]sx?$/"].indexOf(test.toString()) > -1
+  )
+  .forEach(rule => rule.use.push(babelLoader));
 
 webpackConfig.devtool = "source-map";
-webpackConfig.module.rules.push({
-  test: require.resolve("react-dom"),
-  use: [
-    {
-      loader: "expose-loader",
-      options: "ReactDOM"
-    }
-  ]
-});
 
 [
   new webpack.DefinePlugin({
     "process.env.NODE_ENV": JSON.stringify("production")
   }),
   new UglifyJsPlugin({
-    sourceMap: false,
+    sourceMap: true,
     beautify: false,
     ecma: "8",
     mangle: {
@@ -41,7 +47,7 @@ webpackConfig.module.rules.push({
     comments: false
   })
 ].forEach(function(plugin) {
-  webpackConfig.plugins.unshift(plugin);
+  webpackConfig.plugins.push(plugin);
 });
 
 module.exports = webpackConfig;

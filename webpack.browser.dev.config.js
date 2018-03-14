@@ -3,11 +3,16 @@ const webpack = require("webpack");
 
 const webpackConfig = require("./webpack.base.config");
 
-webpackConfig.entry = path.resolve(__dirname, "lib/browser.js");
+webpackConfig.entry = {
+  cli: "./esnext/cli.js",
+  "Pvjs.vanilla": "./esnext/browser.js",
+  Pvjs: "./esnext/Pvjs.js",
+  jQueryPvjsPlugin: "./esnext/jQueryPvjsPlugin.js"
+};
 webpackConfig.output = {
+  filename: "[name].js",
   path: path.resolve(__dirname, "dist"),
-  filename: "pvjs.js",
-  library: "pvjs",
+  library: "[name]",
   libraryTarget: "umd"
 };
 

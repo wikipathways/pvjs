@@ -6,57 +6,41 @@
 
     <title>Pvjs Simple Built Production Example</title>
 
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
-
-    <!--[if lt IE 9]>
-    <script>
-
-      // pvjs won't run on IE8 and earlier
-      var pvjs = {};
-      pvjs.init = {};
-
-      // IE8 only allows console.log when Developer Tools is open. This will prevent errors
-      // from showing up if I use console.log without DevTools being open.
-      // from http://stackoverflow.com/questions/3326650/console-is-undefined-error-for-internet-explorer
-      /**
-       * Protect window.console method calls, e.g. console is not defined on IE
-       * unless dev tools are open, and IE doesn't define console.debug
-       */
-      (function() {
-       if (!window.console) {
-         window.console = {};
-       }
-       // union of Chrome, FF, IE, and Safari console methods
-       var m = [
-       "log", "info", "warn", "error", "debug", "trace", "dir", "group",
-       "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
-       "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
-       ];
-       // define undefined methods as noops to prevent errors
-       for (var i = 0; i < m.length; i++) {
-         if (!window.console[m[i]]) {
-         window.console[m[i]] = function() {};
-         }
-       }
-      })();
-    </script>
-    <![endif]-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" media="screen">
+    <link rel="stylesheet" href="https://www.wikipathways.org/wpi/js/jquery-ui/jquery-ui-1.8.10.custom.css?164">
   </head>
 
   <body style="margin: 0; width: 100%; height: 100%; ">
-    <div id="production-container" style="width:inherit; height:inherit; min-height: 600px; margin:0; overflow:hidden;">
-    </div>
+    <section>
+      <label for="pathway">Pathway:</label>
+      <select id="pathway" name="pathway">
+      </select>
+
+      <label for="wrapper">Wrapper:</label>
+      <select id="wrapper" name="wrapper">
+      </select>
+
+      <label for="theme">Theme:</label>
+      <select id="theme" name="theme">
+      </select>
+    </section>
+
+    <section id="production-container" style="width:inherit; height:inherit; min-height: 600px; margin:0; overflow:hidden;">
+    </section>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-    <link rel="stylesheet" href="//www.wikipathways.org/wpi/js/jquery-ui/jquery-ui-1.8.10.custom.css?164">
+    <script src="https://www.wikipathways.org/skins/wikipathways/jquery-1.8.3.min.js"></script>
+    <script src="https://www.wikipathways.org/wpi/js/jquery-ui/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="https://www.wikipathways.org/wpi/js/jquery/plugins/jquery.layout.min-1.3.0.js"></script>
+
     <script>
+      // 
+      //var wgServer = "https://www.wikipathways.org";
       var wgServer = "https://www.wikipathways.org";
       var wgScriptPath = "";
     </script>
-    <script src="//www.wikipathways.org/skins/wikipathways/jquery-1.8.3.min.js"></script>
-    <script src="//www.wikipathways.org/wpi/js/jquery-ui/jquery-ui-1.8.10.custom.min.js"></script>
-    <script src="//www.wikipathways.org/wpi/js/jquery/plugins/jquery.layout.min-1.3.0.js"></script>
-    <script src="//www.wikipathways.org/wpi/js/xrefpanel.js"></script>
+
+    <script src="https://www.wikipathways.org/wpi/js/xrefpanel.js"></script>
     <script>
       XrefPanel.show = function(elm, id, datasource, species, symbol) {
         $elm = $(elm);
@@ -73,102 +57,436 @@
         XrefPanel.currentTriggerDialog = $dialog;
       }
     </script>
-    <script src="./pvjs.js"></script>
-    <script>
-      window.addEventListener('load', function() {
-        d3.json("./playground.json", function(data) {
-          pvjs.Pvjs("#production-container", data)
-        });
-      });
-    </script>
 
-    <!--
-    <script src="./lib/pvjs/pvjs-polyfills-dev.bundle.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="./lib/pvjs/dev/pvjs.core.js"></script>
-    <script src="./lib/pvjs/dev/pvjs.jquery-plugin.js"></script>
-
-    <script src="./load.js"></script>
+    <script src="/pvjs.vanilla.js"></script>
 
     <script>
-    /* global developmentLoader: true, $: true */
-    window.addEventListener('load',
-      function() {
-        window.setTimeout(function() {
-          developmentLoader.parseUriParams(function(parsedInputData) {
+      /*
+      var testPathway = {
+        title:'Local Playground Pathway (Feel free to edit)',
+        gpml: "./playground.gpml"
+      };
+      //*/
 
-            /* *******************
-            /* Load pvjs
-            /* *******************/
-            //$(function(){
-              $('#production-container').pvjs({
-                fitToContainer: true,
-                //manualRender: true,
-                sourceData: parsedInputData.sourceData,
-                //, cssUri: srcDirectoryUri + 'css/pathway-diagram.css'
-                //, cssUri: '../lib/css/pathway-diagram.css'
-                //, customMarkers: customMarkers
-                //, customSymbols: customSymbols
-                bridgedbLinkOutsUriStub: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb/bridgedb.php/', // optional
-                bridgedbDatasources: 'http://pointer.ucsf.edu/d3/r/data-sources/bridgedb-datasources.php', // optional
-                diagramLoadingIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/loading.gif', // optional
-                diagramNotAvailableIconUri: 'http://www.wikipathways.org/wpi/extensions/PathwayViewer/img/imageNotAvailable.jpg', // optional
-                imgDiagramUriStub: 'http://www.wikipathways.org/wpi.php?action=downloadFile&type=png&pwTitle=Pathway:', // optional
-                pathwaySearchUriStub: 'http://wikipathways.org//index.php?title=Special:SearchPathways&doSearch=1&query=', // optional
-                highlights: parsedInputData.highlights, //optional
-                hiddenElements: [
-                  'find',
-                  'wikipathways-link'
-                ]
+      window.addEventListener('load',
+        function() {
+          var pathways = [
+            //testPathway.gpml,
+            "mapped.json",
+            "playground.json",
+            // |
+            // v these come from ../node_modules/gpml2pvjson/test/expected
+            "WP1243_69897.json",
+            "WP1818_73650.json",
+            "WP1_73346.json",
+            "WP2211_71653.json",
+            "WP2287.json",
+            "WP22_72098.json",
+            "WP2313.json",
+            "WP2516_79964.json",
+            "WP2853_80315.json",
+            "WP481_94171.json",
+            "WP4_73615.json",
+            "WP528_79855.json",
+            "WP554_77712.json",
+            "WP78_70014.json",
+            "chunked.json",
+            "data-nodes.json",
+            "double-edge.json",
+            "edge-curved-bottom1-to-bottom1.json",
+            "edge-curved-bottom1-to-left1.json",
+            "edge-curved-bottom1-to-right1.json",
+            "edge-curved-bottom1-to-top0.json",
+            "edge-curved-bottom1-to-top1.json",
+            "edge-curved-bottom2-to-top1.json",
+            "edge-curved-left1-to-bottom1-heading-east.json",
+            "edge-curved-left1-to-bottom1-heading-west.json",
+            "edge-curved-left1-to-left1.json",
+            "edge-curved-left1-to-right1.json",
+            "edge-curved-left1-to-top1-heading-east.json",
+            "edge-curved-left1-to-top1-heading-west.json",
+            "edge-curved-right1-to-left1.json",
+            "edge-curved-right1-to-right1.json",
+            "edge-curved-right1-to-top1.json",
+            "edge-curved-top1-to-bottom1.json",
+            "edge-curved-top1-to-right1-waypoint.json",
+            "edge-curved-top1-to-right1.json",
+            "edge-curved-top1-to-top0-waypoint.json",
+            "edge-curved-top1-to-top1.json",
+            "edge-curved-top1-to-top2.json",
+            "edge-curved-top2-to-left2.json",
+            "edge-curved-top2-to-top2.json",
+            "edge-elbow-bottom1-to-bottom1.json",
+            "edge-elbow-bottom1-to-left1.json",
+            "edge-elbow-bottom1-to-right1.json",
+            "edge-elbow-bottom1-to-top0.json",
+            "edge-elbow-bottom1-to-top1.json",
+            "edge-elbow-bottom2-to-top1.json",
+            "edge-elbow-left1-to-bottom1-heading-east.json",
+            "edge-elbow-left1-to-bottom1-heading-west.json",
+            "edge-elbow-left1-to-left1.json",
+            "edge-elbow-left1-to-right1.json",
+            "edge-elbow-left1-to-top1-heading-east.json",
+            "edge-elbow-left1-to-top1-heading-west.json",
+            "edge-elbow-right1-to-left1.json",
+            "edge-elbow-right1-to-right1.json",
+            "edge-elbow-right1-to-top1.json",
+            "edge-elbow-top1-to-bottom1.json",
+            "edge-elbow-top1-to-right1-waypoint.json",
+            "edge-elbow-top1-to-right1.json",
+            "edge-elbow-top1-to-top0-waypoint.json",
+            "edge-elbow-top1-to-top1.json",
+            "edge-elbow-top1-to-top2.json",
+            "edge-elbow-top2-to-left2.json",
+            "edge-elbow-top2-to-top2.json",
+            "empty.json",
+            "fill-and-stroke.json",
+            "gpml-ext.json",
+            "gpmldotxml-ext.json",
+            "graphical-lines.json",
+            "groups.json",
+            "hyperedge-bothends-depth1-straight.json",
+            "hyperedge-bothends-depth2-straight.json",
+            "hyperedge-singleend-depth1-curved.json",
+            "hyperedge-singleend-depth1-elbow.json",
+            "hyperedge-singleend-depth1-elbow.updated.json",
+            "hyperedge-singleend-depth1-segmented.json",
+            "hyperedge-singleend-depth1-straight.json",
+            "hyperedge-singleend-depth2-straight.json",
+            "hyperedge-singleend-depth3-straight.json",
+            "interactions.json",
+            "labels.json",
+            "lowercase-utf-8.json",
+            "one-edge.json",
+            "one-node.json",
+            "publication-xrefs.json",
+            "shapes.json",
+            "single-quotes.json",
+            "size-and-proportion.json",
+            "text-and-font.json",
+            "text-top-left-rotate0.json",
+            "text-top-left-rotate180.json",
+            "text-top-left-rotate270.json",
+            "text-top-left-rotate90.json",
+            "xmllint-c14n.json",
+            "xmllint-c14n11.json",
+            "xmllint-exc-c14n.json",
+            "xmllint-format.json",
+            "xmllint-pretty2.json",
+            "z-index.json",
+            "WP4"
+          ];
+
+          var wrappers = [
+            "vanilla",
+            "jquery"
+          ];
+
+          var themes = [
+            "plain",
+            "dark"
+          ];
+
+          var pathwayEl = document.querySelector("#pathway");
+          pathways.forEach(function(pathway, i) {
+            var el = document.createElement("option");
+            el.text = pathway;
+            pathwayEl.appendChild(el);
+          });
+          pathwayEl.value = pathways[0];
+
+          var wrapperEl = document.querySelector("#wrapper");
+          wrappers.forEach(function(wrapper, i) {
+            var el = document.createElement("option");
+            el.text = wrapper;
+            wrapperEl.appendChild(el);
+          });
+          wrapperEl.value = wrappers[0];
+
+          var themeEl = document.querySelector("#theme");
+          themes.forEach(function(theme, i) {
+            var el = document.createElement("option");
+            el.text = theme;
+            themeEl.appendChild(el);
+          });
+          themeEl.value = themes[0];
+
+          /* *******************
+          /* Load pathvisiojs
+          /* *******************/
+
+          // see http://stackoverflow.com/questions/18082/validate-numbers-in-javascript-isnumeric
+          function isNumber(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+          }
+
+          function isWikiPathwaysId(data) {
+            data = (data || "").trim();
+            if (data.substr(0,2).toUpperCase() === 'WP' && isNumber(data.substr(data.length - 1))) {
+              return true;
+            }
+            else {
+              return false;
+            }
+          }
+
+          function isUri(str) {
+            // from https://gist.github.com/samuelcole/920312
+            var uriPattern = /(?:(?=[\s`!()\[\]{};:'".,<>?«»“”‘’])|\b)((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/|[a-z0-9.\-]+[.](?:com|org|net))(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))*(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]|\b))/gi;
+            return uriPattern.test(str);
+          }
+
+          // TODO getGpmlUri() and getJson() should move under pathvisiojs.data...
+          // if the input is a WP ID, we can get the uri for GPML.
+          function getGpmlUri(wpId, revision) {
+            var gpmlUri;
+
+            // test whether the server serving this file is on a wikipathways.org domain (wikipathways.org, test3.wikipathways.org, etc.)
+            var re = /wikipathways\.org/;
+            var isOnWikiPathwaysDomain = re.test(document.location.origin);
+
+            // I don't know what this is doing. It might be a start at handling display of multiple pathways on a page.
+            var PathwayViewer_viewers = PathwayViewer_viewers || [];
+
+            if (isWikiPathwaysId(wpId)) { // if the input is a WP ID
+              if (PathwayViewer_viewers.length > 0 && isOnWikiPathwaysDomain) { // if we are also on a *.wikipathways.org domain
+                gpmlUri = PathwayViewer_viewers[0].gpml.gpmlUri; // TODO we are not handling multiple pathways on one page here
+              } else {
+                //https://webservice.wikipathways.org/getPathway?pwId=WP4&format=json
+                gpmlUri = encodeURI('https://webservice.wikipathways.org/getPathway?pwId=' + wpId + '&format=json');
+                //gpmlUri = encodeURI('./wikipathways/wpi//wpi.php?action=downloadFile&type=gpml&pwTitle=Pathway:' + gpmlParam + '&revision=' + wpRevision);
+                //gpmlUri = './webservice/?id=' + wpId + '&rev=' + revision;
+              }
+            } else {
+              throw new Error('Pathvisiojs cannot handle the data source type entered.');
+            }
+
+            // be sure server has set gpml mime type to application/xml or application/gpml+xml
+
+            return gpmlUri;
+          }
+          /* *******************
+          /* Get the desired GPML file URL or WikiPathways ID from the URL parameters.
+          /* *******************/
+
+          // If you want to the GPML file URL or WikiPathways ID you want to display, you can
+          // hard code it as the data parameter in the pathvisiojs.load() function below
+
+          function getUriParamByName(name) {
+
+            // Thanks to http://stackoverflow.com/questions/11582512/how-to-get-uri-parameters-with-javascript
+            // This will be replaced once we get the backend php to get the GPML
+
+            var parameter = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+            if (!!parameter) {
+              return parameter;
+            }
+            else {
+              return null;
+            }
+          }
+
+          function convertUriParamsToJson() {
+            // this includes both explicit and implicit URI params, e.g.,
+            // if svg-disabled is not specified as a URI param, it will still be included in this object with its default value of false.
+            uriParams = {
+              'svg-disabled': false,
+              'gpml': null,
+              'rev': 0,
+              'creator': 'pathvisiojs-dev',
+              'account': '',
+              'branch': ''
+            };
+            Object.keys(uriParams).forEach(function(element) {
+              if (!!getUriParamByName(element)) {
+                uriParams[element] = getUriParamByName(element);
+              }
+              window.setTimeout(function() {
+                $('#' + element).val(uriParams[element]);
+              }, 50);
+            });
+
+            var locationSearch = location.search;
+            var colors = getUriParamByName('colors');
+            if (!!colors) {
+              colors = colors.split(',');
+            }
+
+            var findElementsByStrings = locationSearch.match(/(xref=|label=|selector=)(.*?)&/gi);
+            var highlights;
+            if (!!findElementsByStrings) {
+              highlights = findElementsByStrings.map(function(findElementsByString, index) {
+                var highlight = {};
+                var findElementsBy = findElementsByString.match(/xref|label|selector/)[0];
+                var findElementsByValue = findElementsByString.match(/=(.*?)&/)[0].slice(1, -1);
+                highlight[findElementsBy] = findElementsByValue;
+                highlight.style = {};
+                highlight.style.fill = colors[index];
+                highlight.style.stroke = colors[index];
+                return highlight;
               });
 
-              // Get first element from array of instances
-              var pathInstance = $('#production-container').pvjs('get').pop();
+              if (highlights.length > 0) {
+                uriParams.highlights = highlights;
+              }
+            }
 
-              /*
-              // Load plugins
-              pvjsNotifications(pathInstance, {displayErrors: true, displayWarnings: true})
-              //*/
+            return uriParams;
+          }
 
-              // Call after render
-              //pathInstance.on('rendered', function(){
-                // Initialize Highlighter plugin
-                //var hi = pvjsHighlighter(pathInstance)
+          function parseUriParams(callback) {
+            // uriParams can be a WikiPathways ID (WP1), a uri for a GPML file (http://www.wikipathways.org/gpmlfile.gpml)
+            // or a uri for another type of file.
+            var uriParams = convertUriParamsToJson();
+            if (!uriParams) {
+              throw new Error('No URI params to parse.');
+            }
 
-                /*
-                // Highlight by Label
-                hi.highlight('Cholic acid', null, {fill: 'green', stroke: 'green'})
+            // object we will return
+            var parsedInputData = {};
+            parsedInputData.sourceData = [];
 
-                // Highlight by xref
-                hi.highlight('xref:HMDB00193', null, {fill: 'blue', stroke: 'blue'})
-                //*/
-              //});
+            if (!!uriParams.highlights) {
+              parsedInputData.highlights = uriParams.highlights;
+            }
 
-              // Call renderer
-              //pathInstance.render();
+            var uri;
+            var svgDisabled = parsedInputData.svgDisabled = uriParams['svg-disabled'] || false;
+            var gpmlParam = uriParams.gpml; // this might be equal to the value of uriParams.gpml, but it might not.
 
-              // pathInstance.highlight([
-              //   {
-              //     "label": "APC"
-              //   , "style": {
-              //       "fill": "green"
-              //     , "stroke": "green"
-              //     }
-              //   }
-              // , {
-              //     "xref": "HMDB00193,HMDB"
-              //   , "style": {
-              //       "fill": "blue"
-              //     , "stroke": "blue"
-              //     }
-              //   }
-              // ])
-            //});
+            var wpId, wpRevision, gpmlUri, pngUri;
+
+            if (isUri(gpmlParam)) {
+              uri = gpmlParam;
+              if (uri.indexOf('.gpml') > -1) {
+                parsedInputData.sourceData.push({
+                  uri:gpmlParam,
+                  fileType:'gpml',
+                  db: 'local',
+                  dbId: 'unspecified',
+                  idVersion: 'unspecified'
+                });
+
+                return callback(parsedInputData);
+              } else {
+                throw new Error('Pathvisiojs cannot handle the data source type entered.');
+              }
+            } else {
+              if (isWikiPathwaysId(gpmlParam)) {
+                wpRevision = uriParams.rev || 0;
+                // TODO this is messy if we later want to use a data format that is not GPML
+                gpmlUri = getGpmlUri(gpmlParam, wpRevision); //get uri
+                parsedInputData.sourceData.push({
+                  uri: gpmlUri,
+                  fileType: 'gpml',
+                  db: 'wikipathways',
+                  dbId: gpmlParam,
+                  idVersion: wpRevision
+                });
+
+                pngUri = encodeURI('https://www.wikipathways.org/wpi//wpi.php?action=downloadFile&type=png&pwTitle=Pathway:' + gpmlParam + '&revision=' + wpRevision);
+                parsedInputData.sourceData.push({
+                  uri:pngUri,
+                  fileType:'png',
+                  db: 'wikipathways',
+                  dbId: gpmlParam,
+                  idVersion: wpRevision
+                });
+
+                parsedInputData.wpId = gpmlParam;
+                parsedInputData.revision = wpRevision;
+                return callback(parsedInputData);
+              } else {
+                //throw new Error('Pathvisiojs cannot handle the data source type entered.');
+              }
+            }
+          }
+
+          parseUriParams(function(parsedInputData) {
+            parsedInputData.sourceData[0].uri = '/one-node.gpml';
+            console.log('parsedInputData');
+            console.log(parsedInputData);
+            var sourceData = parsedInputData.sourceData;
+            console.log('sourceData');
+            console.log(sourceData);
+            //diagramFrame.setAttribute("src", "./vanilla.html");
           });
-        }, 10000);
-      });
+
+          var pvjs;
+          var renderWith = {
+            "jquery": function({theme, pathway}) {
+              throw new Error("Need to get jQuery wrapper working again!");
+            },
+            "vanilla": function({theme, pathway, entitiesById}) {
+              pvjs = new Pvjs("#production-container", {theme, pathway, entitiesById});
+            }
+          };
+
+          function render() {
+            var urlParams = new URLSearchParams(window.location.search);
+
+            var pathwaySrc = urlParams.get("pathway") || pathwayEl.value;
+            pathwayEl.value = pathwaySrc;
+
+            var wrapper = urlParams.get("wrapper") || wrapperEl.value;
+            wrapperEl.value = wrapper;
+
+            var theme = urlParams.get("theme") || themeEl.value;
+            themeEl.value = theme;
+
+            d3.json(pathwaySrc, function({pathway, entitiesById}) {
+              const data = {
+                  theme,
+                  pathway,
+                  entitiesById
+                };
+              if (document.querySelector("#production-container").innerHTML.trim() === "") {
+                renderWith[wrapper](data);
+              } else {
+                //pathway.version += new Date().toISOString();
+                pvjs.data = data;
+              }
+            })
+          }
+
+          render();
+
+          pathwayEl.addEventListener("change", function() {
+            var pathwaySrc = pathwayEl.value;
+            var urlParams = new URLSearchParams(window.location.search);
+            urlParams.set("pathway", pathwaySrc);
+            if (history.pushState) {
+              history.pushState(null, "", "?" + urlParams.toString())
+            }
+            render();
+            /*
+            d3.json(pathwaySrc, function({pathway, entitiesById}) {
+              pvjs.data = {pathway, entitiesById, ...pvjs.data};
+            })
+            //*/
+          });
+
+          wrapperEl.addEventListener("change", function() {
+            var wrapper = wrapperEl.value;
+            var urlParams = new URLSearchParams(window.location.search);
+            urlParams.set("wrapper", wrapper);
+            if (history.pushState) {
+              history.pushState(null, "", "?" + urlParams.toString())
+            }
+            render();
+          });
+
+          themeEl.addEventListener("change", function() {
+            var theme = themeEl.value;
+            var urlParams = new URLSearchParams(window.location.search);
+            urlParams.set("theme", theme);
+            if (history.pushState) {
+              history.pushState(null, "", "?" + urlParams.toString())
+            }
+            //pvjs.data = {theme, ...pvjs.data};
+            render();
+          });
+        });
     </script>
-    -->
   </body>
 </html>

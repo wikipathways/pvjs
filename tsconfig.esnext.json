@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "inlineSourceMap": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -11,6 +10,6 @@
     ],
     "module": "es2015",
     "target": "es2015",
-    "outDir": "./lib/"
+    "outDir": "./esnext/"
   }
 }

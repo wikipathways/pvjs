@@ -10,8 +10,11 @@
     "pretty": true
   },
   "files": [
+    "src/index.ts",
     "src/cli.tsx",
-    "src/browser.tsx"
+    "src/Pvjs.tsx",
+    "src/pvjs.vanilla.tsx",
+    "src/pvjs.jquery.tsx"
   ],
   "exclude": [
     "dist/**/*",
