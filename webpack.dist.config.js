@@ -1,5 +1,4 @@
 const path = require("path");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.base.config");
 
@@ -32,19 +31,6 @@ webpackConfig.devtool = "source-map";
 [
   new webpack.DefinePlugin({
     "process.env.NODE_ENV": JSON.stringify("production")
-  }),
-  new UglifyJsPlugin({
-    sourceMap: true,
-    beautify: false,
-    ecma: "8",
-    mangle: {
-      screw_ie8: true,
-      keep_fnames: true
-    },
-    compress: {
-      screw_ie8: true
-    },
-    comments: false
   })
 ].forEach(function(plugin) {
   webpackConfig.plugins.push(plugin);

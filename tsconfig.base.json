@@ -13,8 +13,7 @@
     "src/index.ts",
     "src/cli.tsx",
     "src/Pvjs.tsx",
-    "src/pvjs.vanilla.tsx",
-    "src/pvjs.jquery.tsx"
+    "src/pvjs.vanilla.tsx"
   ],
   "exclude": [
     "dist/**/*",
