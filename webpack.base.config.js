@@ -20,6 +20,7 @@ const shebangRemovalLoader = {
 module.exports = {
   context: path.resolve(__dirname),
   entry: {
+    Pvjs: ["babel-polyfill", "./esnext/Pvjs.js"],
     "pvjs.vanilla": ["babel-polyfill", "./esnext/pvjs.vanilla.js"]
     /*
     "pvjs.jquery": ["babel-polyfill", "./esnext/pvjs.jquery.js"]
@@ -28,7 +29,6 @@ module.exports = {
       "./esnext/wikipathways-pvjs.webcomponent.js"
     ]
     //*/
-    //"Pvjs": ["babel-polyfill", "./esnext/Pvjs.js"],
     //cli: ["babel-polyfill", "./esnext/cli.js"]
   },
   output: {

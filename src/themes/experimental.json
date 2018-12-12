@@ -1,0 +1,67 @@
+{
+  "defs": {
+    "ClipPathRoundedRectangle": "file://./clipPaths/ClipPathRoundedRectangle.svg#ClipPathRoundedRectangle",
+    "BlackToRed": "file://./filters/BlackToRed.svg#BlackToRed",
+    "BlackToGreen": "file://./filters/BlackToGreen.svg#BlackToGreen",
+    "Invert100": "file://./filters/Invert100.svg#Invert100",
+    "Invert95": "file://./filters/Invert95.svg#Invert95",
+    "WhiteTo33BFFF": "file://./filters/WhiteTo33BFFF.svg#WhiteTo33BFFF",
+    "WhiteToRed": "file://./filters/WhiteToRed.svg#WhiteToRed",
+    "WhiteToGreen": "file://./filters/WhiteToGreen.svg#WhiteToGreen",
+    "Arrow": "file://./markers/Arrow.svg#Arrow",
+    "MimBinding": "file://./markers/MimBinding.svg#MimBinding",
+    "MimCatalysis": "file://./markers/MimCatalysis.svg#MimCatalysis",
+    "MimCleavage": "file://./markers/MimCleavage.svg#MimCleavage",
+    "MimConversion": "file://./markers/Arrow.svg#Arrow",
+    "MimCovalentBond": "file://./markers/MimCovalentBond.svg#MimCovalentBond",
+    "MimGap": "file://./markers/MimGap.svg#MimGap",
+    "MimInhibition": "file://./markers/TBar.svg#TBar",
+    "MimModification": "file://./markers/MimModification.svg#MimModification",
+    "MimNecessaryStimulation": "file://./markers/MimNecessaryStimulation.svg#MimNecessaryStimulation",
+    "MimStimulation": "file://./markers/MimStimulation.svg#MimStimulation",
+    "MimTranscriptionTranslation": "file://./markers/MimTranscriptionTranslation.svg#MimTranscriptionTranslation",
+    "TBar": "file://./markers/TBar.svg#TBar",
+    "ArcPathVisio": "file://./symbols/ArcPathVisio.svg#ArcPathVisio",
+    "Brace": "file://./symbols/Brace.svg#Brace",
+    "Complex": "file://./symbols/Octagon.svg#Octagon",
+    "Ellipse": "file://./symbols/Ellipse.svg#Ellipse",
+    "EndoplasmicReticulum": "file://./symbols/EndoplasmicReticulum.svg#EndoplasmicReticulum",
+    "HexagonPathVisio": "file://./symbols/HexagonPathVisio.svg#HexagonPathVisio",
+    "GolgiApparatus": "file://./symbols/GolgiApparatus.svg#GolgiApparatus",
+    "MimDegradation": "file://./symbols/MimDegradation.svg#MimDegradation",
+    "Mitochondria": "file://./symbols/Mitochondria.svg#Mitochondria",
+    "Octagon": "file://./symbols/Octagon.svg#Octagon",
+    "PentagonPathVisio": "file://./symbols/PentagonPathVisio.svg#PentagonPathVisio",
+    "Rectangle": "file://./symbols/Rectangle.svg#Rectangle",
+    "RoundedRectangle": "file://./symbols/RoundedRectangle.svg#RoundedRectangle",
+    "SarcoplasmicReticulum": "file://./symbols/SarcoplasmicReticulum.svg#SarcoplasmicReticulum",
+    "TrianglePathVisio": "file://./symbols/TrianglePathVisio.svg#TrianglePathVisio",
+    "none": "file://./symbols/none.svg#none",
+    "PatternQ47512": {
+      "src": "file://./patterns/PatternQ47512.svg#PatternQ47512",
+      "preserveAspectRatio": true
+    },
+    "PatternQ193166": {
+      "src": "file://./patterns/PatternQ193166.svg#PatternQ193166",
+      "preserveAspectRatio": true
+    },
+    "PatternQ213580": {
+      "src": "file://./patterns/PatternQ213580.svg#PatternQ213580",
+      "preserveAspectRatio": true
+    },
+    "PatternQ715317": {
+      "src": "file://./patterns/PatternQ715317.svg#PatternQ715317",
+      "preserveAspectRatio": true
+    }
+  },
+  "edges": {
+    "StraightLine": "kaavio",
+    "CurvedLine": "kaavio",
+    "ElbowLine": "kaavio",
+    "SegmentedLine": "kaavio"
+  },
+  "styles": {
+    "container": "./styles/Container.css",
+    "diagram": "./styles/Diagram.plain.css"
+  }
+}

@@ -80,7 +80,7 @@
   font-weight: bold;
 }
 .DataNode:hover {
-  cursor: text;
+  cursor: pointer;
 }
 
 .DataNode.GeneProduct > .Icon {
@@ -138,7 +138,6 @@
 [typeof~="wikidata:Q193166"].DataNode.Metabolite:hover > .Node > .Icon,
 [typeof~="wikidata:Q213580"].DataNode.Metabolite:hover > .Node > .Icon,
 [typeof~="wikidata:Q715317"].DataNode.Metabolite:hover > .Node > .Icon {
-  cursor: default;
   filter: url(#Invert95);
   /* needed for FF. See
      https://bugzilla.mozilla.org/show_bug.cgi?id=1209061 */

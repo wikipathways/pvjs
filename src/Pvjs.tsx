@@ -1,9 +1,18 @@
-import { find, forOwn, fromPairs, omit, toPairs } from "lodash";
+import {
+  find,
+  forOwn,
+  fromPairs,
+  omit,
+  partition,
+  reduce,
+  toPairs,
+  values
+} from "lodash";
+import { get, isString, isEmpty, negate } from "lodash/fp";
 //import { BridgeDb, XrefsAnnotationPanel } from "bridgedb";
-
+import { Validator } from "collit";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { get, isString } from "lodash/fp";
 // TODO look at how to properly import this so it works
 // for both es5, esnext, tree-shaking, etc.
 //import { Kaavio } from "kaavio";
@@ -13,23 +22,41 @@ import { Kaavio } from "kaavio/esnext/Kaavio";
 // But the icons and markers are specific to Pvjs (less likely to useful to other applications).
 import * as themePlain from "./themes/plain/theme";
 import * as themeDark from "./themes/dark/theme";
-// TODO make the CLI do this
+// TODO make the CLI bundler include the styles
 const ContainerCustomStyle = require("./themes/styles/Container.css");
 const DiagramCustomStylePlain = require("./themes/styles/Diagram.plain.css");
 const DiagramCustomStyleDark = require("./themes/styles/Diagram.dark.css");
 
-themePlain["containerStyle"] = ContainerCustomStyle;
-themeDark["containerStyle"] = ContainerCustomStyle;
-themePlain["diagramStyle"] = DiagramCustomStylePlain;
-themeDark["diagramStyle"] = DiagramCustomStyleDark;
 const themeFor = {
-  plain: themePlain,
-  dark: themeDark
+  plain: {
+    containerStyle: ContainerCustomStyle,
+    diagramStyle: DiagramCustomStylePlain,
+    ...themePlain
+  },
+  dark: {
+    containerStyle: ContainerCustomStyle,
+    diagramStyle: DiagramCustomStyleDark,
+    ...themeDark
+  }
 };
 
 // TODO use TS types updated for version 16. But I also have some changes
 // I made for SVG attributes that need to get merged.
 const Fragment = React["Fragment"];
+
+export interface PvjsProps {
+  //theme: string;
+  theme: "plain" | "dark";
+  pathway: Record<string, any>;
+  entitiesById: Record<string, any>;
+
+  opacities: string[];
+  highlights: string[];
+  panned: string[];
+  zoomed: string[];
+  detailPanelOpen: boolean;
+  selected: null | Record<string, any>;
+}
 
 // TODO move this into utils
 // Create a string of citation numbers for display,
@@ -80,21 +107,174 @@ function createPublicationXrefString(displayNumbers) {
   return publicationXrefString;
 }
 
+function normalizeTargetValue(targetValue) {
+  return targetValue.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+}
+
+function cleanQueryParam(input: string) {
+  return input.replace(/[^\w\-\:]/g, "");
+}
+
+// TODO reconcile query params and class props for pan/zoom settings
+const pluralForOperationName = {
+  highlight: "highlights",
+  opacity: "opacities"
+};
+const parseForOperationName = {
+  highlight: function(h) {
+    if (Validator.isColor(h)) {
+      return h;
+    }
+    const hexed = `#${h}`;
+    if (Validator.isColor(hexed)) {
+      return hexed;
+    } else {
+      console.warn(`Cannot parse color "${h}"`);
+    }
+  },
+  opacity: parseFloat
+};
+function reconcileQueryParam(
+  operationNameSingular,
+  styleValuesByNormalizedTargetValues,
+  queryParamKey,
+  queryParamValue
+) {
+  let result = [];
+  if (queryParamKey.indexOf(`${operationNameSingular}-`) === 0) {
+    const targetValue = queryParamKey.replace(`${operationNameSingular}-`, "");
+    const normalizedTargetValue = normalizeTargetValue(targetValue);
+    if (normalizedTargetValue in styleValuesByNormalizedTargetValues) {
+      const prop = styleValuesByNormalizedTargetValues[normalizedTargetValue];
+      console.warn(`Warning: "${operationNameSingular}" was specified by two different sources, which may or may not conflict.
+				prop passed to Pvjs class:
+					${operationNameSingular}={${JSON.stringify(prop)}}
+				URL query param:
+					${queryParamKey}=${queryParamValue}
+				Setting URL query param to match prop passed to Pvjs class.`);
+
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.set(queryParamKey, prop);
+
+      history.replaceState(
+        { queryParamKey },
+        document.title,
+        "?" + searchParams.toString()
+      );
+    } else {
+      result.push([
+        null,
+        cleanQueryParam(targetValue),
+        parseForOperationName[operationNameSingular](
+          cleanQueryParam(queryParamValue)
+        )
+      ]);
+      //result = [null, normalizedTargetValue, queryParamValue];
+    }
+  }
+  return result;
+}
+
 export class Pvjs extends React.Component<any, any> {
   kaavioRef: any;
   detailsPanelRef: any;
+  static defaultProps = {
+    theme: "plain",
+    opacities: [],
+    highlights: [],
+    panned: [],
+    zoomed: [],
+    pathway: {},
+    entitiesById: {},
+    detailPanelOpen: false,
+    selected: null
+  };
 
-  constructor(props) {
+  constructor(props: PvjsProps) {
     super(props);
+    const updatedProps = this.reconcileQueryParams(props);
+
     this.state = {
-      theme: props.theme || "plain",
-      hidden: props.hidden,
-      highlighted: props.highlighted,
-      pathway: props.pathway,
-      entitiesById: props.entitiesById,
-      detailPanelOpen: false,
-      selected: null
+      detailPanelOpen: props.detailPanelOpen,
+      selected: props.selected
     };
+  }
+
+  reconcileQueryParams(props) {
+    // http://localhost:5983/?highlight-Cholesterol=yellow&highlight-ChEBI-35664=purple&highlight-hmdb-HMDB01206=blue&opacity-Dgat1=0&opacity-ncbigene-11303=0
+    // ?highlight-Ensembl-ENSG00000121691=purple&highlight-HMDB-HMDB00193=yellow&highlight-PC=red
+    // ?opacity-Ensembl-ENSG00000121691=1.5&opacity-HMDB-HMDB00193=0&opacity-PC=1.5
+
+    const searchParams = Array.from(new URLSearchParams(location.search));
+
+    return toPairs(pluralForOperationName)
+      .reduce(function(acc, [operationNameSingular, operationNamePlural]) {
+        const styleValuesByNormalizedTargetValues = props[
+          operationNamePlural
+        ].reduce((acc, [targetKey, targetValue, styleValue]) => {
+          acc[targetValue] = styleValue;
+          return acc;
+        }, {});
+
+        acc.push({
+          operationNameSingular,
+          operationNamePlural,
+          styleValuesByNormalizedTargetValues
+        });
+
+        return acc;
+      }, [])
+      .reduce(function(
+        acc,
+        {
+          operationNameSingular,
+          operationNamePlural,
+          styleValuesByNormalizedTargetValues
+        }
+      ) {
+        searchParams.forEach(function([queryParamKey, queryParamValue]) {
+          reconcileQueryParam(
+            operationNameSingular,
+            styleValuesByNormalizedTargetValues,
+            queryParamKey,
+            queryParamValue
+          ).forEach(function(item) {
+            if (!(operationNamePlural in acc)) {
+              acc[operationNamePlural] = [];
+            }
+            acc[operationNamePlural].push(item);
+          });
+        });
+        return acc;
+      },
+      props);
+    /*
+    return toPairs(inputs)
+      .reduce(
+        function([inputKey, inputValue], { operationNameSingular, operationNamePlural, styleValuesByNormalizedTargetValues }) {
+          searchParams.forEach(function(
+            [queryParamKey, queryParamValue]
+          ) {
+            reconcileQueryParam(
+              operationNameSingular,
+              styleValuesByNormalizedTargetValues,
+              queryParamKey,
+              queryParamValue
+            ).forEach(function(item) {
+              subAcc[operationNamePlural].push(item);
+            });
+            return subAcc;
+          });
+		return 
+        },
+        {}
+      );
+
+    if (!isEmpty(parsed.highlights) || !isEmpty(parsed.opacities)) {
+      const entitiesById = this.props.entitiesById;
+      const mapper = values(entitiesById).reduce(function(acc, entity) {}, {});
+    }
+	  //*/
   }
 
   closeActive() {
@@ -114,8 +294,9 @@ export class Pvjs extends React.Component<any, any> {
     }
   };
 
-  componentWillMount() {}
+  //componentWillMount() {}
 
+  /*
   shouldComponentUpdate(nextProps, nextState) {
     const prevProps = this.props;
     const prevState = this.state;
@@ -131,10 +312,15 @@ export class Pvjs extends React.Component<any, any> {
       return acc || getter(prevState) !== getter(nextState);
     }, false);
   }
+	//*/
 
   /*
   componentWillReceiveProps(nextProps) {
     const prevProps = this.props;
+	  const updatedProps = ["highlights", "opacities", "pathway", "entitiesById"]
+	  .filter(function(propId) {
+		  return prevProps[propId] !== nextProps[propId];
+	  });
     if (
       nextProps.wpId !== prevProps.wpId ||
       nextProps.version !== prevProps.version
@@ -169,7 +355,8 @@ export class Pvjs extends React.Component<any, any> {
   }
 
   renderDetailsPanel() {
-    const { pathway, entitiesById, selected, detailPanelOpen } = this.state;
+    const { organism } = this.props.pathway;
+    const { selected, detailPanelOpen } = this.state;
     if (!detailPanelOpen) return null;
 
     if (window.hasOwnProperty("XrefPanel")) {
@@ -178,7 +365,7 @@ export class Pvjs extends React.Component<any, any> {
           this.detailsPanelRef,
           selected.xrefIdentifier,
           selected.xrefDataSource,
-          pathway.organism,
+          organism,
           {
             "0": selected.textContent
           }
@@ -194,23 +381,25 @@ export class Pvjs extends React.Component<any, any> {
         organism={pvjson.organism}
         entityType={!!selected && selected.wpType}
         displayName={!!selected && selected.textContent}
-        dataSource={selected && selected.xrefDataSource}
-        identifier={!!selected && selected.xrefIdentifier}
+        xrefDataSource={selected && selected.xrefDataSource}
+        xrefIdentifier={!!selected && selected.xrefIdentifier}
         handleClose={_ => this.handleCloseDetailsPanel()}
       />
     );
 	//*/
   }
 
-  renderKaavio() {
-    const { pathway, entitiesById, theme } = this.state;
+  render() {
     const {
+      pathway,
+      entitiesById,
+      theme,
       wpId,
       showPanZoomControls,
-      highlightedEntities,
-      hiddenEntities,
-      zoomedEntities,
-      pannedEntities,
+      highlights,
+      opacities,
+      zoomed,
+      panned,
       panCoordinates,
       zoomLevel,
       onPanZoomChange,
@@ -218,58 +407,31 @@ export class Pvjs extends React.Component<any, any> {
     } = this.props;
 
     return (
-      <Kaavio
-        theme={themeFor[theme]}
-        pathway={pathway}
-        entitiesById={entitiesById}
-        onReady={function() {
-          // Do something
-        }}
-        onEntityClick={this.handleEntityClick}
-      />
-    );
-
-    /*
-    return (
-      <Kaavio
-        ref={kaavio => (this.kaavioRef = kaavio)}
-        onEntityClick={this.handleEntityClick}
-        entities={pvjson.entities}
-        name={pvjson.name}
-        width={pvjson.width}
-        height={pvjson.height}
-        backgroundColor={pvjson.backgroundColor}
-        customStyle={customStyle}
-        edgeDrawers={EdgeDrawers}
-        icons={icons}
-        markerDrawers={markerDrawers}
-        filters={filters}
-        highlightedEntities={highlightedEntities}
-        hiddenEntities={hiddenEntities}
-        pannedEntities={pannedEntities}
-        zoomedEntities={zoomedEntities}
-        panCoordinates={panCoordinates}
-        zoomLevel={zoomLevel}
-        onPanZoomChange={onPanZoomChange}
-        panZoomLocked={panZoomLocked}
-        onReady={kaavio => this.onKaavioReady()}
-        showPanZoomControls={showPanZoomControls}
-      />
-    );
-    //*/
-  }
-
-  render() {
-    const { state } = this;
-    return (
       <Fragment>
         <div
           ref={div => {
             this.detailsPanelRef = div;
           }}
         />
+
         {this.renderDetailsPanel()}
-        {this.renderKaavio()}
+
+        <Kaavio
+          theme={themeFor[theme]}
+          pathway={pathway}
+          entitiesById={entitiesById}
+          onReady={kaavio => this.onKaavioReady()}
+          onEntityClick={this.handleEntityClick}
+          highlights={highlights}
+          opacities={opacities}
+          panned={panned}
+          zoomed={zoomed}
+          panCoordinates={panCoordinates}
+          zoomLevel={zoomLevel}
+          onPanZoomChange={onPanZoomChange}
+          panZoomLocked={panZoomLocked}
+          showPanZoomControls={showPanZoomControls}
+        />
       </Fragment>
     );
   }

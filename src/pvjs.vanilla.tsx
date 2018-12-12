@@ -2,7 +2,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { isString } from "lodash/fp";
 import { Pvjs as PvjsEl } from "./Pvjs";
-
 export type Pathway = Record<string, any>;
 export type EntitiesById = Record<string, any>;
 
@@ -12,42 +11,25 @@ export class Pvjs {
   private _data: any;
   private _element: React.Component;
   private _renderMethod: "hydrate" | "render";
-  /*
-  private _theme: string;
-  private _hidden: any[];
-  private _highlighted: any[];
-  private _pathway: Pathway;
-  private _entitiesById: EntitiesById;
-	//*/
-  constructor(
-    containerSelectorOrEl: any,
-    {
-      theme = "plain",
-      hidden = [],
-      highlighted = [],
-      pathway = {} as Pathway,
-      entitiesById = {} as EntitiesById,
-      hydrate = false
-    }
-  ) {
-    this._containerEl = isString(containerSelectorOrEl)
-      ? document.querySelector(containerSelectorOrEl)
-      : containerSelectorOrEl;
-    const renderMethod = (this._renderMethod = hydrate ? "hydrate" : "render");
-    this._data = {
-      theme,
-      hidden,
-      highlighted,
-      pathway,
-      entitiesById
-    };
+  constructor(containerEl: any, data) {
+    this._containerEl = containerEl;
+    this._renderMethod = containerEl.innerHTML.trim() === ""
+      ? "render"
+      : "hydrate";
+    this._data = data;
     this.render();
   }
 
   set data(data: any) {
     const { _containerEl, _data: prevData } = this;
-    const { theme, hidden, highlighted, pathway, entitiesById } = data;
+    const { pathway } = data;
     this._data = data;
+    //ReactDOM.unmountComponentAtNode(_containerEl);
+    this._renderMethod = "render";
+    this.render();
+    /*
+	  const propIds = ["highlighted", "hidden", "pathway", "entitiesById"];
+	  const stateIds = ["highlighted", "hidden", "pathway", "entitiesById"];
     if (pathway.id !== prevData.pathway.id) {
       ReactDOM.unmountComponentAtNode(_containerEl);
       this._renderMethod = "render";
@@ -55,6 +37,7 @@ export class Pvjs {
     } else {
       this._element.setState(data);
     }
+	  //*/
   }
 
   render() {

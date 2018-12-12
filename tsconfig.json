@@ -1,1 +1,15 @@
-tsconfig.esnext.json
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es5",
+      "es6",
+      "scripthost"
+    ],
+    "module": "es2015",
+    "target": "es2015",
+    "outDir": "./esnext/"
+  }
+}

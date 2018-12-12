@@ -1,4 +1,3 @@
-/*
 export {
   changeDirection,
   Direction,
@@ -12,25 +11,6 @@ export {
   SegmentedLine,
   StraightLine
 } from "kaavio/lib/drawers/edges/index";
-//*/
-import {
-  changeDirection,
-  Direction,
-  PathDataCommand,
-  SVGPath,
-  SVGPathData,
-  SVGPathDataSettings,
-  SVGPathSegment,
-  SVGPointElement
-} from "../../../node_modules/kaavio/lib/drawers/edges/index";
-//*
-import {
-  //SVGPath,
-  ElbowLine,
-  SegmentedLine,
-  StraightLine
-} from "../../../node_modules/kaavio/lib/drawers/edges/index";
-//*/
 
 // Returns the dot product of the given four-element vectors.
 function d3_svg_lineDot4(a, b) {
