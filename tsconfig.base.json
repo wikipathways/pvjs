@@ -10,6 +10,9 @@
     "pretty": true
   },
   "files": [
+    "src/themes/dark/theme.tsx",
+    "src/themes/plain/theme.tsx",
+    "src/themes/experimental/theme.tsx",
     "src/index.ts",
     "src/cli.tsx",
     "src/Pvjs.tsx",
