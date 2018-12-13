@@ -19,7 +19,7 @@
     "test/expected"
   ],
   "scripts": {
-    "build": "rm -rf dist/ es5/ esnext/; npm-run-all -r -s build:css -p build:assets build:bundle -s build:ts build:dist",
+    "build": "rm -rf dist/ es5/ esnext/; npm-run-all -s build:css -p build:assets build:bundle -s build:ts build:dist",
     "build:assets": "npm-run-all -p build:assets:*",
     "build:assets:es5": "rsync -a --delete --include='*.json' --include='*.svg' --include='*.css' --include='*.css.d.ts' --include='*/' --exclude='*' src/ es5/",
     "build:assets:esnext": "rsync -a --delete --include='*.json' --include='*.svg' --include='*.css' --include='*.css.d.ts' --include='*/' --exclude='*' src/ esnext/",
@@ -64,7 +64,7 @@
     "test:quick:Icon": "input=\"./node_modules/gpml2pvjson/test/expected/WP1243_69897.json\" && echo \"# Converting $input from JSON to SVG...\" && pathway_name=`basename \"$input\" | sed s/.json//`; base_path=`echo \"./test/expected/$pathway_name\"`; result=$(cat \"$input\" | bin/pvjs --react | xmllint --xpath \"count(//*[contains(concat(' ',normalize-space(@class),' '),' Icon ')])\" -); if [[ ! $result -eq 72 ]]; then echo \"test:quick failed: expected 72 Icons for WP1243_69897 but got $result\" && exit 1; fi; echo 'OK' || echo 'FAIL'",
     "test:quick:Edge": "input=\"./node_modules/gpml2pvjson/test/expected/WP481_94171.json\" && echo \"# Converting $input from JSON to SVG...\" && pathway_name=`basename \"$input\" | sed s/.json//`; base_path=`echo \"./test/expected/$pathway_name\"`; result=$(cat \"$input\" | bin/pvjs | xmllint --xpath \"count(//*[contains(concat(' ',normalize-space(@class),' '),' Edge ')])\" -); if [[ ! $result -eq 19 ]]; then echo \"test:quick failed: expected 19 Edges for WP481_94171 but got $result\" && exit 1; fi; echo 'OK' || echo 'FAIL'",
     "watch-max-build": "npm-run-all -s build -p watch:*",
-    "watch": "rm -rf es5/ esnext/; npm-run-all -r -s build:css -p build:assets build:bundle -s build:ts -p watch:*",
+    "watch": "rm -rf es5/ esnext/; npm-run-all -s build:css -p build:assets build:bundle -s build:ts -p watch:*",
     "watch:browser": "webpack-dev-server --config webpack.dev.config.js --open --progress --inline",
     "watch:css": "tcm src --watch",
     "watch:assets": "onchange 'src/**' -- npm-run-all build:assets",
