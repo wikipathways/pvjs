@@ -47,10 +47,6 @@ import { Pvjs } from '@wikipathways/pvjs';
 
 ### <a name="umd"></a>Using the UMD bundle
 Pvjs comes with a UMD bundle that you can include in your HTML page. It's available under `dist/index.js`. Once you've included the bundle, Pvjs is available under the `Pvjs` namespace.
-```
-
-### <a name="umd"></a>Using the UMD bundle
-Pvjs comes with a UMD bundle that you can include in your HTML page. It's available under `dist/index.js`. Once you've included the bundle, Pvjs is available under the `Pvjs` namespace.
 
 1. Copy `dist/index.js`, `dist/style.css`, and all of `dist/assets` into your project assets (tip: use a task runner like gulp)
 2. Include `index.js` and `style.css` in your project's head tag:
@@ -303,4 +299,4 @@ If you find a bug please check the [issue tracker](https://github.com/wikipathwa
 ## <a name="funding"></a> Funding
 * The National Institute for General Medical Sciences [R01-GM100039](http://www.nigms.nih.gov/)
 * The BioRange program of the Netherlands [Bioinformatics Centre](http://www.nbic.nl/)
-* [University Maastricht](http://www.unimaas.nl/default.asp?taal=en): Broad Research Strategy Program Part 2 (BOS2)
+* [Maastricht University](https://www.maastrichtuniversity.nl/): Broad Research Strategy Program Part 2 (BOS2)
