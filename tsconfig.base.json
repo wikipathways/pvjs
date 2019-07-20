@@ -9,19 +9,12 @@
     "noImplicitAny": false,
     "pretty": true
   },
-  "files": [
-    "src/themes/dark/theme.tsx",
-    "src/themes/plain/theme.tsx",
-    "src/themes/experimental/theme.tsx",
-    "src/index.ts",
-    "src/cli.tsx",
-    "src/Pvjs.tsx",
-    "src/pvjs.vanilla.tsx",
-    "src/pvjs.jquery.tsx"
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ],
   "exclude": [
     "dist/**/*",
-    "tmp/**/*",
-    "node_modules"
+    "tmp/**/*"
   ]
 }

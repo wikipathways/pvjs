@@ -1,1 +1,1 @@
-export * from "kaavio/lib/drawers/filters/index";
+export * from "kaavio/es5/drawers/filters/index";

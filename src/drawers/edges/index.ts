@@ -1,4 +1,4 @@
-export {
+import {
   changeDirection,
   Direction,
   PathDataCommand,
@@ -10,7 +10,7 @@ export {
   ElbowLine,
   SegmentedLine,
   StraightLine
-} from "kaavio/lib/drawers/edges/index";
+} from "kaavio/es5/drawers/edges/index";
 
 // Returns the dot product of the given four-element vectors.
 function d3_svg_lineDot4(a, b) {
@@ -64,7 +64,7 @@ class CurvedLine extends SVGPath {
       var lastSegment = [];
       var pathData = [new SVGPathSegment("M", [firstPoint.x, firstPoint.y])];
 
-      var direction = [] as Direction;
+      var direction = ([] as unknown) as Direction;
       if (firstPoint.orientation) {
         const orientation = firstPoint.orientation;
         direction.push(orientation[0]);
