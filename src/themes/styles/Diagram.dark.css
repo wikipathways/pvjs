@@ -14,7 +14,7 @@
 .Viewport .DataNode,
 .Group .DataNode,
 .Viewport .Group .Icon {
-/*
+  /*
   filter: url(#Invert95);
 */
   /*stroke-miterlimit: 1;*/
@@ -33,15 +33,15 @@
 }
 
 .GroupComplex > .Icon {
-  fill: #B4B464;
+  fill: #b4b464;
   fill-opacity: 0.1;
   stroke: #808080;
 }
 
 .GroupNone > .Icon {
-		fill: #B4B464;
-		fill-opacity: 0.1;
-    stroke: #808080;	
+  fill: #b4b464;
+  fill-opacity: 0.1;
+  stroke: #808080;
 }
 
 .GroupPathway > .Icon {
@@ -65,7 +65,7 @@
   /*filter: url(#Invert95);*/
 }
 .Label > .Text {
-  fill: #FEFEFE;
+  fill: #fefefe;
   /*filter: url(#Invert95);*/
 }
 
@@ -94,14 +94,14 @@
   fill: brown;
 }
 .DataNode.Protein > .Text {
-  fill: #FEFEFE;
+  fill: #fefefe;
 }
 
 .DataNode.Rna > .Icon {
-  fill: #9453A7;
+  fill: #9453a7;
 }
 .DataNode.Rna > .Text {
-  fill: #ECF0F1;
+  fill: #ecf0f1;
 }
 
 .DataNode.Pathway > .Icon {
@@ -119,10 +119,10 @@
 }
 
 .DataNode.Metabolite > .Icon {
-  fill: #0000EE;
+  fill: #0000ee;
 }
 .DataNode.Metabolite > .Text {
-  fill: #FEFEFE;
+  fill: #fefefe;
 }
 
 [typeof~="wikidata:Q47512"].DataNode.Metabolite:hover,

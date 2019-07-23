@@ -13,9 +13,8 @@ export class Pvjs {
   private _renderMethod: "hydrate" | "render";
   constructor(containerEl: any, data) {
     this._containerEl = containerEl;
-    this._renderMethod = containerEl.innerHTML.trim() === ""
-      ? "render"
-      : "hydrate";
+    this._renderMethod =
+      containerEl.innerHTML.trim() === "" ? "render" : "hydrate";
     this._data = data;
     this.render();
   }

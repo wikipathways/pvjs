@@ -7,7 +7,7 @@
 
 .DataNode.Metabolite .Icon:hover {
   filter: none;
-  fill: #0000FF;
+  fill: #0000ff;
 }
 
 .DataNode.Protein .Icon {
