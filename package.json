@@ -1,6 +1,6 @@
 {
   "name": "@wikipathways/pvjs",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "main": "es5/index.js",
   "module": "esnext/index.js",
   "jsnext:main": "esnext/index.js",
@@ -70,7 +70,7 @@
   "description": "Biological pathway diagram viewer for WikiPathways.org",
   "dependencies": {
     "bridgedb": "^6.0.3",
-    "kaavio": "^4.0.8",
+    "kaavio": "^4.0.9",
     "react": "^16.6.3",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",
