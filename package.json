@@ -19,7 +19,7 @@
     "test/expected"
   ],
   "scripts": {
-    "build": "gpml2pvjson_dir=$(node -p 'path.dirname(require.resolve(\"gpml2pvjson/package.json\"))'); rm -rf dist/ es5/ esnext/; npm-run-all -s build:css -p build:assets build:bundle -s build:ts build:dist; echo \"\\nBuilding expected SVGs for testing purposes...:\"; inputs=\"$gpml2pvjson_dir/test/expected/*.json\"; echo \"# Converting $inputs from JSON to SVG and verifying checksums...\"; for f in $inputs; do pathway_name=`basename \"$f\" | sed s/.json//`; base_path=`echo \"./test/expected/$pathway_name\"`; echo \"\\n## Processing $pathway_name...\"; sed -i 's/\\?\\-/\\ \\-/g' \"$base_path.svg.sha1sum\"; cat \"$f\" | bin/pvjs --react | tee \"$base_path.svg\" | sha1sum -c \"$base_path.svg.sha1sum\" || break; done",
+    "build": "rm -rf dist/ es5/ esnext/; npm-run-all -s build:css -p build:assets build:bundle -s build:ts build:dist",
     "build:assets": "npm-run-all -p build:assets:*",
     "build:assets:es5": "rsync -a --delete --include='*.json' --include='*.svg' --include='*.css' --include='*.css.d.ts' --include='*/' --exclude='*' src/ es5/",
     "build:assets:esnext": "rsync -a --delete --include='*.json' --include='*.svg' --include='*.css' --include='*.css.d.ts' --include='*/' --exclude='*' src/ esnext/",
@@ -39,7 +39,8 @@
     "deploy": "npm run build && host=dev.wikipathways.org && rsync dist/pvjs.js $host:/var/www/$host/wpi/js/pvjs/",
     "expected": "echo 'Setting expected values for tests'; npm-run-all expected:* || break",
     "expected:checksums": "gpml2pvjson_dir=$(node -p 'path.dirname(require.resolve(\"gpml2pvjson/package.json\"))'); echo \"Converting JSON (from GPML test files) to SVG and generating checksums:\"; source_dirname=$gpml2pvjson_dir/test/expected; for source_file in $source_dirname/*.json; do output_file=`echo $source_file | sed s#$source_dirname#test/expected# | sed 's/\\.json//'`\".svg\"; echo \"$source_file -> $output_file and $output_file.sha1sum\"; cat \"$source_file\" | bin/pvjs --react | tee \"$output_file\" | sha1sum > \"$output_file.sha1sum\" || break; done",
-    "prepare": "ALLE_DIR='../../../../'; if [ ! -d ./node_modules ] && [ -d $ALLE_DIR/node_modules ]; then echo 'Alle configuration detected. Testing from the top-level alle directory...'; (cd $ALLE_DIR; npm run '@wikipathways/pvjs:build'); else npm run build; fi",
+    "prepare": "ALLE_DIR='../../../../'; if [ ! -d ./node_modules ] && [ -d $ALLE_DIR/node_modules ]; then echo 'Alle configuration detected. Testing from the top-level alle directory...'; (cd $ALLE_DIR; npm run '@wikipathways/pvjs:build'); else npm run build; fi; npm run prepare:svgs",
+    "prepare:svgs": "gpml2pvjson_dir=$(node -p 'path.dirname(require.resolve(\"gpml2pvjson/package.json\"))'); echo \"\\nBuilding expected SVGs for testing purposes...:\"; inputs=\"$gpml2pvjson_dir/test/expected/*.json\"; echo \"# Converting $inputs from JSON to SVG and verifying checksums...\"; for f in $inputs; do pathway_name=`basename \"$f\" | sed s/.json//`; base_path=`echo \"./test/expected/$pathway_name\"`; echo \"\\n## Processing $pathway_name...\"; sed -i 's/\\?\\-/\\ \\-/g' \"$base_path.svg.sha1sum\"; cat \"$f\" | bin/pvjs --react | tee \"$base_path.svg\" | sha1sum -c \"$base_path.svg.sha1sum\" || break; done",
     "prepublishOnly": "ALLE_DIR='../../../../'; if [ ! -d ./node_modules ] && [ -d $ALLE_DIR/node_modules ]; then echo 'Alle configuration detected. Testing from the top-level alle directory...'; (cd $ALLE_DIR; npm run '@wikipathways/pvjs:test'); else npm run test; fi",
     "test": "npm-run-all test:browser test:quick test:checksums",
     "test:browser": "echo 'get browser tests working'",
