@@ -125,19 +125,19 @@
   fill: #fefefe;
 }
 
-[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover,
-[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover,
-[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover,
-[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover {
+.wikidata_Q47512.DataNode.Metabolite:hover,
+.wikidata_Q193166.DataNode.Metabolite:hover,
+.wikidata_Q213580.DataNode.Metabolite:hover,
+.wikidata_Q715317.DataNode.Metabolite:hover {
   clip-path: unset;
   rx: unset;
   ry: unset;
 }
 
-[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover > .Node > .Icon,
-[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover > .Node > .Icon,
-[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover > .Node > .Icon,
-[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover > .Node > .Icon {
+.wikidata_Q47512.DataNode.Metabolite:hover > .Node > .Icon,
+.wikidata_Q193166.DataNode.Metabolite:hover > .Node > .Icon,
+.wikidata_Q213580.DataNode.Metabolite:hover > .Node > .Icon,
+.wikidata_Q715317.DataNode.Metabolite:hover > .Node > .Icon {
   filter: url(#Invert95);
   /* needed for FF. See
      https://bugzilla.mozilla.org/show_bug.cgi?id=1209061 */
@@ -146,29 +146,29 @@
   transform: scale(2, 3);
 }
 
-[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover .Text,
-[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover .Text,
-[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover .Text,
-[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover .Text {
+.wikidata_Q47512.DataNode.Metabolite:hover .Text,
+.wikidata_Q193166.DataNode.Metabolite:hover .Text,
+.wikidata_Q213580.DataNode.Metabolite:hover .Text,
+.wikidata_Q715317.DataNode.Metabolite:hover .Text {
   font-size: 0px;
 }
 
-[typeof~="wikidata:Q47512"].DataNode.Metabolite:hover > .Node > .Icon {
+.wikidata_Q47512.DataNode.Metabolite:hover > .Node > .Icon {
   fill: url(#PatternQ47512);
   /*transform: scale(2, 2);*/
 }
 
-[typeof~="wikidata:Q193166"].DataNode.Metabolite:hover > .Node > .Icon {
+.wikidata_Q193166.DataNode.Metabolite:hover > .Node > .Icon {
   fill: url(#PatternQ193166);
   /*transform: scale(3, 3);*/
 }
 
-[typeof~="wikidata:Q213580"].DataNode.Metabolite:hover > .Node > .Icon {
+.wikidata_Q213580.DataNode.Metabolite:hover > .Node > .Icon {
   fill: url(#PatternQ213580);
   /*transform: scale(2.5, 2.5);*/
 }
 
-[typeof~="wikidata:Q715317"].DataNode.Metabolite:hover > .Node > .Icon {
+.wikidata_Q715317.DataNode.Metabolite:hover > .Node > .Icon {
   fill: url(#PatternQ715317);
   /*transform: scale(4, 4);*/
 }
