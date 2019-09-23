@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+#url="file:///home/ariutta/Dropbox (Gladstone)/Documents/alle-pvjs/packages/node_modules/@wikipathways/pvjs/test/expected/chunked.svg"
+
+#test_dir="/home/ariutta/Dropbox (Gladstone)/Documents/alle-pvjs/packages/node_modules/@wikipathways/pvjs/test"
+test_dir="$1"
+if [ -z "$test_dir" ]; then
+  echo "No test_dir specified." >/dev/stderr
+  exit 1
+fi
+
+open_image() {
+  url="$1"
+  if [ -z "$url" ]; then
+    echo "No url specified." >/dev/stderr
+    exit 1
+  fi
+  if which xdg-open > /dev/null 2>&1; then
+    xdg-open "$url"
+  elif which open > /dev/null 2>&1; then
+    open "$url"
+  else
+    echo "Warning: Not sure how to open browser." >/dev/stderr
+    exit 1
+  fi
+}
+
+for expected_f in "$test_dir/expected/"*.svg; do
+  filename="$(basename "$expected_f")"
+  actual_f="$test_dir/actual/$filename"
+  echo "expected: $expected_f"
+  open_image "file://$expected_f"
+  echo "actual: $actual_f"
+  open_image "file://$actual_f"
+  echo ""
+  read -rp "Hit Enter to view next"
+done

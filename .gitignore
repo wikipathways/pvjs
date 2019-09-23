@@ -8,6 +8,7 @@ logs
 dist
 npm-debug.log
 test/expected/*.svg
+test/actual/
 *.css.d.ts
 test/playground.json
 src/themes/dark/
