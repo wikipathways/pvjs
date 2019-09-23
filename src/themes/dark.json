@@ -21,22 +21,6 @@
     "SarcoplasmicReticulum": "file://./symbols/SarcoplasmicReticulum.svg#SarcoplasmicReticulum",
     "TrianglePathVisio": "file://./symbols/TrianglePathVisio.svg#TrianglePathVisio",
     "none": "file://./symbols/none.svg#none",
-    "PatternQ47512": {
-      "src": "file://./patterns/PatternQ47512.svg#PatternQ47512",
-      "preserveAspectRatio": true
-    },
-    "PatternQ193166": {
-      "src": "file://./patterns/PatternQ193166.svg#PatternQ193166",
-      "preserveAspectRatio": true
-    },
-    "PatternQ213580": {
-      "src": "file://./patterns/PatternQ213580.svg#PatternQ213580",
-      "preserveAspectRatio": true
-    },
-    "PatternQ715317": {
-      "src": "file://./patterns/PatternQ715317.svg#PatternQ715317",
-      "preserveAspectRatio": true
-    },
     "BlackToRed": "file://./filters/BlackToRed.svg#BlackToRed",
     "BlackToGreen": "file://./filters/BlackToGreen.svg#BlackToGreen",
     "Invert100": "file://./filters/Invert100.svg#Invert100",
