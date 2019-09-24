@@ -41,9 +41,8 @@ export class Pvjs {
 
   render() {
     const { _data, _renderMethod, _containerEl } = this;
-    this._element = ReactDOM[_renderMethod](
-      <PvjsEl {..._data} />,
-      _containerEl
-    );
+
+    const doRender: Function = ReactDOM[_renderMethod];
+    this._element = doRender(<PvjsEl {..._data} />, _containerEl);
   }
 }
