@@ -30,6 +30,9 @@ for expected_f in "$test_dir/expected/"*.svg; do
   actual_f="$test_dir/actual/$filename"
   echo "expected: $expected_f"
   open_image "file://$expected_f"
+
+  sleep 0.5
+
   echo "actual: $actual_f"
   open_image "file://$actual_f"
   echo ""
