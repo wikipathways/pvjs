@@ -1,4 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="hashsha256bbea656053cafb9612bbe6ef717f4f72faf84e0585404c0ceb0f6263d70c79d5-svg" version="1.1" baseProfile="full" preserveAspectRatio="xMidYMid" color="black" class="Diagram" viewBox="0 0 829.0515247108307 621.8666666666666" data-reactroot=""><style type="text/css">
+<?xml version="1.0"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    id="hashsha256bbea656053cafb9612bbe6ef717f4f72faf84e0585404c0ceb0f6263d70c79d5-svg"
+    version="1.1"
+    baseProfile="full"
+    preserveAspectRatio="xMidYMid"
+    color="black"
+    class="Diagram"
+    viewBox="0 0 829.0515247108307 621.8666666666666"
+    data-reactroot=""
+  ><style
+      type="text/css"
+    >
 <![CDATA[
 	.Viewport .Text, .Viewport .Text * {
 	  pointer-events: none;
@@ -71,35 +85,2976 @@
 
 	
 ]]>
-</style><defs><g id="jit-defs"><filter x="0" y="0" height="621.8666666666666" width="829.0515247108307" id="kaaviowhitetofffffffilter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -1
-                 0  1  0 0 -1
-                 0  0  1 0 -1
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="621.8666666666666" width="829.0515247108307" id="kaavioblacktofffffffilter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 1
-                  0  -1   0 0 1
-                  0   0  -1 0 1
-                  0   0   0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="621.8666666666666" width="829.0515247108307" id="kaaviowhiteto000000filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -0
-                 0  1  0 0 -0
-                 0  0  1 0 -0
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="621.8666666666666" width="829.0515247108307" id="kaavioblackto000000filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 0
-                  0  -1   0 0 0
-                  0   0  -1 0 0
-                  0   0   0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="621.8666666666666" width="829.0515247108307" id="kaaviowhiteto0000fffilter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -0
-                 0  1  0 0 -0
-                 0  0  1 0 -1
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="621.8666666666666" width="829.0515247108307" id="kaavioblackto0000fffilter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 0
-                  0  -1   0 0 0
-                  0   0  -1 0 1
-                  0   0   0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="621.8666666666666" width="829.0515247108307" id="kaaviowhitetob4b464filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -0.7058823529411765
-                 0  1  0 0 -0.7058823529411765
-                 0  0  1 0 -0.39215686274509803
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="621.8666666666666" width="829.0515247108307" id="kaavioblacktob4b464filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 0.7058823529411765
-                  0  -1   0 0 0.7058823529411765
-                  0   0  -1 0 0.39215686274509803
-                  0   0   0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="621.8666666666666" width="829.0515247108307" id="kaaviowhiteto808080filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -0.5019607843137255
-                 0  1  0 0 -0.5019607843137255
-                 0  0  1 0 -0.5019607843137255
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="621.8666666666666" width="829.0515247108307" id="kaavioblackto808080filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 0.5019607843137255
-                  0  -1   0 0 0.5019607843137255
-                  0   0  -1 0 0.5019607843137255
-                  0   0   0 1 0"></feColorMatrix></filter></g><g id="jic-defs"><svg><defs><clipPath id="ClipPathRoundedRectangle" clipPathUnits="objectBoundingBox"><rect width="1" height="1" rx=".125" ry=".25"/></clipPath><filter id="BlackToRed" width="100%" height="100%" x="0" y="0" filterUnits="userSpaceOnUse"><feComponentTransfer><feFuncR intercept="1" type="linear"/><feFuncG intercept="1" slope="-1" type="linear"/><feFuncB intercept="1" slope="-1" type="linear"/></feComponentTransfer></filter><filter id="BlackToGreen" width="100%" height="100%" x="0" y="0" filterUnits="userSpaceOnUse"><feComponentTransfer><feFuncR intercept="1" type="linear"/><feFuncG intercept="1" slope="-1" type="linear"/><feFuncB intercept="1" slope="-1" type="linear"/></feComponentTransfer></filter><filter id="Invert100" width="200%" height="200%" x="-100%" y="-100%" filterUnits="userSpaceOnUse"><feColorMatrix in="SourceGraphic" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"/></filter><filter id="Invert95" width="200%" height="200%" x="-50%" y="-50%" filterUnits="userSpaceOnUse"><feComponentTransfer><feFuncR tableValues="1 0.05" type="table"/><feFuncG tableValues="1 0.05" type="table"/><feFuncB tableValues="1 0.05" type="table"/></feComponentTransfer></filter><filter id="WhiteTo33BFFF" width="100%" height="100%" x="0" y="0" filterUnits="userSpaceOnUse"><feColorMatrix in="SourceGraphic" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"/></filter><filter id="WhiteToRed" width="100%" height="100%" x="0" y="0" filterUnits="userSpaceOnUse"><feComponentTransfer><feFuncR type="linear"/><feFuncG intercept="1" slope="-.95" type="linear"/><feFuncB intercept="1" slope="-1" type="linear"/></feComponentTransfer></filter><filter id="WhiteToGreen" width="100%" height="100%" x="0" y="0" filterUnits="userSpaceOnUse"><feComponentTransfer><feFuncR intercept="1" slope="-1" type="linear"/><feFuncG type="linear"/><feFuncB intercept="1" slope="-.95" type="linear"/></feComponentTransfer></filter><marker id="markerArrow" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerStartArrow" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z"/></marker><marker id="markerMidArrow" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerEndArrow" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerMimBinding" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 12L0 6l12-6-7 6z" transform="rotate(180 6 6)"/></marker><marker id="markerStartMimBinding" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 12L0 6l12-6-7 6z"/></marker><marker id="markerMidMimBinding" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 12L0 6l12-6-7 6z" transform="rotate(180 6 6)"/></marker><marker id="markerEndMimBinding" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 12L0 6l12-6-7 6z" transform="rotate(180 6 6)"/></marker><marker id="markerMimCatalysis" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.3" fill="none" stroke="#000" transform="rotate(180 6 6)"/></marker><marker id="markerStartMimCatalysis" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.3" fill="none" stroke="#000"/></marker><marker id="markerMidMimCatalysis" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.3" fill="none" stroke="#000" transform="rotate(180 6 6)"/></marker><marker id="markerEndMimCatalysis" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.3" fill="none" stroke="#000" transform="rotate(180 6 6)"/></marker><marker id="markerMimCleavage" stroke-dasharray="99999" markerHeight="30" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="10" refY="15" viewBox="0 0 20 30"><g stroke="#000" transform="rotate(180 10 15)"><path d="M18 14.5V30M18 30L0 0"/></g></marker><marker id="markerStartMimCleavage" stroke-dasharray="99999" markerHeight="30" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="0" refY="15" viewBox="0 0 20 30"><g stroke="#000"><path d="M18 14.5V30M18 30L0 0"/></g></marker><marker id="markerMidMimCleavage" stroke-dasharray="99999" markerHeight="30" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="10" refY="15" viewBox="0 0 20 30"><g stroke="#000" transform="rotate(180 10 15)"><path d="M18 14.5V30M18 30L0 0"/></g></marker><marker id="markerEndMimCleavage" stroke-dasharray="99999" markerHeight="30" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="20" refY="15" viewBox="0 0 20 30"><g stroke="#000" transform="rotate(180 10 15)"><path d="M18 14.5V30M18 30L0 0"/></g></marker><marker id="markerMimConversion" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerStartMimConversion" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z"/></marker><marker id="markerMidMimConversion" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerEndMimConversion" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerMimCovalentBond" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path fill="none" stroke="#000" d="M11 1H1v10h10"/></marker><marker id="markerStartMimCovalentBond" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path fill="none" stroke="#000" d="M11 1H1v10h10" transform="rotate(180 6 6)"/></marker><marker id="markerMidMimCovalentBond" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path fill="none" stroke="#000" d="M11 1H1v10h10"/></marker><marker id="markerEndMimCovalentBond" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path fill="none" stroke="#000" d="M11 1H1v10h10"/></marker><marker id="markerMimGap" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path fill="none" d="M0 5.3h8v1.4H0z" transform="rotate(180 6 6)"/></marker><marker id="markerStartMimGap" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path fill="none" d="M0 5.3h8v1.4H0z"/></marker><marker id="markerMidMimGap" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path fill="none" d="M0 5.3h8v1.4H0z" transform="rotate(180 6 6)"/></marker><marker id="markerEndMimGap" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path fill="none" d="M0 5.3h8v1.4H0z" transform="rotate(180 6 6)"/></marker><marker id="markerMimInhibition" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="5" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><marker id="markerStartMimInhibition" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="0" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20" transform="rotate(180 5 10)"/></marker><marker id="markerMidMimInhibition" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="5" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><marker id="markerEndMimInhibition" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="10" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><marker id="markerMimModification" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M0 6l11 5V1z" transform="rotate(180 6 6)"/></marker><marker id="markerStartMimModification" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M0 6l11 5V1z"/></marker><marker id="markerMidMimModification" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M0 6l11 5V1z" transform="rotate(180 6 6)"/></marker><marker id="markerEndMimModification" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M0 6l11 5V1z" transform="rotate(180 6 6)"/></marker><marker id="markerMimNecessaryStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="16" orient="auto" preserveAspectRatio="none" refX="8" refY="6" viewBox="0 0 16 12"><g fill="none" transform="rotate(180 8 6)"><path stroke="#000" d="M14 0v12"/><path d="M16 6"/><path stroke="#000" d="M0 6l9 5V1z"/></g></marker><marker id="markerStartMimNecessaryStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="16" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 16 12"><g fill="none"><path stroke="#000" d="M14 0v12"/><path d="M16 6"/><path stroke="#000" d="M0 6l9 5V1z"/></g></marker><marker id="markerMidMimNecessaryStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="16" orient="auto" preserveAspectRatio="none" refX="8" refY="6" viewBox="0 0 16 12"><g fill="none" transform="rotate(180 8 6)"><path stroke="#000" d="M14 0v12"/><path d="M16 6"/><path stroke="#000" d="M0 6l9 5V1z"/></g></marker><marker id="markerEndMimNecessaryStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="16" orient="auto" preserveAspectRatio="none" refX="16" refY="6" viewBox="0 0 16 12"><g fill="none" transform="rotate(180 8 6)"><path stroke="#000" d="M14 0v12"/><path d="M16 6"/><path stroke="#000" d="M0 6l9 5V1z"/></g></marker><marker id="markerMimStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><g fill="none" transform="rotate(180 6 6)"><path d="M12 6"/><path stroke="#000" d="M0 6l11 5V1z"/></g></marker><marker id="markerStartMimStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><g fill="none"><path d="M12 6"/><path stroke="#000" d="M0 6l11 5V1z"/></g></marker><marker id="markerMidMimStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><g fill="none" transform="rotate(180 6 6)"><path d="M12 6"/><path stroke="#000" d="M0 6l11 5V1z"/></g></marker><marker id="markerEndMimStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><g fill="none" transform="rotate(180 6 6)"><path d="M12 6"/><path stroke="#000" d="M0 6l11 5V1z"/></g></marker><marker id="markerMimTranscriptionTranslation" stroke-dasharray="99999" markerHeight="24" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="10" refY="12" viewBox="0 0 20 24"><g fill="none" stroke="#000" transform="rotate(180 10 12)"><path d="M15 12V5M15.5 5H8M0 5l8-4v8z"/></g></marker><marker id="markerStartMimTranscriptionTranslation" stroke-dasharray="99999" markerHeight="24" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="0" refY="12" viewBox="0 0 20 24"><g fill="none" stroke="#000"><path d="M15 12V5M15.5 5H8M0 5l8-4v8z"/></g></marker><marker id="markerMidMimTranscriptionTranslation" stroke-dasharray="99999" markerHeight="24" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="10" refY="12" viewBox="0 0 20 24"><g fill="none" stroke="#000" transform="rotate(180 10 12)"><path d="M15 12V5M15.5 5H8M0 5l8-4v8z"/></g></marker><marker id="markerEndMimTranscriptionTranslation" stroke-dasharray="99999" markerHeight="24" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="20" refY="12" viewBox="0 0 20 24"><g fill="none" stroke="#000" transform="rotate(180 10 12)"><path d="M15 12V5M15.5 5H8M0 5l8-4v8z"/></g></marker><marker id="markerTBar" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="5" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><marker id="markerStartTBar" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="0" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20" transform="rotate(180 5 10)"/></marker><marker id="markerMidTBar" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="5" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><marker id="markerEndTBar" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="10" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><symbol id="ArcPathVisio" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M99.5 50c0 27.338-22.162 49.5-49.5 49.5S.5 77.338.5 50" vector-effect="non-scaling-stroke"/></symbol><symbol id="Brace" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M1.5 49.5c0-16.167 8.167-24.25 24.5-24.25S50.5 17.167 50.5 1c0 16.167 8.167 24.25 24.5 24.25s24.5 8.083 24.5 24.25" vector-effect="non-scaling-stroke"/></symbol><symbol id="Complex" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M0 25L25 0h50l25 25v50l-25 25H25L0 75z" vector-effect="non-scaling-stroke"/></symbol><symbol id="Ellipse" overflow="visible" preserveAspectRatio="none" viewBox="0 0 50 50"><ellipse cx="25" cy="25" stroke="currentColor" rx="25" ry="25" vector-effect="non-scaling-stroke"/></symbol><symbol id="EndoplasmicReticulum" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M73.528 56.61c-5.625-18.607 23.514-32.434 23.401-45.066-.344-4.861-10.49-8.898-18.29-5.334C61.6 14.085 62.99 35.515 57.435 48.444c-.356 3.61-7.363 2.469-7.75-.487-5.85-11.39 17.136-24.487 5.961-29.426-19.634-8.17-28.752 21.153-22.068 28.818 7.496 14.176-2.18 24.406-6.747 15.496-2.442-5.306 6.066-11.084-.803-16.177-4.32-2.8-11.756-.646-16.155 3.094C-3.019 60.5 14.602 90.744 30.837 85.91c4.698-1.96-3.236-8.702 3.907-9.6 7.298-.812 5.176 6.19 7.687 9.227 2.307 4.051 4.833 8.355 10.763 11.624 4.786 2.537 15.294 2.112 16.771-1.958 2.032-9.263-26.11-28.359-10.689-31.282 18.556-2.714 4.749 23.846 24.31 29.695 9.502 2.028 15.64-.622 14.813-4.033-2.746-11.263-25.136-22.68-24.964-33.15" vector-effect="non-scaling-stroke"/></symbol><symbol id="HexagonPathVisio" overflow="visible" preserveAspectRatio="none" viewBox="0 8 100 86"><path stroke="currentColor" d="M1.42 50.996l21.073-42.14h56.191l21.067 42.14-21.067 42.145H22.493L1.42 50.996z" transform="scale(1 .85)" vector-effect="non-scaling-stroke"/></symbol><symbol id="GolgiApparatus" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M58.467 27.713c-22.205-29.9 37.31-30.258 25.567-4.823-8.807 18.581-17.066 58.135-.941 99.22 13.314 27.067-41.749 27.761-27.756-1.47 11.346-29.42 10.287-80.336 3.13-92.927z" vector-effect="non-scaling-stroke"/><path stroke="currentColor" d="M31.214 36.214c-10.791-21.428 29.898-19.848 18.408.671-4.067 7.423-5.783 61.573 1.16 75.03 8.53 18.596-32.852 19.354-20.5-2.252 6.953-17.358 10.474-52.29.932-73.449z" vector-effect="non-scaling-stroke"/><path stroke="currentColor" d="M29.804 52.16c1.584 11.476 2.723 16.738-1.483 38.362-3.732 12.99-3.6 16.341-11.732 19.413-6.684 1.659-11.865-9.79-4.794-16.114 4.856-5.623 6.141-10.882 6.66-22.954-.24-9.522.814-15.824-5.368-19.959C5.463 48.713 7 34.373 17.911 37.044c5.85 1.027 10.283 8.562 11.893 15.117z" vector-effect="non-scaling-stroke"/></symbol><symbol id="MimDegradation" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><circle cx="50" cy="50" r="49" stroke="currentColor" vector-effect="non-scaling-stroke"/><path stroke="currentColor" d="M1 1l99 99" vector-effect="non-scaling-stroke"/></symbol><symbol id="Mitochondria" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><ellipse cx="50" cy="50" stroke="currentColor" rx="50" ry="50"/><path stroke="currentColor" d="M14.895 26.347c4.364-.741 3.827 17.037 8.183 16.184 8.273.03 2.982-28.149 9.9-28.337 6.967-.187 2.246 29.948 9.204 29.44 7.633-.56.508-32.935 8.137-33.623 7.698-.689 2.919 32.04 10.628 32.225 6.547.16 3.026-27.643 9.56-26.921 7.193.793.665 29.842 7.782 31.667 4.748 1.216 4.42-18.258 9.204-17.44 11.129 7.577 8.628 37.698-2.18 44.644-3.138.699-3.966-10.502-7.113-9.905-5.59 1.059-3.982 22.284-9.603 21.8-5.24-.457-2.226-21.637-7.47-21.73-6.962-.117-3.358 28.924-10.317 28.495-6.14-.376-1.73-24.95-7.825-26.192-5.682-1.157-5.378 22.17-11.027 20.68-6.25-1.644-.47-26.673-6.76-27.865-3.728-.706-2.647 14.4-6.403 14.545-14.016-5.939-15.749-39.708-3.9-47.667z" vector-effect="non-scaling-stroke"/></symbol><symbol id="Octagon" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M0 25L25 0h50l25 25v50l-25 25H25L0 75z" vector-effect="non-scaling-stroke"/></symbol><symbol id="PentagonPathVisio" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M59.16 99.613L95 50.283 59.16.953 1.169 19.796V80.77z" transform="matrix(.95 0 0 1 8 0)" vector-effect="non-scaling-stroke"/></symbol><symbol id="Rectangle" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M0 0h100v100H0z" vector-effect="non-scaling-stroke"/></symbol><symbol id="RoundedRectangle" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><rect width="100" height="100" stroke="currentColor" rx="15" ry="15" vector-effect="non-scaling-stroke"/></symbol><symbol id="SarcoplasmicReticulum" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path d="M46.602 1.407C14.23 2.75 10.282 24.177 20.099 39.535c9.318 18.343-18.766 30.15 2.57 49.378 16.82 13.116 46.33 6.105 52.126-8.568 5.899-15.249-10.951-26.027-3.294-40.962 10.854-19.884-.776-38.13-24.9-37.976z" vector-effect="non-scaling-stroke"/></symbol><symbol id="TrianglePathVisio" overflow="visible" preserveAspectRatio="none" viewBox="0 0 50 50"><path stroke="currentColor" d="M14.5 3.3v43.4L61 25z" vector-effect="non-scaling-stroke"/></symbol><symbol id="none" preserveAspectRatio="none" viewBox="0 0 100 100"/></defs></svg></g></defs><g id="hash://sha256/bbea656053cafb9612bbe6ef717f4f72faf84e0585404c0ceb0f6263d70c79d5" class="Viewport" color="black" name="Name: Acetylcholine Synthesis
-Organism: Homo sapiens"><rect fill="white" stroke="black" stroke-width="0" fill-opacity="1" height="621.8666666666666px" id="hash://sha256/bbea656053cafb9612bbe6ef717f4f72faf84e0585404c0ceb0f6263d70c79d5-icon" width="829.0515247108307px" x="0" y="0" transform="matrix(1, 0, 0, 1, 0, 0)" class="Icon"></rect><g id="a2634" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="67.2, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="a2634-path" d="M417.5,100L417.5,173" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g><g id="c7814" class="Burr Anchor" transform="translate(417.5,129.2)"><use fill="#141414" stroke-width="0" fill-opacity="1" height="0" id="c7814-icon" width="0" x="0" y="0" xlink:href="#none" class="Icon"></use></g></g><g id="ida4253087" class="Edge GraphicalLine" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 0, 0" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="ida4253087-path" d="M50.47318611987416,483.7013669821241L497.3711882229236,483.7013669821241" class="EdgeBody"></path></g></g><g id="c3c6b" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="46.069598905503106, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="c3c6b-path" d="M417.5,193L418.0515247108307,244.86666666666667" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="dd739" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="51.2012992458432, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="dd739-path" d="M418.0515247108307,263.8666666666667L418.4363827549947,320.86666666666673" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="be454" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="227.2000056969865, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="be454-path" d="M114.71819137749738,572.8666666666666L114.66666666666676,339.86666666666673" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="e532a" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="136.25153405531233, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="e532a-path" d="M638.0515247108307,90.0515247108307L496,90" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="d3028" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="211.1484752891693, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="d3028-path" d="M667.5515247108307,330.36666666666673L450.60304942166135,330.36666666666673" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="bfd1a" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="215.0152834768826, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="bfd1a-path" d="M718.8015247108307,320.86666666666673L718.5515247108307,100.0515247108307" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g><g id="aa74d" class="Burr Anchor" transform="translate(718.6635844056659,199.02943440107416)"><use fill="#141414" stroke-width="0" fill-opacity="1" height="0" id="aa74d-icon" width="0" x="0" y="0" xlink:href="#none" class="Icon"></use></g></g><g id="adb08" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="318.4818086225026, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="adb08-path" d="M434.51971608832804,339.86666666666673L434.51971608832804,359.86666666666673L718.8015247108307,359.86666666666673L718.8015247108307,339.86666666666673" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g><g id="aa3c1" class="Burr Anchor" transform="translate(587.3519647664641,359.86666666666673)"><use fill="#141414" stroke-width="0" fill-opacity="1" height="0" id="aa3c1-icon" width="0" x="0" y="0" xlink:href="#none" class="Icon"></use></g></g><g id="a2ef2" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="101.11888403434318, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="a2ef2-path" d="M115.0515247108307,213.9484752891693L114.66666666666676,320.86666666666673" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g><g id="c354a" class="Burr Anchor" transform="translate(114.89758149316512,256.71575184016825)"><use fill="#141414" stroke-width="0" fill-opacity="1" height="0" id="c354a-icon" width="0" x="0" y="0" xlink:href="#none" class="Icon"></use></g></g><g id="d02d4" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="238.82276550998944, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="d02d4-path" d="M386.2697160883281,330.36666666666673L252.86514195583595,330.36666666666673L252.86514195583595,441.58485804416404" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g><g id="d7914" class="Burr Anchor" transform="translate(252.86514195583595,391.74994667680187)"><use fill="#141414" stroke-width="0" fill-opacity="1" height="0" id="d7914-icon" width="0" x="0" y="0" xlink:href="#none" class="Icon"></use></g><g id="a5b14" class="Burr Anchor" transform="translate(252.86514195583595,330.36666666666673)"><use fill="#141414" stroke-width="0" fill-opacity="1" height="0" id="a5b14-icon" width="0" x="0" y="0" xlink:href="#none" class="Icon"></use></g></g><g id="c1f99" class="Edge Interaction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="254.365141955836, 0" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="c1f99-path" d="M252.86514195583595,460.58485804416404L252.86514195583595,582.3666666666667L385.4484752891693,582.3666666666667" class="EdgeBody"></path></g><g id="f846e" class="Burr Anchor" transform="translate(252.86514195583595,516.2037037037037)"><use fill="#141414" stroke-width="0" fill-opacity="1" height="0" id="f846e-icon" width="0" x="0" y="0" xlink:href="#none" class="Icon"></use></g><g id="e9a18" class="Burr Anchor" transform="translate(252.86514195583595,582.3666666666667)"><use fill="#141414" stroke-width="0" fill-opacity="1" height="0" id="e9a18-icon" width="0" x="0" y="0" xlink:href="#none" class="Icon"></use></g></g><g id="c7056" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="227.20144728402477, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="c7056-path" d="M417.61514195583595,572.8666666666667L418.4363827549947,339.86666666666673" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="d82f8" class="Edge Interaction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="35.318585985119824, 11" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="d82f8-path" d="M371.18717139852833,128.46971608832806L417.5,129.2" marker-end="url(#markerEndMimCatalysis)" class="EdgeBody"></path></g></g><g id="b558b" class="Edge Interaction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="20.747796106342605, 11" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="b558b-path" d="M686.9484752891697,200.46971608832808L718.6635844056659,199.02943440107418" marker-end="url(#markerEndMimCatalysis)" class="EdgeBody"></path></g></g><g id="cd893" class="Edge Interaction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="42.59294116786804, 11" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="cd893-path" d="M586.4395373291269,413.4518401682442L587.3519647664642,359.86666666666673" marker-end="url(#markerEndMimCatalysis)" class="EdgeBody"></path></g></g><g id="c8f4e" class="Edge Interaction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="13.57774033782773, 11" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="c8f4e-path" d="M277.43638275499467,392.315141955836L252.86514195583595,391.74994667680187" marker-end="url(#markerEndMimCatalysis)" class="EdgeBody"></path></g></g><g id="a9da6" class="Edge Interaction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="23.2022565482527, 11" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="a9da6-path" d="M287.0546792849631,517.136382754995L252.86514195583595,516.2037037037037" marker-end="url(#markerEndMimCatalysis)" class="EdgeBody"></path></g></g><g id="id2603411f" class="Edge Interaction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="93.53180862250252, 0" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="id2603411f-path" d="M159.33333333333343,330.36666666666673L252.86514195583595,330.36666666666673" class="EdgeBody"></path></g></g><g id="idacc3128f" class="Edge Interaction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="106.9802839116719, 0" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="idacc3128f-path" d="M145.88485804416405,582.3666666666666L252.86514195583595,582.3666666666667" class="EdgeBody"></path></g></g><g id="bea09" class="Edge Interaction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="19.43891049001303, 11" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="bea09-path" d="M145.33648790746582,256.7L114.89758149316512,256.71575184016825" marker-end="url(#markerEndMimCatalysis)" class="EdgeBody"></path></g></g><g id="ab5" class="SingleFreeNode Label" color="#000000" name="*Cytosol*" transform="translate(431.8333333333333,463.8666666666667)"><use fill="transparent" fill-opacity="0" stroke="#000000" stroke-width="0" height="19px" id="ab5-icon" width="76.33333333333333px" x="0" y="0" xlink:href="#none" transform="matrix(1, 0, 0, 1, 0, 0)" class="Icon"></use><defs><clipPath id="ab5-text-text-clipPath"><rect x="-38.166666666666664" y="-9.5" width="76.33333333333333" height="19"></rect></clipPath></defs><text id="ab5-text" class="Text" clip-path="url(#ab5-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="12px" font-style="normal" font-weight="bold" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(38.166666666666664,9.5)"><tspan x="0" y="0">*Cytosol*</tspan></text></g><g id="a27" class="SingleFreeNode Label" color="#000000" name="*Synaptic Cleft*" transform="translate(425.35751840168246,496.1484752891693)"><use fill="transparent" fill-opacity="0" stroke="#000000" stroke-width="0" height="19px" id="a27-icon" width="123.33333333333333px" x="0" y="0" xlink:href="#none" transform="matrix(1, 0, 0, 1, 0, 0)" class="Icon"></use><defs><clipPath id="a27-text-text-clipPath"><rect x="-61.666666666666664" y="-9.5" width="123.33333333333333" height="19"></rect></clipPath></defs><text id="a27-text" class="Text" clip-path="url(#a27-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="12px" font-style="normal" font-weight="bold" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(61.666666666666664,9.5)"><tspan x="0" y="0">*Synaptic Cleft*</tspan></text></g><g id="e2a" class="SingleFreeNode DataNode Entrez_Gene_10400 GeneProduct" color="#000000" name="PEMT" transform="translate(311.18717139852833,118.46971608832806)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="e2a-icon" width="60px" x="0" y="0" transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="e2a-text-text-clipPath"><rect x="-30" y="-10" width="60" height="20"></rect></clipPath></defs><text id="e2a-text" class="Text" clip-path="url(#e2a-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(30,10)"><tspan x="0" y="0">PEMT</tspan></text></g><g id="a69" class="SingleFreeNode DataNode Entrez_Gene_5130 GeneProduct" color="#000000" name="PCYT1A" transform="translate(626.9484752891697,190.46971608832808)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="a69-icon" width="60px" x="0" y="0" transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="a69-text-text-clipPath"><rect x="-30" y="-10" width="60" height="20"></rect></clipPath></defs><text id="a69-text" class="Text" clip-path="url(#a69-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(30,10)"><tspan x="0" y="0">PCYT1A</tspan></text></g><g id="ea5" class="SingleFreeNode DataNode Entrez_Gene_1119 GeneProduct" color="#000000" name="CHKA" transform="translate(556.4395373291269,413.4518401682442)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="ea5-icon" width="60px" x="0" y="0" transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="ea5-text-text-clipPath"><rect x="-30" y="-10" width="60" height="20"></rect></clipPath></defs><text id="ea5-text" class="Text" clip-path="url(#ea5-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(30,10)"><tspan x="0" y="0">CHKA</tspan></text></g><g id="afe" class="SingleFreeNode DataNode Entrez_Gene_43 GeneProduct" color="#000000" name="ACHE" transform="translate(287.0546792849631,507.136382754995)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="afe-icon" width="60px" x="0" y="0" transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="afe-text-text-clipPath"><rect x="-30" y="-10" width="60" height="20"></rect></clipPath></defs><text id="afe-text" class="Text" clip-path="url(#afe-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(30,10)"><tspan x="0" y="0">ACHE</tspan></text></g><g id="f01" class="SingleFreeNode DataNode Entrez_Gene_1103 GeneProduct" color="#000000" name="CHAT" transform="translate(277.43638275499467,382.315141955836)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="f01-icon" width="60px" x="0" y="0" transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="f01-text-text-clipPath"><rect x="-30" y="-10" width="60" height="20"></rect></clipPath></defs><text id="f01-text" class="Text" clip-path="url(#f01-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(30,10)"><tspan x="0" y="0">CHAT</tspan></text></g><g id="d6e" class="SingleFreeNode DataNode CAS_28319-77-9 Metabolite" color="#0000ff" name="Glycerophosphocholine" transform="translate(352.0515247108307,244.86666666666667)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="19px" id="d6e-icon" width="132px" x="0" y="0" transform="matrix(0.9924812030075187, 0, 0, 0.95, 0.49624060150375726, 0.47499999999999964)" class="Icon"></rect><defs><clipPath id="d6e-text-text-clipPath"><rect x="-66" y="-9.5" width="132" height="19"></rect></clipPath></defs><text id="d6e-text" class="Text" clip-path="url(#d6e-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(66,9.5)"><tspan x="0" y="0">Glycerophosphocholine</tspan></text></g><g id="f74" class="SingleFreeNode DataNode CAS_62-49-7 Metabolite" color="#0000ff" name="Choline" transform="translate(386.26971608832804,320.86666666666673)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="19px" id="f74-icon" width="64.33333333333333px" x="0" y="0" transform="matrix(0.9846938775510204, 0, 0, 0.95, 0.4923469387755084, 0.47499999999999964)" class="Icon"></rect><defs><clipPath id="f74-text-text-clipPath"><rect x="-32.166666666666664" y="-9.5" width="64.33333333333333" height="19"></rect></clipPath></defs><text id="f74-text" class="Text" clip-path="url(#f74-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(32.166666666666664,9.5)"><tspan x="0" y="0">Choline</tspan></text></g><g id="dfe" class="SingleFreeNode DataNode CAS_72-89-9 Metabolite" color="#0000ff" name="Acetyl CoA" transform="translate(70.00000000000009,320.86666666666673)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="19px" id="dfe-icon" width="89.33333333333333px" x="0" y="0" transform="matrix(0.988929889298893, 0, 0, 0.95, 0.4944649446494438, 0.47499999999999964)" class="Icon"></rect><defs><clipPath id="dfe-text-text-clipPath"><rect x="-44.666666666666664" y="-9.5" width="89.33333333333333" height="19"></rect></clipPath></defs><text id="dfe-text" class="Text" clip-path="url(#dfe-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(44.666666666666664,9.5)"><tspan x="0" y="0">Acetyl CoA</tspan></text></g><g id="e42" class="SingleFreeNode DataNode CAS_64-19-7 Metabolite" color="#0000ff" name="Acetate" transform="translate(83.5515247108307,572.8666666666666)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="19px" id="e42-icon" width="62.333333333333336px" x="0" y="0" transform="matrix(0.9842105263157894, 0, 0, 0.95, 0.49210526315789593, 0.47499999999999964)" class="Icon"></rect><defs><clipPath id="e42-text-text-clipPath"><rect x="-31.166666666666668" y="-9.5" width="62.333333333333336" height="19"></rect></clipPath></defs><text id="e42-text" class="Text" clip-path="url(#e42-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(31.166666666666668,9.5)"><tspan x="0" y="0">Acetate</tspan></text></g><g id="d2e" class="SingleFreeNode DataNode CAS_62-49-7 Metabolite" color="#0000ff" name="Choline" transform="translate(385.4484752891693,572.8666666666667)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="19px" id="d2e-icon" width="64.33333333333333px" x="0" y="0" transform="matrix(0.9846938775510204, 0, 0, 0.95, 0.4923469387755084, 0.47499999999999964)" class="Icon"></rect><defs><clipPath id="d2e-text-text-clipPath"><rect x="-32.166666666666664" y="-9.5" width="64.33333333333333" height="19"></rect></clipPath></defs><text id="d2e-text" class="Text" clip-path="url(#d2e-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(32.166666666666664,9.5)"><tspan x="0" y="0">Choline</tspan></text></g><g id="ca8" class="SingleFreeNode DataNode HMDB_HMDB01565 Metabolite" color="#0000ff" name="Phosphorylcholine" transform="translate(667.5515247108307,320.86666666666673)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="19px" id="ca8-icon" width="102.5px" x="0" y="0" transform="matrix(0.9903381642512077, 0, 0, 0.95, 0.4951690821256065, 0.47499999999999964)" class="Icon"></rect><defs><clipPath id="ca8-text-text-clipPath"><rect x="-51.25" y="-9.5" width="102.5" height="19"></rect></clipPath></defs><text id="ca8-text" class="Text" clip-path="url(#ca8-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(51.25,9.5)"><tspan x="0" y="0">Phosphorylcholine</tspan></text></g><g id="cc9" class="SingleFreeNode DataNode CAS_51-84-3 Metabolite" color="#0000ff" name="Acetylcholine" transform="translate(215.7818086225026,441.58485804416404)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="19px" id="cc9-icon" width="74.16666666666667px" x="0" y="0" transform="matrix(0.9866962305986696, 0, 0, 0.95, 0.49334811529933376, 0.47499999999999964)" class="Icon"></rect><defs><clipPath id="cc9-text-text-clipPath"><rect x="-37.083333333333336" y="-9.5" width="74.16666666666667" height="19"></rect></clipPath></defs><text id="cc9-text" class="Text" clip-path="url(#cc9-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(37.083333333333336,9.5)"><tspan x="0" y="0">Acetylcholine</tspan></text></g><g id="baec0" class="SingleFreeNode DataNode HMDB_HMDB60501 Metabolite" color="#0000ff" name="Phosphatidylethanolamine" transform="translate(339,80)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="20px" id="baec0-icon" width="157px" x="0" y="0" transform="matrix(0.9936708860759493, 0, 0, 0.9523809523809523, 0.49683544303798044, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="baec0-text-text-clipPath"><rect x="-78.5" y="-10" width="157" height="20"></rect></clipPath></defs><text id="baec0-text" class="Text" clip-path="url(#baec0-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(78.5,10)"><tspan x="0" y="0">Phosphatidylethanolamine</tspan></text></g><g id="dfde2" class="SingleFreeNode DataNode HMDB_HMDB00243 Metabolite" color="#0000ff" name="Pyruvate from Glycolysis" transform="translate(38.051524710830705,193.9484752891693)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="20px" id="dfde2-icon" width="154px" x="0" y="0" transform="matrix(0.9935483870967742, 0, 0, 0.9523809523809523, 0.49677419354839003, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="dfde2-text-text-clipPath"><rect x="-77" y="-10" width="154" height="20"></rect></clipPath></defs><text id="dfde2-text" class="Text" clip-path="url(#dfde2-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(77,10)"><tspan x="0" y="0">Pyruvate from Glycolysis</tspan></text></g><g id="ddaf4" class="SingleFreeNode DataNode HMDB_HMDB00564 Metabolite" color="#0000ff" name="Phosphatidylcholine" transform="translate(355,173)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="20px" id="ddaf4-icon" width="125px" x="0" y="0" transform="matrix(0.9920634920634921, 0, 0, 0.9523809523809523, 0.49603174603174693, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="ddaf4-text-text-clipPath"><rect x="-62.5" y="-10" width="125" height="20"></rect></clipPath></defs><text id="ddaf4-text" class="Text" clip-path="url(#ddaf4-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(62.5,10)"><tspan x="0" y="0">Phosphatidylcholine</tspan></text></g><g id="b909c" class="SingleFreeNode DataNode HMDB_HMDB01413 Metabolite" color="#0000ff" name="Cytidine diphosphate choline" transform="translate(638.0515247108307,80.0515247108307)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="20px" id="b909c-icon" width="161px" x="0" y="0" transform="matrix(0.9938271604938271, 0, 0, 0.9523809523809523, 0.4969135802469111, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="b909c-text-text-clipPath"><rect x="-80.5" y="-10" width="161" height="20"></rect></clipPath></defs><text id="b909c-text" class="Text" clip-path="url(#b909c-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(80.5,10)"><tspan x="0" y="0">Cytidine diphosphate choline</tspan></text></g><g id="d74e5" class="Group GroupNone" color="#808080" transform="translate(144.33648790746582,227.7)"><rect fill="#b4b464" fill-opacity="0.1" stroke="#808080" stroke-dasharray="5,3" stroke-width="1" height="58px" id="d74e5-icon" width="78px" x="0" y="0" transform="matrix(0.9873417721518988, 0, 0, 0.9830508474576272, 0.49367088607594667, 0.49152542372881314)" class="Icon"></rect><g id="ba5" class="SingleFreeNode DataNode Entrez_Gene_5160 GeneProduct" color="#000000" name="PDHA1" transform="translate(9,9)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="ba5-icon" width="60px" x="0" y="0" transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="ba5-text-text-clipPath"><rect x="-30" y="-10" width="60" height="20"></rect></clipPath></defs><text id="ba5-text" class="Text" clip-path="url(#ba5-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(30,10)"><tspan x="0" y="0">PDHA1</tspan></text></g><g id="a93" class="SingleFreeNode DataNode Entrez_Gene_5161 GeneProduct" color="#000000" name="PDHA2" transform="translate(9,29)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="a93-icon" width="60px" x="0" y="0" transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="a93-text-text-clipPath"><rect x="-30" y="-10" width="60" height="20"></rect></clipPath></defs><text id="a93-text" class="Text" clip-path="url(#a93-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(30,10)"><tspan x="0" y="0">PDHA2</tspan></text></g></g><g id="abb02" class="Edge GraphicalLine" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 0, 0" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="abb02-path" d="M52.06098843322886,492.64984227129344L496.8559411146157,492.64984227129344" class="EdgeBody"></path></g></g><text id="hash://sha256/bbea656053cafb9612bbe6ef717f4f72faf84e0585404c0ceb0f6263d70c79d5-text" class="Text" direction="ltr" dominant-baseline="central" fill="black" font-family="arial" font-size="12px" font-style="normal" font-weight="bold" overflow="visible" stroke="white" stroke-width="0.05px" text-anchor="start" transform="translate(5,23)"><tspan x="0" y="-9">Name: Acetylcholine Synthesis</tspan><tspan x="0" y="9">Organism: Homo sapiens</tspan></text></g></svg>
+</style
+  ><defs
+    ><g
+        id="jit-defs"
+      ><filter
+          x="0"
+          y="0"
+          height="621.8666666666666"
+          width="829.0515247108307"
+          id="kaaviowhitetofffffffilter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -1                  0  1  0 0 -1                  0  0  1 0 -1                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="621.8666666666666"
+          width="829.0515247108307"
+          id="kaavioblacktofffffffilter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 1                   0  -1   0 0 1                   0   0  -1 0 1                   0   0   0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="621.8666666666666"
+          width="829.0515247108307"
+          id="kaaviowhiteto000000filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -0                  0  1  0 0 -0                  0  0  1 0 -0                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="621.8666666666666"
+          width="829.0515247108307"
+          id="kaavioblackto000000filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 0                   0  -1   0 0 0                   0   0  -1 0 0                   0   0   0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="621.8666666666666"
+          width="829.0515247108307"
+          id="kaaviowhiteto0000fffilter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -0                  0  1  0 0 -0                  0  0  1 0 -1                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="621.8666666666666"
+          width="829.0515247108307"
+          id="kaavioblackto0000fffilter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 0                   0  -1   0 0 0                   0   0  -1 0 1                   0   0   0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="621.8666666666666"
+          width="829.0515247108307"
+          id="kaaviowhitetob4b464filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -0.7058823529411765                  0  1  0 0 -0.7058823529411765                  0  0  1 0 -0.39215686274509803                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="621.8666666666666"
+          width="829.0515247108307"
+          id="kaavioblacktob4b464filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 0.7058823529411765                   0  -1   0 0 0.7058823529411765                   0   0  -1 0 0.39215686274509803                   0   0   0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="621.8666666666666"
+          width="829.0515247108307"
+          id="kaaviowhiteto808080filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -0.5019607843137255                  0  1  0 0 -0.5019607843137255                  0  0  1 0 -0.5019607843137255                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="621.8666666666666"
+          width="829.0515247108307"
+          id="kaavioblackto808080filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 0.5019607843137255                   0  -1   0 0 0.5019607843137255                   0   0  -1 0 0.5019607843137255                   0   0   0 1 0"
+        /></filter
+      ></g
+    ><g
+        id="jic-defs"
+      ><svg
+        ><defs
+          ><marker
+              id="markerStartMimGap"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                d="M0 5.3h8v1.4H0z"
+            /></marker
+          ><marker
+              id="markerMidMimInhibition"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="5"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><marker
+              id="markerStartArrow"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+            /></marker
+          ><marker
+              id="markerMidArrow"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndArrow"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimBinding"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 12L0 6l12-6-7 6z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerStartMimBinding"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 12L0 6l12-6-7 6z"
+            /></marker
+          ><marker
+              id="markerMidMimBinding"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 12L0 6l12-6-7 6z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndMimBinding"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 12L0 6l12-6-7 6z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimCatalysis"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><circle
+                cx="6"
+                cy="6"
+                r="5.3"
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerStartMimCatalysis"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><circle
+                cx="6"
+                cy="6"
+                r="5.3"
+                fill="none"
+                stroke="#000"
+            /></marker
+          ><marker
+              id="markerMidMimCatalysis"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><circle
+                cx="6"
+                cy="6"
+                r="5.3"
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndMimCatalysis"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><circle
+                cx="6"
+                cy="6"
+                r="5.3"
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimCleavage"
+              stroke-dasharray="99999"
+              markerHeight="30"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="15"
+              viewBox="0 0 20 30"
+            ><g
+                stroke="#000"
+                transform="rotate(180 10 15)"
+              ><path
+                  d="M18 14.5V30M18 30L0 0"
+              /></g
+            ></marker
+          ><marker
+              id="markerStartMimCleavage"
+              stroke-dasharray="99999"
+              markerHeight="30"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="15"
+              viewBox="0 0 20 30"
+            ><g
+                stroke="#000"
+              ><path
+                  d="M18 14.5V30M18 30L0 0"
+              /></g
+            ></marker
+          ><marker
+              id="markerMidMimCleavage"
+              stroke-dasharray="99999"
+              markerHeight="30"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="15"
+              viewBox="0 0 20 30"
+            ><g
+                stroke="#000"
+                transform="rotate(180 10 15)"
+              ><path
+                  d="M18 14.5V30M18 30L0 0"
+              /></g
+            ></marker
+          ><marker
+              id="markerEndMimCleavage"
+              stroke-dasharray="99999"
+              markerHeight="30"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="20"
+              refY="15"
+              viewBox="0 0 20 30"
+            ><g
+                stroke="#000"
+                transform="rotate(180 10 15)"
+              ><path
+                  d="M18 14.5V30M18 30L0 0"
+              /></g
+            ></marker
+          ><marker
+              id="markerMimConversion"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerStartMimConversion"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+            /></marker
+          ><marker
+              id="markerMidMimConversion"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndMimConversion"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimCovalentBond"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                stroke="#000"
+                d="M11 1H1v10h10"
+            /></marker
+          ><marker
+              id="markerStartMimCovalentBond"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                stroke="#000"
+                d="M11 1H1v10h10"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMidMimCovalentBond"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                stroke="#000"
+                d="M11 1H1v10h10"
+            /></marker
+          ><marker
+              id="markerEndMimCovalentBond"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                stroke="#000"
+                d="M11 1H1v10h10"
+            /></marker
+          ><marker
+              id="markerMimGap"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                d="M0 5.3h8v1.4H0z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerArrow"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMidMimGap"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                d="M0 5.3h8v1.4H0z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndMimGap"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                d="M0 5.3h8v1.4H0z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimInhibition"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="5"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><marker
+              id="markerStartMimInhibition"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+                transform="rotate(180 5 10)"
+            /></marker
+          ><marker
+              id="markerEndMimInhibition"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><marker
+              id="markerMimModification"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M0 6l11 5V1z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerStartMimModification"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M0 6l11 5V1z"
+            /></marker
+          ><marker
+              id="markerMidMimModification"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M0 6l11 5V1z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndMimModification"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M0 6l11 5V1z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimNecessaryStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="16"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="8"
+              refY="6"
+              viewBox="0 0 16 12"
+            ><g
+                fill="none"
+                transform="rotate(180 8 6)"
+              ><path
+                  stroke="#000"
+                  d="M14 0v12"
+              /><path
+                  d="M16 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l9 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerStartMimNecessaryStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="16"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 16 12"
+            ><g
+                fill="none"
+              ><path
+                  stroke="#000"
+                  d="M14 0v12"
+              /><path
+                  d="M16 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l9 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerMidMimNecessaryStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="16"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="8"
+              refY="6"
+              viewBox="0 0 16 12"
+            ><g
+                fill="none"
+                transform="rotate(180 8 6)"
+              ><path
+                  stroke="#000"
+                  d="M14 0v12"
+              /><path
+                  d="M16 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l9 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerEndMimNecessaryStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="16"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="16"
+              refY="6"
+              viewBox="0 0 16 12"
+            ><g
+                fill="none"
+                transform="rotate(180 8 6)"
+              ><path
+                  stroke="#000"
+                  d="M14 0v12"
+              /><path
+                  d="M16 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l9 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerMimStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><g
+                fill="none"
+                transform="rotate(180 6 6)"
+              ><path
+                  d="M12 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l11 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerStartMimStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><g
+                fill="none"
+              ><path
+                  d="M12 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l11 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerMidMimStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><g
+                fill="none"
+                transform="rotate(180 6 6)"
+              ><path
+                  d="M12 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l11 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerEndMimStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><g
+                fill="none"
+                transform="rotate(180 6 6)"
+              ><path
+                  d="M12 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l11 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerMimTranscriptionTranslation"
+              stroke-dasharray="99999"
+              markerHeight="24"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="12"
+              viewBox="0 0 20 24"
+            ><g
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 10 12)"
+              ><path
+                  d="M15 12V5M15.5 5H8M0 5l8-4v8z"
+              /></g
+            ></marker
+          ><marker
+              id="markerStartMimTranscriptionTranslation"
+              stroke-dasharray="99999"
+              markerHeight="24"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="12"
+              viewBox="0 0 20 24"
+            ><g
+                fill="none"
+                stroke="#000"
+              ><path
+                  d="M15 12V5M15.5 5H8M0 5l8-4v8z"
+              /></g
+            ></marker
+          ><marker
+              id="markerMidMimTranscriptionTranslation"
+              stroke-dasharray="99999"
+              markerHeight="24"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="12"
+              viewBox="0 0 20 24"
+            ><g
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 10 12)"
+              ><path
+                  d="M15 12V5M15.5 5H8M0 5l8-4v8z"
+              /></g
+            ></marker
+          ><marker
+              id="markerEndMimTranscriptionTranslation"
+              stroke-dasharray="99999"
+              markerHeight="24"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="20"
+              refY="12"
+              viewBox="0 0 20 24"
+            ><g
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 10 12)"
+              ><path
+                  d="M15 12V5M15.5 5H8M0 5l8-4v8z"
+              /></g
+            ></marker
+          ><marker
+              id="markerTBar"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="5"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><marker
+              id="markerStartTBar"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+                transform="rotate(180 5 10)"
+            /></marker
+          ><marker
+              id="markerMidTBar"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="5"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><marker
+              id="markerEndTBar"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><symbol
+              id="none"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+          /><symbol
+              id="TrianglePathVisio"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 50 50"
+            ><path
+                stroke="currentColor"
+                d="M14.5 3.3v43.4L61 25z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Mitochondria"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><circle
+                cx="50"
+                cy="50"
+                r="50"
+                stroke="currentColor"
+            /><path
+                stroke="currentColor"
+                d="M14.895 26.347c4.364-.741 3.827 17.037 8.183 16.184 8.273.03 2.982-28.149 9.9-28.337 6.967-.187 2.246 29.948 9.204 29.44 7.633-.56.508-32.935 8.137-33.623 7.698-.689 2.919 32.04 10.628 32.225 6.547.16 3.026-27.643 9.56-26.921 7.193.793.665 29.842 7.782 31.667 4.748 1.216 4.42-18.258 9.204-17.44 11.129 7.577 8.628 37.698-2.18 44.644-3.138.699-3.966-10.502-7.113-9.905-5.59 1.059-3.982 22.284-9.603 21.8-5.24-.457-2.226-21.637-7.47-21.73-6.962-.117-3.358 28.924-10.317 28.495-6.14-.376-1.73-24.95-7.825-26.192-5.682-1.157-5.378 22.17-11.027 20.68-6.25-1.644-.47-26.673-6.76-27.865-3.728-.706-2.647 14.4-6.403 14.545-14.016-5.939-15.749-39.708-3.9-47.667z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="SarcoplasmicReticulum"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                d="M46.602 1.407C14.23 2.75 10.282 24.177 20.099 39.535c9.318 18.343-18.766 30.15 2.57 49.378 16.82 13.116 46.33 6.105 52.126-8.568 5.899-15.249-10.951-26.027-3.294-40.962 10.854-19.884-.776-38.13-24.9-37.976z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="RoundedRectangle"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><rect
+                width="100"
+                height="100"
+                stroke="currentColor"
+                rx="15"
+                ry="15"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Rectangle"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M0 0h100v100H0z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="PentagonPathVisio"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M59.16 99.613L95 50.283 59.16.953 1.169 19.796V80.77z"
+                transform="matrix(.95 0 0 1 8 0)"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Octagon"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M0 25L25 0h50l25 25v50l-25 25H25L0 75z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="ArcPathVisio"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M99.5 50c0 27.338-22.162 49.5-49.5 49.5S.5 77.338.5 50"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Brace"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M1.5 49.5c0-16.167 8.167-24.25 24.5-24.25S50.5 17.167 50.5 1c0 16.167 8.167 24.25 24.5 24.25s24.5 8.083 24.5 24.25"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Complex"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M0 25L25 0h50l25 25v50l-25 25H25L0 75z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Ellipse"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 50 50"
+            ><circle
+                cx="25"
+                cy="25"
+                r="25"
+                stroke="currentColor"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="EndoplasmicReticulum"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M73.528 56.61c-5.625-18.607 23.514-32.434 23.401-45.066-.344-4.861-10.49-8.898-18.29-5.334C61.6 14.085 62.99 35.515 57.435 48.444c-.356 3.61-7.363 2.469-7.75-.487-5.85-11.39 17.136-24.487 5.961-29.426-19.634-8.17-28.752 21.153-22.068 28.818 7.496 14.176-2.18 24.406-6.747 15.496-2.442-5.306 6.066-11.084-.803-16.177-4.32-2.8-11.756-.646-16.155 3.094C-3.019 60.5 14.602 90.744 30.837 85.91c4.698-1.96-3.236-8.702 3.907-9.6 7.298-.812 5.176 6.19 7.687 9.227 2.307 4.051 4.833 8.355 10.763 11.624 4.786 2.537 15.294 2.112 16.771-1.958 2.032-9.263-26.11-28.359-10.689-31.282 18.556-2.714 4.749 23.846 24.31 29.695 9.502 2.028 15.64-.622 14.813-4.033-2.746-11.263-25.136-22.68-24.964-33.15"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="HexagonPathVisio"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 8 100 86"
+            ><path
+                stroke="currentColor"
+                d="M1.42 50.996l21.073-42.14h56.191l21.067 42.14-21.067 42.145H22.493L1.42 50.996z"
+                transform="scale(1 .85)"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="GolgiApparatus"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M58.467 27.713c-22.205-29.9 37.31-30.258 25.567-4.823-8.807 18.581-17.066 58.135-.941 99.22 13.314 27.067-41.749 27.761-27.756-1.47 11.346-29.42 10.287-80.336 3.13-92.927z"
+                vector-effect="non-scaling-stroke"
+            /><path
+                stroke="currentColor"
+                d="M31.214 36.214c-10.791-21.428 29.898-19.848 18.408.671-4.067 7.423-5.783 61.573 1.16 75.03 8.53 18.596-32.852 19.354-20.5-2.252 6.953-17.358 10.474-52.29.932-73.449z"
+                vector-effect="non-scaling-stroke"
+            /><path
+                stroke="currentColor"
+                d="M29.804 52.16c1.584 11.476 2.723 16.738-1.483 38.362-3.732 12.99-3.6 16.341-11.732 19.413-6.684 1.659-11.865-9.79-4.794-16.114 4.856-5.623 6.141-10.882 6.66-22.954-.24-9.522.814-15.824-5.368-19.959C5.463 48.713 7 34.373 17.911 37.044c5.85 1.027 10.283 8.562 11.893 15.117z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="MimDegradation"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><circle
+                cx="50"
+                cy="50"
+                r="49"
+                stroke="currentColor"
+                vector-effect="non-scaling-stroke"
+            /><path
+                stroke="currentColor"
+                d="M1 1l99 99"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><filter
+              id="BlackToRed"
+              width="100%"
+              height="100%"
+              x="0"
+              y="0"
+              filterUnits="userSpaceOnUse"
+            ><feComponentTransfer
+              ><feFuncR
+                  intercept="1"
+                  type="linear"
+              /><feFuncG
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /><feFuncB
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /></feComponentTransfer
+            ></filter
+          ><filter
+              id="WhiteToGreen"
+              width="100%"
+              height="100%"
+              x="0"
+              y="0"
+              filterUnits="userSpaceOnUse"
+            ><feComponentTransfer
+              ><feFuncR
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /><feFuncG
+                  type="linear"
+              /><feFuncB
+                  intercept="1"
+                  slope="-.95"
+                  type="linear"
+              /></feComponentTransfer
+            ></filter
+          ><filter
+              id="WhiteToRed"
+              width="100%"
+              height="100%"
+              x="0"
+              y="0"
+              filterUnits="userSpaceOnUse"
+            ><feComponentTransfer
+              ><feFuncR
+                  type="linear"
+              /><feFuncG
+                  intercept="1"
+                  slope="-.95"
+                  type="linear"
+              /><feFuncB
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /></feComponentTransfer
+            ></filter
+          ><filter
+              id="WhiteTo33BFFF"
+              width="100%"
+              height="100%"
+              x="0"
+              y="0"
+              filterUnits="userSpaceOnUse"
+            ><feColorMatrix
+                in="SourceGraphic"
+                values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"
+            /></filter
+          ><filter
+              id="Invert95"
+              width="200%"
+              height="200%"
+              x="-50%"
+              y="-50%"
+              filterUnits="userSpaceOnUse"
+            ><feComponentTransfer
+              ><feFuncR
+                  tableValues="1 0.05"
+                  type="table"
+              /><feFuncG
+                  tableValues="1 0.05"
+                  type="table"
+              /><feFuncB
+                  tableValues="1 0.05"
+                  type="table"
+              /></feComponentTransfer
+            ></filter
+          ><filter
+              id="Invert100"
+              width="200%"
+              height="200%"
+              x="-100%"
+              y="-100%"
+              filterUnits="userSpaceOnUse"
+            ><feColorMatrix
+                in="SourceGraphic"
+                values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"
+            /></filter
+          ><filter
+              id="BlackToGreen"
+              width="100%"
+              height="100%"
+              x="0"
+              y="0"
+              filterUnits="userSpaceOnUse"
+            ><feComponentTransfer
+              ><feFuncR
+                  intercept="1"
+                  type="linear"
+              /><feFuncG
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /><feFuncB
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /></feComponentTransfer
+            ></filter
+          ><clipPath
+              id="ClipPathRoundedRectangle"
+              clipPathUnits="objectBoundingBox"
+            ><rect
+                width="1"
+                height="1"
+                rx=".125"
+                ry=".25"
+            /></clipPath
+          ></defs
+        ></svg
+      ></g
+    ></defs
+  ><g
+      id="hash://sha256/bbea656053cafb9612bbe6ef717f4f72faf84e0585404c0ceb0f6263d70c79d5"
+      class="Viewport"
+      color="black"
+      name="Name: Acetylcholine Synthesis Organism: Homo sapiens"
+    ><rect
+        fill="white"
+        stroke="black"
+        stroke-width="0"
+        fill-opacity="1"
+        height="621.8666666666666px"
+        id="hash://sha256/bbea656053cafb9612bbe6ef717f4f72faf84e0585404c0ceb0f6263d70c79d5-icon"
+        width="829.0515247108307px"
+        x="0"
+        y="0"
+        transform="matrix(1, 0, 0, 1, 0, 0)"
+        class="Icon"
+    /><g
+        id="a2634"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="67.2, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="a2634-path"
+            d="M417.5,100L417.5,173"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ><g
+          id="c7814"
+          class="Burr Anchor"
+          transform="translate(417.5,129.2)"
+        ><use
+            fill="#141414"
+            stroke-width="0"
+            fill-opacity="1"
+            height="0"
+            id="c7814-icon"
+            width="0"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            class="Icon"
+        /></g
+      ></g
+    ><g
+        id="ida4253087"
+        class="Edge GraphicalLine"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 5.02, 3.01, 0, 0"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="ida4253087-path"
+            d="M50.47318611987416,483.7013669821241L497.3711882229236,483.7013669821241"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="c3c6b"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="46.069598905503106, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="c3c6b-path"
+            d="M417.5,193L418.0515247108307,244.86666666666667"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="dd739"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="51.2012992458432, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="dd739-path"
+            d="M418.0515247108307,263.8666666666667L418.4363827549947,320.86666666666673"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="be454"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="227.2000056969865, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="be454-path"
+            d="M114.71819137749738,572.8666666666666L114.66666666666676,339.86666666666673"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="e532a"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="136.25153405531233, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="e532a-path"
+            d="M638.0515247108307,90.0515247108307L496,90"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="d3028"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="211.1484752891693, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="d3028-path"
+            d="M667.5515247108307,330.36666666666673L450.60304942166135,330.36666666666673"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="bfd1a"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="215.0152834768826, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="bfd1a-path"
+            d="M718.8015247108307,320.86666666666673L718.5515247108307,100.0515247108307"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ><g
+          id="aa74d"
+          class="Burr Anchor"
+          transform="translate(718.6635844056659,199.02943440107416)"
+        ><use
+            fill="#141414"
+            stroke-width="0"
+            fill-opacity="1"
+            height="0"
+            id="aa74d-icon"
+            width="0"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            class="Icon"
+        /></g
+      ></g
+    ><g
+        id="adb08"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="318.4818086225026, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="adb08-path"
+            d="M434.51971608832804,339.86666666666673L434.51971608832804,359.86666666666673L718.8015247108307,359.86666666666673L718.8015247108307,339.86666666666673"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ><g
+          id="aa3c1"
+          class="Burr Anchor"
+          transform="translate(587.3519647664641,359.86666666666673)"
+        ><use
+            fill="#141414"
+            stroke-width="0"
+            fill-opacity="1"
+            height="0"
+            id="aa3c1-icon"
+            width="0"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            class="Icon"
+        /></g
+      ></g
+    ><g
+        id="a2ef2"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="101.11888403434318, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="a2ef2-path"
+            d="M115.0515247108307,213.9484752891693L114.66666666666676,320.86666666666673"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ><g
+          id="c354a"
+          class="Burr Anchor"
+          transform="translate(114.89758149316512,256.71575184016825)"
+        ><use
+            fill="#141414"
+            stroke-width="0"
+            fill-opacity="1"
+            height="0"
+            id="c354a-icon"
+            width="0"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            class="Icon"
+        /></g
+      ></g
+    ><g
+        id="d02d4"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="238.82276550998944, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="d02d4-path"
+            d="M386.2697160883281,330.36666666666673L252.86514195583595,330.36666666666673L252.86514195583595,441.58485804416404"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ><g
+          id="d7914"
+          class="Burr Anchor"
+          transform="translate(252.86514195583595,391.74994667680187)"
+        ><use
+            fill="#141414"
+            stroke-width="0"
+            fill-opacity="1"
+            height="0"
+            id="d7914-icon"
+            width="0"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            class="Icon"
+        /></g
+      ><g
+          id="a5b14"
+          class="Burr Anchor"
+          transform="translate(252.86514195583595,330.36666666666673)"
+        ><use
+            fill="#141414"
+            stroke-width="0"
+            fill-opacity="1"
+            height="0"
+            id="a5b14-icon"
+            width="0"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            class="Icon"
+        /></g
+      ></g
+    ><g
+        id="c1f99"
+        class="Edge Interaction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="254.365141955836, 0"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="c1f99-path"
+            d="M252.86514195583595,460.58485804416404L252.86514195583595,582.3666666666667L385.4484752891693,582.3666666666667"
+            class="EdgeBody"
+        /></g
+      ><g
+          id="f846e"
+          class="Burr Anchor"
+          transform="translate(252.86514195583595,516.2037037037037)"
+        ><use
+            fill="#141414"
+            stroke-width="0"
+            fill-opacity="1"
+            height="0"
+            id="f846e-icon"
+            width="0"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            class="Icon"
+        /></g
+      ><g
+          id="e9a18"
+          class="Burr Anchor"
+          transform="translate(252.86514195583595,582.3666666666667)"
+        ><use
+            fill="#141414"
+            stroke-width="0"
+            fill-opacity="1"
+            height="0"
+            id="e9a18-icon"
+            width="0"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            class="Icon"
+        /></g
+      ></g
+    ><g
+        id="c7056"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="227.20144728402477, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="c7056-path"
+            d="M417.61514195583595,572.8666666666667L418.4363827549947,339.86666666666673"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="d82f8"
+        class="Edge Interaction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="35.318585985119824, 11"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="d82f8-path"
+            d="M371.18717139852833,128.46971608832806L417.5,129.2"
+            marker-end="url(#markerEndMimCatalysis)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="b558b"
+        class="Edge Interaction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="20.747796106342605, 11"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="b558b-path"
+            d="M686.9484752891697,200.46971608832808L718.6635844056659,199.02943440107418"
+            marker-end="url(#markerEndMimCatalysis)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="cd893"
+        class="Edge Interaction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="42.59294116786804, 11"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="cd893-path"
+            d="M586.4395373291269,413.4518401682442L587.3519647664642,359.86666666666673"
+            marker-end="url(#markerEndMimCatalysis)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="c8f4e"
+        class="Edge Interaction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="13.57774033782773, 11"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="c8f4e-path"
+            d="M277.43638275499467,392.315141955836L252.86514195583595,391.74994667680187"
+            marker-end="url(#markerEndMimCatalysis)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="a9da6"
+        class="Edge Interaction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="23.2022565482527, 11"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="a9da6-path"
+            d="M287.0546792849631,517.136382754995L252.86514195583595,516.2037037037037"
+            marker-end="url(#markerEndMimCatalysis)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="id2603411f"
+        class="Edge Interaction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="93.53180862250252, 0"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="id2603411f-path"
+            d="M159.33333333333343,330.36666666666673L252.86514195583595,330.36666666666673"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="idacc3128f"
+        class="Edge Interaction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="106.9802839116719, 0"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="idacc3128f-path"
+            d="M145.88485804416405,582.3666666666666L252.86514195583595,582.3666666666667"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="bea09"
+        class="Edge Interaction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="19.43891049001303, 11"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="bea09-path"
+            d="M145.33648790746582,256.7L114.89758149316512,256.71575184016825"
+            marker-end="url(#markerEndMimCatalysis)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="ab5"
+        class="SingleFreeNode Label"
+        color="#000000"
+        name="*Cytosol*"
+        transform="translate(431.8333333333333,463.8666666666667)"
+      ><use
+          fill="transparent"
+          fill-opacity="0"
+          stroke="#000000"
+          stroke-width="0"
+          height="19px"
+          id="ab5-icon"
+          width="76.33333333333333px"
+          x="0"
+          y="0"
+          xlink:href="#none"
+          transform="matrix(1, 0, 0, 1, 0, 0)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="ab5-text-text-clipPath"
+          ><rect
+              x="-38.166666666666664"
+              y="-9.5"
+              width="76.33333333333333"
+              height="19"
+          /></clipPath
+        ></defs
+      ><text
+          id="ab5-text"
+          class="Text"
+          clip-path="url(#ab5-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#000000"
+          font-family="Arial"
+          font-size="12px"
+          font-style="normal"
+          font-weight="bold"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(38.166666666666664,9.5)"
+        ><tspan
+            x="0"
+            y="0"
+          >*Cytosol*</tspan
+        ></text
+      ></g
+    ><g
+        id="a27"
+        class="SingleFreeNode Label"
+        color="#000000"
+        name="*Synaptic Cleft*"
+        transform="translate(425.35751840168246,496.1484752891693)"
+      ><use
+          fill="transparent"
+          fill-opacity="0"
+          stroke="#000000"
+          stroke-width="0"
+          height="19px"
+          id="a27-icon"
+          width="123.33333333333333px"
+          x="0"
+          y="0"
+          xlink:href="#none"
+          transform="matrix(1, 0, 0, 1, 0, 0)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="a27-text-text-clipPath"
+          ><rect
+              x="-61.666666666666664"
+              y="-9.5"
+              width="123.33333333333333"
+              height="19"
+          /></clipPath
+        ></defs
+      ><text
+          id="a27-text"
+          class="Text"
+          clip-path="url(#a27-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#000000"
+          font-family="Arial"
+          font-size="12px"
+          font-style="normal"
+          font-weight="bold"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(61.666666666666664,9.5)"
+        ><tspan
+            x="0"
+            y="0"
+          >*Synaptic Cleft*</tspan
+        ></text
+      ></g
+    ><g
+        id="e2a"
+        class="SingleFreeNode DataNode Entrez_Gene_10400 GeneProduct"
+        color="#000000"
+        name="PEMT"
+        transform="translate(311.18717139852833,118.46971608832806)"
+      ><rect
+          fill="#ffffff"
+          stroke="#000000"
+          stroke-width="1"
+          fill-opacity="1"
+          height="20px"
+          id="e2a-icon"
+          width="60px"
+          x="0"
+          y="0"
+          transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="e2a-text-text-clipPath"
+          ><rect
+              x="-30"
+              y="-10"
+              width="60"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="e2a-text"
+          class="Text"
+          clip-path="url(#e2a-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#000000"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(30,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >PEMT</tspan
+        ></text
+      ></g
+    ><g
+        id="a69"
+        class="SingleFreeNode DataNode Entrez_Gene_5130 GeneProduct"
+        color="#000000"
+        name="PCYT1A"
+        transform="translate(626.9484752891697,190.46971608832808)"
+      ><rect
+          fill="#ffffff"
+          stroke="#000000"
+          stroke-width="1"
+          fill-opacity="1"
+          height="20px"
+          id="a69-icon"
+          width="60px"
+          x="0"
+          y="0"
+          transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="a69-text-text-clipPath"
+          ><rect
+              x="-30"
+              y="-10"
+              width="60"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="a69-text"
+          class="Text"
+          clip-path="url(#a69-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#000000"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(30,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >PCYT1A</tspan
+        ></text
+      ></g
+    ><g
+        id="ea5"
+        class="SingleFreeNode DataNode Entrez_Gene_1119 GeneProduct"
+        color="#000000"
+        name="CHKA"
+        transform="translate(556.4395373291269,413.4518401682442)"
+      ><rect
+          fill="#ffffff"
+          stroke="#000000"
+          stroke-width="1"
+          fill-opacity="1"
+          height="20px"
+          id="ea5-icon"
+          width="60px"
+          x="0"
+          y="0"
+          transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="ea5-text-text-clipPath"
+          ><rect
+              x="-30"
+              y="-10"
+              width="60"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="ea5-text"
+          class="Text"
+          clip-path="url(#ea5-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#000000"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(30,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >CHKA</tspan
+        ></text
+      ></g
+    ><g
+        id="afe"
+        class="SingleFreeNode DataNode Entrez_Gene_43 GeneProduct"
+        color="#000000"
+        name="ACHE"
+        transform="translate(287.0546792849631,507.136382754995)"
+      ><rect
+          fill="#ffffff"
+          stroke="#000000"
+          stroke-width="1"
+          fill-opacity="1"
+          height="20px"
+          id="afe-icon"
+          width="60px"
+          x="0"
+          y="0"
+          transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="afe-text-text-clipPath"
+          ><rect
+              x="-30"
+              y="-10"
+              width="60"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="afe-text"
+          class="Text"
+          clip-path="url(#afe-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#000000"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(30,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >ACHE</tspan
+        ></text
+      ></g
+    ><g
+        id="f01"
+        class="SingleFreeNode DataNode Entrez_Gene_1103 GeneProduct"
+        color="#000000"
+        name="CHAT"
+        transform="translate(277.43638275499467,382.315141955836)"
+      ><rect
+          fill="#ffffff"
+          stroke="#000000"
+          stroke-width="1"
+          fill-opacity="1"
+          height="20px"
+          id="f01-icon"
+          width="60px"
+          x="0"
+          y="0"
+          transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="f01-text-text-clipPath"
+          ><rect
+              x="-30"
+              y="-10"
+              width="60"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="f01-text"
+          class="Text"
+          clip-path="url(#f01-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#000000"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(30,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >CHAT</tspan
+        ></text
+      ></g
+    ><g
+        id="d6e"
+        class="SingleFreeNode DataNode CAS_28319-77-9 Metabolite"
+        color="#0000ff"
+        name="Glycerophosphocholine"
+        transform="translate(352.0515247108307,244.86666666666667)"
+      ><rect
+          fill="#ffffff"
+          stroke="#0000ff"
+          stroke-width="1"
+          fill-opacity="1"
+          height="19px"
+          id="d6e-icon"
+          width="132px"
+          x="0"
+          y="0"
+          transform="matrix(0.9924812030075187, 0, 0, 0.95, 0.49624060150375726, 0.47499999999999964)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="d6e-text-text-clipPath"
+          ><rect
+              x="-66"
+              y="-9.5"
+              width="132"
+              height="19"
+          /></clipPath
+        ></defs
+      ><text
+          id="d6e-text"
+          class="Text"
+          clip-path="url(#d6e-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#0000ff"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(66,9.5)"
+        ><tspan
+            x="0"
+            y="0"
+          >Glycerophosphocholine</tspan
+        ></text
+      ></g
+    ><g
+        id="f74"
+        class="SingleFreeNode DataNode CAS_62-49-7 Metabolite"
+        color="#0000ff"
+        name="Choline"
+        transform="translate(386.26971608832804,320.86666666666673)"
+      ><rect
+          fill="#ffffff"
+          stroke="#0000ff"
+          stroke-width="1"
+          fill-opacity="1"
+          height="19px"
+          id="f74-icon"
+          width="64.33333333333333px"
+          x="0"
+          y="0"
+          transform="matrix(0.9846938775510204, 0, 0, 0.95, 0.4923469387755084, 0.47499999999999964)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="f74-text-text-clipPath"
+          ><rect
+              x="-32.166666666666664"
+              y="-9.5"
+              width="64.33333333333333"
+              height="19"
+          /></clipPath
+        ></defs
+      ><text
+          id="f74-text"
+          class="Text"
+          clip-path="url(#f74-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#0000ff"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(32.166666666666664,9.5)"
+        ><tspan
+            x="0"
+            y="0"
+          >Choline</tspan
+        ></text
+      ></g
+    ><g
+        id="dfe"
+        class="SingleFreeNode DataNode CAS_72-89-9 Metabolite"
+        color="#0000ff"
+        name="Acetyl CoA"
+        transform="translate(70.00000000000009,320.86666666666673)"
+      ><rect
+          fill="#ffffff"
+          stroke="#0000ff"
+          stroke-width="1"
+          fill-opacity="1"
+          height="19px"
+          id="dfe-icon"
+          width="89.33333333333333px"
+          x="0"
+          y="0"
+          transform="matrix(0.988929889298893, 0, 0, 0.95, 0.4944649446494438, 0.47499999999999964)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="dfe-text-text-clipPath"
+          ><rect
+              x="-44.666666666666664"
+              y="-9.5"
+              width="89.33333333333333"
+              height="19"
+          /></clipPath
+        ></defs
+      ><text
+          id="dfe-text"
+          class="Text"
+          clip-path="url(#dfe-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#0000ff"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(44.666666666666664,9.5)"
+        ><tspan
+            x="0"
+            y="0"
+          >Acetyl CoA</tspan
+        ></text
+      ></g
+    ><g
+        id="e42"
+        class="SingleFreeNode DataNode CAS_64-19-7 Metabolite"
+        color="#0000ff"
+        name="Acetate"
+        transform="translate(83.5515247108307,572.8666666666666)"
+      ><rect
+          fill="#ffffff"
+          stroke="#0000ff"
+          stroke-width="1"
+          fill-opacity="1"
+          height="19px"
+          id="e42-icon"
+          width="62.333333333333336px"
+          x="0"
+          y="0"
+          transform="matrix(0.9842105263157894, 0, 0, 0.95, 0.49210526315789593, 0.47499999999999964)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="e42-text-text-clipPath"
+          ><rect
+              x="-31.166666666666668"
+              y="-9.5"
+              width="62.333333333333336"
+              height="19"
+          /></clipPath
+        ></defs
+      ><text
+          id="e42-text"
+          class="Text"
+          clip-path="url(#e42-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#0000ff"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(31.166666666666668,9.5)"
+        ><tspan
+            x="0"
+            y="0"
+          >Acetate</tspan
+        ></text
+      ></g
+    ><g
+        id="d2e"
+        class="SingleFreeNode DataNode CAS_62-49-7 Metabolite"
+        color="#0000ff"
+        name="Choline"
+        transform="translate(385.4484752891693,572.8666666666667)"
+      ><rect
+          fill="#ffffff"
+          stroke="#0000ff"
+          stroke-width="1"
+          fill-opacity="1"
+          height="19px"
+          id="d2e-icon"
+          width="64.33333333333333px"
+          x="0"
+          y="0"
+          transform="matrix(0.9846938775510204, 0, 0, 0.95, 0.4923469387755084, 0.47499999999999964)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="d2e-text-text-clipPath"
+          ><rect
+              x="-32.166666666666664"
+              y="-9.5"
+              width="64.33333333333333"
+              height="19"
+          /></clipPath
+        ></defs
+      ><text
+          id="d2e-text"
+          class="Text"
+          clip-path="url(#d2e-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#0000ff"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(32.166666666666664,9.5)"
+        ><tspan
+            x="0"
+            y="0"
+          >Choline</tspan
+        ></text
+      ></g
+    ><g
+        id="ca8"
+        class="SingleFreeNode DataNode HMDB_HMDB01565 Metabolite"
+        color="#0000ff"
+        name="Phosphorylcholine"
+        transform="translate(667.5515247108307,320.86666666666673)"
+      ><rect
+          fill="#ffffff"
+          stroke="#0000ff"
+          stroke-width="1"
+          fill-opacity="1"
+          height="19px"
+          id="ca8-icon"
+          width="102.5px"
+          x="0"
+          y="0"
+          transform="matrix(0.9903381642512077, 0, 0, 0.95, 0.4951690821256065, 0.47499999999999964)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="ca8-text-text-clipPath"
+          ><rect
+              x="-51.25"
+              y="-9.5"
+              width="102.5"
+              height="19"
+          /></clipPath
+        ></defs
+      ><text
+          id="ca8-text"
+          class="Text"
+          clip-path="url(#ca8-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#0000ff"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(51.25,9.5)"
+        ><tspan
+            x="0"
+            y="0"
+          >Phosphorylcholine</tspan
+        ></text
+      ></g
+    ><g
+        id="cc9"
+        class="SingleFreeNode DataNode CAS_51-84-3 Metabolite"
+        color="#0000ff"
+        name="Acetylcholine"
+        transform="translate(215.7818086225026,441.58485804416404)"
+      ><rect
+          fill="#ffffff"
+          stroke="#0000ff"
+          stroke-width="1"
+          fill-opacity="1"
+          height="19px"
+          id="cc9-icon"
+          width="74.16666666666667px"
+          x="0"
+          y="0"
+          transform="matrix(0.9866962305986696, 0, 0, 0.95, 0.49334811529933376, 0.47499999999999964)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="cc9-text-text-clipPath"
+          ><rect
+              x="-37.083333333333336"
+              y="-9.5"
+              width="74.16666666666667"
+              height="19"
+          /></clipPath
+        ></defs
+      ><text
+          id="cc9-text"
+          class="Text"
+          clip-path="url(#cc9-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#0000ff"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(37.083333333333336,9.5)"
+        ><tspan
+            x="0"
+            y="0"
+          >Acetylcholine</tspan
+        ></text
+      ></g
+    ><g
+        id="baec0"
+        class="SingleFreeNode DataNode HMDB_HMDB60501 Metabolite"
+        color="#0000ff"
+        name="Phosphatidylethanolamine"
+        transform="translate(339,80)"
+      ><rect
+          fill="#ffffff"
+          stroke="#0000ff"
+          stroke-width="1"
+          fill-opacity="1"
+          height="20px"
+          id="baec0-icon"
+          width="157px"
+          x="0"
+          y="0"
+          transform="matrix(0.9936708860759493, 0, 0, 0.9523809523809523, 0.49683544303798044, 0.4761904761904763)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="baec0-text-text-clipPath"
+          ><rect
+              x="-78.5"
+              y="-10"
+              width="157"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="baec0-text"
+          class="Text"
+          clip-path="url(#baec0-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#0000ff"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(78.5,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >Phosphatidylethanolamine</tspan
+        ></text
+      ></g
+    ><g
+        id="dfde2"
+        class="SingleFreeNode DataNode HMDB_HMDB00243 Metabolite"
+        color="#0000ff"
+        name="Pyruvate from Glycolysis"
+        transform="translate(38.051524710830705,193.9484752891693)"
+      ><rect
+          fill="#ffffff"
+          stroke="#0000ff"
+          stroke-width="1"
+          fill-opacity="1"
+          height="20px"
+          id="dfde2-icon"
+          width="154px"
+          x="0"
+          y="0"
+          transform="matrix(0.9935483870967742, 0, 0, 0.9523809523809523, 0.49677419354839003, 0.4761904761904763)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="dfde2-text-text-clipPath"
+          ><rect
+              x="-77"
+              y="-10"
+              width="154"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="dfde2-text"
+          class="Text"
+          clip-path="url(#dfde2-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#0000ff"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(77,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >Pyruvate from Glycolysis</tspan
+        ></text
+      ></g
+    ><g
+        id="ddaf4"
+        class="SingleFreeNode DataNode HMDB_HMDB00564 Metabolite"
+        color="#0000ff"
+        name="Phosphatidylcholine"
+        transform="translate(355,173)"
+      ><rect
+          fill="#ffffff"
+          stroke="#0000ff"
+          stroke-width="1"
+          fill-opacity="1"
+          height="20px"
+          id="ddaf4-icon"
+          width="125px"
+          x="0"
+          y="0"
+          transform="matrix(0.9920634920634921, 0, 0, 0.9523809523809523, 0.49603174603174693, 0.4761904761904763)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="ddaf4-text-text-clipPath"
+          ><rect
+              x="-62.5"
+              y="-10"
+              width="125"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="ddaf4-text"
+          class="Text"
+          clip-path="url(#ddaf4-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#0000ff"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(62.5,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >Phosphatidylcholine</tspan
+        ></text
+      ></g
+    ><g
+        id="b909c"
+        class="SingleFreeNode DataNode HMDB_HMDB01413 Metabolite"
+        color="#0000ff"
+        name="Cytidine diphosphate choline"
+        transform="translate(638.0515247108307,80.0515247108307)"
+      ><rect
+          fill="#ffffff"
+          stroke="#0000ff"
+          stroke-width="1"
+          fill-opacity="1"
+          height="20px"
+          id="b909c-icon"
+          width="161px"
+          x="0"
+          y="0"
+          transform="matrix(0.9938271604938271, 0, 0, 0.9523809523809523, 0.4969135802469111, 0.4761904761904763)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="b909c-text-text-clipPath"
+          ><rect
+              x="-80.5"
+              y="-10"
+              width="161"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="b909c-text"
+          class="Text"
+          clip-path="url(#b909c-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#0000ff"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="normal"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(80.5,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >Cytidine diphosphate choline</tspan
+        ></text
+      ></g
+    ><g
+        id="d74e5"
+        class="Group GroupNone"
+        color="#808080"
+        transform="translate(144.33648790746582,227.7)"
+      ><rect
+          fill="#b4b464"
+          fill-opacity="0.1"
+          stroke="#808080"
+          stroke-dasharray="5,3"
+          stroke-width="1"
+          height="58px"
+          id="d74e5-icon"
+          width="78px"
+          x="0"
+          y="0"
+          transform="matrix(0.9873417721518988, 0, 0, 0.9830508474576272, 0.49367088607594667, 0.49152542372881314)"
+          class="Icon"
+      /><g
+          id="ba5"
+          class="SingleFreeNode DataNode Entrez_Gene_5160 GeneProduct"
+          color="#000000"
+          name="PDHA1"
+          transform="translate(9,9)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="ba5-icon"
+            width="60px"
+            x="0"
+            y="0"
+            transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="ba5-text-text-clipPath"
+            ><rect
+                x="-30"
+                y="-10"
+                width="60"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="ba5-text"
+            class="Text"
+            clip-path="url(#ba5-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(30,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >PDHA1</tspan
+          ></text
+        ></g
+      ><g
+          id="a93"
+          class="SingleFreeNode DataNode Entrez_Gene_5161 GeneProduct"
+          color="#000000"
+          name="PDHA2"
+          transform="translate(9,29)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="a93-icon"
+            width="60px"
+            x="0"
+            y="0"
+            transform="matrix(0.9836065573770492, 0, 0, 0.9523809523809523, 0.4918032786885256, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="a93-text-text-clipPath"
+            ><rect
+                x="-30"
+                y="-10"
+                width="60"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="a93-text"
+            class="Text"
+            clip-path="url(#a93-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(30,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >PDHA2</tspan
+          ></text
+        ></g
+      ></g
+    ><g
+        id="abb02"
+        class="Edge GraphicalLine"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 5.09, 3.05, 0, 0"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="abb02-path"
+            d="M52.06098843322886,492.64984227129344L496.8559411146157,492.64984227129344"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><text
+        id="hash://sha256/bbea656053cafb9612bbe6ef717f4f72faf84e0585404c0ceb0f6263d70c79d5-text"
+        class="Text"
+        direction="ltr"
+        dominant-baseline="central"
+        fill="black"
+        font-family="arial"
+        font-size="12px"
+        font-style="normal"
+        font-weight="bold"
+        overflow="visible"
+        stroke="white"
+        stroke-width="0.05px"
+        text-anchor="start"
+        transform="translate(5,23)"
+      ><tspan
+          x="0"
+          y="-9"
+        >Name: Acetylcholine Synthesis</tspan
+      ><tspan
+          x="0"
+          y="9"
+        >Organism: Homo sapiens</tspan
+      ></text
+    ></g
+  ></svg
+>

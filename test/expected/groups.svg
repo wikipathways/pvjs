@@ -1,4 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="hashsha25619bd30afe4eacfafb10e60be8467a5a2962bc7b1197497797d421ab0cf72322f-svg" version="1.1" baseProfile="full" preserveAspectRatio="xMidYMid" color="black" class="Diagram" viewBox="0 0 1098.9699645039557 765.0732091494318" data-reactroot=""><style type="text/css">
+<?xml version="1.0"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    id="hashsha25619bd30afe4eacfafb10e60be8467a5a2962bc7b1197497797d421ab0cf72322f-svg"
+    version="1.1"
+    baseProfile="full"
+    preserveAspectRatio="xMidYMid"
+    color="black"
+    class="Diagram"
+    viewBox="0 0 1098.9699645039557 765.0732091494318"
+    data-reactroot=""
+  ><style
+      type="text/css"
+    >
 <![CDATA[
 	.Viewport .Text, .Viewport .Text * {
 	  pointer-events: none;
@@ -71,52 +85,3143 @@
 
 	
 ]]>
-</style><defs><g id="jit-defs"><filter id="kaaviodoublefalse3filter" width="200%" height="200%" x="-50%" y="-50%"><feComposite in="SourceGraphic" in2="SourceGraphic" operator="over" result="doubleDark"></feComposite><feMorphology in="doubleDark" result="in2Double" operator="dilate" radius="0.16666666666666666"></feMorphology><feMorphology in="SourceGraphic" result="inDouble" operator="dilate" radius="3"></feMorphology><feComposite in="inDouble" in2="in2Double" operator="out" result="doubleResult"></feComposite></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaaviowhiteto14961efilter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -0.0784313725490196
-                 0  1  0 0 -0.5882352941176471
-                 0  0  1 0 -0.11764705882352941
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaavioblackto14961efilter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 0.0784313725490196
-                  0  -1   0 0 0.5882352941176471
-                  0   0  -1 0 0.11764705882352941
-                  0   0   0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaaviowhiteto000000filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -0
-                 0  1  0 0 -0
-                 0  0  1 0 -0
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaavioblackto000000filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 0
-                  0  -1   0 0 0
-                  0   0  -1 0 0
-                  0   0   0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaaviowhitetofffffffilter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -1
-                 0  1  0 0 -1
-                 0  0  1 0 -1
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaavioblacktofffffffilter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 1
-                  0  -1   0 0 1
-                  0   0  -1 0 1
-                  0   0   0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaaviowhitetoc0c0c0filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -0.7529411764705882
-                 0  1  0 0 -0.7529411764705882
-                 0  0  1 0 -0.7529411764705882
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaavioblacktoc0c0c0filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 0.7529411764705882
-                  0  -1   0 0 0.7529411764705882
-                  0   0  -1 0 0.7529411764705882
-                  0   0   0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaaviowhiteto0000fffilter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -0
-                 0  1  0 0 -0
-                 0  0  1 0 -1
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaavioblackto0000fffilter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 0
-                  0  -1   0 0 0
-                  0   0  -1 0 1
-                  0   0   0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaaviowhiteto808080filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -0.5019607843137255
-                 0  1  0 0 -0.5019607843137255
-                 0  0  1 0 -0.5019607843137255
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaavioblackto808080filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 0.5019607843137255
-                  0  -1   0 0 0.5019607843137255
-                  0   0  -1 0 0.5019607843137255
-                  0   0   0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaaviowhitetob4b464filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -0.7058823529411765
-                 0  1  0 0 -0.7058823529411765
-                 0  0  1 0 -0.39215686274509803
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaavioblacktob4b464filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 0.7058823529411765
-                  0  -1   0 0 0.7058823529411765
-                  0   0  -1 0 0.39215686274509803
-                  0   0   0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaaviowhiteto00ff00filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="1  0  0 0 -0
-                 0  1  0 0 -1
-                 0  0  1 0 -0
-                 0  0  0 1 0"></feColorMatrix></filter><filter x="0" y="0" height="765.0732091494318" width="1098.9699645039557" id="kaavioblackto00ff00filter" filterUnits="userSpaceOnUse"><feColorMatrix type="matrix" in="SourceGraphic" values="-1   0   0 0 0
-                  0  -1   0 0 1
-                  0   0  -1 0 0
-                  0   0   0 1 0"></feColorMatrix></filter></g><g id="jic-defs"><svg><defs><clipPath id="ClipPathRoundedRectangle" clipPathUnits="objectBoundingBox"><rect width="1" height="1" rx=".125" ry=".25"/></clipPath><filter id="BlackToRed" width="100%" height="100%" x="0" y="0" filterUnits="userSpaceOnUse"><feComponentTransfer><feFuncR intercept="1" type="linear"/><feFuncG intercept="1" slope="-1" type="linear"/><feFuncB intercept="1" slope="-1" type="linear"/></feComponentTransfer></filter><filter id="BlackToGreen" width="100%" height="100%" x="0" y="0" filterUnits="userSpaceOnUse"><feComponentTransfer><feFuncR intercept="1" type="linear"/><feFuncG intercept="1" slope="-1" type="linear"/><feFuncB intercept="1" slope="-1" type="linear"/></feComponentTransfer></filter><filter id="Invert100" width="200%" height="200%" x="-100%" y="-100%" filterUnits="userSpaceOnUse"><feColorMatrix in="SourceGraphic" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"/></filter><filter id="Invert95" width="200%" height="200%" x="-50%" y="-50%" filterUnits="userSpaceOnUse"><feComponentTransfer><feFuncR tableValues="1 0.05" type="table"/><feFuncG tableValues="1 0.05" type="table"/><feFuncB tableValues="1 0.05" type="table"/></feComponentTransfer></filter><filter id="WhiteTo33BFFF" width="100%" height="100%" x="0" y="0" filterUnits="userSpaceOnUse"><feColorMatrix in="SourceGraphic" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"/></filter><filter id="WhiteToRed" width="100%" height="100%" x="0" y="0" filterUnits="userSpaceOnUse"><feComponentTransfer><feFuncR type="linear"/><feFuncG intercept="1" slope="-.95" type="linear"/><feFuncB intercept="1" slope="-1" type="linear"/></feComponentTransfer></filter><filter id="WhiteToGreen" width="100%" height="100%" x="0" y="0" filterUnits="userSpaceOnUse"><feComponentTransfer><feFuncR intercept="1" slope="-1" type="linear"/><feFuncG type="linear"/><feFuncB intercept="1" slope="-.95" type="linear"/></feComponentTransfer></filter><marker id="markerArrow" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerStartArrow" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z"/></marker><marker id="markerMidArrow" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerEndArrow" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerMimBinding" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 12L0 6l12-6-7 6z" transform="rotate(180 6 6)"/></marker><marker id="markerStartMimBinding" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 12L0 6l12-6-7 6z"/></marker><marker id="markerMidMimBinding" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 12L0 6l12-6-7 6z" transform="rotate(180 6 6)"/></marker><marker id="markerEndMimBinding" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 12L0 6l12-6-7 6z" transform="rotate(180 6 6)"/></marker><marker id="markerMimCatalysis" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.3" fill="none" stroke="#000" transform="rotate(180 6 6)"/></marker><marker id="markerStartMimCatalysis" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.3" fill="none" stroke="#000"/></marker><marker id="markerMidMimCatalysis" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.3" fill="none" stroke="#000" transform="rotate(180 6 6)"/></marker><marker id="markerEndMimCatalysis" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.3" fill="none" stroke="#000" transform="rotate(180 6 6)"/></marker><marker id="markerMimCleavage" stroke-dasharray="99999" markerHeight="30" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="10" refY="15" viewBox="0 0 20 30"><g stroke="#000" transform="rotate(180 10 15)"><path d="M18 14.5V30M18 30L0 0"/></g></marker><marker id="markerStartMimCleavage" stroke-dasharray="99999" markerHeight="30" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="0" refY="15" viewBox="0 0 20 30"><g stroke="#000"><path d="M18 14.5V30M18 30L0 0"/></g></marker><marker id="markerMidMimCleavage" stroke-dasharray="99999" markerHeight="30" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="10" refY="15" viewBox="0 0 20 30"><g stroke="#000" transform="rotate(180 10 15)"><path d="M18 14.5V30M18 30L0 0"/></g></marker><marker id="markerEndMimCleavage" stroke-dasharray="99999" markerHeight="30" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="20" refY="15" viewBox="0 0 20 30"><g stroke="#000" transform="rotate(180 10 15)"><path d="M18 14.5V30M18 30L0 0"/></g></marker><marker id="markerMimConversion" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerStartMimConversion" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z"/></marker><marker id="markerMidMimConversion" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerEndMimConversion" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M12 11L0 6l12-5z" transform="rotate(180 6 6)"/></marker><marker id="markerMimCovalentBond" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path fill="none" stroke="#000" d="M11 1H1v10h10"/></marker><marker id="markerStartMimCovalentBond" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path fill="none" stroke="#000" d="M11 1H1v10h10" transform="rotate(180 6 6)"/></marker><marker id="markerMidMimCovalentBond" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path fill="none" stroke="#000" d="M11 1H1v10h10"/></marker><marker id="markerEndMimCovalentBond" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path fill="none" stroke="#000" d="M11 1H1v10h10"/></marker><marker id="markerMimGap" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path fill="none" d="M0 5.3h8v1.4H0z" transform="rotate(180 6 6)"/></marker><marker id="markerStartMimGap" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path fill="none" d="M0 5.3h8v1.4H0z"/></marker><marker id="markerMidMimGap" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path fill="none" d="M0 5.3h8v1.4H0z" transform="rotate(180 6 6)"/></marker><marker id="markerEndMimGap" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path fill="none" d="M0 5.3h8v1.4H0z" transform="rotate(180 6 6)"/></marker><marker id="markerMimInhibition" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="5" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><marker id="markerStartMimInhibition" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="0" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20" transform="rotate(180 5 10)"/></marker><marker id="markerMidMimInhibition" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="5" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><marker id="markerEndMimInhibition" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="10" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><marker id="markerMimModification" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M0 6l11 5V1z" transform="rotate(180 6 6)"/></marker><marker id="markerStartMimModification" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M0 6l11 5V1z"/></marker><marker id="markerMidMimModification" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M0 6l11 5V1z" transform="rotate(180 6 6)"/></marker><marker id="markerEndMimModification" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><path stroke-width="0" d="M0 6l11 5V1z" transform="rotate(180 6 6)"/></marker><marker id="markerMimNecessaryStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="16" orient="auto" preserveAspectRatio="none" refX="8" refY="6" viewBox="0 0 16 12"><g fill="none" transform="rotate(180 8 6)"><path stroke="#000" d="M14 0v12"/><path d="M16 6"/><path stroke="#000" d="M0 6l9 5V1z"/></g></marker><marker id="markerStartMimNecessaryStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="16" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 16 12"><g fill="none"><path stroke="#000" d="M14 0v12"/><path d="M16 6"/><path stroke="#000" d="M0 6l9 5V1z"/></g></marker><marker id="markerMidMimNecessaryStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="16" orient="auto" preserveAspectRatio="none" refX="8" refY="6" viewBox="0 0 16 12"><g fill="none" transform="rotate(180 8 6)"><path stroke="#000" d="M14 0v12"/><path d="M16 6"/><path stroke="#000" d="M0 6l9 5V1z"/></g></marker><marker id="markerEndMimNecessaryStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="16" orient="auto" preserveAspectRatio="none" refX="16" refY="6" viewBox="0 0 16 12"><g fill="none" transform="rotate(180 8 6)"><path stroke="#000" d="M14 0v12"/><path d="M16 6"/><path stroke="#000" d="M0 6l9 5V1z"/></g></marker><marker id="markerMimStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><g fill="none" transform="rotate(180 6 6)"><path d="M12 6"/><path stroke="#000" d="M0 6l11 5V1z"/></g></marker><marker id="markerStartMimStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="0" refY="6" viewBox="0 0 12 12"><g fill="none"><path d="M12 6"/><path stroke="#000" d="M0 6l11 5V1z"/></g></marker><marker id="markerMidMimStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="6" refY="6" viewBox="0 0 12 12"><g fill="none" transform="rotate(180 6 6)"><path d="M12 6"/><path stroke="#000" d="M0 6l11 5V1z"/></g></marker><marker id="markerEndMimStimulation" stroke-dasharray="99999" markerHeight="12" markerUnits="userSpaceOnUse" markerWidth="12" orient="auto" preserveAspectRatio="none" refX="12" refY="6" viewBox="0 0 12 12"><g fill="none" transform="rotate(180 6 6)"><path d="M12 6"/><path stroke="#000" d="M0 6l11 5V1z"/></g></marker><marker id="markerMimTranscriptionTranslation" stroke-dasharray="99999" markerHeight="24" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="10" refY="12" viewBox="0 0 20 24"><g fill="none" stroke="#000" transform="rotate(180 10 12)"><path d="M15 12V5M15.5 5H8M0 5l8-4v8z"/></g></marker><marker id="markerStartMimTranscriptionTranslation" stroke-dasharray="99999" markerHeight="24" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="0" refY="12" viewBox="0 0 20 24"><g fill="none" stroke="#000"><path d="M15 12V5M15.5 5H8M0 5l8-4v8z"/></g></marker><marker id="markerMidMimTranscriptionTranslation" stroke-dasharray="99999" markerHeight="24" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="10" refY="12" viewBox="0 0 20 24"><g fill="none" stroke="#000" transform="rotate(180 10 12)"><path d="M15 12V5M15.5 5H8M0 5l8-4v8z"/></g></marker><marker id="markerEndMimTranscriptionTranslation" stroke-dasharray="99999" markerHeight="24" markerUnits="userSpaceOnUse" markerWidth="20" orient="auto" preserveAspectRatio="none" refX="20" refY="12" viewBox="0 0 20 24"><g fill="none" stroke="#000" transform="rotate(180 10 12)"><path d="M15 12V5M15.5 5H8M0 5l8-4v8z"/></g></marker><marker id="markerTBar" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="5" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><marker id="markerStartTBar" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="0" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20" transform="rotate(180 5 10)"/></marker><marker id="markerMidTBar" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="5" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><marker id="markerEndTBar" stroke-dasharray="99999" markerHeight="20" markerUnits="userSpaceOnUse" markerWidth="10" orient="auto" preserveAspectRatio="none" refX="10" refY="10" viewBox="0 0 10 20"><path stroke="currentColor" d="M3 0v20"/></marker><symbol id="ArcPathVisio" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M99.5 50c0 27.338-22.162 49.5-49.5 49.5S.5 77.338.5 50" vector-effect="non-scaling-stroke"/></symbol><symbol id="Brace" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M1.5 49.5c0-16.167 8.167-24.25 24.5-24.25S50.5 17.167 50.5 1c0 16.167 8.167 24.25 24.5 24.25s24.5 8.083 24.5 24.25" vector-effect="non-scaling-stroke"/></symbol><symbol id="Complex" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M0 25L25 0h50l25 25v50l-25 25H25L0 75z" vector-effect="non-scaling-stroke"/></symbol><symbol id="Ellipse" overflow="visible" preserveAspectRatio="none" viewBox="0 0 50 50"><ellipse cx="25" cy="25" stroke="currentColor" rx="25" ry="25" vector-effect="non-scaling-stroke"/></symbol><symbol id="EndoplasmicReticulum" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M73.528 56.61c-5.625-18.607 23.514-32.434 23.401-45.066-.344-4.861-10.49-8.898-18.29-5.334C61.6 14.085 62.99 35.515 57.435 48.444c-.356 3.61-7.363 2.469-7.75-.487-5.85-11.39 17.136-24.487 5.961-29.426-19.634-8.17-28.752 21.153-22.068 28.818 7.496 14.176-2.18 24.406-6.747 15.496-2.442-5.306 6.066-11.084-.803-16.177-4.32-2.8-11.756-.646-16.155 3.094C-3.019 60.5 14.602 90.744 30.837 85.91c4.698-1.96-3.236-8.702 3.907-9.6 7.298-.812 5.176 6.19 7.687 9.227 2.307 4.051 4.833 8.355 10.763 11.624 4.786 2.537 15.294 2.112 16.771-1.958 2.032-9.263-26.11-28.359-10.689-31.282 18.556-2.714 4.749 23.846 24.31 29.695 9.502 2.028 15.64-.622 14.813-4.033-2.746-11.263-25.136-22.68-24.964-33.15" vector-effect="non-scaling-stroke"/></symbol><symbol id="HexagonPathVisio" overflow="visible" preserveAspectRatio="none" viewBox="0 8 100 86"><path stroke="currentColor" d="M1.42 50.996l21.073-42.14h56.191l21.067 42.14-21.067 42.145H22.493L1.42 50.996z" transform="scale(1 .85)" vector-effect="non-scaling-stroke"/></symbol><symbol id="GolgiApparatus" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M58.467 27.713c-22.205-29.9 37.31-30.258 25.567-4.823-8.807 18.581-17.066 58.135-.941 99.22 13.314 27.067-41.749 27.761-27.756-1.47 11.346-29.42 10.287-80.336 3.13-92.927z" vector-effect="non-scaling-stroke"/><path stroke="currentColor" d="M31.214 36.214c-10.791-21.428 29.898-19.848 18.408.671-4.067 7.423-5.783 61.573 1.16 75.03 8.53 18.596-32.852 19.354-20.5-2.252 6.953-17.358 10.474-52.29.932-73.449z" vector-effect="non-scaling-stroke"/><path stroke="currentColor" d="M29.804 52.16c1.584 11.476 2.723 16.738-1.483 38.362-3.732 12.99-3.6 16.341-11.732 19.413-6.684 1.659-11.865-9.79-4.794-16.114 4.856-5.623 6.141-10.882 6.66-22.954-.24-9.522.814-15.824-5.368-19.959C5.463 48.713 7 34.373 17.911 37.044c5.85 1.027 10.283 8.562 11.893 15.117z" vector-effect="non-scaling-stroke"/></symbol><symbol id="MimDegradation" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><circle cx="50" cy="50" r="49" stroke="currentColor" vector-effect="non-scaling-stroke"/><path stroke="currentColor" d="M1 1l99 99" vector-effect="non-scaling-stroke"/></symbol><symbol id="Mitochondria" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><ellipse cx="50" cy="50" stroke="currentColor" rx="50" ry="50"/><path stroke="currentColor" d="M14.895 26.347c4.364-.741 3.827 17.037 8.183 16.184 8.273.03 2.982-28.149 9.9-28.337 6.967-.187 2.246 29.948 9.204 29.44 7.633-.56.508-32.935 8.137-33.623 7.698-.689 2.919 32.04 10.628 32.225 6.547.16 3.026-27.643 9.56-26.921 7.193.793.665 29.842 7.782 31.667 4.748 1.216 4.42-18.258 9.204-17.44 11.129 7.577 8.628 37.698-2.18 44.644-3.138.699-3.966-10.502-7.113-9.905-5.59 1.059-3.982 22.284-9.603 21.8-5.24-.457-2.226-21.637-7.47-21.73-6.962-.117-3.358 28.924-10.317 28.495-6.14-.376-1.73-24.95-7.825-26.192-5.682-1.157-5.378 22.17-11.027 20.68-6.25-1.644-.47-26.673-6.76-27.865-3.728-.706-2.647 14.4-6.403 14.545-14.016-5.939-15.749-39.708-3.9-47.667z" vector-effect="non-scaling-stroke"/></symbol><symbol id="Octagon" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M0 25L25 0h50l25 25v50l-25 25H25L0 75z" vector-effect="non-scaling-stroke"/></symbol><symbol id="PentagonPathVisio" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M59.16 99.613L95 50.283 59.16.953 1.169 19.796V80.77z" transform="matrix(.95 0 0 1 8 0)" vector-effect="non-scaling-stroke"/></symbol><symbol id="Rectangle" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path stroke="currentColor" d="M0 0h100v100H0z" vector-effect="non-scaling-stroke"/></symbol><symbol id="RoundedRectangle" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><rect width="100" height="100" stroke="currentColor" rx="15" ry="15" vector-effect="non-scaling-stroke"/></symbol><symbol id="SarcoplasmicReticulum" overflow="visible" preserveAspectRatio="none" viewBox="0 0 100 100"><path d="M46.602 1.407C14.23 2.75 10.282 24.177 20.099 39.535c9.318 18.343-18.766 30.15 2.57 49.378 16.82 13.116 46.33 6.105 52.126-8.568 5.899-15.249-10.951-26.027-3.294-40.962 10.854-19.884-.776-38.13-24.9-37.976z" vector-effect="non-scaling-stroke"/></symbol><symbol id="TrianglePathVisio" overflow="visible" preserveAspectRatio="none" viewBox="0 0 50 50"><path stroke="currentColor" d="M14.5 3.3v43.4L61 25z" vector-effect="non-scaling-stroke"/></symbol><symbol id="none" preserveAspectRatio="none" viewBox="0 0 100 100"/></defs></svg></g></defs><g id="hash://sha256/19bd30afe4eacfafb10e60be8467a5a2962bc7b1197497797d421ab0cf72322f" class="Viewport" color="black" name="Name: test case"><rect fill="white" stroke="black" stroke-width="0" fill-opacity="1" height="765.0732091494318px" id="hash://sha256/19bd30afe4eacfafb10e60be8467a5a2962bc7b1197497797d421ab0cf72322f-icon" width="1098.9699645039557px" x="0" y="0" transform="matrix(1, 0, 0, 1, 0, 0)" class="Icon"></rect><g id="id566582d6" class="Edge GraphicalLine" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="48.99322235653813, 0" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="id566582d6-path" d="M650.1030789825974,48.111111111111086L669.5542168674701,93.07764390896926" class="EdgeBody"></path></g></g><g id="id4a5d9e1" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="309.7127175368139, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="id4a5d9e1-path" d="M355.38152610441784,124.41767068273089L355.38152610441784,144.4176706827309L589.5542168674701,144.4176706827309L589.5542168674701,103.07764390896926L609.5542168674701,103.07764390896926" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g><g id="bc907" class="Burr Anchor" transform="translate(461.5866131191434,144.4176706827309)"><use fill="#141414" stroke-width="0" fill-opacity="1" height="0" id="bc907-icon" width="0" x="0" y="0" xlink:href="#none" class="Icon"></use></g></g><g id="id227e10ee" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="43.193222356538136, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="id227e10ee-path" d="M610.1030789825974,48.111111111111086L629.5542168674701,93.07764390896926" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g><g id="a76fa" class="Burr Anchor" transform="translate(617.8835341365465,66.09772423025436)"><use fill="#141414" stroke-width="0" fill-opacity="1" height="0" id="a76fa-icon" width="0" x="0" y="0" xlink:href="#none" class="Icon"></use></g></g><g id="id6eb5a3e3" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="35.80466573009251, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="id6eb5a3e3-path" d="M617.8835341365465,66.09772423025436L649.5542168674701,93.07764390896926" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="id61b7bfc2" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="169.0220281653291, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="id61b7bfc2-path" d="M461.5866131191434,144.4176706827309L617.8835341365465,66.09772423025436" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="id16b156e8" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="401.6482328770899, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="id16b156e8-path" d="M404.0268456375839,53.691275167785236L0,1" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="idcecadf02" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="0, 11, 250.42716380943097, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="idcecadf02-path" d="M701.5542168674701,65.75203089791876L705.0603113423122,65.75203089791876C708.5664058171542,65.75203089791876,715.5785947668383,65.75203089791876,719.0846892416803,108.88076912445499C722.5907837165223,152.0095073509912,722.5907837165223,238.2669838040637,722.5907837165223,281.3957220305999L722.5907837165223,324.5244602571362" marker-start="url(#markerStartMimCatalysis)" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="id82d0ad08" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 0, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="id82d0ad08-path" d="M647.5787355237512,392.68911889167407L622.8187919463087,448.32214765100673L502.0134228187919,430.8724832214765L406.5889309634092,392.67125143937824" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="id3bea2e99" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="114.47642860699565, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="id3bea2e99-path" d="M247.72910010997137,313.6041698780019L128.12362649703965,326.2907754240106" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g><g id="b7b77" class="Burr Anchor" transform="translate(199.88691066479868,318.6788120964054)"><use fill="#141414" stroke-width="0" fill-opacity="1" height="0" id="b7b77-icon" width="0" x="0" y="0" xlink:href="#none" class="Icon"></use></g></g><g id="pvjsgeneratedidfefb6" class="Group Complex GroupComplex" color="#808080" transform="translate(437.06024096385545,24.614457831325083)"><use fill="#b4b464" fill-opacity="0.1" stroke="#808080" stroke-width="1" height="75.00000000000017px" id="pvjsgeneratedidfefb6-icon" width="30px" x="0" y="0" xlink:href="#Octagon" transform="matrix(0.967741935483871, 0, 0, 0.986842105263158, 0.48387096774193594, 0.4934210526315752)" class="Icon"></use><g id="idb9b88b35" class="Edge Interaction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="45.551728305871244, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="idb9b88b35-path" d="M18,12L12,63.00000000000017" marker-end="url(#markerEndMimConversion)" class="EdgeBody"></path></g></g></g><g id="id902d27d" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="82.17529901791691, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="id902d27d-path" d="M199.88691066479868,318.6788120964054L198.29384652704832,406.6396862618257" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="d4258" class="Group Complex GroupComplex" color="#808080" transform="translate(9.34207038890159,46.10999650829175)"><use fill="#b4b464" fill-opacity="0.1" stroke="#808080" stroke-width="1" height="184.53112525011312px" id="d4258-icon" width="248.97378914924116px" x="0" y="0" xlink:href="#Octagon" transform="matrix(0.9959995805824147, 0, 0, 0.9946100688030005, 0.49799979029121744, 0.4973050344015064)" class="Icon"></use><g id="pvjsgeneratedidfefb5" class="Edge Interaction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="483.24459034562153, 0" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="pvjsgeneratedidfefb5-path" d="M81.2525510204081,83.92857142857142L-95.21517302573217,186.56166814551895L159.27477133575184,71.96453274999826" class="EdgeBody"></path></g></g><g id="f4785" class="SingleFreeNode Shape" color="#000000" transform="translate(12,12)"><use fill="transparent" fill-opacity="0" stroke="#000000" stroke-width="1" height="71.9285714285714px" id="f4785-icon" width="92.33673469387747px" x="0" y="0" xlink:href="#ArcPathVisio" transform="matrix(0.9892861047337925, 0, 0, 0.9862879529872673, 0.49464305236689654, 0.4931439764936343)" class="Icon"></use></g><g id="fce8d" class="SingleFreeNode Shape PhysicalEntity CellularComponent Cell" color="#c0c0c0" transform="translate(142.1197924118839,90.53317907551988) rotate(38.83397738483826,47.426998368678625,40.99897308729662)"><g filter="url(#kaaviodoublefalse3filter)" fill="transparent" fill-opacity="0" stroke="#c0c0c0" stroke-width="3"><rect style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" height="81.99794617459324px" id="fce8d-icon" rx="15" ry="15" width="94.85399673735725px" x="0" y="0" transform="matrix(0.8876972283077487, 0, 0, 0.8723376362105719, 5.32618336984649, 5.234025817263429)" class="Icon"></rect></g></g></g><g id="id19b2180" class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction" color="#000000"><g filter="url(#kaavioblackto000000filter)" color="#000000" fill="transparent" fill-opacity="0" stroke="black" stroke-dasharray="305.86565635390895, 5.8" stroke-width="1"><path style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit" id="id19b2180-path" d="M140.38748522399365,249.20976808392652L140.38748522399365,269.2097680839265L284.70414993306576,269.2097680839265L284.70414993306576,141.86077643908965L304.70414993306576,141.86077643908965" marker-end="url(#markerEndArrow)" class="EdgeBody"></path></g></g><g id="fa2a3" class="Group Complex GroupComplex" color="#808080" transform="translate(578.1030789825974,16.111111111111086)"><use fill="#b4b464" fill-opacity="0.1" stroke="#808080" stroke-width="1" height="198.5636791472307px" id="fa2a3-icon" width="123.45113788487276px" x="0" y="0" xlink:href="#Octagon" transform="matrix(0.9919647179045877, 0, 0, 0.9949890681296658, 0.4959823589522969, 0.4974945340648418)" class="Icon"></use><g id="cac2a" class="SingleFreeNode DataNode Pathway" color="#14961e" name="Pathway" transform="translate(17.421936191972236,166.5636791472307)"><use fill="transparent" fill-opacity="0" stroke="#14961e" stroke-width="0" height="20px" id="cac2a-icon" width="80px" x="0" y="0" xlink:href="#none" transform="matrix(1, 0, 0, 1, 0, 0)" class="Icon"></use><defs><clipPath id="cac2a-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="cac2a-text" class="Text" clip-path="url(#cac2a-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#14961e" font-family="Arial" font-size="12px" font-style="normal" font-weight="bold" overflow="hidden" stroke="black" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">Pathway</tspan></text></g><g id="e27a4" class="SingleFreeNode DataNode GeneProduct" color="#000000" name="GeneProduct" transform="translate(31.451137884872765,76.96653279785818)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="e27a4-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="e27a4-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="e27a4-text" class="Text" clip-path="url(#e27a4-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">GeneProduct</tspan></text></g><g id="bec0b" class="SingleFreeNode DataNode GeneProduct" color="#000000" name="GeneProduct" transform="translate(12,12)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="bec0b-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="bec0b-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="bec0b-text" class="Text" clip-path="url(#bec0b-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">GeneProduct</tspan></text></g></g><g id="a2c9b" class="Group Pathway GroupPathway" color="#808080" transform="translate(647.0787355237512,324.0244602571362)"><rect fill="#00ff00" fill-opacity="0.1" stroke="#808080" stroke-dasharray="5,3" stroke-width="0.5" height="91.88621151271724px" id="a2c9b-icon" width="101.01606425702823px" x="0" y="0" transform="matrix(0.9950746711502324, 0, 0, 0.9945879369679406, 0.24876866778755868, 0.2486469842419865)" class="Icon"></rect><g id="ba3c6" class="SingleFreeNode DataNode Protein" color="#000000" name="Protein" transform="translate(12.516064257028233,8.5)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="ba3c6-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="ba3c6-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="ba3c6-text" class="Text" clip-path="url(#ba3c6-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">Protein</tspan></text></g><g id="ed434" class="SingleFreeNode DataNode Rna" color="#000000" name="Rna" transform="translate(8.5,63.38621151271724)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="ed434-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="ed434-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="ed434-text" class="Text" clip-path="url(#ed434-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">Rna</tspan></text></g></g><g id="fabb3" class="Group Pathway GroupPathway" color="#808080" name="This is a pathway" transform="translate(247.2291001099714,286.74847602420977)"><rect fill="#00ff00" fill-opacity="0.1" stroke="#808080" stroke-dasharray="5,3" stroke-width="0.5" height="106.42277541516847px" id="fabb3-icon" width="318.7196617068757px" x="0" y="0" transform="matrix(0.9984336804402132, 0, 0, 0.99532372782077, 0.24960842011006434, 0.24883093195519734)" class="Icon"></rect><g id="f3866" class="SingleFreeNode DataNode Pathway" color="#14961e" name="Pathway" transform="translate(8.5,8.5)"><use fill="transparent" fill-opacity="0" stroke="#14961e" stroke-width="0" height="20px" id="f3866-icon" width="80px" x="0" y="0" xlink:href="#none" transform="matrix(1, 0, 0, 1, 0, 0)" class="Icon"></use><defs><clipPath id="f3866-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="f3866-text" class="Text" clip-path="url(#f3866-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#14961e" font-family="Arial" font-size="12px" font-style="normal" font-weight="bold" overflow="hidden" stroke="black" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">Pathway</tspan></text></g><g id="c43c2" class="SingleFreeNode DataNode GeneProduct" color="#000000" name="GeneProduct" transform="translate(230.21966170687568,77.92277541516847)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="c43c2-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="c43c2-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="c43c2-text" class="Text" clip-path="url(#c43c2-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">GeneProduct</tspan></text></g><text id="fabb3-text" class="Text" direction="ltr" dominant-baseline="central" fill="#808080" font-family="arial" font-size="1px" font-style="normal" font-weight="bold" overflow="visible" stroke="black" stroke-width="0.05px" text-anchor="middle" transform="translate(159.35983085343784,53.21138770758424)"><tspan x="0" y="0">This is a pathway</tspan></text></g><g id="c5880" class="Group GroupNone" color="#808080" transform="translate(15.059369468927201,298.713738497838)"><rect fill="#b4b464" fill-opacity="0.1" stroke="#808080" stroke-dasharray="5,3" stroke-width="1" height="108.30814770469021px" id="c5880-icon" width="114.06425702811245px" x="0" y="0" transform="matrix(0.9913092038672298, 0, 0, 0.990851551133209, 0.4956546019336159, 0.49542577556660206)" class="Icon"></rect><g id="fefb4" class="SingleFreeNode DataNode GeneProduct" color="#000000" name="GeneProduct" transform="translate(13.498324561184717,9)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="fefb4-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="fefb4-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="fefb4-text" class="Text" clip-path="url(#fefb4-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">GeneProduct</tspan></text></g><g id="c6399" class="SingleFreeNode DataNode Protein" color="#000000" name="Protein" transform="translate(9,44.50225747711323)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="c6399-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="c6399-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="c6399-text" class="Text" clip-path="url(#c6399-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">Protein</tspan></text></g><g id="a0980" class="SingleFreeNode DataNode Unknown" color="#000000" name="Unknown" transform="translate(25.06425702811245,79.30814770469021)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="a0980-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="a0980-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="a0980-text" class="Text" clip-path="url(#a0980-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">Unknown</tspan></text></g></g><g id="a9133" class="Group Complex GroupComplex" color="#808080" transform="translate(146.29384652704832,406.6396862618257)"><use fill="#b4b464" fill-opacity="0.1" stroke="#808080" stroke-width="1" height="44px" id="a9133-icon" width="104px" x="0" y="0" xlink:href="#Octagon" transform="matrix(0.9904761904761905, 0, 0, 0.9777777777777777, 0.4952380952380935, 0.4888888888888907)" class="Icon"></use><g id="cab1d" class="SingleFreeNode DataNode GeneProduct" color="#000000" name="GeneProduct" transform="translate(12,12)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="cab1d-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="cab1d-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="cab1d-text" class="Text" clip-path="url(#cab1d-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">GeneProduct</tspan></text></g></g><g id="pvjsgeneratedidfefb8" class="Group Complex GroupComplex" color="#808080" transform="translate(744.8377619504182,29.23784413094161)"><use fill="#b4b464" fill-opacity="0.1" stroke="#808080" stroke-width="1" height="109.86221065607535px" id="pvjsgeneratedidfefb8-icon" width="111.95747157923608px" x="0" y="0" xlink:href="#Octagon" transform="matrix(0.9911471106247405, 0, 0, 0.9909797937991488, 0.4955735553123688, 0.4954898968995778)" class="Icon"></use><g id="babfd" class="SingleFreeNode DataNode GeneProduct" color="#000000" name="GeneProduct" transform="translate(12,12)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="babfd-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><g id="e4e86" class="Burr State" color="#000000" transform="translate(-28.95070192243179,-28.908744736883)"><use fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="57.817489473766px" id="e4e86-icon" width="57.90140384486358px" x="0" y="0" xlink:href="#Ellipse" transform="matrix(0.9830224759560259, 0, 0, 0.9829982542786696, 0.4915112379780133, 0.49149912713933475)" class="Icon"></use></g><defs><clipPath id="babfd-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="babfd-text" class="Text" clip-path="url(#babfd-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">GeneProduct</tspan></text></g><g id="c22bd" class="SingleFreeNode DataNode GeneProduct" color="#000000" name="GeneProduct" transform="translate(19.957471579236085,77.86221065607535)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="c22bd-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="c22bd-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="c22bd-text" class="Text" clip-path="url(#c22bd-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">GeneProduct</tspan></text></g></g><g id="cb201" class="Group GroupGroup" color="#808080" transform="translate(304.70414993306576,96.41767068273089)"><use fill="transparent" fill-opacity="0" stroke="#808080" stroke-dasharray="5,3" stroke-width="0" height="90.88621151271755px" id="cb201-icon" width="98.67737617135208px" x="0" y="0" xlink:href="#none" transform="matrix(1, 0, 0, 1, 0, 0)" class="Icon"></use><g id="c6681" class="SingleFreeNode DataNode GeneProduct" color="#000000" name="GeneProduct" transform="translate(10.67737617135208,8)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="c6681-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="c6681-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="c6681-text" class="Text" clip-path="url(#c6681-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">GeneProduct</tspan></text></g><g id="db070" class="SingleFreeNode DataNode Metabolite" color="#0000ff" name="Metabolite" transform="translate(8,62.88621151271755)"><rect fill="#ffffff" stroke="#0000ff" stroke-width="1" fill-opacity="1" height="20px" id="db070-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="db070-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="db070-text" class="Text" clip-path="url(#db070-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#0000ff" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">Metabolite</tspan></text></g></g><g id="cc32a" class="SingleFreeNode Label" color="#000000" name="Group style: Group" transform="translate(308.86868981616567,196.75905623410705)"><use fill="transparent" fill-opacity="0" stroke="#000000" stroke-width="0" height="20px" id="cc32a-icon" width="109px" x="0" y="0" xlink:href="#none" transform="matrix(1, 0, 0, 1, 0, 0)" class="Icon"></use><defs><clipPath id="cc32a-text-text-clipPath"><rect x="-54.5" y="-10" width="109" height="20"></rect></clipPath></defs><text id="cc32a-text" class="Text" clip-path="url(#cc32a-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="bold" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(54.5,10)"><tspan x="0" y="0">Group style: Group</tspan></text></g><g id="c4c10" class="SingleFreeNode Label" color="#000000" name="Group style: Pathway" transform="translate(285.0209253586316,404.0684763252457)"><use fill="transparent" fill-opacity="0" stroke="#000000" stroke-width="0" height="20px" id="c4c10-icon" width="109px" x="0" y="0" xlink:href="#none" transform="matrix(1, 0, 0, 1, 0, 0)" class="Icon"></use><defs><clipPath id="c4c10-text-text-clipPath"><rect x="-54.5" y="-10" width="109" height="20"></rect></clipPath></defs><text id="c4c10-text" class="Text" clip-path="url(#c4c10-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="bold" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(54.5,10)"><tspan x="0" y="0">Group style: Pathway</tspan></text></g><g id="fbdbc" class="SingleFreeNode Label" color="#000000" name="Group style: None" transform="translate(20.70157155362854,417.007461753303)"><use fill="transparent" fill-opacity="0" stroke="#000000" stroke-width="0" height="20px" id="fbdbc-icon" width="109px" x="0" y="0" xlink:href="#none" transform="matrix(1, 0, 0, 1, 0, 0)" class="Icon"></use><defs><clipPath id="fbdbc-text-text-clipPath"><rect x="-54.5" y="-10" width="109" height="20"></rect></clipPath></defs><text id="fbdbc-text" class="Text" clip-path="url(#fbdbc-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="bold" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(54.5,10)"><tspan x="0" y="0">Group style: None</tspan></text></g><g id="pvjsgeneratedidfefb7" class="Group Complex GroupComplex" color="#808080" transform="translate(740.905110374385,173.1815745839582)"><use fill="#b4b464" fill-opacity="0.1" stroke="#808080" stroke-width="1" height="96.43939186412939px" id="pvjsgeneratedidfefb7-icon" width="106.58834406245808px" x="0" y="0" xlink:href="#Octagon" transform="matrix(0.9907053128411432, 0, 0, 0.9897372101686102, 0.4953526564205717, 0.4948686050843065)" class="Icon"></use><g id="e4aea" class="SingleFreeNode DataNode GeneProduct" color="#000000" name="GeneProduct" transform="translate(12,12)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="e4aea-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><g id="d1f50" class="Burr State" color="#000000" transform="translate(-21.506024096385886,-18.555821927164175)"><use fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="37.11164385432835px" id="d1f50-icon" width="43.01204819277177px" x="0" y="0" xlink:href="#Ellipse" transform="matrix(0.9772789488091983, 0, 0, 0.9737612997271323, 0.4886394744046001, 0.48688064986356494)" class="Icon"></use></g><defs><clipPath id="e4aea-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="e4aea-text" class="Text" clip-path="url(#e4aea-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">GeneProduct</tspan></text></g><g id="e044d" class="SingleFreeNode DataNode GeneProduct" color="#000000" name="GeneProduct" transform="translate(14.588344062458077,64.43939186412939)"><rect fill="#ffffff" stroke="#000000" stroke-width="1" fill-opacity="1" height="20px" id="e044d-icon" width="80px" x="0" y="0" transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)" class="Icon"></rect><defs><clipPath id="e044d-text-text-clipPath"><rect x="-40" y="-10" width="80" height="20"></rect></clipPath></defs><text id="e044d-text" class="Text" clip-path="url(#e044d-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="normal" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(40,10)"><tspan x="0" y="0">GeneProduct</tspan></text></g></g><g id="c9757" class="SingleFreeNode Label" color="#000000" name="Group style: Complex" transform="translate(16.517904039350924,256.0836633457002)"><use fill="transparent" fill-opacity="0" stroke="#000000" stroke-width="0" height="20px" id="c9757-icon" width="109px" x="0" y="0" xlink:href="#none" transform="matrix(1, 0, 0, 1, 0, 0)" class="Icon"></use><defs><clipPath id="c9757-text-text-clipPath"><rect x="-54.5" y="-10" width="109" height="20"></rect></clipPath></defs><text id="c9757-text" class="Text" clip-path="url(#c9757-text-text-clipPath)" direction="ltr" dominant-baseline="central" fill="#000000" font-family="Arial" font-size="10px" font-style="normal" font-weight="bold" overflow="hidden" stroke="white" stroke-width="0.05px" text-anchor="middle" transform="translate(54.5,10)"><tspan x="0" y="0">Group style: Complex</tspan></text></g><text id="hash://sha256/19bd30afe4eacfafb10e60be8467a5a2962bc7b1197497797d421ab0cf72322f-text" class="Text" direction="ltr" dominant-baseline="central" fill="black" font-family="arial" font-size="12px" font-style="normal" font-weight="bold" overflow="visible" stroke="white" stroke-width="0.05px" text-anchor="start" transform="translate(5,14)"><tspan x="0" y="0">Name: test case</tspan></text></g></svg>
+</style
+  ><defs
+    ><g
+        id="jit-defs"
+      ><filter
+          id="kaaviodoublefalse3filter"
+          width="200%"
+          height="200%"
+          x="-50%"
+          y="-50%"
+        ><feComposite
+            in="SourceGraphic"
+            in2="SourceGraphic"
+            operator="over"
+            result="doubleDark"
+        /><feMorphology
+            in="doubleDark"
+            result="in2Double"
+            operator="dilate"
+            radius="0.16666666666666666"
+        /><feMorphology
+            in="SourceGraphic"
+            result="inDouble"
+            operator="dilate"
+            radius="3"
+        /><feComposite
+            in="inDouble"
+            in2="in2Double"
+            operator="out"
+            result="doubleResult"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaaviowhiteto14961efilter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -0.0784313725490196                  0  1  0 0 -0.5882352941176471                  0  0  1 0 -0.11764705882352941                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaavioblackto14961efilter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 0.0784313725490196                   0  -1   0 0 0.5882352941176471                   0   0  -1 0 0.11764705882352941                   0   0   0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaaviowhiteto000000filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -0                  0  1  0 0 -0                  0  0  1 0 -0                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaavioblackto000000filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 0                   0  -1   0 0 0                   0   0  -1 0 0                   0   0   0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaaviowhitetofffffffilter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -1                  0  1  0 0 -1                  0  0  1 0 -1                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaavioblacktofffffffilter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 1                   0  -1   0 0 1                   0   0  -1 0 1                   0   0   0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaaviowhitetoc0c0c0filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -0.7529411764705882                  0  1  0 0 -0.7529411764705882                  0  0  1 0 -0.7529411764705882                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaavioblacktoc0c0c0filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 0.7529411764705882                   0  -1   0 0 0.7529411764705882                   0   0  -1 0 0.7529411764705882                   0   0   0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaaviowhiteto0000fffilter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -0                  0  1  0 0 -0                  0  0  1 0 -1                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaavioblackto0000fffilter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 0                   0  -1   0 0 0                   0   0  -1 0 1                   0   0   0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaaviowhiteto808080filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -0.5019607843137255                  0  1  0 0 -0.5019607843137255                  0  0  1 0 -0.5019607843137255                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaavioblackto808080filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 0.5019607843137255                   0  -1   0 0 0.5019607843137255                   0   0  -1 0 0.5019607843137255                   0   0   0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaaviowhitetob4b464filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -0.7058823529411765                  0  1  0 0 -0.7058823529411765                  0  0  1 0 -0.39215686274509803                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaavioblacktob4b464filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 0.7058823529411765                   0  -1   0 0 0.7058823529411765                   0   0  -1 0 0.39215686274509803                   0   0   0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaaviowhiteto00ff00filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="1  0  0 0 -0                  0  1  0 0 -1                  0  0  1 0 -0                  0  0  0 1 0"
+        /></filter
+      ><filter
+          x="0"
+          y="0"
+          height="765.0732091494318"
+          width="1098.9699645039557"
+          id="kaavioblackto00ff00filter"
+          filterUnits="userSpaceOnUse"
+        ><feColorMatrix
+            type="matrix"
+            in="SourceGraphic"
+            values="-1   0   0 0 0                   0  -1   0 0 1                   0   0  -1 0 0                   0   0   0 1 0"
+        /></filter
+      ></g
+    ><g
+        id="jic-defs"
+      ><svg
+        ><defs
+          ><marker
+              id="markerStartMimGap"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                d="M0 5.3h8v1.4H0z"
+            /></marker
+          ><marker
+              id="markerMidMimInhibition"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="5"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><marker
+              id="markerStartArrow"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+            /></marker
+          ><marker
+              id="markerMidArrow"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndArrow"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimBinding"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 12L0 6l12-6-7 6z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerStartMimBinding"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 12L0 6l12-6-7 6z"
+            /></marker
+          ><marker
+              id="markerMidMimBinding"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 12L0 6l12-6-7 6z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndMimBinding"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 12L0 6l12-6-7 6z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimCatalysis"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><circle
+                cx="6"
+                cy="6"
+                r="5.3"
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerStartMimCatalysis"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><circle
+                cx="6"
+                cy="6"
+                r="5.3"
+                fill="none"
+                stroke="#000"
+            /></marker
+          ><marker
+              id="markerMidMimCatalysis"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><circle
+                cx="6"
+                cy="6"
+                r="5.3"
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndMimCatalysis"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><circle
+                cx="6"
+                cy="6"
+                r="5.3"
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimCleavage"
+              stroke-dasharray="99999"
+              markerHeight="30"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="15"
+              viewBox="0 0 20 30"
+            ><g
+                stroke="#000"
+                transform="rotate(180 10 15)"
+              ><path
+                  d="M18 14.5V30M18 30L0 0"
+              /></g
+            ></marker
+          ><marker
+              id="markerStartMimCleavage"
+              stroke-dasharray="99999"
+              markerHeight="30"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="15"
+              viewBox="0 0 20 30"
+            ><g
+                stroke="#000"
+              ><path
+                  d="M18 14.5V30M18 30L0 0"
+              /></g
+            ></marker
+          ><marker
+              id="markerMidMimCleavage"
+              stroke-dasharray="99999"
+              markerHeight="30"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="15"
+              viewBox="0 0 20 30"
+            ><g
+                stroke="#000"
+                transform="rotate(180 10 15)"
+              ><path
+                  d="M18 14.5V30M18 30L0 0"
+              /></g
+            ></marker
+          ><marker
+              id="markerEndMimCleavage"
+              stroke-dasharray="99999"
+              markerHeight="30"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="20"
+              refY="15"
+              viewBox="0 0 20 30"
+            ><g
+                stroke="#000"
+                transform="rotate(180 10 15)"
+              ><path
+                  d="M18 14.5V30M18 30L0 0"
+              /></g
+            ></marker
+          ><marker
+              id="markerMimConversion"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerStartMimConversion"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+            /></marker
+          ><marker
+              id="markerMidMimConversion"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndMimConversion"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimCovalentBond"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                stroke="#000"
+                d="M11 1H1v10h10"
+            /></marker
+          ><marker
+              id="markerStartMimCovalentBond"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                stroke="#000"
+                d="M11 1H1v10h10"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMidMimCovalentBond"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                stroke="#000"
+                d="M11 1H1v10h10"
+            /></marker
+          ><marker
+              id="markerEndMimCovalentBond"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                stroke="#000"
+                d="M11 1H1v10h10"
+            /></marker
+          ><marker
+              id="markerMimGap"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                d="M0 5.3h8v1.4H0z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerArrow"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M12 11L0 6l12-5z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMidMimGap"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                d="M0 5.3h8v1.4H0z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndMimGap"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                fill="none"
+                d="M0 5.3h8v1.4H0z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimInhibition"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="5"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><marker
+              id="markerStartMimInhibition"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+                transform="rotate(180 5 10)"
+            /></marker
+          ><marker
+              id="markerEndMimInhibition"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><marker
+              id="markerMimModification"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M0 6l11 5V1z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerStartMimModification"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M0 6l11 5V1z"
+            /></marker
+          ><marker
+              id="markerMidMimModification"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M0 6l11 5V1z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerEndMimModification"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><path
+                stroke-width="0"
+                d="M0 6l11 5V1z"
+                transform="rotate(180 6 6)"
+            /></marker
+          ><marker
+              id="markerMimNecessaryStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="16"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="8"
+              refY="6"
+              viewBox="0 0 16 12"
+            ><g
+                fill="none"
+                transform="rotate(180 8 6)"
+              ><path
+                  stroke="#000"
+                  d="M14 0v12"
+              /><path
+                  d="M16 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l9 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerStartMimNecessaryStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="16"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 16 12"
+            ><g
+                fill="none"
+              ><path
+                  stroke="#000"
+                  d="M14 0v12"
+              /><path
+                  d="M16 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l9 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerMidMimNecessaryStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="16"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="8"
+              refY="6"
+              viewBox="0 0 16 12"
+            ><g
+                fill="none"
+                transform="rotate(180 8 6)"
+              ><path
+                  stroke="#000"
+                  d="M14 0v12"
+              /><path
+                  d="M16 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l9 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerEndMimNecessaryStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="16"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="16"
+              refY="6"
+              viewBox="0 0 16 12"
+            ><g
+                fill="none"
+                transform="rotate(180 8 6)"
+              ><path
+                  stroke="#000"
+                  d="M14 0v12"
+              /><path
+                  d="M16 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l9 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerMimStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><g
+                fill="none"
+                transform="rotate(180 6 6)"
+              ><path
+                  d="M12 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l11 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerStartMimStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><g
+                fill="none"
+              ><path
+                  d="M12 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l11 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerMidMimStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="6"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><g
+                fill="none"
+                transform="rotate(180 6 6)"
+              ><path
+                  d="M12 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l11 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerEndMimStimulation"
+              stroke-dasharray="99999"
+              markerHeight="12"
+              markerUnits="userSpaceOnUse"
+              markerWidth="12"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="12"
+              refY="6"
+              viewBox="0 0 12 12"
+            ><g
+                fill="none"
+                transform="rotate(180 6 6)"
+              ><path
+                  d="M12 6"
+              /><path
+                  stroke="#000"
+                  d="M0 6l11 5V1z"
+              /></g
+            ></marker
+          ><marker
+              id="markerMimTranscriptionTranslation"
+              stroke-dasharray="99999"
+              markerHeight="24"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="12"
+              viewBox="0 0 20 24"
+            ><g
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 10 12)"
+              ><path
+                  d="M15 12V5M15.5 5H8M0 5l8-4v8z"
+              /></g
+            ></marker
+          ><marker
+              id="markerStartMimTranscriptionTranslation"
+              stroke-dasharray="99999"
+              markerHeight="24"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="12"
+              viewBox="0 0 20 24"
+            ><g
+                fill="none"
+                stroke="#000"
+              ><path
+                  d="M15 12V5M15.5 5H8M0 5l8-4v8z"
+              /></g
+            ></marker
+          ><marker
+              id="markerMidMimTranscriptionTranslation"
+              stroke-dasharray="99999"
+              markerHeight="24"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="12"
+              viewBox="0 0 20 24"
+            ><g
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 10 12)"
+              ><path
+                  d="M15 12V5M15.5 5H8M0 5l8-4v8z"
+              /></g
+            ></marker
+          ><marker
+              id="markerEndMimTranscriptionTranslation"
+              stroke-dasharray="99999"
+              markerHeight="24"
+              markerUnits="userSpaceOnUse"
+              markerWidth="20"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="20"
+              refY="12"
+              viewBox="0 0 20 24"
+            ><g
+                fill="none"
+                stroke="#000"
+                transform="rotate(180 10 12)"
+              ><path
+                  d="M15 12V5M15.5 5H8M0 5l8-4v8z"
+              /></g
+            ></marker
+          ><marker
+              id="markerTBar"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="5"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><marker
+              id="markerStartTBar"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="0"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+                transform="rotate(180 5 10)"
+            /></marker
+          ><marker
+              id="markerMidTBar"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="5"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><marker
+              id="markerEndTBar"
+              stroke-dasharray="99999"
+              markerHeight="20"
+              markerUnits="userSpaceOnUse"
+              markerWidth="10"
+              orient="auto"
+              preserveAspectRatio="none"
+              refX="10"
+              refY="10"
+              viewBox="0 0 10 20"
+            ><path
+                stroke="currentColor"
+                d="M3 0v20"
+            /></marker
+          ><symbol
+              id="none"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+          /><symbol
+              id="TrianglePathVisio"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 50 50"
+            ><path
+                stroke="currentColor"
+                d="M14.5 3.3v43.4L61 25z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Mitochondria"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><circle
+                cx="50"
+                cy="50"
+                r="50"
+                stroke="currentColor"
+            /><path
+                stroke="currentColor"
+                d="M14.895 26.347c4.364-.741 3.827 17.037 8.183 16.184 8.273.03 2.982-28.149 9.9-28.337 6.967-.187 2.246 29.948 9.204 29.44 7.633-.56.508-32.935 8.137-33.623 7.698-.689 2.919 32.04 10.628 32.225 6.547.16 3.026-27.643 9.56-26.921 7.193.793.665 29.842 7.782 31.667 4.748 1.216 4.42-18.258 9.204-17.44 11.129 7.577 8.628 37.698-2.18 44.644-3.138.699-3.966-10.502-7.113-9.905-5.59 1.059-3.982 22.284-9.603 21.8-5.24-.457-2.226-21.637-7.47-21.73-6.962-.117-3.358 28.924-10.317 28.495-6.14-.376-1.73-24.95-7.825-26.192-5.682-1.157-5.378 22.17-11.027 20.68-6.25-1.644-.47-26.673-6.76-27.865-3.728-.706-2.647 14.4-6.403 14.545-14.016-5.939-15.749-39.708-3.9-47.667z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="SarcoplasmicReticulum"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                d="M46.602 1.407C14.23 2.75 10.282 24.177 20.099 39.535c9.318 18.343-18.766 30.15 2.57 49.378 16.82 13.116 46.33 6.105 52.126-8.568 5.899-15.249-10.951-26.027-3.294-40.962 10.854-19.884-.776-38.13-24.9-37.976z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="RoundedRectangle"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><rect
+                width="100"
+                height="100"
+                stroke="currentColor"
+                rx="15"
+                ry="15"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Rectangle"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M0 0h100v100H0z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="PentagonPathVisio"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M59.16 99.613L95 50.283 59.16.953 1.169 19.796V80.77z"
+                transform="matrix(.95 0 0 1 8 0)"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Octagon"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M0 25L25 0h50l25 25v50l-25 25H25L0 75z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="ArcPathVisio"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M99.5 50c0 27.338-22.162 49.5-49.5 49.5S.5 77.338.5 50"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Brace"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M1.5 49.5c0-16.167 8.167-24.25 24.5-24.25S50.5 17.167 50.5 1c0 16.167 8.167 24.25 24.5 24.25s24.5 8.083 24.5 24.25"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Complex"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M0 25L25 0h50l25 25v50l-25 25H25L0 75z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="Ellipse"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 50 50"
+            ><circle
+                cx="25"
+                cy="25"
+                r="25"
+                stroke="currentColor"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="EndoplasmicReticulum"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M73.528 56.61c-5.625-18.607 23.514-32.434 23.401-45.066-.344-4.861-10.49-8.898-18.29-5.334C61.6 14.085 62.99 35.515 57.435 48.444c-.356 3.61-7.363 2.469-7.75-.487-5.85-11.39 17.136-24.487 5.961-29.426-19.634-8.17-28.752 21.153-22.068 28.818 7.496 14.176-2.18 24.406-6.747 15.496-2.442-5.306 6.066-11.084-.803-16.177-4.32-2.8-11.756-.646-16.155 3.094C-3.019 60.5 14.602 90.744 30.837 85.91c4.698-1.96-3.236-8.702 3.907-9.6 7.298-.812 5.176 6.19 7.687 9.227 2.307 4.051 4.833 8.355 10.763 11.624 4.786 2.537 15.294 2.112 16.771-1.958 2.032-9.263-26.11-28.359-10.689-31.282 18.556-2.714 4.749 23.846 24.31 29.695 9.502 2.028 15.64-.622 14.813-4.033-2.746-11.263-25.136-22.68-24.964-33.15"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="HexagonPathVisio"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 8 100 86"
+            ><path
+                stroke="currentColor"
+                d="M1.42 50.996l21.073-42.14h56.191l21.067 42.14-21.067 42.145H22.493L1.42 50.996z"
+                transform="scale(1 .85)"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="GolgiApparatus"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><path
+                stroke="currentColor"
+                d="M58.467 27.713c-22.205-29.9 37.31-30.258 25.567-4.823-8.807 18.581-17.066 58.135-.941 99.22 13.314 27.067-41.749 27.761-27.756-1.47 11.346-29.42 10.287-80.336 3.13-92.927z"
+                vector-effect="non-scaling-stroke"
+            /><path
+                stroke="currentColor"
+                d="M31.214 36.214c-10.791-21.428 29.898-19.848 18.408.671-4.067 7.423-5.783 61.573 1.16 75.03 8.53 18.596-32.852 19.354-20.5-2.252 6.953-17.358 10.474-52.29.932-73.449z"
+                vector-effect="non-scaling-stroke"
+            /><path
+                stroke="currentColor"
+                d="M29.804 52.16c1.584 11.476 2.723 16.738-1.483 38.362-3.732 12.99-3.6 16.341-11.732 19.413-6.684 1.659-11.865-9.79-4.794-16.114 4.856-5.623 6.141-10.882 6.66-22.954-.24-9.522.814-15.824-5.368-19.959C5.463 48.713 7 34.373 17.911 37.044c5.85 1.027 10.283 8.562 11.893 15.117z"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><symbol
+              id="MimDegradation"
+              overflow="visible"
+              preserveAspectRatio="none"
+              viewBox="0 0 100 100"
+            ><circle
+                cx="50"
+                cy="50"
+                r="49"
+                stroke="currentColor"
+                vector-effect="non-scaling-stroke"
+            /><path
+                stroke="currentColor"
+                d="M1 1l99 99"
+                vector-effect="non-scaling-stroke"
+            /></symbol
+          ><filter
+              id="BlackToRed"
+              width="100%"
+              height="100%"
+              x="0"
+              y="0"
+              filterUnits="userSpaceOnUse"
+            ><feComponentTransfer
+              ><feFuncR
+                  intercept="1"
+                  type="linear"
+              /><feFuncG
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /><feFuncB
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /></feComponentTransfer
+            ></filter
+          ><filter
+              id="WhiteToGreen"
+              width="100%"
+              height="100%"
+              x="0"
+              y="0"
+              filterUnits="userSpaceOnUse"
+            ><feComponentTransfer
+              ><feFuncR
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /><feFuncG
+                  type="linear"
+              /><feFuncB
+                  intercept="1"
+                  slope="-.95"
+                  type="linear"
+              /></feComponentTransfer
+            ></filter
+          ><filter
+              id="WhiteToRed"
+              width="100%"
+              height="100%"
+              x="0"
+              y="0"
+              filterUnits="userSpaceOnUse"
+            ><feComponentTransfer
+              ><feFuncR
+                  type="linear"
+              /><feFuncG
+                  intercept="1"
+                  slope="-.95"
+                  type="linear"
+              /><feFuncB
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /></feComponentTransfer
+            ></filter
+          ><filter
+              id="WhiteTo33BFFF"
+              width="100%"
+              height="100%"
+              x="0"
+              y="0"
+              filterUnits="userSpaceOnUse"
+            ><feColorMatrix
+                in="SourceGraphic"
+                values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"
+            /></filter
+          ><filter
+              id="Invert95"
+              width="200%"
+              height="200%"
+              x="-50%"
+              y="-50%"
+              filterUnits="userSpaceOnUse"
+            ><feComponentTransfer
+              ><feFuncR
+                  tableValues="1 0.05"
+                  type="table"
+              /><feFuncG
+                  tableValues="1 0.05"
+                  type="table"
+              /><feFuncB
+                  tableValues="1 0.05"
+                  type="table"
+              /></feComponentTransfer
+            ></filter
+          ><filter
+              id="Invert100"
+              width="200%"
+              height="200%"
+              x="-100%"
+              y="-100%"
+              filterUnits="userSpaceOnUse"
+            ><feColorMatrix
+                in="SourceGraphic"
+                values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"
+            /></filter
+          ><filter
+              id="BlackToGreen"
+              width="100%"
+              height="100%"
+              x="0"
+              y="0"
+              filterUnits="userSpaceOnUse"
+            ><feComponentTransfer
+              ><feFuncR
+                  intercept="1"
+                  type="linear"
+              /><feFuncG
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /><feFuncB
+                  intercept="1"
+                  slope="-1"
+                  type="linear"
+              /></feComponentTransfer
+            ></filter
+          ><clipPath
+              id="ClipPathRoundedRectangle"
+              clipPathUnits="objectBoundingBox"
+            ><rect
+                width="1"
+                height="1"
+                rx=".125"
+                ry=".25"
+            /></clipPath
+          ></defs
+        ></svg
+      ></g
+    ></defs
+  ><g
+      id="hash://sha256/19bd30afe4eacfafb10e60be8467a5a2962bc7b1197497797d421ab0cf72322f"
+      class="Viewport"
+      color="black"
+      name="Name: test case"
+    ><rect
+        fill="white"
+        stroke="black"
+        stroke-width="0"
+        fill-opacity="1"
+        height="765.0732091494318px"
+        id="hash://sha256/19bd30afe4eacfafb10e60be8467a5a2962bc7b1197497797d421ab0cf72322f-icon"
+        width="1098.9699645039557px"
+        x="0"
+        y="0"
+        transform="matrix(1, 0, 0, 1, 0, 0)"
+        class="Icon"
+    /><g
+        id="id566582d6"
+        class="Edge GraphicalLine"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="48.99322235653813, 0"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="id566582d6-path"
+            d="M650.1030789825974,48.111111111111086L669.5542168674701,93.07764390896926"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="id4a5d9e1"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="309.7127175368139, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="id4a5d9e1-path"
+            d="M355.38152610441784,124.41767068273089L355.38152610441784,144.4176706827309L589.5542168674701,144.4176706827309L589.5542168674701,103.07764390896926L609.5542168674701,103.07764390896926"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ><g
+          id="bc907"
+          class="Burr Anchor"
+          transform="translate(461.5866131191434,144.4176706827309)"
+        ><use
+            fill="#141414"
+            stroke-width="0"
+            fill-opacity="1"
+            height="0"
+            id="bc907-icon"
+            width="0"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            class="Icon"
+        /></g
+      ></g
+    ><g
+        id="id227e10ee"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="43.193222356538136, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="id227e10ee-path"
+            d="M610.1030789825974,48.111111111111086L629.5542168674701,93.07764390896926"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ><g
+          id="a76fa"
+          class="Burr Anchor"
+          transform="translate(617.8835341365465,66.09772423025436)"
+        ><use
+            fill="#141414"
+            stroke-width="0"
+            fill-opacity="1"
+            height="0"
+            id="a76fa-icon"
+            width="0"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            class="Icon"
+        /></g
+      ></g
+    ><g
+        id="id6eb5a3e3"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="35.80466573009251, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="id6eb5a3e3-path"
+            d="M617.8835341365465,66.09772423025436L649.5542168674701,93.07764390896926"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="id61b7bfc2"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="169.0220281653291, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="id61b7bfc2-path"
+            d="M461.5866131191434,144.4176706827309L617.8835341365465,66.09772423025436"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="id16b156e8"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="401.6482328770899, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="id16b156e8-path"
+            d="M404.0268456375839,53.691275167785236L0,1"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="idcecadf02"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="0, 11, 250.42716380943097, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="idcecadf02-path"
+            d="M701.5542168674701,65.75203089791876L705.0603113423122,65.75203089791876C708.5664058171542,65.75203089791876,715.5785947668383,65.75203089791876,719.0846892416803,108.88076912445499C722.5907837165223,152.0095073509912,722.5907837165223,238.2669838040637,722.5907837165223,281.3957220305999L722.5907837165223,324.5244602571362"
+            marker-start="url(#markerStartMimCatalysis)"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="id82d0ad08"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 5.05, 3.03, 0, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="id82d0ad08-path"
+            d="M647.5787355237512,392.68911889167407L622.8187919463087,448.32214765100673L502.0134228187919,430.8724832214765L406.5889309634092,392.67125143937824"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="id3bea2e99"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="114.47642860699565, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="id3bea2e99-path"
+            d="M247.72910010997137,313.6041698780019L128.12362649703965,326.2907754240106"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ><g
+          id="b7b77"
+          class="Burr Anchor"
+          transform="translate(199.88691066479868,318.6788120964054)"
+        ><use
+            fill="#141414"
+            stroke-width="0"
+            fill-opacity="1"
+            height="0"
+            id="b7b77-icon"
+            width="0"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            class="Icon"
+        /></g
+      ></g
+    ><g
+        id="pvjsgeneratedidfefb6"
+        class="Group Complex GroupComplex"
+        color="#808080"
+        transform="translate(437.06024096385545,24.614457831325083)"
+      ><use
+          fill="#b4b464"
+          fill-opacity="0.1"
+          stroke="#808080"
+          stroke-width="1"
+          height="75.00000000000017px"
+          id="pvjsgeneratedidfefb6-icon"
+          width="30px"
+          x="0"
+          y="0"
+          xlink:href="#Octagon"
+          transform="matrix(0.967741935483871, 0, 0, 0.986842105263158, 0.48387096774193594, 0.4934210526315752)"
+          class="Icon"
+      /><g
+          id="idb9b88b35"
+          class="Edge Interaction"
+          color="#000000"
+        ><g
+            filter="url(#kaavioblackto000000filter)"
+            color="#000000"
+            fill="transparent"
+            fill-opacity="0"
+            stroke="black"
+            stroke-dasharray="45.551728305871244, 5.8"
+            stroke-width="1"
+          ><path
+              style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+              id="idb9b88b35-path"
+              d="M18,12L12,63.00000000000017"
+              marker-end="url(#markerEndMimConversion)"
+              class="EdgeBody"
+          /></g
+        ></g
+      ></g
+    ><g
+        id="id902d27d"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="82.17529901791691, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="id902d27d-path"
+            d="M199.88691066479868,318.6788120964054L198.29384652704832,406.6396862618257"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="d4258"
+        class="Group Complex GroupComplex"
+        color="#808080"
+        transform="translate(9.34207038890159,46.10999650829175)"
+      ><use
+          fill="#b4b464"
+          fill-opacity="0.1"
+          stroke="#808080"
+          stroke-width="1"
+          height="184.53112525011312px"
+          id="d4258-icon"
+          width="248.97378914924116px"
+          x="0"
+          y="0"
+          xlink:href="#Octagon"
+          transform="matrix(0.9959995805824147, 0, 0, 0.9946100688030005, 0.49799979029121744, 0.4973050344015064)"
+          class="Icon"
+      /><g
+          id="pvjsgeneratedidfefb5"
+          class="Edge Interaction"
+          color="#000000"
+        ><g
+            filter="url(#kaavioblackto000000filter)"
+            color="#000000"
+            fill="transparent"
+            fill-opacity="0"
+            stroke="black"
+            stroke-dasharray="483.24459034562153, 0"
+            stroke-width="1"
+          ><path
+              style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+              id="pvjsgeneratedidfefb5-path"
+              d="M81.2525510204081,83.92857142857142L-95.21517302573217,186.56166814551895L159.27477133575184,71.96453274999826"
+              class="EdgeBody"
+          /></g
+        ></g
+      ><g
+          id="f4785"
+          class="SingleFreeNode Shape"
+          color="#000000"
+          transform="translate(12,12)"
+        ><use
+            fill="transparent"
+            fill-opacity="0"
+            stroke="#000000"
+            stroke-width="1"
+            height="71.9285714285714px"
+            id="f4785-icon"
+            width="92.33673469387747px"
+            x="0"
+            y="0"
+            xlink:href="#ArcPathVisio"
+            transform="matrix(0.9892861047337925, 0, 0, 0.9862879529872673, 0.49464305236689654, 0.4931439764936343)"
+            class="Icon"
+        /></g
+      ><g
+          id="fce8d"
+          class="SingleFreeNode Shape PhysicalEntity CellularComponent Cell"
+          color="#c0c0c0"
+          transform="translate(142.1197924118839,90.53317907551988) rotate(38.83397738483826,47.426998368678625,40.99897308729662)"
+        ><g
+            filter="url(#kaaviodoublefalse3filter)"
+            fill="transparent"
+            fill-opacity="0"
+            stroke="#c0c0c0"
+            stroke-width="3"
+          ><rect
+              style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+              height="81.99794617459324px"
+              id="fce8d-icon"
+              rx="15"
+              ry="15"
+              width="94.85399673735725px"
+              x="0"
+              y="0"
+              transform="matrix(0.8876972283077487, 0, 0, 0.8723376362105719, 5.32618336984649, 5.234025817263429)"
+              class="Icon"
+          /></g
+        ></g
+      ></g
+    ><g
+        id="id19b2180"
+        class="Edge Interaction SBO_0000167 SBO_0000393 SBO_0000394 DirectedInteraction"
+        color="#000000"
+      ><g
+          filter="url(#kaavioblackto000000filter)"
+          color="#000000"
+          fill="transparent"
+          fill-opacity="0"
+          stroke="black"
+          stroke-dasharray="305.86565635390895, 5.8"
+          stroke-width="1"
+        ><path
+            style="color:inherit;fill:inherit;fill-opacity:inherit;stroke:inherit;stroke-width:inherit"
+            id="id19b2180-path"
+            d="M140.38748522399365,249.20976808392652L140.38748522399365,269.2097680839265L284.70414993306576,269.2097680839265L284.70414993306576,141.86077643908965L304.70414993306576,141.86077643908965"
+            marker-end="url(#markerEndArrow)"
+            class="EdgeBody"
+        /></g
+      ></g
+    ><g
+        id="fa2a3"
+        class="Group Complex GroupComplex"
+        color="#808080"
+        transform="translate(578.1030789825974,16.111111111111086)"
+      ><use
+          fill="#b4b464"
+          fill-opacity="0.1"
+          stroke="#808080"
+          stroke-width="1"
+          height="198.5636791472307px"
+          id="fa2a3-icon"
+          width="123.45113788487276px"
+          x="0"
+          y="0"
+          xlink:href="#Octagon"
+          transform="matrix(0.9919647179045877, 0, 0, 0.9949890681296658, 0.4959823589522969, 0.4974945340648418)"
+          class="Icon"
+      /><g
+          id="cac2a"
+          class="SingleFreeNode DataNode Pathway"
+          color="#14961e"
+          name="Pathway"
+          transform="translate(17.421936191972236,166.5636791472307)"
+        ><use
+            fill="transparent"
+            fill-opacity="0"
+            stroke="#14961e"
+            stroke-width="0"
+            height="20px"
+            id="cac2a-icon"
+            width="80px"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            transform="matrix(1, 0, 0, 1, 0, 0)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="cac2a-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="cac2a-text"
+            class="Text"
+            clip-path="url(#cac2a-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#14961e"
+            font-family="Arial"
+            font-size="12px"
+            font-style="normal"
+            font-weight="bold"
+            overflow="hidden"
+            stroke="black"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >Pathway</tspan
+          ></text
+        ></g
+      ><g
+          id="e27a4"
+          class="SingleFreeNode DataNode GeneProduct"
+          color="#000000"
+          name="GeneProduct"
+          transform="translate(31.451137884872765,76.96653279785818)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="e27a4-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="e27a4-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="e27a4-text"
+            class="Text"
+            clip-path="url(#e27a4-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >GeneProduct</tspan
+          ></text
+        ></g
+      ><g
+          id="bec0b"
+          class="SingleFreeNode DataNode GeneProduct"
+          color="#000000"
+          name="GeneProduct"
+          transform="translate(12,12)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="bec0b-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="bec0b-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="bec0b-text"
+            class="Text"
+            clip-path="url(#bec0b-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >GeneProduct</tspan
+          ></text
+        ></g
+      ></g
+    ><g
+        id="a2c9b"
+        class="Group Pathway GroupPathway"
+        color="#808080"
+        transform="translate(647.0787355237512,324.0244602571362)"
+      ><rect
+          fill="#00ff00"
+          fill-opacity="0.1"
+          stroke="#808080"
+          stroke-dasharray="5,3"
+          stroke-width="0.5"
+          height="91.88621151271724px"
+          id="a2c9b-icon"
+          width="101.01606425702823px"
+          x="0"
+          y="0"
+          transform="matrix(0.9950746711502324, 0, 0, 0.9945879369679406, 0.24876866778755868, 0.2486469842419865)"
+          class="Icon"
+      /><g
+          id="ba3c6"
+          class="SingleFreeNode DataNode Protein"
+          color="#000000"
+          name="Protein"
+          transform="translate(12.516064257028233,8.5)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="ba3c6-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="ba3c6-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="ba3c6-text"
+            class="Text"
+            clip-path="url(#ba3c6-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >Protein</tspan
+          ></text
+        ></g
+      ><g
+          id="ed434"
+          class="SingleFreeNode DataNode Rna"
+          color="#000000"
+          name="Rna"
+          transform="translate(8.5,63.38621151271724)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="ed434-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="ed434-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="ed434-text"
+            class="Text"
+            clip-path="url(#ed434-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >Rna</tspan
+          ></text
+        ></g
+      ></g
+    ><g
+        id="fabb3"
+        class="Group Pathway GroupPathway"
+        color="#808080"
+        name="This is a pathway"
+        transform="translate(247.2291001099714,286.74847602420977)"
+      ><rect
+          fill="#00ff00"
+          fill-opacity="0.1"
+          stroke="#808080"
+          stroke-dasharray="5,3"
+          stroke-width="0.5"
+          height="106.42277541516847px"
+          id="fabb3-icon"
+          width="318.7196617068757px"
+          x="0"
+          y="0"
+          transform="matrix(0.9984336804402132, 0, 0, 0.99532372782077, 0.24960842011006434, 0.24883093195519734)"
+          class="Icon"
+      /><g
+          id="f3866"
+          class="SingleFreeNode DataNode Pathway"
+          color="#14961e"
+          name="Pathway"
+          transform="translate(8.5,8.5)"
+        ><use
+            fill="transparent"
+            fill-opacity="0"
+            stroke="#14961e"
+            stroke-width="0"
+            height="20px"
+            id="f3866-icon"
+            width="80px"
+            x="0"
+            y="0"
+            xlink:href="#none"
+            transform="matrix(1, 0, 0, 1, 0, 0)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="f3866-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="f3866-text"
+            class="Text"
+            clip-path="url(#f3866-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#14961e"
+            font-family="Arial"
+            font-size="12px"
+            font-style="normal"
+            font-weight="bold"
+            overflow="hidden"
+            stroke="black"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >Pathway</tspan
+          ></text
+        ></g
+      ><g
+          id="c43c2"
+          class="SingleFreeNode DataNode GeneProduct"
+          color="#000000"
+          name="GeneProduct"
+          transform="translate(230.21966170687568,77.92277541516847)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="c43c2-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="c43c2-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="c43c2-text"
+            class="Text"
+            clip-path="url(#c43c2-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >GeneProduct</tspan
+          ></text
+        ></g
+      ><text
+          id="fabb3-text"
+          class="Text"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#808080"
+          font-family="arial"
+          font-size="1px"
+          font-style="normal"
+          font-weight="bold"
+          overflow="visible"
+          stroke="black"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(159.35983085343784,53.21138770758424)"
+        ><tspan
+            x="0"
+            y="0"
+          >This is a pathway</tspan
+        ></text
+      ></g
+    ><g
+        id="c5880"
+        class="Group GroupNone"
+        color="#808080"
+        transform="translate(15.059369468927201,298.713738497838)"
+      ><rect
+          fill="#b4b464"
+          fill-opacity="0.1"
+          stroke="#808080"
+          stroke-dasharray="5,3"
+          stroke-width="1"
+          height="108.30814770469021px"
+          id="c5880-icon"
+          width="114.06425702811245px"
+          x="0"
+          y="0"
+          transform="matrix(0.9913092038672298, 0, 0, 0.990851551133209, 0.4956546019336159, 0.49542577556660206)"
+          class="Icon"
+      /><g
+          id="fefb4"
+          class="SingleFreeNode DataNode GeneProduct"
+          color="#000000"
+          name="GeneProduct"
+          transform="translate(13.498324561184717,9)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="fefb4-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="fefb4-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="fefb4-text"
+            class="Text"
+            clip-path="url(#fefb4-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >GeneProduct</tspan
+          ></text
+        ></g
+      ><g
+          id="c6399"
+          class="SingleFreeNode DataNode Protein"
+          color="#000000"
+          name="Protein"
+          transform="translate(9,44.50225747711323)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="c6399-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="c6399-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="c6399-text"
+            class="Text"
+            clip-path="url(#c6399-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >Protein</tspan
+          ></text
+        ></g
+      ><g
+          id="a0980"
+          class="SingleFreeNode DataNode Unknown"
+          color="#000000"
+          name="Unknown"
+          transform="translate(25.06425702811245,79.30814770469021)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="a0980-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="a0980-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="a0980-text"
+            class="Text"
+            clip-path="url(#a0980-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >Unknown</tspan
+          ></text
+        ></g
+      ></g
+    ><g
+        id="a9133"
+        class="Group Complex GroupComplex"
+        color="#808080"
+        transform="translate(146.29384652704832,406.6396862618257)"
+      ><use
+          fill="#b4b464"
+          fill-opacity="0.1"
+          stroke="#808080"
+          stroke-width="1"
+          height="44px"
+          id="a9133-icon"
+          width="104px"
+          x="0"
+          y="0"
+          xlink:href="#Octagon"
+          transform="matrix(0.9904761904761905, 0, 0, 0.9777777777777777, 0.4952380952380935, 0.4888888888888907)"
+          class="Icon"
+      /><g
+          id="cab1d"
+          class="SingleFreeNode DataNode GeneProduct"
+          color="#000000"
+          name="GeneProduct"
+          transform="translate(12,12)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="cab1d-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="cab1d-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="cab1d-text"
+            class="Text"
+            clip-path="url(#cab1d-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >GeneProduct</tspan
+          ></text
+        ></g
+      ></g
+    ><g
+        id="pvjsgeneratedidfefb8"
+        class="Group Complex GroupComplex"
+        color="#808080"
+        transform="translate(744.8377619504182,29.23784413094161)"
+      ><use
+          fill="#b4b464"
+          fill-opacity="0.1"
+          stroke="#808080"
+          stroke-width="1"
+          height="109.86221065607535px"
+          id="pvjsgeneratedidfefb8-icon"
+          width="111.95747157923608px"
+          x="0"
+          y="0"
+          xlink:href="#Octagon"
+          transform="matrix(0.9911471106247405, 0, 0, 0.9909797937991488, 0.4955735553123688, 0.4954898968995778)"
+          class="Icon"
+      /><g
+          id="babfd"
+          class="SingleFreeNode DataNode GeneProduct"
+          color="#000000"
+          name="GeneProduct"
+          transform="translate(12,12)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="babfd-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><g
+            id="e4e86"
+            class="Burr State"
+            color="#000000"
+            transform="translate(-28.95070192243179,-28.908744736883)"
+          ><use
+              fill="#ffffff"
+              stroke="#000000"
+              stroke-width="1"
+              fill-opacity="1"
+              height="57.817489473766px"
+              id="e4e86-icon"
+              width="57.90140384486358px"
+              x="0"
+              y="0"
+              xlink:href="#Ellipse"
+              transform="matrix(0.9830224759560259, 0, 0, 0.9829982542786696, 0.4915112379780133, 0.49149912713933475)"
+              class="Icon"
+          /></g
+        ><defs
+          ><clipPath
+              id="babfd-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="babfd-text"
+            class="Text"
+            clip-path="url(#babfd-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >GeneProduct</tspan
+          ></text
+        ></g
+      ><g
+          id="c22bd"
+          class="SingleFreeNode DataNode GeneProduct"
+          color="#000000"
+          name="GeneProduct"
+          transform="translate(19.957471579236085,77.86221065607535)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="c22bd-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="c22bd-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="c22bd-text"
+            class="Text"
+            clip-path="url(#c22bd-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >GeneProduct</tspan
+          ></text
+        ></g
+      ></g
+    ><g
+        id="cb201"
+        class="Group GroupGroup"
+        color="#808080"
+        transform="translate(304.70414993306576,96.41767068273089)"
+      ><use
+          fill="transparent"
+          fill-opacity="0"
+          stroke="#808080"
+          stroke-dasharray="5,3"
+          stroke-width="0"
+          height="90.88621151271755px"
+          id="cb201-icon"
+          width="98.67737617135208px"
+          x="0"
+          y="0"
+          xlink:href="#none"
+          transform="matrix(1, 0, 0, 1, 0, 0)"
+          class="Icon"
+      /><g
+          id="c6681"
+          class="SingleFreeNode DataNode GeneProduct"
+          color="#000000"
+          name="GeneProduct"
+          transform="translate(10.67737617135208,8)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="c6681-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="c6681-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="c6681-text"
+            class="Text"
+            clip-path="url(#c6681-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >GeneProduct</tspan
+          ></text
+        ></g
+      ><g
+          id="db070"
+          class="SingleFreeNode DataNode Metabolite"
+          color="#0000ff"
+          name="Metabolite"
+          transform="translate(8,62.88621151271755)"
+        ><rect
+            fill="#ffffff"
+            stroke="#0000ff"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="db070-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="db070-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="db070-text"
+            class="Text"
+            clip-path="url(#db070-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#0000ff"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >Metabolite</tspan
+          ></text
+        ></g
+      ></g
+    ><g
+        id="cc32a"
+        class="SingleFreeNode Label"
+        color="#000000"
+        name="Group style: Group"
+        transform="translate(308.86868981616567,196.75905623410705)"
+      ><use
+          fill="transparent"
+          fill-opacity="0"
+          stroke="#000000"
+          stroke-width="0"
+          height="20px"
+          id="cc32a-icon"
+          width="109px"
+          x="0"
+          y="0"
+          xlink:href="#none"
+          transform="matrix(1, 0, 0, 1, 0, 0)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="cc32a-text-text-clipPath"
+          ><rect
+              x="-54.5"
+              y="-10"
+              width="109"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="cc32a-text"
+          class="Text"
+          clip-path="url(#cc32a-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#000000"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="bold"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(54.5,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >Group style: Group</tspan
+        ></text
+      ></g
+    ><g
+        id="c4c10"
+        class="SingleFreeNode Label"
+        color="#000000"
+        name="Group style: Pathway"
+        transform="translate(285.0209253586316,404.0684763252457)"
+      ><use
+          fill="transparent"
+          fill-opacity="0"
+          stroke="#000000"
+          stroke-width="0"
+          height="20px"
+          id="c4c10-icon"
+          width="109px"
+          x="0"
+          y="0"
+          xlink:href="#none"
+          transform="matrix(1, 0, 0, 1, 0, 0)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="c4c10-text-text-clipPath"
+          ><rect
+              x="-54.5"
+              y="-10"
+              width="109"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="c4c10-text"
+          class="Text"
+          clip-path="url(#c4c10-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#000000"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="bold"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(54.5,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >Group style: Pathway</tspan
+        ></text
+      ></g
+    ><g
+        id="fbdbc"
+        class="SingleFreeNode Label"
+        color="#000000"
+        name="Group style: None"
+        transform="translate(20.70157155362854,417.007461753303)"
+      ><use
+          fill="transparent"
+          fill-opacity="0"
+          stroke="#000000"
+          stroke-width="0"
+          height="20px"
+          id="fbdbc-icon"
+          width="109px"
+          x="0"
+          y="0"
+          xlink:href="#none"
+          transform="matrix(1, 0, 0, 1, 0, 0)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="fbdbc-text-text-clipPath"
+          ><rect
+              x="-54.5"
+              y="-10"
+              width="109"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="fbdbc-text"
+          class="Text"
+          clip-path="url(#fbdbc-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#000000"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="bold"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(54.5,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >Group style: None</tspan
+        ></text
+      ></g
+    ><g
+        id="pvjsgeneratedidfefb7"
+        class="Group Complex GroupComplex"
+        color="#808080"
+        transform="translate(740.905110374385,173.1815745839582)"
+      ><use
+          fill="#b4b464"
+          fill-opacity="0.1"
+          stroke="#808080"
+          stroke-width="1"
+          height="96.43939186412939px"
+          id="pvjsgeneratedidfefb7-icon"
+          width="106.58834406245808px"
+          x="0"
+          y="0"
+          xlink:href="#Octagon"
+          transform="matrix(0.9907053128411432, 0, 0, 0.9897372101686102, 0.4953526564205717, 0.4948686050843065)"
+          class="Icon"
+      /><g
+          id="e4aea"
+          class="SingleFreeNode DataNode GeneProduct"
+          color="#000000"
+          name="GeneProduct"
+          transform="translate(12,12)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="e4aea-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><g
+            id="d1f50"
+            class="Burr State"
+            color="#000000"
+            transform="translate(-21.506024096385886,-18.555821927164175)"
+          ><use
+              fill="#ffffff"
+              stroke="#000000"
+              stroke-width="1"
+              fill-opacity="1"
+              height="37.11164385432835px"
+              id="d1f50-icon"
+              width="43.01204819277177px"
+              x="0"
+              y="0"
+              xlink:href="#Ellipse"
+              transform="matrix(0.9772789488091983, 0, 0, 0.9737612997271323, 0.4886394744046001, 0.48688064986356494)"
+              class="Icon"
+          /></g
+        ><defs
+          ><clipPath
+              id="e4aea-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="e4aea-text"
+            class="Text"
+            clip-path="url(#e4aea-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >GeneProduct</tspan
+          ></text
+        ></g
+      ><g
+          id="e044d"
+          class="SingleFreeNode DataNode GeneProduct"
+          color="#000000"
+          name="GeneProduct"
+          transform="translate(14.588344062458077,64.43939186412939)"
+        ><rect
+            fill="#ffffff"
+            stroke="#000000"
+            stroke-width="1"
+            fill-opacity="1"
+            height="20px"
+            id="e044d-icon"
+            width="80px"
+            x="0"
+            y="0"
+            transform="matrix(0.9876543209876543, 0, 0, 0.9523809523809523, 0.49382716049382935, 0.4761904761904763)"
+            class="Icon"
+        /><defs
+          ><clipPath
+              id="e044d-text-text-clipPath"
+            ><rect
+                x="-40"
+                y="-10"
+                width="80"
+                height="20"
+            /></clipPath
+          ></defs
+        ><text
+            id="e044d-text"
+            class="Text"
+            clip-path="url(#e044d-text-text-clipPath)"
+            direction="ltr"
+            dominant-baseline="central"
+            fill="#000000"
+            font-family="Arial"
+            font-size="10px"
+            font-style="normal"
+            font-weight="normal"
+            overflow="hidden"
+            stroke="white"
+            stroke-width="0.05px"
+            text-anchor="middle"
+            transform="translate(40,10)"
+          ><tspan
+              x="0"
+              y="0"
+            >GeneProduct</tspan
+          ></text
+        ></g
+      ></g
+    ><g
+        id="c9757"
+        class="SingleFreeNode Label"
+        color="#000000"
+        name="Group style: Complex"
+        transform="translate(16.517904039350924,256.0836633457002)"
+      ><use
+          fill="transparent"
+          fill-opacity="0"
+          stroke="#000000"
+          stroke-width="0"
+          height="20px"
+          id="c9757-icon"
+          width="109px"
+          x="0"
+          y="0"
+          xlink:href="#none"
+          transform="matrix(1, 0, 0, 1, 0, 0)"
+          class="Icon"
+      /><defs
+        ><clipPath
+            id="c9757-text-text-clipPath"
+          ><rect
+              x="-54.5"
+              y="-10"
+              width="109"
+              height="20"
+          /></clipPath
+        ></defs
+      ><text
+          id="c9757-text"
+          class="Text"
+          clip-path="url(#c9757-text-text-clipPath)"
+          direction="ltr"
+          dominant-baseline="central"
+          fill="#000000"
+          font-family="Arial"
+          font-size="10px"
+          font-style="normal"
+          font-weight="bold"
+          overflow="hidden"
+          stroke="white"
+          stroke-width="0.05px"
+          text-anchor="middle"
+          transform="translate(54.5,10)"
+        ><tspan
+            x="0"
+            y="0"
+          >Group style: Complex</tspan
+        ></text
+      ></g
+    ><text
+        id="hash://sha256/19bd30afe4eacfafb10e60be8467a5a2962bc7b1197497797d421ab0cf72322f-text"
+        class="Text"
+        direction="ltr"
+        dominant-baseline="central"
+        fill="black"
+        font-family="arial"
+        font-size="12px"
+        font-style="normal"
+        font-weight="bold"
+        overflow="visible"
+        stroke="white"
+        stroke-width="0.05px"
+        text-anchor="start"
+        transform="translate(5,14)"
+      ><tspan
+          x="0"
+          y="0"
+        >Name: test case</tspan
+      ></text
+    ></g
+  ></svg
+>
