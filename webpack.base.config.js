@@ -97,7 +97,6 @@ module.exports = {
           path.resolve(__dirname, "node_modules/loaders.css"),
           path.resolve(__dirname, "node_modules/bridgedb"),
           path.resolve(__dirname, "node_modules/react-select"),
-          path.resolve(__dirname, "node_modules/react-spinkit")
         ],
         //*/
         use: [{ loader: "to-string-loader" }, { loader: "css-loader" }]
@@ -111,7 +110,7 @@ module.exports = {
         test: /\.[jt]sx?$/,
         use: ["source-map-loader", shebangRemovalLoader],
         enforce: "pre",
-        exclude: [/lodash/, /react-dom/, /react-spinkit/]
+        exclude: [/lodash/, /react-dom/]
       },
       {
         test: require.resolve("react-dom"),
