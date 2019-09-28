@@ -1,6 +1,6 @@
 {
   "name": "@wikipathways/pvjs",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "main": "es5/index.js",
   "module": "esnext/index.js",
   "jsnext:main": "esnext/index.js",
