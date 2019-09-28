@@ -1,6 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StringReplacePlugin = require("string-replace-webpack-plugin");
 const npmPkg = require("./package.json");
 
@@ -129,9 +129,9 @@ module.exports = {
       version: npmPkg.version
     }),
     //new webpack.IgnorePlugin(/source-map-support/),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: "style.css",
-      allChunks: true
+      ignoreOrder: false
     })
   ]
 };

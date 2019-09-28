@@ -3,6 +3,8 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.base.config");
 
+const MODE = "production";
+
 const babelLoader = {
   loader: "babel-loader",
   options: {
@@ -28,23 +30,19 @@ webpackConfig.module.rules
   .forEach(rule => rule.use.push(babelLoader));
 
 webpackConfig.devtool = "source-map";
+webpackConfig.optimization = {
+  minimizer: [
+    new UglifyJsPlugin({
+      sourceMap: true
+    })
+  ]
+};
+
+webpackConfig.mode = MODE;
 
 [
   new webpack.DefinePlugin({
-    "process.env.NODE_ENV": JSON.stringify("production")
-  }),
-  new UglifyJsPlugin({
-    sourceMap: true,
-    beautify: false,
-    ecma: "8",
-    mangle: {
-      screw_ie8: true,
-      keep_fnames: true
-    },
-    compress: {
-      screw_ie8: true
-    },
-    comments: false
+    "process.env.NODE_ENV": JSON.stringify(MODE)
   })
 ].forEach(function(plugin) {
   webpackConfig.plugins.push(plugin);
