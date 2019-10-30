@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-#url="file:///home/ariutta/Dropbox (Gladstone)/Documents/alle-pvjs/packages/node_modules/@wikipathways/pvjs/test/expected/chunked.svg"
-
-#test_dir="/home/ariutta/Dropbox (Gladstone)/Documents/alle-pvjs/packages/node_modules/@wikipathways/pvjs/test"
 test_dir="$1"
 if [ -z "$test_dir" ]; then
   echo "No test_dir specified." 1>&2
@@ -29,18 +26,15 @@ for expected_f in "$test_dir/expected/"*.svg; do
   filename="$(basename "$expected_f")"
   actual_f="$test_dir/actual/$filename"
 
-  # if not identical, open both
+  # if not identical, show diff
   if ! cmp --silent "$expected_f" "$actual_f"; then
     echo "expected: $expected_f"
-    open_image "file://$expected_f"
-
-    sleep 0.5
-
     echo "actual: $actual_f"
-    open_image "file://$actual_f"
+    vimdiff "$expected_f" "$actual_f"
     echo ""
     read -rp "Hit Enter to view next"
   else
     echo "OK: $filename"
   fi
+
 done
