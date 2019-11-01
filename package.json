@@ -1,6 +1,6 @@
 {
   "name": "@wikipathways/pvjs",
-  "version": "4.0.8",
+  "version": "5.0.0",
   "main": "es5/index.js",
   "module": "esnext/index.js",
   "jsnext:main": "esnext/index.js",
@@ -45,7 +45,7 @@
     "postpublish": "TAG=\"$(jq -r .version package.json)\" && git commit -am \"Bump to version $TAG\" && git tag -a $TAG -m \"Published version $TAG\" && git push origin $TAG",
     "test": "npm-run-all test:browser test:quick test:checksums",
     "test:browser": "echo 'get browser tests working'",
-    "test:checksums": "gpml2pvjson_dir=$(node -p 'path.dirname(require.resolve(\"gpml2pvjson/package.json\"))') && input_dir=\"$gpml2pvjson_dir/test/expected\" && echo \"# Converting $input_dir from JSON to SVG and verifying checksums...\" && for f in \"$input_dir\"/*.json; do pathway_name=`basename \"$f\" | sed s/.json//` && base_path=`echo \"./test/expected/$pathway_name\"` && echo \"\\n## Processing $pathway_name...\" && cat \"$f\" | bin/pvjs --react | xmllint --pretty 2 - | sha1sum -c \"$base_path.svg.sha1sum\" || break; done",
+    "test:checksums": "gpml2pvjson_dir=$(node -p 'path.dirname(require.resolve(\"gpml2pvjson/package.json\"))') && input_dir=\"$gpml2pvjson_dir/test/expected\" && echo \"# Converting $input_dir from JSON to SVG and verifying checksums...\" && for f in \"$input_dir\"/*.json; do pathway_name=`basename \"$f\" | sed s/.json//` && base_path=`echo \"./test/expected/$pathway_name\"` && echo \"\\n## Processing $pathway_name...\" && cat \"$f\" | bin/pvjs --react | xmllint --pretty 2 - | sha1sum -c \"$base_path.svg.sha1sum\" || exit 1; done",
     "test:convert": "gpml2pvjson_dir=$(node -p 'path.dirname(require.resolve(\"gpml2pvjson/package.json\"))') && input_dir=\"$gpml2pvjson_dir/test/expected\" && echo \"# Converting $input_dir from JSON to SVG...\" && for f in \"$input_dir\"/*.json; do pathway_name=`basename \"$f\" | sed s/.json//` && base_path=`echo \"./test/expected/$pathway_name\"` && echo \"\\n## Processing $pathway_name...\" && cat \"$f\" | bin/pvjs --react | xmllint --pretty 2 - >/dev/null || break; done",
     "compare": "gpml2pvjson_dir=$(node -p 'path.dirname(require.resolve(\"gpml2pvjson/package.json\"))') && input_dir=\"$gpml2pvjson_dir/test/expected\" && echo \"# Converting $input_dir from JSON to SVG...\" && for f in \"$input_dir\"/*.json; do pathway_name=`basename \"$f\" | sed s/.json//` && base_path=`echo \"./test/expected/$pathway_name\"` && mkdir -p ./test/actual && echo \"\\n## Processing $pathway_name...\" && cat \"$f\" | bin/pvjs --react | xmllint --pretty 2 - > `echo \"./test/actual/$pathway_name.svg\"` || break; done && npm-run-all -s compare:*",
     "compare:text": "gpml2pvjson_dir=$(node -p 'path.dirname(require.resolve(\"gpml2pvjson/package.json\"))') && input_dir=\"$gpml2pvjson_dir/test/expected\" && ./bin/compare-texts \"$(pwd)/test\"",
