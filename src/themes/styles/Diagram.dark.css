@@ -51,7 +51,7 @@
 }
 
 .CellularComponent > .Icon {
-  color: red;
+  color: orange;
   fill: pink;
   fill-opacity: 0.05;
   stroke: orange;
