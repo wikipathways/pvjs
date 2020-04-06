@@ -9,8 +9,9 @@ dist
 npm-debug.log
 test/expected/*.svg
 test/actual/
-*.css.d.ts
+test/gpml2pvjson
 test/playground.json
+*.css.d.ts
 src/themes/dark/
 src/themes/plain/
 src/themes/experimental/
