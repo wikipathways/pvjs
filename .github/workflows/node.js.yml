@@ -20,6 +20,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install xmllint
+      run: sudo apt-get install libxml2-utils
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
