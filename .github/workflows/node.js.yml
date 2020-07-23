@@ -26,5 +26,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: npm config set script-shell bash --global
     - run: npm install
     - run: npm test
