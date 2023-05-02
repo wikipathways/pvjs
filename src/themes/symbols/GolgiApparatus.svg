@@ -2,7 +2,7 @@
   <defs>
     <!-- TODO viewBox probably wrong -->
     <symbol id="GolgiApparatus" overflow="visible"
-		preserveAspectRatio="none" viewBox="0 0 100 100">
+		preserveAspectRatio="none" viewBox="0 0 100 150">
 	<desc>GolgiApparatus</desc>
 	<path
 		vector-effect="non-scaling-stroke"
