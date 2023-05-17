@@ -9,6 +9,7 @@
     "WhiteToRed": "file://./filters/WhiteToRed.svg#WhiteToRed",
     "WhiteToGreen": "file://./filters/WhiteToGreen.svg#WhiteToGreen",
     "Arrow": "file://./markers/Arrow.svg#Arrow",
+    "MimTranslocation": "file://./markers/Arrow.svg#Arrow",
     "MimBinding": "file://./markers/MimBinding.svg#MimBinding",
     "MimCatalysis": "file://./markers/MimCatalysis.svg#MimCatalysis",
     "MimCleavage": "file://./markers/MimCleavage.svg#MimCleavage",
